@@ -1,0 +1,216 @@
+{
+    "project": {
+        "version": 11,
+        "description": "",
+        "settings": {
+            "enable_execute_all": true
+        },
+        "specifications": {
+            "Importer": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/import_mapping.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/import_dana.json"
+                }
+            ]
+        },
+        "connections": [
+            {
+                "name": "from Data Connection to Importer",
+                "from": [
+                    "Data Connection",
+                    "right"
+                ],
+                "to": [
+                    "Importer",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Importer to Data Store",
+                "from": [
+                    "Importer",
+                    "right"
+                ],
+                "to": [
+                    "Data Store",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Load template to Data Store",
+                "from": [
+                    "Load template",
+                    "left"
+                ],
+                "to": [
+                    "Data Store",
+                    "right"
+                ]
+            },
+            {
+                "name": "from Data Store to Run SpineOpt",
+                "from": [
+                    "Data Store",
+                    "right"
+                ],
+                "to": [
+                    "Run SpineOpt",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@Data Store": {
+                            "scenario_filter": {},
+                            "tool_filter": {
+                                "object_activity_control": true
+                            }
+                        }
+                    },
+                    "auto_online": true
+                }
+            },
+            {
+                "name": "from Run SpineOpt to Output",
+                "from": [
+                    "Run SpineOpt",
+                    "right"
+                ],
+                "to": [
+                    "Output",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Load template to Output",
+                "from": [
+                    "Load template",
+                    "right"
+                ],
+                "to": [
+                    "Output",
+                    "left"
+                ]
+            }
+        ],
+        "jumps": []
+    },
+    "items": {
+        "Load template": {
+            "type": "Tool",
+            "description": "",
+            "x": 128.0012912785868,
+            "y": -149.28615944240946,
+            "specification": "Load template",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@Data Store"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@Output"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Exporter": {
+            "type": "Exporter",
+            "description": "",
+            "x": -58.328750064330684,
+            "y": 112.89667249738963,
+            "output_time_stamps": false,
+            "cancel_on_error": true,
+            "output_labels": [],
+            "specification": "Standard_mapping_Dana"
+        },
+        "Data Store": {
+            "type": "Data Store",
+            "description": "",
+            "x": -57.0268548915785,
+            "y": -29.388491321852808,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/data_store/Data Store.sqlite"
+                }
+            }
+        },
+        "Data Connection": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -427.88450723231085,
+            "y": -31.54655971461824,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "Input/Maersk_Example_Dana.xlsx"
+                }
+            ],
+            "db_references": []
+        },
+        "Importer": {
+            "type": "Importer",
+            "description": "",
+            "x": -229.42292088792502,
+            "y": -29.78308906755212,
+            "specification": "Import_Dana",
+            "cancel_on_error": false,
+            "on_conflict": "replace",
+            "file_selection": [
+                [
+                    "<project>/Input/Maersk_Example_Dana.xlsx",
+                    true
+                ]
+            ]
+        },
+        "Run SpineOpt": {
+            "type": "Tool",
+            "description": "",
+            "x": 121.91019561001652,
+            "y": 94.81904103001283,
+            "specification": "Run SpineOpt",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@Data Store"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@Output"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Output": {
+            "type": "Data Store",
+            "description": "",
+            "x": 298.0027003800402,
+            "y": -30.477548902504132,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/output/Output.sqlite"
+                }
+            }
+        }
+    }
+}

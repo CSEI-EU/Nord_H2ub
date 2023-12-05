@@ -1,0 +1,20 @@
+{
+    "items": {
+        "Exporter": {},
+        "Data Store": {
+            "url": {
+                "username": "",
+                "password": ""
+            }
+        },
+        "Data Connection": {
+            "db_credentials": {}
+        },
+        "Output": {
+            "url": {
+                "username": "",
+                "password": ""
+            }
+        }
+    }
+}
