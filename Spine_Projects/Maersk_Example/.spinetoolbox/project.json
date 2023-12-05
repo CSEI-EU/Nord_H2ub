@@ -16,6 +16,16 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/import_dana.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/importer_adjusted.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/test.json"
                 }
             ]
         },
@@ -121,21 +131,11 @@
             "kill_completed_processes": false,
             "log_process_output": false
         },
-        "Exporter": {
-            "type": "Exporter",
-            "description": "",
-            "x": -58.328750064330684,
-            "y": 112.89667249738963,
-            "output_time_stamps": false,
-            "cancel_on_error": true,
-            "output_labels": [],
-            "specification": "Standard_mapping_Dana"
-        },
         "Data Store": {
             "type": "Data Store",
             "description": "",
-            "x": -57.0268548915785,
-            "y": -29.388491321852808,
+            "x": -53.237231068345125,
+            "y": -30.651699262930606,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -166,7 +166,7 @@
             "description": "",
             "x": -229.42292088792502,
             "y": -29.78308906755212,
-            "specification": "Import_Dana",
+            "specification": "Import_Maersk",
             "cancel_on_error": false,
             "on_conflict": "replace",
             "file_selection": [
