@@ -6,33 +6,11 @@
             "enable_execute_all": true
         },
         "specifications": {
-            "Tool": [
-                {
-                    "type": "path",
-                    "relative": false,
-                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/run_spineopt.json"
-                }
-            ],
             "Importer": [
                 {
                     "type": "path",
                     "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/import_mapping.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/import_dana.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/importer_adjusted.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/test.json"
+                    "path": ".spinetoolbox/specifications/Importer/import_maersk.json"
                 }
             ]
         },
@@ -151,7 +129,8 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/items/data_store/Data Store.sqlite"
-                }
+                },
+                "schema": ""
             }
         },
         "Data Connection": {
@@ -216,7 +195,8 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/items/output/Output.sqlite"
-                }
+                },
+                "schema": ""
             }
         }
     }
