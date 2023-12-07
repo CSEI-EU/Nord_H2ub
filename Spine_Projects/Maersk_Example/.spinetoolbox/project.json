@@ -6,6 +6,13 @@
             "enable_execute_all": true
         },
         "specifications": {
+            "Tool": [
+                {
+                    "type": "path",
+                    "relative": false,
+                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/run_spineopt.json"
+                }
+            ],
             "Importer": [
                 {
                     "type": "path",
@@ -58,6 +65,9 @@
                     "Run SpineOpt",
                     "left"
                 ],
+                "options": {
+                    "use_memory_db": false
+                },
                 "filter_settings": {
                     "known_filters": {
                         "db_url@Data Store": {
@@ -79,7 +89,12 @@
                 "to": [
                     "Output",
                     "left"
-                ]
+                ],
+                "options": {
+                    "purge_before_writing": false,
+                    "use_datapackage": false,
+                    "use_memory_db": false
+                }
             },
             {
                 "name": "from Load template to Output",
@@ -165,7 +180,7 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 121.91019561001652,
+            "x": 122.92595912343297,
             "y": 94.81904103001283,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
@@ -185,8 +200,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 298.0027003800402,
-            "y": -30.477548902504132,
+            "x": 298.00270038004027,
+            "y": -29.461785389087666,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
