@@ -672,8 +672,7 @@
                     "mapping": [
                         {
                             "map_type": "ObjectClass",
-                            "position": "hidden",
-                            "value": "node"
+                            "position": -1
                         },
                         {
                             "map_type": "Object",
@@ -685,7 +684,7 @@
                         },
                         {
                             "map_type": "ParameterDefinition",
-                            "position": -1
+                            "position": -2
                         },
                         {
                             "map_type": "Alternative",
