@@ -675,8 +675,7 @@
                         "mapping": [
                             {
                                 "map_type": "ObjectClass",
-                                "position": "hidden",
-                                "value": "node"
+                                "position": -1
                             },
                             {
                                 "map_type": "Object",
@@ -688,7 +687,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": -1
+                                "position": -2
                             },
                             {
                                 "map_type": "Alternative",
@@ -875,7 +874,10 @@
             },
             "Demand": {
                 "0": "datetime",
-                "1": "float"
+                "1": "float",
+                "2": "string",
+                "3": "string",
+                "4": "string"
             },
             "Time_Series_Storage": {
                 "0": "datetime",
