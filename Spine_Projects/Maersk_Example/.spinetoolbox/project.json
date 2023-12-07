@@ -18,6 +18,11 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/import_maersk.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/test.json"
                 }
             ]
         },
@@ -134,8 +139,8 @@
         "Data Store": {
             "type": "Data Store",
             "description": "",
-            "x": -53.237231068345125,
-            "y": -30.651699262930606,
+            "x": -53.23723106834508,
+            "y": -32.683226289763525,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -151,8 +156,8 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -427.88450723231085,
-            "y": -31.54655971461824,
+            "x": -426.8687437188944,
+            "y": -32.56232322803469,
             "file_references": [
                 {
                     "type": "path",
@@ -165,7 +170,7 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -229.42292088792502,
+            "x": -228.40715737450856,
             "y": -29.78308906755212,
             "specification": "Import_Maersk",
             "cancel_on_error": false,
@@ -180,8 +185,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 122.92595912343297,
-            "y": 94.81904103001283,
+            "x": 125.97324966368235,
+            "y": 93.80327751659637,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -200,8 +205,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 298.00270038004027,
-            "y": -29.461785389087666,
+            "x": 300.0342274068732,
+            "y": -28.446021875671207,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
