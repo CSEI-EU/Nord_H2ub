@@ -766,6 +766,75 @@
                     ]
                 }
             }
+        ],
+        "Energy Prices": [
+            {
+                "Value": {
+                    "mapping": [
+                        {
+                            "map_type": "RelationshipClass",
+                            "position": -1
+                        },
+                        {
+                            "map_type": "RelationshipClassObjectClass",
+                            "position": "hidden",
+                            "value": "connection"
+                        },
+                        {
+                            "map_type": "RelationshipClassObjectClass",
+                            "position": "hidden",
+                            "value": "node"
+                        },
+                        {
+                            "map_type": "Relationship",
+                            "position": "hidden",
+                            "value": "relationship"
+                        },
+                        {
+                            "map_type": "RelationshipObject",
+                            "position": -2
+                        },
+                        {
+                            "map_type": "RelationshipObject",
+                            "position": -3
+                        },
+                        {
+                            "map_type": "RelationshipMetadata",
+                            "position": "hidden"
+                        },
+                        {
+                            "map_type": "ParameterDefinition",
+                            "position": -4
+                        },
+                        {
+                            "map_type": "Alternative",
+                            "position": "hidden",
+                            "value": "Base"
+                        },
+                        {
+                            "map_type": "ParameterValueMetadata",
+                            "position": 0
+                        },
+                        {
+                            "map_type": "ParameterValueType",
+                            "position": "hidden",
+                            "value": "time_series"
+                        },
+                        {
+                            "map_type": "IndexName",
+                            "position": "hidden"
+                        },
+                        {
+                            "map_type": "ParameterValueIndex",
+                            "position": "hidden"
+                        },
+                        {
+                            "map_type": "ExpandedValue",
+                            "position": "hidden"
+                        }
+                    ]
+                }
+            }
         ]
     },
     "selected_tables": [

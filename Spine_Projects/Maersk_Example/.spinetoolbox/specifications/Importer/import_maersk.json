@@ -769,6 +769,75 @@
                         ]
                     }
                 }
+            ],
+            "Energy Prices": [
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "connection"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -4
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "time_series"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
@@ -783,7 +852,8 @@
             "Connection__from-to_node",
             "Connection__node_node",
             "Demand",
-            "Time_Series_Storage"
+            "Time_Series_Storage",
+            "Energy Prices"
         ],
         "table_options": {
             "Units": {
@@ -820,6 +890,9 @@
                 "header": true
             },
             "Model": {
+                "header": true
+            },
+            "Energy Prices": {
                 "header": true
             }
         },
@@ -904,10 +977,21 @@
                 "5": "string",
                 "6": "string",
                 "7": "string"
+            },
+            "Energy Prices": {
+                "0": "datetime",
+                "1": "float",
+                "2": "float"
             }
         },
         "table_default_column_type": {},
-        "table_row_types": {},
+        "table_row_types": {
+            "Energy Prices": {
+                "1": "string",
+                "2": "string",
+                "3": "string"
+            }
+        },
         "source_type": "ExcelConnector"
     },
     "description": ""
