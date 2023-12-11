@@ -816,7 +816,7 @@
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
-                                "position": 0
+                                "position": "hidden"
                             },
                             {
                                 "map_type": "ParameterValueType",
@@ -829,7 +829,7 @@
                             },
                             {
                                 "map_type": "ParameterValueIndex",
-                                "position": "hidden"
+                                "position": 0
                             },
                             {
                                 "map_type": "ExpandedValue",
@@ -949,8 +949,7 @@
                 "0": "datetime",
                 "1": "float",
                 "2": "string",
-                "3": "string",
-                "4": "string"
+                "3": "string"
             },
             "Time_Series_Storage": {
                 "0": "datetime",
