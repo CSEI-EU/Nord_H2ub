@@ -948,8 +948,8 @@
             "Demand": {
                 "0": "datetime",
                 "1": "float",
-                "2": "string",
-                "3": "string"
+                "2": "float",
+                "3": "float"
             },
             "Time_Series_Storage": {
                 "0": "datetime",
