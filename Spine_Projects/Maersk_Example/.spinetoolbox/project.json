@@ -6,13 +6,6 @@
             "enable_execute_all": true
         },
         "specifications": {
-            "Tool": [
-                {
-                    "type": "path",
-                    "relative": false,
-                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/run_spineopt.json"
-                }
-            ],
             "Importer": [
                 {
                     "type": "path",
@@ -139,8 +132,8 @@
         "Data Store": {
             "type": "Data Store",
             "description": "",
-            "x": -53.23723106834508,
-            "y": -32.683226289763525,
+            "x": -55.253146206752085,
+            "y": -32.68322628976352,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -156,7 +149,7 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -426.8687437188944,
+            "x": -425.86078614969097,
             "y": -32.56232322803469,
             "file_references": [
                 {
@@ -185,8 +178,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 125.97324966368235,
-            "y": 93.80327751659637,
+            "x": 126.98120723288585,
+            "y": 92.79531994739285,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -199,14 +192,17 @@
                     "arg": "db_url@Output"
                 }
             ],
+            "options": {
+                "julia_sysimage": "C:/Users/jfg.eco/SpineOpt_Maersk.dll"
+            },
             "kill_completed_processes": false,
             "log_process_output": false
         },
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 300.0342274068732,
-            "y": -28.446021875671207,
+            "x": 301.0421849760768,
+            "y": -28.44602187567121,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
