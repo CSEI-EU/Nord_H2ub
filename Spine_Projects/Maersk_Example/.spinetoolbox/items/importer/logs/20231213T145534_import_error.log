@@ -1,0 +1,2 @@
+Could not import relationship with objects ('Electrolyzer_Kasso', 'Power_Kasso') into 'unit__node__node': Incorrect objects '['Electrolyzer_Kasso', 'Power_Kasso']' for relationship class 'unit__node__node'.
+Could not import parameter value for '['Electrolyzer_Kasso', 'Power_Kasso']', class 'unit__node__node', parameter 'unit_incremental_heat_rate': Missing object or relationship identifier.
