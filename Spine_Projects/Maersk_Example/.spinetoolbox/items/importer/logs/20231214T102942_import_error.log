@@ -1,0 +1,2 @@
+Could not import relationship with objects ('Power_Kasso', 'Hydrogen_Kasso', 'unit_incremental_heat_rate') into 'Electrolyzer_Kasso': Some of the objects in relationship 'Electrolyzer_Kasso_Power_Kasso__Hydrogen_Kasso__unit_incremental_heat_rate' are invalid.
+Could not import parameter value for '['Power_Kasso', 'Hydrogen_Kasso', 'unit_incremental_heat_rate']', class 'Electrolyzer_Kasso', parameter '2.5': Missing object or relationship identifier.

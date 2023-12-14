@@ -465,6 +465,157 @@
                     }
                 }
             ],
+            "Variable_Eff": [
+                {
+                    "Value_unit_node_node": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": "header",
+                                "skip_columns": [
+                                    2
+                                ]
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "unit"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -4
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "array"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Value_unit_from-to_node": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": "header",
+                                "skip_columns": [
+                                    1
+                                ]
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "unit"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -2
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -4
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "array"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
             "Connection__from-to_node": [
                 {
                     "Relationship_Value": {
@@ -838,157 +989,6 @@
                         ]
                     }
                 }
-            ],
-            "Variable_Eff": [
-                {
-                    "Value_unit_node_node": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": -1,
-                                "skip_columns": [
-                                    2
-                                ]
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -3
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -4
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": -5
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "array"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ExpandedValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_unit_from-to_node": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": -1,
-                                "skip_columns": [
-                                    1
-                                ]
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -3
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": -5
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "array"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ExpandedValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
             ]
         },
         "selected_tables": [
@@ -1000,12 +1000,12 @@
             "Connections",
             "Unit__from-to_node",
             "Unit__node_node",
+            "Variable_Eff",
             "Connection__from-to_node",
             "Connection__node_node",
             "Demand",
             "Time_Series_Storage",
-            "Energy Prices",
-            "Variable_Eff"
+            "Energy Prices"
         ],
         "table_options": {
             "Units": {
@@ -1047,7 +1047,9 @@
             "Energy Prices": {
                 "header": true
             },
-            "Variable_Eff": {}
+            "Variable_Eff": {
+                "header": true
+            }
         },
         "table_types": {
             "Units": {
@@ -1088,8 +1090,7 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "float",
-                "6": "string"
+                "5": "float"
             },
             "Connection__node_node": {
                 "0": "string",
@@ -1102,8 +1103,8 @@
             "Demand": {
                 "0": "datetime",
                 "1": "float",
-                "2": "float",
-                "3": "float"
+                "2": "string",
+                "3": "string"
             },
             "Time_Series_Storage": {
                 "0": "datetime",
@@ -1135,7 +1136,7 @@
                 "0": "datetime",
                 "1": "float",
                 "2": "float",
-                "3": "float"
+                "3": "string"
             },
             "Variable_Eff": {
                 "0": "string",
@@ -1154,7 +1155,8 @@
                 "1": "string",
                 "2": "string",
                 "3": "string",
-                "4": "string"
+                "4": "string",
+                "0": "string"
             }
         },
         "source_type": "ExcelConnector"
