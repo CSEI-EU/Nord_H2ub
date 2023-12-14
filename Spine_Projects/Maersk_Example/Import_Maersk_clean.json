@@ -468,7 +468,7 @@
                     "mapping": [
                         {
                             "map_type": "RelationshipClass",
-                            "position": -1,
+                            "position": "header",
                             "skip_columns": [
                                 2
                             ]
@@ -495,6 +495,10 @@
                         },
                         {
                             "map_type": "RelationshipObject",
+                            "position": -1
+                        },
+                        {
+                            "map_type": "RelationshipObject",
                             "position": -2
                         },
                         {
@@ -502,16 +506,12 @@
                             "position": -3
                         },
                         {
-                            "map_type": "RelationshipObject",
-                            "position": -4
-                        },
-                        {
                             "map_type": "RelationshipMetadata",
                             "position": "hidden"
                         },
                         {
                             "map_type": "ParameterDefinition",
-                            "position": -5
+                            "position": -4
                         },
                         {
                             "map_type": "Alternative",
@@ -547,7 +547,7 @@
                     "mapping": [
                         {
                             "map_type": "RelationshipClass",
-                            "position": -1,
+                            "position": "header",
                             "skip_columns": [
                                 1
                             ]
@@ -569,11 +569,11 @@
                         },
                         {
                             "map_type": "RelationshipObject",
-                            "position": -2
+                            "position": -1
                         },
                         {
                             "map_type": "RelationshipObject",
-                            "position": -3
+                            "position": -2
                         },
                         {
                             "map_type": "RelationshipMetadata",
@@ -581,7 +581,7 @@
                         },
                         {
                             "map_type": "ParameterDefinition",
-                            "position": -5
+                            "position": -4
                         },
                         {
                             "map_type": "Alternative",
@@ -1146,7 +1146,8 @@
             "1": "string",
             "2": "string",
             "3": "string",
-            "4": "string"
+            "4": "string",
+            "0": "string"
         },
         "Energy Prices": {
             "1": "string",
