@@ -1,0 +1,192 @@
+{
+    "project": {
+        "version": 11,
+        "description": "",
+        "settings": {
+            "enable_execute_all": true
+        },
+        "specifications": {
+            "Importer": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/mapping_2024_jan.json"
+                }
+            ]
+        },
+        "connections": [
+            {
+                "name": "from Load template to Input",
+                "from": [
+                    "Load template",
+                    "bottom"
+                ],
+                "to": [
+                    "Input",
+                    "right"
+                ]
+            },
+            {
+                "name": "from Load template to Output",
+                "from": [
+                    "Load template",
+                    "bottom"
+                ],
+                "to": [
+                    "Output",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Input to Run SpineOpt",
+                "from": [
+                    "Input",
+                    "right"
+                ],
+                "to": [
+                    "Run SpineOpt",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Run SpineOpt to Output",
+                "from": [
+                    "Run SpineOpt",
+                    "right"
+                ],
+                "to": [
+                    "Output",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Data Connection to Importer",
+                "from": [
+                    "Data Connection",
+                    "right"
+                ],
+                "to": [
+                    "Importer",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Importer to Input",
+                "from": [
+                    "Importer",
+                    "right"
+                ],
+                "to": [
+                    "Input",
+                    "left"
+                ]
+            }
+        ],
+        "jumps": []
+    },
+    "items": {
+        "Data Connection": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -201.00284154977095,
+            "y": -158.35354697797624,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": false,
+                    "path": "C:/Users/DanaJosephineHentsch/OneDrive - CBS - Copenhagen Business School/Dokumente/GitHub/Nord_H2ub/Spine_Projects/Input_data/input_prepared/Maersk_Example_Input_prepared_v03.xlsx"
+                }
+            ],
+            "db_references": []
+        },
+        "Input": {
+            "type": "Data Store",
+            "description": "",
+            "x": 78.37734082397006,
+            "y": -156.7546816479401,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/input/Input.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "Output": {
+            "type": "Data Store",
+            "description": "",
+            "x": 376.98256447064,
+            "y": -163.7737539104431,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/output/Output.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "Load template": {
+            "type": "Tool",
+            "description": "",
+            "x": 229.10299625468173,
+            "y": -261.2578027465669,
+            "specification": "Load template",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@Input"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@Output"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Run SpineOpt": {
+            "type": "Tool",
+            "description": "",
+            "x": 239.15137328339583,
+            "y": -58.280586766541845,
+            "specification": "Run SpineOpt",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@Input"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@Output"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Importer": {
+            "type": "Importer",
+            "description": "",
+            "x": -58.93949868438905,
+            "y": -157.57294546234627,
+            "specification": "Mapping_2024_Jan",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "C:\\Users\\DanaJosephineHentsch\\OneDrive - CBS - Copenhagen Business School\\Dokumente\\GitHub\\Nord_H2ub\\Spine_Projects\\Input_data\\input_prepared\\Maersk_Example_Input_prepared_v03.xlsx",
+                    true
+                ]
+            ]
+        }
+    }
+}

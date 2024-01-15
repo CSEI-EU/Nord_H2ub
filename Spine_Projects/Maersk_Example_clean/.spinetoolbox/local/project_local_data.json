@@ -1,0 +1,19 @@
+{
+    "items": {
+        "Data Connection": {
+            "db_credentials": {}
+        },
+        "Input": {
+            "url": {
+                "username": "",
+                "password": ""
+            }
+        },
+        "Output": {
+            "url": {
+                "username": "",
+                "password": ""
+            }
+        }
+    }
+}
