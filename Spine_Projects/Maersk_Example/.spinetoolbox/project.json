@@ -11,11 +11,6 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/import_maersk.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/test.json"
                 }
             ]
         },
@@ -178,8 +173,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 126.98120723288585,
-            "y": 92.79531994739285,
+            "x": 134.33062179694372,
+            "y": 90.95796630637838,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -202,7 +197,7 @@
             "type": "Data Store",
             "description": "",
             "x": 301.0421849760768,
-            "y": -28.44602187567121,
+            "y": -30.283375516685666,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
