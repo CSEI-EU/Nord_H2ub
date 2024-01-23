@@ -131,7 +131,7 @@
             ],
             "Energy_prices": [
                 {
-                    "Mapping 1": {
+                    "Values": {
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
@@ -852,7 +852,6 @@
             "Connections",
             "Definition",
             "Demand",
-            "Energy_prices",
             "Model",
             "Model_components",
             "Model_relations",
@@ -939,7 +938,7 @@
                 "2": "float"
             },
             "Time_series_storage": {
-                "0": "float",
+                "0": "datetime",
                 "1": "float",
                 "2": "float"
             },
