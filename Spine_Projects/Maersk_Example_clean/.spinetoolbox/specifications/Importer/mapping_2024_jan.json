@@ -179,15 +179,15 @@
                             {
                                 "map_type": "ParameterValueType",
                                 "position": "hidden",
-                                "value": "array"
+                                "value": "time_series"
                             },
                             {
                                 "map_type": "IndexName",
-                                "position": 0
+                                "position": "hidden"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
-                                "position": "hidden"
+                                "position": 0
                             },
                             {
                                 "map_type": "ExpandedValue",
@@ -782,15 +782,15 @@
                             {
                                 "map_type": "ParameterValueType",
                                 "position": "hidden",
-                                "value": "array"
+                                "value": "time_series"
                             },
                             {
                                 "map_type": "IndexName",
-                                "position": 0
+                                "position": "hidden"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
-                                "position": "hidden"
+                                "position": 0
                             },
                             {
                                 "map_type": "ExpandedValue",
@@ -940,13 +940,14 @@
             "Connections",
             "Definition",
             "Demand",
+            "Energy_prices",
             "Model",
             "Model_components",
             "Model_relations",
             "Nodes",
             "Object__node_node",
             "Object__to_from_node",
-            "Variable_Eff"
+            "Time_series_storage"
         ],
         "table_options": {
             "Definition": {

@@ -1,0 +1,5 @@
+Could not import relationship with objects ('Electrolyzer_Kasso', 'Power_Kasso') into 'unit__from_node': Some of the objects in relationship 'unit__from_node_Electrolyzer_Kasso__Power_Kasso' are invalid.
+Could not import parameter value for '['Electrolyzer_Kasso', 'Power_Kasso']', class 'unit__from_node', parameter 'operating_points': Missing object or relationship identifier.
+Could not import parameter value for '['Electrolyzer_Kasso', 'Power_Kasso']', class 'unit__from_node', parameter 'operating_points': Missing object or relationship identifier.
+Could not import relationship with objects ('Electrolyzer_Kasso', 'Power_Kasso', 'Hydrogen_Kasso') into 'unit__node__node': Some of the objects in relationship 'unit__node__node_Electrolyzer_Kasso__Power_Kasso__Hydrogen_Kasso' are invalid.
+Could not import parameter value for '['Electrolyzer_Kasso', 'Power_Kasso', 'Hydrogen_Kasso']', class 'unit__node__node', parameter 'unit_incremental_heat_rate': Missing object or relationship identifier.

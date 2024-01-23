@@ -46,7 +46,18 @@
                 "to": [
                     "Run SpineOpt",
                     "left"
-                ]
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@Input": {
+                            "scenario_filter": {},
+                            "tool_filter": {
+                                "object_activity_control": true
+                            }
+                        }
+                    },
+                    "auto_online": true
+                }
             },
             {
                 "name": "from Run SpineOpt to Output",
@@ -94,7 +105,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/DanaJosephineHentsch/OneDrive - CBS - Copenhagen Business School/Dokumente/GitHub/Nord_H2ub/Spine_Projects/Input_data/input_prepared/Maersk_Example_Input_prepared_v03.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/Input_data/input_prepared/Maersk_Example_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -183,7 +194,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\DanaJosephineHentsch\\OneDrive - CBS - Copenhagen Business School\\Dokumente\\GitHub\\Nord_H2ub\\Spine_Projects\\Input_data\\input_prepared\\Maersk_Example_Input_prepared_v03.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\Input_data\\input_prepared\\Maersk_Example_Input_prepared.xlsx",
                     true
                 ]
             ]
