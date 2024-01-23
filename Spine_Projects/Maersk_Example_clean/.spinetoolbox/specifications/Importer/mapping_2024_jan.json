@@ -131,7 +131,7 @@
             ],
             "Energy_prices": [
                 {
-                    "Mapping 1": {
+                    "Values": {
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
@@ -530,16 +530,42 @@
                     "Definition": {
                         "mapping": [
                             {
-                                "map_type": "ObjectClass",
-                                "position": "header",
-                                "value": 0
+                                "map_type": "RelationshipClass",
+                                "position": 0
                             },
                             {
-                                "map_type": "Object",
-                                "position": "hidden"
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": 1
                             },
                             {
-                                "map_type": "ObjectMetadata",
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 3
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
                                 "position": "hidden"
                             },
                             {
@@ -553,6 +579,68 @@
                             {
                                 "map_type": "ParameterDefaultValue",
                                 "position": "hidden"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 3
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 5
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 6
                             }
                         ]
                     }
@@ -852,13 +940,12 @@
             "Connections",
             "Definition",
             "Demand",
-            "Energy_prices",
             "Model",
             "Model_components",
             "Model_relations",
             "Nodes",
+            "Object__node_node",
             "Object__to_from_node",
-            "Time_series_storage",
             "Variable_Eff"
         ],
         "table_options": {
@@ -931,7 +1018,9 @@
                 "1": "string",
                 "2": "string",
                 "3": "string",
-                "4": "string"
+                "4": "string",
+                "5": "string",
+                "6": "float"
             },
             "Variable_Eff": {
                 "0": "float",
@@ -939,7 +1028,7 @@
                 "2": "float"
             },
             "Time_series_storage": {
-                "0": "float",
+                "0": "datetime",
                 "1": "float",
                 "2": "float"
             },
