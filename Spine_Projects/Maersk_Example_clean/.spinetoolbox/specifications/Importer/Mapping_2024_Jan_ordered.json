@@ -937,17 +937,17 @@
             ]
         },
         "selected_tables": [
-            "Connections",
-            "Definition",
-            "Demand",
-            "Energy_prices",
             "Model",
             "Model_components",
             "Model_relations",
+            "Definition",
             "Nodes",
-            "Object__node_node",
+            "Connections",
             "Object__to_from_node",
-            "Time_series_storage"
+            "Object__node_node",
+            "Demand",
+            "Time_series_storage",
+            "Energy_prices"
         ],
         "table_options": {
             "Definition": {
