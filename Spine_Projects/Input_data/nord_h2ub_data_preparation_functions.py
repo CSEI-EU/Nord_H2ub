@@ -42,9 +42,10 @@ def check_exclusively_once(val):
     return count == 1
 
 #method to get information of all possible connections between nodes of the network
-def create_connection_dataframe(data):
+def create_connection_dataframe(df, columns):
     # Create the input dataframe
-    df_input = pd.DataFrame(data)
+    #df_input = pd.DataFrame(data)
+    df_input = df[columns]
 
     # Create a new dataframe for the connections
     connections = {'in': [], 'out': []}
@@ -60,8 +61,14 @@ def create_connection_dataframe(data):
                 connections['in'].append(in_val)
                 connections['out'].append(out_val)
 
-    # Create the final dataframe and drop duplicate pairs
-    df_output = pd.DataFrame(connections).drop_duplicates()
+    # Create the final dataframe
+    df_output = pd.DataFrame(connections)
+
+    # Drop rows where 'in' and 'out' in the same row are identical
+    df_output = df_output[df_output['in'] != df_output['out']]
+
+    # Drop duplicate pairs
+    df_output = df_output.drop_duplicates()
 
     return df_output
 
