@@ -52,8 +52,8 @@ def create_connection_dataframe(df, columns):
 
     # Iterate through each row of the input dataframe
     for _, row in df_input.iterrows():
-        in_values = [value for value in [row['in1'], row['in2']]]
-        out_values = [value for value in [row['out1'], row['out2']]]
+        in_values = [value for value in [row['Input1'], row['Input2']]]
+        out_values = [value for value in [row['Output1'], row['Output2']]]
         
         # Generate connections for each input-output pair
         for in_val in in_values:
@@ -74,6 +74,9 @@ def create_connection_dataframe(df, columns):
 
 #method to identify all nodes that have only a mirrored connection to one other node of the network
 def find_mirror_combinations(df):
+    #replace NaN with None to make this function work
+    df.replace(np.nan, None, inplace=True)
+
     # Create a new column with sorted tuples of 'in' and 'out' values
     df['sorted_combinations'] = df.apply(lambda row: tuple(sorted([row['in'], row['out']])) if None not in [row['in'], row['out']] else None, axis=1)
 
@@ -90,6 +93,9 @@ def find_mirror_combinations(df):
 
 #method to identify all nodes that are connected to one node
 def find_partners(df):
+    #replace NaN with None to make this function work
+    df.replace(np.nan, None, inplace=True)
+
     partners = {}
 
     for index, row in df.iterrows():
@@ -105,4 +111,17 @@ def find_partners(df):
 
     return partners
 
-#
+#identification of nodes that have only one connection to another node
+def find_identical_entries(dict1, dict2):
+    identical_entries = {}
+
+    for key1, value1 in dict1.items():
+        if key1 in dict2 and value1 == dict2[key1]:
+            identical_entries[key1] = value1
+
+    nodes = list(identical_entries.keys())
+    
+    #remove storage nodes as they must be balanced
+    filtered_nodes = [entry for entry in nodes if 'storage' not in entry]
+
+    return filtered_nodes
