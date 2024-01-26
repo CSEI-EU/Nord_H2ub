@@ -40,3 +40,62 @@ def check_entries_exist(df, type):
 def check_exclusively_once(val):
     count = sum(1 for col in inputs_outputs if val in occurrences[col] and occurrences[col][val] == 1)
     return count == 1
+
+#method to get information of all possible connections between nodes of the network
+def create_connection_dataframe(data):
+    # Create the input dataframe
+    df_input = pd.DataFrame(data)
+
+    # Create a new dataframe for the connections
+    connections = {'in': [], 'out': []}
+
+    # Iterate through each row of the input dataframe
+    for _, row in df_input.iterrows():
+        in_values = [value for value in [row['in1'], row['in2']]]
+        out_values = [value for value in [row['out1'], row['out2']]]
+        
+        # Generate connections for each input-output pair
+        for in_val in in_values:
+            for out_val in out_values:
+                connections['in'].append(in_val)
+                connections['out'].append(out_val)
+
+    # Create the final dataframe and drop duplicate pairs
+    df_output = pd.DataFrame(connections).drop_duplicates()
+
+    return df_output
+
+#method to identify all nodes that have only a mirrored connection to one other node of the network
+def find_mirror_combinations(df):
+    # Create a new column with sorted tuples of 'in' and 'out' values
+    df['sorted_combinations'] = df.apply(lambda row: tuple(sorted([row['in'], row['out']])) if None not in [row['in'], row['out']] else None, axis=1)
+
+    # Check for duplicated sorted tuples
+    duplicated_combinations = df['sorted_combinations'].duplicated(keep=False)
+
+    # Filter the DataFrame to show only rows with mirrored combinations
+    mirrored_rows = df[duplicated_combinations]
+
+    # Drop rows with 'None' entry in 'in' or 'out'
+    mirrored_rows = mirrored_rows.dropna(subset=['in', 'out'])
+
+    return mirrored_rows[['in', 'out']]
+
+#method to identify all nodes that are connected to one node
+def find_partners(df):
+    partners = {}
+
+    for index, row in df.iterrows():
+        if row['in'] not in partners:
+            partners[row['in']] = set()
+        if row['out'] is not None:
+            partners[row['in']].add(row['out'])
+
+        if row['out'] not in partners:
+            partners[row['out']] = set()
+        if row['in'] is not None:
+            partners[row['out']].add(row['in'])
+
+    return partners
+
+#
