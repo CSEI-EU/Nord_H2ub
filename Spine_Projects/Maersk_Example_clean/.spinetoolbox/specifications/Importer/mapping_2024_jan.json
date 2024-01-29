@@ -3,202 +3,6 @@
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
-            "Connections": [
-                {
-                    "Definition": {
-                        "mapping": [
-                            {
-                                "map_type": "ObjectClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Object",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ObjectMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value": {
-                        "mapping": [
-                            {
-                                "map_type": "ObjectClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Object",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ObjectMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 2
-                            }
-                        ]
-                    }
-                }
-            ],
-            "Definition": [
-                {
-                    "Definition": {
-                        "mapping": [
-                            {
-                                "map_type": "ObjectClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Object",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ObjectMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "Demand": [
-                {
-                    "Demand_Timeseries": {
-                        "mapping": [
-                            {
-                                "map_type": "ObjectClass",
-                                "position": -1
-                            },
-                            {
-                                "map_type": "Object",
-                                "position": "header"
-                            },
-                            {
-                                "map_type": "ObjectMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": -2
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "time_series"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ExpandedValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "Energy_prices": [
-                {
-                    "Values": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": -1
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -3
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": -4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "time_series"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ExpandedValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Model": [
                 {
                     "Definition": {
@@ -321,6 +125,26 @@
                             },
                             {
                                 "map_type": "ParameterValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Definition": [
+                {
+                    "Definition": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
                                 "position": "hidden"
                             }
                         ]
@@ -533,6 +357,166 @@
                     }
                 }
             ],
+            "Connections": [
+                {
+                    "Definition": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": "hidden",
+                                "value": "connection"
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": "hidden",
+                                "value": "connection"
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 2
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Object__to_from_node": [
+                {
+                    "Definition": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueList",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefaultValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 5
+                            }
+                        ]
+                    }
+                }
+            ],
             "Object__node_node": [
                 {
                     "Definition": {
@@ -649,160 +633,6 @@
                             {
                                 "map_type": "ParameterValue",
                                 "position": 6
-                            }
-                        ]
-                    }
-                }
-            ],
-            "Object__to_from_node": [
-                {
-                    "Definition": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 3
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueList",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefaultValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 3
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": 4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 5
-                            }
-                        ]
-                    }
-                }
-            ],
-            "Time_series_storage": [
-                {
-                    "Storage_Definition": {
-                        "mapping": [
-                            {
-                                "map_type": "ObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Object",
-                                "position": "header"
-                            },
-                            {
-                                "map_type": "ObjectMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": -1
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "time_series"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ExpandedValue",
-                                "position": "hidden"
                             }
                         ]
                     }
@@ -942,20 +772,190 @@
                         ]
                     }
                 }
+            ],
+            "Demand": [
+                {
+                    "Demand_Timeseries": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": "header"
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -2
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "time_series"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Time_series_storage": [
+                {
+                    "Storage_Definition": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": "header"
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "time_series"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Energy_prices": [
+                {
+                    "Values": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "connection"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -4
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "time_series"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
-            "Connections",
-            "Definition",
-            "Demand",
-            "Energy_prices",
             "Model",
             "Model_components",
             "Model_relations",
+            "Definition",
             "Nodes",
-            "Object__node_node",
+            "Connections",
             "Object__to_from_node",
-            "Time_series_storage"
+            "Object__node_node",
+            "Demand",
+            "Time_series_storage",
+            "Energy_prices"
         ],
         "table_options": {
             "Definition": {
