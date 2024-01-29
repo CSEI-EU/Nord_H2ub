@@ -45,7 +45,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -170,7 +171,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -310,7 +312,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -367,7 +370,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -403,7 +407,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -439,7 +444,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -475,7 +481,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -511,7 +518,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -1043,7 +1051,8 @@
                 "0": "datetime",
                 "1": "float",
                 "2": "float",
-                "3": "float"
+                "3": "float",
+                "4": "float"
             },
             "Model_components": {
                 "0": "string",
