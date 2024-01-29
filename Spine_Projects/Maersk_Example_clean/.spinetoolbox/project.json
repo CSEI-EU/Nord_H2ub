@@ -135,7 +135,7 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 376.98256447064,
+            "x": 377.99128562226815,
             "y": -163.7737539104431,
             "url": {
                 "dialect": "sqlite",
@@ -152,8 +152,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 229.10299625468173,
-            "y": -261.2578027465669,
+            "x": 230.79601514583882,
+            "y": -262.2665238981951,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -163,7 +163,7 @@
                 },
                 {
                     "type": "resource",
-                    "arg": "db_url@Input"
+                    "arg": "db_url@Output"
                 }
             ],
             "kill_completed_processes": false,
@@ -172,8 +172,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 238.14185973494776,
-            "y": -58.280586766541845,
+            "x": 240.1947529535343,
+            "y": -57.596289027012986,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -183,11 +183,11 @@
                 },
                 {
                     "type": "resource",
-                    "arg": "db_url@Input"
+                    "arg": "db_url@Output"
                 }
             ],
             "options": {
-                "julia_sysimage": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/Maersk_Example/SpineOpt_Maersk.dll"
+                "julia_sysimage": ""
             },
             "kill_completed_processes": false,
             "log_process_output": false
