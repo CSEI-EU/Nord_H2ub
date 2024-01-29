@@ -690,7 +690,20 @@
                                 "position": 0
                             },
                             {
-                                "map_type": "ParameterValue",
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "array"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ExpandedValue",
                                 "position": "hidden"
                             }
                         ]
@@ -750,7 +763,7 @@
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
+                                "position": 0
                             },
                             {
                                 "map_type": "ParameterValueType",
@@ -759,7 +772,7 @@
                             },
                             {
                                 "map_type": "IndexName",
-                                "position": 0
+                                "position": "hidden"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -953,6 +966,7 @@
             "Connections",
             "Object__to_from_node",
             "Object__node_node",
+            "Variable_Eff",
             "Demand",
             "Time_series_storage",
             "Energy_prices"
@@ -1032,7 +1046,7 @@
                 "6": "float"
             },
             "Variable_Eff": {
-                "0": "float",
+                "0": "string",
                 "1": "float",
                 "2": "float"
             },
