@@ -109,23 +109,6 @@
                             {
                                 "map_type": "RelationshipMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": "hidden"
                             }
                         ]
                     }
@@ -447,18 +430,6 @@
                             {
                                 "map_type": "RelationshipMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueList",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefaultValue",
-                                "position": "hidden"
                             }
                         ]
                     }
@@ -558,18 +529,6 @@
                             },
                             {
                                 "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueList",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefaultValue",
                                 "position": "hidden"
                             }
                         ]
@@ -714,7 +673,10 @@
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
-                                "position": "header"
+                                "position": "header",
+                                "skip_columns": [
+                                    2
+                                ]
                             },
                             {
                                 "map_type": "RelationshipClassObjectClass",
