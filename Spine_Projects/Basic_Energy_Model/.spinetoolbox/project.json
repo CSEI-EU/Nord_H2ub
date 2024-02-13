@@ -12,6 +12,13 @@
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/mapping_2024_jan.json"
                 }
+            ],
+            "Exporter": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Exporter/exporter_energy_hub_model.json"
+                }
             ]
         },
         "connections": [
@@ -91,6 +98,28 @@
                     "Input",
                     "left"
                 ]
+            },
+            {
+                "name": "from Output to Exporter",
+                "from": [
+                    "Output",
+                    "right"
+                ],
+                "to": [
+                    "Exporter",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@Output": {
+                            "scenario_filter": {},
+                            "tool_filter": {
+                                "object_activity_control": true
+                            }
+                        }
+                    },
+                    "auto_online": true
+                }
             }
         ],
         "jumps": []
@@ -105,7 +134,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/DanaJosephineHentsch/OneDrive - CBS - Copenhagen Business School/Dokumente/GitHub/Nord_H2ub/Spine_Projects/Input_data/input_prepared/Maersk_Example_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/Input_data/input_prepared/Maersk_Example_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -130,7 +159,7 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 377.99128562226815,
+            "x": 390.7311616085071,
             "y": -163.7737539104431,
             "url": {
                 "dialect": "sqlite",
@@ -147,7 +176,7 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 231.80624836748223,
+            "x": 228.97516481498474,
             "y": -262.26652389819515,
             "specification": "Load template",
             "execute_in_work": true,
@@ -197,10 +226,25 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\DanaJosephineHentsch\\OneDrive - CBS - Copenhagen Business School\\Dokumente\\GitHub\\Nord_H2ub\\Spine_Projects\\Input_data\\input_prepared\\Maersk_Example_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\Input_data\\input_prepared\\Maersk_Example_Input_prepared.xlsx",
                     true
                 ]
             ]
+        },
+        "Exporter": {
+            "type": "Exporter",
+            "description": "",
+            "x": 526.5815407645423,
+            "y": -162.78730426860847,
+            "output_time_stamps": false,
+            "cancel_on_error": true,
+            "output_labels": [
+                {
+                    "in_label": "db_url@Output",
+                    "out_label": "Output_exported@Exporter"
+                }
+            ],
+            "specification": "exporter_energy_hub_model"
         }
     }
 }
