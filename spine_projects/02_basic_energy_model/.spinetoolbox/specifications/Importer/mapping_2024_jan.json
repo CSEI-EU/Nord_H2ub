@@ -437,42 +437,6 @@
             ],
             "Object__to_from_node": [
                 {
-                    "Definition": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 3
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                },
-                {
                     "Value": {
                         "mapping": [
                             {
@@ -982,8 +946,6 @@
             "Connections": {
                 "header": true
             },
-            "Object__to_from_node_definition": {
-            },
             "Object__to_from_node": {
                 "header": true
             },
@@ -1010,6 +972,9 @@
             },
             "Model": {
                 "header": true
+            },
+            "Object__to_from_node_definition": {
+                "header": true
             }
         },
         "table_types": {
@@ -1030,12 +995,6 @@
                 "0": "string",
                 "1": "string",
                 "2": "string"
-            },
-            "Object__to_from_node_definition": {
-                "0": "string",
-                "1": "string",
-                "2": "string",
-                "3": "string"
             },
             "Object__to_from_node": {
                 "0": "string",
@@ -1096,6 +1055,12 @@
                 "2": "string",
                 "3": "string",
                 "4": "string"
+            },
+            "Object__to_from_node_definition": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string"
             }
         },
         "table_default_column_type": {
