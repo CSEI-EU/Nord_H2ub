@@ -125,3 +125,50 @@ def find_identical_entries(dict1, dict2):
     filtered_nodes = [entry for entry in nodes if 'storage' not in entry]
 
     return filtered_nodes
+
+
+#create the object_node relationship for units with variable efficiencies
+def fill_values_from_header(dataframe, header):
+    """
+    Create a new DataFrame with values from columns with the specified header.
+
+    Parameters:
+    - dataframe (pd.DataFrame): Input DataFrame.
+    - header (str): The header to search for.
+
+    Returns:
+    - New DataFrame with values filled from matching columns.
+    """
+    matching_columns = [col for col in dataframe.columns if header in col]
+
+    if not matching_columns:
+        print(f"No columns with '{header}' header found.")
+        return pd.DataFrame()
+
+    # Create a new DataFrame
+    new_dataframe = pd.DataFrame()
+
+    # Assume that relationship_class_name is always 'unit__to_node'
+    relationship_class_name = 'unit__to_node'
+
+    # Extract object_name and node from the first and second row of the header column
+    object_name = dataframe.at[0, header]
+    node = dataframe.at[1, header]
+
+    # Assume that parameter_name is 'ordered' and value is 'True'
+    parameter_name = 'ordered_unit_flow_op'
+    value = True
+
+    # Fill values into the new DataFrame
+    for column in matching_columns:
+        temp_df = pd.DataFrame({
+            'relationship_class_name': [relationship_class_name],
+            'object_class': ['unit'],
+            'object_name': [object_name],
+            'node': [node],
+            'parameter_name': [parameter_name],
+            'value': [value]
+        })
+        new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
+
+    return new_dataframe    
