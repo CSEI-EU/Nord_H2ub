@@ -125,6 +125,54 @@
                     {
                         "map_type": "ObjectMetadata",
                         "position": "hidden"
+                    },
+                    {
+                        "map_type": "ParameterDefinition", 
+                        "position": "hidden"
+                    }, 
+                    {
+                        "map_type": "ParameterValueList", 
+                        "position": "hidden"
+                    }, 
+                    {
+                        "map_type": "ParameterDefaultValue", 
+                        "position": "hidden"
+                    }
+                ]
+            }
+        },
+        {
+            "Values": {
+                "mapping": [
+                    {
+                        "map_type": "ObjectClass", 
+                        "position": 1
+                    }, 
+                    {
+                        "map_type": "Object", 
+                        "position": 0
+                    }, 
+                    {
+                        "map_type": "ObjectMetadata", 
+                        "position": "hidden"
+                    }, 
+                    {
+                        "map_type": "ParameterDefinition", 
+                        "position": "header", 
+                        "value": 2
+                    }, 
+                    {
+                        "map_type": "Alternative", 
+                        "position": "hidden", 
+                        "value": "Base"
+                    }, 
+                    {
+                        "map_type": "ParameterValueMetadata", 
+                        "position": "hidden"
+                    }, 
+                    {
+                        "map_type": "ParameterValue", 
+                        "position": 2
                     }
                 ]
             }
@@ -976,13 +1024,14 @@
 "table_types": {
     "Definition": {
         "0": "string",
-        "1": "string"
+        "1": "string",
+        "2": "float"
     },
     "Nodes": {
         "0": "string",
         "1": "string",
         "2": "string",
-        "3": "float",
+        "3": "string",
         "4": "float",
         "5": "float",
         "6": "float"
