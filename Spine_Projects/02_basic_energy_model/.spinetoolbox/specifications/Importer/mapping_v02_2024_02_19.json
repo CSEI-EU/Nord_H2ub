@@ -1,5 +1,5 @@
 {
-    "name": "Mapping_2024_Jan",
+    "name": "Mapping_v02_2024_02_19",
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
@@ -994,6 +994,9 @@
             "Connections": {
                 "header": true
             },
+            "Object__to_from_node_definition": {
+                "header": true
+            },
             "Object__to_from_node": {
                 "header": true
             },
@@ -1020,9 +1023,6 @@
             },
             "Model": {
                 "header": true
-            },
-            "Object__to_from_node_definition": {
-                "header": true
             }
         },
         "table_types": {
@@ -1045,13 +1045,21 @@
                 "1": "string",
                 "2": "string"
             },
+            "Object__to_from_node_definition": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string"
+            },
             "Object__to_from_node": {
                 "0": "string",
                 "1": "string",
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "float"
+                "5": "float",
+                "6": "string",
+                "7": "string"
             },
             "Object__node_node": {
                 "0": "string",
@@ -1102,12 +1110,6 @@
                 "2": "string",
                 "3": "string",
                 "4": "string"
-            },
-            "Object__to_from_node_definition": {
-                "0": "string",
-                "1": "string",
-                "2": "string",
-                "3": "string"
             }
         },
         "table_default_column_type": {

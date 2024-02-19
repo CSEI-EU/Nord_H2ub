@@ -11,6 +11,11 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/mapping_2024_jan.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/mapping_v02_2024_02_19.json"
                 }
             ],
             "Exporter": [
@@ -134,7 +139,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/Maersk_Example_Input_prepared.xlsx"
+                    "path": "C:/Users/DanaJosephineHentsch/OneDrive - CBS - Copenhagen Business School/Dokumente/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/Maersk_Example_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -221,12 +226,12 @@
             "description": "",
             "x": -58.93949868438905,
             "y": -157.57294546234627,
-            "specification": "Mapping_2024_Jan",
+            "specification": "Mapping_v02_2024_02_19",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\Maersk_Example_Input_prepared.xlsx",
+                    "C:\\Users\\DanaJosephineHentsch\\OneDrive - CBS - Copenhagen Business School\\Dokumente\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\Maersk_Example_Input_prepared.xlsx",
                     true
                 ]
             ]
