@@ -128,7 +128,7 @@ def find_identical_entries(dict1, dict2):
 
 
 #create the object_node relationship for units with variable efficiencies
-def fill_values_from_header(dataframe, header):
+def create_efficiency_object_node_rel(dataframe, header):
     """
     Create a new DataFrame with values from columns with the specified header.
 
@@ -148,8 +148,8 @@ def fill_values_from_header(dataframe, header):
     # Create a new DataFrame
     new_dataframe = pd.DataFrame()
 
-    # Assume that relationship_class_name is always 'unit__from_node'
-    relationship_class_name = 'unit__to_node'
+    # create the relationship class based on the header
+    relationship_class_name = str(header)
 
     # Extract object_name and node from the first and second row of the header column
     object_name = dataframe.at[0, header]
