@@ -155,7 +155,7 @@ def fill_values_from_header(dataframe, header):
     object_name = dataframe.at[0, header]
     node = dataframe.at[1, header]
 
-    # Assume that parameter_name is 'ordered' and value is 'True'
+    # Assume that parameter_name is 'ordered' and value is 'true'
     parameter_name = 'ordered_unit_flow_op'
     value = True
 
@@ -167,7 +167,7 @@ def fill_values_from_header(dataframe, header):
             'object_name': [object_name],
             'node': [node],
             'parameter_name': [parameter_name],
-            'value': [value]
+            'value': [str(value)]
         })
         new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
 
