@@ -149,7 +149,7 @@ def fill_values_from_header(dataframe, header):
     new_dataframe = pd.DataFrame()
 
     # Assume that relationship_class_name is always 'unit__from_node'
-    relationship_class_name = 'unit__from_node'
+    relationship_class_name = 'unit__to_node'
 
     # Extract object_name and node from the first and second row of the header column
     object_name = dataframe.at[0, header]
