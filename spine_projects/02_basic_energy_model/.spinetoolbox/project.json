@@ -119,7 +119,7 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "tool_filter": {
-                                "object_activity_control": true
+                                "object_activity_control": false
                             }
                         }
                     },
@@ -164,7 +164,7 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 390.7311616085071,
+            "x": 390.731161608507,
             "y": -163.7737539104431,
             "url": {
                 "dialect": "sqlite",
@@ -240,7 +240,7 @@
             "type": "Exporter",
             "description": "",
             "x": 526.5815407645423,
-            "y": -162.78730426860847,
+            "y": -161.34578710279297,
             "output_time_stamps": false,
             "cancel_on_error": true,
             "output_labels": [
