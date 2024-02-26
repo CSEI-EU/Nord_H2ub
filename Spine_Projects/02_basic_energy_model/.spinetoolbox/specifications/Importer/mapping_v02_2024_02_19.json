@@ -1,5 +1,5 @@
 {
-    "name": "Mapping_v02_2024_02_19",
+    "name": "Mapping_v03_2024_02_22",
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
@@ -538,6 +538,61 @@
                     }
                 }
             ],
+            "Boolean_relations": [
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": 3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 5
+                            }
+                        ]
+                    }
+                }
+            ],
             "Object__node_node": [
                 {
                     "Definition": {
@@ -978,6 +1033,7 @@
             "Connections",
             "Object__to_from_node_definition",
             "Object__to_from_node",
+            "Boolean_relations",
             "Object__node_node",
             "Variable_Eff",
             "Demand",
@@ -1023,6 +1079,9 @@
             },
             "Model": {
                 "header": true
+            },
+            "Boolean_relations": {
+                "header": true
             }
         },
         "table_types": {
@@ -1057,9 +1116,7 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "float",
-                "6": "string",
-                "7": "string"
+                "5": "string"
             },
             "Object__node_node": {
                 "0": "string",
@@ -1110,6 +1167,14 @@
                 "2": "string",
                 "3": "string",
                 "4": "string"
+            },
+            "Boolean_relations": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "boolean"
             }
         },
         "table_default_column_type": {

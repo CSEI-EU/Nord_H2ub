@@ -139,7 +139,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/Maersk_Example_Input_prepared.xlsx"
+                    "path": "C:/Users/djh.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/Maersk_Example_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -226,12 +226,12 @@
             "description": "",
             "x": -58.93949868438905,
             "y": -157.57294546234627,
-            "specification": "Mapping_v02_2024_02_19",
+            "specification": "Mapping_v03_2024_02_22",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\Maersk_Example_Input_prepared.xlsx",
+                    "C:\\Users\\djh.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\Maersk_Example_Input_prepared.xlsx",
                     true
                 ]
             ]
