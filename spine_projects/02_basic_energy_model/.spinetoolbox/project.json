@@ -134,7 +134,7 @@
             "type": "Data Connection",
             "description": "",
             "x": -201.00284154977095,
-            "y": -158.35354697797624,
+            "y": -157.33446628738463,
             "file_references": [
                 {
                     "type": "path",
@@ -164,8 +164,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 390.731161608507,
-            "y": -163.7737539104431,
+            "x": 391.75024229909866,
+            "y": -162.75467321985147,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -224,8 +224,8 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -58.93949868438905,
-            "y": -157.57294546234627,
+            "x": -57.92059324572886,
+            "y": -156.5538647717547,
             "specification": "Mapping_v03_2024_02_22",
             "cancel_on_error": false,
             "on_conflict": "merge",
@@ -239,8 +239,8 @@
         "Exporter": {
             "type": "Exporter",
             "description": "",
-            "x": 526.5815407645423,
-            "y": -161.34578710279297,
+            "x": 527.6006214551337,
+            "y": -163.38394848397618,
             "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
@@ -249,7 +249,7 @@
                     "out_label": "Output_exported"
                 }
             ],
-            "specification": "exporter_energy_hub_model"
+            "specification": "SpineOptToTable"
         }
     }
 }
