@@ -1023,6 +1023,43 @@
                         ]
                     }
                 }
+            ],
+            "Definition_parameters_duration": [
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 3
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
@@ -1040,7 +1077,8 @@
             "Variable_Eff",
             "Demand",
             "Time_series_storage",
-            "Energy_prices"
+            "Energy_prices",
+            "Definition_parameters_duration"
         ],
         "table_options": {
             "Definition": {
@@ -1086,6 +1124,9 @@
                 "header": true
             },
             "Definition_parameters": {
+                "header": true
+            },
+            "Definition_parameters_duration": {
                 "header": true
             }
         },
@@ -1186,6 +1227,12 @@
                 "1": "string",
                 "2": "string",
                 "3": "string"
+            },
+            "Definition_parameters_duration": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "duration"
             }
         },
         "table_default_column_type": {
