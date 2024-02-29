@@ -241,12 +241,12 @@
             "description": "",
             "x": 526.5815407645423,
             "y": -161.34578710279297,
-            "output_time_stamps": false,
+            "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
                 {
                     "in_label": "db_url@Output",
-                    "out_label": "Output_exported@Exporter"
+                    "out_label": "Output_exported"
                 }
             ],
             "specification": "exporter_energy_hub_model"
