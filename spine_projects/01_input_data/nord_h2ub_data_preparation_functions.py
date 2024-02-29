@@ -25,7 +25,7 @@ def create_unit_parameters(input_df, object_class_type, parameter_column):
     # Iterate through rows and add new rows to the new DataFrame if the parameter has a value
     for index, row in input_df.iterrows():
         if pd.notna(row[parameter_column]):
-            new_row = {'Object_Name': row[object_class_type], 'Category': object_class_type.lower(), 'parameter': parameter_column, 'value': float(row[parameter_column])}
+            new_row = {'Object_Name': row[object_class_type], 'Category': object_class_type.lower(), 'parameter': parameter_column, 'value': row[parameter_column]}
             unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([new_row])], ignore_index=True)
 
             # Check if parameter_column is 'min_down_time'
