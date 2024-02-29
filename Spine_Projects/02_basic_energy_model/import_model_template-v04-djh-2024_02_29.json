@@ -115,17 +115,17 @@
             "Definition": {
                 "mapping": [
                     {
-                        "map_type": "ObjectClass",
+                        "map_type": "ObjectClass", 
                         "position": 1
-                    },
+                    }, 
                     {
-                        "map_type": "Object",
+                        "map_type": "Object", 
                         "position": 0
-                    },
+                    }, 
                     {
-                        "map_type": "ObjectMetadata",
+                        "map_type": "ObjectMetadata", 
                         "position": "hidden"
-                    },
+                    }, 
                     {
                         "map_type": "ParameterDefinition", 
                         "position": "hidden"
@@ -140,9 +140,11 @@
                     }
                 ]
             }
-        },
+        }
+    ],
+    "Definition_parameters": [
         {
-            "Values": {
+            "Mapping 1": {
                 "mapping": [
                     {
                         "map_type": "ObjectClass", 
@@ -158,8 +160,7 @@
                     }, 
                     {
                         "map_type": "ParameterDefinition", 
-                        "position": "header", 
-                        "value": 2
+                        "position": 2
                     }, 
                     {
                         "map_type": "Alternative", 
@@ -172,7 +173,7 @@
                     }, 
                     {
                         "map_type": "ParameterValue", 
-                        "position": 2
+                        "position": 3
                     }
                 ]
             }
@@ -1025,6 +1026,7 @@
     "Model_components",
     "Model_relations",
     "Definition",
+    "Definition_parameters",
     "Nodes",
     "Connections",
     "Object__to_from_node_definition",
@@ -1038,6 +1040,9 @@
 ],
 "table_options": {
     "Definition": {
+        "header": true
+    },
+    "Definition_parameters": {
         "header": true
     },
     "Nodes": {
@@ -1085,6 +1090,12 @@
         "0": "string",
         "1": "string",
         "2": "float"
+    },
+    "Definition_parameters": {
+        "0": "string", 
+        "1": "string", 
+        "2": "string", 
+        "3": "string"
     },
     "Nodes": {
         "0": "string",
