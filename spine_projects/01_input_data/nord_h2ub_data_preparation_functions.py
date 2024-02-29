@@ -18,20 +18,20 @@ import pandas as pd
 '''Define functions'''
 
 #function to prepare all parameters that are directly linked to a unit
-def create_unit_parameters(input_df, parameter_column):
+def create_unit_parameters(input_df, object_class_type, parameter_column):
     # New DataFrame to store the information
     unit_parameter_df = pd.DataFrame(columns=['Object_Name', 'Category', 'parameter', 'value'])
 
     # Iterate through rows and add new rows to the new DataFrame if the parameter has a value
     for index, row in input_df.iterrows():
         if pd.notna(row[parameter_column]):
-            new_row = {'Object_Name': row['Unit'], 'Category': 'unit', 'parameter': parameter_column, 'value': float(row[parameter_column])}
+            new_row = {'Object_Name': row[object_class_type], 'Category': object_class_type.lower(), 'parameter': parameter_column, 'value': float(row[parameter_column])}
             unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([new_row])], ignore_index=True)
 
             # Check if parameter_column is 'min_down_time'
             if parameter_column == 'min_down_time':
                 # Create an additional row with 'online_variable_type' and value 'unit_online_variable_type_integer'
-                online_variable_row = {'Object_Name': row['Unit'], 'Category': 'unit', 'parameter': 'online_variable_type', 'value': 'unit_online_variable_type_integer'}
+                online_variable_row = {'Object_Name': row[object_class_type], 'Category': object_class_type.lower(), 'parameter': 'online_variable_type', 'value': 'unit_online_variable_type_integer'}
                 unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([online_variable_row])], ignore_index=True)
 
     return unit_parameter_df
