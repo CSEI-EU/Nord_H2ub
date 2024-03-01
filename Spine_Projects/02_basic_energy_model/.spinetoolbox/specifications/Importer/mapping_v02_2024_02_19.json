@@ -183,6 +183,43 @@
                     }
                 }
             ],
+            "Definition_parameters_duration": [
+                {
+                    "Value": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 3
+                            }
+                        ]
+                    }
+                }
+            ],
             "Nodes": [
                 {
                     "Definition": {
@@ -1023,43 +1060,6 @@
                         ]
                     }
                 }
-            ],
-            "Definition_parameters_duration": [
-                {
-                    "Value": {
-                        "mapping": [
-                            {
-                                "map_type": "ObjectClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Object",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ObjectMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 3
-                            }
-                        ]
-                    }
-                }
             ]
         },
         "selected_tables": [
@@ -1068,6 +1068,7 @@
             "Model_relations",
             "Definition",
             "Definition_parameters",
+            "Definition_parameters_duration",
             "Nodes",
             "Connections",
             "Object__to_from_node_definition",
@@ -1077,8 +1078,7 @@
             "Variable_Eff",
             "Demand",
             "Time_series_storage",
-            "Energy_prices",
-            "Definition_parameters_duration"
+            "Energy_prices"
         ],
         "table_options": {
             "Definition": {
