@@ -191,3 +191,52 @@ def create_efficiency_object_node_rel(dataframe, header):
         new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
 
     return new_dataframe    
+
+#create the NEW object_node relationship for units with variable efficiencies
+def create_new_var(dataframe, search_value):
+    """
+    Create a new DataFrame with values from columns containing the specified search value in the first row.
+
+    Parameters:
+    - dataframe (pd.DataFrame): Input DataFrame.
+    - search_value (str): The value to search for in the first row.
+
+    Returns:
+    - New DataFrame with values filled from matching columns.
+    """
+    matching_column_index = None
+    for idx, val in enumerate(dataframe.iloc[0]):
+        if val == search_value:
+            matching_column_index = idx
+            break
+
+    if matching_column_index is None:
+        print(f"No column with '{search_value}' found in the first row.")
+        return pd.DataFrame()
+
+    # Create a new DataFrame
+    new_dataframe = pd.DataFrame()
+
+    # create the relationship class based on the search value
+    relationship_class_name = str(search_value)
+
+    # Extract object_name and node from the second and third row of the matching column
+    object_name = dataframe.iloc[1, matching_column_index]
+    node = dataframe.iloc[2, matching_column_index]
+
+    # Assume that parameter_name is 'ordered' and value is 'true'
+    parameter_name = 'ordered_unit_flow_op'
+    value = True
+
+    # Fill values into the new DataFrame
+    temp_df = pd.DataFrame({
+        'relationship_class_name': [relationship_class_name],
+        'object_class': ['unit'],
+        'object_name': [object_name],
+        'node': [node],
+        'parameter_name': [parameter_name],
+        'value': [str(value)]
+    })
+    new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
+
+    return new_dataframe   
