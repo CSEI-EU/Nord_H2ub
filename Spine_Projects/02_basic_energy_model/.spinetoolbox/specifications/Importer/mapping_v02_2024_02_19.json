@@ -1,5 +1,5 @@
 {
-    "name": "Mapping_v03_2024_02_22",
+    "name": "Mapping_v05_2024_03_25",
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
@@ -746,7 +746,7 @@
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
-                                "position": "header",
+                                "position": -1,
                                 "skip_columns": [
                                     1
                                 ]
@@ -768,11 +768,11 @@
                             },
                             {
                                 "map_type": "RelationshipObject",
-                                "position": -1
+                                "position": -2
                             },
                             {
                                 "map_type": "RelationshipObject",
-                                "position": -2
+                                "position": -3
                             },
                             {
                                 "map_type": "RelationshipMetadata",
@@ -780,7 +780,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": -4
+                                "position": -5
                             },
                             {
                                 "map_type": "Alternative",
@@ -816,7 +816,7 @@
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
-                                "position": "header",
+                                "position": -1,
                                 "skip_columns": [
                                     2
                                 ]
@@ -843,10 +843,6 @@
                             },
                             {
                                 "map_type": "RelationshipObject",
-                                "position": -1
-                            },
-                            {
-                                "map_type": "RelationshipObject",
                                 "position": -2
                             },
                             {
@@ -854,12 +850,16 @@
                                 "position": -3
                             },
                             {
+                                "map_type": "RelationshipObject",
+                                "position": -4
+                            },
+                            {
                                 "map_type": "RelationshipMetadata",
                                 "position": "hidden"
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": -4
+                                "position": -5
                             },
                             {
                                 "map_type": "Alternative",
