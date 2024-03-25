@@ -147,6 +147,7 @@ def find_identical_entries(dict1, dict2):
 
 
 #create the object_node relationship for units with variable efficiencies
+### If not used by 6/25/2024, please delete and use option below instead ###
 def create_efficiency_object_node_rel(dataframe, header):
     """
     Create a new DataFrame with values from columns with the specified header.
@@ -193,7 +194,7 @@ def create_efficiency_object_node_rel(dataframe, header):
     return new_dataframe    
 
 #create the NEW object_node relationship for units with variable efficiencies
-def create_new_var(dataframe, search_value):
+def create_ordered_unit_flow(dataframe, search_value):
     """
     Create a new DataFrame with values from columns containing the specified search value in the first row.
 
@@ -204,39 +205,39 @@ def create_new_var(dataframe, search_value):
     Returns:
     - New DataFrame with values filled from matching columns.
     """
-    matching_column_index = None
+    matching_column_indices = []
     for idx, val in enumerate(dataframe.iloc[0]):
         if val == search_value:
-            matching_column_index = idx
-            break
+            matching_column_indices.append(idx)
 
-    if matching_column_index is None:
+    if not matching_column_indices:
         print(f"No column with '{search_value}' found in the first row.")
         return pd.DataFrame()
 
     # Create a new DataFrame
     new_dataframe = pd.DataFrame()
 
-    # create the relationship class based on the search value
-    relationship_class_name = str(search_value)
+    for matching_column_index in matching_column_indices:
+        # create the relationship class based on the search value
+        relationship_class_name = str(search_value)
 
-    # Extract object_name and node from the second and third row of the matching column
-    object_name = dataframe.iloc[1, matching_column_index]
-    node = dataframe.iloc[2, matching_column_index]
+        # Extract object_name and node from the second and third row of the matching column
+        object_name = dataframe.iloc[1, matching_column_index]
+        node = dataframe.iloc[2, matching_column_index]
 
-    # Assume that parameter_name is 'ordered' and value is 'true'
-    parameter_name = 'ordered_unit_flow_op'
-    value = True
+        # Assume that parameter_name is 'ordered' and value is 'true'
+        parameter_name = 'ordered_unit_flow_op'
+        value = True
 
-    # Fill values into the new DataFrame
-    temp_df = pd.DataFrame({
-        'relationship_class_name': [relationship_class_name],
-        'object_class': ['unit'],
-        'object_name': [object_name],
-        'node': [node],
-        'parameter_name': [parameter_name],
-        'value': [str(value)]
-    })
-    new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
+        # Fill values into the new DataFrame
+        temp_df = pd.DataFrame({
+            'relationship_class_name': [relationship_class_name],
+            'object_class': ['unit'],
+            'object_name': [object_name],
+            'node': [node],
+            'parameter_name': [parameter_name],
+            'value': [str(value)]
+        })
+        new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
 
-    return new_dataframe   
+    return new_dataframe
