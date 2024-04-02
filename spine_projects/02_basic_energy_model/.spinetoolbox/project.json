@@ -133,13 +133,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -201.00284154977095,
+            "x": -199.17831620371163,
             "y": -157.33446628738463,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/djh.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -147,8 +147,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 79.21476995677301,
-            "y": -156.75468164794006,
+            "x": 79.214769956773,
+            "y": -156.7546816479401,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -164,8 +164,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 391.75024229909866,
-            "y": -162.75467321985147,
+            "x": 389.92571695303934,
+            "y": -162.75467321985144,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -201,8 +201,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 240.1947529535343,
-            "y": -56.58876108083287,
+            "x": 249.31737968383086,
+            "y": -56.58876108083288,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -224,14 +224,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -57.92059324572886,
-            "y": -156.5538647717547,
+            "x": -56.09606789966955,
+            "y": -154.72933942569543,
             "specification": "Mapping_v05_2024_03_25",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\djh.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
