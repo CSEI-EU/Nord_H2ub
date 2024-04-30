@@ -139,7 +139,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -201,8 +201,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 249.31737968383086,
-            "y": -56.58876108083288,
+            "x": 236.20304356640574,
+            "y": -54.94946906615475,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -226,12 +226,12 @@
             "description": "",
             "x": -56.09606789966955,
             "y": -154.72933942569543,
-            "specification": "Mapping_v05_2024_03_25",
+            "specification": "Mapping_v06_2024_04_30",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]

@@ -1,5 +1,5 @@
 {
-    "name": "Mapping_v05_2024_03_25",
+    "name": "Mapping_v06_2024_04_30",
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
@@ -483,44 +483,6 @@
                     }
                 }
             ],
-            "Object__to_from_node_definition": [
-                {
-                    "Definition": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": 3
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Object__to_from_node": [
                 {
                     "Value": {
@@ -740,16 +702,13 @@
                     }
                 }
             ],
-            "Variable_Eff": [
+            "Operating_points": [
                 {
-                    "Value_unit__from-to_node": {
+                    "Mapping 1": {
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
-                                "position": -1,
-                                "skip_columns": [
-                                    1
-                                ]
+                                "position": "header"
                             },
                             {
                                 "map_type": "RelationshipClassObjectClass",
@@ -768,11 +727,11 @@
                             },
                             {
                                 "map_type": "RelationshipObject",
-                                "position": -2
+                                "position": -1
                             },
                             {
                                 "map_type": "RelationshipObject",
-                                "position": -3
+                                "position": -2
                             },
                             {
                                 "map_type": "RelationshipMetadata",
@@ -780,7 +739,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": -5
+                                "position": -4
                             },
                             {
                                 "map_type": "Alternative",
@@ -810,16 +769,15 @@
                             }
                         ]
                     }
-                },
+                }
+            ],
+            "Variable_Eff": [
                 {
-                    "Value_unit__node_node": {
+                    "User_constrain_value": {
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
-                                "position": -1,
-                                "skip_columns": [
-                                    2
-                                ]
+                                "position": -1
                             },
                             {
                                 "map_type": "RelationshipClassObjectClass",
@@ -834,7 +792,7 @@
                             {
                                 "map_type": "RelationshipClassObjectClass",
                                 "position": "hidden",
-                                "value": "node"
+                                "value": "user_constraint"
                             },
                             {
                                 "map_type": "Relationship",
@@ -843,15 +801,15 @@
                             },
                             {
                                 "map_type": "RelationshipObject",
-                                "position": -2
+                                "position": -4
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -5
                             },
                             {
                                 "map_type": "RelationshipObject",
                                 "position": -3
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -4
                             },
                             {
                                 "map_type": "RelationshipMetadata",
@@ -859,7 +817,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": -5
+                                "position": -6
                             },
                             {
                                 "map_type": "Alternative",
@@ -1071,10 +1029,10 @@
             "Definition_parameters_duration",
             "Nodes",
             "Connections",
-            "Object__to_from_node_definition",
             "Object__to_from_node",
             "Boolean_relations",
             "Object__node_node",
+            "Operating_points",
             "Variable_Eff",
             "Demand",
             "Time_series_storage",
@@ -1090,9 +1048,6 @@
             "Connections": {
                 "header": true
             },
-            "Object__to_from_node_definition": {
-                "header": true
-            },
             "Object__to_from_node": {
                 "header": true
             },
@@ -1100,7 +1055,8 @@
                 "header": true
             },
             "Variable_Eff": {
-                "header": true
+                "header": true,
+                "column": 0
             },
             "Time_series_storage": {
                 "header": true
@@ -1128,6 +1084,9 @@
             },
             "Definition_parameters_duration": {
                 "header": true
+            },
+            "Operating_points": {
+                "header": true
             }
         },
         "table_types": {
@@ -1149,12 +1108,6 @@
                 "1": "string",
                 "2": "string"
             },
-            "Object__to_from_node_definition": {
-                "0": "string",
-                "1": "string",
-                "2": "string",
-                "3": "string"
-            },
             "Object__to_from_node": {
                 "0": "string",
                 "1": "string",
@@ -1174,7 +1127,7 @@
                 "6": "float"
             },
             "Variable_Eff": {
-                "0": "string",
+                "0": "float",
                 "1": "float",
                 "2": "float"
             },
@@ -1233,6 +1186,10 @@
                 "1": "string",
                 "2": "string",
                 "3": "duration"
+            },
+            "Operating_points": {
+                "0": "float",
+                "1": "float"
             }
         },
         "table_default_column_type": {
@@ -1241,13 +1198,20 @@
         "table_row_types": {
             "Variable_Eff": {
                 "1": "string",
+                "2": "string",
                 "3": "string",
-                "2": "string"
+                "4": "string",
+                "5": "string"
             },
             "Demand": {
                 "1": "string"
             },
             "Energy_prices": {
+                "1": "string",
+                "2": "string",
+                "3": "string"
+            },
+            "Operating_points": {
                 "1": "string",
                 "2": "string",
                 "3": "string"
