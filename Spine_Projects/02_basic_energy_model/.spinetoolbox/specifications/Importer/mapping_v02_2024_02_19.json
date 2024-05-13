@@ -704,11 +704,14 @@
             ],
             "Variable_Eff": [
                 {
-                    "User_constrain_value": {
+                    "User_constrain_value_array": {
                         "mapping": [
                             {
                                 "map_type": "RelationshipClass",
-                                "position": -1
+                                "position": -1,
+                                "skip_columns": [
+                                    2
+                                ]
                             },
                             {
                                 "map_type": "RelationshipClassObjectClass",
@@ -741,6 +744,78 @@
                             {
                                 "map_type": "RelationshipObject",
                                 "position": -3
+                            },
+                            {
+                                "map_type": "RelationshipMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -6
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "array"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "User_constrain_value_single": {
+                        "mapping": [
+                            {
+                                "map_type": "RelationshipClass",
+                                "position": -1,
+                                "skip_columns": [
+                                    0,
+                                    1
+                                ],
+                                "read_start_row": 6
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "unit"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Relationship",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -4
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -5
                             },
                             {
                                 "map_type": "RelationshipMetadata",
@@ -1077,7 +1152,8 @@
             },
             "Variable_Eff": {
                 "header": true,
-                "column": 0
+                "column": 0,
+                "max_rows": -1
             },
             "Time_series_storage": {
                 "header": true
@@ -1138,8 +1214,7 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "string",
-                "6": "string"
+                "5": "string"
             },
             "Object__node_node": {
                 "0": "string",

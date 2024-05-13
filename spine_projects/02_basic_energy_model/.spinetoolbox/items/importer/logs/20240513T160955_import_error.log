@@ -1,0 +1,2 @@
+Could not import relationship with objects ('user_constraint', 'EffCurve_Electrolyzer') into 'unit__to_node__user_constraint': Some of the objects in relationship 'unit__to_node__user_constraint_user_constraint__EffCurve_Electrolyzer' are invalid.
+Could not import parameter value for '['user_constraint', 'EffCurve_Electrolyzer']', class 'unit__to_node__user_constraint', parameter 'Electrolyzer': Missing object or relationship identifier.
