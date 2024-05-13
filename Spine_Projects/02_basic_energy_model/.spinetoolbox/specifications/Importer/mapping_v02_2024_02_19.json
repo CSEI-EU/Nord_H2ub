@@ -702,75 +702,6 @@
                     }
                 }
             ],
-            "Operating_points": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "RelationshipClass",
-                                "position": "header"
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "RelationshipClassObjectClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Relationship",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -1
-                            },
-                            {
-                                "map_type": "RelationshipObject",
-                                "position": -2
-                            },
-                            {
-                                "map_type": "RelationshipMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": -4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "array"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ExpandedValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Variable_Eff": [
                 {
                     "User_constrain_value": {
@@ -1018,6 +949,46 @@
                         ]
                     }
                 }
+            ],
+            "Object__to_from_node_definition": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Operating_points": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "ObjectClass",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Object",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ObjectMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
@@ -1032,11 +1003,11 @@
             "Object__to_from_node",
             "Boolean_relations",
             "Object__node_node",
-            "Operating_points",
             "Variable_Eff",
             "Demand",
             "Time_series_storage",
-            "Energy_prices"
+            "Energy_prices",
+            "Object__to_from_node_definition"
         ],
         "table_options": {
             "Definition": {
@@ -1085,9 +1056,8 @@
             "Definition_parameters_duration": {
                 "header": true
             },
-            "Operating_points": {
-                "header": true
-            }
+            "Object__to_from_node_definition": {},
+            "Operating_points": {}
         },
         "table_types": {
             "Definition": {
@@ -1114,8 +1084,7 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "string",
-                "6": "string"
+                "5": "string"
             },
             "Object__node_node": {
                 "0": "string",
@@ -1146,8 +1115,7 @@
                 "0": "datetime",
                 "1": "float",
                 "2": "float",
-                "3": "float",
-                "4": "float"
+                "3": "float"
             },
             "Model_components": {
                 "0": "string",
@@ -1188,8 +1156,8 @@
                 "3": "duration"
             },
             "Operating_points": {
-                "0": "float",
-                "1": "float"
+                "0": "string",
+                "1": "string"
             }
         },
         "table_default_column_type": {
@@ -1207,11 +1175,6 @@
                 "1": "string"
             },
             "Energy_prices": {
-                "1": "string",
-                "2": "string",
-                "3": "string"
-            },
-            "Operating_points": {
                 "1": "string",
                 "2": "string",
                 "3": "string"
