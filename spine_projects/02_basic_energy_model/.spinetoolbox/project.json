@@ -28,17 +28,6 @@
         },
         "connections": [
             {
-                "name": "from Load template to Input",
-                "from": [
-                    "Load template",
-                    "bottom"
-                ],
-                "to": [
-                    "Input",
-                    "right"
-                ]
-            },
-            {
                 "name": "from Load template to Output",
                 "from": [
                     "Load template",
@@ -47,6 +36,61 @@
                 "to": [
                     "Output",
                     "left"
+                ]
+            },
+            {
+                "name": "from Run SpineOpt to Output",
+                "from": [
+                    "Run SpineOpt",
+                    "right"
+                ],
+                "to": [
+                    "Output",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Data Connection to Importer",
+                "from": [
+                    "Data Connection",
+                    "right"
+                ],
+                "to": [
+                    "Importer",
+                    "left"
+                ]
+            },
+            {
+                "name": "from Output to Exporter",
+                "from": [
+                    "Output",
+                    "right"
+                ],
+                "to": [
+                    "Exporter",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@Output": {
+                            "scenario_filter": {},
+                            "tool_filter": {
+                                "object_activity_control": false
+                            }
+                        }
+                    },
+                    "auto_online": true
+                }
+            },
+            {
+                "name": "from Load template to Input",
+                "from": [
+                    "Load template",
+                    "bottom"
+                ],
+                "to": [
+                    "Input",
+                    "right"
                 ]
             },
             {
@@ -72,28 +116,6 @@
                 }
             },
             {
-                "name": "from Run SpineOpt to Output",
-                "from": [
-                    "Run SpineOpt",
-                    "right"
-                ],
-                "to": [
-                    "Output",
-                    "left"
-                ]
-            },
-            {
-                "name": "from Data Connection to Importer",
-                "from": [
-                    "Data Connection",
-                    "right"
-                ],
-                "to": [
-                    "Importer",
-                    "left"
-                ]
-            },
-            {
                 "name": "from Importer to Input",
                 "from": [
                     "Importer",
@@ -103,28 +125,6 @@
                     "Input",
                     "left"
                 ]
-            },
-            {
-                "name": "from Output to Exporter",
-                "from": [
-                    "Output",
-                    "right"
-                ],
-                "to": [
-                    "Exporter",
-                    "left"
-                ],
-                "filter_settings": {
-                    "known_filters": {
-                        "db_url@Output": {
-                            "scenario_filter": {},
-                            "tool_filter": {
-                                "object_activity_control": false
-                            }
-                        }
-                    },
-                    "auto_online": true
-                }
             }
         ],
         "jumps": []
@@ -139,27 +139,10 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared_control.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
-        },
-        "Input": {
-            "type": "Data Store",
-            "description": "",
-            "x": 78.01833534120719,
-            "y": -155.55824703237428,
-            "url": {
-                "dialect": "sqlite",
-                "host": "",
-                "port": "",
-                "database": {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/items/input/Input.sqlite"
-                },
-                "schema": ""
-            }
         },
         "Output": {
             "type": "Data Store",
@@ -231,7 +214,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_control.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -250,6 +233,23 @@
                 }
             ],
             "specification": "SpineOptToTable"
+        },
+        "Input": {
+            "type": "Data Store",
+            "description": "",
+            "x": 78.01833534120719,
+            "y": -155.55824703237428,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/input/Input.sqlite"
+                },
+                "schema": ""
+            }
         }
     }
 }
