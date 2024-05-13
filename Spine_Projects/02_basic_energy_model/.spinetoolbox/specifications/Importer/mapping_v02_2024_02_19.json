@@ -789,10 +789,8 @@
                                 "map_type": "RelationshipClass",
                                 "position": -1,
                                 "skip_columns": [
-                                    0,
                                     1
-                                ],
-                                "read_start_row": 6
+                                ]
                             },
                             {
                                 "map_type": "RelationshipClassObjectClass",
@@ -803,6 +801,11 @@
                                 "map_type": "RelationshipClassObjectClass",
                                 "position": "hidden",
                                 "value": "node"
+                            },
+                            {
+                                "map_type": "RelationshipClassObjectClass",
+                                "position": "hidden",
+                                "value": "user_constraint"
                             },
                             {
                                 "map_type": "Relationship",
@@ -816,6 +819,10 @@
                             {
                                 "map_type": "RelationshipObject",
                                 "position": -5
+                            },
+                            {
+                                "map_type": "RelationshipObject",
+                                "position": -3
                             },
                             {
                                 "map_type": "RelationshipMetadata",
@@ -835,20 +842,7 @@
                                 "position": 0
                             },
                             {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "array"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ExpandedValue",
+                                "map_type": "ParameterValue",
                                 "position": "hidden"
                             }
                         ]
