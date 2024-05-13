@@ -139,7 +139,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared_control.xlsx"
                 }
             ],
             "db_references": []
@@ -147,8 +147,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 79.214769956773,
-            "y": -156.7546816479401,
+            "x": 78.01833534120719,
+            "y": -155.55824703237428,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -231,7 +231,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_control.xlsx",
                     true
                 ]
             ]
