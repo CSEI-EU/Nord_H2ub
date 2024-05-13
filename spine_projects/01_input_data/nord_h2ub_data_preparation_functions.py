@@ -241,3 +241,18 @@ def create_ordered_unit_flow(dataframe, search_value):
         new_dataframe = pd.concat([new_dataframe, temp_df], ignore_index=True)
 
     return new_dataframe
+
+# Replace numerical values with ascending integers starting from 0
+def replace_numerical_with_integers(df, column_name):
+    numerical_values = {}
+    next_integer = 0
+    for index, value in enumerate(df[column_name]):
+        if isinstance(value, (int, float)):
+            if not pd.isna(value):
+                if value not in numerical_values:
+                    numerical_values[value] = next_integer
+                    next_integer += 1
+                df.at[index, column_name] = numerical_values[value]
+        elif isinstance(value, str) and value.lower() == 'nan':
+            df.at[index, column_name] = pd.NA
+    return df
