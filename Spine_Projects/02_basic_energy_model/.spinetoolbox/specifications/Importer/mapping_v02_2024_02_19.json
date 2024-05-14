@@ -839,23 +839,10 @@
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
-                                "position": 0
+                                "position": -7
                             },
                             {
-                                "map_type": "ParameterValueType",
-                                "position": "hidden",
-                                "value": "array"
-                            },
-                            {
-                                "map_type": "IndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueIndex",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ExpandedValue",
+                                "map_type": "ParameterValue",
                                 "position": "hidden"
                             }
                         ]
@@ -1160,7 +1147,8 @@
             "Variable_Eff": {
                 "header": true,
                 "column": 0,
-                "max_rows": -1
+                "max_rows": -1,
+                "row": 0
             },
             "Time_series_storage": {
                 "header": true
@@ -1313,7 +1301,8 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "string"
+                "5": "string",
+                "6": "string"
             },
             "Demand": {
                 "1": "string"
