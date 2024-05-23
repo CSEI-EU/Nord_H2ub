@@ -256,3 +256,92 @@ def replace_numerical_with_integers(df, column_name):
         elif isinstance(value, str) and value.lower() == 'nan':
             df.at[index, column_name] = pd.NA
     return df
+
+
+#Calculate adjusted efficiency
+def create_adj_efficiency(dataframe, mean_eff_goal, unit):
+    dataframe_copy = dataframe.copy()
+    dataframe_copy['Delta'] = dataframe_copy['Power [%]'].diff().fillna(dataframe_copy['Power [%]'])
+    
+    # Adjust the efficiency to the desired efficiency
+    mean_eff_act = (dataframe_copy['Delta'] * dataframe_copy['Efficiency [%]']).sum()
+    dataframe_copy['Efficiency_scaled [%]'] = dataframe_copy['Efficiency [%]'] + (mean_eff_goal - mean_eff_act)
+    
+    # Getting the base variables such as maximal efficiency and the index
+    highest_eff_index_raw = dataframe_copy['Efficiency_scaled [%]'].idxmax()
+    df_efficiency_adj = dataframe_copy.loc[highest_eff_index_raw:].reset_index(drop=True)
+    
+    # Set first adjusted efficiency value
+    df_efficiency_adj['eff_adjusted_' + unit] = float('nan')
+    df_efficiency_adj.loc[0, 'eff_adjusted_' + unit] = df_efficiency_adj.loc[0, 'Efficiency_scaled [%]']
+    df_efficiency_adj.loc[0, 'Delta'] = df_efficiency_adj.loc[0, 'Power [%]']
+    
+    # Calculate adjusted efficiency values
+    for i in range(1, len(df_efficiency_adj) - 1):
+        efficiency = df_efficiency_adj.loc[i, 'Efficiency_scaled [%]']
+        power = df_efficiency_adj.loc[i, 'Power [%]']
+        delta = df_efficiency_adj.loc[i, 'Delta']
+        
+        sum_product = (df_efficiency_adj.loc[:i-1, 'eff_adjusted_' + unit] * df_efficiency_adj.loc[:i-1, 'Delta']).sum()
+        
+        new_value = (efficiency * power - sum_product) / delta
+        
+        df_efficiency_adj.loc[i, 'eff_adjusted_' + unit] = new_value
+    
+    # Set the last value equal to the second last value
+    df_efficiency_adj.loc[len(df_efficiency_adj) - 1, 'eff_adjusted_' + unit] = df_efficiency_adj.loc[len(df_efficiency_adj) - 2, 'eff_adjusted_' + unit]
+    
+    return df_efficiency_adj
+
+
+def calculate_op_points(unit, des_segment, df_efficiency_adj):
+    #Calculate operating points
+    num_segments = des_segment - 1
+    
+    segment_ranges = np.linspace(df_efficiency_adj['Power [%]'].min(), df_efficiency_adj['Power [%]'].max(), num_segments + 1)
+    
+    # Fitting a polynomial curve (3rd degree)
+    coefficients = np.polyfit(df_efficiency_adj['Power [%]'], df_efficiency_adj['eff_adjusted_' + unit], 3)
+    poly_function = np.poly1d(coefficients)
+    
+    # Generating points for the curve
+    x_values = np.linspace(df_efficiency_adj['Power [%]'].min(), df_efficiency_adj['Power [%]'].max(), 100)
+    y_values = poly_function(x_values)
+    
+    segment_averages = []
+    segment_x_values = []
+    for i in range(num_segments):
+        segment_mask = (df_efficiency_adj['Power [%]'] >= segment_ranges[i]) & (df_efficiency_adj['Power [%]'] <= segment_ranges[i + 1])
+        segment_data = df_efficiency_adj[segment_mask]
+        segment_average = segment_data['eff_adjusted_' + unit].mean()
+        segment_averages.append(segment_average)
+        segment_x_values.append((segment_ranges[i], segment_ranges[i + 1]))
+    
+    segment_df = pd.DataFrame({
+        'Segment': range(1, num_segments + 1),
+        'X-axis Range': [f"{x_start:.2f} to {x_end:.2f}" for x_start, x_end in segment_x_values],
+        'Average Y-value': segment_averages
+    })
+    
+    # Creating a DataFrame with the results
+    # Add the additional first row starting at 0 to cover the efficiency of the first segment
+    first_segment_start = 0
+    first_segment_end = segment_ranges[0]
+    first_segment_average = df_efficiency_adj['Efficiency_scaled [%]'].max()
+    #integrate it into the segment information
+    segment_x_values.insert(0, (first_segment_start, first_segment_end))
+    segment_averages.insert(0, first_segment_average)
+    
+    operating_point_segments_df = pd.DataFrame({
+        'operating_segment_start': [x[0] for x in segment_x_values],
+        'operating_segment_end': [x[1] for x in segment_x_values],
+        'average_efficiency': segment_averages
+    })
+    
+    operating_point_info_df = pd.DataFrame()
+    operating_point_info_df['relationship_class:'] = operating_point_segments_df.index.tolist()
+    operating_point_info_df['unit__from_node__user_constraint'] = operating_point_segments_df['average_efficiency']
+    operating_point_info_df['unit__from_node'] = operating_point_segments_df['operating_segment_end']
+    
+    return operating_point_info_df, segment_x_values, segment_averages, x_values, y_values
+
