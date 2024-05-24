@@ -352,5 +352,5 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
     
     df_var_efficiency = pd.concat([initial_rows, operating_point_info_df], ignore_index=True)
     
-    return df_var_efficiency, segment_x_values, segment_averages, x_values, y_values
+    return df_var_efficiency, segment_x_values, segment_averages, x_values, y_values, operating_point_info_df
 
