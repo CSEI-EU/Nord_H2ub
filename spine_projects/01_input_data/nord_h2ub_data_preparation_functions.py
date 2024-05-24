@@ -294,7 +294,8 @@ def create_adj_efficiency(dataframe, mean_eff_goal, unit):
     return df_efficiency_adj
 
 
-def calculate_op_points(unit, des_segment, df_efficiency_adj):
+def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1):
+    unit_capitalized = unit.capitalize()
     #Calculate operating points
     num_segments = des_segment - 1
     
@@ -338,10 +339,18 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj):
         'average_efficiency': segment_averages
     })
     
+    initial_rows = pd.DataFrame({
+        'relationship_class:': ['unit', 'node', 'node', 'parameter name'],
+        'unit__from_node__user_constraint': [unit_capitalized, output_1, input_1, 'unit_flow_coefficient'],
+        'unit__from_node': [unit_capitalized, output_1, 'N.A.', 'operating_points']
+    })
+    
     operating_point_info_df = pd.DataFrame()
     operating_point_info_df['relationship_class:'] = operating_point_segments_df.index.tolist()
     operating_point_info_df['unit__from_node__user_constraint'] = operating_point_segments_df['average_efficiency']
     operating_point_info_df['unit__from_node'] = operating_point_segments_df['operating_segment_end']
     
-    return operating_point_info_df, segment_x_values, segment_averages, x_values, y_values
+    df_var_efficiency = pd.concat([initial_rows, operating_point_info_df], ignore_index=True)
+    
+    return df_var_efficiency, segment_x_values, segment_averages, x_values, y_values
 
