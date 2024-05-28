@@ -293,9 +293,10 @@ def create_adj_efficiency(dataframe, mean_eff_goal, unit):
     
     return df_efficiency_adj
 
-
+# Operating points and variable efficiency 
 def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1):
     unit_capitalized = unit.capitalize()
+    constraint_name = 'EffCurve_' + unit_capitalized
     #Calculate operating points
     num_segments = des_segment - 1
     
@@ -339,18 +340,49 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
         'average_efficiency': segment_averages
     })
     
-    initial_rows = pd.DataFrame({
-        'relationship_class:': ['unit', 'node', 'node', 'parameter name'],
-        'unit__from_node__user_constraint': [unit_capitalized, output_1, input_1, 'unit_flow_coefficient'],
-        'unit__from_node': [unit_capitalized, output_1, 'N.A.', 'operating_points']
+    initial_rows_var = pd.DataFrame({
+        'relationship_class_name:': ['User_constraint_name', 'Object_name', 'Node_name', 'Parameter'],
+        'unit__from_node__user_constraint': [constraint_name, unit_capitalized, input_1, 'unit_flow_coefficient'],
+        'unit__to_node__user_constraint': [constraint_name, unit_capitalized, output_1, 'unit_flow_coefficient']      
+    })
+    initial_rows_op = pd.DataFrame({
+        'relationship_class_name:': ['Object_name', 'Node_name', 'Parameter'],
+        'unit__from_node': [unit_capitalized, output_1, 'operating_points']        
     })
     
+    var_efficiency_info_df = pd.DataFrame()
+    var_efficiency_info_df['relationship_class_name:'] = operating_point_segments_df.index.tolist()
+    var_efficiency_info_df['unit__from_node__user_constraint'] = operating_point_segments_df['average_efficiency']
+    arbitrary_column = [-1] + [np.nan] * (num_segments)
+    var_efficiency_info_df['unit__to_node__user_constraint'] = arbitrary_column
+    
     operating_point_info_df = pd.DataFrame()
-    operating_point_info_df['relationship_class:'] = operating_point_segments_df.index.tolist()
-    operating_point_info_df['unit__from_node__user_constraint'] = operating_point_segments_df['average_efficiency']
+    operating_point_info_df['relationship_class_name:'] = operating_point_segments_df.index.tolist()
     operating_point_info_df['unit__from_node'] = operating_point_segments_df['operating_segment_end']
     
-    df_var_efficiency = pd.concat([initial_rows, operating_point_info_df], ignore_index=True)
+    df_var_efficiency = pd.concat([initial_rows_var, var_efficiency_info_df], ignore_index=True)
+    df_operating_points = pd.concat([initial_rows_op, operating_point_info_df], ignore_index=True)
     
-    return df_var_efficiency, segment_x_values, segment_averages, x_values, y_values, operating_point_info_df
+    return df_var_efficiency, df_operating_points, segment_x_values, segment_averages, x_values, y_values
 
+
+# Ordered_unit_flow_op
+def check_decreasing(dataframe, unit, node):
+    unit_capitalized = unit.capitalize()
+    is_decreasing = False
+    for column in dataframe.columns:
+        if column.startswith('unit__from_node__user_constraint'):
+            values = dataframe[column].values
+            if len(values) > 5 and values[4] > values[5]:
+                is_decreasing = True
+                break
+    
+    result_row = {
+        "Relationship_class_name": "unit__from_node",
+        "Object_name": unit_capitalized,
+        "Node_name": node,
+        "Parameter_name": "ordered_unit_flow_op",
+        "Value": "True" if is_decreasing else "False"
+    }
+    
+    return pd.DataFrame([result_row])
