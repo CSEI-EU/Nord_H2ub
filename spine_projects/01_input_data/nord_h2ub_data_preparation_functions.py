@@ -263,13 +263,14 @@ def create_adj_efficiency(dataframe, mean_eff_goal, unit):
     dataframe_copy = dataframe.copy()
     dataframe_copy['Delta'] = dataframe_copy['Power [%]'].diff().fillna(dataframe_copy['Power [%]'])
     
-    # Adjust the efficiency to the desired efficiency
-    mean_eff_act = (dataframe_copy['Delta'] * dataframe_copy['Efficiency [%]']).sum()
-    dataframe_copy['Efficiency_scaled [%]'] = dataframe_copy['Efficiency [%]'] + (mean_eff_goal - mean_eff_act)
-    
     # Getting the base variables such as maximal efficiency and the index
-    highest_eff_index_raw = dataframe_copy['Efficiency_scaled [%]'].idxmax()
+    max_value = dataframe_copy['Efficiency [%]'].max()
+    highest_eff_index_raw = dataframe_copy[dataframe_copy['Efficiency [%]'] == max_value].index.min()
     df_efficiency_adj = dataframe_copy.loc[highest_eff_index_raw:].reset_index(drop=True)
+    
+    # Adjust the efficiency to the desired efficiency
+    mean_eff_act = (df_efficiency_adj['Delta'] * df_efficiency_adj['Efficiency [%]']).sum()
+    df_efficiency_adj['Efficiency_scaled [%]'] = df_efficiency_adj['Efficiency [%]'] + (mean_eff_goal - mean_eff_act)
     
     # Set first adjusted efficiency value
     df_efficiency_adj['eff_adjusted_' + unit] = float('nan')
