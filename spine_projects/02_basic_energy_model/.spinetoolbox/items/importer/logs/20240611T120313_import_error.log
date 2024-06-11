@@ -1,0 +1,18 @@
+too few elements given for entity (['power_line_Wholesale_Kasso', 'Power_Wholesale'])
+too few elements given for entity (['power_line_Wholesale_Kasso', 'Power_Kasso'])
+too few elements given for entity (['power_line_Wholesale_Kasso', 'Power_Kasso'])
+too few elements given for entity (['power_line_Wholesale_Kasso', 'Power_Wholesale'])
+too few elements given for entity (['pipeline_storage_hydrogen', 'Hydrogen_Kasso'])
+too few elements given for entity (['pipeline_storage_hydrogen', 'Hydrogen_storage_Kasso'])
+too few elements given for entity (['pipeline_storage_hydrogen', 'Hydrogen_storage_Kasso'])
+too few elements given for entity (['pipeline_storage_hydrogen', 'Hydrogen_Kasso'])
+too few elements given for entity (['pipeline_storage_e-methanol', 'E-Methanol_Kasso'])
+too few elements given for entity (['pipeline_storage_e-methanol', 'E-Methanol_storage_Kasso'])
+too few elements given for entity (['pipeline_storage_e-methanol', 'E-Methanol_storage_Kasso'])
+too few elements given for entity (['pipeline_storage_e-methanol', 'E-Methanol_Kasso'])
+too few elements given for entity (['pipeline_District_Heating', 'Waste_Heat'])
+too few elements given for entity (['pipeline_District_Heating', 'District_Heating'])
+too few elements given for entity (['Electrolyzer', 'Power_Kasso', 'EffCurve_Electrolyzer'])
+too few elements given for entity (['Electrolyzer', 'Hydrogen_Kasso', 'EffCurve_Electrolyzer'])
+can't find entity with {'entity_class_name': 'unit__from_node__user_constraint', 'entity_byname': ('Electrolyzer', 'Power_Kasso', 'EffCurve_Electrolyzer')}
+can't find entity with {'entity_class_name': 'unit__to_node__user_constraint', 'entity_byname': ('Electrolyzer', 'Hydrogen_Kasso', 'EffCurve_Electrolyzer')}

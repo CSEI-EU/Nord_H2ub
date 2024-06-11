@@ -5,14 +5,14 @@
     "description": "",
     "mappings": {
         "Relations (1)": {
-            "type": "relationship_parameter_values",
+            "type": "entity_parameter_values",
             "mapping": [
                 {
-                    "map_type": "RelationshipClass",
+                    "map_type": "EntityClass",
                     "position": "table_name"
                 },
                 {
-                    "map_type": "RelationshipClassObjectClass",
+                    "map_type": "Dimension",
                     "position": "hidden"
                 },
                 {
@@ -25,11 +25,11 @@
                     "ignorable": true
                 },
                 {
-                    "map_type": "Relationship",
+                    "map_type": "Entity",
                     "position": -1
                 },
                 {
-                    "map_type": "RelationshipObject",
+                    "map_type": "Element",
                     "position": "hidden"
                 },
                 {

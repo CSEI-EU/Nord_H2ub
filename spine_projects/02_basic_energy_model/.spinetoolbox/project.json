@@ -36,7 +36,15 @@
                 "to": [
                     "Output",
                     "left"
-                ]
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             },
             {
                 "name": "from Run SpineOpt to Output",
@@ -47,7 +55,15 @@
                 "to": [
                     "Output",
                     "left"
-                ]
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             },
             {
                 "name": "from Data Connection to Importer",
@@ -58,7 +74,15 @@
                 "to": [
                     "Importer",
                     "left"
-                ]
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             },
             {
                 "name": "from Output to Exporter",
@@ -74,12 +98,26 @@
                     "known_filters": {
                         "db_url@Output": {
                             "scenario_filter": {},
-                            "tool_filter": {
-                                "object_activity_control": false
+                            "alternative_filter": {
+                                "Base": true,
+                                "Run SpineOpt@2024-04-23T15:25:02": true,
+                                "Run SpineOpt@2024-04-23T15:33:53": true,
+                                "Run SpineOpt@2024-04-23T17:03:13": true,
+                                "Run SpineOpt@2024-05-01T13:42:50": true,
+                                "Run SpineOpt@2024-05-10T11:05:39": true,
+                                "Run SpineOpt@2024-05-14T11:28:52": true,
+                                "Run SpineOpt@2024-05-14T11:39:34": true,
+                                "Run SpineOpt@2024-05-16T12:50:29": true,
+                                "Run SpineOpt@2024-05-23T15:06:16": true,
+                                "Run SpineOpt@2024-05-24T10:56:45": true
                             }
                         }
                     },
-                    "auto_online": true
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
                 }
             },
             {
@@ -91,7 +129,15 @@
                 "to": [
                     "Input",
                     "right"
-                ]
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             },
             {
                 "name": "from Input to Run SpineOpt",
@@ -107,12 +153,16 @@
                     "known_filters": {
                         "db_url@Input": {
                             "scenario_filter": {},
-                            "tool_filter": {
-                                "object_activity_control": true
+                            "alternative_filter": {
+                                "Base": true
                             }
                         }
                     },
-                    "auto_online": true
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
                 }
             },
             {
@@ -124,7 +174,15 @@
                 "to": [
                     "Input",
                     "left"
-                ]
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             }
         ],
         "jumps": []
@@ -199,7 +257,7 @@
                 }
             ],
             "options": {
-                "julia_sysimage": "C:/Users/jfg.eco/SpineOpt_Maersk.dll"
+                "julia_sysimage": ""
             },
             "kill_completed_processes": false,
             "log_process_output": false
