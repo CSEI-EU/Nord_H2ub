@@ -109,7 +109,11 @@
                                 "Run SpineOpt@2024-05-14T11:39:34": true,
                                 "Run SpineOpt@2024-05-16T12:50:29": true,
                                 "Run SpineOpt@2024-05-23T15:06:16": true,
-                                "Run SpineOpt@2024-05-24T10:56:45": true
+                                "Run SpineOpt@2024-05-24T10:56:45": true,
+                                "Run SpineOpt@2024-06-11T13:00:55": true,
+                                "Run SpineOpt@2024-06-11T13:42:15": true,
+                                "Run SpineOpt@2024-06-11T16:33:00": true,
+                                "Run SpineOpt@2024-06-11T18:30:25": true
                             }
                         }
                     },
@@ -257,7 +261,7 @@
                 }
             ],
             "options": {
-                "julia_sysimage": ""
+                "julia_sysimage": "C:/Users/jfg.eco/SpineOpt_tbv08.dll"
             },
             "kill_completed_processes": false,
             "log_process_output": false
