@@ -340,6 +340,7 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
         'operating_segment_end': [x[1] for x in segment_x_values],
         'average_efficiency': segment_averages
     })
+    print(operating_point_segments_df)
     
     initial_rows_var = pd.DataFrame({
         'relationship_class_name:': ['User_constraint_name', 'Object_name', 'Node_name', 'Parameter'],
