@@ -99,7 +99,21 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true
+                                "Base": true,
+                                "Run SpineOpt@2024-04-23T15:25:02": true,
+                                "Run SpineOpt@2024-04-23T15:33:53": true,
+                                "Run SpineOpt@2024-04-23T17:03:13": true,
+                                "Run SpineOpt@2024-05-01T13:42:50": true,
+                                "Run SpineOpt@2024-05-10T11:05:39": true,
+                                "Run SpineOpt@2024-05-14T11:28:52": true,
+                                "Run SpineOpt@2024-05-14T11:39:34": true,
+                                "Run SpineOpt@2024-05-16T12:50:29": true,
+                                "Run SpineOpt@2024-05-23T15:06:16": true,
+                                "Run SpineOpt@2024-05-24T10:56:45": true,
+                                "Run SpineOpt@2024-06-11T13:00:55": true,
+                                "Run SpineOpt@2024-06-11T13:42:15": true,
+                                "Run SpineOpt@2024-06-11T16:33:00": true,
+                                "Run SpineOpt@2024-06-11T18:30:25": true
                             }
                         }
                     },
@@ -187,7 +201,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/luc.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -262,7 +276,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\luc.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
