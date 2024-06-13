@@ -6,6 +6,13 @@
             "enable_execute_all": true
         },
         "specifications": {
+            "Tool": [
+                {
+                    "type": "path",
+                    "relative": false,
+                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/run_spineopt.json"
+                }
+            ],
             "Importer": [
                 {
                     "type": "path",
