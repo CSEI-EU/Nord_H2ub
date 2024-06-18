@@ -9,17 +9,17 @@
                 "project": ""
             }
         },
+        "Run SpineOpt detached": {
+            "execution_settings": {}
+        },
         "Load template": {
             "execution_settings": {
                 "kernel_spec_name": "",
                 "env": "",
                 "use_jupyter_console": false,
-                "executable": "C:\\Users\\luc.eco\\AppData\\Local\\Programs\\Julia-1.10.4\\bin\\julia.exe",
+                "executable": "",
                 "project": ""
             }
-        },
-        "Run SpineOpt detached": {
-            "execution_settings": {}
         }
     }
 }
