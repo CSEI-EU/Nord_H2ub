@@ -9,9 +9,6 @@
                 "project": ""
             }
         },
-        "Run SpineOpt detached": {
-            "execution_settings": {}
-        },
         "Load template": {
             "execution_settings": {
                 "kernel_spec_name": "",
@@ -20,6 +17,9 @@
                 "executable": "",
                 "project": ""
             }
+        },
+        "Run SpineOpt detached": {
+            "execution_settings": {}
         }
     }
 }

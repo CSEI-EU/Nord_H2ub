@@ -10,7 +10,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/run_spineopt.json"
+                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/load_template.json"
                 }
             ],
             "Importer": [
@@ -120,7 +120,21 @@
                                 "Run SpineOpt@2024-06-11T13:00:55": true,
                                 "Run SpineOpt@2024-06-11T13:42:15": true,
                                 "Run SpineOpt@2024-06-11T16:33:00": true,
-                                "Run SpineOpt@2024-06-11T18:30:25": true
+                                "Run SpineOpt@2024-06-11T18:30:25": true,
+                                "Run SpineOpt@2024-06-18T13:58:56": true,
+                                "Run SpineOpt@2024-06-18T14:43:07": true,
+                                "Run SpineOpt@2024-06-18T15:03:39": true,
+                                "Run SpineOpt@2024-06-18T15:09:19": true,
+                                "Run SpineOpt@2024-06-18T15:16:37": true,
+                                "Run SpineOpt@2024-06-18T15:19:10": true,
+                                "Run SpineOpt@2024-06-18T15:20:48": true,
+                                "Run SpineOpt@2024-06-18T15:25:01": true,
+                                "Run SpineOpt@2024-06-18T15:26:33": true,
+                                "Run SpineOpt@2024-06-18T16:03:00": true,
+                                "Run SpineOpt@2024-06-18T16:12:23": true,
+                                "Run SpineOpt@2024-06-18T16:19:04": true,
+                                "Run SpineOpt@2024-06-18T16:22:26": true,
+                                "Run SpineOpt@2024-06-18T16:42:41": true
                             }
                         }
                     },
@@ -268,7 +282,7 @@
                 }
             ],
             "options": {
-                "julia_sysimage": ""
+                "julia_sysimage": "C:/Users/jfg.eco/SpineOpt_tbv08_rf.dll"
             },
             "kill_completed_processes": false,
             "log_process_output": false
