@@ -6,13 +6,6 @@
             "enable_execute_all": true
         },
         "specifications": {
-            "Tool": [
-                {
-                    "type": "path",
-                    "relative": false,
-                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/load_template.json"
-                }
-            ],
             "Importer": [
                 {
                     "type": "path",
@@ -107,34 +100,22 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-04-23T15:25:02": true,
-                                "Run SpineOpt@2024-04-23T15:33:53": true,
-                                "Run SpineOpt@2024-04-23T17:03:13": true,
-                                "Run SpineOpt@2024-05-01T13:42:50": true,
-                                "Run SpineOpt@2024-05-10T11:05:39": true,
-                                "Run SpineOpt@2024-05-14T11:28:52": true,
-                                "Run SpineOpt@2024-05-14T11:39:34": true,
-                                "Run SpineOpt@2024-05-16T12:50:29": true,
-                                "Run SpineOpt@2024-05-23T15:06:16": true,
-                                "Run SpineOpt@2024-05-24T10:56:45": true,
-                                "Run SpineOpt@2024-06-11T13:00:55": true,
-                                "Run SpineOpt@2024-06-11T13:42:15": true,
-                                "Run SpineOpt@2024-06-11T16:33:00": true,
-                                "Run SpineOpt@2024-06-11T18:30:25": true,
-                                "Run SpineOpt@2024-06-18T13:58:56": true,
-                                "Run SpineOpt@2024-06-18T14:43:07": true,
-                                "Run SpineOpt@2024-06-18T15:03:39": true,
-                                "Run SpineOpt@2024-06-18T15:09:19": true,
-                                "Run SpineOpt@2024-06-18T15:16:37": true,
-                                "Run SpineOpt@2024-06-18T15:19:10": true,
-                                "Run SpineOpt@2024-06-18T15:20:48": true,
-                                "Run SpineOpt@2024-06-18T15:25:01": true,
-                                "Run SpineOpt@2024-06-18T15:26:33": true,
-                                "Run SpineOpt@2024-06-18T16:03:00": true,
-                                "Run SpineOpt@2024-06-18T16:12:23": true,
-                                "Run SpineOpt@2024-06-18T16:19:04": true,
-                                "Run SpineOpt@2024-06-18T16:22:26": true,
-                                "Run SpineOpt@2024-06-18T16:42:41": true
+                                "Run SpineOpt@2024-06-20T14:22:11": true,
+                                "Run SpineOpt@2024-06-20T14:49:06": true,
+                                "Run SpineOpt@2024-06-20T14:52:36": true,
+                                "Run SpineOpt@2024-06-20T14:55:07": true,
+                                "Run SpineOpt@2024-06-20T15:07:27": true,
+                                "Run SpineOpt@2024-06-20T15:24:27": true,
+                                "Run SpineOpt@2024-06-20T16:31:33": true,
+                                "Run SpineOpt@2024-06-20T16:33:18": true,
+                                "Run SpineOpt@2024-06-20T16:34:43": true,
+                                "Run SpineOpt@2024-06-20T16:37:59": true,
+                                "Run SpineOpt@2024-06-20T16:40:59": true,
+                                "Run SpineOpt@2024-06-21T09:14:04": true,
+                                "Run SpineOpt@2024-06-21T09:20:45": true,
+                                "Run SpineOpt@2024-06-21T09:24:45": true,
+                                "Run SpineOpt@2024-06-21T09:34:29": true,
+                                "Run SpineOpt@2024-06-21T09:35:47": true
                             }
                         }
                     },
@@ -247,7 +228,7 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 228.97516481498474,
+            "x": 229.9979267739288,
             "y": -262.26652389819515,
             "specification": "Load template",
             "execute_in_work": true,
