@@ -817,74 +817,14 @@
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-<<<<<<< Updated upstream
-                                "position": "header"
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "user_constraint"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": -1
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": -2
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": -3
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": -1
-=======
                                 "position": 0
                             },
                             {
                                 "map_type": "Entity",
                                 "position": 1
->>>>>>> Stashed changes
                             },
                             {
                                 "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValueList",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefaultValueType",
-                                "position": "hidden",
-                                "value": "array"
-                            },
-                            {
-                                "map_type": "DefaultValueIndexName",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefaultValueIndex",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ExpandedDefaultValue",
                                 "position": "hidden"
                             }
                         ]
@@ -1154,6 +1094,7 @@
             "Boolean_relations",
             "Object__node_node",
             "Operating_points",
+            "Variable_Eff_Definition",
             "Variable_Eff",
             "Demand",
             "Time_series_storage",
@@ -1215,7 +1156,7 @@
                 "header": true
             },
             "Variable_Eff_Definition": {
-                "header": false
+                "header": true
             }
         },
         "table_types": {
