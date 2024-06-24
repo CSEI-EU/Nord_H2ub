@@ -811,12 +811,13 @@
                     }
                 }
             ],
-            "Variable_Eff": [
+            "Variable_Eff_Definition": [
                 {
-                    "Definition": {
+                    "Mapping 1": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
+<<<<<<< Updated upstream
                                 "position": "header"
                             },
                             {
@@ -849,6 +850,13 @@
                             {
                                 "map_type": "Element",
                                 "position": -1
+=======
+                                "position": 0
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 1
+>>>>>>> Stashed changes
                             },
                             {
                                 "map_type": "EntityMetadata",
@@ -881,7 +889,9 @@
                             }
                         ]
                     }
-                },
+                }
+            ],
+            "Variable_Eff": [
                 {
                     "User_constraint_value": {
                         "mapping": [
@@ -1168,7 +1178,8 @@
             "Variable_Eff": {
                 "header": true,
                 "column": 0,
-                "row": 0
+                "row": 0,
+                "read_until_row": false
             },
             "Time_series_storage": {
                 "header": true
@@ -1202,6 +1213,9 @@
             },
             "Object__to_from_node_definition": {
                 "header": true
+            },
+            "Variable_Eff_Definition": {
+                "header": false
             }
         },
         "table_types": {
@@ -1309,6 +1323,10 @@
                 "1": "string",
                 "2": "string",
                 "3": "string"
+            },
+            "Variable_Eff_Definition": {
+                "0": "string",
+                "1": "string"
             }
         },
         "table_default_column_type": {
