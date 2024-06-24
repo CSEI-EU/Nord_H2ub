@@ -100,9 +100,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-06-13T16:14:18": true,
-                                "Run SpineOpt@2024-06-21T13:11:32": true,
-                                "Run SpineOpt@2024-06-21T13:25:27": true
+                                "Run SpineOpt@2024-06-21T15:09:33": true
                             }
                         }
                     },
@@ -190,7 +188,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/luc.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -265,7 +263,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\luc.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
