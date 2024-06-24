@@ -817,16 +817,66 @@
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
+                                "position": "header"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "unit"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Dimension",
                                 "position": "hidden",
                                 "value": "user_constraint"
                             },
                             {
                                 "map_type": "Entity",
-                                "position": "hidden",
-                                "value": "EffCurve_Electrolyzer"
+                                "position": -1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": -2
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": -3
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": -1
                             },
                             {
                                 "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueList",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefaultValueType",
+                                "position": "hidden",
+                                "value": "array"
+                            },
+                            {
+                                "map_type": "DefaultValueIndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefaultValueIndex",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ExpandedDefaultValue",
                                 "position": "hidden"
                             }
                         ]
