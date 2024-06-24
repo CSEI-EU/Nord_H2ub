@@ -388,3 +388,92 @@ def check_decreasing(dataframe, unit, node):
     }
     
     return pd.DataFrame([result_row])
+
+# Temporal slicing definition (for demand)
+resolution_to_block = {
+    'h': 'hourly',
+    'D': 'daily',
+    'W': 'weekly',
+    'M': 'monthly',
+    'Q': 'quarterly',
+    'Y': 'yearly'
+}
+def check_temporal_block(resolution_column, model_definitions):
+    if pd.isna(resolution_column):
+        return
+
+    temporal_block_name = resolution_to_block.get(resolution_column)
+    if temporal_block_name is None:
+        print("Warning: temporal slicing block does not exist for resolution", resolution_column)
+        return
+
+    # Check if the temporal block already exists
+    exists = model_definitions[
+        (model_definitions['Object_class_name'] == 'temporal_block') &
+        (model_definitions['Object_name'] == temporal_block_name)
+    ].shape[0] > 0
+
+    if not exists:
+        new_row = {'Object_class_name': 'temporal_block', 'Object_name': temporal_block_name}
+        model_definitions.loc[len(model_definitions)] = new_row
+
+# Temporal slicing relations
+def create_temporal_block_relationships(resolution_column, output_column, model_relations):
+    if pd.isna(resolution_column):
+        return
+
+    temporal_block_name = resolution_to_block.get(resolution_column)
+    if temporal_block_name is None:
+        print("Warning: temporal slicing block does not exist for resolution", resolution_column)
+        return
+    
+    # Check if relationship already exists
+    relationship_exists = model_relations[
+        (model_relations['Object_name_1'] == output_column) &
+        (model_relations['Object_name_2'] == temporal_block_name)
+    ].shape[0] > 0
+    
+    if not relationship_exists:
+        new_relation = {
+            "Relationship_class_name": "node__temporal_block",
+            "Object_class_name_1": "node",
+            "Object_class_name_2": "temporal_block",
+            "Object_name_1": output_column,
+            "Object_name_2": temporal_block_name
+        }
+        model_relations.loc[len(model_relations)] = new_relation
+
+# Temporal blocks values (use only for h, D, M, and Y)
+def create_temporal_block_input(resolution_column, model):
+    if pd.isna(resolution_column):
+        return
+
+    temporal_block_name = resolution_to_block.get(resolution_column)
+    if temporal_block_name is None:
+        print("Warning: temporal slicing block does not exist for resolution", resolution_column)
+        return
+    
+    # Check if parameter already exists
+    parameter_exists = model[
+        (model['Object_name'] == temporal_block_name) &
+        (model['Parameter'] == "resolution")
+    ].shape[0] > 0
+    
+    if resolution_column == 'W':
+        value = '{"type":"duration", "data": "7D"}'
+    elif resolution_column == 'Q':
+        value = '{"type":"duration", "data": "3M"}'
+    else:
+        value = '{"type":"duration", "data": "1' + resolution_column + '"}'
+    
+    if not parameter_exists:
+        new_parameter = {
+            "Object_class_name": "temporal_block",
+            "Object_name": temporal_block_name,
+            "Parameter": "resolution",
+            "Alternative": "Base",
+            "Value": value
+        }
+        model.loc[len(model)] = new_parameter
+
+#
