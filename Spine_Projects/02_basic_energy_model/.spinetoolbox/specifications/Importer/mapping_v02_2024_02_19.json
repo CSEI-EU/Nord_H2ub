@@ -77,43 +77,6 @@
                     }
                 }
             ],
-            "Model_relations": [
-                {
-                    "Relationship": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden",
-                                "value": "relationship"
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": 3
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": 4
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Definition": [
                 {
                     "Definition": {
@@ -148,7 +111,7 @@
             ],
             "Definition_parameters": [
                 {
-                    "Mapping 1": {
+                    "parameter_definition_values": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -389,7 +352,7 @@
                     }
                 },
                 {
-                    "Demand": {
+                    "Value_demand": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -444,7 +407,7 @@
                             {
                                 "map_type": "ParameterDefinition",
                                 "position": "header",
-                                "value": 7
+                                "value": 6
                             },
                             {
                                 "map_type": "Alternative",
@@ -522,7 +485,7 @@
             ],
             "Object__to_from_node_definition": [
                 {
-                    "Mapping 1": {
+                    "definition_from_to_node": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -781,7 +744,7 @@
             ],
             "Operating_points": [
                 {
-                    "Mapping 1": {
+                    "operating_points": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -850,7 +813,7 @@
             ],
             "Variable_Eff_Definition": [
                 {
-                    "Mapping 1": {
+                    "definition_user_constraints": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -1049,7 +1012,7 @@
             ],
             "Energy_prices": [
                 {
-                    "Values": {
+                    "Values_energy_prices": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -1115,12 +1078,48 @@
                         ]
                     }
                 }
+            ],
+            "Model_relations": [
+                {
+                    "Relationship": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": "hidden",
+                                "value": "relationship"
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 3
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
             "Model",
             "Model_components",
-            "Model_relations",
             "Definition",
             "Definition_parameters",
             "Definition_parameters_duration",
@@ -1135,7 +1134,8 @@
             "Variable_Eff",
             "Demand",
             "Time_series_storage",
-            "Energy_prices"
+            "Energy_prices",
+            "Model_relations"
         ],
         "table_options": {
             "Definition": {
@@ -1199,8 +1199,7 @@
         "table_types": {
             "Definition": {
                 "0": "string",
-                "1": "string",
-                "2": "string"
+                "1": "string"
             },
             "Nodes": {
                 "0": "string",
@@ -1246,9 +1245,7 @@
             },
             "Demand": {
                 "0": "datetime",
-                "1": "float",
-                "2": "float",
-                "3": "float"
+                "1": "float"
             },
             "Energy_prices": {
                 "0": "datetime",
