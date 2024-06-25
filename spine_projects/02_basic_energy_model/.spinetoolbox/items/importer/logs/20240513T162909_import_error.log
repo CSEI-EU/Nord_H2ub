@@ -1,2 +1,0 @@
-Could not import relationship with objects ('EffCurve_Electrolyzer', 'Electrolyzer', 'Hydrogen_Kasso') into 'unit__to_node__user_constraint': Some of the objects in relationship 'unit__to_node__user_constraint_EffCurve_Electrolyzer__Electrolyzer__Hydrogen_Kasso' are invalid.
-Could not import parameter value for '['EffCurve_Electrolyzer', 'Electrolyzer', 'Hydrogen_Kasso']', class 'unit__to_node__user_constraint', parameter 'unit_flow_coefficient': Missing object or relationship identifier.

@@ -1,2 +1,0 @@
-Could not import relationship with objects ('Hydrogen_Kasso', 'unit_incremental_heat_rate', 'Power_Kasso') into 'unit__node__node': Some of the objects in relationship 'unit__node__node_Hydrogen_Kasso__unit_incremental_heat_rate__Power_Kasso' are invalid.
-Could not import parameter value for '['Hydrogen_Kasso', 'unit_incremental_heat_rate', 'Power_Kasso']', class 'unit__node__node', parameter '0.667': Missing object or relationship identifier.
