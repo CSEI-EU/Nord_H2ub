@@ -418,7 +418,7 @@ def check_temporal_block(resolution_column, model_definitions):
         model_definitions.loc[len(model_definitions)] = new_row
 
 # Temporal slicing relations
-def create_temporal_block_relationships(resolution_column, output_column, model_relations):
+def create_temporal_block_relationships(resolution_column, output_column, model_relations, model_name):
     if pd.isna(resolution_column):
         return
 
@@ -442,6 +442,14 @@ def create_temporal_block_relationships(resolution_column, output_column, model_
             "Object_name_2": temporal_block_name
         }
         model_relations.loc[len(model_relations)] = new_relation
+        new_relation_mod = {
+            "Relationship_class_name": "model__temporal_block",
+            "Object_class_name_1": "model",
+            "Object_class_name_2": "temporal_block",
+            "Object_name_1": model_name,
+            "Object_name_2": temporal_block_name
+        }
+        model_relations.loc[len(model_relations)] = new_relation_mod
 
 # Temporal blocks values (use only for h, D, M, and Y)
 def create_temporal_block_input(resolution_column, model):

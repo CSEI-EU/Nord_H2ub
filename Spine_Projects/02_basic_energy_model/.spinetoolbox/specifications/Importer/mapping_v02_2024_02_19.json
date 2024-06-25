@@ -389,7 +389,7 @@
                     }
                 },
                 {
-                    "Value_node_slack_penalty": {
+                    "Demand": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -421,6 +421,43 @@
                             {
                                 "map_type": "ParameterValue",
                                 "position": 6
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Value_node_slack_penalty": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "header",
+                                "value": 7
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden",
+                                "value": "Base"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 7
                             }
                         ]
                     }
@@ -1172,7 +1209,8 @@
                 "3": "string",
                 "4": "float",
                 "5": "float",
-                "6": "float"
+                "6": "float",
+                "7": "float"
             },
             "Connections": {
                 "0": "string",
