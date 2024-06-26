@@ -100,68 +100,8 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-02-22T13:54:31": true,
-                                "Run SpineOpt@2024-02-22T16:45:58": true,
-                                "Run SpineOpt@2024-02-26T09:36:45": true,
-                                "Run SpineOpt@2024-02-26T10:21:12": true,
-                                "Run SpineOpt@2024-02-26T13:33:15": true,
-                                "Run SpineOpt@2024-02-26T13:54:13": true,
-                                "Run SpineOpt@2024-02-26T14:31:10": true,
-                                "Run SpineOpt@2024-03-21T15:21:42": true,
-                                "Run SpineOpt@2024-03-21T15:22:45": true,
-                                "Run SpineOpt@2024-04-03T10:44:42": true,
-                                "Run SpineOpt@2024-04-03T11:20:40": true,
-                                "Run SpineOpt@2024-04-03T11:21:13": true,
-                                "Run SpineOpt@2024-04-03T11:25:16": true,
-                                "Run SpineOpt@2024-04-03T13:39:23": true,
-                                "Run SpineOpt@2024-04-03T15:49:55": true,
-                                "Run SpineOpt@2024-04-03T16:52:59": true,
-                                "Run SpineOpt@2024-04-03T17:50:00": true,
-                                "Run SpineOpt@2024-04-03T17:52:02": true,
-                                "Run SpineOpt@2024-04-03T18:08:47": true,
-                                "Run SpineOpt@2024-04-18T16:06:04": true,
-                                "Run SpineOpt@2024-04-23T14:58:19": true,
-                                "Run SpineOpt@2024-04-23T15:13:22": true,
-                                "Run SpineOpt@2024-04-23T15:15:33": true,
-                                "Run SpineOpt@2024-04-23T15:24:19": true,
-                                "Run SpineOpt@2024-04-23T15:26:04": true,
-                                "Run SpineOpt@2024-04-23T15:30:30": true,
-                                "Run SpineOpt@2024-04-23T15:34:03": true,
-                                "Run SpineOpt@2024-04-23T15:37:17": true,
-                                "Run SpineOpt@2024-04-23T15:55:49": true,
-                                "Run SpineOpt@2024-04-23T15:57:45": true,
-                                "Run SpineOpt@2024-04-23T15:59:24": true,
-                                "Run SpineOpt@2024-04-23T16:00:56": true,
-                                "Run SpineOpt@2024-05-14T11:45:00": true,
-                                "Run SpineOpt@2024-05-14T12:22:42": true,
-                                "Run SpineOpt@2024-05-14T13:50:54": true,
-                                "Run SpineOpt@2024-05-14T15:58:32": true,
-                                "Run SpineOpt@2024-05-16T11:38:24": true,
-                                "Run SpineOpt@2024-05-16T11:58:41": true,
-                                "Run SpineOpt@2024-05-28T10:42:51": true,
-                                "Run SpineOpt@2024-06-12T09:54:54": true,
-                                "Run SpineOpt@2024-06-12T10:53:27": true,
-                                "Run SpineOpt@2024-06-12T13:49:00": true,
-                                "Run SpineOpt@2024-06-12T13:57:20": true,
-                                "Run SpineOpt@2024-06-12T14:02:32": true,
-                                "Run SpineOpt@2024-06-12T14:21:09": true,
-                                "Run SpineOpt@2024-06-12T14:27:04": true,
-                                "Run SpineOpt@2024-06-12T14:32:36": true,
-                                "Run SpineOpt@2024-06-12T14:35:28": true,
-                                "Run SpineOpt@2024-06-12T14:37:33": true,
-                                "Run SpineOpt@2024-06-12T14:45:57": true,
-                                "Run SpineOpt@2024-06-24T10:33:56": true,
-                                "Run SpineOpt@2024-06-24T10:36:14": true,
-                                "Run SpineOpt@2024-06-24T10:51:41": true,
-                                "Run SpineOpt@2024-06-24T10:54:03": true,
-                                "Run SpineOpt@2024-06-24T11:19:32": true,
-                                "Run SpineOpt@2024-06-24T11:33:34": true,
-                                "Run SpineOpt@2024-06-24T11:44:54": true,
-                                "Run SpineOpt@2024-06-24T11:48:49": true,
-                                "Run SpineOpt@2024-06-25T11:16:53": true,
-                                "Run SpineOpt@2024-06-25T11:24:18": true,
-                                "Run SpineOpt@2024-06-25T12:06:26": true,
-                                "Run SpineOpt@2024-06-25T12:18:12": true
+                                "Run SpineOpt@2024-06-26T10:29:19": true,
+                                "Run SpineOpt@2024-06-26T12:14:08": true
                             }
                         }
                     },
@@ -249,7 +189,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -294,8 +234,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 236.20304356640574,
-            "y": -54.94946906615475,
+            "x": 236.2030435664057,
+            "y": -53.936128576555845,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -324,7 +264,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
