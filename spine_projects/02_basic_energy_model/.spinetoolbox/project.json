@@ -100,8 +100,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-06-26T10:29:19": true,
-                                "Run SpineOpt@2024-06-26T12:14:08": true
+                                "Run SpineOpt@2024-06-26T18:37:52": true
                             }
                         }
                     },
@@ -214,8 +213,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 229.9979267739288,
-            "y": -262.26652389819515,
+            "x": 232.04345069181693,
+            "y": -261.2437619392511,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
