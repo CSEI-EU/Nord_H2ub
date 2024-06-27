@@ -2,7 +2,8 @@ cat("\014")
 rm(list = ls())
 graphics.off()
 
-setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects")
+#setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects")
+setwd("C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects")
 
 ### Libraries
 library(readr)
@@ -91,6 +92,13 @@ result$X1 <- as.POSIXct(result$X1, format="%Y-%m-%dT%H:%M:%S")
 new_df_name <- paste0("result_", variable)
 assign(new_df_name, result)
 
+######################
+###   DATA PREP   NEW  ###
+######################
+
+result_base <- prepare_data(base_case, power_price)
+result_other <- prepare_data(other_case, power_price)
+
 
 ######################
 ###   COMPARISON   ###
@@ -158,5 +166,6 @@ ggplot(data = df_comb_first_week, aes(x = time)) +
        y = "Value",
        color = "Legend") +
   theme_minimal()
+
 
 
