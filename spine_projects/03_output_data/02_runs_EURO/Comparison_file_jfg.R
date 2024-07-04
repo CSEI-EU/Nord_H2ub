@@ -2,8 +2,8 @@ cat("\014")
 rm(list = ls())
 graphics.off()
 
-#setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects")
-setwd("C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects")
+setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects")
+#setwd("C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects")
 
 ### Libraries
 library(readr)
@@ -19,14 +19,14 @@ library(ggplot2)
 ###  IMPORT DATA   ###
 ######################
 
-base_case <- read.xlsx("03_output_data/02_runs_EURO/Output_exported_base_case.xlsx")
-other_case <- read.xlsx("03_output_data/02_runs_EURO/Output_exported_constant_efficiency.xlsx")
+base_case <- read.xlsx("03_output_data/02_runs_EURO/01_output_raw/Output_exported_base_case.xlsx")
+other_case <- read.xlsx("03_output_data/02_runs_EURO/01_output_raw/Output_exported_constant_efficiency.xlsx")
 
 power_price <- read.xlsx("01_input_data/01_input_raw/Day_ahead_prices_2019.xlsx")
 
-######################
-###  FUNCTION TO PREPARE DATA ###
-######################
+##################################
+###  FUNCTION TO PREPARE DATA  ###
+##################################
 
 prepare_data <- function(data, power_price) {
   ### Calculate electricity flows
@@ -134,14 +134,20 @@ ggplot(data = df_comb_first_week, aes(x = time)) +
   theme_minimal()
 
 # Hydrogen production
-ggplot(data = df_comb_first_week, aes(x = time)) +
-  geom_line(aes(y = hydrogen_base, color = " Base"), linewidth = 0.75) +
-  geom_line(aes(y = hydrogen_other, color = "Other"), linewidth = 0.75) +
-  labs(title = "Hydrogen Production per Hour in First Week",
-       x = "Time",
-       y = "Value",
-       color = "Legend") +
-  theme_minimal()
+hydro_plot <- ggplot(data = df_comb_first_week, aes(x = time)) +
+  geom_line(aes(y = hydrogen_base, color = "Variable efficiency"), linewidth = 0.9) +
+  geom_line(aes(y = hydrogen_other, color = "Constant efficiency"), linewidth = 0.9) +
+  scale_color_manual(values = c("Variable efficiency" = "#8FA3CF", "Constant efficiency" = "#242E70")) +
+  labs(x = "Time", y = "Hydrogen production", color = "Legend") +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank(),
+    legend.position = "bottom"
+  )
+
+ggsave("03_output_data/02_runs_EURO/03_plots/hydro_production.png", plot = hydro_plot, width = 5.48, height = 4.84, units = "in", bg = "transparent")
 
 # Storage level
 ggplot(data = df_comb_first_week, aes(x = time)) +
