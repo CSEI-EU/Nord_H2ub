@@ -137,7 +137,11 @@ ggplot(data = df_comb_first_week, aes(x = time)) +
 hydro_plot <- ggplot(data = df_comb_first_week, aes(x = time)) +
   geom_line(aes(y = hydrogen_base, color = "Variable efficiency"), linewidth = 0.9) +
   geom_line(aes(y = hydrogen_other, color = "Constant efficiency"), linewidth = 0.9) +
-  scale_color_manual(values = c("Variable efficiency" = "#8FA3CF", "Constant efficiency" = "#242E70")) +
+  scale_color_manual(
+    name = "Legend",
+    values = c("Variable efficiency" = "#8FA3CF", "Constant efficiency" = "#242E70"),
+    limits = c("Variable efficiency", "Constant efficiency") 
+  ) +
   labs(x = "Time", y = "Hydrogen production", color = "Legend") +
   theme_minimal() +
   theme(
@@ -151,10 +155,52 @@ ggsave("03_output_data/02_runs_EURO/03_plots/hydro_production.png", plot = hydro
 
 # Storage level
 ggplot(data = df_comb_first_week, aes(x = time)) +
-  geom_line(aes(y = hydrogen_storage_base, color = "Base"), linewidth = 0.75) +
-  geom_line(aes(y = hydrogen_storage_other, color = "Other"), linewidth = 0.75) +
+  geom_line(aes(y = hydrogen_storage_base, color = "Variable efficiency"), linewidth = 0.9) +
+  geom_line(aes(y = hydrogen_storage_other, color = "Constant efficiency"), linewidth = 0.75) +
+  scale_color_manual(values = c("Variable efficiency" = "#ffc000", "Constant efficiency" = "#242E70")) +
   labs(title = "Hydrogen Storage Level in First Week",
        x = "Time",
        y = "Value",
        color = "Legend") +
   theme_minimal()
+
+# Production vs. Costs
+production_var <- sum(result_base$Hydrogen_Kasso)
+production_con <- sum(result_other$Hydrogen_Kasso)
+costs_var <- sum(result_base$Total_power_costs)
+costs_con <- sum(result_other$Total_power_costs)
+
+methods <- rep(c("Hydrogen Production [MWh]", "Production Cost [Euro]"), each = 2)
+method_type <- rep(c("Variable efficiency", "Constant efficiency"), 2)
+values <- c(production_var, production_con, costs_var, costs_con)
+
+data <- data.frame(
+  Metric = methods,
+  Method = method_type,
+  Value = values
+)
+
+colors <- c("Variable efficiency" = "#8FA3CF", "Constant efficiency" = "#242E70")
+
+ggplot(data, aes(x = Metric, y = Value, fill = Method)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  scale_fill_manual(values = colors) +
+  labs(x = "Metric",
+       y = "Value",
+       fill = "Legend") +
+  scale_y_continuous(
+    name = "Hydrogen Production [MWh]",
+    sec.axis = sec_axis(~ ., name = "Power Cost [Euro]", labels = scales::comma),
+    expand = c(0, 20000000),
+    limits = c(250000, 25000000)  # Adjusted limits for better visibility
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    sec.axis = sec_axis(~ ., name = "Cost [Euro]", labels = scales::comma)
+  ) +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank(),
+    legend.position = "bottom"
+  )

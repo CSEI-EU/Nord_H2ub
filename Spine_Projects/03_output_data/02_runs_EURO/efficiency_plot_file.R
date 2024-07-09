@@ -55,4 +55,3 @@ eff_plot <- ggplot(data, aes(x = `Power.[%]`)) +
 
 ggsave("03_output_data/02_runs_EURO/03_plots/efficiency.png", plot = eff_plot, width = 5.47, height = 4.38, units = "in", bg = "transparent")
 
-
