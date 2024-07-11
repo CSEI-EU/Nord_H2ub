@@ -100,7 +100,8 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-06-28T07:22:04": true
+                                "Run SpineOpt@2024-07-02T11:32:30": true,
+                                "Run SpineOpt@2024-07-11T14:17:58": true
                             }
                         }
                     },
@@ -188,7 +189,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared - Copy.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -233,7 +234,7 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 236.2030435664057,
+            "x": 237.6520077053101,
             "y": -53.936128576555845,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
@@ -256,14 +257,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -56.09606789966955,
-            "y": -154.72933942569543,
+            "x": -56.09606789966954,
+            "y": -153.280375286791,
             "specification": "Mapping_v07_2024_05_14",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared - Copy.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -286,8 +287,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 77.01132032875762,
-            "y": -155.5582470323743,
+            "x": 74.11339205094883,
+            "y": -157.00721117127867,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
