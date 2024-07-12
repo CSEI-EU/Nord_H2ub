@@ -492,3 +492,22 @@ def create_temporal_block_input(resolution_column, model):
         model.loc[len(model)] = new_parameter
 
 #
+
+def adjust_frac_state_loss(storages_df, column_name):
+    '''adjust the frac state loss value to be usable in the SpineOpt logic
+
+    Parameters:
+    storages_df (pd.DataFrame): The DataFrame containing the storage data.
+    column_name (str): The name of the column to adjust.
+    
+    Returns:
+    pd.DataFrame: The DataFrame with the adjusted column.
+    '''
+    # Define the adjustment function
+    def adjust_value(frac_state_loss):
+        return (1 - (1 - frac_state_loss)) / (1 - frac_state_loss)
+        
+    # Apply the adjustment function to the specified column
+    storages_df[column_name] = storages_df[column_name].apply(adjust_value)
+    
+    return storages_df
