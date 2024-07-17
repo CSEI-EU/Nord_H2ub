@@ -396,7 +396,8 @@ def check_decreasing(dataframe, unit, node):
     
     return pd.DataFrame([result_row])
 
-# Temporal slicing definition (for demand)
+
+#Check if additional demand node is neccessary
 resolution_to_block = {
     'h': 'hourly',
     'D': 'daily',
@@ -405,6 +406,91 @@ resolution_to_block = {
     'Q': 'quarterly',
     'Y': 'yearly'
 }
+
+def check_demand_node(row, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections, df_object__node_definitions, df_object__node_values, df_object_node_node):
+    if not pd.isna(row['demand']):
+        row_resolution = resolution_to_block[row['resolution_output']]
+        if row_resolution != temporal_block:
+            #definition
+            new_def = pd.DataFrame([
+                {"Object_Name": f"{row['Output1']}_demand", "Category": "node"},
+                {"Object_Name": f"{row['Output1']}_demand_connection", "Category": "connection"}
+            ])
+            df_definition = pd.concat([df_definition, new_def], ignore_index=True)
+            
+            #demand value
+            new_value = {col: np.nan for col in df_nodes.columns}
+            new_value["Object_Name"] = f"{row['Output1']}_demand"
+            new_value["Category"] = "node"
+            new_value["balance_type"] = "balance_type_node"
+            new_value["demand"] = row['demand']
+            new_value["node_slack_penalty"] = 100000
+            df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
+            
+            #connection value
+            new_con = {col: np.nan for col in df_connections.columns}
+            new_con["Connection"] = f"{row['Output1']}_demand_connection"
+            new_con["Parameter_name"] = "connection_type"
+            new_con["Connection_type"] = "connection_type_normal"
+            df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
+            
+            #object_to/from_node
+            new_rel = pd.DataFrame([
+                {"Relationship_class_name": "connection__from_node", 
+                 "Object_class": "connection", 
+                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Node": row['Output1']
+                },
+                {"Relationship_class_name": "connection__to_node", 
+                 "Object_class": "connection", 
+                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Node": f"{row['Output1']}_demand",
+                }
+            ])
+            df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
+            
+            new_rel_value = pd.DataFrame([
+                {"Relationship_class_name": "connection__from_node", 
+                 "Object_class": "connection", 
+                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Node": row['Output1'],
+                 "Parameter": "connection_capacity",
+                 "Value": 1000
+                },
+                {"Relationship_class_name": "connection__to_node", 
+                 "Object_class": "connection", 
+                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Node": f"{row['Output1']}_demand",
+                 "Parameter": "connection_capacity",
+                 "Value": 1000
+                }
+            ])
+            df_object__node_values = pd.concat([df_object__node_values, new_rel_value], ignore_index=True)
+            
+            #object__node__node
+            new_rel_nn = pd.DataFrame([
+                {"Relationship": "connection__from_node", 
+                 "Object_class": "connection", 
+                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Node1": f"{row['Output1']}_demand",
+                 "Node2": row['Output1'],
+                 "Parameter": "fix_ratio_in_out_connection_flow",
+                 "Value": 1
+                }
+            ])
+            df_object_node_node = pd.concat([df_object_node_node, new_rel_nn], ignore_index=True)
+            
+        else: 
+            new_value = {col: np.nan for col in df_nodes.columns}
+            new_value["Object_Name"] = row['Output1']
+            new_value["Category"] = "node"
+            new_value["demand"] = row['demand']
+            df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
+            
+    return df_definition, df_nodes, df_connections, df_object__node_definitions, df_object__node_values, df_object_node_node
+
+
+# Temporal slicing definition (for demand)
 def check_temporal_block(resolution_column, model_definitions):
     if pd.isna(resolution_column):
         return
@@ -425,7 +511,7 @@ def check_temporal_block(resolution_column, model_definitions):
         model_definitions.loc[len(model_definitions)] = new_row
 
 # Temporal slicing relations
-def create_temporal_block_relationships(resolution_column, output_column, model_relations, model_name):
+def create_temporal_block_relationships(resolution_column, output_column, model_relations, model_name, df_definition):
     if pd.isna(resolution_column):
         return
 
@@ -434,9 +520,15 @@ def create_temporal_block_relationships(resolution_column, output_column, model_
         print("Warning: temporal slicing block does not exist for resolution", resolution_column)
         return
     
+    #Check if specific demand node exists
+    if f"{output_column}_demand" in df_definition['Object_Name'].values:
+        node_name = f"{output_column}_demand"
+    else:
+        node_name = output_column
+    
     # Check if relationship already exists
     relationship_exists = model_relations[
-        (model_relations['Object_name_1'] == output_column) &
+        (model_relations['Object_name_1'] == node_name) &
         (model_relations['Object_name_2'] == temporal_block_name)
     ].shape[0] > 0
     
@@ -445,7 +537,7 @@ def create_temporal_block_relationships(resolution_column, output_column, model_
             "Relationship_class_name": "node__temporal_block",
             "Object_class_name_1": "node",
             "Object_class_name_2": "temporal_block",
-            "Object_name_1": output_column,
+            "Object_name_1": node_name,
             "Object_name_2": temporal_block_name
         }
         model_relations.loc[len(model_relations)] = new_relation
