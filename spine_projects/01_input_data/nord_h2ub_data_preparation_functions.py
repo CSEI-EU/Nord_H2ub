@@ -469,7 +469,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
             #object__node__node
             new_rel_nn = pd.DataFrame([
-                {"Relationship": "connection__from_node", 
+                {"Relationship": "connection__node_node", 
                  "Object_class": "connection", 
                  "Object_name": f"{row['Output1']}_demand_connection",
                  "Node1": f"{row['Output1']}_demand",
