@@ -407,7 +407,7 @@ resolution_to_block = {
     'Y': 'yearly'
 }
 
-def check_demand_node(row, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections, df_object__node_definitions, df_object__node_values, df_object_node_node):
+def check_demand_node(row, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections, df_object__node_values, df_object_node_node):
     if not pd.isna(row['demand']):
         row_resolution = resolution_to_block[row['resolution_output']]
         if row_resolution != temporal_block:
@@ -447,7 +447,6 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
                  "Node": f"{row['Output1']}_demand",
                 }
             ])
-            df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
             
             new_rel_value = pd.DataFrame([
                 {"Relationship_class_name": "connection__from_node", 
@@ -487,7 +486,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_value["demand"] = row['demand']
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
             
-    return df_definition, df_nodes, df_connections, df_object__node_definitions, df_object__node_values, df_object_node_node
+    return df_definition, df_nodes, df_connections, df_object__node_values, df_object_node_node
 
 
 # Temporal slicing definition (for demand)
