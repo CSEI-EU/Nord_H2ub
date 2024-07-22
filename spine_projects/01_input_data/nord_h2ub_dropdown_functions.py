@@ -117,3 +117,30 @@ def create_dropdown(variable):
 'units_shut_down',
 'units_started_up',
 'variable_om_costs'
+
+
+def on_change_MC(change, selected_options, checkbox, name):
+    if change['type'] == 'change' and change['name'] == 'value':
+        if change['new']:
+            selected_options.add(checkbox.description)
+        else:
+            selected_options.discard(checkbox.description)
+        print(f'{name} selected: {selected_options}')
+
+def create_multiple_choice_1():
+    options = ['Option 1', 'Option 2', 'Option 3']
+    selected_options = set()
+    checkboxes = []
+    
+    for option in options:
+        checkbox = widgets.Checkbox(value=False, description=option)
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options, checkbox, 'Multiple Choice 1'))
+        checkboxes.append(checkbox)
+    
+    label = widgets.Label("Multiple Choice 1:")
+    return widgets.VBox([label] + checkboxes)
+
+def create_combined_multiple_choices():
+    multiple_choice_1 = create_multiple_choice_1()
+    combined = widgets.VBox([multiple_choice_1])
+    return combined    
