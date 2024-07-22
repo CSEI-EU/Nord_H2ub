@@ -15,7 +15,7 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 import ipywidgets as widgets
 from IPython.display import display
 
-'''Define functions'''
+'''Define dropdown functions'''
 
 #change the parameter values of the if the drop down menu value is changes
 def on_change(change):
@@ -30,7 +30,7 @@ def create_dropdown_year():
         value=None
     )
     dropdown1.observe(on_change)
-    return widgets.VBox([label1, dropdown1]) 
+    return widgets.VBox([label1, dropdown1]), dropdown1
 
 #create dropdown for the power price zone
 def create_dropdown_price_zone():
@@ -40,7 +40,7 @@ def create_dropdown_price_zone():
         value=None
     )
     dropdown2.observe(on_change)
-    return widgets.VBox([label2, dropdown2])       
+    return widgets.VBox([label2, dropdown2]), dropdown2   
 
 #create dropdown for the product
 def create_dropdown_product():
@@ -50,7 +50,7 @@ def create_dropdown_product():
         value=None
     )
     dropdown3.observe(on_change)
-    return widgets.VBox([label3, dropdown3])   
+    return widgets.VBox([label3, dropdown3]), dropdown3   
 
 #create dropdown for the electrolysis type
 def create_dropdown_electrolysis():
@@ -60,118 +60,62 @@ def create_dropdown_electrolysis():
         value=None
     )
     dropdown4.observe(on_change)
-    return widgets.VBox([label4, dropdown4])  
+    return widgets.VBox([label4, dropdown4]), dropdown4  
+
+#create dropdown for the model frequency
+def create_dropdown_frequency():
+    label5 = widgets.Label("Please select the frequency:")
+    dropdown5 = widgets.Dropdown(
+        options=['1h', '1D', '1W', '1M', '1Q', '1Y'],
+        value=None
+    )
+    dropdown5.observe(on_change)
+    return widgets.VBox([label5, dropdown5]), dropdown5
+
 
 #create a combined function to get all dropdowns in one execution
 def create_combined_dropdowns():
     #give the user further information of the data to set
     section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
     section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
+    section_3 = widgets.HTML("<b>Section 3: Please define the parameters of the general model</b>")
     #get the dropdown menus
-    dropdown_year = create_dropdown_year()
-    dropdown_price_zone = create_dropdown_price_zone()
-    dropdown_product = create_dropdown_product()
-    dropdown_electrolysis = create_dropdown_electrolysis()
-    combined = widgets.VBox([section_1, dropdown_year, dropdown_price_zone, 
-    dropdown_product, section_2, dropdown_electrolysis])
-    return combined
-
-def create_dropdown(variable):
-    if variable == 'year':
-        dropdown = widgets.Dropdown(
-            options=[2018, 2019, 2020, 2021, 2022],
-            description='year:',
-            value=None
-        )
-    elif variable == 'area':
-        dropdown = widgets.Dropdown(
-            options=['DE', 'DK1', 'DK2', 'NO2', 'SE3', 'SE4', 'SYSTEM'],
-            description='area:',
-            value='DK1'
-        )
-    elif variable == 'product':
-        dropdown = widgets.Dropdown(
-            options=['ammonia', 'methanol', 'jet_fuel'],
-            description='product:',
-            value='methanol'
-        )
-    elif variable == 'frequency':
-        dropdown = widgets.Dropdown(
-            options=['1h', '1D', '1M', '1Y'],
-            description='frequency:',
-            value='1h'
-        )
-    elif variable == 'electrolyzer_type':
-        dropdown = widgets.Dropdown(
-            options=['PEM', 'Alkaline', 'SOEC'],
-            description='electrolyzer_type:',
-            value='Alkaline'
-        )
-    elif variable == 'des_segments_electrolyzer':
-        dropdown = widgets.Dropdown(
-            options=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            description='des_segments_electrolyzer:',
-            value=None
-        )
-    else:
-        dropdown = widgets.Dropdown(
-            options=[1, 2, 3],
-            description=f'{variable}:',
-            value=None  # Initial value
-        )
+    dropdown_year_vbox, dropdown_year = create_dropdown_year()
+    dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
+    dropdown_product_vbox, dropdown_product = create_dropdown_product()
+    dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
+    dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
     
-    dropdown.observe(on_change, names='value')
-    return dropdown
+    #store dropdowns in a dictionary
+    dropdowns = {
+        'year': dropdown_year,
+        'price_zone': dropdown_price_zone,
+        'product': dropdown_product,
+        'electrolysis': dropdown_electrolysis,
+        'frequency': dropdown_frequency
+    }
+    #combine all dropdowns
+    combined = widgets.VBox([
+        section_1, dropdown_year_vbox, dropdown_price_zone_vbox, 
+        dropdown_product_vbox, section_2, dropdown_electrolysis_vbox,
+        section_3, dropdown_frequency_vbox
+    ])
+    return combined, dropdowns
+
+
+#create a function to access the values in combined function
+def get_dropdown_values(dropdowns):
+    return {
+        'year': dropdowns['year'].value,
+        'price_zone': dropdowns['price_zone'].value,
+        'product': dropdowns['product'].value,
+        'electrolysis': dropdowns['electrolysis'].value,
+        'frequency': dropdowns['frequency'].value
+    }
 
 
 
-'binary_gas_connection_flow',
-'connection_avg_intact_throughflow',
-'connection_avg_throughflow',
-'connection_flow',
-'connection_flow_costs',
-'connection_intact_flow',
-'connection_investment_costs',
-'connections_decommissioned',
-'connections_invested',
-'connections_invested_available',
-'contingency_is_binding''fixed_om_costs',
-'fuel_costs',
-'mga_objective',
-'mp_objective_lowerbound',
-'node_injection',
-'node_pressure',
-'node_slack_neg',
-'node_slack_pos',
-'node_state',
-'node_voltage_angle',
-'nonspin_units_shut_down',
-'nonspin_units_started_up',
-'objective_penalties',
-'relative_optimality_gap',
-'renewable_curtailment_costs',
-'res_proc_costs',
-'shut_down_costs',
-'start_up_costs',
-'storage_investment_costs',
-'storages_decommissioned',
-'storages_invested',
-'storages_invested_available',
-'taxes',
-'total_costs',
-'unit_flow',
-'unit_flow_op',
-'unit_flow_op_active',
-'unit_investment_costs',
-'units_invested',
-'units_invested_available',
-'units_mothballed',
-'units_on',
-'units_on_costs',
-'units_shut_down',
-'units_started_up',
-'variable_om_costs'
-
+'''Define multiple choice functions'''
 
 def on_change_MC(change, selected_options, checkbox, name):
     if change['type'] == 'change' and change['name'] == 'value':
@@ -181,20 +125,29 @@ def on_change_MC(change, selected_options, checkbox, name):
             selected_options.discard(checkbox.description)
         print(f'{name} selected: {selected_options}')
 
+        
 def create_multiple_choice_1():
-    options = ['Option 1', 'Option 2', 'Option 3']
+    options = ['binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs']
     selected_options = set()
     checkboxes = []
     
     for option in options:
         checkbox = widgets.Checkbox(value=False, description=option)
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options, checkbox, 'Multiple Choice 1'))
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options, checkbox, 'Output'))
         checkboxes.append(checkbox)
     
-    label = widgets.Label("Multiple Choice 1:")
-    return widgets.VBox([label] + checkboxes)
+    #2 columns
+    columns = [widgets.VBox([]), widgets.VBox([])]
+    for i, checkbox in enumerate(checkboxes):
+        columns[i % 2].children += (checkbox,)
+    
+    label = widgets.Label("Please select the outputs for the report:")
+    return widgets.VBox([label, widgets.HBox(columns)]), selected_options
+
 
 def create_combined_multiple_choices():
-    multiple_choice_1 = create_multiple_choice_1()
+    multiple_choice_1, selected_options = create_multiple_choice_1()
     combined = widgets.VBox([multiple_choice_1])
-    return combined    
+    return combined, selected_options  
+
+
