@@ -17,10 +17,64 @@ from IPython.display import display
 
 '''Define functions'''
 
+#change the parameter values of the if the drop down menu value is changes
 def on_change(change):
     if change['name'] == 'value' and change['new'] != "":
         print(f'You selected: {change["new"]}')
 
+#create dropdown for the year
+def create_dropdown_year():
+    label1 = widgets.Label("Please select the base year:")
+    dropdown1 = widgets.Dropdown(
+        options=[2018, 2019, 2020, 2021, 2022],
+        value=None
+    )
+    dropdown1.observe(on_change)
+    return widgets.VBox([label1, dropdown1]) 
+
+#create dropdown for the power price zone
+def create_dropdown_price_zone():
+    label2 = widgets.Label("Please select the power price zone where the plant is located:")
+    dropdown2 = widgets.Dropdown(
+        options=['DE', 'DK1', 'DK2', 'NO2', 'SE3', 'SE4', 'SYSTEM'],
+        value=None
+    )
+    dropdown2.observe(on_change)
+    return widgets.VBox([label2, dropdown2])       
+
+#create dropdown for the product
+def create_dropdown_product():
+    label3 = widgets.Label("Please set the product of the plant:")
+    dropdown3 = widgets.Dropdown(
+        options=['ammonia', 'methanol', 'jet_fuel'],
+        value=None
+    )
+    dropdown3.observe(on_change)
+    return widgets.VBox([label3, dropdown3])   
+
+#create dropdown for the electrolysis type
+def create_dropdown_electrolysis():
+    label4 = widgets.Label("Please select the type of electrolysis:")
+    dropdown4 = widgets.Dropdown(
+        options=['PEM', 'Alkaline', 'SOEC'],
+        value=None
+    )
+    dropdown4.observe(on_change)
+    return widgets.VBox([label4, dropdown4])  
+
+#create a combined function to get all dropdowns in one execution
+def create_combined_dropdowns():
+    #give the user further information of the data to set
+    section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
+    section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
+    #get the dropdown menus
+    dropdown_year = create_dropdown_year()
+    dropdown_price_zone = create_dropdown_price_zone()
+    dropdown_product = create_dropdown_product()
+    dropdown_electrolysis = create_dropdown_electrolysis()
+    combined = widgets.VBox([section_1, dropdown_year, dropdown_price_zone, 
+    dropdown_product, section_2, dropdown_electrolysis])
+    return combined
 
 def create_dropdown(variable):
     if variable == 'year':
