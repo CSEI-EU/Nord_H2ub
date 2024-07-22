@@ -18,14 +18,102 @@ from IPython.display import display
 '''Define functions'''
 
 def on_change(change):
-    if change['type'] == 'change' and change['name'] == 'value':
+    if change['name'] == 'value' and change['new'] != "":
         print(f'You selected: {change["new"]}')
 
-def create_dropdown():
-    dropdown = widgets.Dropdown(
-        options=[1, 2, 3],
-        value=1,
-        description='Choose:',
-    )
-    dropdown.observe(on_change)
+
+def create_dropdown(variable):
+    if variable == 'year':
+        dropdown = widgets.Dropdown(
+            options=[2018, 2019, 2020, 2021, 2022],
+            description='year:',
+            value=None
+        )
+    elif variable == 'area':
+        dropdown = widgets.Dropdown(
+            options=['DE', 'DK1', 'DK2', 'NO2', 'SE3', 'SE4', 'SYSTEM'],
+            description='area:',
+            value='DK1'
+        )
+    elif variable == 'product':
+        dropdown = widgets.Dropdown(
+            options=['ammonia', 'methanol', 'jet_fuel'],
+            description='product:',
+            value='methanol'
+        )
+    elif variable == 'frequency':
+        dropdown = widgets.Dropdown(
+            options=['1h', '1D', '1M', '1Y'],
+            description='frequency:',
+            value='1h'
+        )
+    elif variable == 'electrolyzer_type':
+        dropdown = widgets.Dropdown(
+            options=['PEM', 'Alkaline', 'SOEC'],
+            description='electrolyzer_type:',
+            value='Alkaline'
+        )
+    elif variable == 'des_segments_electrolyzer':
+        dropdown = widgets.Dropdown(
+            options=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            description='des_segments_electrolyzer:',
+            value=None
+        )
+    else:
+        dropdown = widgets.Dropdown(
+            options=[1, 2, 3],
+            description=f'{variable}:',
+            value=None  # Initial value
+        )
+    
+    dropdown.observe(on_change, names='value')
     return dropdown
+
+
+
+'binary_gas_connection_flow',
+'connection_avg_intact_throughflow',
+'connection_avg_throughflow',
+'connection_flow',
+'connection_flow_costs',
+'connection_intact_flow',
+'connection_investment_costs',
+'connections_decommissioned',
+'connections_invested',
+'connections_invested_available',
+'contingency_is_binding''fixed_om_costs',
+'fuel_costs',
+'mga_objective',
+'mp_objective_lowerbound',
+'node_injection',
+'node_pressure',
+'node_slack_neg',
+'node_slack_pos',
+'node_state',
+'node_voltage_angle',
+'nonspin_units_shut_down',
+'nonspin_units_started_up',
+'objective_penalties',
+'relative_optimality_gap',
+'renewable_curtailment_costs',
+'res_proc_costs',
+'shut_down_costs',
+'start_up_costs',
+'storage_investment_costs',
+'storages_decommissioned',
+'storages_invested',
+'storages_invested_available',
+'taxes',
+'total_costs',
+'unit_flow',
+'unit_flow_op',
+'unit_flow_op_active',
+'unit_investment_costs',
+'units_invested',
+'units_invested_available',
+'units_mothballed',
+'units_on',
+'units_on_costs',
+'units_shut_down',
+'units_started_up',
+'variable_om_costs'
