@@ -13,7 +13,7 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 
 '''Import packages'''
 import ipywidgets as widgets
-from IPython.display import display
+from IPython.display import display, HTML
 
 '''Define text query functions'''
 
@@ -118,14 +118,14 @@ def on_change_MC(change, selected_options, checkbox, name):
             selected_options.discard(checkbox.description)
         print(f'{name} selected: {selected_options}')
 
-def create_multiple_choice_1():
+def create_multiple_choice_report():
     options = ['binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs']
-    selected_options = set()
+    selected_options_report = set()
     checkboxes = []
     
     for option in options:
         checkbox = widgets.Checkbox(value=False, description=option)
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options, checkbox, 'Output'))
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox, 'Output'))
         checkboxes.append(checkbox)
     
     #2 columns
@@ -134,15 +134,94 @@ def create_multiple_choice_1():
         columns[i % 2].children += (checkbox,)
     
     label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), selected_options
+    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
 
 
 def create_combined_multiple_choices():
-    multiple_choice_1, selected_options = create_multiple_choice_1()
-    combined = widgets.VBox([multiple_choice_1])
-    return combined, selected_options  
+    multiple_choice_report, selected_options_report = create_multiple_choice_report()
+    combined = widgets.VBox([multiple_choice_report])
+    return combined, selected_options_report  
 
 '''Define functions for the combined data definition menu'''
+
+def create_combined_dropdowns_tabs():
+    # Provide information for each section
+    section_1 = widgets.HTML("<b>Section 1: Please define the parameters of the general model</b>")
+    section_2 = widgets.HTML("<b>Section 2: Please define the base parameters</b>")
+    section_3 = widgets.HTML("<b>Section 3: Please define the parameters of electrolysis</b>")
+    section_4 = widgets.HTML("<b>Section 4: Please define the economic parameters of the general model</b>")
+    section_5 = widgets.HTML("<b>Section 5: Please choose the output variables for the report</b>")
+
+    # Get the dropdown menus
+    model_name_input_box, model_name_input = create_text_input()
+    dropdown_year_vbox, dropdown_year = create_dropdown_year()
+    dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
+    dropdown_product_vbox, dropdown_product = create_dropdown_product()
+    dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
+    dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
+    number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
+    multiple_choice_report, selected_options_report = create_multiple_choice_report()
+
+    # Store dropdowns in a dictionary
+    dropdowns = {
+        'name': model_name_input,
+        'year': dropdown_year,
+        'price_zone': dropdown_price_zone,
+        'product': dropdown_product,
+        'electrolysis': dropdown_electrolysis,
+        'frequency': dropdown_frequency,
+        'number_dh_price_share': number_dh_price,
+        'reports': selected_options_report
+    }
+
+    # Create pages (tabs)
+    page1 = widgets.VBox([
+        section_1, model_name_input_box, dropdown_frequency_vbox
+    ])
+    
+    page2 = widgets.VBox([
+        section_2, dropdown_year_vbox, 
+        dropdown_price_zone_vbox, dropdown_product_vbox
+    ])
+    
+    page3 = widgets.VBox([
+        section_3, dropdown_electrolysis_vbox
+    ])
+    
+    page4 = widgets.VBox([
+        section_4, number_dh_price_box
+    ])
+    
+    page5 = widgets.VBox([
+        section_5, multiple_choice_report
+    ])
+    
+    # Create Tab widget
+    tabs = widgets.Tab()
+    tabs.children = [page1, page2, page3, page4, page5]
+    tabs.set_title(0, 'General Model Parameters')
+    tabs.set_title(1, 'Base Parameters')
+    tabs.set_title(2, 'Electrolysis Parameters')
+    tabs.set_title(3, 'Economic Parameters')
+    tabs.set_title(4, 'Report')
+    
+    style = """
+    <style>
+        .jp-TabBar-tab {
+            min-width: 200px !important; 
+            max-width: 300px !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+    </style>
+    """
+    
+    display(HTML(style))
+    display(tabs)
+    
+    return tabs, dropdowns
+
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
@@ -154,60 +233,9 @@ def get_dropdown_values(dropdowns):
         'electrolysis': dropdowns['electrolysis'].value,
         'frequency': dropdowns['frequency'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
-        'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100
+        'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
+        #multiple choice values
+        'outputs': dropdowns['reports']
     }
 
-def create_combined_dropdowns_tabs():
-    # Provide information for each section
-    section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
-    section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
-    section_3 = widgets.HTML("<b>Section 3: Please define the economic parameters of the general model</b>")
-    section_4 = widgets.HTML("<b>Section 4: Please define the parameters of the general model</b>")
 
-    # Get the dropdown menus
-    model_name_input_box, model_name_input = create_text_input()
-    dropdown_year_vbox, dropdown_year = create_dropdown_year()
-    dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
-    dropdown_product_vbox, dropdown_product = create_dropdown_product()
-    dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
-    dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
-    number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
-
-    # Store dropdowns in a dictionary
-    dropdowns = {
-        'name': model_name_input,
-        'year': dropdown_year,
-        'price_zone': dropdown_price_zone,
-        'product': dropdown_product,
-        'electrolysis': dropdown_electrolysis,
-        'frequency': dropdown_frequency,
-        'number_dh_price_share': number_dh_price
-    }
-
-    # Create pages (tabs)
-    page1 = widgets.VBox([
-        section_1, model_name_input_box, dropdown_year_vbox, 
-        dropdown_price_zone_vbox, dropdown_product_vbox
-    ])
-    
-    page2 = widgets.VBox([
-        section_2, dropdown_electrolysis_vbox
-    ])
-    
-    page3 = widgets.VBox([
-        section_3, number_dh_price_box
-    ])
-    
-    page4 = widgets.VBox([
-        section_4, dropdown_frequency_vbox
-    ])
-
-    # Create Tab widget
-    tabs = widgets.Tab()
-    tabs.children = [page1, page2, page3, page4]
-    tabs.set_title(0, 'Base Parameters')
-    tabs.set_title(1, 'Electrolysis Parameters')
-    tabs.set_title(2, 'Economic Parameters')
-    tabs.set_title(3, 'General Model Parameters')
-
-    return tabs, dropdowns
