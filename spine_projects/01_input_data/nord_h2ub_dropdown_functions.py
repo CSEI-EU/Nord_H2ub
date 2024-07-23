@@ -194,4 +194,59 @@ def on_change_MC(change, selected_options, checkbox, name):
         print(f'{name} selected: {selected_options}')
 
 
+'''test for tabs insted of one big query'''
 
+def create_combined_dropdowns_tabs():
+    # Provide information for each section
+    section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
+    section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
+    section_3 = widgets.HTML("<b>Section 3: Please define the economic parameters of the general model</b>")
+    section_4 = widgets.HTML("<b>Section 4: Please define the parameters of the general model</b>")
+
+    # Get the dropdown menus
+    model_name_input_box, model_name_input = create_text_input()
+    dropdown_year_vbox, dropdown_year = create_dropdown_year()
+    dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
+    dropdown_product_vbox, dropdown_product = create_dropdown_product()
+    dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
+    dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
+    number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
+
+    # Store dropdowns in a dictionary
+    dropdowns = {
+        'name': model_name_input,
+        'year': dropdown_year,
+        'price_zone': dropdown_price_zone,
+        'product': dropdown_product,
+        'electrolysis': dropdown_electrolysis,
+        'frequency': dropdown_frequency,
+        'number_dh_price_share': number_dh_price
+    }
+
+    # Create pages (tabs)
+    page1 = widgets.VBox([
+        section_1, model_name_input_box, dropdown_year_vbox, 
+        dropdown_price_zone_vbox, dropdown_product_vbox
+    ])
+    
+    page2 = widgets.VBox([
+        section_2, dropdown_electrolysis_vbox
+    ])
+    
+    page3 = widgets.VBox([
+        section_3, number_dh_price_box
+    ])
+    
+    page4 = widgets.VBox([
+        section_4, dropdown_frequency_vbox
+    ])
+
+    # Create Tab widget
+    tabs = widgets.Tab()
+    tabs.children = [page1, page2, page3, page4]
+    tabs.set_title(0, 'Base Parameters')
+    tabs.set_title(1, 'Electrolysis Parameters')
+    tabs.set_title(2, 'Economic Parameters')
+    tabs.set_title(3, 'General Model Parameters')
+
+    return tabs, dropdowns
