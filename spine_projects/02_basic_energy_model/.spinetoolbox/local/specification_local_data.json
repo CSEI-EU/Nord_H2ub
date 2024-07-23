@@ -20,6 +20,14 @@
         },
         "Run SpineOpt detached": {
             "execution_settings": {}
+        },
+        "run data prep": {
+            "execution_settings": {
+                "kernel_spec_name": "",
+                "env": "",
+                "use_jupyter_console": false,
+                "executable": ""
+            }
         }
     }
 }

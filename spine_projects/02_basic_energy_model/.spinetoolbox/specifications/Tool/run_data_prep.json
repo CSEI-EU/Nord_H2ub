@@ -1,0 +1,13 @@
+{
+    "name": "run data prep",
+    "tooltype": "python",
+    "includes": [
+        "nord_h2ub_start_jupyter_notebook.py"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../01_input_data"
+}
