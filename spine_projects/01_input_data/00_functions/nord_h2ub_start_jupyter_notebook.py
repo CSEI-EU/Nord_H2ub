@@ -57,25 +57,25 @@ def combine_paths(common_folder='Documents'):
     Combines the root part of the Nord_H2ub folder path up to a specified common folder with a new sub-path.
     
     """
-    
+    #assuming that the Nord_H2ub folder is saved on C:
     root_path = 'C:\\Users\\'
     target_folder = 'Nord_H2ub'
 
     folder_path = find_folder_path(root_path, target_folder)
     
-    current_path = folder_path
+    folder_path = folder_path
     new_sub_path = '\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\00_functions\\'
 
     # Normalize the paths
-    norm_current_path = os.path.normpath(current_path)
+    norm_folder_path = os.path.normpath(folder_path)
     norm_new_sub_path = os.path.normpath(new_sub_path)
 
     # Extract the root part of the current path up to and including the common folder
-    common_folder_index = norm_current_path.find(common_folder)
+    common_folder_index = norm_folder_path.find(common_folder)
     if common_folder_index == -1:
         raise ValueError(f"The current path does not contain the '{common_folder}' folder")
 
-    root_part = norm_current_path[:common_folder_index + len(common_folder)]
+    root_part = norm_folder_path[:common_folder_index + len(common_folder)]
 
     # Combine the root part with the new sub-path, excluding the leading backslash from the new sub-path
     combined_path = os.path.join(root_part, norm_new_sub_path.lstrip(os.sep))
@@ -86,11 +86,11 @@ def combine_paths(common_folder='Documents'):
 
 def start_specific_jupyter_notebook(notebook_relative_path):
     try:
-        # Get the current script path
+        # Get the folder path to the script
         folder_path = combine_paths()
         
         # Construct the full path to the notebook
-        notebook_full_path = folder_path
+        notebook_full_path = os.path.join(folder_path, notebook_relative_path)
         
         # Start Jupyter Notebook and open the specified notebook
         subprocess.run(['jupyter', 'notebook', notebook_full_path], check=True)
@@ -101,5 +101,5 @@ def start_specific_jupyter_notebook(notebook_relative_path):
 
 if __name__ == "__main__":
     # Replace 'relative/path/to/data_prep.ipynb' with the relative path to your notebook file
-    notebook_relative_path = '\\master_notebook_test.ipynb'
+    notebook_relative_path = 'master_notebook_test.ipynb'
     start_specific_jupyter_notebook(notebook_relative_path)
