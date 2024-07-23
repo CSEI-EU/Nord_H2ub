@@ -21,6 +21,20 @@ from IPython.display import display
 def on_change(change):
     if change['name'] == 'value' and change['new'] != "":
         print(f'You selected: {change["new"]}')
+        
+def on_text_change(change):
+    if change['type'] == 'change' and change['name'] == 'value':
+        print(f'You entered: {change["new"]}')
+
+#create the text iput query
+def create_text_input():
+    label = widgets.Label("Please type the name of the model if other than Model:")
+    default_text = "Model"
+    text_input = widgets.Text(
+        value=default_text,
+    )
+    text_input.observe(on_text_change, names='value')
+    return widgets.VBox([label, text_input]), text_input
 
 #create dropdown for the year
 def create_dropdown_year():
@@ -80,6 +94,7 @@ def create_combined_dropdowns():
     section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
     section_3 = widgets.HTML("<b>Section 3: Please define the parameters of the general model</b>")
     #get the dropdown menus
+    model_name_input_box, model_name_input = create_text_input()
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
@@ -88,6 +103,7 @@ def create_combined_dropdowns():
     
     #store dropdowns in a dictionary
     dropdowns = {
+        'name': model_name_input,
         'year': dropdown_year,
         'price_zone': dropdown_price_zone,
         'product': dropdown_product,
@@ -96,8 +112,9 @@ def create_combined_dropdowns():
     }
     #combine all dropdowns
     combined = widgets.VBox([
-        section_1, dropdown_year_vbox, dropdown_price_zone_vbox, 
-        dropdown_product_vbox, section_2, dropdown_electrolysis_vbox,
+        section_1, model_name_input_box, dropdown_year_vbox, 
+        dropdown_price_zone_vbox, dropdown_product_vbox, 
+        section_2, dropdown_electrolysis_vbox,
         section_3, dropdown_frequency_vbox
     ])
     return combined, dropdowns
