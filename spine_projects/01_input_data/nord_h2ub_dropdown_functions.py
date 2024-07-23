@@ -31,6 +31,26 @@ def create_text_input():
     text_input.observe(on_text_change, names='value')
     return widgets.VBox([label, text_input]), text_input
 
+
+'''Define numerical input functions'''
+
+def on_number_change(change):
+    if change['type'] == 'change' and change['name'] == 'value':
+        print(f'You entered: {change["new"]}')
+
+def create_share_of_dh_price_cap():
+    default_number = 50  # Set as a default to not assume 100%
+    description_label = widgets.Label("Set the assumed value for revenues from district heating as share of a max price (%):")
+    number_input = widgets.BoundedFloatText(
+        value=default_number,
+        min=0,
+        max=200.0,
+        step=0.1,
+    )
+    number_input.observe(on_number_change, names='value')
+    
+    return widgets.VBox([description_label, number_input]), number_input
+
 '''Define dropdown functions'''
 
 #change the parameter values of the if the drop down menu value is changes
@@ -119,7 +139,8 @@ def create_combined_dropdowns():
     #give the user further information of the data to set
     section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
     section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
-    section_3 = widgets.HTML("<b>Section 3: Please define the parameters of the general model</b>")
+    section_3 = widgets.HTML("<b>Section 3: Please define the economic parameters of the general model</b>")
+    section_4 = widgets.HTML("<b>Section 3: Please define the parameters of the general model</b>")
     #get the dropdown menus
     model_name_input_box, model_name_input = create_text_input()
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
@@ -127,6 +148,7 @@ def create_combined_dropdowns():
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
     dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
     dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
+    number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
     
     #store dropdowns in a dictionary
     dropdowns = {
@@ -142,7 +164,8 @@ def create_combined_dropdowns():
         section_1, model_name_input_box, dropdown_year_vbox, 
         dropdown_price_zone_vbox, dropdown_product_vbox, 
         section_2, dropdown_electrolysis_vbox,
-        section_3, dropdown_frequency_vbox
+        section_3, number_dh_price_box,
+        section_4, dropdown_frequency_vbox
     ])
     return combined, dropdowns
 
