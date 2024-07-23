@@ -90,10 +90,9 @@ def create_share_of_dh_price_cap():
     return widgets.VBox([description_label_1, number_input_1]), number_input_1
 
 def create_price_level_power():
-    default_number = 100
     description_label_2 = widgets.Label("Set the assumed value for scaling the power price level up/down (%):")
     number_input_2 = widgets.BoundedFloatText(
-        value=None,
+        value=100,
         min=0,
         max=200.0,
         step=0.1,
@@ -105,13 +104,37 @@ def create_power_price_variance():
     default_number = 1
     description_label_3 = widgets.Label("Set the assumed variance of the power prices:")
     number_input_3 = widgets.BoundedFloatText(
-        value=None,
+        value=0,
         min=0,
         max=2.0,
         step=0.01,
     )
     number_input_3.observe(on_number_change, names='value')
     return widgets.VBox([description_label_3, number_input_3]), number_input_3
+
+def create_number_slices():
+    default_number = 1
+    description_label_4 = widgets.Label("Set the number of slices for the model:")
+    number_input_4 = widgets.BoundedFloatText(
+        value=12,
+        min=0,
+        max=30,
+        step=1,
+    )
+    number_input_4.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_4, number_input_4]), number_input_4
+
+def create_levels_elec():
+    default_number = 1
+    description_label_5 = widgets.Label("Set the gradient of variable efficiency:")
+    number_input_5 = widgets.BoundedFloatText(
+        value=3,
+        min=0,
+        max=10,
+        step=1,
+    )
+    number_input_5.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_5, number_input_5]), number_input_5
 
 
 '''Define dropdown functions'''
@@ -171,7 +194,17 @@ def create_dropdown_frequency():
     dropdown5.observe(on_change)
     return widgets.VBox([label5, dropdown5]), dropdown5
 
+#create dropdown for the whether or not roll_forward is used
+def create_dropdown_roll():
+    label6 = widgets.Label("Please select whether or not roll_forward is used:")
+    dropdown6 = widgets.Dropdown(
+        options=[True, False],
+        value=True
+    )
+    dropdown6.observe(on_change)
+    return widgets.VBox([label6, dropdown6]), dropdown6
 
+roll_forward_use = True
 '''Define multiple choice functions'''
 
 def on_change_MC(change, selected_options, checkbox, name):
@@ -227,6 +260,9 @@ def create_combined_dropdowns_tabs():
     scen_name_box, base_scen, other_scen = create_scen_name_input()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
+    dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
+    number_slices_vbox, number_slices = create_number_slices()
+    levels_elec_box, levels_elec = create_levels_elec()
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -244,12 +280,16 @@ def create_combined_dropdowns_tabs():
         'base_scen': base_scen,
         'other_scen': other_scen,
         'stoch_scen': stoch_scen,
-        'stoch_struc': stoch_struc
+        'stoch_struc': stoch_struc,
+        'roll_forward': dropdown_roll,
+        'number_slices': number_slices,
+        'levels_elec': levels_elec
     }
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, model_name_input_box, dropdown_frequency_vbox
+        section_1, model_name_input_box, dropdown_frequency_vbox,
+        dropdown_roll_vbox, number_slices_vbox
     ])
     
     page2 = widgets.VBox([
@@ -258,7 +298,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page3 = widgets.VBox([
-        section_3, dropdown_electrolysis_vbox
+        section_3, dropdown_electrolysis_vbox, levels_elec_box
     ])
     
     page4 = widgets.VBox([
@@ -298,10 +338,13 @@ def get_dropdown_values(dropdowns):
         'product': dropdowns['product'].value,
         'electrolysis': dropdowns['electrolysis'].value,
         'frequency': dropdowns['frequency'].value,
+        'roll_forward': dropdowns['roll_forward'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
         'power_price_variance': dropdowns['power_price_variance'].value,
+        'num_slices': dropdowns['number_slices'].value,
+        'des_segments_electrolyzer': dropdowns['levels_elec'].value,
         #other text fields
         'base_scen': dropdowns['base_scen'].value,
         'other_scen': dropdowns['other_scen'].value,
