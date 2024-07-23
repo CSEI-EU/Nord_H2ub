@@ -15,6 +15,7 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''Import packages'''
 import ipywidgets as widgets
 from IPython.display import display, HTML
+import pandas as pd
 
 
 '''Define text query functions'''
@@ -149,7 +150,7 @@ def create_dropdown_year():
     label1 = widgets.Label("Please select the base year:")
     dropdown1 = widgets.Dropdown(
         options=[2018, 2019, 2020, 2021, 2022],
-        value=None
+        value=2020
     )
     dropdown1.observe(on_change)
     return widgets.VBox([label1, dropdown1]), dropdown1
@@ -353,6 +354,51 @@ def get_dropdown_values(dropdowns):
         'report_name': dropdowns['report_name'].value,
         #multiple choice values
         'outputs': dropdowns['reports']
+    }
+
+def compute_other_values(values):
+    # Create DatetimeIndex for the range of dates
+    start_date = pd.Timestamp(f"{values['year']}-01-01 00:00:00")
+    end_date = pd.Timestamp(f"{values['year']}-12-31 23:00:00")
+    datetime_index = pd.date_range(start=start_date, end=end_date, freq=values['frequency'])
+    
+    # Calculate the number of steps within the horizon
+    num_slices = int(values['num_slices'])
+    num_steps = len(datetime_index)
+
+    # Find the largest integer divisor that fulfills the condition
+    for i in range(num_slices, 0, -1):
+        if num_steps % i == 0:
+            roll_forward_size = num_steps // i
+            used_slices = i
+            break
+    else:
+        print("Cannot divide the number of steps into any integer slices. Please choose a different number of slices.")
+        return None
+
+    # Check if num_slices matches the used_slices
+    if num_slices != used_slices:
+        print("\033[91mWARNING:\033[0m The specified number of slices (", num_slices, ")",
+              "does not match the final division factor (", used_slices, ").",
+             "\n The calculation uses the factor: ", used_slices, ".")
+
+    # Determine the temporal block
+    frequency_mapping = {
+        '1h': 'hourly',
+        '1D': 'daily',
+        '1W': 'weekly',
+        '1M': 'monthly',
+        '1Q': 'quarterly'
+    }
+    temporal_block = frequency_mapping.get(values['frequency'], 'yearly')
+
+    return {
+        'start_date': start_date,
+        'end_date': end_date,
+        'datetime_index': datetime_index,
+        'roll_forward_size': roll_forward_size,
+        'temporal_block': temporal_block,
+        'num_steps': num_steps
     }
 
 
