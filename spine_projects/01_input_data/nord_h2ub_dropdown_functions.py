@@ -15,13 +15,8 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 import ipywidgets as widgets
 from IPython.display import display
 
-'''Define dropdown functions'''
+'''Define text query functions'''
 
-#change the parameter values of the if the drop down menu value is changes
-def on_change(change):
-    if change['name'] == 'value' and change['new'] != "":
-        print(f'You selected: {change["new"]}')
-        
 def on_text_change(change):
     if change['type'] == 'change' and change['name'] == 'value':
         print(f'You entered: {change["new"]}')
@@ -35,6 +30,13 @@ def create_text_input():
     )
     text_input.observe(on_text_change, names='value')
     return widgets.VBox([label, text_input]), text_input
+
+'''Define dropdown functions'''
+
+#change the parameter values of the if the drop down menu value is changes
+def on_change(change):
+    if change['name'] == 'value' and change['new'] != "":
+        print(f'You selected: {change["new"]}')
 
 #create dropdown for the year
 def create_dropdown_year():
@@ -86,6 +88,31 @@ def create_dropdown_frequency():
     dropdown5.observe(on_change)
     return widgets.VBox([label5, dropdown5]), dropdown5
 
+def create_multiple_choice_1():
+    options = ['binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs']
+    selected_options = set()
+    checkboxes = []
+    
+    for option in options:
+        checkbox = widgets.Checkbox(value=False, description=option)
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options, checkbox, 'Output'))
+        checkboxes.append(checkbox)
+    
+    #2 columns
+    columns = [widgets.VBox([]), widgets.VBox([])]
+    for i, checkbox in enumerate(checkboxes):
+        columns[i % 2].children += (checkbox,)
+    
+    label = widgets.Label("Please select the outputs for the report:")
+    return widgets.VBox([label, widgets.HBox(columns)]), selected_options
+
+
+def create_combined_multiple_choices():
+    multiple_choice_1, selected_options = create_multiple_choice_1()
+    combined = widgets.VBox([multiple_choice_1])
+    return combined, selected_options  
+
+'''Define functions for the combined data definition menu'''
 
 #create a combined function to get all dropdowns in one execution
 def create_combined_dropdowns():
@@ -130,8 +157,6 @@ def get_dropdown_values(dropdowns):
         'frequency': dropdowns['frequency'].value
     }
 
-
-
 '''Define multiple choice functions'''
 
 def on_change_MC(change, selected_options, checkbox, name):
@@ -142,29 +167,5 @@ def on_change_MC(change, selected_options, checkbox, name):
             selected_options.discard(checkbox.description)
         print(f'{name} selected: {selected_options}')
 
-        
-def create_multiple_choice_1():
-    options = ['binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs']
-    selected_options = set()
-    checkboxes = []
-    
-    for option in options:
-        checkbox = widgets.Checkbox(value=False, description=option)
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options, checkbox, 'Output'))
-        checkboxes.append(checkbox)
-    
-    #2 columns
-    columns = [widgets.VBox([]), widgets.VBox([])]
-    for i, checkbox in enumerate(checkboxes):
-        columns[i % 2].children += (checkbox,)
-    
-    label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), selected_options
-
-
-def create_combined_multiple_choices():
-    multiple_choice_1, selected_options = create_multiple_choice_1()
-    combined = widgets.VBox([multiple_choice_1])
-    return combined, selected_options  
 
 
