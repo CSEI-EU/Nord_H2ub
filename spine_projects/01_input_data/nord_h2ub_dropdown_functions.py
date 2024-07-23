@@ -11,9 +11,11 @@ SPDX-FileCopyrightText: Dana Hentschel <djh.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
 
+
 '''Import packages'''
 import ipywidgets as widgets
 from IPython.display import display, HTML
+
 
 '''Define text query functions'''
 
@@ -21,15 +23,52 @@ def on_text_change(change):
     if change['type'] == 'change' and change['name'] == 'value':
         print(f'You entered: {change["new"]}')
 
-#create the text iput query
-def create_text_input():
-    label = widgets.Label("Please type the name of the model if other than Model:")
+def create_name_input():
+    label1 = widgets.Label("Please type the name of the model if other than 'Model':")
     default_text = "Model"
-    text_input = widgets.Text(
+    name_input = widgets.Text(
         value=default_text,
     )
-    text_input.observe(on_text_change, names='value')
-    return widgets.VBox([label, text_input]), text_input
+    name_input.observe(on_text_change, names='value')
+    return widgets.VBox([label1, name_input]), name_input
+
+def create_name_rep_input():
+    label2 = widgets.Label("Please type the name of the report if other than 'Report':")
+    default_text = "Report"
+    name_rep_input = widgets.Text(
+        value=default_text,
+    )
+    return widgets.VBox([label2, name_rep_input]), name_rep_input
+
+def create_scen_name_input():
+    label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
+    default_text = "Base"
+    base_name_input = widgets.Text(
+        value=default_text,
+        description="Base Scenario:"
+    )
+    additional_names_input = widgets.Textarea(
+        value='',
+        placeholder='Enter each scenario name on a new line',
+        description='Other Scenarios:'
+    )
+    return widgets.VBox([label3, base_name_input, additional_names_input]), base_name_input, additional_names_input
+
+def create_stoch_scen_input():
+    label4 = widgets.Label("Please type the name of the stochastic scenario if other than 'realisation':")
+    default_text = "realisation"
+    stoch_scen_input = widgets.Text(
+        value=default_text,
+    )
+    return widgets.VBox([label4, stoch_scen_input]), stoch_scen_input
+
+def create_stoch_struc_input():
+    label5 = widgets.Label("Please type the name of the stochastic structure if other than 'deterministic':")
+    default_text = "deterministic"
+    stoch_struc_input = widgets.Text(
+        value=default_text,
+    )
+    return widgets.VBox([label5, stoch_struc_input]), stoch_struc_input
 
 
 '''Define numerical input functions'''
@@ -40,16 +79,40 @@ def on_number_change(change):
 
 def create_share_of_dh_price_cap():
     default_number = 50  # Set as a default to not assume 100%
-    description_label = widgets.Label("Set the assumed value for revenues from district heating as share of a max price (%):")
-    number_input = widgets.BoundedFloatText(
+    description_label_1 = widgets.Label("Set the assumed value for revenues from district heating as share of a max price (%):")
+    number_input_1 = widgets.BoundedFloatText(
         value=default_number,
         min=0,
         max=200.0,
         step=0.1,
     )
-    number_input.observe(on_number_change, names='value')
-    
-    return widgets.VBox([description_label, number_input]), number_input
+    number_input_1.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_1, number_input_1]), number_input_1
+
+def create_price_level_power():
+    default_number = 100
+    description_label_2 = widgets.Label("Set the assumed value for scaling the power price level up/down (%):")
+    number_input_2 = widgets.BoundedFloatText(
+        value=None,
+        min=0,
+        max=200.0,
+        step=0.1,
+    )
+    number_input_2.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_2, number_input_2]), number_input_2
+
+def create_power_price_variance():
+    default_number = 1
+    description_label_3 = widgets.Label("Set the assumed variance of the power prices:")
+    number_input_3 = widgets.BoundedFloatText(
+        value=None,
+        min=0,
+        max=2.0,
+        step=0.01,
+    )
+    number_input_3.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_3, number_input_3]), number_input_3
+
 
 '''Define dropdown functions'''
 
@@ -103,10 +166,11 @@ def create_dropdown_frequency():
     label5 = widgets.Label("Please select the frequency:")
     dropdown5 = widgets.Dropdown(
         options=['1h', '1D', '1W', '1M', '1Q', '1Y'],
-        value=None
+        value='1h'
     )
     dropdown5.observe(on_change)
     return widgets.VBox([label5, dropdown5]), dropdown5
+
 
 '''Define multiple choice functions'''
 
@@ -128,19 +192,14 @@ def create_multiple_choice_report():
         checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox, 'Output'))
         checkboxes.append(checkbox)
     
-    #2 columns
-    columns = [widgets.VBox([]), widgets.VBox([])]
+    #3 columns
+    columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
-        columns[i % 2].children += (checkbox,)
+        columns[i % 3].children += (checkbox,)
     
     label = widgets.Label("Please select the outputs for the report:")
     return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
 
-
-def create_combined_multiple_choices():
-    multiple_choice_report, selected_options_report = create_multiple_choice_report()
-    combined = widgets.VBox([multiple_choice_report])
-    return combined, selected_options_report  
 
 '''Define functions for the combined data definition menu'''
 
@@ -150,18 +209,25 @@ def create_combined_dropdowns_tabs():
     section_2 = widgets.HTML("<b>Section 2: Please define the base parameters</b>")
     section_3 = widgets.HTML("<b>Section 3: Please define the parameters of electrolysis</b>")
     section_4 = widgets.HTML("<b>Section 4: Please define the economic parameters of the general model</b>")
-    section_5 = widgets.HTML("<b>Section 5: Please choose the output variables for the report</b>")
+    section_5 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
+    section_6 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
 
     # Get the dropdown menus
-    model_name_input_box, model_name_input = create_text_input()
+    model_name_input_box, model_name_input = create_name_input()
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
     dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
     dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
     number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
+    number_price_level_power_box, number_price_level_power = create_price_level_power()
+    power_price_variance_box, power_price_variance = create_power_price_variance()
+    report_name_box, report_name = create_name_rep_input()
     multiple_choice_report, selected_options_report = create_multiple_choice_report()
-
+    scen_name_box, base_scen, other_scen = create_scen_name_input()
+    stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
+    stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
+    
     # Store dropdowns in a dictionary
     dropdowns = {
         'name': model_name_input,
@@ -171,7 +237,14 @@ def create_combined_dropdowns_tabs():
         'electrolysis': dropdown_electrolysis,
         'frequency': dropdown_frequency,
         'number_dh_price_share': number_dh_price,
-        'reports': selected_options_report
+        'number_price_level_power': number_price_level_power,
+        'power_price_variance': power_price_variance,
+        'report_name': report_name,
+        'reports': selected_options_report,
+        'base_scen': base_scen,
+        'other_scen': other_scen,
+        'stoch_scen': stoch_scen,
+        'stoch_struc': stoch_struc
     }
 
     # Create pages (tabs)
@@ -189,35 +262,28 @@ def create_combined_dropdowns_tabs():
     ])
     
     page4 = widgets.VBox([
-        section_4, number_dh_price_box
+        section_4, number_dh_price_box, number_price_level_power_box, 
+        power_price_variance_box
     ])
     
     page5 = widgets.VBox([
-        section_5, multiple_choice_report
+        section_5, report_name_box, multiple_choice_report
+    ])
+    
+    page6 = widgets.VBox([
+        section_6, scen_name_box, stoch_scen_vbox, stoch_struc_vbox
     ])
     
     # Create Tab widget
     tabs = widgets.Tab()
-    tabs.children = [page1, page2, page3, page4, page5]
+    tabs.children = [page1, page2, page3, page4, page5, page6]
     tabs.set_title(0, 'General Model Parameters')
     tabs.set_title(1, 'Base Parameters')
     tabs.set_title(2, 'Electrolysis Parameters')
     tabs.set_title(3, 'Economic Parameters')
     tabs.set_title(4, 'Report')
+    tabs.set_title(5, 'Scenarios')
     
-    style = """
-    <style>
-        .jp-TabBar-tab {
-            min-width: 200px !important; 
-            max-width: 300px !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-        }
-    </style>
-    """
-    
-    display(HTML(style))
     display(tabs)
     
     return tabs, dropdowns
@@ -234,6 +300,14 @@ def get_dropdown_values(dropdowns):
         'frequency': dropdowns['frequency'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
+        'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
+        'power_price_variance': dropdowns['power_price_variance'].value,
+        #other text fields
+        'base_scen': dropdowns['base_scen'].value,
+        'other_scen': dropdowns['other_scen'].value,
+        'stoch_scen': dropdowns['stoch_scen'].value,
+        'stoch_struc': dropdowns['stoch_struc'].value,
+        'report_name': dropdowns['report_name'].value,
         #multiple choice values
         'outputs': dropdowns['reports']
     }
