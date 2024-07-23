@@ -157,7 +157,8 @@ def create_combined_dropdowns():
         'price_zone': dropdown_price_zone,
         'product': dropdown_product,
         'electrolysis': dropdown_electrolysis,
-        'frequency': dropdown_frequency
+        'frequency': dropdown_frequency,
+        'number_dh_price_share': number_dh_price
     }
     #combine all dropdowns
     combined = widgets.VBox([
@@ -173,11 +174,13 @@ def create_combined_dropdowns():
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
     return {
+        'model_name': dropdowns['name'].value,
         'year': dropdowns['year'].value,
         'price_zone': dropdowns['price_zone'].value,
         'product': dropdowns['product'].value,
         'electrolysis': dropdowns['electrolysis'].value,
-        'frequency': dropdowns['frequency'].value
+        'frequency': dropdowns['frequency'].value,
+        'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100
     }
 
 '''Define multiple choice functions'''
