@@ -108,6 +108,16 @@ def create_dropdown_frequency():
     dropdown5.observe(on_change)
     return widgets.VBox([label5, dropdown5]), dropdown5
 
+'''Define multiple choice functions'''
+
+def on_change_MC(change, selected_options, checkbox, name):
+    if change['type'] == 'change' and change['name'] == 'value':
+        if change['new']:
+            selected_options.add(checkbox.description)
+        else:
+            selected_options.discard(checkbox.description)
+        print(f'{name} selected: {selected_options}')
+
 def create_multiple_choice_1():
     options = ['binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs']
     selected_options = set()
@@ -134,43 +144,6 @@ def create_combined_multiple_choices():
 
 '''Define functions for the combined data definition menu'''
 
-#create a combined function to get all dropdowns in one execution
-def create_combined_dropdowns():
-    #give the user further information of the data to set
-    section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
-    section_2 = widgets.HTML("<b>Section 2: Please define the parameters of electrolysis</b>")
-    section_3 = widgets.HTML("<b>Section 3: Please define the economic parameters of the general model</b>")
-    section_4 = widgets.HTML("<b>Section 3: Please define the parameters of the general model</b>")
-    #get the dropdown menus
-    model_name_input_box, model_name_input = create_text_input()
-    dropdown_year_vbox, dropdown_year = create_dropdown_year()
-    dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
-    dropdown_product_vbox, dropdown_product = create_dropdown_product()
-    dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
-    dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
-    number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
-    
-    #store dropdowns in a dictionary
-    dropdowns = {
-        'name': model_name_input,
-        'year': dropdown_year,
-        'price_zone': dropdown_price_zone,
-        'product': dropdown_product,
-        'electrolysis': dropdown_electrolysis,
-        'frequency': dropdown_frequency,
-        'number_dh_price_share': number_dh_price
-    }
-    #combine all dropdowns
-    combined = widgets.VBox([
-        section_1, model_name_input_box, dropdown_year_vbox, 
-        dropdown_price_zone_vbox, dropdown_product_vbox, 
-        section_2, dropdown_electrolysis_vbox,
-        section_3, number_dh_price_box,
-        section_4, dropdown_frequency_vbox
-    ])
-    return combined, dropdowns
-
-
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
     return {
@@ -180,21 +153,9 @@ def get_dropdown_values(dropdowns):
         'product': dropdowns['product'].value,
         'electrolysis': dropdowns['electrolysis'].value,
         'frequency': dropdowns['frequency'].value,
+        #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100
     }
-
-'''Define multiple choice functions'''
-
-def on_change_MC(change, selected_options, checkbox, name):
-    if change['type'] == 'change' and change['name'] == 'value':
-        if change['new']:
-            selected_options.add(checkbox.description)
-        else:
-            selected_options.discard(checkbox.description)
-        print(f'{name} selected: {selected_options}')
-
-
-'''test for tabs insted of one big query'''
 
 def create_combined_dropdowns_tabs():
     # Provide information for each section
