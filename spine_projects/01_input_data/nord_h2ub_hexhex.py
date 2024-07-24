@@ -29,7 +29,9 @@ def simsalabim():
 
     # Import custom functions from nord_h2ub_dropdown_functions
     try:
-        from nord_h2ub_dropdown_functions import *
+        import nord_h2ub_dropdown_functions as drdw
         print("Custom functions imported successfully.")
     except ImportError as e:
         print(f"Error importing custom functions: {e}")
+
+        
