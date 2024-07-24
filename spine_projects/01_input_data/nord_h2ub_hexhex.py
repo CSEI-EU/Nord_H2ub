@@ -9,29 +9,27 @@ SPDX-FileCopyrightText: Dana Hentschel <djh.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
 
-'''Import packages function'''
-def simsalabim():
-    import sys
-    import os
-    import pandas as pd
-    from datetime import timedelta
-    import papermill as pm
+'''Import packages'''
 
-    # Get the current directory of the Jupyter Notebook
-    notebook_dir = os.getcwd()
+import sys
+import os
+import pandas as pd
+from datetime import timedelta
+import papermill as pm
 
-    # Construct the path to the subfolder
-    subfolder_path = os.path.join(notebook_dir, '00_functions')
+# Get the current directory of the Jupyter Notebook
+notebook_dir = os.getcwd()
 
-    # Add the subfolder to the system path
-    if subfolder_path not in sys.path:
-        sys.path.append(subfolder_path)
+# Construct the path to the subfolder
+subfolder_path = os.path.join(notebook_dir, '00_functions')
 
-    # Import custom functions from nord_h2ub_dropdown_functions
-    try:
-        import nord_h2ub_dropdown_functions as drdw
-        print("Custom functions imported successfully.")
-    except ImportError as e:
-        print(f"Error importing custom functions: {e}")
+# Add the subfolder to the system path
+if subfolder_path not in sys.path:
+    sys.path.append(subfolder_path)
 
-        
+# Import custom functions from nord_h2ub_dropdown_functions
+try:
+    from nord_h2ub_dropdown_functions import *
+    print("Custom functions imported successfully.")
+except ImportError as e:
+    print(f"Error importing custom functions: {e}")
