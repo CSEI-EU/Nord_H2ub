@@ -11,6 +11,7 @@ SPDX-FileCopyrightText: Dana Hentschel <djh.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
 
+#this file is only relevant if we decide to use another option than ipywidgets
 
 '''Import packages'''
 from jupyter_dash import JupyterDash
