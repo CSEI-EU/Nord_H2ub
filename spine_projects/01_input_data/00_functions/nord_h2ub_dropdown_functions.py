@@ -105,7 +105,7 @@ def create_power_price_variance():
     default_number = 1
     description_label_3 = widgets.Label("Set the assumed variance of the power prices:")
     number_input_3 = widgets.BoundedFloatText(
-        value=0,
+        value=1,
         min=0,
         max=2.0,
         step=0.01,
@@ -119,7 +119,7 @@ def create_number_slices():
     number_input_4 = widgets.BoundedFloatText(
         value=12,
         min=0,
-        max=30,
+        max=200,
         step=1,
     )
     number_input_4.observe(on_number_change, names='value')
@@ -206,34 +206,69 @@ def create_dropdown_roll():
     return widgets.VBox([label6, dropdown6]), dropdown6
 
 roll_forward_use = True
+
 '''Define multiple choice functions'''
 
-def on_change_MC(change, selected_options, checkbox, name):
-    if change['type'] == 'change' and change['name'] == 'value':
-        if change['new']:
-            selected_options.add(checkbox.description)
-        else:
-            selected_options.discard(checkbox.description)
-        print(f'{name} selected: {selected_options}')
+def on_change_MC(change, selected_options_report, checkbox):
+    if checkbox.value:
+        selected_options_report.add(checkbox.description)
+    else:
+        selected_options_report.discard(checkbox.description)
 
 def create_multiple_choice_report():
-    options = ['binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs']
-    selected_options_report = set()
+    # Define the list of options
+    options = [
+        'binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 
+        'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 
+        'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 
+        'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 
+        'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 
+        'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 
+        'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 
+        'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 
+        'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 
+        'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs'
+    ]
+    
+    # Define preselected options
+    preselected_options = {
+        'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 'unit_flow', 'unit_flow_op'
+    }
+    
+    # Initialize selected_options_report with preselected options
+    selected_options_report = set(preselected_options)
+    
+    # Separate options into preselected and non-preselected
+    preselected_checks = [option for option in options if option in preselected_options]
+    non_preselected_checks = [option for option in options if option not in preselected_options]
+    
     checkboxes = []
     
-    for option in options:
-        checkbox = widgets.Checkbox(value=False, description=option)
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox, 'Output'))
+    # Create checkboxes for preselected options first
+    for option in preselected_checks:
+        checkbox = widgets.Checkbox(
+            value=True,  # All preselected options should be checked
+            description=option
+        )
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox))
         checkboxes.append(checkbox)
     
-    #3 columns
+    # Create checkboxes for non-preselected options
+    for option in non_preselected_checks:
+        checkbox = widgets.Checkbox(
+            value=False,  # Non-preselected options should be unchecked
+            description=option
+        )
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox))
+        checkboxes.append(checkbox)
+    
+    # Create 3 columns
     columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
     
     label = widgets.Label("Please select the outputs for the report:")
     return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
-
 
 '''Define functions for the combined data definition menu'''
 
