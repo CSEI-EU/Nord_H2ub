@@ -324,11 +324,10 @@ def create_combined_dropdowns_tabs():
     tabs.set_title(3, 'Economic Parameters')
     tabs.set_title(4, 'Report')
     tabs.set_title(5, 'Scenarios')
-    
+
     display(tabs)
     
     return tabs, dropdowns
-
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
