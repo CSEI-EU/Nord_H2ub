@@ -318,12 +318,12 @@ def create_combined_dropdowns_tabs():
     # Create Tab widget
     tabs = widgets.Tab()
     tabs.children = [page1, page2, page3, page4, page5, page6]
-    tabs.set_title(0, 'General Model Parameters')
-    tabs.set_title(1, 'Base Parameters')
-    tabs.set_title(2, 'Electrolysis Parameters')
-    tabs.set_title(3, 'Economic Parameters')
-    tabs.set_title(4, 'Report')
-    tabs.set_title(5, 'Scenarios')
+    tabs.set_title(0, 'Model Base Info')
+    tabs.set_title(1, 'Plant Info')
+    tabs.set_title(2, 'Electrolysis Info')
+    tabs.set_title(3, 'Economic Info')
+    tabs.set_title(4, 'Results Info')
+    tabs.set_title(5, 'Scenario Info')
 
     display(tabs)
     
