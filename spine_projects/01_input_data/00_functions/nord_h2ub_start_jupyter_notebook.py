@@ -64,7 +64,7 @@ def combine_paths(common_folder='Documents'):
     folder_path = find_folder_path(root_path, target_folder)
     
     folder_path = folder_path
-    new_sub_path = '\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\00_functions\\'
+    new_sub_path = '\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\'
 
     # Normalize the paths
     norm_folder_path = os.path.normpath(folder_path)
@@ -101,5 +101,5 @@ def start_specific_jupyter_notebook(notebook_relative_path):
 
 if __name__ == "__main__":
     # Replace 'relative/path/to/data_prep.ipynb' with the relative path to your notebook file
-    notebook_relative_path = 'master_notebook_test.ipynb'
+    notebook_relative_path = 'master_notebook.ipynb'
     start_specific_jupyter_notebook(notebook_relative_path)
