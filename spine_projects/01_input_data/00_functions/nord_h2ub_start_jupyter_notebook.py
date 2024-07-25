@@ -21,14 +21,7 @@ def get_script_path():
     """Returns the absolute path of the current script."""
     return os.path.abspath(os.path.dirname(__file__))
 
-def start_specific_jupyter_notebook_old(notebook_path):
-    try:
-        # Start Jupyter Notebook and open the specified notebook
-        subprocess.run(['jupyter', 'notebook', notebook_path], check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"An error occurred: {e}")
-
-'''fucntions to get the correct path of the script'''
+'''functions to get the correct path of the script'''
 
 def find_folder_path(root_path, target_folder):
     """
