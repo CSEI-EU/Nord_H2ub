@@ -20,6 +20,8 @@ import papermill as pm
 import time
 import requests
 from IPython.display import display, Javascript
+import subprocess
+import platform
 
 # Get the current directory of the Jupyter Notebook
 notebook_dir = os.getcwd()
@@ -72,8 +74,18 @@ def avada_kedavra():
         })
         
         if response.status_code == 200:
-            print("Jupyter server shutdown successfully.")
+            print("Jupyter server shutdown request sent successfully.")
         else:
-            print(f"Failed to shutdown Jupyter server. Status code: {response.status_code}")
+            print(f"Failed to send shutdown request. Status code: {response.status_code}")
     except Exception as e:
-        print(f"Error shutting down Jupyter server: {e}")
+        print(f"Error sending shutdown request: {e}")
+
+    # Ensure Jupyter server process is terminated
+    try:
+        if platform.system() == "Windows":
+            subprocess.run(["taskkill", "/F", "/IM", "jupyter-notebook.exe"], check=True)
+        else:
+            subprocess.run(["pkill", "-f", "jupyter-notebook"], check=True)
+        print("Jupyter server process terminated.")
+    except Exception as e:
+        print(f"Error terminating Jupyter server process: {e}")
