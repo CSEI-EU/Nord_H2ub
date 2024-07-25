@@ -42,6 +42,13 @@ except ImportError as e:
 
 #function to save_and_shutdown
 def avada_kedavra():
+    # Shutdown the Jupyter server
+    print("Shutting down the Jupyter server...")
+    print("\033[1m\033[31mPlease accept leaving the page and go back to SpineToolbox\033[0m")
+    
+    # Pause to ensure saving and closing actions complete
+    time.sleep(3)
+
     # Save the notebook
     print("Saving the notebook...")
     try:
@@ -58,11 +65,6 @@ def avada_kedavra():
     except Exception as e:
         print(f"Error closing browser tab: {e}")
 
-    # Pause to ensure saving and closing actions complete
-    time.sleep(5)
-
-    # Shutdown the Jupyter server
-    print("Shutting down the Jupyter server...")
     try:
         # Get the server URL and token from environment variables
         server_url = os.getenv('JUPYTER_SERVER_URL', 'http://localhost:8888')
