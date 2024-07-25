@@ -16,6 +16,10 @@ import os
 import pandas as pd
 from datetime import timedelta
 import papermill as pm
+#packages to shutdown the notebook and be able to continue in spinetoolbox
+import time
+import requests
+from IPython.display import display, Javascript
 
 # Get the current directory of the Jupyter Notebook
 notebook_dir = os.getcwd()
@@ -33,3 +37,43 @@ try:
     print("Custom functions imported successfully.")
 except ImportError as e:
     print(f"Error importing custom functions: {e}")
+
+#function to save_and_shutdown
+def avada_kedavra():
+    # Save the notebook
+    print("Saving the notebook...")
+    try:
+        # Execute JavaScript to save the notebook
+        display(Javascript('IPython.notebook.save_checkpoint()'))
+        print("Notebook save requested.")
+    except Exception as e:
+        print(f"Error saving notebook: {e}")
+
+    # Optionally, close the browser tab
+    try:
+        display(Javascript('window.close()'))
+        print("Attempted to close the browser tab.")
+    except Exception as e:
+        print(f"Error closing browser tab: {e}")
+
+    # Pause to ensure saving and closing actions complete
+    time.sleep(5)
+
+    # Shutdown the Jupyter server
+    print("Shutting down the Jupyter server...")
+    try:
+        # Get the server URL and token from environment variables
+        server_url = os.getenv('JUPYTER_SERVER_URL', 'http://localhost:8888')
+        token = os.getenv('JUPYTER_TOKEN', 'your_token_here')
+        
+        # Send a request to shutdown the server
+        response = requests.post(f'{server_url}/api/shutdown', headers={
+            'Authorization': f'token {token}'
+        })
+        
+        if response.status_code == 200:
+            print("Jupyter server shutdown successfully.")
+        else:
+            print(f"Failed to shutdown Jupyter server. Status code: {response.status_code}")
+    except Exception as e:
+        print(f"Error shutting down Jupyter server: {e}")
