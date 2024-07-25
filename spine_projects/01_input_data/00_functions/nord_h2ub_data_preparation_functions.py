@@ -14,8 +14,37 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''Import packages'''
 import numpy as np
 import pandas as pd
+import os
 
 '''Define functions'''
+
+#function to get the path to some file locations
+def get_excel_file_path():
+    # Get the current directory
+    current_directory = os.getcwd()
+    
+    # Split the current directory into parts
+    path_parts = current_directory.split(os.sep)
+    
+    # Check if the current directory is the target directory
+    if path_parts[-1] == "01_input_data":
+        excel_file_path = "../01_input_data/"
+    else:
+        # Traverse back to find '01_input_data'
+        traverse_back = 0
+        for i in range(len(path_parts)-1, -1, -1):
+            if path_parts[i] == "01_input_data":
+                break
+            traverse_back += 1
+        
+        # If we find '01_input_data' in the path, construct the relative path
+        if traverse_back < len(path_parts):
+            excel_file_path = "../" * (traverse_back) + "01_input_data/"
+        else:
+            # If '01_input_data' is not found in the path
+            excel_file_path = None
+    
+    return excel_file_path
 
 #function to prepare all parameters that are directly linked to a unit
 def create_unit_parameters(input_df, object_class_type, parameter_column):
