@@ -101,5 +101,5 @@ def start_specific_jupyter_notebook(notebook_relative_path):
 
 if __name__ == "__main__":
     # Replace 'relative/path/to/data_prep.ipynb' with the relative path to your notebook file
-    notebook_relative_path = 'master_notebook.ipynb'
+    notebook_relative_path = 'nord_h2ub_main.ipynb'
     start_specific_jupyter_notebook(notebook_relative_path)
