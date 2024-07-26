@@ -115,7 +115,7 @@ def create_power_price_variance():
 
 def create_number_slices():
     default_number = 1
-    description_label_4 = widgets.Label("Set the number of slices for the model:")
+    description_label_4 = widgets.Label("Set the number of optimization horizons for the model:")
     number_input_4 = widgets.BoundedFloatText(
         value=12,
         min=0,
@@ -125,10 +125,10 @@ def create_number_slices():
     number_input_4.observe(on_number_change, names='value')
     return widgets.VBox([description_label_4, number_input_4]), number_input_4
 
-def create_levels_elec():
+def create_sections_elec():
     default_number = 1
-    description_label_5 = widgets.Label("Set the gradient of variable efficiency:")
-    number_input_5 = widgets.BoundedFloatText(
+    description_label_5 = widgets.Label("Set the number of operating sections to represent variable efficiency:")
+    number_input_5 = widgets.BoundedIntText(
         value=3,
         min=0,
         max=10,
@@ -321,7 +321,7 @@ def create_combined_dropdowns_tabs():
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
     number_slices_vbox, number_slices = create_number_slices()
-    levels_elec_box, levels_elec = create_levels_elec()
+    levels_elec_box, levels_elec = create_sections_elec()
     
     # Store dropdowns in a dictionary
     dropdowns = {
