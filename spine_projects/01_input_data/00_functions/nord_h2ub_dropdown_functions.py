@@ -145,6 +145,14 @@ def on_change(change):
     if change['name'] == 'value' and change['new'] != "":
         print(f'You selected: {change["new"]}')
 
+# Function to handle the change in dropdown selection
+def on_change_dict(change):
+    if change['type'] == 'change' and change['name'] == 'value':
+        selected_option = change['new']
+        selected_value = option_values[selected_option]
+        selected_option_widget.value = selected_option
+        selected_value_widget.value = selected_value
+
 #create dropdown for the year
 def create_dropdown_year():
     label1 = widgets.Label("Please select the base year:")
@@ -185,15 +193,30 @@ def create_dropdown_electrolysis():
     dropdown4.observe(on_change)
     return widgets.VBox([label4, dropdown4]), dropdown4  
 
-#create dropdown for the model frequency
+# Create dropdown for the model frequency
 def create_dropdown_frequency():
+    # Dictionary to map options to their corresponding values
+    # Declare as global to access in on_change_dict
+    global option_values, selected_option_widget, selected_value_widget  # Declare as global to access in on_change
+    option_values = {
+        '1h': 'hourly',
+        '1D': 'daily',
+        '1W': 'weekly',
+        '1M': 'monthly',
+        '1Q': 'quarterly',
+        '1Y': 'yearly'
+    }
+
     label5 = widgets.Label("Please select the frequency:")
     dropdown5 = widgets.Dropdown(
-        options=['1h', '1D', '1W', '1M', '1Q', '1Y'],
+        options=list(option_values.keys()),
         value='1h'
     )
-    dropdown5.observe(on_change)
-    return widgets.VBox([label5, dropdown5]), dropdown5
+    selected_option_widget = widgets.Label(dropdown5.value)
+    selected_value_widget = widgets.Label(option_values[dropdown5.value])
+    
+    dropdown5.observe(on_change_dict, names='value')
+    return widgets.VBox([label5, dropdown5]), selected_option_widget, selected_value_widget
 
 #create dropdown for the whether or not roll_forward is used
 def create_dropdown_roll():
@@ -287,7 +310,7 @@ def create_combined_dropdowns_tabs():
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
     dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
-    dropdown_frequency_vbox, dropdown_frequency = create_dropdown_frequency()
+    dropdown_frequency_vbox, dropdown_frequency, dropdown_temporal = create_dropdown_frequency()
     number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
     number_price_level_power_box, number_price_level_power = create_price_level_power()
     power_price_variance_box, power_price_variance = create_power_price_variance()
@@ -308,6 +331,7 @@ def create_combined_dropdowns_tabs():
         'product': dropdown_product,
         'electrolysis': dropdown_electrolysis,
         'frequency': dropdown_frequency,
+        'temporal_block': dropdown_temporal,
         'number_dh_price_share': number_dh_price,
         'number_price_level_power': number_price_level_power,
         'power_price_variance': power_price_variance,
@@ -373,6 +397,7 @@ def get_dropdown_values(dropdowns):
         'product': dropdowns['product'].value,
         'electrolysis': dropdowns['electrolysis'].value,
         'frequency': dropdowns['frequency'].value,
+        'temporal_block': dropdowns['temporal_block'].value,
         'roll_forward': dropdowns['roll_forward'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
