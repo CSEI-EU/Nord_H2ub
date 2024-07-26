@@ -113,7 +113,8 @@ def create_power_price_variance():
     number_input_3.observe(on_number_change, names='value')
     return widgets.VBox([description_label_3, number_input_3]), number_input_3
 
-def create_number_slices():
+def create_number_opt_horizons():
+    #define the number of horizons for a rolling horizon optimization
     default_number = 1
     description_label_4 = widgets.Label("Set the number of optimization horizons for the model:")
     number_input_4 = widgets.BoundedFloatText(
@@ -220,10 +221,10 @@ def create_dropdown_frequency():
 
 #create dropdown for the whether or not roll_forward is used
 def create_dropdown_roll():
-    label6 = widgets.Label("Please select whether or not roll_forward is used:")
+    label6 = widgets.Label("Please select whether or not the model should run with a rolling horizon optimization:")
     dropdown6 = widgets.Dropdown(
         options=[True, False],
-        value=True
+        value=False
     )
     dropdown6.observe(on_change)
     return widgets.VBox([label6, dropdown6]), dropdown6
@@ -322,7 +323,7 @@ def create_combined_dropdowns_tabs():
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
-    number_slices_vbox, number_slices = create_number_slices()
+    number_slices_vbox, number_slices = create_number_opt_horizons()
     levels_elec_box, levels_elec = create_sections_elec()
     
     # Store dropdowns in a dictionary
@@ -385,10 +386,23 @@ def create_combined_dropdowns_tabs():
     tabs.set_title(3, 'Economic Info')
     tabs.set_title(4, 'Results Info')
     tabs.set_title(5, 'Scenario Info')
+    
+    # Hide number_slices by default
+    number_slices_vbox.layout.display = 'none'
+    
+    # Observe changes in dropdown_roll
+    dropdown_roll.observe(toggle_number_slices, names='value')
 
     display(tabs)
     
     return tabs, dropdowns
+
+# Function to show/hide number_slices based on dropdown_roll value
+def toggle_number_slices(change):
+    if change['new']:
+        number_slices_vbox.layout.display = 'block'
+    else:
+        number_slices_vbox.layout.display = 'none'
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
