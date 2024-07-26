@@ -289,9 +289,11 @@ def create_multiple_choice_report():
     columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
+    #transform it to a list to have the format for later steps
+    selected_options_list = list(selected_options_report)
     
     label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
+    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_list
 
 '''Define functions for the combined data definition menu'''
 
