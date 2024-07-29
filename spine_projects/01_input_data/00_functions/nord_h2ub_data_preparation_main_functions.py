@@ -75,28 +75,10 @@ def set_parameters(params):
     print("\033[91mWARNING:\033[0m Please control if all the parameters are set correctly")
 
     # Here you can add any additional processing or return the parameters
-    # For demonstration, we return the parameters as a dictionary
-    return {
-        'start_date': start_date,
-        'end_date': end_date,
-        'area': area,
-        'product': product,
-        'scenario': scenario,
-        'frequency': frequency,
-        'model_name': model_name,
-        'temporal_block': temporal_block,
-        'stochastic_scenario': stochastic_scenario,
-        'stochastic_structure': stochastic_structure,
-        'report_name': report_name,
-        'reports': reports,
-        'electrolyzer_type': electrolyzer_type,
-        'des_segments_electrolyzer': des_segments_electrolyzer,
-        'share_of_dh_price_cap': share_of_dh_price_cap,
-        'price_level_power': price_level_power,
-        'power_price_variance': power_price_variance,
-        'roll_forward_use': roll_forward_use,
-        'num_slices': num_slices
-        'start_date': start_date
-        'end_date': end_date
-        'datetime_index': datetime_index
-    }
+    return (year, start_date, end_date, area, product, scenario, frequency, 
+    model_name,temporal_block, stochastic_scenario, stochastic_structure,
+    report_name, reports,
+    electrolyzer_type, des_segments_electrolyzer,
+    share_of_dh_price_cap, price_level_power, power_price_variance,
+    roll_forward_use, num_slices, datetime_index
+    )
