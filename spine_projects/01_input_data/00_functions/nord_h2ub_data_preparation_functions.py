@@ -79,6 +79,54 @@ def calculate_opt_horizons(datetime_index, num_slices):
 
     return roll_forward_size
 
+def create_definition_dataframe(df_model_units, df_model_connections):
+    """
+    Create a combined dataframe for units, connections, and nodes.
+    
+    Args:
+    df_model_units (pd.DataFrame): DataFrame containing model units.
+    df_model_connections (pd.DataFrame): DataFrame containing model connections.
+    
+    Returns:
+    pd.DataFrame: A combined dataframe for units, connections, and nodes.
+    """
+    # Create a dataframe for units
+    df_units = df_model_units[['Unit']].copy()
+    df_units['Category'] = 'unit'
+    df_units = df_units.rename(columns={'Unit': 'Object_Name'})
+
+    # Create a dataframe for connections
+    df_connections = df_model_connections[['Connection']].copy()
+    df_connections['Category'] = 'connection'
+    df_connections = df_connections.rename(columns={'Connection': 'Object_Name'})
+
+    # Create a list of nodes of the model
+    U_input1_nodes = df_model_units['Input1'].tolist()
+    U_input2_nodes = df_model_units['Input2'].tolist()
+    U_output1_nodes = df_model_units['Output1'].tolist()
+    U_output2_nodes = df_model_units['Output2'].tolist()
+    C_input1_nodes = df_model_connections['Input1'].tolist()
+    C_input2_nodes = df_model_connections['Input2'].tolist()
+    C_output1_nodes = df_model_connections['Output1'].tolist()
+    C_output2_nodes = df_model_connections['Output2'].tolist()
+
+    # Combine values from all columns into a single list
+    all_nodes_list = (U_input1_nodes + U_input2_nodes + U_output1_nodes + U_output2_nodes +
+                      C_input1_nodes + C_input2_nodes + C_output1_nodes + C_output2_nodes)
+
+    # Create a list with unique entries
+    unique_nodes_list = list(set(all_nodes_list))
+
+    # Create a dataframe for nodes
+    df_nodes = pd.DataFrame(unique_nodes_list, columns=['Object_Name'])
+    df_nodes['Category'] = 'node'
+    df_nodes = df_nodes.dropna()
+
+    # Combine dataframes
+    df_definition = pd.concat([df_units, df_nodes, df_connections], ignore_index=True)
+    
+    return df_definition
+
 #function to prepare all parameters that are directly linked to a unit
 def create_unit_parameters(input_df, object_class_type, parameter_column):
     # New DataFrame to store the information
