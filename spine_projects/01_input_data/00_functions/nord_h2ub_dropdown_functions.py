@@ -387,6 +387,13 @@ def create_combined_dropdowns_tabs():
     tabs.set_title(4, 'Results Info')
     tabs.set_title(5, 'Scenario Info')
     
+    # Function to show/hide number_slices based on dropdown_roll value
+    def toggle_number_slices(change):
+        if change['new']:
+            number_slices_vbox.layout.display = 'block'
+        else:
+            number_slices_vbox.layout.display = 'none'
+
     # Hide number_slices by default
     number_slices_vbox.layout.display = 'none'
     
@@ -396,13 +403,6 @@ def create_combined_dropdowns_tabs():
     display(tabs)
     
     return tabs, dropdowns
-
-# Function to show/hide number_slices based on dropdown_roll value
-def toggle_number_slices(change):
-    if change['new']:
-        number_slices_vbox.layout.display = 'block'
-    else:
-        number_slices_vbox.layout.display = 'none'
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
