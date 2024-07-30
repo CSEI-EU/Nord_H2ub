@@ -46,6 +46,39 @@ def get_excel_file_path():
     
     return excel_file_path
 
+def calculate_opt_horizons(datetime_index, num_slices):
+    """
+    Calculate the roll forward size and used slices for a given datetime index and number of slices.
+    
+    Args:
+    datetime_index (list or pd.DatetimeIndex): The datetime index to be divided into slices.
+    num_slices (int): The desired number of slices.
+    
+    Returns:
+    tuple: A tuple containing the roll forward size and used slices.
+    """
+    # Calculate the number of steps within the horizon
+    num_steps = len(datetime_index)
+
+    # Check if the number of slices can be used
+    # Find the largest integer divisor that fulfils the condition
+    for i in range(num_slices, 0, -1):
+        if num_steps % i == 0:
+            roll_forward_size = num_steps // i
+            used_slices = i
+            break
+    else:
+        print("Cannot divide the number of steps into any integer slices. Please choose a different number of slices.")
+        return None
+
+    # Check if num_slices matches the used_slices
+    if num_slices != used_slices:
+        print("\033[91mWARNING:\033[0m The specified number of slices (", num_slices, ")",
+              "does not match the final division factor (", used_slices, ").",
+             "\n The calculation uses the factor: ",used_slices, ".")
+
+    return roll_forward_size
+
 #function to prepare all parameters that are directly linked to a unit
 def create_unit_parameters(input_df, object_class_type, parameter_column):
     # New DataFrame to store the information
