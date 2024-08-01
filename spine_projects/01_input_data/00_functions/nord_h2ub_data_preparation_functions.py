@@ -817,12 +817,12 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
             #object__node__node
             new_rel_nn = pd.DataFrame([
-                {"Relationship": "connection__node_node", 
+                {"Relationship": "connection__node__node", 
                  "Object_class": "connection", 
                  "Object_name": f"{row['Output1']}_demand_connection",
                  "Node1": f"{row['Output1']}_demand",
                  "Node2": row['Output1'],
-                 "Parameter": "fix_ratio_in_out_connection_flow",
+                 "Parameter": "fix_ratio_out_in_connection_flow",
                  "Value": 1
                 }
             ])
