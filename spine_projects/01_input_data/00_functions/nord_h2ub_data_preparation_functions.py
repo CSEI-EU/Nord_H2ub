@@ -82,6 +82,13 @@ def calculate_opt_horizons(datetime_index, num_slices):
 
     return roll_forward_size
 
+#some operations to structure the dataframes
+def process_dataframe(df, column_name, category_value):
+    df_new = df[[column_name]].copy()
+    df_new['Category'] = category_value
+    df_new = df_new.rename(columns={column_name: 'Object_Name'})
+    return df_new
+
 def create_definition_dataframe(df_model_units, df_model_connections):
     """
     Create a combined dataframe for units, connections, and nodes.
@@ -94,15 +101,8 @@ def create_definition_dataframe(df_model_units, df_model_connections):
     pd.DataFrame: A combined dataframe for units, connections, and nodes.
     """
 
-    # Create a dataframe for units
-    df_units = df_model_units[['Unit']].copy()
-    df_units['Category'] = 'unit'
-    df_units = df_units.rename(columns={'Unit': 'Object_Name'})
-
-    # Create a dataframe for connections
-    df_connections = df_model_connections[['Connection']].copy()
-    df_connections['Category'] = 'connection'
-    df_connections = df_connections.rename(columns={'Connection': 'Object_Name'})
+    df_units = process_dataframe(df_model_units, 'Unit', 'unit')
+    df_connections = process_dataframe(df_model_connections, 'Connection', 'connection')
 
     # Create a list of nodes of the model
     U_input1_nodes = df_model_units['Input1'].tolist()
@@ -131,7 +131,7 @@ def create_definition_dataframe(df_model_units, df_model_connections):
     #return both dataframes
     return df_definition, df_nodes
 
-
+#function to get all the relations between units and nodes
 def object_relationship_unit_nodes(df_model_units):
     """
     Transform unit data into a list of dictionaries for unit relationship parameters.
@@ -283,6 +283,7 @@ def object_relationship_unit_nodes(df_model_units):
 
     return df_unit_relation_parameter_data
 
+#function to get all the relations between connections and nodes
 def object_relationship_connection_nodes(df_model_connections):
     """
     Transform connection data into a DataFrame for connection relationship parameters.
