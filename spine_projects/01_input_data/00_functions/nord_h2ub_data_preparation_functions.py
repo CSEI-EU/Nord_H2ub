@@ -23,26 +23,29 @@ def get_excel_file_path():
     # Get the current directory
     current_directory = os.getcwd()
     
-    # Split the current directory into parts
-    path_parts = current_directory.split(os.sep)
+    # Initialize variables
+    target_directory = "01_input_data"
+    excel_file_path = None
     
-    # Check if the current directory is the target directory
-    if path_parts[-1] == "01_input_data":
-        excel_file_path = "../01_input_data/"
-    else:
-        # Traverse back to find '01_input_data'
-        traverse_back = 0
-        for i in range(len(path_parts)-1, -1, -1):
-            if path_parts[i] == "01_input_data":
-                break
-            traverse_back += 1
-        
-        # If we find '01_input_data' in the path, construct the relative path
-        if traverse_back < len(path_parts):
-            excel_file_path = "../" * (traverse_back) + "01_input_data/"
+    # Traverse the directory tree upwards to find the target directory
+    while True:
+        # Check if the target directory exists in the current path
+        if target_directory in os.listdir(current_directory):
+            excel_file_path = os.path.join(current_directory, target_directory)
+            break
         else:
-            # If '01_input_data' is not found in the path
-            excel_file_path = None
+            # Move one level up in the directory tree
+            parent_directory = os.path.dirname(current_directory)
+            
+            # If we have reached the root and haven't found the directory, stop
+            if parent_directory == current_directory:
+                break
+            
+            current_directory = parent_directory
+        
+    # Convert the path to use forward slashes
+    if excel_file_path:
+        excel_file_path = excel_file_path.replace("\\", "/")
     
     return excel_file_path
 
