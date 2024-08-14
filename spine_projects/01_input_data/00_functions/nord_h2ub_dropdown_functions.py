@@ -251,7 +251,7 @@ def create_dropdown_investment():
     return widgets.VBox([label7, dropdown7]), dropdown7
 
 
-# Create dropdown for the default investmnet period
+# Create dropdown for the default investment period
 def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
     # Declare as global to access in on_change_dict
@@ -286,7 +286,7 @@ def create_dropdown_invest_period():
     number_input.observe(on_number_change)
     dropdown8.observe(on_change_dict_investment, names='value')
 
-    selected_invest_option_total =  widgets.Label(f"{number_input.value} {option_values_invest[dropdown8.value]}")
+    selected_invest_option_total =  widgets.Label(f"{number_input.value}{dropdown8.value}")
 
     return widgets.VBox([label8, number_input, dropdown8]), selected_invest_option_total
 
@@ -474,10 +474,6 @@ def create_combined_dropdowns_tabs():
     
     # Observe changes in dropdown_roll
     dropdown_roll.observe(toggle_number_slices, names='value')
-
-    display(tabs)
-    
-    return tabs, dropdowns
 
     # Function to show/hide investment period based on investment value
     def toggle_investment_period(change):
