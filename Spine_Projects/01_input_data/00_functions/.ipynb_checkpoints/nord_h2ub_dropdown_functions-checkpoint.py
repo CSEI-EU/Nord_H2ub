@@ -154,6 +154,14 @@ def on_change_dict(change):
         selected_option_widget.value = selected_option
         selected_value_widget.value = selected_value
 
+# Function to handle the change in investment dropdown selection
+def on_change_dict_investment(change):
+    if change['type'] == 'change' and change['name'] == 'value':
+        selected_option = change['new']
+        selected_value = option_values_invest[selected_option]
+        selected_option_widget_invest_period.value = selected_option
+        selected_value_widget_invest_period.value = selected_value
+
 #create dropdown for the year
 def create_dropdown_year():
     label1 = widgets.Label("Please select the base year:")
@@ -231,34 +239,56 @@ def create_dropdown_roll():
 
 roll_forward_use = True
 
-#create dropdown for the whether or not roll_forward is used
+#create dropdown for whether or not investments can be made
 def create_dropdown_investment():
+    
     label7 = widgets.Label("Please select whether or not the model should run an investment optimization:")
     dropdown7 = widgets.Dropdown(
         options=[True, False],
         value=False
     )
-    dropdown6.observe(on_change)
+    dropdown7.observe(on_change)
     return widgets.VBox([label7, dropdown7]), dropdown7
 
-roll_forward_use = True
 
-# Create dropdown for the model frequency
+# Create dropdown for the default investmnet period
 def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
     # Declare as global to access in on_change_dict
-    global selected_option_widget_invest_period, selected_value_widget_invest_period  # Declare as global to access in on_change
+    global option_values_invest, selected_option_widget_invest_period, selected_value_widget_invest_period  # Declare as global to access in on_change
 
-    label8 = widgets.Label("Please select the investment period:")
-    dropdown8 = widgets.Dropdown(
-        options=list(option_values.keys()),
-        value='1Y'
-    )
-    selected_option_widget_invest_period = widgets.Label(dropdown8.value)
-    selected_value_widget_invest_period = widgets.Label(option_values[dropdown8.value])
+    option_values_invest = {
+        'h': 'hourly',
+        'D': 'daily',
+        'W': 'weekly',
+        'M': 'monthly',
+        'Q': 'quarterly',
+        'Y': 'yearly'
+    }
     
-    dropdown8.observe(on_change_dict, names='value')
-    return widgets.VBox([label8, dropdown8]), selected_option_widget_invest_period, selected_value_widget_invest_period
+    label8 = widgets.Label("Please select the investment period:")
+    
+    number_input = widgets.BoundedIntText(
+        value=1,
+        min=1,
+        max=30,
+        step=1,
+    )
+    
+    dropdown8 = widgets.Dropdown(
+        options=list(option_values_invest.keys()),
+        value='Y'
+    )
+
+    selected_value_widget_invest_period = widgets.Label(option_values_invest[dropdown8.value])
+    selected_option_widget_invest_period = widgets.Label(dropdown8.value)
+
+    number_input.observe(on_number_change)
+    dropdown8.observe(on_change_dict_investment, names='value')
+
+    selected_invest_option_total =  widgets.Label(f"{number_input.value} {option_values_invest[dropdown8.value]}")
+
+    return widgets.VBox([label8, number_input, dropdown8]), selected_invest_option_total
 
 
 '''Define multiple choice functions'''
@@ -336,7 +366,7 @@ def create_combined_dropdowns_tabs():
     section_4 = widgets.HTML("<b>Section 4: Please define the economic parameters of the general model</b>")
     section_5 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
     section_6 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
-    #section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
+    section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
     
 
     # Get the dropdown menus
@@ -357,8 +387,8 @@ def create_combined_dropdowns_tabs():
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
     number_slices_vbox, number_slices = create_number_opt_horizons()
     levels_elec_box, levels_elec = create_sections_elec()
-    #dropdown_investment_vbox, dropdown_investment = create_dropdown_roll()
-    #dropdown_period_vbox, dropdown_period, dropdown_duration = create_dropdown_invest_period()
+    dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
+    dropdown_period_vbox, dropdown_duration = create_dropdown_invest_period()
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -380,7 +410,9 @@ def create_combined_dropdowns_tabs():
         'stoch_struc': stoch_struc,
         'roll_forward': dropdown_roll,
         'number_slices': number_slices,
-        'levels_elec': levels_elec
+        'levels_elec': levels_elec,
+        'candidate_nonzero': dropdown_investment,
+        'default_investment_period': dropdown_duration
     }
 
     # Create pages (tabs)
@@ -410,16 +442,25 @@ def create_combined_dropdowns_tabs():
     page6 = widgets.VBox([
         section_6, scen_name_box, stoch_scen_vbox, stoch_struc_vbox
     ])
-    
+
+
+    page7 = widgets.VBox([
+            section_7, dropdown_investment_vbox, dropdown_period_vbox
+    ])
+
+
+
+        
     # Create Tab widget
     tabs = widgets.Tab()
-    tabs.children = [page1, page2, page3, page4, page5, page6]
+    tabs.children = [page1, page2, page3, page4, page5, page6, page7]
     tabs.set_title(0, 'Model Base Info')
     tabs.set_title(1, 'Plant Info')
     tabs.set_title(2, 'Electrolysis Info')
     tabs.set_title(3, 'Economic Info')
     tabs.set_title(4, 'Results Info')
     tabs.set_title(5, 'Scenario Info')
+    tabs.set_title(6, 'Investment Info')
     
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
@@ -438,6 +479,23 @@ def create_combined_dropdowns_tabs():
     
     return tabs, dropdowns
 
+    # Function to show/hide investment period based on investment value
+    def toggle_investment_period(change):
+        if change['new']:
+            dropdown_period_vbox.layout.display = 'block'
+        else:
+            dropdown_period_vbox.layout.display = 'none'
+
+    # Hide investment period by default
+    dropdown_period_vbox.layout.display = 'none'
+    
+    # Observe changes in dropdown_investment
+    dropdown_investment.observe(toggle_investment_period, names='value')
+
+    display(tabs)
+    
+    return tabs, dropdowns
+
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
     return {
@@ -449,6 +507,8 @@ def get_dropdown_values(dropdowns):
         'frequency': dropdowns['frequency'].value,
         'temporal_block': dropdowns['temporal_block'].value,
         'roll_forward': dropdowns['roll_forward'].value,
+        'candidate_nonzero': dropdowns['candidate_nonzero'].value,
+        'default_investment_period': dropdowns['default_investment_period'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
