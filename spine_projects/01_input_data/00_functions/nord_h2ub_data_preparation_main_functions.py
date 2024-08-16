@@ -15,6 +15,9 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 import numpy as np
 import pandas as pd
 import os
+from datetime import timedelta
+
+from nord_h2ub_data_preparation_functions import *
 
 '''Define functions'''
 
@@ -28,57 +31,52 @@ def set_parameters(params):
         'frequency': '1h',
         'model_name': 'toy',
         'temporal_block': 'hourly',
-        'stochastic_scenario': "realisation",
-        'stochastic_structure': "deterministic",
+        'stochastic_scenario': 'realisation',
+        'stochastic_structure': 'deterministic',
         'report_name': 'Report',
         'reports': ['unit_flow', 'connection_flow', 'node_state', 'total_costs', 'unit_flow_op', 'node_slack_neg', 'node_slack_pos'],
-        'electrolyzer_type': "Alkaline",
+        'electrolyzer_type': 'Alkaline',
         'des_segments_electrolyzer': 1,
         'share_of_dh_price_cap': 0.5,
         'price_level_power': 1,
         'power_price_variance': 1,
         'roll_forward_use': True,
-        'num_slices': 12
+        'num_slices': 12,
+        'candidate_nonzero': 1,
+        'investment_period_default': '1Y'
     }
 
     # Update default values with provided parameters
     default_params.update(params)
 
-    # Extract parameters
-    year = default_params['year']
-    area = default_params['area']
-    product = default_params['product']
-    scenario = default_params['scenario']
-    frequency = default_params['frequency']
-    model_name = default_params['model_name']
-    temporal_block = default_params['temporal_block']
-    stochastic_scenario = default_params['stochastic_scenario']
-    stochastic_structure = default_params['stochastic_structure']
-    report_name = default_params['report_name']
-    reports = default_params['reports']
-    electrolyzer_type = default_params['electrolyzer_type']
-    des_segments_electrolyzer = default_params['des_segments_electrolyzer']
-    share_of_dh_price_cap = default_params['share_of_dh_price_cap']
-    price_level_power = default_params['price_level_power']
-    power_price_variance = default_params['power_price_variance']
-    roll_forward_use = default_params['roll_forward_use']
-    num_slices = default_params['num_slices']
-
     # Create time stamps
-    start_date = pd.Timestamp(f'{year}-01-01 00:00:00')
-    end_date = pd.Timestamp(f'{year}-12-31 23:00:00')
+    start_date = pd.Timestamp(f'{default_params["year"]}-01-01 00:00:00')
+    end_date = pd.Timestamp(f'{default_params["year"]}-12-31 23:00:00')
 
     # Create DatetimeIndex for the range of dates
-    datetime_index = pd.date_range(start=start_date, end=end_date, freq=frequency)
-
+    datetime_index = pd.date_range(start=start_date, end=end_date, freq=default_params["frequency"])
+    
+    # Create roll forward size (if used)
+    roll_forward_size = calculate_opt_horizons(datetime_index, default_params["num_slices"])
+    
+    # Add to dictionary
+    default_params['start_date'] = start_date
+    default_params['end_date'] = end_date
+    default_params['roll_forward_size'] = roll_forward_size
+    default_params['datetime_index'] = datetime_index
+    
     # Print warning message in red
     print("\033[91mWARNING:\033[0m Please control if all the parameters are set correctly")
-
+    
     # Here you can add any additional processing or return the parameters
-    return (year, start_date, end_date, area, product, scenario, frequency, 
-    model_name,temporal_block, stochastic_scenario, stochastic_structure,
-    report_name, reports,
-    electrolyzer_type, des_segments_electrolyzer,
-    share_of_dh_price_cap, price_level_power, power_price_variance,
-    roll_forward_use, num_slices, datetime_index
-    )
+    return (default_params['year'], start_date, end_date, default_params['area'],
+            default_params['product'], default_params['scenario'], default_params['frequency'],
+            default_params['model_name'], default_params['temporal_block'], 
+            default_params['stochastic_scenario'], default_params['stochastic_structure'],
+            default_params['report_name'], default_params['reports'], 
+            default_params['electrolyzer_type'], default_params['des_segments_electrolyzer'],
+            default_params['share_of_dh_price_cap'], default_params['price_level_power'],
+            default_params['power_price_variance'], default_params['roll_forward_use'], 
+            roll_forward_size, default_params['num_slices'], datetime_index, 
+            default_params['candidate_nonzero'], default_params['investment_period_default']
+           )
