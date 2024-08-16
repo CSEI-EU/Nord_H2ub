@@ -65,9 +65,6 @@ def set_parameters(params):
     default_params['roll_forward_size'] = roll_forward_size
     default_params['datetime_index'] = datetime_index
     
-    # Print warning message in red
-    print("\033[91mWARNING:\033[0m Please control if all the parameters are set correctly")
-    
     # Here you can add any additional processing or return the parameters
     return (default_params['year'], start_date, end_date, default_params['area'],
             default_params['product'], default_params['scenario'], default_params['frequency'],
