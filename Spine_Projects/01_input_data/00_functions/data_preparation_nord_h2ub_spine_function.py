@@ -12,7 +12,7 @@ def create_prepared_input_file(parameters:dict):
     #this is relevant for the input from the user drop down value definition
     (year, start_date, end_date, area, product, scenario, frequency, model_name,temporal_block, stochastic_scenario, stochastic_structure,
     report_name, reports, electrolyzer_type, des_segments_electrolyzer, share_of_dh_price_cap, price_level_power, power_price_variance,
-    roll_forward_use, num_slices, datetime_index) = set_parameters(parameters)
+    roll_forward_use, num_slices, datetime_index, candidate_nonzero, investment_period_default) = set_parameters(parameters)
 
     ## Methods 
     # Determine the current working directory
