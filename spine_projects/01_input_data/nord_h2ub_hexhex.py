@@ -22,6 +22,8 @@ import requests
 from IPython.display import display, Javascript
 import subprocess
 import platform
+import pickle
+
 
 # Get the current directory of the Jupyter Notebook
 notebook_dir = os.getcwd()

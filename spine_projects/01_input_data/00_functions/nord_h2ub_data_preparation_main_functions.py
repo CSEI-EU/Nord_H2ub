@@ -47,6 +47,7 @@ def set_parameters(params):
     }
 
     # Update default values with provided parameters
+    params = {k: (v if v is not None else default_params[k]) for k, v in params.items()}
     default_params.update(params)
 
     # Create time stamps
@@ -60,20 +61,32 @@ def set_parameters(params):
     roll_forward_size = calculate_opt_horizons(datetime_index, default_params["num_slices"])
     
     # Add to dictionary
-    default_params['start_date'] = start_date
-    default_params['end_date'] = end_date
-    default_params['roll_forward_size'] = roll_forward_size
-    default_params['datetime_index'] = datetime_index
+    year = default_params['year']
+    area = default_params['area']
+    product = default_params['product']
+    scenario = default_params['scenario']
+    frequency = default_params['frequency']
+    model_name = default_params['model_name']
+    temporal_block = default_params['temporal_block']
+    stochastic_scenario = default_params['stochastic_scenario']
+    stochastic_structure = default_params['stochastic_structure']
+    report_name = default_params['report_name']
+    reports = default_params['reports']
+    electrolyzer_type = default_params['electrolyzer_type']
+    des_segments_electrolyzer = default_params['des_segments_electrolyzer']
+    share_of_dh_price_cap = default_params['share_of_dh_price_cap']
+    price_level_power = default_params['price_level_power']
+    power_price_variance = default_params['power_price_variance']
+    roll_forward_use = default_params['roll_forward_use']
+    num_slices = default_params['num_slices']
+    candidate_nonzero = default_params['candidate_nonzero']
+    investment_period_default = default_params['investment_period_default']
     
     # Here you can add any additional processing or return the parameters
-    return (default_params['year'], start_date, end_date, default_params['area'],
-            default_params['product'], default_params['scenario'], default_params['frequency'],
-            default_params['model_name'], default_params['temporal_block'], 
-            default_params['stochastic_scenario'], default_params['stochastic_structure'],
-            default_params['report_name'], default_params['reports'], 
-            default_params['electrolyzer_type'], default_params['des_segments_electrolyzer'],
-            default_params['share_of_dh_price_cap'], default_params['price_level_power'],
-            default_params['power_price_variance'], default_params['roll_forward_use'], 
-            roll_forward_size, default_params['num_slices'], datetime_index, 
-            default_params['candidate_nonzero'], default_params['investment_period_default']
-           )
+    return (year, start_date, end_date, area, product, scenario, frequency, 
+            model_name, temporal_block, stochastic_scenario, stochastic_structure, 
+            report_name, reports, 
+            electrolyzer_type, des_segments_electrolyzer, 
+            share_of_dh_price_cap, price_level_power, power_price_variance, 
+            roll_forward_use, roll_forward_size, num_slices, datetime_index, 
+            candidate_nonzero, investment_period_default)

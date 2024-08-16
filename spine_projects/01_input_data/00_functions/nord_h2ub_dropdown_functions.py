@@ -81,7 +81,7 @@ def on_number_change(change):
 def create_share_of_dh_price_cap():
     default_number = 50  # Set as a default to not assume 100%
     description_label_1 = widgets.Label("Set the assumed value for revenues from district heating as share of a max price (%):")
-    number_input_1 = widgets.BoundedFloatText(
+    number_input_1 = widgets.BoundedIntText(
         value=default_number,
         min=0,
         max=200.0,
@@ -92,7 +92,7 @@ def create_share_of_dh_price_cap():
 
 def create_price_level_power():
     description_label_2 = widgets.Label("Set the assumed value for scaling the power price level up/down (%):")
-    number_input_2 = widgets.BoundedFloatText(
+    number_input_2 = widgets.BoundedIntText(
         value=100,
         min=0,
         max=200.0,
@@ -104,7 +104,7 @@ def create_price_level_power():
 def create_power_price_variance():
     default_number = 1
     description_label_3 = widgets.Label("Set the assumed variance of the power prices:")
-    number_input_3 = widgets.BoundedFloatText(
+    number_input_3 = widgets.BoundedIntText(
         value=1,
         min=0,
         max=2.0,
@@ -117,7 +117,7 @@ def create_number_opt_horizons():
     #define the number of horizons for a rolling horizon optimization
     default_number = 1
     description_label_4 = widgets.Label("Set the number of optimization horizons for the model:")
-    number_input_4 = widgets.BoundedFloatText(
+    number_input_4 = widgets.BoundedIntText(
         value=12,
         min=0,
         max=200,
