@@ -1,0 +1,57 @@
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 0)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 1)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 2)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 3)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 4)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 6)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 8)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 9)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 10)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 11)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 12)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 14)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 16)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 0)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 1)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 2)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 3)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 4)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 6)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 8)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 9)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 10)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 11)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 12)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 14)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 16)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 0)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 1)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 2)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 3)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 4)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 6)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 8)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 9)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 10)")
+('Nodes', "Could not convert 'balance_type_node' to type 'boolean' (near row 11)")
+('Nodes', "Could not convert 'balance_type_none' to type 'boolean' (near row 12)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 14)")
+('Nodes', "Could not convert '100000' to type 'boolean' (near row 16)")
+Column ref 5 is out of range for the source table "Nodes"
+Column ref 6 is out of range for the source table "Nodes"
+Column ref 7 is out of range for the source table "Nodes"
+Column ref 8 is out of range for the source table "Nodes"
+Column ref 9 is out of range for the source table "Nodes"
+Column ref 10 is out of range for the source table "Nodes"
+Column ref 11 is out of range for the source table "Nodes"
+Column ref 12 is out of range for the source table "Nodes"
+Column ref 13 is out of range for the source table "Nodes"
+Column ref 14 is out of range for the source table "Nodes"
+Column ref 15 is out of range for the source table "Nodes"
+Column ref 5 is out of range for the source table "Connections"
+Column ref 6 is out of range for the source table "Connections"
+Column ref 7 is out of range for the source table "Connections"
+Column ref 8 is out of range for the source table "Connections"
+Column ref 9 is out of range for the source table "Connections"
+Column ref 10 is out of range for the source table "Connections"
+Column ref 7 is out of range for the source table "Object__node_node"
