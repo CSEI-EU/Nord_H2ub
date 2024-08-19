@@ -778,8 +778,8 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
             #connection value
             new_con = {col: np.nan for col in df_connections.columns}
-            new_con["Connection"] = f"{row['Output1']}_demand_connection"
-            new_con["Parameter_name"] = "connection_type"
+            new_con["Object_Name"] = f"{row['Output1']}_demand_connection"
+            new_con["Category"] = "connection"
             new_con["Connection_type"] = "connection_type_normal"
             df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
             
@@ -931,8 +931,7 @@ def create_temporal_block_input(resolution_column, model):
         }
         model.loc[len(model)] = new_parameter
 
-#
-
+# Recalculate frace state loss
 def adjust_frac_state_loss(storages_df, column_name):
     '''adjust the frac state loss value to be usable in the SpineOpt logic
 
@@ -951,3 +950,5 @@ def adjust_frac_state_loss(storages_df, column_name):
     storages_df[column_name] = storages_df[column_name].apply(adjust_value)
     
     return storages_df
+
+#
