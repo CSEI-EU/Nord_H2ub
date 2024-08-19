@@ -15,7 +15,7 @@
                 {
                     "type": "path",
                     "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/mapping_v02_2024_02_19.json"
+                    "path": ".spinetoolbox/specifications/Importer/mapping-v10-investment_jfg_2024_08_16.json"
                 }
             ],
             "Exporter": [
@@ -107,37 +107,17 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-08-09T11:56:31": true,
-                                "Run SpineOpt@2024-08-09T12:50:23": true,
-                                "Run SpineOpt@2024-08-09T12:57:31": true,
-                                "Run SpineOpt@2024-08-09T13:01:36": true,
-                                "Run SpineOpt@2024-08-09T13:09:04": true,
-                                "Run SpineOpt@2024-08-09T13:15:31": true,
-                                "Run SpineOpt@2024-08-09T13:17:02": true,
-                                "Run SpineOpt@2024-08-09T13:30:52": true,
-                                "Run SpineOpt@2024-08-09T13:34:49": true,
-                                "Run SpineOpt@2024-08-09T13:37:00": true,
-                                "Run SpineOpt@2024-08-09T13:40:59": true,
-                                "Run SpineOpt@2024-08-09T13:42:13": true,
-                                "Run SpineOpt@2024-08-09T13:52:59": true,
-                                "Run SpineOpt@2024-08-09T14:05:49": true,
-                                "Run SpineOpt@2024-08-09T14:07:51": true,
-                                "Run SpineOpt@2024-08-09T14:30:25": true,
-                                "Run SpineOpt@2024-08-09T14:41:00": true,
-                                "Run SpineOpt@2024-08-09T14:42:29": true,
-                                "Run SpineOpt@2024-08-09T14:43:24": true,
-                                "Run SpineOpt@2024-08-09T14:54:22": true,
-                                "Run SpineOpt@2024-08-09T15:01:06": true,
-                                "Run SpineOpt@2024-08-09T15:05:00": true,
-                                "Run SpineOpt@2024-08-09T15:05:56": true,
-                                "Run SpineOpt@2024-08-09T15:07:13": true,
-                                "Run SpineOpt@2024-08-09T15:09:49": true,
-                                "Run SpineOpt@2024-08-09T15:13:02": true,
-                                "Run SpineOpt@2024-08-09T15:45:53": true,
-                                "Run SpineOpt@2024-08-12T09:10:54": true,
-                                "Run SpineOpt@2024-08-15T11:14:01": true,
-                                "Run SpineOpt@2024-08-16T14:07:42": true,
-                                "Run SpineOpt@2024-08-16T14:32:37": true
+                                "Run SpineOpt@2024-06-25T17:12:07": true,
+                                "Run SpineOpt@2024-07-10T11:17:55": true,
+                                "Run SpineOpt@2024-07-10T11:57:00": true,
+                                "Run SpineOpt@2024-07-11T10:28:57": true,
+                                "Run SpineOpt@2024-07-11T10:43:58": true,
+                                "Run SpineOpt@2024-07-11T11:17:38": true,
+                                "Run SpineOpt@2024-07-11T11:36:37": true,
+                                "Run SpineOpt@2024-07-11T11:40:47": true,
+                                "Run SpineOpt@2024-07-11T14:04:56": true,
+                                "Run SpineOpt@2024-07-22T13:02:00": true,
+                                "Run SpineOpt@2024-07-22T13:13:51": true
                             }
                         }
                     },
@@ -182,7 +162,8 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true
+                                "Base": true,
+                                "['Base', '']": true
                             }
                         }
                     },
@@ -225,7 +206,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -295,12 +276,12 @@
             "description": "",
             "x": -56.09606789966954,
             "y": -153.280375286791,
-            "specification": "Mapping_v07_2024_05_14",
+            "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
