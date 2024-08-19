@@ -216,7 +216,7 @@
                 }
             }
         ], 
-        "Demand": [
+        "Time_series": [
             {"Demand_Timeseries": {
                 "mapping": [{"map_type": "EntityClass", "position": -1}, {"map_type": "Entity", "position": "header"}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": -2}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValueType", "position": "hidden", "value": "time_series"}, {"map_type": "IndexName", "position": "hidden"}, {"map_type": "ParameterValueIndex", "position": 0}, {"map_type": "ExpandedValue", "position": "hidden"}]
                 }
@@ -252,7 +252,7 @@
         "Operating_points", 
         "Variable_Eff_Definition", 
         "Variable_Eff", 
-        "Demand", 
+        "Time_series", 
         "Time_series_storage", 
         "Energy_prices"
     ], 
@@ -272,7 +272,7 @@
         "Operating_points": {"header": true},
         "Variable_Eff_Definition": {"header": true},
         "Variable_Eff": {"header": true, "column": 0, "row": 0, "read_until_row": false}, 
-        "Demand": {"header": true}, 
+        "Time_series": {"header": true}, 
         "Time_series_storage": {"header": true}, 
         "Energy_prices": {"header": true},
         "Boolean_relations": {"header": true}
@@ -394,7 +394,7 @@
             "1": "float", 
             "2": "float"
         }, 
-        "Demand": {
+        "Time_series": {
             "0": "datetime", 
             "1": "float"
         }, 
@@ -416,7 +416,7 @@
     "table_row_types": {
         "Operating_points": {"1": "string", "2": "string", "3": "string"},
         "Variable_Eff": {"1": "string", "2": "string", "3": "string", "4": "string", "5": "string", "0": "string"}, 
-        "Demand": {"1": "string"}, 
+        "Time_series": {"1": "string"}, 
         "Energy_prices": {"1": "string", "2": "string", "3": "string"}
     }, 
     "source_type": "ExcelConnector"

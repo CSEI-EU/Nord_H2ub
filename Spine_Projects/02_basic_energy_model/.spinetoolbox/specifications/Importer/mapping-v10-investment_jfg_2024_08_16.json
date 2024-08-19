@@ -1744,7 +1744,7 @@
                     }
                 }
             ],
-            "Demand": [
+            "Time_series": [
                 {
                     "Demand_Timeseries": {
                         "mapping": [
@@ -1932,7 +1932,7 @@
             "Operating_points",
             "Variable_Eff_Definition",
             "Variable_Eff",
-            "Demand",
+            "Time_series",
             "Time_series_storage",
             "Energy_prices"
         ],
@@ -1976,9 +1976,6 @@
             "Time_series_storage": {
                 "header": true
             },
-            "Demand": {
-                "header": true
-            },
             "Energy_prices": {
                 "header": true
             },
@@ -1995,6 +1992,9 @@
                 "header": true
             },
             "Connection_Inv_Parameters": {
+                "header": true
+            },
+            "Time_series": {
                 "header": true
             }
         },
@@ -2080,10 +2080,6 @@
                 "1": "float",
                 "2": "float"
             },
-            "Demand": {
-                "0": "datetime",
-                "1": "float"
-            },
             "Energy_prices": {
                 "0": "datetime",
                 "1": "float",
@@ -2129,6 +2125,10 @@
                 "7": "float",
                 "8": "duration",
                 "9": "duration"
+            },
+            "Time_series": {
+                "0": "datetime",
+                "1": "float"
             }
         },
         "table_default_column_type": {
@@ -2148,13 +2148,13 @@
                 "2": "string",
                 "3": "string"
             },
-            "Demand": {
-                "1": "string"
-            },
             "Energy_prices": {
                 "1": "string",
                 "2": "string",
                 "3": "string"
+            },
+            "Time_series": {
+                "1": "string"
             }
         },
         "source_type": "ExcelConnector"
