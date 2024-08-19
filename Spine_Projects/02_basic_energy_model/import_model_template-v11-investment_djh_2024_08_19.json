@@ -97,7 +97,7 @@
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "node"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 14}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 14}]
                 }
             }
-        ], 
+        ],
         "Unit_Inv_Parameters": [
             {"Definition": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}]
@@ -107,31 +107,31 @@
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 1}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 1}]
                 }
             }, 
-            {"Value_candidate_units": {
+            {"Value_initial_units_invested_available": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 2}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 2}]
                 }
             }, 
-            {"Value_unit_investment_cost": {
+            {"Value_number_of_units": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 3}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 3}]
                 }
             }, 
-            {"Value_unit_investment_tech_lifetime": {
+            {"Value_candidate_units": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 4}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 4}]
                 }
             }, 
-            {"Value_number_of_units": {
+            {"Value_unit_investment_cost": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 5}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 5}]
                 }
             }, 
-            {"Value_unit_investment_econ_lifetime": {
+            {"Value_unit_investment_tech_lifetime": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 6}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 6}]
                 }
             }, 
-            {"Value_initial_units_invested_available": {
+            {"Value_unit_investment_econ_lifetime": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 7}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 7}]
                 }
             }
-        ],
+        ],  
         "Connection_Inv_Parameters": [
             {"Definition": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}]
@@ -145,27 +145,27 @@
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 3}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 3}]
                 }
             }, 
-            {"Value_candidate_connection": {
+            {"Value_initial_connections_invested_available": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 4}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 4}]
                 }
             }, 
-            {"Value_connection_investment_cost": {
+            {"Value_number_of_connections": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 5}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 5}]
                 }
             }, 
-            {"Value_connection_investment_tech_lifetime": {
+            {"Value_candidate_connection": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 6}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 6}]
                 }
             }, 
-            {"Value_number_of_connections": {
+            {"Value_connection_investment_cost": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 7}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 7}]
                 }
             }, 
-            {"Value_connection_investment_econ_lifetime": {
+            {"Value_connection_investment_tech_lifetime": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 8}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 8}]
                 }
             }, 
-            {"Value_initial_connections_invested_available": {
+            {"Value_connection_investment_econ_lifetime": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "connection"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 9}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 9}]
                 }
             }
@@ -334,11 +334,11 @@
             "1": "string", 
             "2": "float", 
             "3": "float", 
-            "4": "duration", 
+            "4": "float", 
             "5": "float", 
             "6": "duration", 
-            "7": "float"
-        },
+            "7": "duration"
+        }, 
         "Connection_Inv_Parameters": {
             "0": "string", 
             "1": "string", 
@@ -346,10 +346,10 @@
             "3": "string", 
             "4": "float", 
             "5": "float", 
-            "6": "duration", 
+            "6": "float", 
             "7": "float", 
             "8": "duration", 
-            "9": "float"
+            "9": "duration"
         },
         "Object__to_from_node_definition": {
             "0": "string", 
