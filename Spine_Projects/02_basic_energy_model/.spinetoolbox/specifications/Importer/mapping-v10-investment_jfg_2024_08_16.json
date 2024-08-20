@@ -389,7 +389,7 @@
                     }
                 },
                 {
-                    "Value_storage_investment_variable_type": {
+                    "Value_demand": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -426,7 +426,7 @@
                     }
                 },
                 {
-                    "Value_candidate_storages": {
+                    "Value_node_slack_penalty": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -463,7 +463,7 @@
                     }
                 },
                 {
-                    "Value_storage_investment_cost": {
+                    "Value_storage_investment_variable_type": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -500,7 +500,7 @@
                     }
                 },
                 {
-                    "Value_storage_investment_tech_lifetime": {
+                    "Value_initial_storages_invested_available": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -574,7 +574,7 @@
                     }
                 },
                 {
-                    "Value_storage_investment_econ_lifetime": {
+                    "Value_candidate_storages": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -611,7 +611,7 @@
                     }
                 },
                 {
-                    "Value_initial_storages_invested_available": {
+                    "Value_storage_investment_cost": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -648,7 +648,7 @@
                     }
                 },
                 {
-                    "Value_demand": {
+                    "Value_storage_investment_tech_lifetime": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -685,7 +685,7 @@
                     }
                 },
                 {
-                    "Value_node_slack_penalty": {
+                    "Value_storage_investment_econ_lifetime": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -2022,15 +2022,15 @@
                 "3": "boolean",
                 "4": "float",
                 "5": "float",
-                "6": "string",
+                "6": "float",
                 "7": "float",
-                "8": "float",
-                "9": "duration",
+                "8": "string",
+                "9": "float",
                 "10": "float",
-                "11": "duration",
+                "11": "float",
                 "12": "float",
-                "13": "float",
-                "14": "float"
+                "13": "duration",
+                "14": "duration"
             },
             "Object__to_from_node_definition": {
                 "0": "string",
@@ -2124,7 +2124,8 @@
                 "6": "float",
                 "7": "float",
                 "8": "duration",
-                "9": "duration"
+                "9": "duration",
+                "10": "string"
             },
             "Time_series": {
                 "0": "datetime",

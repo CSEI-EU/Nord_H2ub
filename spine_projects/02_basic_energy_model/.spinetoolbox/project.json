@@ -117,7 +117,15 @@
                                 "Run SpineOpt@2024-07-11T11:40:47": true,
                                 "Run SpineOpt@2024-07-11T14:04:56": true,
                                 "Run SpineOpt@2024-07-22T13:02:00": true,
-                                "Run SpineOpt@2024-07-22T13:13:51": true
+                                "Run SpineOpt@2024-07-22T13:13:51": true,
+                                "Run SpineOpt@2024-08-19T16:02:45": true,
+                                "Run SpineOpt@2024-08-19T16:20:02": true,
+                                "Run SpineOpt@2024-08-19T16:29:50": true,
+                                "Run SpineOpt@2024-08-19T16:38:22": true,
+                                "Run SpineOpt@2024-08-19T16:50:43": true,
+                                "Run SpineOpt@2024-08-19T17:02:22": true,
+                                "Run SpineOpt@2024-08-20T15:55:58": true,
+                                "Run SpineOpt@2024-08-20T16:20:15": true
                             }
                         }
                     },
@@ -265,7 +273,7 @@
                 }
             ],
             "options": {
-                "julia_sysimage": "C:/Users/jfg.eco/SpineOpt_tbv08_rf.dll"
+                "julia_sysimage": ""
             },
             "kill_completed_processes": false,
             "log_process_output": false
@@ -273,8 +281,8 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -56.09606789966954,
-            "y": -153.280375286791,
+            "x": -56.09606789966955,
+            "y": -156.42981850401128,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": false,
             "on_conflict": "merge",

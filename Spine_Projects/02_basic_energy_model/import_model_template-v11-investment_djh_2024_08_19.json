@@ -97,7 +97,7 @@
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "node"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}, {"map_type": "ParameterDefinition", "position": "header", "value": 14}, {"map_type": "Alternative", "position": "hidden", "value": "Base"}, {"map_type": "ParameterValueMetadata", "position": "hidden"}, {"map_type": "ParameterValue", "position": 14}]
                 }
             }
-        ],
+        ], 
         "Unit_Inv_Parameters": [
             {"Definition": {
                 "mapping": [{"map_type": "EntityClass", "position": "hidden", "value": "unit"}, {"map_type": "Entity", "position": 0}, {"map_type": "EntityMetadata", "position": "hidden"}]
@@ -328,7 +328,7 @@
             "12": "float", 
             "13": "float", 
             "14": "float"
-        }, 
+        },
         "Unit_Inv_Parameters": {
             "0": "string", 
             "1": "string", 

@@ -881,14 +881,6 @@ def create_temporal_block_relationships(resolution_column, output_column, model_
     ].shape[0] > 0
     
     if not relationship_exists:
-        new_relation = {
-            "Relationship_class_name": "node__temporal_block",
-            "Object_class_name_1": "node",
-            "Object_class_name_2": "temporal_block",
-            "Object_name_1": node_name,
-            "Object_name_2": temporal_block_name
-        }
-        model_relations.loc[len(model_relations)] = new_relation
         new_relation_mod = {
             "Relationship_class_name": "model__temporal_block",
             "Object_class_name_1": "model",
@@ -897,6 +889,14 @@ def create_temporal_block_relationships(resolution_column, output_column, model_
             "Object_name_2": temporal_block_name
         }
         model_relations.loc[len(model_relations)] = new_relation_mod
+        new_relation = {
+            "Relationship_class_name": "node__temporal_block",
+            "Object_class_name_1": "node",
+            "Object_class_name_2": "temporal_block",
+            "Object_name_1": node_name,
+            "Object_name_2": temporal_block_name
+        }
+        model_relations.loc[len(model_relations)] = new_relation
 
 # Temporal blocks values (use only for h, D, M, and Y)
 def create_temporal_block_input(resolution_column, model):
