@@ -334,16 +334,16 @@ def create_multiple_choice_report():
             value=True,  # All preselected options should be checked
             description=option
         )
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox))
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),names='value')
         checkboxes.append(checkbox)
-    
+
     # Create checkboxes for non-preselected options
     for option in non_preselected_checks:
         checkbox = widgets.Checkbox(
             value=False,  # Non-preselected options should be unchecked
             description=option
         )
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox))
+        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),names='value')
         checkboxes.append(checkbox)
     
     # Create 3 columns
@@ -351,10 +351,12 @@ def create_multiple_choice_report():
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
     #transform it to a list to have the format for later steps
-    selected_options_list = list(selected_options_report)
+    def get_selected_options():
+        return list(selected_options_report)
+    #selected_options_list = list(selected_options_report)
     
     label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_list
+    return widgets.VBox([label, widgets.HBox(columns)]), get_selected_options
 
 '''Define functions for the combined data definition menu'''
 
@@ -380,7 +382,9 @@ def create_combined_dropdowns_tabs():
     number_price_level_power_box, number_price_level_power = create_price_level_power()
     power_price_variance_box, power_price_variance = create_power_price_variance()
     report_name_box, report_name = create_name_rep_input()
-    multiple_choice_report, selected_options_report = create_multiple_choice_report()
+    #multiple_choice_report, selected_options_report = create_multiple_choice_report()
+    multiple_choice_report, selected_options_function = create_multiple_choice_report()
+    selected_options_report=selected_options_function()
     scen_name_box, base_scen, other_scen = create_scen_name_input()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()

@@ -14,11 +14,6 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 
 import os
 import subprocess
-import sys
-
-
-with open('sys_log.txt', 'w') as f:
-    f.write(f"Current sys: {sys.executable}\n")
 
 '''get path to the script'''
 
