@@ -1913,6 +1913,44 @@
                         ]
                     }
                 }
+            ],
+            "Temporal_relations": [
+                {
+                    "Definition": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "temporal_block"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
@@ -1934,7 +1972,8 @@
             "Variable_Eff",
             "Time_series",
             "Time_series_storage",
-            "Energy_prices"
+            "Energy_prices",
+            "Temporal_relations"
         ],
         "table_options": {
             "Definition": {
@@ -1995,6 +2034,9 @@
                 "header": true
             },
             "Time_series": {
+                "header": true
+            },
+            "Temporal_relations": {
                 "header": true
             }
         },
@@ -2060,7 +2102,7 @@
                 "3": "string",
                 "4": "string",
                 "5": "string",
-                "6": "string"
+                "6": "float"
             },
             "Variable_Eff_Definition": {
                 "0": "string",
@@ -2130,6 +2172,11 @@
             "Time_series": {
                 "0": "datetime",
                 "1": "float"
+            },
+            "Temporal_relations": {
+                "0": "string",
+                "1": "string",
+                "2": "string"
             }
         },
         "table_default_column_type": {
