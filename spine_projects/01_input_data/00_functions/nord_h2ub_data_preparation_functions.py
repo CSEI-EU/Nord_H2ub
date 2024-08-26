@@ -610,6 +610,8 @@ def replace_numerical_with_integers(df, column_name):
 #Calculate adjusted efficiency
 def create_adj_efficiency(dataframe, mean_eff_goal, unit):
     dataframe_copy = dataframe.copy()
+    
+    # Calculate the difference in power levels, 'Delta'
     dataframe_copy['Delta'] = dataframe_copy['Power [%]'].diff().fillna(dataframe_copy['Power [%]'])
     
     # Getting the base variables such as maximal efficiency and the index
@@ -628,27 +630,30 @@ def create_adj_efficiency(dataframe, mean_eff_goal, unit):
     mean_eff_scaled = (df_efficiency_adj['Delta'] * df_efficiency_adj['Efficiency_scaled [%]']).sum() / total_delta
     print(f"Actual mean efficiency of {unit} after scaling: {mean_eff_scaled:.4f}")
     
-    # Set first adjusted efficiency value
+    # Initialize the adjusted efficiency values
     df_efficiency_adj['eff_adjusted_' + unit] = float('nan')
     df_efficiency_adj.loc[0, 'eff_adjusted_' + unit] = df_efficiency_adj.loc[0, 'Efficiency_scaled [%]']
     df_efficiency_adj.loc[0, 'Delta'] = df_efficiency_adj.loc[0, 'Power [%]']
     
-    # Calculate adjusted efficiency values
-    for i in range(1, len(df_efficiency_adj) - 1):
-        efficiency = df_efficiency_adj.loc[i, 'Efficiency_scaled [%]']
-        power = df_efficiency_adj.loc[i, 'Power [%]']
-        delta = df_efficiency_adj.loc[i, 'Delta']
-        
-        sum_product = (df_efficiency_adj.loc[:i-1, 'eff_adjusted_' + unit] * df_efficiency_adj.loc[:i-1, 'Delta']).sum()
-        
-        new_value = (efficiency * power - sum_product) / delta
-        
-        df_efficiency_adj.loc[i, 'eff_adjusted_' + unit] = new_value
+    # Calculate the weights for each step
+    df_efficiency_adj['weights'] = df_efficiency_adj['Delta'] / df_efficiency_adj['Power [%]']
     
-    # Set the last value equal to the second last value
-    df_efficiency_adj.loc[len(df_efficiency_adj) - 1, 'eff_adjusted_' + unit] = df_efficiency_adj.loc[len(df_efficiency_adj) - 2, 'eff_adjusted_' + unit]
+    # Calculate adjusted efficiency values ensuring monotonic decrease
+    n = len(df_efficiency_adj['Efficiency_scaled [%]'])
+    adjusted_efficiencies = np.zeros(n)
+    adjusted_efficiencies[0] = df_efficiency_adj['Efficiency_scaled [%]'][0]
+    
+    for i in range(1, n):
+        target_value = df_efficiency_adj['Efficiency_scaled [%]'][i]
+        w = df_efficiency_adj['weights'][i]
+        
+        # Calculate the new adjusted value ensuring it is monotonously decreasing
+        new_value = (target_value - (1 - w) * adjusted_efficiencies[i-1]) / w
+        adjusted_efficiencies[i] = min(new_value, adjusted_efficiencies[i-1])
+        df_efficiency_adj.loc[i, 'eff_adjusted_' + unit] = adjusted_efficiencies[i]
     
     return df_efficiency_adj
+
 
 # Operating points and variable efficiency 
 def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1):
