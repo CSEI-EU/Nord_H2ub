@@ -294,8 +294,9 @@ def create_dropdown_invest_period():
 '''Define multiple choice functions'''
 
 def on_change_MC(change, selected_options_report, checkbox):
-    if checkbox.value:
+    if change['new']:
         selected_options_report.add(checkbox.description)
+        print(f'You added {checkbox.description} to the report.')
     else:
         selected_options_report.discard(checkbox.description)
 
@@ -304,19 +305,21 @@ def create_multiple_choice_report():
     options = [
         'binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 
         'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 
-        'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 
-        'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 
-        'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 
-        'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 
-        'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 
-        'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 
-        'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 
-        'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs'
+        'connections_decommissioned', 'connections_invested', 'connections_invested_available', 
+        'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 
+        'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 
+        'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 
+        'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 
+        'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 
+        'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 
+        'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 
+        'units_shut_down', 'units_started_up', 'variable_om_costs'
     ]
     
     # Define preselected options
     preselected_options = {
-        'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 'unit_flow', 'unit_flow_op'
+        'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 
+        'unit_flow', 'unit_flow_op'
     }
     
     # Initialize selected_options_report with preselected options
@@ -334,29 +337,36 @@ def create_multiple_choice_report():
             value=True,  # All preselected options should be checked
             description=option
         )
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),names='value')
+        checkbox.observe(lambda change, 
+                         checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),
+                         names='value'
+                        )
         checkboxes.append(checkbox)
-
+    
     # Create checkboxes for non-preselected options
     for option in non_preselected_checks:
         checkbox = widgets.Checkbox(
             value=False,  # Non-preselected options should be unchecked
             description=option
         )
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),names='value')
+        checkbox.observe(lambda change, 
+                         checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),
+                         names='value'
+                        )
         checkboxes.append(checkbox)
     
     # Create 3 columns
     columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
-    #transform it to a list to have the format for later steps
+    
+    # Function to return the list of selected options
     def get_selected_options():
         return list(selected_options_report)
-    #selected_options_list = list(selected_options_report)
     
     label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), get_selected_options
+    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
+
 
 '''Define functions for the combined data definition menu'''
 
@@ -369,7 +379,6 @@ def create_combined_dropdowns_tabs():
     section_5 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
     section_6 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
     section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
-    
 
     # Get the dropdown menus
     model_name_input_box, model_name_input = create_name_input()
@@ -382,9 +391,7 @@ def create_combined_dropdowns_tabs():
     number_price_level_power_box, number_price_level_power = create_price_level_power()
     power_price_variance_box, power_price_variance = create_power_price_variance()
     report_name_box, report_name = create_name_rep_input()
-    #multiple_choice_report, selected_options_report = create_multiple_choice_report()
-    multiple_choice_report, selected_options_function = create_multiple_choice_report()
-    selected_options_report=selected_options_function()
+    multiple_choice_report_box, selected_reports = create_multiple_choice_report()
     scen_name_box, base_scen, other_scen = create_scen_name_input()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
@@ -407,7 +414,7 @@ def create_combined_dropdowns_tabs():
         'number_price_level_power': number_price_level_power,
         'power_price_variance': power_price_variance,
         'report_name': report_name,
-        'reports': selected_options_report,
+        'reports': selected_reports,
         'base_scen': base_scen,
         'other_scen': other_scen,
         'stoch_scen': stoch_scen,
@@ -440,7 +447,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page5 = widgets.VBox([
-        section_5, report_name_box, multiple_choice_report
+        section_5, report_name_box, multiple_choice_report_box
     ])
     
     page6 = widgets.VBox([
@@ -452,19 +459,17 @@ def create_combined_dropdowns_tabs():
             section_7, dropdown_investment_vbox, dropdown_period_vbox
     ])
 
-
-
         
     # Create Tab widget
     tabs = widgets.Tab()
     tabs.children = [page1, page2, page3, page4, page5, page6, page7]
-    tabs.set_title(0, 'Model Base Info')
-    tabs.set_title(1, 'Plant Info')
-    tabs.set_title(2, 'Electrolysis Info')
-    tabs.set_title(3, 'Economic Info')
-    tabs.set_title(4, 'Results Info')
-    tabs.set_title(5, 'Scenario Info')
-    tabs.set_title(6, 'Investment Info')
+    tabs.set_title(0, 'Model Base')
+    tabs.set_title(1, 'Plant')
+    tabs.set_title(2, 'Electrolysis')
+    tabs.set_title(3, 'Economic')
+    tabs.set_title(4, 'Results')
+    tabs.set_title(5, 'Scenario')
+    tabs.set_title(6, 'Investment')
     
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
