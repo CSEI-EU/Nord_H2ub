@@ -25,6 +25,11 @@ def get_excel_file_path():
     
     # Initialize variables
     target_directory = "01_input_data"
+
+    # Check if the current directory is already the target directory
+    if os.path.basename(current_directory) == target_directory:
+        return current_directory.replace("\\", "/")
+        
     excel_file_path = None
     
     # Traverse the directory tree upwards to find the target directory
