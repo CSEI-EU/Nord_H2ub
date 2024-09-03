@@ -15,6 +15,7 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 import numpy as np
 import pandas as pd
 import os
+import calendar
 
 '''Define functions'''
 
@@ -756,7 +757,7 @@ def check_decreasing(dataframe, unit, node):
     return pd.DataFrame([result_row])
 
 
-#Check if additional demand node is neccessary
+# Check if additional demand node is neccessary
 resolution_to_block = {
     'h': 'hourly',
     'D': 'daily',
@@ -959,4 +960,23 @@ def adjust_frac_state_loss(storages_df, column_name):
     
     return storages_df
 
-#
+# Convert lifetime + investment ... into days
+def convert_to_days(time_string, year):
+    # Extract the numeric value and the unit
+    num = int(time_string[:-1])  # All characters except the last one
+    unit = time_string[-1]  # The last character
+
+    # Define conversion factors
+    conversion_factors = {
+        'Y': 365 + calendar.isleap(year),
+        'M': (365 + calendar.isleap(year))/12,
+        'W': 7,
+        'D': 1,
+        'h': 1/24
+    }
+    
+    # Convert to days using the appropriate factor
+    if unit in conversion_factors:
+        days = num * conversion_factors[unit]
+        return f"{days}D"
+
