@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 import os
 import calendar
+from datetime import timedelta
 
 '''Define functions'''
 
@@ -980,3 +981,20 @@ def convert_to_days(time_string, year):
         days = num * conversion_factors[unit]
         return f"{days}D"
 
+# Scale investment costs to actual model duration
+def scale_costs(df, start, end, object):
+    # Calculate days in year
+    model_time = (end - start).days
+    
+    col_time = f"{object}_investment_tech_lifetime"
+    col_costs = f"{object}_investment_cost"
+    
+    # Calculate scaling factor
+    df['lifetime_days'] = df[col_time].str.extract(r'(\d+)').astype(float)
+    df['factor'] = df['lifetime_days'] / model_time
+    
+    df[col_costs] = df[col_costs] / df['factor']
+    
+    return df
+
+    
