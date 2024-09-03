@@ -41,7 +41,7 @@ def create_name_rep_input():
     )
     return widgets.VBox([label2, name_rep_input]), name_rep_input
 
-def create_scen_name_input():
+def create_scen_name_input_sev():
     label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
     default_text = "Base"
     base_name_input = widgets.Text(
@@ -55,9 +55,18 @@ def create_scen_name_input():
     )
     return widgets.VBox([label3, base_name_input, additional_names_input]), base_name_input, additional_names_input
 
+def create_scen_name_input():
+    label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
+    default_text = "Base"
+    base_name_input = widgets.Text(
+        value=default_text,
+        description="Base Scenario:"
+    )
+    return widgets.VBox([label3, base_name_input]), base_name_input
+
 def create_stoch_scen_input():
-    label4 = widgets.Label("Please type the name of the stochastic scenario if other than 'realisation':")
-    default_text = "realisation"
+    label4 = widgets.Label("Please type the name of the stochastic scenario if other than 'realization':")
+    default_text = "realization"
     stoch_scen_input = widgets.Text(
         value=default_text,
     )
@@ -392,7 +401,8 @@ def create_combined_dropdowns_tabs():
     power_price_variance_box, power_price_variance = create_power_price_variance()
     report_name_box, report_name = create_name_rep_input()
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
-    scen_name_box, base_scen, other_scen = create_scen_name_input()
+    scen_name_box, base_scen = create_scen_name_input()
+    #scen_name_box, base_scen, other_scen = create_scen_name_input_sev()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
@@ -416,7 +426,7 @@ def create_combined_dropdowns_tabs():
         'report_name': report_name,
         'reports': selected_reports,
         'base_scen': base_scen,
-        'other_scen': other_scen,
+        #'other_scen': other_scen,
         'stoch_scen': stoch_scen,
         'stoch_struc': stoch_struc,
         'roll_forward': dropdown_roll,
@@ -522,7 +532,7 @@ def get_dropdown_values(dropdowns):
         'des_segments_electrolyzer': dropdowns['levels_elec'].value,
         #other text fields
         'base_scen': dropdowns['base_scen'].value,
-        'other_scen': dropdowns['other_scen'].value,
+        #'other_scen': dropdowns['other_scen'].value,
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,
