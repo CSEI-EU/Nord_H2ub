@@ -995,6 +995,8 @@ def scale_costs(df, start, end, object):
     
     df[col_costs] = df[col_costs] / df['factor']
     
+    df = df.drop(['lifetime_days', 'factor'], axis=1)
+    
     return df
 
     
