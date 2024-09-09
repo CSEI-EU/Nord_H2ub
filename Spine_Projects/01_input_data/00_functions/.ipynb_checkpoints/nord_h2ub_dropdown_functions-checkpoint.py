@@ -41,7 +41,7 @@ def create_name_rep_input():
     )
     return widgets.VBox([label2, name_rep_input]), name_rep_input
 
-def create_scen_name_input():
+def create_scen_name_input_sev():
     label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
     default_text = "Base"
     base_name_input = widgets.Text(
@@ -55,9 +55,18 @@ def create_scen_name_input():
     )
     return widgets.VBox([label3, base_name_input, additional_names_input]), base_name_input, additional_names_input
 
+def create_scen_name_input():
+    label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
+    default_text = "Base"
+    base_name_input = widgets.Text(
+        value=default_text,
+        description="Base Scenario:"
+    )
+    return widgets.VBox([label3, base_name_input]), base_name_input
+
 def create_stoch_scen_input():
-    label4 = widgets.Label("Please type the name of the stochastic scenario if other than 'realisation':")
-    default_text = "realisation"
+    label4 = widgets.Label("Please type the name of the stochastic scenario if other than 'realization':")
+    default_text = "realization"
     stoch_scen_input = widgets.Text(
         value=default_text,
     )
@@ -161,6 +170,7 @@ def on_change_dict_investment(change):
         selected_value = option_values_invest[selected_option]
         selected_option_widget_invest_period.value = selected_option
         selected_value_widget_invest_period.value = selected_value
+    
 
 #create dropdown for the year
 def create_dropdown_year():
@@ -250,52 +260,40 @@ def create_dropdown_investment():
     dropdown7.observe(on_change)
     return widgets.VBox([label7, dropdown7]), dropdown7
 
-
 # Create dropdown for the default investment period
 def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
-    # Declare as global to access in on_change_dict
-    global option_values_invest, selected_option_widget_invest_period, selected_value_widget_invest_period  # Declare as global to access in on_change
 
-    option_values_invest = {
-        'h': 'hourly',
-        'D': 'daily',
-        'W': 'weekly',
-        'M': 'monthly',
-        'Q': 'quarterly',
-        'Y': 'yearly'
-    }
     
     label8 = widgets.Label("Please select the investment period:")
     
-    number_input = widgets.BoundedIntText(
+    number_input_8 = widgets.BoundedIntText(
         value=1,
         min=1,
         max=30,
         step=1,
     )
+    number_input_8.observe(on_number_change, names='value')
+
     
     dropdown8 = widgets.Dropdown(
-        options=list(option_values_invest.keys()),
+        options=['h', 'D', 'W', 'M', 'Q', 'Y'],
         value='Y'
     )
 
-    selected_value_widget_invest_period = widgets.Label(option_values_invest[dropdown8.value])
-    selected_option_widget_invest_period = widgets.Label(dropdown8.value)
+    dropdown8.observe(on_change)
 
-    number_input.observe(on_number_change)
-    dropdown8.observe(on_change_dict_investment, names='value')
+    #selected_invest_option_total =  widgets.Label(f"{number_input_8.value}{dropdown8.value}")
 
-    selected_invest_option_total =  widgets.Label(f"{number_input.value}{dropdown8.value}")
-
-    return widgets.VBox([label8, number_input, dropdown8]), selected_invest_option_total
+    return widgets.VBox([label8, number_input_8, dropdown8]), number_input_8, dropdown8
 
 
 '''Define multiple choice functions'''
 
 def on_change_MC(change, selected_options_report, checkbox):
-    if checkbox.value:
+    if change['new']:
         selected_options_report.add(checkbox.description)
+        print(f'You added {checkbox.description} to the report.')
     else:
         selected_options_report.discard(checkbox.description)
 
@@ -304,19 +302,21 @@ def create_multiple_choice_report():
     options = [
         'binary_gas_connection_flow', 'connection_avg_intact_throughflow', 'connection_avg_throughflow', 
         'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 
-        'connections_decommissioned', 'connections_invested', 'connections_invested_available', 'contingency_is_binding', 
-        'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 'node_injection', 'node_pressure', 
-        'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 'nonspin_units_shut_down', 
-        'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 'renewable_curtailment_costs', 
-        'res_proc_costs', 'shut_down_costs', 'start_up_costs', 'storage_investment_costs', 'storages_decommissioned', 
-        'storages_invested', 'storages_invested_available', 'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 
-        'unit_flow_op_active', 'unit_investment_costs', 'units_invested', 'units_invested_available', 'units_mothballed', 
-        'units_on', 'units_on_costs', 'units_shut_down', 'units_started_up', 'variable_om_costs'
+        'connections_decommissioned', 'connections_invested', 'connections_invested_available', 
+        'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 
+        'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 
+        'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 
+        'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 
+        'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 
+        'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 
+        'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 
+        'units_shut_down', 'units_started_up', 'variable_om_costs'
     ]
     
     # Define preselected options
     preselected_options = {
-        'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 'unit_flow', 'unit_flow_op'
+        'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 
+        'unit_flow', 'unit_flow_op'
     }
     
     # Initialize selected_options_report with preselected options
@@ -334,29 +334,36 @@ def create_multiple_choice_report():
             value=True,  # All preselected options should be checked
             description=option
         )
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),names='value')
+        checkbox.observe(lambda change, 
+                         checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),
+                         names='value'
+                        )
         checkboxes.append(checkbox)
-
+    
     # Create checkboxes for non-preselected options
     for option in non_preselected_checks:
         checkbox = widgets.Checkbox(
             value=False,  # Non-preselected options should be unchecked
             description=option
         )
-        checkbox.observe(lambda change, checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),names='value')
+        checkbox.observe(lambda change, 
+                         checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),
+                         names='value'
+                        )
         checkboxes.append(checkbox)
     
     # Create 3 columns
     columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
-    #transform it to a list to have the format for later steps
+    
+    # Function to return the list of selected options
     def get_selected_options():
         return list(selected_options_report)
-    #selected_options_list = list(selected_options_report)
     
     label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), get_selected_options
+    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
+
 
 '''Define functions for the combined data definition menu'''
 
@@ -369,7 +376,6 @@ def create_combined_dropdowns_tabs():
     section_5 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
     section_6 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
     section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
-    
 
     # Get the dropdown menus
     model_name_input_box, model_name_input = create_name_input()
@@ -382,17 +388,18 @@ def create_combined_dropdowns_tabs():
     number_price_level_power_box, number_price_level_power = create_price_level_power()
     power_price_variance_box, power_price_variance = create_power_price_variance()
     report_name_box, report_name = create_name_rep_input()
-    #multiple_choice_report, selected_options_report = create_multiple_choice_report()
-    multiple_choice_report, selected_options_function = create_multiple_choice_report()
-    selected_options_report=selected_options_function()
-    scen_name_box, base_scen, other_scen = create_scen_name_input()
+    multiple_choice_report_box, selected_reports = create_multiple_choice_report()
+    scen_name_box, base_scen = create_scen_name_input()
+    #scen_name_box, base_scen, other_scen = create_scen_name_input_sev()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
     number_slices_vbox, number_slices = create_number_opt_horizons()
     levels_elec_box, levels_elec = create_sections_elec()
     dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
-    dropdown_period_vbox, dropdown_duration = create_dropdown_invest_period()
+    dropdown_period_vbox, dropdown_number, dropdown_period = create_dropdown_invest_period()
+    
+
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -407,16 +414,17 @@ def create_combined_dropdowns_tabs():
         'number_price_level_power': number_price_level_power,
         'power_price_variance': power_price_variance,
         'report_name': report_name,
-        'reports': selected_options_report,
+        'reports': selected_reports,
         'base_scen': base_scen,
-        'other_scen': other_scen,
+        #'other_scen': other_scen,
         'stoch_scen': stoch_scen,
         'stoch_struc': stoch_struc,
         'roll_forward': dropdown_roll,
         'number_slices': number_slices,
         'levels_elec': levels_elec,
         'candidate_nonzero': dropdown_investment,
-        'default_investment_period': dropdown_duration
+        'default_investment_number': dropdown_number,
+        'default_investment_duration': dropdown_period
     }
 
     # Create pages (tabs)
@@ -440,7 +448,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page5 = widgets.VBox([
-        section_5, report_name_box, multiple_choice_report
+        section_5, report_name_box, multiple_choice_report_box
     ])
     
     page6 = widgets.VBox([
@@ -452,19 +460,17 @@ def create_combined_dropdowns_tabs():
             section_7, dropdown_investment_vbox, dropdown_period_vbox
     ])
 
-
-
         
     # Create Tab widget
     tabs = widgets.Tab()
     tabs.children = [page1, page2, page3, page4, page5, page6, page7]
-    tabs.set_title(0, 'Model Base Info')
-    tabs.set_title(1, 'Plant Info')
-    tabs.set_title(2, 'Electrolysis Info')
-    tabs.set_title(3, 'Economic Info')
-    tabs.set_title(4, 'Results Info')
-    tabs.set_title(5, 'Scenario Info')
-    tabs.set_title(6, 'Investment Info')
+    tabs.set_title(0, 'Model Base')
+    tabs.set_title(1, 'Plant')
+    tabs.set_title(2, 'Electrolysis')
+    tabs.set_title(3, 'Economic')
+    tabs.set_title(4, 'Results')
+    tabs.set_title(5, 'Scenario')
+    tabs.set_title(6, 'Investment')
     
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
@@ -508,7 +514,9 @@ def get_dropdown_values(dropdowns):
         'temporal_block': dropdowns['temporal_block'].value,
         'roll_forward': dropdowns['roll_forward'].value,
         'candidate_nonzero': dropdowns['candidate_nonzero'].value,
-        'default_investment_period': dropdowns['default_investment_period'].value,
+        #'default_investment_period': dropdowns['default_investment_period'].value,
+        'default_investment_number': dropdowns['default_investment_number'].value,
+        'default_investment_duration': dropdowns['default_investment_duration'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
@@ -517,7 +525,7 @@ def get_dropdown_values(dropdowns):
         'des_segments_electrolyzer': dropdowns['levels_elec'].value,
         #other text fields
         'base_scen': dropdowns['base_scen'].value,
-        'other_scen': dropdowns['other_scen'].value,
+        #'other_scen': dropdowns['other_scen'].value,
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,

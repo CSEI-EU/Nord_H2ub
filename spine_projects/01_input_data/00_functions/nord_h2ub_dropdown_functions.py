@@ -170,6 +170,7 @@ def on_change_dict_investment(change):
         selected_value = option_values_invest[selected_option]
         selected_option_widget_invest_period.value = selected_option
         selected_value_widget_invest_period.value = selected_value
+    
 
 #create dropdown for the year
 def create_dropdown_year():
@@ -259,45 +260,32 @@ def create_dropdown_investment():
     dropdown7.observe(on_change)
     return widgets.VBox([label7, dropdown7]), dropdown7
 
-
 # Create dropdown for the default investment period
 def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
-    # Declare as global to access in on_change_dict
-    global option_values_invest, selected_option_widget_invest_period, selected_value_widget_invest_period  # Declare as global to access in on_change
 
-    option_values_invest = {
-        'h': 'hourly',
-        'D': 'daily',
-        'W': 'weekly',
-        'M': 'monthly',
-        'Q': 'quarterly',
-        'Y': 'yearly'
-    }
     
     label8 = widgets.Label("Please select the investment period:")
     
-    number_input = widgets.BoundedIntText(
+    number_input_8 = widgets.BoundedIntText(
         value=1,
         min=1,
         max=30,
         step=1,
     )
+    number_input_8.observe(on_number_change, names='value')
+
     
     dropdown8 = widgets.Dropdown(
-        options=list(option_values_invest.keys()),
+        options=['h', 'D', 'W', 'M', 'Q', 'Y'],
         value='Y'
     )
 
-    selected_value_widget_invest_period = widgets.Label(option_values_invest[dropdown8.value])
-    selected_option_widget_invest_period = widgets.Label(dropdown8.value)
+    dropdown8.observe(on_change)
 
-    number_input.observe(on_number_change)
-    dropdown8.observe(on_change_dict_investment, names='value')
+    #selected_invest_option_total =  widgets.Label(f"{number_input_8.value}{dropdown8.value}")
 
-    selected_invest_option_total =  widgets.Label(f"{number_input.value}{dropdown8.value}")
-
-    return widgets.VBox([label8, number_input, dropdown8]), selected_invest_option_total
+    return widgets.VBox([label8, number_input_8, dropdown8]), number_input_8, dropdown8
 
 
 '''Define multiple choice functions'''
@@ -409,7 +397,9 @@ def create_combined_dropdowns_tabs():
     number_slices_vbox, number_slices = create_number_opt_horizons()
     levels_elec_box, levels_elec = create_sections_elec()
     dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
-    dropdown_period_vbox, dropdown_duration = create_dropdown_invest_period()
+    dropdown_period_vbox, dropdown_number, dropdown_period = create_dropdown_invest_period()
+    
+
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -433,7 +423,8 @@ def create_combined_dropdowns_tabs():
         'number_slices': number_slices,
         'levels_elec': levels_elec,
         'candidate_nonzero': dropdown_investment,
-        'default_investment_period': dropdown_duration
+        'default_investment_number': dropdown_number,
+        'default_investment_duration': dropdown_period
     }
 
     # Create pages (tabs)
@@ -523,7 +514,9 @@ def get_dropdown_values(dropdowns):
         'temporal_block': dropdowns['temporal_block'].value,
         'roll_forward': dropdowns['roll_forward'].value,
         'candidate_nonzero': dropdowns['candidate_nonzero'].value,
-        'default_investment_period': dropdowns['default_investment_period'].value,
+        #'default_investment_period': dropdowns['default_investment_period'].value,
+        'default_investment_number': dropdowns['default_investment_number'].value,
+        'default_investment_duration': dropdowns['default_investment_duration'].value,
         #numerical values that are given in percent are divided by 100 to get the right numbers for the model
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
