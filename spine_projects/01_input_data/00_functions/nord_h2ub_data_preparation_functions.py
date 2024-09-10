@@ -970,6 +970,7 @@ def convert_to_days(time_string, year):
     # Define conversion factors
     conversion_factors = {
         'Y': 365 + calendar.isleap(year),
+        'Q': (365 + calendar.isleap(year))/4,
         'M': (365 + calendar.isleap(year))/12,
         'W': 7,
         'D': 1,
