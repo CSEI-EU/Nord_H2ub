@@ -314,9 +314,16 @@ def create_multiple_choice_report():
     ]
     
     # Define preselected options
+    #preselected_options_without_investments = {
+    #    'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 
+    #    'unit_flow', 'unit_flow_op'
+    #}
     preselected_options = {
         'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 
-        'unit_flow', 'unit_flow_op'
+        'unit_flow', 'unit_flow_op', 
+        'connection_investment_costs', 'connections_invested',
+        'storage_investment_costs', 'storages_invested',
+        'unit_investment_costs', 'units_invested'
     }
     
     # Initialize selected_options_report with preselected options
