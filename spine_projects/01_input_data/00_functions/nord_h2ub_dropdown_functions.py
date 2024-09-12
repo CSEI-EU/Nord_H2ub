@@ -177,7 +177,7 @@ def create_dropdown_year():
     label1 = widgets.Label("Please select the base year:")
     dropdown1 = widgets.Dropdown(
         options=[2018, 2019, 2020, 2021, 2022],
-        value=2020
+        value=2019
     )
     dropdown1.observe(on_change)
     return widgets.VBox([label1, dropdown1]), dropdown1
