@@ -373,9 +373,9 @@ def create_combined_dropdowns_tabs():
     section_2 = widgets.HTML("<b>Section 2: Please define the base parameters</b>")
     section_3 = widgets.HTML("<b>Section 3: Please define the parameters of electrolysis</b>")
     section_4 = widgets.HTML("<b>Section 4: Please define the economic parameters of the general model</b>")
-    section_5 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
-    section_6 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
-    section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
+    section_5 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
+    section_6 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
+    section_7 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
 
     # Get the dropdown menus
     model_name_input_box, model_name_input = create_name_input()
@@ -448,19 +448,17 @@ def create_combined_dropdowns_tabs():
     ])
     
     page5 = widgets.VBox([
-        section_5, report_name_box, multiple_choice_report_box
+            section_5, dropdown_investment_vbox, dropdown_period_vbox
     ])
-    
+
     page6 = widgets.VBox([
         section_6, scen_name_box, stoch_scen_vbox, stoch_struc_vbox
     ])
 
-
     page7 = widgets.VBox([
-            section_7, dropdown_investment_vbox, dropdown_period_vbox
-    ])
+        section_7, report_name_box, multiple_choice_report_box
+    ])  
 
-        
     # Create Tab widget
     tabs = widgets.Tab()
     tabs.children = [page1, page2, page3, page4, page5, page6, page7]
@@ -468,9 +466,9 @@ def create_combined_dropdowns_tabs():
     tabs.set_title(1, 'Plant')
     tabs.set_title(2, 'Electrolysis')
     tabs.set_title(3, 'Economic')
-    tabs.set_title(4, 'Results')
+    tabs.set_title(4, 'Investment')
     tabs.set_title(5, 'Scenario')
-    tabs.set_title(6, 'Investment')
+    tabs.set_title(6, 'Results')
     
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
