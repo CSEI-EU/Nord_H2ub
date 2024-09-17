@@ -163,7 +163,112 @@ def update_inv_costs(change, investment_cost_vbox):
     # Define the placeholder value for fields that are not yet interacted with
     placeholder_value = 1.0
     
-    if selected_product == 'methanol':
+    if selected_product == 'ammonia':
+        ammonia_storage_label = widgets.Label("Ammonia storage:")
+        ammonia_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        asu_label = widgets.Label("Air separation unit")
+        asu_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        haber_label = widgets.Label("Haber-Bosch unit:")
+        haber_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        hydrogen_storage_label = widgets.Label("Hydrogen storage:")
+        hydrogen_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_ammonia_storage'] = ammonia_storage_input
+        investment_cost_values['inv_cost_asu'] = asu_input
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_haber'] = haber_input
+        investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
+
+        investment_cost_vbox.children = [ammonia_storage_label, ammonia_storage_input,
+                                         asu_label, asu_input,
+                                         electrolyzer_label, electrolyzer_input, 
+                                         haber_label, haber_input,
+                                         hydrogen_storage_label, hydrogen_storage_input
+                                        ]
+    
+    elif selected_product == 'egasoline':
+        egasoline_storage_label = widgets.Label("E-Gasoline storage:")
+        egasoline_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        fischer_label = widgets.Label("Fischer-Tropsch reactor:")
+        fischer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        hydrogen_storage_label = widgets.Label("Hydrogen storage:")
+        hydrogen_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        rwgs_label = widgets.Label("RWGS reactor:")
+        rwgs_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_egasoline_storage'] = egasoline_storage_input
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_fischer'] = fischer_input
+        investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
+        investment_cost_values['inv_cost_rwgs'] = rwgs_input
+        
+        investment_cost_vbox.children = [egasoline_storage_label, egasoline_storage_input,
+                                         electrolyzer_label, electrolyzer_input, 
+                                         fischer_label, fischer_input,
+                                         hydrogen_storage_label, hydrogen_storage_input,
+                                         rwgs_label, rwgs_input
+                                        ]
+    
+    elif selected_product == 'hydrogen':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        hydrogen_storage_label = widgets.Label("Hydrogen storage:")
+        hydrogen_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
+        
+        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, 
+                                         hydrogen_storage_label, hydrogen_storage_input
+                                        ]
+    
+    elif selected_product == 'jet_fuel':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        fischer_label = widgets.Label("Fischer-Tropsch reactor:")
+        fischer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        hydrogen_storage_label = widgets.Label("Hydrogen storage:")
+        hydrogen_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        jet_fuel_storage_label = widgets.Label("Jet fuel storage:")
+        jet_fuel_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        rwgs_label = widgets.Label("RWGS reactor:")
+        rwgs_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_fischer'] = fischer_input
+        investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
+        investment_cost_values['inv_cost_jet_fuel_storage'] = jet_fuel_storage_input
+        investment_cost_values['inv_cost_rwgs'] = rwgs_input
+        
+        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, 
+                                         fischer_label, fischer_input,
+                                         hydrogen_storage_label, hydrogen_storage_input,
+                                         jet_fuel_storage_label, jet_fuel_storage_input,
+                                         rwgs_label, rwgs_input
+                                        ]
+    
+    elif selected_product == 'methanol':
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
         
@@ -176,47 +281,52 @@ def update_inv_costs(change, investment_cost_vbox):
         methanol_storage_label = widgets.Label("Methanol storage:")
         methanol_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
         
+        steam_label = widgets.Label("Steam plant:")
+        steam_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
         investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
         investment_cost_values['inv_cost_methanol'] = methanol_input
         investment_cost_values['inv_cost_methanol_storage'] = methanol_storage_input
+        investment_cost_values['inv_cost_steam'] = steam_input
         
         investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, 
                                          hydrogen_storage_label, hydrogen_storage_input,
                                          methanol_label, methanol_input,
-                                         methanol_storage_label, methanol_storage_input
+                                         methanol_storage_label, methanol_storage_input,
+                                         steam_label, steam_input
                                         ]
-
-    elif selected_product == 'ammonia':
+    
+    elif selected_product == 'synthetic_methane_gas':
+        anaerobic_label = widgets.Label("Anaerobic digestion plant:")
+        anaerobic_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        biomethanation_label = widgets.Label("Biomethanation plant:")
+        biomethanation_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        co2_remover_label = widgets.Label("CO2 removal plant:")
+        co2_remover_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
         
-        unit_xyz_label = widgets.Label("Unit XYZ (Ammonia):")
-        unit_xyz_input = widgets.FloatText(description="Cost XYZ:", value=placeholder_value, min=0)
+        methane_storage_label = widgets.Label("Methane storage:")
+        methane_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
         
         # Store values in investment dictionary
+        investment_cost_values['inv_cost_anaerobic'] = anaerobic_input
+        investment_cost_values['inv_cost_biomethanation'] = biomethanation_input
+        investment_cost_values['inv_cost_co2_removal'] = co2_remover_input
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
-        investment_cost_values['inv_cost_xyz'] = unit_xyz_input
-
-        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, unit_xyz_label, unit_xyz_input]
-
-    elif selected_product == 'jet_fuel':
-        electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        investment_cost_values['inv_cost_methane_storage'] = methane_storage_input
         
-        unit_xyz_label = widgets.Label("Unit XYZ (Jet Fuel):")
-        unit_xyz_input = widgets.FloatText(description="Cost XYZ:", value=placeholder_value, min=0)
-        
-        # Store values in investment dictionary
-        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
-        investment_cost_values['inv_cost_xyz'] = unit_xyz_input
-        
-        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, unit_xyz_label, unit_xyz_input]
-
-    else:
-        # If no product is selected:
-        investment_cost_vbox.children = [widgets.Label("Please select a product to define costs.")]
+        investment_cost_vbox.children = [anaerobic_label, anaerobic_input,
+                                         biomethanation_label, biomethanation_input,
+                                         co2_remover_label, co2_remover_input,
+                                         electrolyzer_label, electrolyzer_input, 
+                                         methane_storage_label, methane_storage_input
+                                        ]
 
 
 '''Define dropdown functions'''
@@ -266,7 +376,7 @@ def create_dropdown_price_zone():
 def create_dropdown_product():
     label3 = widgets.Label("Please set the product of the plant:")
     dropdown3 = widgets.Dropdown(
-        options=['ammonia', 'methanol', 'jet_fuel'],
+        options=['ammonia', 'egasoline', 'hydrogen', 'jet_fuel', 'methanol', 'synthetic_methane_gas'],
         value=None
     )
     # Observe changes in the dropdown and update investment costs
