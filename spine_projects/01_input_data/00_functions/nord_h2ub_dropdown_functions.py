@@ -147,6 +147,77 @@ def create_sections_elec():
     number_input_5.observe(on_number_change, names='value')
     return widgets.VBox([description_label_5, number_input_5]), number_input_5
 
+# Set Investment costs depending on type of product
+investment_cost_vbox = widgets.VBox()
+investment_cost_values = {}
+def update_inv_costs(change, investment_cost_vbox):
+    # Get selected product from the dropdown (methanol, ammonia, or jet_fuel)
+    selected_product = change['new']
+    
+    # Clear existing investment widgets (if any)
+    investment_cost_vbox.children = []
+    
+    # Clear the investment_cost_values dictionary before updating
+    investment_cost_values.clear()
+    
+    # Define the placeholder value for fields that are not yet interacted with
+    placeholder_value = 1.0
+    
+    if selected_product == 'methanol':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        hydrogen_storage_label = widgets.Label("Hydrogen storage:")
+        hydrogen_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        methanol_label = widgets.Label("Methanol reactor:")
+        methanol_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        methanol_storage_label = widgets.Label("Methanol storage:")
+        methanol_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
+        investment_cost_values['inv_cost_methanol'] = methanol_input
+        investment_cost_values['inv_cost_methanol_storage'] = methanol_storage_input
+        
+        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, 
+                                         hydrogen_storage_label, hydrogen_storage_input,
+                                         methanol_label, methanol_input,
+                                         methanol_storage_label, methanol_storage_input
+                                        ]
+
+    elif selected_product == 'ammonia':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        unit_xyz_label = widgets.Label("Unit XYZ (Ammonia):")
+        unit_xyz_input = widgets.FloatText(description="Cost XYZ:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_xyz'] = unit_xyz_input
+
+        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, unit_xyz_label, unit_xyz_input]
+
+    elif selected_product == 'jet_fuel':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0)
+        
+        unit_xyz_label = widgets.Label("Unit XYZ (Jet Fuel):")
+        unit_xyz_input = widgets.FloatText(description="Cost XYZ:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
+        investment_cost_values['inv_cost_xyz'] = unit_xyz_input
+        
+        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, unit_xyz_label, unit_xyz_input]
+
+    else:
+        # If no product is selected:
+        investment_cost_vbox.children = [widgets.Label("Please select a product to define costs.")]
+
 
 '''Define dropdown functions'''
 
@@ -170,7 +241,6 @@ def on_change_dict_investment(change):
         selected_value = option_values_invest[selected_option]
         selected_option_widget_invest_period.value = selected_option
         selected_value_widget_invest_period.value = selected_value
-    
 
 #create dropdown for the year
 def create_dropdown_year():
@@ -199,7 +269,8 @@ def create_dropdown_product():
         options=['ammonia', 'methanol', 'jet_fuel'],
         value=None
     )
-    dropdown3.observe(on_change)
+    # Observe changes in the dropdown and update investment costs
+    dropdown3.observe(lambda change: update_inv_costs(change, investment_cost_vbox), names='value')
     return widgets.VBox([label3, dropdown3]), dropdown3   
 
 #create dropdown for the electrolysis type
@@ -406,8 +477,6 @@ def create_combined_dropdowns_tabs():
     dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
     dropdown_period_vbox, dropdown_number, dropdown_period = create_dropdown_invest_period()
     
-
-    
     # Store dropdowns in a dictionary
     dropdowns = {
         'name': model_name_input,
@@ -455,7 +524,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page5 = widgets.VBox([
-            section_5, dropdown_investment_vbox, dropdown_period_vbox
+            section_5, dropdown_investment_vbox, dropdown_period_vbox, investment_cost_vbox
     ])
 
     page6 = widgets.VBox([
@@ -490,15 +559,18 @@ def create_combined_dropdowns_tabs():
     # Observe changes in dropdown_roll
     dropdown_roll.observe(toggle_number_slices, names='value')
 
-    # Function to show/hide investment period based on investment value
+    # Function to show/hide investment period and costs based on investment value
     def toggle_investment_period(change):
         if change['new']:
             dropdown_period_vbox.layout.display = 'block'
+            investment_cost_vbox.layout.display = 'block'
         else:
             dropdown_period_vbox.layout.display = 'none'
+            investment_cost_vbox.layout.display = 'none'
 
-    # Hide investment period by default
+    # Hide investment period and costs by default
     dropdown_period_vbox.layout.display = 'none'
+    investment_cost_vbox.layout.display = 'none'
     
     # Observe changes in dropdown_investment
     dropdown_investment.observe(toggle_investment_period, names='value')
@@ -509,7 +581,7 @@ def create_combined_dropdowns_tabs():
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
-    return {
+    values = {
         'model_name': dropdowns['name'].value,
         'year': dropdowns['year'].value,
         'price_zone': dropdowns['price_zone'].value,
@@ -518,25 +590,36 @@ def get_dropdown_values(dropdowns):
         'frequency': dropdowns['frequency'].value,
         'temporal_block': dropdowns['temporal_block'].value,
         'roll_forward': dropdowns['roll_forward'].value,
-        'candidate_nonzero': dropdowns['candidate_nonzero'].value,
         #'default_investment_period': dropdowns['default_investment_period'].value,
+        'candidate_nonzero': dropdowns['candidate_nonzero'].value,
         'default_investment_number': dropdowns['default_investment_number'].value,
         'default_investment_duration': dropdowns['default_investment_duration'].value,
-        #numerical values that are given in percent are divided by 100 to get the right numbers for the model
+        # Numerical values (percent) adjusted
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
         'power_price_variance': dropdowns['power_price_variance'].value,
         'num_slices': dropdowns['number_slices'].value,
         'des_segments_electrolyzer': dropdowns['levels_elec'].value,
-        #other text fields
+        # Other text fields
         'base_scen': dropdowns['base_scen'].value,
         #'other_scen': dropdowns['other_scen'].value,
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,
-        #multiple choice values
+        # Multiple choice values
         'outputs': dropdowns['reports']
     }
+    
+    # Adding the dynamic investment cost values from investment_cost_values
+    placeholder_value = 1.0
+    for key, widget in investment_cost_values.items():
+        if widget.value == placeholder_value:
+            values[key] = None
+        else:
+            values[key] = widget.value
+    
+    return values
+
 
 def compute_other_values(values):
     # Create DatetimeIndex for the range of dates
