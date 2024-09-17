@@ -43,7 +43,23 @@ def set_parameters(params):
         'roll_forward_use': True,
         'num_slices': 12,
         'candidate_nonzero': 1,
-        'investment_period_default': '1Y'
+        'investment_period_default': '1Y',
+        'inv_cost_ammonia_storage': None,
+        'inv_cost_anaerobic': None,
+        'inv_cost_asu': None,
+        'inv_cost_biomethanation': None,
+        'inv_cost_co2_removal': None,
+        'inv_cost_egasoline_storage': None,
+        'inv_cost_electrolyzer': None,
+        'inv_cost_fischer': None,
+        'inv_cost_haber': None,
+        'inv_cost_hydrogen_storage': None,
+        'inv_cost_jet_fuel_storage': None,
+        'inv_cost_methane_storage': None,
+        'inv_cost_methanol': None,
+        'inv_cost_methanol_storage': None,
+        'inv_cost_rwgs': None,
+        'inv_cost_steam': None
     }
 
     # Update default values with provided parameters
@@ -81,6 +97,22 @@ def set_parameters(params):
     num_slices = default_params['num_slices']
     candidate_nonzero = default_params['candidate_nonzero']
     investment_period_default = default_params['investment_period_default']
+    inv_cost_ammonia_storage = default_params['inv_cost_ammonia_storage']
+    inv_cost_anaerobic = default_params['inv_cost_anaerobic']
+    inv_cost_asu = default_params['inv_cost_asu']
+    inv_cost_biomethanation = default_params['inv_cost_biomethanation']
+    inv_cost_co2_removal = default_params['inv_cost_co2_removal']
+    inv_cost_egasoline_storage = default_params['inv_cost_egasoline_storage']
+    inv_cost_electrolyzer = default_params['inv_cost_electrolyzer']
+    inv_cost_fischer = default_params['inv_cost_fischer']
+    inv_cost_haber = default_params['inv_cost_haber']
+    inv_cost_hydrogen_storage = default_params['inv_cost_hydrogen_storage']
+    inv_cost_jet_fuel_storage = default_params['inv_cost_jet_fuel_storage']
+    inv_cost_methane_storage = default_params['inv_cost_methane_storage']
+    inv_cost_methanol = default_params['inv_cost_methanol']
+    inv_cost_methanol_storage = default_params['inv_cost_methanol_storage']
+    inv_cost_rwgs = default_params['inv_cost_rwgs']
+    inv_cost_steam = default_params['inv_cost_steam']
     
     # Here you can add any additional processing or return the parameters
     return (year, start_date, end_date, area, product, scenario, frequency, 
@@ -89,4 +121,6 @@ def set_parameters(params):
             electrolyzer_type, des_segments_electrolyzer, 
             share_of_dh_price_cap, price_level_power, power_price_variance, 
             roll_forward_use, roll_forward_size, num_slices, datetime_index, 
-            candidate_nonzero, investment_period_default)
+            candidate_nonzero, investment_period_default, 
+            inv_cost_ammonia_storage, inv_cost_anaerobic, inv_cost_asu, inv_cost_biomethanation, inv_cost_co2_removal, inv_cost_egasoline_storage, inv_cost_electrolyzer, inv_cost_fischer, inv_cost_haber, inv_cost_hydrogen_storage, inv_cost_jet_fuel_storage, inv_cost_methane_storage, inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs, inv_cost_steam
+           )
