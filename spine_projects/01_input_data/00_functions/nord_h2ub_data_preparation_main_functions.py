@@ -59,7 +59,17 @@ def set_parameters(params):
         'inv_cost_methanol': None,
         'inv_cost_methanol_storage': None,
         'inv_cost_rwgs': None,
-        'inv_cost_steam': None
+        'inv_cost_steam': None,
+        'capacity_asu': None,
+        'capacity_electrolyzer': None,
+        'capacity_haber': None,
+        'capacity_fischer': None,
+        'capacity_rwgs': None,
+        'capacity_methanol': None,
+        'capacity_steam': None,
+        'capacity_anaerobic': None,
+        'capacity_biomethanation': None,
+        'capacity_co2_removal': None
     }
 
     # Update default values with provided parameters
@@ -113,6 +123,16 @@ def set_parameters(params):
     inv_cost_methanol_storage = default_params['inv_cost_methanol_storage']
     inv_cost_rwgs = default_params['inv_cost_rwgs']
     inv_cost_steam = default_params['inv_cost_steam']
+    capacity_asu = default_params['capacity_asu']
+    capacity_electrolyzer = default_params['capacity_electrolyzer']
+    capacity_haber = default_params['capacity_haber']
+    capacity_fischer = default_params['capacity_fischer']
+    capacity_rwgs = default_params['capacity_rwgs']
+    capacity_methanol = default_params['capacity_methanol']
+    capacity_steam = default_params['capacity_steam']
+    capacity_anaerobic = default_params['capacity_anaerobic']
+    capacity_biomethanation = default_params['capacity_biomethanation']
+    capacity_co2_removal = default_params['capacity_co2_removal']
     
     # Here you can add any additional processing or return the parameters
     return (year, start_date, end_date, area, product, scenario, frequency, 
@@ -122,5 +142,9 @@ def set_parameters(params):
             share_of_dh_price_cap, price_level_power, power_price_variance, 
             roll_forward_use, roll_forward_size, num_slices, datetime_index, 
             candidate_nonzero, investment_period_default, 
-            inv_cost_ammonia_storage, inv_cost_anaerobic, inv_cost_asu, inv_cost_biomethanation, inv_cost_co2_removal, inv_cost_egasoline_storage, inv_cost_electrolyzer, inv_cost_fischer, inv_cost_haber, inv_cost_hydrogen_storage, inv_cost_jet_fuel_storage, inv_cost_methane_storage, inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs, inv_cost_steam
+            inv_cost_ammonia_storage, inv_cost_anaerobic, inv_cost_asu, inv_cost_biomethanation, inv_cost_co2_removal,
+            inv_cost_egasoline_storage, inv_cost_electrolyzer, inv_cost_fischer, inv_cost_haber, inv_cost_hydrogen_storage,
+            inv_cost_jet_fuel_storage, inv_cost_methane_storage, inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs,
+            inv_cost_steam, capacity_asu, capacity_electrolyzer, capacity_haber, capacity_fischer, capacity_rwgs, capacity_methanol,
+            capacity_steam, capacity_anaerobic, capacity_biomethanation, capacity_co2_removal
            )

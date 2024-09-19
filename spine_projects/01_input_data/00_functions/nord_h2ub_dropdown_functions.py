@@ -147,7 +147,7 @@ def create_sections_elec():
     number_input_5.observe(on_number_change, names='value')
     return widgets.VBox([description_label_5, number_input_5]), number_input_5
 
-# Set Investment costs depending on type of product
+# Set investment costs depending on type of product
 investment_cost_vbox = widgets.VBox()
 investment_cost_values = {}
 def update_inv_costs(change, investment_cost_vbox):
@@ -328,6 +328,136 @@ def update_inv_costs(change, investment_cost_vbox):
                                          methane_storage_label, methane_storage_input
                                         ]
 
+# Set capacities of units depending on type of product
+capacities_vbox = widgets.VBox()
+capacities_values = {}
+def update_capacities(change, capacities_vbox):
+    # Get selected product from the dropdown (methanol, ammonia, or jet_fuel)
+    selected_product = change['new']
+    
+    # Clear existing capacity widgets (if any)
+    capacities_vbox.children = []
+    
+    # Clear the capacities_values dictionary before updating
+    capacities_values.clear()
+    
+    # Define the placeholder value for fields that are not yet interacted with
+    placeholder_value = 1.0
+    
+    if selected_product == 'ammonia':        
+        asu_label = widgets.Label("Air separation unit")
+        asu_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        haber_label = widgets.Label("Haber-Bosch unit:")
+        haber_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+                
+        # Store values in investment dictionary
+        capacities_values['capacity_asu'] = asu_input
+        capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        capacities_values['capacity_haber'] = haber_input
+        
+        capacities_vbox.children = [asu_label, asu_input,
+                                    electrolyzer_label, electrolyzer_input,
+                                    haber_label, haber_input
+                                   ]
+    
+    elif selected_product == 'egasoline':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        fischer_label = widgets.Label("Fischer-Tropsch reactor:")
+        fischer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        rwgs_label = widgets.Label("RWGS reactor:")
+        rwgs_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        capacities_values['capacity_fischer'] = fischer_input
+        capacities_values['capacity_rwgs'] = rwgs_input
+        
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_input,
+                                    fischer_label, fischer_input,
+                                    rwgs_label, rwgs_input
+                                   ]
+    
+    elif selected_product == 'hydrogen':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_input]
+    
+    elif selected_product == 'jet_fuel':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        fischer_label = widgets.Label("Fischer-Tropsch reactor:")
+        fischer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        rwgs_label = widgets.Label("RWGS reactor:")
+        rwgs_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        capacities_values['capacity_fischer'] = fischer_input
+        capacities_values['capacity_rwgs'] = rwgs_input
+        
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_input,
+                                    fischer_label, fischer_input,
+                                    rwgs_label, rwgs_input
+                                   ]
+    
+    elif selected_product == 'methanol':
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        methanol_label = widgets.Label("Methanol reactor:")
+        methanol_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        steam_label = widgets.Label("Steam plant:")
+        steam_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        capacities_values['capacity_methanol'] = methanol_input
+        capacities_values['capacity_steam'] = steam_input
+        
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_input,
+                                    methanol_label, methanol_input,
+                                    steam_label, steam_input
+                                   ]
+    
+    elif selected_product == 'synthetic_methane_gas':
+        anaerobic_label = widgets.Label("Anaerobic digestion plant:")
+        anaerobic_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        biomethanation_label = widgets.Label("Biomethanation plant:")
+        biomethanation_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        co2_remover_label = widgets.Label("CO2 removal plant:")
+        co2_remover_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        electrolyzer_label = widgets.Label("Electrolyzer:")
+        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        
+        # Store values in investment dictionary
+        capacities_values['capacity_anaerobic'] = anaerobic_input
+        capacities_values['capacity_biomethanation'] = biomethanation_input
+        capacities_values['capacity_co2_removal'] = co2_remover_input
+        capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        
+        capacities_vbox.children = [anaerobic_label, anaerobic_input,
+                                    biomethanation_label, biomethanation_input,
+                                    co2_remover_label, co2_remover_input,
+                                    electrolyzer_label, electrolyzer_input
+                                    ]
+
 
 '''Define dropdown functions'''
 
@@ -376,11 +506,15 @@ def create_dropdown_price_zone():
 def create_dropdown_product():
     label3 = widgets.Label("Please set the product of the plant:")
     dropdown3 = widgets.Dropdown(
-        options=['ammonia', 'egasoline', 'hydrogen', 'jet_fuel', 'methanol', 'synthetic_methane_gas'],
-        value=None
+        options = ['ammonia', 'egasoline', 'hydrogen', 'jet_fuel', 'methanol', 'synthetic_methane_gas'],
+        value = None
     )
-    # Observe changes in the dropdown and update investment costs
-    dropdown3.observe(lambda change: update_inv_costs(change, investment_cost_vbox), names='value')
+    def on_dropdown_change(change):
+        update_inv_costs(change, investment_cost_vbox)  # Update investment costs box
+        update_capacities(change, capacities_vbox)      # Update capacities box
+
+    dropdown3.observe(on_dropdown_change, names='value')
+    
     return widgets.VBox([label3, dropdown3]), dropdown3   
 
 #create dropdown for the electrolysis type
@@ -615,13 +749,11 @@ def create_combined_dropdowns_tabs():
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, model_name_input_box, dropdown_frequency_vbox,
-        dropdown_roll_vbox, number_slices_vbox
+        section_1, model_name_input_box, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
     ])
     
     page2 = widgets.VBox([
-        section_2, dropdown_year_vbox, 
-        dropdown_price_zone_vbox, dropdown_product_vbox
+        section_2, dropdown_year_vbox, dropdown_price_zone_vbox, dropdown_product_vbox, capacities_vbox
     ])
     
     page3 = widgets.VBox([
@@ -629,8 +761,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page4 = widgets.VBox([
-        section_4, number_dh_price_box, number_price_level_power_box, 
-        power_price_variance_box
+        section_4, number_dh_price_box, number_price_level_power_box, power_price_variance_box
     ])
     
     page5 = widgets.VBox([
@@ -720,9 +851,16 @@ def get_dropdown_values(dropdowns):
         'outputs': dropdowns['reports']
     }
     
-    # Adding the dynamic investment cost values from investment_cost_values
+    # Adding the dynamic investment cost values from investment_cost_values if changed
     placeholder_value = 1.0
     for key, widget in investment_cost_values.items():
+        if widget.value == placeholder_value:
+            values[key] = None
+        else:
+            values[key] = widget.value
+
+    # Adding the dynamic capacities values if changed
+    for key, widget in capacities_values.items():
         if widget.value == placeholder_value:
             values[key] = None
         else:
@@ -776,4 +914,58 @@ def compute_other_values(values):
         'num_steps': num_steps
     }
 
-
+# Add investment costs and capacities to the parameters definition if previously set
+def set_inv_cap_values(values, parameters):
+    #investment costs
+    if 'inv_cost_ammonia_storage' in values:
+        parameters['inv_cost_ammonia_storage'] = values['inv_cost_ammonia_storage']
+    if 'inv_cost_anaerobic' in values:
+        parameters['inv_cost_anaerobic'] = values['inv_cost_anaerobic']
+    if 'inv_cost_asu' in values:
+        parameters['inv_cost_asu'] = values['inv_cost_asu']
+    if 'inv_cost_biomethanation' in values:
+        parameters['inv_cost_biomethanation'] = values['inv_cost_biomethanation']
+    if 'inv_cost_co2_removal' in values:
+        parameters['inv_cost_co2_removal'] = values['inv_cost_co2_removal']
+    if 'inv_cost_egasoline_storage' in values:
+        parameters['inv_cost_egasoline_storage'] = values['inv_cost_egasoline_storage']
+    if 'inv_cost_fischer' in values:
+        parameters['inv_cost_fischer'] = values['inv_cost_fischer'] 
+    if 'inv_cost_haber' in values:
+        parameters['inv_cost_haber'] = values['inv_cost_haber'] 
+    if 'inv_cost_jet_fuel_storage' in values:
+        parameters['inv_cost_jet_fuel_storage'] = values['inv_cost_jet_fuel_storage']    
+    if 'inv_cost_methane_storage' in values:
+        parameters['inv_cost_methane_storage'] = values['inv_cost_methane_storage']
+    if 'inv_cost_methanol' in values:
+        parameters['inv_cost_methanol'] = values['inv_cost_methanol']
+    if 'inv_cost_methanol_storage' in values:
+        parameters['inv_cost_methanol_storage'] = values['inv_cost_methanol_storage']
+    if 'inv_cost_rwgs' in values:
+        parameters['inv_cost_rwgs'] = values['inv_cost_rwgs']
+    if 'inv_cost_steam' in values:
+        parameters['inv_cost_steam'] = values['inv_cost_steam']
+    #capacities
+    if 'capacity_asu' in values:
+        parameters['capacity_asu'] = values['capacity_asu']
+    if 'capacity_electrolyzer' in values:
+        parameters['capacity_electrolyzer'] = values['capacity_electrolyzer']
+    if 'capacity_haber' in values:
+        parameters['capacity_haber'] = values['capacity_haber']
+    if 'capacity_fischer' in values:
+        parameters['capacity_fischer'] = values['capacity_fischer']
+    if 'capacity_rwgs' in values:
+        parameters['capacity_rwgs'] = values['capacity_rwgs']
+    if 'capacity_methanol' in values:
+        parameters['capacity_methanol'] = values['capacity_methanol']
+    if 'capacity_steam' in values:
+        parameters['capacity_steam'] = values['capacity_steam']
+    if 'capacity_anaerobic' in values:
+        parameters['capacity_anaerobic'] = values['capacity_anaerobic']
+    if 'capacity_biomethanation' in values:
+        parameters['capacity_biomethanation'] = values['capacity_biomethanation']
+    if 'capacity_co2_removal' in values:
+        parameters['capacity_co2_removal'] = values['capacity_co2_removal']
+    
+    return parameters
+    
