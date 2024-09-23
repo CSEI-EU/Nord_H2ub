@@ -695,9 +695,9 @@ def create_combined_dropdowns_tabs():
     section_2 = widgets.HTML("<b>Section 2: Please define the base parameters</b>")
     section_3 = widgets.HTML("<b>Section 3: Please define the parameters of electrolysis</b>")
     section_4 = widgets.HTML("<b>Section 4: Please define the economic parameters of the general model</b>")
-    section_5 = widgets.HTML("<b>Section 7: Please define the parameters for the investments</b>")
-    section_6 = widgets.HTML("<b>Section 5: Please define the variables for the report</b>")
-    section_7 = widgets.HTML("<b>Section 6: Please define the parameters for the different scenarios</b>")
+    section_5 = widgets.HTML("<b>Section 5: Please define the parameters for the investments</b>")
+    section_6 = widgets.HTML("<b>Section 6: Please define the variables for the report</b>")
+    section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the different scenarios</b>")
 
     # Get the dropdown menus
     model_name_input_box, model_name_input = create_name_input()
@@ -917,6 +917,8 @@ def compute_other_values(values):
 # Add investment costs and capacities to the parameters definition if previously set
 def set_inv_cap_values(values, parameters):
     #investment costs
+    if 'inv_cost_electrolyzer' in values:
+        parameters['inv_cost_electrolyzer'] = values['inv_cost_electrolyzer']
     if 'inv_cost_ammonia_storage' in values:
         parameters['inv_cost_ammonia_storage'] = values['inv_cost_ammonia_storage']
     if 'inv_cost_anaerobic' in values:
@@ -933,6 +935,8 @@ def set_inv_cap_values(values, parameters):
         parameters['inv_cost_fischer'] = values['inv_cost_fischer'] 
     if 'inv_cost_haber' in values:
         parameters['inv_cost_haber'] = values['inv_cost_haber'] 
+    if 'inv_cost_hydrogen_storage' in values:
+        parameters['inv_cost_hydrogen_storage'] = values['inv_cost_hydrogen_storage']
     if 'inv_cost_jet_fuel_storage' in values:
         parameters['inv_cost_jet_fuel_storage'] = values['inv_cost_jet_fuel_storage']    
     if 'inv_cost_methane_storage' in values:
