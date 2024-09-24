@@ -961,12 +961,20 @@ def adjust_frac_state_loss(storages_df, column_name):
     
     return storages_df
 
-# Convert lifetime + investment ... into days
+# Convert lifetime + investment horizon into days
 def convert_to_days(time_string, year):
-    # Extract the numeric value and the unit
-    num = int(time_string[:-1])  # All characters except the last one
-    unit = time_string[-1]  # The last character
-
+    if pd.isna(time_string) or not isinstance(time_string, str):
+        return None
+    
+    time_string = time_string.strip()
+    
+    try:
+        # Extract the numeric value and the unit
+        num = int(time_string[:-1])
+        unit = time_string[-1].upper()  # The last character, uppercase for consistency
+    except ValueError:
+        unit = None
+    
     # Define conversion factors
     conversion_factors = {
         'Y': 365 + calendar.isleap(year),
