@@ -24,8 +24,10 @@ def on_text_change(change):
     if change['type'] == 'change' and change['name'] == 'value':
         print(f'You entered: {change["new"]}')
 
+        
 def create_name_input():
-    label1 = widgets.Label("Please type the name of the model if other than 'Model':")
+    label1 = widgets.Label(
+        "Please type the name of the model if other than 'Model':")
     default_text = "Model"
     name_input = widgets.Text(
         value=default_text,
@@ -33,16 +35,20 @@ def create_name_input():
     name_input.observe(on_text_change, names='value')
     return widgets.VBox([label1, name_input]), name_input
 
+
 def create_name_rep_input():
-    label2 = widgets.Label("Please type the name of the report if other than 'Report':")
+    label2 = widgets.Label(
+        "Please type the name of the report if other than 'Report':")
     default_text = "Report"
     name_rep_input = widgets.Text(
         value=default_text,
     )
     return widgets.VBox([label2, name_rep_input]), name_rep_input
 
+
 def create_scen_name_input_sev():
-    label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
+    label3 = widgets.Label(
+        "Please type the name of the scenario if other than 'Base':")
     default_text = "Base"
     base_name_input = widgets.Text(
         value=default_text,
@@ -55,8 +61,10 @@ def create_scen_name_input_sev():
     )
     return widgets.VBox([label3, base_name_input, additional_names_input]), base_name_input, additional_names_input
 
+
 def create_scen_name_input():
-    label3 = widgets.Label("Please type the name of the scenario if other than 'Base':")
+    label3 = widgets.Label(
+        "Please type the name of the scenario if other than 'Base':")
     default_text = "Base"
     base_name_input = widgets.Text(
         value=default_text,
@@ -64,16 +72,20 @@ def create_scen_name_input():
     )
     return widgets.VBox([label3, base_name_input]), base_name_input
 
+
 def create_stoch_scen_input():
-    label4 = widgets.Label("Please type the name of the stochastic scenario if other than 'realization':")
+    label4 = widgets.Label(
+        "Please type the name of the stochastic scenario if other than 'realization':")
     default_text = "realization"
     stoch_scen_input = widgets.Text(
         value=default_text,
     )
     return widgets.VBox([label4, stoch_scen_input]), stoch_scen_input
 
+
 def create_stoch_struc_input():
-    label5 = widgets.Label("Please type the name of the stochastic structure if other than 'deterministic':")
+    label5 = widgets.Label(
+        "Please type the name of the stochastic structure if other than 'deterministic':")
     default_text = "deterministic"
     stoch_struc_input = widgets.Text(
         value=default_text,
@@ -87,9 +99,11 @@ def on_number_change(change):
     if change['type'] == 'change' and change['name'] == 'value':
         print(f'You entered: {change["new"]}')
 
+
 def create_share_of_dh_price_cap():
     default_number = 50  # Set as a default to not assume 100%
-    description_label_1 = widgets.Label("Set the assumed value for revenues from district heating as share of a max price (%):")
+    description_label_1 = widgets.Label(
+        "Set the assumed value for revenues from district heating as share of a max price (%):")
     number_input_1 = widgets.BoundedIntText(
         value=default_number,
         min=0,
@@ -99,8 +113,10 @@ def create_share_of_dh_price_cap():
     number_input_1.observe(on_number_change, names='value')
     return widgets.VBox([description_label_1, number_input_1]), number_input_1
 
+
 def create_price_level_power():
-    description_label_2 = widgets.Label("Set the assumed value for scaling the power price level up/down (%):")
+    description_label_2 = widgets.Label(
+        "Set the assumed value for scaling the power price level up/down (%):")
     number_input_2 = widgets.BoundedIntText(
         value=100,
         min=0,
@@ -110,9 +126,11 @@ def create_price_level_power():
     number_input_2.observe(on_number_change, names='value')
     return widgets.VBox([description_label_2, number_input_2]), number_input_2
 
+
 def create_power_price_variance():
     default_number = 1
-    description_label_3 = widgets.Label("Set the assumed variance of the power prices:")
+    description_label_3 = widgets.Label(
+        "Set the assumed variance of the power prices:")
     number_input_3 = widgets.BoundedIntText(
         value=1,
         min=0,
@@ -122,10 +140,12 @@ def create_power_price_variance():
     number_input_3.observe(on_number_change, names='value')
     return widgets.VBox([description_label_3, number_input_3]), number_input_3
 
+
 def create_number_opt_horizons():
     #define the number of horizons for a rolling horizon optimization
     default_number = 1
-    description_label_4 = widgets.Label("Set the number of optimization horizons for the model:")
+    description_label_4 = widgets.Label(
+        "Set the number of optimization horizons for the model:")
     number_input_4 = widgets.BoundedIntText(
         value=12,
         min=0,
@@ -134,6 +154,7 @@ def create_number_opt_horizons():
     )
     number_input_4.observe(on_number_change, names='value')
     return widgets.VBox([description_label_4, number_input_4]), number_input_4
+
 
 def create_sections_elec():
     default_number = 1
@@ -146,6 +167,7 @@ def create_sections_elec():
     )
     number_input_5.observe(on_number_change, names='value')
     return widgets.VBox([description_label_5, number_input_5]), number_input_5
+
 
 # Set investment costs depending on type of product
 investment_cost_vbox = widgets.VBox()
@@ -328,6 +350,7 @@ def update_inv_costs(change, investment_cost_vbox):
                                          methane_storage_label, methane_storage_input
                                         ]
 
+
 # Set capacities of units depending on type of product
 capacities_vbox = widgets.VBox()
 capacities_values = {}
@@ -466,6 +489,7 @@ def on_change(change):
     if change['name'] == 'value' and change['new'] != "":
         print(f'You selected: {change["new"]}')
 
+
 # Function to handle the change in dropdown selection
 def on_change_dict(change):
     if change['type'] == 'change' and change['name'] == 'value':
@@ -474,6 +498,7 @@ def on_change_dict(change):
         selected_option_widget.value = selected_option
         selected_value_widget.value = selected_value
 
+        
 # Function to handle the change in investment dropdown selection
 def on_change_dict_investment(change):
     if change['type'] == 'change' and change['name'] == 'value':
@@ -492,6 +517,7 @@ def create_dropdown_year():
     dropdown1.observe(on_change)
     return widgets.VBox([label1, dropdown1]), dropdown1
 
+
 #create dropdown for the power price zone
 def create_dropdown_price_zone():
     label2 = widgets.Label("Please select the power price zone where the plant is located:")
@@ -501,6 +527,7 @@ def create_dropdown_price_zone():
     )
     dropdown2.observe(on_change)
     return widgets.VBox([label2, dropdown2]), dropdown2   
+
 
 #create dropdown for the product
 def create_dropdown_product():
@@ -517,6 +544,7 @@ def create_dropdown_product():
     
     return widgets.VBox([label3, dropdown3]), dropdown3   
 
+
 #create dropdown for the electrolysis type
 def create_dropdown_electrolysis():
     label4 = widgets.Label("Please select the type of electrolysis:")
@@ -527,11 +555,12 @@ def create_dropdown_electrolysis():
     dropdown4.observe(on_change)
     return widgets.VBox([label4, dropdown4]), dropdown4  
 
+
 # Create dropdown for the model frequency
 def create_dropdown_frequency():
     # Dictionary to map options to their corresponding values
     # Declare as global to access in on_change_dict
-    global option_values, selected_option_widget, selected_value_widget  # Declare as global to access in on_change
+    global option_values, selected_option_widget, selected_value_widget  
     option_values = {
         '1h': 'hourly',
         '1D': 'daily',
@@ -552,9 +581,13 @@ def create_dropdown_frequency():
     dropdown5.observe(on_change_dict, names='value')
     return widgets.VBox([label5, dropdown5]), selected_option_widget, selected_value_widget
 
+
 #create dropdown for the whether or not roll_forward is used
+roll_forward_use = True
 def create_dropdown_roll():
-    label6 = widgets.Label("Please select whether or not the model should run with a rolling horizon optimization:")
+    label6 = widgets.Label(
+        "Please select whether or not the model should run with a rolling horizon optimization:"
+    )
     dropdown6 = widgets.Dropdown(
         options=[True, False],
         value=False
@@ -562,7 +595,6 @@ def create_dropdown_roll():
     dropdown6.observe(on_change)
     return widgets.VBox([label6, dropdown6]), dropdown6
 
-roll_forward_use = True
 
 #create dropdown for whether or not investments can be made
 def create_dropdown_investment():
@@ -575,18 +607,17 @@ def create_dropdown_investment():
     dropdown7.observe(on_change)
     return widgets.VBox([label7, dropdown7]), dropdown7
 
+
 # Create dropdown for the default investment period
 def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
-
-    
     label8 = widgets.Label("Please select the investment period:")
     
     number_input_8 = widgets.BoundedIntText(
         value=1,
         min=1,
         max=30,
-        step=1,
+        step=1
     )
     number_input_8.observe(on_number_change, names='value')
 
@@ -597,20 +628,106 @@ def create_dropdown_invest_period():
     )
 
     dropdown8.observe(on_change)
-
-    #selected_invest_option_total =  widgets.Label(f"{number_input_8.value}{dropdown8.value}")
-
+    
     return widgets.VBox([label8, number_input_8, dropdown8]), number_input_8, dropdown8
 
 
 '''Define multiple choice functions'''
 
-def on_change_MC(change, selected_options_report, checkbox):
+def on_change_MC_report(change, selected_options_report, checkbox):
     if change['new']:
         selected_options_report.add(checkbox.description)
-        print(f'You added {checkbox.description} to the report.')
+        print(f'You added {checkbox.description} to the report.') #added more text to make it clearer for reports
     else:
         selected_options_report.discard(checkbox.description)
+
+        
+def create_multiple_choice_power():
+    label_power = widgets.Label("Please select the different power sources available:")
+    
+    # Define the list of options
+    options_power = ['Solar plant', 'Wind farm']
+    
+    # Define preselected options
+    preselected_options_power = {'Solar plant'}
+    
+    # Initialize selected_options_power with preselected options
+    selected_options_power = set(preselected_options_power)
+    
+    # Separate options into preselected and non-preselected
+    preselected_checks_power = [option for option in options_power if option in preselected_options_power]
+    non_preselected_checks_power = [option for option in options_power if option not in preselected_options_power]
+    
+    checkboxes_powers = []
+    
+    # Initiate dictionary for the capacity of each option
+    capacities_powers = {}
+    capacities_powers_values = {}
+    hbox_capacities_powers = []
+    
+    def on_change_MC_power(change, selected_options_power, checkbox):
+        if checkbox.value:  # If checkbox is checked
+            selected_options_power.add(checkbox.description)
+        else:  # Remove the option if unchecked
+            selected_options_power.discard(checkbox.description)
+        update_capacity_fields()  
+    
+    # Function to update the capacity fields visibility
+    def update_capacity_fields():
+        for option, hbox in capacities_powers.items():
+            if option in selected_options_power:
+                hbox.layout.display = 'flex'
+            else:
+                hbox.layout.display = 'none'
+    
+    # Function to update the capacities_powers_values when changed
+    def on_capacity_change(change, option):
+        capacities_powers_values[option] = change['new']
+    
+    # Create checkboxes for preselected options first
+    for option in preselected_checks_power:
+        checkbox = widgets.Checkbox(
+            value=True,  # All preselected options should be checked
+            description=option)
+        checkbox.observe(lambda change, 
+                         checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
+                         names='value')
+        checkboxes_powers.append(checkbox)
+    
+    # Create checkboxes for non-preselected options
+    for option in non_preselected_checks_power:
+        checkbox = widgets.Checkbox(
+            value=False,  # Non-preselected options should be unchecked
+            description=option)
+        checkbox.observe(lambda change, 
+                         checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
+                         names='value')
+        checkboxes_powers.append(checkbox)
+    
+    # Create capacity fields for each option (hidden initially):
+    for option in options_power:
+        capacity_widget = widgets.FloatText(
+            value=1.0,
+            layout=widgets.Layout(width='50%')
+        )
+        label = widgets.Label(f"{option} capacity (MW):")
+        
+        hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none'))
+        capacities_powers[option] = hbox
+        hbox_capacities_powers.append(hbox)
+        
+        capacities_powers_values[option] = capacity_widget.value
+        capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
+    
+    # Layout for checkboxes and capacity inputs
+    power_column = widgets.VBox(checkboxes_powers)
+    capacity_column = widgets.VBox(hbox_capacities_powers)
+    
+    #Update capacity fields visibiliy based on preselected options
+    update_capacity_fields()
+    
+    return widgets.VBox([label_power, power_column, capacity_column]), selected_options_power, capacities_powers_values
+  
 
 def create_multiple_choice_report():
     # Define the list of options
@@ -619,20 +736,16 @@ def create_multiple_choice_report():
         'connection_flow', 'connection_flow_costs', 'connection_intact_flow', 'connection_investment_costs', 
         'connections_decommissioned', 'connections_invested', 'connections_invested_available', 
         'contingency_is_binding', 'fixed_om_costs', 'fuel_costs', 'mga_objective', 'mp_objective_lowerbound', 
-        'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state', 'node_voltage_angle', 
+        'node_injection', 'node_pressure', 'node_slack_neg', 'node_slack_pos', 'node_state','node_voltage_angle', 
         'nonspin_units_shut_down', 'nonspin_units_started_up', 'objective_penalties', 'relative_optimality_gap', 
         'renewable_curtailment_costs', 'res_proc_costs', 'shut_down_costs', 'start_up_costs', 
-        'storage_investment_costs', 'storages_decommissioned', 'storages_invested', 'storages_invested_available', 
+        'storage_investment_costs', 'storages_decommissioned', 'storages_invested','storages_invested_available', 
         'taxes', 'total_costs', 'unit_flow', 'unit_flow_op', 'unit_flow_op_active', 'unit_investment_costs', 
         'units_invested', 'units_invested_available', 'units_mothballed', 'units_on', 'units_on_costs', 
         'units_shut_down', 'units_started_up', 'variable_om_costs'
     ]
     
     # Define preselected options
-    #preselected_options_without_investments = {
-    #    'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 
-    #    'unit_flow', 'unit_flow_op'
-    #}
     preselected_options = {
         'connection_flow', 'node_slack_pos', 'node_slack_neg', 'node_state', 'total_costs', 
         'unit_flow', 'unit_flow_op', 
@@ -657,7 +770,7 @@ def create_multiple_choice_report():
             description=option
         )
         checkbox.observe(lambda change, 
-                         checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),
+                         checkbox=checkbox: on_change_MC_report(change, selected_options_report, checkbox),
                          names='value'
                         )
         checkboxes.append(checkbox)
@@ -678,13 +791,15 @@ def create_multiple_choice_report():
     columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
+    hbox_report = widgets.HBox(columns,
+                        layout = widgets.Layout(overflow = 'hidden',
+                                                justify_content = 'flex-start',
+                                                width = '130%'
+                                               ))
     
-    # Function to return the list of selected options
-    def get_selected_options():
-        return list(selected_options_report)
-    
-    label = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label, widgets.HBox(columns)]), selected_options_report
+    label2 = widgets.Label("Please select the outputs for the report:")
+    return widgets.VBox([label2, hbox_report]), selected_options_report
+
 
 
 '''Define functions for the combined data definition menu'''
@@ -711,6 +826,7 @@ def create_combined_dropdowns_tabs():
     power_price_variance_box, power_price_variance = create_power_price_variance()
     report_name_box, report_name = create_name_rep_input()
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
+    multiple_choice_power_box, selected_powers, capacities_powers = create_multiple_choice_power()
     scen_name_box, base_scen = create_scen_name_input()
     #scen_name_box, base_scen, other_scen = create_scen_name_input_sev()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
@@ -727,6 +843,8 @@ def create_combined_dropdowns_tabs():
         'year': dropdown_year,
         'price_zone': dropdown_price_zone,
         'product': dropdown_product,
+        'powers': selected_powers,
+        'capacities_powers': capacities_powers,
         'electrolysis': dropdown_electrolysis,
         'frequency': dropdown_frequency,
         'temporal_block': dropdown_temporal,
@@ -753,7 +871,8 @@ def create_combined_dropdowns_tabs():
     ])
     
     page2 = widgets.VBox([
-        section_2, dropdown_year_vbox, dropdown_price_zone_vbox, dropdown_product_vbox, capacities_vbox
+        section_2, multiple_choice_power_box, dropdown_product_vbox, capacities_vbox, dropdown_year_vbox, 
+        dropdown_price_zone_vbox
     ])
     
     page3 = widgets.VBox([
@@ -787,19 +906,19 @@ def create_combined_dropdowns_tabs():
     tabs.set_title(5, 'Scenario')
     tabs.set_title(6, 'Results')
     
+    
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
         if change['new']:
             number_slices_vbox.layout.display = 'block'
         else:
             number_slices_vbox.layout.display = 'none'
-
     # Hide number_slices by default
     number_slices_vbox.layout.display = 'none'
-    
     # Observe changes in dropdown_roll
     dropdown_roll.observe(toggle_number_slices, names='value')
 
+    
     # Function to show/hide investment period and costs based on investment value
     def toggle_investment_period(change):
         if change['new']:
@@ -808,17 +927,16 @@ def create_combined_dropdowns_tabs():
         else:
             dropdown_period_vbox.layout.display = 'none'
             investment_cost_vbox.layout.display = 'none'
-
     # Hide investment period and costs by default
     dropdown_period_vbox.layout.display = 'none'
     investment_cost_vbox.layout.display = 'none'
-    
     # Observe changes in dropdown_investment
     dropdown_investment.observe(toggle_investment_period, names='value')
-
+   
     display(tabs)
     
     return tabs, dropdowns
+
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
@@ -835,20 +953,25 @@ def get_dropdown_values(dropdowns):
         'candidate_nonzero': dropdowns['candidate_nonzero'].value,
         'default_investment_number': dropdowns['default_investment_number'].value,
         'default_investment_duration': dropdowns['default_investment_duration'].value,
+        
         # Numerical values (percent) adjusted
+        'capacities_powers': dropdowns['capacities_powers'],
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
         'power_price_variance': dropdowns['power_price_variance'].value,
         'num_slices': dropdowns['number_slices'].value,
         'des_segments_electrolyzer': dropdowns['levels_elec'].value,
+        
         # Other text fields
         'base_scen': dropdowns['base_scen'].value,
         #'other_scen': dropdowns['other_scen'].value,
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,
+        
         # Multiple choice values
-        'outputs': dropdowns['reports']
+        'outputs': dropdowns['reports'],
+        'powers': dropdowns['powers']
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed
@@ -865,6 +988,12 @@ def get_dropdown_values(dropdowns):
             values[key] = None
         else:
             values[key] = widget.value
+    
+    # Removing the power capacities if unchanged
+    for key, value in dropdowns['capacities_powers'].items():
+        if value == 1:
+            dropdowns['capacities_powers'][key] = None
+    values['capacities_powers'] = dropdowns['capacities_powers']
     
     return values
 
@@ -913,6 +1042,7 @@ def compute_other_values(values):
         'temporal_block': temporal_block,
         'num_steps': num_steps
     }
+
 
 # Add investment costs and capacities to the parameters definition if previously set
 def set_inv_cap_values(values, parameters):
