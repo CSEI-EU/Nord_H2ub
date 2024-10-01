@@ -989,6 +989,8 @@ def convert_to_days(time_string, year):
     if unit in conversion_factors:
         days = num * conversion_factors[unit]
         return f"{days}D"
+    else:
+        return None
 
 # Scale investment costs to actual model duration
 def scale_costs(df, start, end, object):

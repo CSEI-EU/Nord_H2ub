@@ -646,7 +646,7 @@ def create_multiple_choice_power():
     label_power = widgets.Label("Please select the different power sources available:")
     
     # Define the list of options
-    options_power = ['Solar plant', 'Wind farm']
+    options_power = ['Solar plant', 'Wind onshore', 'Wind offshore']
     
     # Define preselected options
     preselected_options_power = {'Solar plant'}
