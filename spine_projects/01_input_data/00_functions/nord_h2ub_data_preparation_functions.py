@@ -93,7 +93,7 @@ def calculate_opt_horizons(datetime_index, num_slices):
 def process_dataframe(df, column_name, category_value):
     df_new = df[[column_name]].copy()
     df_new['Category'] = category_value
-    df_new = df_new.rename(columns={column_name: 'Object_Name'})
+    df_new = df_new.rename(columns={column_name: 'Object_name'})
     return df_new
 
 def create_definition_dataframe(df_model_units, df_model_connections):
@@ -129,7 +129,7 @@ def create_definition_dataframe(df_model_units, df_model_connections):
     unique_nodes_list = list(set(all_nodes_list))
 
     # Create a dataframe for nodes
-    df_nodes = pd.DataFrame(unique_nodes_list, columns=['Object_Name'])
+    df_nodes = pd.DataFrame(unique_nodes_list, columns=['Object_name'])
     df_nodes['Category'] = 'node'
     df_nodes = df_nodes.dropna()
 
@@ -376,18 +376,18 @@ def object_relationship_connection_nodes(df_model_connections):
 #function to prepare all parameters that are directly linked to a unit
 def create_unit_parameters(input_df, object_class_type, parameter_column):
     # New DataFrame to store the information
-    unit_parameter_df = pd.DataFrame(columns=['Object_Name', 'Category', 'parameter', 'value'])
+    unit_parameter_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value'])
 
     # Iterate through rows and add new rows to the new DataFrame if the parameter has a value
     for index, row in input_df.iterrows():
         if pd.notna(row[parameter_column]):
-            new_row = {'Object_Name': row[object_class_type], 'Category': object_class_type.lower(), 'parameter': parameter_column, 'value': row[parameter_column]}
+            new_row = {'Object_name': row[object_class_type], 'Category': object_class_type.lower(), 'Parameter': parameter_column, 'Value': row[parameter_column]}
             unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([new_row])], ignore_index=True)
 
             # Check if parameter_column is 'min_down_time'
             if parameter_column == 'min_down_time':
                 # Create an additional row with 'online_variable_type' and value 'unit_online_variable_type_integer'
-                online_variable_row = {'Object_Name': row[object_class_type], 'Category': object_class_type.lower(), 'parameter': 'online_variable_type', 'value': 'unit_online_variable_type_integer'}
+                online_variable_row = {'Object_name': row[object_class_type], 'Category': object_class_type.lower(), 'Parameter': 'online_variable_type', 'Value': 'unit_online_variable_type_integer'}
                 unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([online_variable_row])], ignore_index=True)
 
     return unit_parameter_df
@@ -774,14 +774,14 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
         if row_resolution != temporal_block:
             #definition
             new_def = pd.DataFrame([
-                {"Object_Name": f"{row['Output1']}_demand", "Category": "node"},
-                {"Object_Name": f"{row['Output1']}_demand_connection", "Category": "connection"}
+                {"Object_name": f"{row['Output1']}_demand", "Category": "node"},
+                {"Object_name": f"{row['Output1']}_demand_connection", "Category": "connection"}
             ])
             df_definition = pd.concat([df_definition, new_def], ignore_index=True)
             
             #demand value
             new_value = {col: np.nan for col in df_nodes.columns}
-            new_value["Object_Name"] = f"{row['Output1']}_demand"
+            new_value["Object_name"] = f"{row['Output1']}_demand"
             new_value["Category"] = "node"
             new_value["balance_type"] = "balance_type_node"
             new_value["demand"] = row['demand']
@@ -790,7 +790,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
             #connection value
             new_con = {col: np.nan for col in df_connections.columns}
-            new_con["Object_Name"] = f"{row['Output1']}_demand_connection"
+            new_con["Object_name"] = f"{row['Output1']}_demand_connection"
             new_con["Category"] = "connection"
             new_con["Connection_type"] = "connection_type_normal"
             df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
@@ -842,7 +842,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
         else: 
             new_value = {col: np.nan for col in df_nodes.columns}
-            new_value["Object_Name"] = row['Output1']
+            new_value["Object_name"] = row['Output1']
             new_value["Category"] = "node"
             new_value["demand"] = row['demand']
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
@@ -881,7 +881,7 @@ def create_temporal_block_relationships(resolution_column, output_column, model_
         return
     
     #Check if specific demand node exists
-    if f"{output_column}_demand" in df_definition['Object_Name'].values:
+    if f"{output_column}_demand" in df_definition['Object_name'].values:
         node_name = f"{output_column}_demand"
     else:
         node_name = output_column
