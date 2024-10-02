@@ -8,6 +8,7 @@ The functions include the logical prossecing, mathematical calculation
 logic for the preparation of the input data file for the model runs.
 SPDX-FileCopyrightText: Johannes Giehl <jfg.eco@cbs.dk>
 SPDX-FileCopyrightText: Dana Hentschel <djh.eco@cbs.dk>
+SPDX-FileCopyrightText: Lucia Ciprian <luc.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
 
@@ -374,20 +375,25 @@ def object_relationship_connection_nodes(df_model_connections):
 
 
 #function to prepare all parameters that are directly linked to a unit
-def create_unit_parameters(input_df, object_class_type, parameter_column):
+def create_object_parameters(input_df, object_class_type, parameter_column):
     # New DataFrame to store the information
     unit_parameter_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value'])
 
     # Iterate through rows and add new rows to the new DataFrame if the parameter has a value
     for index, row in input_df.iterrows():
         if pd.notna(row[parameter_column]):
-            new_row = {'Object_name': row[object_class_type], 'Category': object_class_type.lower(), 'Parameter': parameter_column, 'Value': row[parameter_column]}
+            new_row = {'Object_name': row[object_class_type], 
+                       'Category': object_class_type.lower(), 
+                       'Parameter': parameter_column, 'Value': row[parameter_column]}
             unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([new_row])], ignore_index=True)
 
             # Check if parameter_column is 'min_down_time'
             if parameter_column == 'min_down_time':
                 # Create an additional row with 'online_variable_type' and value 'unit_online_variable_type_integer'
-                online_variable_row = {'Object_name': row[object_class_type], 'Category': object_class_type.lower(), 'Parameter': 'online_variable_type', 'Value': 'unit_online_variable_type_integer'}
+                online_variable_row = {'Object_name': row[object_class_type], 
+                                       'Category': object_class_type.lower(), 
+                                       'Parameter': 'online_variable_type', 
+                                       'Value': 'unit_online_variable_type_integer'}
                 unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([online_variable_row])], ignore_index=True)
 
     return unit_parameter_df
