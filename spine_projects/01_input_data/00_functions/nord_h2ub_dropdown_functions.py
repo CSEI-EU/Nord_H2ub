@@ -189,8 +189,13 @@ def update_inv_costs(change, investment_cost_vbox):
     placeholder_value = 1.0
 
     # Define a layout for the FloatText widgets with wider description space
-    float_text_layout = widgets.Layout(width='350px')  
-    float_text_style = {'description_width': '180px'}
+    float_text_layout = widgets.Layout(width='400px')  
+    float_text_style = {'description_width': '200px', 'text_align': 'left'}
+
+    # Headline for the investment costs block
+    investment_headline = widgets.Label("Please define the investment cost and maximal installed capacities per MW or MWh",
+    style={'font_weight': 'bold', 'font_size': '13px'})
+
     
     if selected_product == 'ammonia':
         ammonia_storage_label = widgets.Label("Ammonia storage:")
@@ -220,7 +225,8 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_haber'] = haber_input
         investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
 
-        investment_cost_vbox.children = [ammonia_storage_label, ammonia_storage_input,
+        investment_cost_vbox.children = [investment_headline,
+                                         ammonia_storage_label, ammonia_storage_input,
                                          asu_label, asu_input,
                                          electrolyzer_label, electrolyzer_input, 
                                          haber_label, haber_input,
@@ -255,7 +261,8 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
         investment_cost_values['inv_cost_rwgs'] = rwgs_input
         
-        investment_cost_vbox.children = [egasoline_storage_label, egasoline_storage_input,
+        investment_cost_vbox.children = [investment_headline,
+                                         egasoline_storage_label, egasoline_storage_input,
                                          electrolyzer_label, electrolyzer_input, 
                                          fischer_label, fischer_input,
                                          hydrogen_storage_label, hydrogen_storage_input,
@@ -267,15 +274,16 @@ def update_inv_costs(change, investment_cost_vbox):
         electrolyzer_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
         layout=float_text_layout, style=float_text_style)
         
-        hydrogen_storage_label = widgets.Label("Hydrogen storage [€/MWh storage]:")
-        hydrogen_storage_input = widgets.FloatText(description="Costs:", value=placeholder_value, min=0,
+        hydrogen_storage_label = widgets.Label("Hydrogen storage:")
+        hydrogen_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
         layout=float_text_layout, style=float_text_style)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
         investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
         
-        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, 
+        investment_cost_vbox.children = [investment_headline,
+                                         electrolyzer_label, electrolyzer_input, 
                                          hydrogen_storage_label, hydrogen_storage_input
                                         ]
     
@@ -307,7 +315,8 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_jet_fuel_storage'] = jet_fuel_storage_input
         investment_cost_values['inv_cost_rwgs'] = rwgs_input
         
-        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, 
+        investment_cost_vbox.children = [investment_headline,
+                                         electrolyzer_label, electrolyzer_input, 
                                          fischer_label, fischer_input,
                                          hydrogen_storage_label, hydrogen_storage_input,
                                          jet_fuel_storage_label, jet_fuel_storage_input,
@@ -318,7 +327,7 @@ def update_inv_costs(change, investment_cost_vbox):
 
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        layout=float_text_layout, style=float_text_style, justify_content="flex-end")
         electrolyzer_limit = widgets.FloatText(description="Capacity limit [MW input power]:", value=placeholder_value, min=0,
         layout=float_text_layout, style=float_text_style)
         
@@ -360,7 +369,8 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_limit_values['inv_limit_steam'] = steam_limit
 
         
-        investment_cost_vbox.children = [electrolyzer_label, electrolyzer_input, electrolyzer_limit,
+        investment_cost_vbox.children = [investment_headline,
+                                         electrolyzer_label, electrolyzer_input, electrolyzer_limit,
                                          hydrogen_storage_label, hydrogen_storage_input, hydrogen_storage_limit,
                                          methanol_label, methanol_input, methanol_limit,
                                          methanol_storage_label, methanol_storage_input, methanol_storage_limit,
@@ -395,7 +405,8 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
         investment_cost_values['inv_cost_methane_storage'] = methane_storage_input
         
-        investment_cost_vbox.children = [anaerobic_label, anaerobic_input,
+        investment_cost_vbox.children = [investment_headline, 
+                                         anaerobic_label, anaerobic_input,
                                          biomethanation_label, biomethanation_input,
                                          co2_remover_label, co2_remover_input,
                                          electrolyzer_label, electrolyzer_input, 
