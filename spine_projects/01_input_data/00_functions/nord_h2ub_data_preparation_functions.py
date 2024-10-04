@@ -791,7 +791,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_value["Category"] = "node"
             new_value["balance_type"] = "balance_type_node"
             new_value["demand"] = row['demand']
-            new_value["node_slack_penalty"] = 100000
+            new_value["node_slack_penalty"] = 1000000
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
             
             #connection value
