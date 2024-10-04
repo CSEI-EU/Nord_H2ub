@@ -72,6 +72,22 @@ def set_parameters(params):
         'capacity_anaerobic': None,
         'capacity_biomethanation': None,
         'capacity_co2_removal': None
+        'inv_limit_ammonia_storage': None,
+        'inv_limit_anaerobic': None,
+        'inv_limit_asu': None,
+        'inv_limit_biomethanation': None,
+        'inv_limit_co2_removal': None,
+        'inv_limit_egasoline_storage': None,
+        'inv_limit_electrolyzer': None,
+        'inv_limit_fischer': None,
+        'inv_limit_haber': None,
+        'inv_limit_hydrogen_storage': None,
+        'inv_limit_jet_fuel_storage': None,
+        'inv_limit_methane_storage': None,
+        'inv_limit_methanol': None,
+        'inv_limit_methanol_storage': None,
+        'inv_limit_rwgs': None,
+        'inv_limit_steam': None,
     }
 
     # Update default values with provided parameters
@@ -137,6 +153,22 @@ def set_parameters(params):
     capacity_anaerobic = default_params['capacity_anaerobic']
     capacity_biomethanation = default_params['capacity_biomethanation']
     capacity_co2_removal = default_params['capacity_co2_removal']
+    inv_limit_ammonia_storage = default_params['inv_limit_ammonia_storage']
+    inv_limit_anaerobic = default_params['inv_limit_anaerobic']
+    inv_limit_asu = default_params['inv_limit_asu']
+    inv_limit_biomethanation = default_params['inv_limit_biomethanation']
+    inv_limit_co2_removal = default_params['inv_limit_co2_removal']
+    inv_limit_egasoline_storage = default_params['inv_limit_egasoline_storage']
+    inv_limit_electrolyzer = default_params['inv_limit_electrolyzer']
+    inv_limit_fischer = default_params['inv_limit_fischer']
+    inv_limit_haber = default_params['inv_limit_haber']
+    inv_limit_hydrogen_storage = default_params['inv_limit_hydrogen_storage']
+    inv_limit_jet_fuel_storage = default_params['inv_limit_jet_fuel_storage']
+    inv_limit_methane_storage = default_params['inv_limit_methane_storage']
+    inv_limit_methanol = default_params['inv_limit_methanol']
+    inv_limit_methanol_storage = default_params['inv_limit_methanol_storage']
+    inv_limit_rwgs = default_params['inv_limit_rwgs']
+    inv_limit_steam = default_params['inv_limit_steam']
     
     # Here you can add any additional processing or return the parameters
     return (year, start_date, end_date, area, product, powers, powers_capacities, scenario, frequency, 
@@ -149,7 +181,12 @@ def set_parameters(params):
             inv_cost_ammonia_storage, inv_cost_anaerobic, inv_cost_asu, inv_cost_biomethanation, 
             inv_cost_co2_removal, inv_cost_egasoline_storage, inv_cost_electrolyzer, inv_cost_fischer, 
             inv_cost_haber, inv_cost_hydrogen_storage, inv_cost_jet_fuel_storage, inv_cost_methane_storage, 
-            inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs, inv_cost_steam, capacity_asu, 
+            inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs, inv_cost_steam, 
+            capacity_asu, 
             capacity_electrolyzer, capacity_haber, capacity_fischer, capacity_rwgs, capacity_methanol,
-            capacity_steam, capacity_anaerobic, capacity_biomethanation, capacity_co2_removal
+            capacity_steam, capacity_anaerobic, capacity_biomethanation, capacity_co2_removal,
+            inv_limit_ammonia_storage, inv_limit_anaerobic, inv_limit_asu, inv_limit_biomethanation, 
+            inv_limit_co2_removal, inv_limit_egasoline_storage, inv_limit_electrolyzer, inv_limit_fischer, 
+            inv_limit_haber, inv_limit_hydrogen_storage, inv_limit_jet_fuel_storage, inv_limit_methane_storage, 
+            inv_limit_methanol, inv_limit_methanol_storage, inv_limit_rwgs, inv_limit_steam, 
            )
