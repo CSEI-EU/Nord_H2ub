@@ -1046,6 +1046,14 @@ def get_dropdown_values(dropdowns):
         else:
             values[key] = widget.value
 
+    # Adding the investment limit values from investment_limit_values if changed
+    placeholder_value = 1.0
+    for key, widget in investment_limit_values.items():
+        if widget.value == placeholder_value:
+            values[key] = None
+        else:
+            values[key] = widget.value
+
     # Adding the dynamic capacities values if changed
     for key, widget in capacities_values.items():
         if widget.value == placeholder_value:
