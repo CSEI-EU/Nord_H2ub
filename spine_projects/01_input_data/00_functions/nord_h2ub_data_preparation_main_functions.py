@@ -71,7 +71,7 @@ def set_parameters(params):
         'capacity_steam': None,
         'capacity_anaerobic': None,
         'capacity_biomethanation': None,
-        'capacity_co2_removal': None
+        'capacity_co2_removal': None,
         'inv_limit_ammonia_storage': None,
         'inv_limit_anaerobic': None,
         'inv_limit_asu': None,
@@ -87,7 +87,7 @@ def set_parameters(params):
         'inv_limit_methanol': None,
         'inv_limit_methanol_storage': None,
         'inv_limit_rwgs': None,
-        'inv_limit_steam': None,
+        'inv_limit_steam': None
     }
 
     # Update default values with provided parameters
@@ -188,5 +188,5 @@ def set_parameters(params):
             inv_limit_ammonia_storage, inv_limit_anaerobic, inv_limit_asu, inv_limit_biomethanation, 
             inv_limit_co2_removal, inv_limit_egasoline_storage, inv_limit_electrolyzer, inv_limit_fischer, 
             inv_limit_haber, inv_limit_hydrogen_storage, inv_limit_jet_fuel_storage, inv_limit_methane_storage, 
-            inv_limit_methanol, inv_limit_methanol_storage, inv_limit_rwgs, inv_limit_steam, 
+            inv_limit_methanol, inv_limit_methanol_storage, inv_limit_rwgs, inv_limit_steam 
            )
