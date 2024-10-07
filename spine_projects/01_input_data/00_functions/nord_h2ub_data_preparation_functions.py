@@ -1034,7 +1034,7 @@ def filter_investment_data(name_parameter, **kwargs):
     filtered_data = {k: v for k, v in kwargs.items() if v is not None}
 
     # Convert the filtered data into a DataFrame
-    df = pd.DataFrame(list(filtered_data.items()), columns=['Parameter', name_parameter])
+    df = pd.DataFrame(list(filtered_data.items()), columns=['object', name_parameter])
     return df    
 
 
