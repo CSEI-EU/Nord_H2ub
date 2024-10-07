@@ -210,6 +210,20 @@ def set_parameters(params):
         'inv_limit_steam': default_params['inv_limit_steam']
     }
 
+    # Create the exisitng capacities  dictionary
+    capacities_exisiting_params = {
+        'capacity_asu': default_params['capacity_asu'],
+        'capacity_electrolyzer': default_params['capacity_electrolyzer'],
+        'capacity_haber': default_params['capacity_haber'],
+        'capacity_fischer': default_params['capacity_fischer'],
+        'capacity_rwgs': default_params['capacity_rwgs'],
+        'capacity_methanol': default_params['capacity_methanol'],
+        'capacity_steam': default_params['capacity_steam'],
+        'capacity_anaerobic': default_params['capacity_anaerobic'],
+        'capacity_biomethanation': default_params['capacity_biomethanation'],
+        'capacity_co2_removal': default_params['capacity_co2_removal']
+    }
+
     
     # Here you can add any additional processing or return the parameters
     return (year, start_date, end_date, area, product, powers, powers_capacities, scenario, frequency, 
@@ -219,7 +233,8 @@ def set_parameters(params):
             share_of_dh_price_cap, price_level_power, power_price_variance, 
             roll_forward_use, roll_forward_size, num_slices, datetime_index, 
             candidate_nonzero, investment_period_default, 
-            investment_cost_params, 
+            investment_cost_params,
+            capacities_exisiting_params, 
             capacity_asu, 
             capacity_electrolyzer, capacity_haber, capacity_fischer, capacity_rwgs, capacity_methanol,
             capacity_steam, capacity_anaerobic, capacity_biomethanation, capacity_co2_removal,
