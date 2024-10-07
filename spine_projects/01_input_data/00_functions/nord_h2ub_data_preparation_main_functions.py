@@ -169,6 +169,27 @@ def set_parameters(params):
     inv_limit_methanol_storage = default_params['inv_limit_methanol_storage']
     inv_limit_rwgs = default_params['inv_limit_rwgs']
     inv_limit_steam = default_params['inv_limit_steam']
+
+    # Create the investment limits dictionary
+    investment_limit_params = {
+        'inv_limit_ammonia_storage': default_params['inv_limit_ammonia_storage'],
+        'inv_limit_anaerobic': default_params['inv_limit_anaerobic'],
+        'inv_limit_asu': default_params['inv_limit_asu'],
+        'inv_limit_biomethanation': default_params['inv_limit_biomethanation'],
+        'inv_limit_co2_removal': default_params['inv_limit_co2_removal'],
+        'inv_limit_egasoline_storage': default_params['inv_limit_egasoline_storage'],
+        'inv_limit_electrolyzer': default_params['inv_limit_electrolyzer'],
+        'inv_limit_fischer': default_params['inv_limit_fischer'],
+        'inv_limit_haber': default_params['inv_limit_haber'],
+        'inv_limit_hydrogen_storage': default_params['inv_limit_hydrogen_storage'],
+        'inv_limit_jet_fuel_storage': default_params['inv_limit_jet_fuel_storage'],
+        'inv_limit_methane_storage': default_params['inv_limit_methane_storage'],
+        'inv_limit_methanol': default_params['inv_limit_methanol'],
+        'inv_limit_methanol_storage': default_params['inv_limit_methanol_storage'],
+        'inv_limit_rwgs': default_params['inv_limit_rwgs'],
+        'inv_limit_steam': default_params['inv_limit_steam']
+    }
+
     
     # Here you can add any additional processing or return the parameters
     return (year, start_date, end_date, area, product, powers, powers_capacities, scenario, frequency, 
@@ -188,5 +209,5 @@ def set_parameters(params):
             inv_limit_ammonia_storage, inv_limit_anaerobic, inv_limit_asu, inv_limit_biomethanation, 
             inv_limit_co2_removal, inv_limit_egasoline_storage, inv_limit_electrolyzer, inv_limit_fischer, 
             inv_limit_haber, inv_limit_hydrogen_storage, inv_limit_jet_fuel_storage, inv_limit_methane_storage, 
-            inv_limit_methanol, inv_limit_methanol_storage, inv_limit_rwgs, inv_limit_steam 
+            inv_limit_methanol, inv_limit_methanol_storage, inv_limit_rwgs, inv_limit_steam, investment_limit_params
            )
