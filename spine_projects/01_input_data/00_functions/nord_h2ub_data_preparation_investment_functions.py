@@ -21,6 +21,25 @@ from nord_h2ub_data_preparation_functions import *
 
 '''Define functions'''
 
+#function to update the investment cost if defined by the user in the interface
+def update_investment_cost(df_investment_params, df_unit_investment):
+    # Merge the two DataFrames on 'Object_name' but keep all from df_unit_investment
+    merged_df = pd.merge(df_unit_investment, 
+                         df_investment_params[['Object_name', 'investment_limit', 'investment_cost']],
+                         on='Object_name', 
+                         how='left', 
+                         suffixes=('', '_new'))
+
+    # Calculate the new unit_investment_cost where applicable
+    # Only update where investment_limit and investment_cost are not NaN
+    mask = merged_df['investment_limit'].notna() & merged_df['investment_cost'].notna()
+    new_costs = merged_df['investment_limit'] * merged_df['investment_cost']
+    
+    # Update only the matching rows in df_unit_investment
+    df_unit_investment.loc[mask, 'unit_investment_cost'] = new_costs[mask]
+
+    return df_unit_investment
+
 #function to filter the investment parameters for later use
 def filter_investment_data(name_parameter, **kwargs):
     """
