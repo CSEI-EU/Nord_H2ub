@@ -1172,6 +1172,39 @@ def set_inv_cap_values(values, parameters):
         parameters['capacity_biomethanation'] = values['capacity_biomethanation']
     if 'capacity_co2_removal' in values:
         parameters['capacity_co2_removal'] = values['capacity_co2_removal']
+    #limits
+    if 'inv_limit_electrolyzer' in values:
+        parameters['inv_limit_electrolyzer'] = values['inv_limit_electrolyzer']
+    if 'inv_limit_ammonia_storage' in values:
+        parameters['inv_limit_ammonia_storage'] = values['inv_limit_ammonia_storage']
+    if 'inv_limit_anaerobic' in values:
+        parameters['inv_limit_anaerobic'] = values['inv_limit_anaerobic']
+    if 'inv_limit_asu' in values:
+        parameters['inv_limit_asu'] = values['inv_limit_asu']
+    if 'inv_limit_biomethanation' in values:
+        parameters['inv_limit_biomethanation'] = values['inv_limit_biomethanation']
+    if 'inv_limit_co2_removal' in values:
+        parameters['inv_limit_co2_removal'] = values['inv_limit_co2_removal']
+    if 'inv_limit_egasoline_storage' in values:
+        parameters['inv_limit_egasoline_storage'] = values['inv_limit_egasoline_storage']
+    if 'inv_limit_fischer' in values:
+        parameters['inv_limit_fischer'] = values['inv_limit_fischer'] 
+    if 'inv_limit_haber' in values:
+        parameters['inv_limit_haber'] = values['inv_limit_haber'] 
+    if 'inv_limit_hydrogen_storage' in values:
+        parameters['inv_limit_hydrogen_storage'] = values['inv_limit_hydrogen_storage']
+    if 'inv_limit_jet_fuel_storage' in values:
+        parameters['inv_limit_jet_fuel_storage'] = values['inv_limit_jet_fuel_storage']    
+    if 'inv_limit_methane_storage' in values:
+        parameters['inv_limit_methane_storage'] = values['inv_limit_methane_storage']
+    if 'inv_limit_methanol' in values:
+        parameters['inv_limit_methanol'] = values['inv_limit_methanol']
+    if 'inv_limit_methanol_storage' in values:
+        parameters['inv_limit_methanol_storage'] = values['inv_limit_methanol_storage']
+    if 'inv_limit_rwgs' in values:
+        parameters['inv_limit_rwgs'] = values['inv_limit_rwgs']
+    if 'inv_limit_steam' in values:
+        parameters['inv_limit_steam'] = values['inv_limit_steam']
     
     return parameters
     
