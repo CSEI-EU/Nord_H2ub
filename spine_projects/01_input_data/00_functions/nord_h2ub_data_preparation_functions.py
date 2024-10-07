@@ -1014,27 +1014,6 @@ def scale_costs(df, start, end, object):
     
     df = df.drop(['lifetime_days', 'factor'], axis=1)
     
-    return df  
-
-#function to filter the investment parameters for later use
-def filter_investment_data(name_parameter, **kwargs):
-    """
-    This function takes an parameter column name and any number of parameters as named arguments.
-    It filters out the ones that have no value (None) and returns a DataFrame with 
-    the remaining parameters and their corresponding values.
-    
-    Args:
-        name_parameter (str): The name for the column name.
-        **kwargs: Any number of  parameters as named arguments.
-
-    Returns:
-        pd.DataFrame: A dataframe with 'Parameter' and the specified column.
-    """
-    # Filter out parameters that have a value (i.e., not None)
-    filtered_data = {k: v for k, v in kwargs.items() if v is not None}
-
-    # Convert the filtered data into a DataFrame
-    df = pd.DataFrame(list(filtered_data.items()), columns=['object', name_parameter])
-    return df    
+    return df   
 
 

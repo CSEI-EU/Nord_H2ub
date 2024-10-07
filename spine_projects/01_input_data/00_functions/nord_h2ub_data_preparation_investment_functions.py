@@ -41,3 +41,24 @@ def filter_investment_data(name_parameter, **kwargs):
     # Convert the filtered data into a DataFrame
     df = pd.DataFrame(list(filtered_data.items()), columns=['object', name_parameter])
     return df   
+
+#get information of investment objects and update informatio
+def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate_nonzero):
+    """
+    Updates the 'number_of_units' column in the df_units_inv_parameters DataFrame.
+    
+    Parameters:
+    df_units_inv_parameters (pd.DataFrame): The DataFrame containing inventory parameters.
+    object_names (list): A list of object names to update.
+    candidate_nonzero (bool): If True, update the 'number_of_units' for matching object names.
+    
+    Returns:
+    pd.DataFrame: The updated DataFrame.
+    """
+    
+    if candidate_nonzero:
+        # Update the 'number_of_units' for the rows where 'Object_name' matches the given object names
+        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'number_of_units'] = 1
+    
+    return df_units_inv_parameters
+

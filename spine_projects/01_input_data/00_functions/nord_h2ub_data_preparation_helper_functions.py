@@ -33,7 +33,7 @@ def map_parameters_by_similarity(df1, df2):
     pipeline_types = ['hydrogen', 'methanol', 'methane', 'egasoline', 'jet_fuel', 'power', 'ammonia']
 
     # Iterate over each row in df2 to compare with each Object_name in df1
-    for i, parameter in df2['Parameter'].items():
+    for i, parameter in df2['object'].items():
         matched_object_name = None
 
         # Priority 1: Check for pipelines and identify the correct pipeline type
