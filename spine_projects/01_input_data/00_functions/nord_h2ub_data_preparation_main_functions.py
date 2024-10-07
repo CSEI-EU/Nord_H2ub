@@ -170,6 +170,26 @@ def set_parameters(params):
     inv_limit_rwgs = default_params['inv_limit_rwgs']
     inv_limit_steam = default_params['inv_limit_steam']
 
+    # Create the investment cost dictionary
+    investment_cost_params = {
+        'inv_cost_ammonia_storage': default_params['inv_cost_ammonia_storage'],
+        'inv_cost_anaerobic': default_params['inv_cost_anaerobic'],
+        'inv_cost_asu': default_params['inv_cost_asu'],
+        'inv_cost_biomethanation': default_params['inv_cost_biomethanation'],
+        'inv_cost_co2_removal': default_params['inv_cost_co2_removal'],
+        'inv_cost_egasoline_storage': default_params['inv_cost_egasoline_storage'],
+        'inv_cost_electrolyzer': default_params['inv_cost_electrolyzer'],
+        'inv_cost_fischer': default_params['inv_cost_fischer'],
+        'inv_cost_haber': default_params['inv_cost_haber'],
+        'inv_cost_hydrogen_storage': default_params['inv_cost_hydrogen_storage'],
+        'inv_cost_jet_fuel_storage': default_params['inv_cost_jet_fuel_storage'],
+        'inv_cost_methane_storage': default_params['inv_cost_methane_storage'],
+        'inv_cost_methanol': default_params['inv_cost_methanol'],
+        'inv_cost_methanol_storage': default_params['inv_cost_methanol_storage'],
+        'inv_cost_rwgs': default_params['inv_cost_rwgs'],
+        'inv_cost_steam': default_params['inv_cost_steam']
+    }
+
     # Create the investment limits dictionary
     investment_limit_params = {
         'inv_limit_ammonia_storage': default_params['inv_limit_ammonia_storage'],
@@ -202,12 +222,10 @@ def set_parameters(params):
             inv_cost_ammonia_storage, inv_cost_anaerobic, inv_cost_asu, inv_cost_biomethanation, 
             inv_cost_co2_removal, inv_cost_egasoline_storage, inv_cost_electrolyzer, inv_cost_fischer, 
             inv_cost_haber, inv_cost_hydrogen_storage, inv_cost_jet_fuel_storage, inv_cost_methane_storage, 
-            inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs, inv_cost_steam, 
+            inv_cost_methanol, inv_cost_methanol_storage, inv_cost_rwgs, inv_cost_steam,
+            investment_cost_params, 
             capacity_asu, 
             capacity_electrolyzer, capacity_haber, capacity_fischer, capacity_rwgs, capacity_methanol,
             capacity_steam, capacity_anaerobic, capacity_biomethanation, capacity_co2_removal,
-            inv_limit_ammonia_storage, inv_limit_anaerobic, inv_limit_asu, inv_limit_biomethanation, 
-            inv_limit_co2_removal, inv_limit_egasoline_storage, inv_limit_electrolyzer, inv_limit_fischer, 
-            inv_limit_haber, inv_limit_hydrogen_storage, inv_limit_jet_fuel_storage, inv_limit_methane_storage, 
-            inv_limit_methanol, inv_limit_methanol_storage, inv_limit_rwgs, inv_limit_steam, investment_limit_params
+            investment_limit_params
            )
