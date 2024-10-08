@@ -22,23 +22,34 @@ from nord_h2ub_data_preparation_functions import *
 '''Define functions'''
 
 #function to update the investment cost if defined by the user in the interface
-def update_investment_cost(df_investment_params, df_unit_investment):
-    # Merge the two DataFrames on 'Object_name' but keep all from df_unit_investment
-    merged_df = pd.merge(df_unit_investment, 
+def update_investment_cost(df_investment_params, df_object_investment, parameter_name):
+    # Determine the column name to update based on the parameter_name string
+    if 'unit' in parameter_name.lower():
+        investment_cost_column = 'unit_investment_cost'
+    elif 'storage' in parameter_name.lower():
+        investment_cost_column = 'storage_investment_cost'
+    elif 'connection' in parameter_name.lower():
+        investment_cost_column = 'connection_investment_cost'
+    else:
+        raise ValueError("The parameter_name does not contain 'unit', 'storage', or 'connection'. Unable to determine the correct column.")
+
+    # Merge the two DataFrames on 'Object_name' but keep all from df_object_investment
+    merged_df = pd.merge(df_object_investment, 
                          df_investment_params[['Object_name', 'investment_limit', 'investment_cost']],
                          on='Object_name', 
                          how='left', 
                          suffixes=('', '_new'))
 
-    # Calculate the new unit_investment_cost where applicable
+    # Calculate the new cost where applicable
     # Only update where investment_limit and investment_cost are not NaN
     mask = merged_df['investment_limit'].notna() & merged_df['investment_cost'].notna()
     new_costs = merged_df['investment_limit'] * merged_df['investment_cost']
     
-    # Update only the matching rows in df_unit_investment
-    df_unit_investment.loc[mask, 'unit_investment_cost'] = new_costs[mask]
+    # Update only the matching rows in df_object_investment
+    df_object_investment.loc[mask, investment_cost_column] = new_costs[mask]
 
-    return df_unit_investment
+    return df_object_investment
+
 
 # Function to update the number_of_units if capacities_exisiting is defined by the user in the interface
 def update_number_of_units(df_investment_params, df_unit_investment):
