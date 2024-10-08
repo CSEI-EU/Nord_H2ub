@@ -81,7 +81,7 @@ def update_number_of_objects(df_investment_params, df_object_investment, paramet
     return df_object_investment
 
 # Function to update unit_capacity in df_object__node based on investment_limit in df_investment_params
-def update_unit_capacity(df_investment_params, df_object__node):
+def update_object_capacity(df_investment_params, df_object__node, parameter_name):
     # Merge df_investment_params with df_object__node on 'Object_name', only bringing relevant columns from df_investment_params
     merged_df = pd.merge(df_object__node, 
                          df_investment_params[['Object_name', 'investment_limit']], 
@@ -89,8 +89,8 @@ def update_unit_capacity(df_investment_params, df_object__node):
                          how='left', 
                          suffixes=('', '_new'))
 
-    # Create a mask where 'investment_limit' is not NaN and 'Parameter' is 'unit_capacity'
-    mask = merged_df['investment_limit'].notna() & (merged_df['Parameter'] == 'unit_capacity')
+    # Create a mask where 'investment_limit' is not NaN and 'Parameter' is the parameter_name
+    mask = merged_df['investment_limit'].notna() & (merged_df['Parameter'] == parameter_name)
     
     # Update the 'Value' column in df_object__node with the 'investment_limit' where the mask is True
     df_object__node.loc[mask, 'Value'] = merged_df.loc[mask, 'investment_limit']
