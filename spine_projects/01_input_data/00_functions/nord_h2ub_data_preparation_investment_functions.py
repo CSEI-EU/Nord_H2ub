@@ -40,6 +40,26 @@ def update_investment_cost(df_investment_params, df_unit_investment):
 
     return df_unit_investment
 
+# Function to update the number_of_units if capacities_exisiting is defined by the user in the interface
+def update_number_of_units(df_investment_params, df_unit_investment):
+    # Merge the two DataFrames on 'Object_name' but keep all from df_unit_investment
+    merged_df = pd.merge(df_unit_investment, 
+                         df_investment_params[['Object_name', 'investment_limit', 'capacities_exisiting']],
+                         on='Object_name', 
+                         how='left', 
+                         suffixes=('', '_new'))
+
+    # Calculate the new number_of_units where applicable
+    # Only update where investment_limit and capacities_exisiting are not NaN
+    mask = merged_df['investment_limit'].notna() & merged_df['capacities_exisiting'].notna()
+    new_units = merged_df['investment_limit'] / merged_df['capacities_exisiting']
+    
+    # Update only the matching rows in df_unit_investment
+    df_unit_investment.loc[mask, 'number_of_units'] = new_units[mask]
+
+    return df_unit_investment
+
+
 #function to filter the investment parameters for later use
 def filter_investment_data(name_parameter, **kwargs):
     """
