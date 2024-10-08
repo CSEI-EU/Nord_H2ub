@@ -52,9 +52,19 @@ def update_investment_cost(df_investment_params, df_object_investment, parameter
 
 
 # Function to update the number_of_units if capacities_exisiting is defined by the user in the interface
-def update_number_of_units(df_investment_params, df_unit_investment):
+def update_number_of_objects(df_investment_params, df_object_investment, parameter_name):
+    # Determine the column name to update based on the parameter_name string
+    if 'unit' in parameter_name.lower():
+        number_of_objects_column = 'number_of_units'
+    elif 'storage' in parameter_name.lower():
+        number_of_objects_column = 'number_of_storages'
+    elif 'connection' in parameter_name.lower():
+        number_of_objects_column = 'number_of_connections'
+    else:
+        raise ValueError("The parameter_name does not contain 'unit', 'storage', or 'connection'. Unable to determine the correct column.")
+
     # Merge the two DataFrames on 'Object_name' but keep all from df_unit_investment
-    merged_df = pd.merge(df_unit_investment, 
+    merged_df = pd.merge(df_object_investment, 
                          df_investment_params[['Object_name', 'investment_limit', 'capacities_exisiting']],
                          on='Object_name', 
                          how='left', 
@@ -66,9 +76,9 @@ def update_number_of_units(df_investment_params, df_unit_investment):
     new_units = merged_df['investment_limit'] / merged_df['capacities_exisiting']
     
     # Update only the matching rows in df_unit_investment
-    df_unit_investment.loc[mask, 'number_of_units'] = new_units[mask]
+    df_object_investment.loc[mask, number_of_objects_column] = new_units[mask]
 
-    return df_unit_investment
+    return df_object_investment
 
 # Function to update unit_capacity in df_object__node based on investment_limit in df_investment_params
 def update_unit_capacity(df_investment_params, df_object__node):
