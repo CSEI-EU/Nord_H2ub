@@ -73,14 +73,14 @@ def update_number_of_objects(df_investment_params, df_object_investment, paramet
     # Calculate the new number_of_units where applicable
     # Only update where investment_limit and capacities_exisiting are not NaN
     mask = merged_df['investment_limit'].notna() & merged_df['capacities_exisiting'].notna()
-    new_units = merged_df['investment_limit'] / merged_df['capacities_exisiting']
+    new_units = merged_df['capacities_exisiting'] / merged_df['investment_limit'] 
     
     # Update only the matching rows in df_unit_investment
     df_object_investment.loc[mask, number_of_objects_column] = new_units[mask]
 
     return df_object_investment
 
-# Function to update unit_capacity in df_object__node based on investment_limit in df_investment_params
+# Function to update capacity in df_object__node based on investment_limit in df_investment_params
 def update_object_capacity(df_investment_params, df_object__node, parameter_name):
     # Merge df_investment_params with df_object__node on 'Object_name', only bringing relevant columns from df_investment_params
     merged_df = pd.merge(df_object__node, 
@@ -97,6 +97,12 @@ def update_object_capacity(df_investment_params, df_object__node, parameter_name
 
     return df_object__node
 
+# Function to update storage capacity in df_nodes based on investment_limit in df_investment_params
+def update_storage_capacity(df_investment_params, df_nodes, parameter_name)
+
+'''@Lucia, please write function'''
+
+return df_nodes
 
 #function to filter the investment parameters for later use
 def filter_investment_data(name_parameter, **kwargs):
