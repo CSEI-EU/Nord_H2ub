@@ -55,11 +55,11 @@ def update_investment_cost(df_investment_params, df_object_investment, parameter
 def update_number_of_objects(df_investment_params, df_object_investment, parameter_name):
     # Determine the column name to update based on the parameter_name string
     if 'unit' in parameter_name.lower():
-        number_of_objects_column = 'number_of_units'
+        number_of_objects_column = 'initial_units_invested_available'
     elif 'storage' in parameter_name.lower():
-        number_of_objects_column = 'number_of_storages'
+        number_of_objects_column = 'initial_storages_invested'
     elif 'connection' in parameter_name.lower():
-        number_of_objects_column = 'number_of_connections'
+        number_of_objects_column = 'initial_connections_invested_available'
     else:
         raise ValueError("The parameter_name does not contain 'unit', 'storage', or 'connection'. Unable to determine the correct column.")
 
@@ -146,7 +146,7 @@ def filter_investment_data(name_parameter, **kwargs):
 #get information of investment objects and update informatio
 def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate_nonzero):
     """
-    Updates the 'number_of_units' column in the df_units_inv_parameters DataFrame.
+    Updates the 'initial_units_invested_available' column in the df_units_inv_parameters DataFrame.
     
     Parameters:
     df_units_inv_parameters (pd.DataFrame): The DataFrame containing inventory parameters.
@@ -159,7 +159,7 @@ def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate
     
     if candidate_nonzero:
         # Update the 'number_of_units' for the rows where 'Object_name' matches the given object names
-        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'number_of_units'] = 1
+        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'initial_units_invested_available'] = 1
     
     return df_units_inv_parameters
 
