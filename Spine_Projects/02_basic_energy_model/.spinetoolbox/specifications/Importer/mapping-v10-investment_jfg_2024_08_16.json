@@ -484,7 +484,7 @@
                     }
                 },
                 {
-                    "Value_unit_investment_variable_type": {
+                    "Values": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -501,8 +501,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 1
+                                "position": "header"
                             },
                             {
                                 "map_type": "Alternative",
@@ -515,229 +514,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 1
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_initial_units_invested_available": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 2
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 2
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_number_of_units": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 3
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 3
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_candidate_units": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 4
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_unit_investment_cost": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 5
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 5
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_unit_investment_tech_lifetime": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 6
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 6
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_unit_investment_econ_lifetime": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 7
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 7
                             }
                         ]
                     }
@@ -764,7 +541,7 @@
                     }
                 },
                 {
-                    "Value": {
+                    "Values": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -781,7 +558,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": 1
+                                "position": "header"
                             },
                             {
                                 "map_type": "Alternative",
@@ -794,266 +571,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 2
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_connection_investment_variable_type": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 3
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 3
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_initial_connections_invested_available": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 4
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_number_of_connections": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 5
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 5
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_candidate_connection": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 6
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 6
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_connection_investment_cost": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 7
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 7
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_connection_investment_tech_lifetime": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 8
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 8
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_connection_investment_econ_lifetime": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "connection"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 9
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 9
                             }
                         ]
                     }
@@ -1080,7 +598,7 @@
                     }
                 },
                 {
-                    "Value_storage_investment_variable_type": {
+                    "Values": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
@@ -1097,8 +615,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 1
+                                "position": "header"
                             },
                             {
                                 "map_type": "Alternative",
@@ -1111,229 +628,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 1
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_initial_storages_invested_available": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 2
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 2
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_number_of_storages": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 3
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 3
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_candidate_storages": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 4
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_storage_investment_cost": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 5
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 5
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_storage_investment_tech_lifetime": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 6
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 6
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_storage_investment_econ_lifetime": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 7
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 7
                             }
                         ]
                     }
@@ -2178,9 +1473,8 @@
                 "4": "float",
                 "5": "float",
                 "6": "float",
-                "7": "float",
-                "8": "duration",
-                "9": "duration"
+                "7": "duration",
+                "8": "duration"
             },
             "Time_series": {
                 "0": "datetime",
