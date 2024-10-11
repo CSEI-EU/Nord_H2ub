@@ -160,6 +160,26 @@ def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate
     if candidate_nonzero:
         # Update the 'number_of_units' for the rows where 'Object_name' matches the given object names
         df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'initial_units_invested_available'] = 1
+        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'number_of_units'] = 1
     
     return df_units_inv_parameters
 
+# Function to map dictionary keys to DataFrame object names and update a given column
+#relevant to update the investment values based on the user interface
+def update_res_parameter_in_invest(df, update_dict, column_name):
+    # Create a mapping from the dictionary keys to the object names in the DataFrame
+    mapping = {
+        'Solar plant': 'Solar_Plant',
+        'Wind onshore': 'Wind_onshore',
+        'Wind offshore': 'Wind_offshore'
+    }
+    
+    # Iterate over the dictionary and update the corresponding rows in the DataFrame
+    for key, value in update_dict.items():
+        # Get the corresponding Object_name from the mapping
+        object_name = mapping.get(key)
+        if object_name:
+            # Update the specified column where Object_name matches
+            df.loc[df['Object_name'] == object_name, column_name] = value
+
+    return df
