@@ -1388,6 +1388,11 @@
                 "7": "float"
             },
             "Object__to_from_node": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
                 "5": "float"
             },
             "Boolean_relations": {
@@ -1398,6 +1403,12 @@
                 "4": "boolean"
             },
             "Object__node_node": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
                 "6": "float"
             },
             "Variable_Eff_Definition": {
@@ -1405,16 +1416,26 @@
                 "1": "string"
             },
             "Variable_Eff": {
-                "0": "float"
+                "0": "float",
+                "1": "float",
+                "2": "float"
             },
             "Operating_points": {
-                "0": "float"
+                "0": "float",
+                "1": "float"
             },
             "Time_series_storage": {
-                "0": "datetime"
+                "0": "datetime",
+                "1": "float",
+                "2": "float"
             },
             "Energy_prices": {
-                "0": "datetime"
+                "0": "datetime",
+                "1": "float",
+                "2": "float",
+                "3": "float",
+                "4": "float",
+                "5": "float"
             },
             "Model_components": {
                 "0": "string",
@@ -1437,6 +1458,10 @@
             "Unit_Inv_Parameters": {
                 "0": "string",
                 "1": "string",
+                "2": "float",
+                "3": "float",
+                "4": "float",
+                "5": "float",
                 "6": "duration",
                 "7": "duration"
             },
@@ -1445,11 +1470,16 @@
                 "1": "string",
                 "2": "string",
                 "3": "string",
-                "8": "duration",
-                "9": "duration"
+                "4": "float",
+                "5": "float",
+                "6": "float",
+                "7": "duration",
+                "8": "duration"
             },
             "Time_series": {
-                "0": "datetime"
+                "0": "datetime",
+                "1": "float",
+                "2": "float"
             },
             "Temporal_relations": {
                 "0": "string",
@@ -1465,12 +1495,18 @@
                 "5": "float",
                 "6": "duration",
                 "7": "duration"
+            },
+            "Object__to_from_node_definition": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string"
             }
         },
         "table_default_column_type": {
             "Object__to_from_node": "string",
             "Energy_prices": "float",
-            "Nodes": "float",
+            "Nodes": "string",
             "Operating_points": "float",
             "Variable_Eff": "float",
             "Time_series": "float",
@@ -1487,7 +1523,6 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "string",
                 "0": "string"
             },
             "Operating_points": {
