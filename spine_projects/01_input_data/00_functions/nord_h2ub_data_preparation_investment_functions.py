@@ -160,7 +160,6 @@ def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate
     if candidate_nonzero:
         # Update the 'number_of_units' for the rows where 'Object_name' matches the given object names
         df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'initial_units_invested_available'] = 1
-        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'number_of_units'] = 1
     
     return df_units_inv_parameters
 
