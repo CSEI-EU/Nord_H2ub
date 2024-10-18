@@ -170,12 +170,12 @@ def create_sections_elec():
 
 
 # Set investment costs and capacity limit depending on type of product
-investment_cost_vbox = widgets.VBox()
+investment_cost_vbox = widgets.VBox(layout=widgets.Layout(align_items='flex-start'))
 investment_cost_values = {}
 investment_limit_values = {}
 
 def update_inv_costs(change, investment_cost_vbox):
-    # Get selected product from the dropdown (methanol, ammonia, or jet_fuel)
+    # Get selected product from the dropdown (ammonia, egasoline, hydrogen, jet_fuel, methanol, and synthetic_methane_gas)
     selected_product = change['new']
     
     # Clear existing investment widgets (if any)
@@ -188,9 +188,10 @@ def update_inv_costs(change, investment_cost_vbox):
     # Define the placeholder value for fields that are not yet interacted with
     placeholder_value = 1.0
 
-    # Define a layout for the FloatText widgets with wider description space
-    float_text_layout = widgets.Layout(width='400px')  
-    float_text_style = {'description_width': '200px', 'text_align': 'left'}
+    # Define a layout for descriptions and fields + indent
+    description_layout = widgets.Layout(width='200px')
+    input_layout = widgets.Layout(width='250px')
+    indent_layout = widgets.Layout(padding='0px 0px 0px 30px', justify_content='flex-start')
 
     # Headline for the investment costs block
     investment_headline = widgets.Label("Please define the investment cost and maximal installed capacities per MW or MWh",
@@ -198,25 +199,31 @@ def update_inv_costs(change, investment_cost_vbox):
 
     
     if selected_product == 'ammonia':
+        
         ammonia_storage_label = widgets.Label("Ammonia storage:")
-        ammonia_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        ammonia_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        ammonia_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        ammonia_hbox = widgets.HBox([ammonia_storage_description, ammonia_storage_input], layout=indent_layout)
         
         asu_label = widgets.Label("Air separation unit")
-        asu_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        asu_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        asu_input = widgets.FloatText(value=placeholder_value, min=0,layout=input_layout)
+        asu_hbox = widgets.HBox([asu_description, asu_input], layout=indent_layout)
         
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs [€/MW power input]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         haber_label = widgets.Label("Haber-Bosch unit:")
-        haber_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        haber_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        haber_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        haber_hbox = widgets.HBox([haber_description, haber_input], layout=indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
-        hydrogen_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_ammonia_storage'] = ammonia_storage_input
@@ -226,33 +233,39 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
 
         investment_cost_vbox.children = [investment_headline,
-                                         ammonia_storage_label, ammonia_storage_input,
-                                         asu_label, asu_input,
-                                         electrolyzer_label, electrolyzer_input, 
-                                         haber_label, haber_input,
-                                         hydrogen_storage_label, hydrogen_storage_input
+                                         ammonia_storage_label, ammonia_hbox,
+                                         asu_label, asu_hbox,
+                                         electrolyzer_label, electrolyzer_hbox, 
+                                         haber_label, haber_hbox,
+                                         hydrogen_storage_label, hydrogen_storage_hbox
                                         ]
     
     elif selected_product == 'egasoline':
+        
         egasoline_storage_label = widgets.Label("E-Gasoline storage:")
-        egasoline_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        egasoline_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        egasoline_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        egasoline_storage_hbox = widgets.HBox([egasoline_storage_description, egasoline_storage_input], layout=indent_layout)
         
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs [€/MW power input]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         fischer_label = widgets.Label("Fischer-Tropsch reactor:")
-        fischer_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        fischer_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
-        hydrogen_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        rwgs_description = widgets.Label("Costs [€/MWh TBA]:", layout=description_layout)
+        rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_egasoline_storage'] = egasoline_storage_input
@@ -262,51 +275,60 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_rwgs'] = rwgs_input
         
         investment_cost_vbox.children = [investment_headline,
-                                         egasoline_storage_label, egasoline_storage_input,
-                                         electrolyzer_label, electrolyzer_input, 
-                                         fischer_label, fischer_input,
-                                         hydrogen_storage_label, hydrogen_storage_input,
-                                         rwgs_label, rwgs_input
+                                         egasoline_storage_label, egasoline_storage_hbox,
+                                         electrolyzer_label, electrolyzer_hbox, 
+                                         fischer_label, fischer_hbox,
+                                         hydrogen_storage_label, hydrogen_storage_hbox,
+                                         rwgs_label, rwgs_hbox
                                         ]
     
     elif selected_product == 'hydrogen':
+        
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
-        hydrogen_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
         investment_cost_values['inv_cost_hydrogen_storage'] = hydrogen_storage_input
         
         investment_cost_vbox.children = [investment_headline,
-                                         electrolyzer_label, electrolyzer_input, 
-                                         hydrogen_storage_label, hydrogen_storage_input
+                                         electrolyzer_label, electrolyzer_hbox, 
+                                         hydrogen_storage_label, hydrogen_storage_hbox
                                         ]
     
     elif selected_product == 'jet_fuel':
+        
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         fischer_label = widgets.Label("Fischer-Tropsch reactor:")
-        fischer_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        fischer_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
-        hydrogen_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
         
         jet_fuel_storage_label = widgets.Label("Jet fuel storage:")
-        jet_fuel_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        jet_fuel_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        jet_fuel_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        jet_fuel_storage_hbox = widgets.HBox([jet_fuel_storage_description, jet_fuel_storage_input], layout=indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        rwgs_description = widgets.Label("Costs [€/MWh TBA]:", layout=description_layout)
+        rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
@@ -316,44 +338,59 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_rwgs'] = rwgs_input
         
         investment_cost_vbox.children = [investment_headline,
-                                         electrolyzer_label, electrolyzer_input, 
-                                         fischer_label, fischer_input,
-                                         hydrogen_storage_label, hydrogen_storage_input,
-                                         jet_fuel_storage_label, jet_fuel_storage_input,
-                                         rwgs_label, rwgs_input
+                                         electrolyzer_label, electrolyzer_hbox, 
+                                         fischer_label, fischer_hbox,
+                                         hydrogen_storage_label, hydrogen_storage_hbox,
+                                         jet_fuel_storage_label, jet_fuel_storage_hbox,
+                                         rwgs_label, rwgs_hbox
                                         ]
     
     elif selected_product == 'methanol':
 
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style, justify_content="flex-end")
-        electrolyzer_limit = widgets.FloatText(description="Capacity limit [MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        
+        electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
-        hydrogen_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
-        hydrogen_storage_limit = widgets.FloatText(description="Capacity limit [MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        
+        hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
+        hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
         
         methanol_label = widgets.Label("Methanol reactor:")
-        methanol_input = widgets.FloatText(description="Costs [€/MW output methanol]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
-        methanol_limit = widgets.FloatText(description="Capacity limit [MW output methanol]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        methanol_description = widgets.Label("Costs [€/MW output methanol]:", layout=description_layout)
+        methanol_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=indent_layout)
+        
+        methanol_limit_description = widgets.Label("Capacity limit [MW output methanol]:", layout=widgets.Layout(width='210px'))
+        methanol_limit = widgets.FloatText(value=placeholder_value, min=0, layout=widgets.Layout(width='240px'))
+        methanol_limit_hbox = widgets.HBox([methanol_limit_description, methanol_limit], layout=indent_layout)
         
         methanol_storage_label = widgets.Label("Methanol storage:")
-        methanol_storage_input = widgets.FloatText(description="Costs [€/MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
-        methanol_storage_limit = widgets.FloatText(description="Capacity limit [MWh storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        methanol_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        methanol_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        methanol_storage_hbox = widgets.HBox([methanol_storage_description, methanol_storage_input], layout=indent_layout)
         
+        methanol_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
+        methanol_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        methanol_storage_limit_hbox = widgets.HBox([methanol_storage_limit_description, methanol_storage_limit], layout=indent_layout)
+                
         steam_label = widgets.Label("Steam plant:")
-        steam_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
-        steam_limit = widgets.FloatText(description="Capacity limit [MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        steam_description = widgets.Label("Costs [€/MW input power]:", layout=description_layout)
+        steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        
+        steam_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        steam_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
@@ -370,34 +407,40 @@ def update_inv_costs(change, investment_cost_vbox):
 
         
         investment_cost_vbox.children = [investment_headline,
-                                         electrolyzer_label, electrolyzer_input, electrolyzer_limit,
-                                         hydrogen_storage_label, hydrogen_storage_input, hydrogen_storage_limit,
-                                         methanol_label, methanol_input, methanol_limit,
-                                         methanol_storage_label, methanol_storage_input, methanol_storage_limit,
-                                         steam_label, steam_input, steam_limit
+                                         electrolyzer_label, electrolyzer_hbox, electrolyzer_limit_hbox,
+                                         hydrogen_storage_label, hydrogen_storage_hbox, hydrogen_storage_limit_hbox,
+                                         methanol_label, methanol_hbox, methanol_limit_hbox,
+                                         methanol_storage_label, methanol_storage_hbox, methanol_storage_limit_hbox,
+                                         steam_label, steam_hbox, steam_limit_hbox
                                         ]
     
     elif selected_product == 'synthetic_methane_gas':
+        
         anaerobic_label = widgets.Label("Anaerobic digestion plant:")
-        anaerobic_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        anaerobic_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        anaerobic_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        anaerobic_hbox = widgets.HBox([anaerobic_description, anaerobic_input], layout=indent_layout)
         
         biomethanation_label = widgets.Label("Biomethanation plant:")
-        biomethanation_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        biomethanation_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        biomethanation_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        biomethanation_hbox = widgets.HBox([biomethanation_description, biomethanation_input], layout=indent_layout)
         
         co2_remover_label = widgets.Label("CO2 removal plant:")
-        co2_remover_input = widgets.FloatText(description="Costs [€/MW TBA]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
-        
+        co2_remover_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        co2_remover_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        co2_remover_hbox = widgets.HBox([co2_remover_description, co2_remover_input], layout=indent_layout)
+                
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Costs [€/MW input power]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
+        electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         methane_storage_label = widgets.Label("Methane storage:")
-        methane_storage_input = widgets.FloatText(description="Costs [€/MW storage]:", value=placeholder_value, min=0,
-        layout=float_text_layout, style=float_text_style)
-        
+        methane_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
+        methane_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        methane_storage_hbox = widgets.HBox([methane_storage_description, methane_storage_input], layout=indent_layout)
+                
         # Store values in investment dictionary
         investment_cost_values['inv_cost_anaerobic'] = anaerobic_input
         investment_cost_values['inv_cost_biomethanation'] = biomethanation_input
@@ -406,11 +449,11 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_methane_storage'] = methane_storage_input
         
         investment_cost_vbox.children = [investment_headline, 
-                                         anaerobic_label, anaerobic_input,
-                                         biomethanation_label, biomethanation_input,
-                                         co2_remover_label, co2_remover_input,
-                                         electrolyzer_label, electrolyzer_input, 
-                                         methane_storage_label, methane_storage_input
+                                         anaerobic_label, anaerobic_hbox,
+                                         biomethanation_label, biomethanation_hbox,
+                                         co2_remover_label, co2_remover_hbox,
+                                         electrolyzer_label, electrolyzer_hbox, 
+                                         methane_storage_label, methane_storage_hbox
                                         ]
 
 
