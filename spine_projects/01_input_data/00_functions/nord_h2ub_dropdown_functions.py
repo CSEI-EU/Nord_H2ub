@@ -16,6 +16,8 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 import ipywidgets as widgets
 from IPython.display import display, HTML
 import pandas as pd
+import threading
+import time
 
 
 '''Define text query functions'''
@@ -753,31 +755,27 @@ def create_multiple_choice_power():
     label_power = widgets.Label("Please select the different power sources available:")
     
     # Define the list of options
-    options_power = ['Solar plant', 'Wind onshore', 'Wind offshore']
+    options_power = ['Grid', 'Solar plant', 'Wind onshore', 'Wind offshore']
     
-    # Define preselected options
-    preselected_options_power = {'Solar plant'}
-    
-    # Initialize selected_options_power with preselected options
+    # Define preselected options and initialize selected_options_power
+    preselected_options_power = {'Grid', 'Solar plant'}
     selected_options_power = set(preselected_options_power)
+    
+    # Create warning label
+    warning_label = widgets.Label(value='')
+    def clear_warning(checkbox, delay=2):
+        time.sleep(delay)  # Waits for the specified time
+        warning_label.value = ''  # Clears the warning message
+        checkbox.value = True # Rechecks checkbox
     
     # Separate options into preselected and non-preselected
     preselected_checks_power = [option for option in options_power if option in preselected_options_power]
     non_preselected_checks_power = [option for option in options_power if option not in preselected_options_power]
     
-    checkboxes_powers = []
-    
     # Initiate dictionary for the capacity of each option
     capacities_powers = {}
     capacities_powers_values = {}
     hbox_capacities_powers = []
-    
-    def on_change_MC_power(change, selected_options_power, checkbox):
-        if checkbox.value:  # If checkbox is checked
-            selected_options_power.add(checkbox.description)
-        else:  # Remove the option if unchecked
-            selected_options_power.discard(checkbox.description)
-        update_capacity_fields()  
     
     # Function to update the capacity fields visibility
     def update_capacity_fields():
@@ -791,7 +789,22 @@ def create_multiple_choice_power():
     def on_capacity_change(change, option):
         capacities_powers_values[option] = change['new']
     
-    # Create checkboxes for preselected options first
+    def on_change_MC_power(change, selected_options_power, checkbox):
+        if change['new'] is False and len(selected_options_power) == 1:
+            warning_label.value = "Warning: At least one power source must be selected!"
+            threading.Thread(target=clear_warning, args=(change['owner'],)).start()
+        else:
+            warning_label.value = ""
+            if change['new']:  # If the checkbox was checked
+                selected_options_power.add(checkbox.description)
+            else:  # If the checkbox was unchecked
+                selected_options_power.remove(checkbox.description)
+            update_capacity_fields()
+    
+    # Create checkboxes
+    checkboxes_powers = []
+    
+    # preselected options
     for option in preselected_checks_power:
         checkbox = widgets.Checkbox(
             value=True,  # All preselected options should be checked
@@ -801,7 +814,7 @@ def create_multiple_choice_power():
                          names='value')
         checkboxes_powers.append(checkbox)
     
-    # Create checkboxes for non-preselected options
+    # non-preselected options
     for option in non_preselected_checks_power:
         checkbox = widgets.Checkbox(
             value=False,  # Non-preselected options should be unchecked
@@ -811,11 +824,12 @@ def create_multiple_choice_power():
                          names='value')
         checkboxes_powers.append(checkbox)
     
-    # Create capacity fields for each option (hidden initially):
-    for option in options_power:
+    # Create capacity fields for each option except grid (hidden initially):
+    res = ['Solar plant', 'Wind onshore', 'Wind offshore']
+    for option in res:
         capacity_widget = widgets.FloatText(
             value=1.0,
-            layout=widgets.Layout(width='50%')
+            layout=widgets.Layout(width='25%')
         )
         label = widgets.Label(f"{option} capacity (MW):")
         
@@ -833,7 +847,9 @@ def create_multiple_choice_power():
     #Update capacity fields visibiliy based on preselected options
     update_capacity_fields()
     
-    return widgets.VBox([label_power, power_column, capacity_column]), selected_options_power, capacities_powers_values
+    hbox_warning = widgets.HBox([power_column, warning_label])
+    
+    return widgets.VBox([label_power, hbox_warning, capacity_column]), selected_options_power, capacities_powers_values
   
 
 def create_multiple_choice_report():
