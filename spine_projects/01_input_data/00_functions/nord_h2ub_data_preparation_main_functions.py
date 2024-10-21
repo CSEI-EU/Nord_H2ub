@@ -62,16 +62,22 @@ def set_parameters(params):
         'inv_cost_methanol_storage': None,
         'inv_cost_rwgs': None,
         'inv_cost_steam': None,
-        'capacity_asu': 100,
-        'capacity_electrolyzer': 100,
-        'capacity_haber': 100,
-        'capacity_fischer': 100,
-        'capacity_rwgs': 100,
-        'capacity_methanol': 100,
-        'capacity_steam': 100,
+        'capacity_ammonia_storage': 100,
         'capacity_anaerobic': 100,
+        'capacity_asu': 100,
         'capacity_biomethanation': 100,
         'capacity_co2_removal': 100,
+        'capacity_egasoline_storage': 100,
+        'capacity_electrolyzer': 100,
+        'capacity_fischer': 100,
+        'capacity_haber': 100,
+        'capacity_hydrogen_storage': 100,
+        'capacity_jet_fuel_storage': 100,
+        'capacity_methane_storage': 100,        
+        'capacity_methanol': 100,
+        'capacity_methanol_storage': 100,
+        'capacity_rwgs': 100,
+        'capacity_steam': 100,
         'inv_limit_ammonia_storage': None,
         'inv_limit_anaerobic': None,
         'inv_limit_asu': None,
@@ -143,16 +149,22 @@ def set_parameters(params):
     inv_cost_methanol_storage = default_params['inv_cost_methanol_storage']
     inv_cost_rwgs = default_params['inv_cost_rwgs']
     inv_cost_steam = default_params['inv_cost_steam']
+    capacity_ammonia_storage =  default_params['capacity_ammonia_storage']
+    capacity_anaerobic = default_params['capacity_anaerobic']
     capacity_asu = default_params['capacity_asu']
+    capacity_biomethanation = default_params['capacity_biomethanation']
+    capacity_co2_removal = default_params['capacity_co2_removal']
+    capacity_egasoline_storage = default_params['capacity_egasoline_storage']
     capacity_electrolyzer = default_params['capacity_electrolyzer']
     capacity_haber = default_params['capacity_haber']
     capacity_fischer = default_params['capacity_fischer']
-    capacity_rwgs = default_params['capacity_rwgs']
+    capacity_hydrogen_storage = default_params['capacity_hydrogen_storage']
+    capacity_jet_fuel_storage = default_params['capacity_jet_fuel_storage']
+    capacity_methane_storage = default_params['capacity_methane_storage']
     capacity_methanol = default_params['capacity_methanol']
+    capacity_methanol_storage = default_params['capacity_methanol_storage']
+    capacity_rwgs = default_params['capacity_rwgs']
     capacity_steam = default_params['capacity_steam']
-    capacity_anaerobic = default_params['capacity_anaerobic']
-    capacity_biomethanation = default_params['capacity_biomethanation']
-    capacity_co2_removal = default_params['capacity_co2_removal']
     inv_limit_ammonia_storage = default_params['inv_limit_ammonia_storage']
     inv_limit_anaerobic = default_params['inv_limit_anaerobic']
     inv_limit_asu = default_params['inv_limit_asu']
@@ -212,19 +224,24 @@ def set_parameters(params):
     
     # Create the exisitng capacities  dictionary
     capacities_exisiting_params = {        
+        'capacity_Ammonia_Storage': default_params['capacity_ammonia_storage'],
         'capacity_Anaerobic': default_params['capacity_anaerobic'],
         'capacity_Air_separation_unit': default_params['capacity_asu'],
         'capacity_Biomethanation': default_params['capacity_biomethanation'],
         'capacity_CO2_Vaporizer': default_params['capacity_co2_removal'],
-        'capacity_Electric_Steam_Boiler': default_params['capacity_steam'],
+        'capacity_EGasoline_Storage': default_params['capacity_egasoline_storage'],
         'capacity_Electrolyzer': default_params['capacity_electrolyzer'],
-        'capacity_Fischer_Tropsch_unit': default_params['capacity_fischer'],
-        'capacity_Haber_Bosch_reactor': default_params['capacity_haber'],
+        'capacity_Fischer_Tropsch_Unit': default_params['capacity_fischer'],
+        'capacity_Haber_Bosch_Reactor': default_params['capacity_haber'],
+        'capacity_Hydrogen_Storage': default_params['capacity_hydrogen_storage'],
+        'capacity_Jet_Fuel_Storage': default_params['capacity_jet_fuel_storage'],
+        'capacity_Methane_Storage': default_params['capacity_methane_storage'],
         'capacity_Methanol_Plant': default_params['capacity_methanol'],
-        'capacity_RWGS_unit': default_params['capacity_rwgs']
+        'capacity_Methanol_Storage': default_params['capacity_methanol_storage'],
+        'capacity_RWGS_unit': default_params['capacity_rwgs'],
+        'capacity_Electric_Steam_Boiler': default_params['capacity_steam']
     }
 
-    
     # Here you can add any additional processing or return the parameters
     return (year, start_date, end_date, area, product, 
             powers, powers_capacities, scenario, frequency, 
