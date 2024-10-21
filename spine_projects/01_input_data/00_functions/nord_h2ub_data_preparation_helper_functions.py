@@ -40,7 +40,7 @@ def map_parameters_by_similarity(df1, df2, prefix):
         f"{prefix}Hydrogen_storage": 'Hydrogen_storage',
         f"{prefix}Jet_Fuel_storage": 'Jet_Fuel_storage',
         f"{prefix}Methane_storage": 'Methane_storage',
-        f"{prefix}Methanol_Plant": 'Methanol_Plant',
+        f"{prefix}Methanol_Plant": 'Methanol_Reactor',
         f"{prefix}Methanol_storage": 'Methanol_storage',
         f"{prefix}RWGS_unit": 'RWGS_unit',
         f"{prefix}Electric_Steam_Boiler": 'Steam_Plant'
