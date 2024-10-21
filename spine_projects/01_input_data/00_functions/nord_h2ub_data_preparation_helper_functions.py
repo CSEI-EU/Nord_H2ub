@@ -84,7 +84,11 @@ def map_parameters_by_similarity(df1, df2):
         # Add the matched Object_name to the new column in df2
         df2.at[i, 'Object_name'] = matched_object_name
 
+    # Remove rows where Object_name in df2 does not exist in df1
+    df2 = df2[df2['Object_name'].isin(df1['Object_name'])].reset_index(drop=True)
+
     return df2
+
 
 
 #function to reset index by another column of the dataframe
