@@ -141,12 +141,15 @@ def create_definition_dataframe(df_model_units, df_model_connections):
     return df_definition, df_nodes
 
 # function to assign capacities
-def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params):
+def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, investment_limit_params, powers_capacities):
     """
     Assign chosen capacities to units create object__to/from_node relations.
     
     Args:
     df_model_units (pd.DataFrame): DataFrame containing model units.
+    capacities_exisiting_params (pd.DataFrame): DataFrame containing capacities of model units.
+    investment_limit_params (pd.DataFrame): DataFrame containing the maximum investment.
+    powers_capacities (pd.DataFrame): DataFrame containing capacities of RES units
     """
     # Initialize empty list to store data
     unit_capacity_relations_data = []
@@ -159,7 +162,7 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params):
             object_type = 'Electrolyzer'
         
         from_group = {'Electrolyzer', 'Electric_Steam_Boiler'}
-        to_group = {'PV_Plant', 'CO2_Vaporizer', 'Destilation_tower', 'Methanol_Plant', 'Wind_onshore', 'Wind_offshore'}
+        to_group = {'PV_plant', 'CO2_Vaporizer', 'Destilation_tower', 'Methanol_Plant', 'Wind_onshore', 'Wind_offshore'}
         
         # Iterate over Input and Output columns
         for i in range(1, 2):
@@ -171,38 +174,56 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params):
             output_node = row[output_col]
             
             # Get chosen capacities
-            pattern_cap = re.compile(rf"capacity_{object_type}")
-            matching_vars_cap = [key for key in capacities_exisiting_params if pattern_cap.match(key)]
-            if matching_vars_cap:
-                capacity_name = matching_vars_cap[0]
-                capacity = capacities_exisiting_params[capacity_name]
+            if object_type == 'PV_plant':
+                if 'Solar plant' in powers_capacities and powers_capacities['Solar plant'] is not None:
+                    capacity = powers_capacities['Solar plant']
+            elif object_type == 'Wind_onshore':
+                if 'Wind onshore' in powers_capacities and powers_capacities['Wind onshore'] is not None:
+                    capacity = powers_capacities['Wind onshore']
+            elif object_type == 'Wind_offshore':
+                if 'Wind offshore' in powers_capacities and powers_capacities['Wind offshore'] is not None:
+                    capacity = powers_capacities['Wind offshore']
             else:
-                capacity = 100
+                pattern_cap = re.compile(rf"capacity_{object_type}")
+                pattern_inv = re.compile(rf"inv_limit_{object_type}")
+                matching_vars_cap = [key for key in capacities_exisiting_params if pattern_cap.match(key)]
+                matching_vars_inv = [key for key in investment_limit_params if pattern_inv.match(key)]
+                if matching_vars_cap:
+                    capacity_name = matching_vars_cap[0]
+                    capacity = capacities_exisiting_params[capacity_name]
+                else:
+                    capacity = 100
+                inv_limit_name = matching_vars_inv[0]
+                inv_limit = investment_limit_params[inv_limit_name]
+                if inv_limit is not None:
+                    capacity = max(inv_limit, capacity)
             
-            if object_type in from_group:
-                unit_capacity_relations_data.append({
-                    'Relationship_class_name': 'unit__from_node',
-                    'Object_class': 'unit',
-                    'Object_name': unit,
-                    'Node': input_node,
-                    'Parameter': 'unit_capacity' if pd.notna(capacity) else '',
-                    'Value': capacity
-                })
-            else:
-                unit_capacity_relations_data.append({
-                    'Relationship_class_name': 'unit__to_node',
-                    'Object_class': 'unit',
-                    'Object_name': unit,
-                    'Node': output_node,
-                    'Parameter': 'unit_capacity' if pd.notna(capacity) else '',
-                    'Value': capacity
-                })
+        if object_type in from_group:
+            unit_capacity_relations_data.append({
+                'Relationship_class_name': 'unit__from_node',
+                'type': object_type,
+                'Object_class': 'unit',
+                'Object_name': unit,
+                'Node': input_node,
+                'Parameter': 'unit_capacity' if pd.notna(capacity) else '',
+                'Value': capacity
+            })
+        else:
+            unit_capacity_relations_data.append({
+                'Relationship_class_name': 'unit__to_node',
+                'type': object_type,
+                'Object_class': 'unit',
+                'Object_name': unit,
+                'Node': output_node,
+                'Parameter': 'unit_capacity' if pd.notna(capacity) else '',
+                'Value': capacity
+            })
     # Create a new DataFrame from the transformed data
     df_unit_capacity_relations_data = pd.DataFrame(unit_capacity_relations_data)
 
     return df_unit_capacity_relations_data
 
-#function to get all the relations between units and nodes
+# function to get all the relations between units and nodes
 def object_relationship_unit_nodes(df_model_units):
     """
     Transform unit data into a list of dictionaries for unit relationship parameters.
