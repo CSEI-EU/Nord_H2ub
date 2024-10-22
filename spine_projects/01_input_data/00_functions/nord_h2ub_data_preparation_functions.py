@@ -158,7 +158,7 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params):
         if object_type in ['PEM_Electrolyzer', 'AEC_Electrolyzer', 'SOEC_Electrolyzer']:
             object_type = 'Electrolyzer'
         
-        from_group = {'AEC_Electrolyzer', 'PEM_Electrolyzer', 'SOEC_Electrolyzer', 'Electric_Steam_Boiler'}
+        from_group = {'Electrolyzer', 'Electric_Steam_Boiler'}
         to_group = {'PV_Plant', 'CO2_Vaporizer', 'Destilation_tower', 'Methanol_Plant', 'Wind_onshore', 'Wind_offshore'}
         
         # Iterate over Input and Output columns
