@@ -191,8 +191,8 @@ def update_inv_costs(change, investment_cost_vbox):
     placeholder_value = 1.0
 
     # Define a layout for descriptions and fields + indent
-    description_layout = widgets.Layout(width='200px')
-    input_layout = widgets.Layout(width='250px')
+    description_layout = widgets.Layout(width='210px')
+    input_layout = widgets.Layout(width='110px')
     indent_layout = widgets.Layout(padding='0px 0px 0px 30px', justify_content='flex-start')
 
     # Headline for the investment costs block
@@ -476,107 +476,154 @@ def update_capacities(change, capacities_vbox):
     # Define the placeholder value for fields that are not yet interacted with
     placeholder_value = 1.0
     
+    # Define a layout for descriptions and fields + indent
+    description_layout = widgets.Layout(width='220px')
+    input_layout = widgets.Layout(width='100px')
+    indent_layout = widgets.Layout(padding='0px 0px 0px 30px', justify_content='flex-start')
+    
     if selected_product == 'ammonia':        
         asu_label = widgets.Label("Air separation unit")
-        asu_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        asu_description = widgets.Label("Existing capacity:", layout=description_layout)
+        asu_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        asu_hbox = widgets.HBox([asu_description, asu_input], layout=indent_layout)
         
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        electrolyzer_description = widgets.Label("Existing capacity [MW input power]:",
+                                                 layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         haber_label = widgets.Label("Haber-Bosch unit:")
-        haber_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
-                
+        haber_description = widgets.Label("Existing capacity:", layout=description_layout)
+        haber_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        haber_hbox = widgets.HBox([haber_description, haber_input], layout=indent_layout)
+              
         # Store values in investment dictionary
         capacities_values['capacity_asu'] = asu_input
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
         capacities_values['capacity_haber'] = haber_input
         
-        capacities_vbox.children = [asu_label, asu_input,
-                                    electrolyzer_label, electrolyzer_input,
-                                    haber_label, haber_input
+        capacities_vbox.children = [asu_label, asu_hbox,
+                                    electrolyzer_label, electrolyzer_hbox,
+                                    haber_label, haber_hbox
                                    ]
     
     elif selected_product == 'egasoline':
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        electrolyzer_description = widgets.Label("Existing capacity [MW input power]:",
+                                                 layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         fischer_label = widgets.Label("Fischer-Tropsch reactor:")
-        fischer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        fischer_description = widgets.Label("Existing capacity:", layout=description_layout)
+        fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        rwgs_description = widgets.Label("Existing capacity:", layout=description_layout)
+        rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
         capacities_values['capacity_fischer'] = fischer_input
         capacities_values['capacity_rwgs'] = rwgs_input
         
-        capacities_vbox.children = [electrolyzer_label, electrolyzer_input,
-                                    fischer_label, fischer_input,
-                                    rwgs_label, rwgs_input
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_hbox,
+                                    fischer_label, fischer_hbox,
+                                    rwgs_label, rwgs_hbox
                                    ]
     
     elif selected_product == 'hydrogen':
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        electrolyzer_description = widgets.Label("Existing capacity [MW input power]:",
+                                                 layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
         
-        capacities_vbox.children = [electrolyzer_label, electrolyzer_input]
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_hbox]
     
     elif selected_product == 'jet_fuel':
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        electrolyzer_description = widgets.Label("Existing capacity [MW input power]:",
+                                                 layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         fischer_label = widgets.Label("Fischer-Tropsch reactor:")
-        fischer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        fischer_description = widgets.Label("Existing capacity:", layout=description_layout)
+        fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        rwgs_description = widgets.Label("Existing capacity:", layout=description_layout)
+        rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
         capacities_values['capacity_fischer'] = fischer_input
         capacities_values['capacity_rwgs'] = rwgs_input
         
-        capacities_vbox.children = [electrolyzer_label, electrolyzer_input,
-                                    fischer_label, fischer_input,
-                                    rwgs_label, rwgs_input
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_hbox,
+                                    fischer_label, fischer_hbox,
+                                    rwgs_label, rwgs_hbox
                                    ]
     
     elif selected_product == 'methanol':
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        electrolyzer_description = widgets.Label("Existing capacity [MW input power]:",
+                                                 layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         methanol_label = widgets.Label("Methanol reactor:")
-        methanol_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        methanol_description = widgets.Label("Existing capacity [MW output methanol]:",
+                                             layout=description_layout)
+        methanol_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=indent_layout)
         
         steam_label = widgets.Label("Steam plant:")
-        steam_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        steam_description = widgets.Label("Existing capacity [MW input power]:", 
+                                          layout=description_layout)
+        steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
         capacities_values['capacity_methanol'] = methanol_input
         capacities_values['capacity_steam'] = steam_input
         
-        capacities_vbox.children = [electrolyzer_label, electrolyzer_input,
-                                    methanol_label, methanol_input,
-                                    steam_label, steam_input
+        capacities_vbox.children = [electrolyzer_label, electrolyzer_hbox,
+                                    methanol_label, methanol_hbox,
+                                    steam_label, steam_hbox
                                    ]
     
     elif selected_product == 'synthetic_methane_gas':
         anaerobic_label = widgets.Label("Anaerobic digestion plant:")
-        anaerobic_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        anaerobic_description = widgets.Label("Existing capacity:", layout=description_layout)
+        anaerobic_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        anaerobic_hbox = widgets.HBox([anaerobic_description, anaerobic_input], layout=indent_layout)
         
         biomethanation_label = widgets.Label("Biomethanation plant:")
-        biomethanation_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        biomethanation_description = widgets.Label("Existing capacity:", layout=description_layout)
+        biomethanation_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        biomethanation_hbox = widgets.HBox([biomethanation_description, biomethanation_input], layout=indent_layout)
         
         co2_remover_label = widgets.Label("CO2 removal plant:")
-        co2_remover_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        co2_remover_description = widgets.Label("Existing capacity:", layout=description_layout)
+        co2_remover_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        co2_remover_hbox = widgets.HBox([co2_remover_description, co2_remover_input], layout=indent_layout)
         
         electrolyzer_label = widgets.Label("Electrolyzer:")
-        electrolyzer_input = widgets.FloatText(description="Capacity:", value=placeholder_value, min=0)
+        electrolyzer_description = widgets.Label("Existing capacity [MW input power]:",
+                                                 layout=description_layout)
+        electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_anaerobic'] = anaerobic_input
@@ -584,10 +631,10 @@ def update_capacities(change, capacities_vbox):
         capacities_values['capacity_co2_removal'] = co2_remover_input
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
         
-        capacities_vbox.children = [anaerobic_label, anaerobic_input,
-                                    biomethanation_label, biomethanation_input,
-                                    co2_remover_label, co2_remover_input,
-                                    electrolyzer_label, electrolyzer_input
+        capacities_vbox.children = [anaerobic_label, anaerobic_hbox,
+                                    biomethanation_label, biomethanation_hbox,
+                                    co2_remover_label, co2_remover_hbox,
+                                    electrolyzer_label, electrolyzer_hbox
                                     ]
 
 
@@ -829,11 +876,13 @@ def create_multiple_choice_power():
     for option in res:
         capacity_widget = widgets.FloatText(
             value=1.0,
-            layout=widgets.Layout(width='25%')
+            layout=widgets.Layout(width='100px')
         )
-        label = widgets.Label(f"{option} capacity (MW):")
+        label = widgets.Label(f"{option} capacity (MW):", layout=widgets.Layout(width='220px'))
         
-        hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none'))
+        hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none', 
+                                                                            padding='0px 0px 0px 30px',
+                                                                            justify_content='flex-start'))
         capacities_powers[option] = hbox
         hbox_capacities_powers.append(hbox)
         
