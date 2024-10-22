@@ -35,7 +35,7 @@ def create_name_input():
         value=default_text,
     )
     name_input.observe(on_text_change, names='value')
-    return widgets.VBox([label1, name_input]), name_input
+    return widgets.VBox([label1, name_input], layout=widgets.Layout(margin='0 0 15px 0')), name_input
 
 
 def create_name_rep_input():
@@ -45,7 +45,7 @@ def create_name_rep_input():
     name_rep_input = widgets.Text(
         value=default_text,
     )
-    return widgets.VBox([label2, name_rep_input]), name_rep_input
+    return widgets.VBox([label2, name_rep_input], layout=widgets.Layout(margin='0 0 15px 0')), name_rep_input
 
 
 def create_scen_name_input_sev():
@@ -61,7 +61,7 @@ def create_scen_name_input_sev():
         placeholder='Enter each scenario name on a new line',
         description='Other Scenarios:'
     )
-    return widgets.VBox([label3, base_name_input, additional_names_input]), base_name_input, additional_names_input
+    return widgets.VBox([label3, base_name_input, additional_names_input], layout=widgets.Layout(margin='0 0 15px 0')), base_name_input, additional_names_input
 
 
 def create_scen_name_input():
@@ -72,7 +72,7 @@ def create_scen_name_input():
         value=default_text,
         description="Base Scenario:"
     )
-    return widgets.VBox([label3, base_name_input]), base_name_input
+    return widgets.VBox([label3, base_name_input], layout=widgets.Layout(margin='0 0 15px 0')), base_name_input
 
 
 def create_stoch_scen_input():
@@ -82,7 +82,7 @@ def create_stoch_scen_input():
     stoch_scen_input = widgets.Text(
         value=default_text,
     )
-    return widgets.VBox([label4, stoch_scen_input]), stoch_scen_input
+    return widgets.VBox([label4, stoch_scen_input], layout=widgets.Layout(margin='0 0 15px 0')), stoch_scen_input
 
 
 def create_stoch_struc_input():
@@ -92,7 +92,7 @@ def create_stoch_struc_input():
     stoch_struc_input = widgets.Text(
         value=default_text,
     )
-    return widgets.VBox([label5, stoch_struc_input]), stoch_struc_input
+    return widgets.VBox([label5, stoch_struc_input], layout=widgets.Layout(margin='0 0 15px 0')), stoch_struc_input
 
 
 '''Define numerical input functions'''
@@ -113,7 +113,7 @@ def create_share_of_dh_price_cap():
         step=0.1,
     )
     number_input_1.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_1, number_input_1]), number_input_1
+    return widgets.VBox([description_label_1, number_input_1], layout=widgets.Layout(margin='0 0 15px 0')), number_input_1
 
 
 def create_price_level_power():
@@ -126,7 +126,7 @@ def create_price_level_power():
         step=0.1,
     )
     number_input_2.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_2, number_input_2]), number_input_2
+    return widgets.VBox([description_label_2, number_input_2], layout=widgets.Layout(margin='0 0 15px 0')), number_input_2
 
 
 def create_power_price_variance():
@@ -140,7 +140,7 @@ def create_power_price_variance():
         step=0.01,
     )
     number_input_3.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_3, number_input_3]), number_input_3
+    return widgets.VBox([description_label_3, number_input_3], layout=widgets.Layout(margin='0 0 15px 0')), number_input_3
 
 
 def create_number_opt_horizons():
@@ -155,7 +155,7 @@ def create_number_opt_horizons():
         step=1,
     )
     number_input_4.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_4, number_input_4]), number_input_4
+    return widgets.VBox([description_label_4, number_input_4], layout=widgets.Layout(margin='0 0 15px 0')), number_input_4
 
 
 def create_sections_elec():
@@ -168,11 +168,11 @@ def create_sections_elec():
         step=1,
     )
     number_input_5.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_5, number_input_5]), number_input_5
+    return widgets.VBox([description_label_5, number_input_5], layout=widgets.Layout(margin='0 0 15px 0')), number_input_5
 
 
 # Set investment costs and capacity limit depending on type of product
-investment_cost_vbox = widgets.VBox(layout=widgets.Layout(align_items='flex-start'))
+investment_cost_vbox = widgets.VBox(layout=widgets.Layout(align_items='flex-start', margin='0 0 15px 0'))
 investment_cost_values = {}
 investment_limit_values = {}
 
@@ -522,7 +522,7 @@ def update_inv_costs(change, investment_cost_vbox):
 
 
 # Set capacities of units depending on type of product
-capacities_vbox = widgets.VBox()
+capacities_vbox = widgets.VBox(layout=widgets.Layout(margin='0 0 15px 0'))
 capacities_values = {}
 
 def update_capacities(change, capacities_vbox):
@@ -733,7 +733,7 @@ def create_dropdown_year():
         value=2019
     )
     dropdown1.observe(on_change)
-    return widgets.VBox([label1, dropdown1]), dropdown1
+    return widgets.VBox([label1, dropdown1], layout=widgets.Layout(margin='0 0 15px 0')), dropdown1
 
 
 #create dropdown for the power price zone
@@ -744,7 +744,7 @@ def create_dropdown_price_zone():
         value=None
     )
     dropdown2.observe(on_change)
-    return widgets.VBox([label2, dropdown2]), dropdown2   
+    return widgets.VBox([label2, dropdown2], layout=widgets.Layout(margin='0 0 15px 0')), dropdown2   
 
 
 #create dropdown for the product
@@ -771,7 +771,7 @@ def create_dropdown_electrolysis():
         value=None
     )
     dropdown4.observe(on_change)
-    return widgets.VBox([label4, dropdown4]), dropdown4  
+    return widgets.VBox([label4, dropdown4], layout=widgets.Layout(margin='0 0 15px 0')), dropdown4  
 
 
 # Create dropdown for the model frequency
@@ -797,7 +797,7 @@ def create_dropdown_frequency():
     selected_value_widget = widgets.Label(option_values[dropdown5.value])
     
     dropdown5.observe(on_change_dict, names='value')
-    return widgets.VBox([label5, dropdown5]), selected_option_widget, selected_value_widget
+    return widgets.VBox([label5, dropdown5], layout=widgets.Layout(margin='0 0 15px 0')), selected_option_widget, selected_value_widget
 
 
 #create dropdown for the whether or not roll_forward is used
@@ -811,7 +811,7 @@ def create_dropdown_roll():
         value=False
     )
     dropdown6.observe(on_change)
-    return widgets.VBox([label6, dropdown6]), dropdown6
+    return widgets.VBox([label6, dropdown6], layout=widgets.Layout(margin='0 0 15px 0')), dropdown6
 
 
 #create dropdown for whether or not investments can be made
@@ -823,7 +823,7 @@ def create_dropdown_investment():
         value=False
     )
     dropdown7.observe(on_change)
-    return widgets.VBox([label7, dropdown7]), dropdown7
+    return widgets.VBox([label7, dropdown7], layout=widgets.Layout(margin='0 0 15px 0')), dropdown7
 
 
 # Create dropdown for the default investment period
@@ -847,7 +847,7 @@ def create_dropdown_invest_period():
 
     dropdown8.observe(on_change)
     
-    return widgets.VBox([label8, number_input_8, dropdown8]), number_input_8, dropdown8
+    return widgets.VBox([label8, number_input_8, dropdown8], layout=widgets.Layout(margin='0 0 15px 0')), number_input_8, dropdown8
 
 
 '''Define multiple choice functions'''
@@ -917,7 +917,10 @@ def create_multiple_choice_power():
     for option in preselected_checks_power:
         checkbox = widgets.Checkbox(
             value=True,  # All preselected options should be checked
-            description=option)
+            description=option,
+            indent=False,
+            layout=widgets.Layout(padding='0px 0px 0px 30px')
+        )
         checkbox.observe(lambda change, 
                          checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
                          names='value')
@@ -927,7 +930,10 @@ def create_multiple_choice_power():
     for option in non_preselected_checks_power:
         checkbox = widgets.Checkbox(
             value=False,  # Non-preselected options should be unchecked
-            description=option)
+            description=option,
+            indent=False,
+            layout=widgets.Layout(padding='0px 0px 0px 30px')
+        )
         checkbox.observe(lambda change, 
                          checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
                          names='value')
@@ -960,7 +966,7 @@ def create_multiple_choice_power():
     
     hbox_warning = widgets.HBox([power_column, warning_label])
     
-    return widgets.VBox([label_power, hbox_warning, capacity_column]), selected_options_power, capacities_powers_values
+    return widgets.VBox([label_power, hbox_warning, capacity_column], layout=widgets.Layout(margin='0 0 15px 0')), selected_options_power, capacities_powers_values
   
 
 def create_multiple_choice_report():
@@ -1001,7 +1007,8 @@ def create_multiple_choice_report():
     for option in preselected_checks:
         checkbox = widgets.Checkbox(
             value=True,  # All preselected options should be checked
-            description=option
+            description=option,
+            indent=False
         )
         checkbox.observe(lambda change, 
                          checkbox=checkbox: on_change_MC_report(change, selected_options_report, checkbox),
@@ -1013,7 +1020,8 @@ def create_multiple_choice_report():
     for option in non_preselected_checks:
         checkbox = widgets.Checkbox(
             value=False,  # Non-preselected options should be unchecked
-            description=option
+            description=option,
+            indent=False
         )
         checkbox.observe(lambda change, 
                          checkbox=checkbox: on_change_MC(change, selected_options_report, checkbox),
@@ -1025,14 +1033,12 @@ def create_multiple_choice_report():
     columns = [widgets.VBox([]), widgets.VBox([]), widgets.VBox([])]
     for i, checkbox in enumerate(checkboxes):
         columns[i % 3].children += (checkbox,)
-    hbox_report = widgets.HBox(columns,
-                        layout = widgets.Layout(overflow = 'hidden',
-                                                justify_content = 'flex-start',
-                                                width = '130%'
-                                               ))
+    hbox_report = widgets.HBox(columns, layout = widgets.Layout(overflow = 'hidden',
+                                                                justify_content = 'flex-start'))
     
     label2 = widgets.Label("Please select the outputs for the report:")
-    return widgets.VBox([label2, hbox_report]), selected_options_report
+    
+    return widgets.VBox([label2, hbox_report], layout=widgets.Layout(margin='0 0 15px 0')), selected_options_report
 
 
 
@@ -1288,7 +1294,7 @@ def compute_other_values(values):
 
 # Add investment costs and capacities to the parameters definition if previously set
 def set_inv_cap_values(values, parameters):
-    #investment costs
+    # investment costs
     if 'inv_cost_electrolyzer' in values:
         parameters['inv_cost_electrolyzer'] = values['inv_cost_electrolyzer']
     if 'inv_cost_ammonia_storage' in values:
@@ -1321,7 +1327,7 @@ def set_inv_cap_values(values, parameters):
         parameters['inv_cost_rwgs'] = values['inv_cost_rwgs']
     if 'inv_cost_steam' in values:
         parameters['inv_cost_steam'] = values['inv_cost_steam']
-    #capacities
+    # capacities
     if 'capacity_asu' in values:
         parameters['capacity_asu'] = values['capacity_asu']
     if 'capacity_electrolyzer' in values:
@@ -1343,7 +1349,7 @@ def set_inv_cap_values(values, parameters):
         parameters['capacity_biomethanation'] = values['capacity_biomethanation']
     if 'capacity_co2_removal' in values:
         parameters['capacity_co2_removal'] = values['capacity_co2_removal']
-    #limits
+    # limits
     if 'inv_limit_electrolyzer' in values:
         parameters['inv_limit_electrolyzer'] = values['inv_limit_electrolyzer']
     if 'inv_limit_ammonia_storage' in values:
