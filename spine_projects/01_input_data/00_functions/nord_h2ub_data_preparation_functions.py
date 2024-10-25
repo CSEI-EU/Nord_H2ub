@@ -201,7 +201,6 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
         if object_type in from_group:
             unit_capacity_relations_data.append({
                 'Relationship_class_name': 'unit__from_node',
-                'type': object_type,
                 'Object_class': 'unit',
                 'Object_name': unit,
                 'Node': input_node,
@@ -211,7 +210,6 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
         else:
             unit_capacity_relations_data.append({
                 'Relationship_class_name': 'unit__to_node',
-                'type': object_type,
                 'Object_class': 'unit',
                 'Object_name': unit,
                 'Node': output_node,
