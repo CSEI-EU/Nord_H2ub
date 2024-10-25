@@ -749,15 +749,16 @@ def create_dropdown_price_zone():
 
 #create dropdown for the product
 def create_dropdown_product():
-    label3 = widgets.Label("Please set the product of the plant:")
+    label3 = widgets.Label("Please set the product of the plant (required): ")
     dropdown3 = widgets.Dropdown(
         options = ['ammonia', 'egasoline', 'hydrogen', 'jet_fuel', 'methanol', 'synthetic_methane_gas'],
         value = None
     )
+    
     def on_dropdown_change(change):
         update_inv_costs(change, investment_cost_vbox)  # Update investment costs box
         update_capacities(change, capacities_vbox)      # Update capacities box
-
+        
     dropdown3.observe(on_dropdown_change, names='value')
     
     return widgets.VBox([label3, dropdown3]), dropdown3   
@@ -1046,14 +1047,14 @@ def create_multiple_choice_report():
 
 def create_combined_dropdowns_tabs():
     # Provide information for each section
-    section_1 = widgets.HTML("<b>Section 1: Please define the parameters of the general model</b>")
-    section_2 = widgets.HTML("<b>Section 2: Please define the base parameters</b>")
+    section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
+    section_2 = widgets.HTML("<b>Section 2: Please define the parameters of the general model</b>")
     section_3 = widgets.HTML("<b>Section 3: Please define the parameters of electrolysis</b>")
     section_4 = widgets.HTML("<b>Section 4: Please define the economic parameters of the general model</b>")
     section_5 = widgets.HTML("<b>Section 5: Please define the parameters for the investments</b>")
     section_6 = widgets.HTML("<b>Section 6: Please define the variables for the report</b>")
     section_7 = widgets.HTML("<b>Section 7: Please define the parameters for the different scenarios</b>")
-
+    
     # Get the dropdown menus
     model_name_input_box, model_name_input = create_name_input()
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
@@ -1107,12 +1108,12 @@ def create_combined_dropdowns_tabs():
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, model_name_input_box, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
+        section_1, dropdown_product_vbox, capacities_vbox, multiple_choice_power_box, dropdown_year_vbox, 
+        dropdown_price_zone_vbox
     ])
     
     page2 = widgets.VBox([
-        section_2, dropdown_product_vbox, capacities_vbox, multiple_choice_power_box, dropdown_year_vbox, 
-        dropdown_price_zone_vbox
+        section_2, model_name_input_box, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
     ])
     
     page3 = widgets.VBox([
@@ -1135,17 +1136,33 @@ def create_combined_dropdowns_tabs():
         section_7, report_name_box, multiple_choice_report_box
     ])  
 
-    # Create Tab widget
+    # Create Tab widget and enforce product selection
     tabs = widgets.Tab()
-    tabs.children = [page1, page2, page3, page4, page5, page6, page7]
+    tabs.children = [page1]
     tabs.set_title(0, 'Model Base')
-    tabs.set_title(1, 'Plant')
-    tabs.set_title(2, 'Electrolysis')
-    tabs.set_title(3, 'Economic')
-    tabs.set_title(4, 'Investment')
-    tabs.set_title(5, 'Scenario')
-    tabs.set_title(6, 'Results')
     
+    def add_tabs_on_product_selection(change):
+        if change['new'] is not None:
+            # Only add tabs if they're not already added
+            if len(tabs.children) == 1:
+                # Additional tab pages
+                page2 = widgets.VBox([section_2])  # Populate with actual content
+                page3 = widgets.VBox([section_3])  # Populate with actual content
+                page4 = widgets.VBox([section_4])  # Populate with actual content
+                page5 = widgets.VBox([section_5])  # Populate with actual content
+                page6 = widgets.VBox([section_6])  # Populate with actual content
+                page7 = widgets.VBox([section_7])  # Populate with actual content
+
+                # Add pages to tabs
+                tabs.children = [page1, page2, page3, page4, page5, page6, page7]
+                tabs.set_title(1, 'Plant')
+                tabs.set_title(2, 'Electrolysis')
+                tabs.set_title(3, 'Economic')
+                tabs.set_title(4, 'Investment')
+                tabs.set_title(5, 'Scenario')
+                tabs.set_title(6, 'Results')
+    
+    dropdown_product.observe(add_tabs_on_product_selection, names='value')
     
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
@@ -1153,9 +1170,8 @@ def create_combined_dropdowns_tabs():
             number_slices_vbox.layout.display = 'block'
         else:
             number_slices_vbox.layout.display = 'none'
-    # Hide number_slices by default
+    # Hide number_slices by default and observe changes in dropdown_roll
     number_slices_vbox.layout.display = 'none'
-    # Observe changes in dropdown_roll
     dropdown_roll.observe(toggle_number_slices, names='value')
 
     
@@ -1167,10 +1183,9 @@ def create_combined_dropdowns_tabs():
         else:
             dropdown_period_vbox.layout.display = 'none'
             investment_cost_vbox.layout.display = 'none'
-    # Hide investment period and costs by default
+    # Hide investment period and costs by default and observe changes in dropdown_investment
     dropdown_period_vbox.layout.display = 'none'
     investment_cost_vbox.layout.display = 'none'
-    # Observe changes in dropdown_investment
     dropdown_investment.observe(toggle_investment_period, names='value')
    
     display(tabs)
