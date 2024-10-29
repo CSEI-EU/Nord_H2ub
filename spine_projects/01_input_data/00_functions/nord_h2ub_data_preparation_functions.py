@@ -241,7 +241,7 @@ def object_relationship_unit_nodes(df_model_units):
 
         # Iterate over Input and Output columns
         for i in range(1, 3):
-            input_col = f'Input{i}'
+            input_col = f'Output{i}'
             output_col = f'Output{i}'
             vom_cost_input_col = f'vom_cost_{input_col}'
             vom_cost_output_col = f'vom_cost_{output_col}'
@@ -252,7 +252,7 @@ def object_relationship_unit_nodes(df_model_units):
             minimum_operating_point = f'minimum_op_point'
 
             # Check for Input columns
-            input_value = row[input_col]
+            input_value = row['Input1']
             vom_cost_input = row[vom_cost_input_col]
             minimum_op = row[minimum_operating_point]
             
@@ -261,7 +261,7 @@ def object_relationship_unit_nodes(df_model_units):
                     'Relationship_class_name': 'unit__from_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': input_value,
+                    'Node': row[input_col],
                     'Parameter': 'vom_cost',
                     'Value': vom_cost_input
                 })
@@ -561,7 +561,7 @@ def find_identical_entries(dict1, dict2):
     nodes = list(identical_entries.keys())
     
     #remove storage nodes as they must be balanced
-    filtered_nodes = [entry for entry in nodes if 'storage' not in entry]
+    filtered_nodes = [entry for entry in nodes if '_st' not in entry]
 
     return filtered_nodes
 
@@ -728,8 +728,7 @@ def create_adj_efficiency(dataframe, mean_eff_goal, unit):
 
 # Operating points and variable efficiency 
 def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1):
-    unit_capitalized = unit.capitalize()
-    constraint_name = 'EffCurve_' + unit_capitalized
+    constraint_name = 'effcurve_' + unit
     #Calculate operating points
     num_segments = des_segment - 1
     
@@ -775,12 +774,12 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
     
     initial_rows_var = pd.DataFrame({
         'relationship_class_name:': ['User_constraint_name', 'Object_name', 'Node_name', 'Parameter'],
-        'unit__from_node__user_constraint': [constraint_name, unit_capitalized, input_1, 'unit_flow_coefficient'],
-        'unit__to_node__user_constraint': [constraint_name, unit_capitalized, output_1, 'unit_flow_coefficient']      
+        'unit__from_node__user_constraint': [constraint_name, unit, input_1, 'unit_flow_coefficient'],
+        'unit__to_node__user_constraint': [constraint_name, unit, output_1, 'unit_flow_coefficient']      
     })
     initial_rows_op = pd.DataFrame({
         'relationship_class_name:': ['Object_name', 'Node_name', 'Parameter'],
-        'unit__from_node': [unit_capitalized, input_1, 'operating_points']        
+        'unit__from_node': [unit, input_1, 'operating_points']        
     })
     
     var_efficiency_info_df = pd.DataFrame()
@@ -802,7 +801,6 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
 
 # Ordered_unit_flow_op
 def check_decreasing(dataframe, unit, node):
-    unit_capitalized = unit.capitalize()
     is_decreasing = False
     for column in dataframe.columns:
         if column.startswith('unit__from_node__user_constraint'):
@@ -813,7 +811,7 @@ def check_decreasing(dataframe, unit, node):
     
     result_row = {
         "Relationship_class_name": "unit__from_node",
-        "Object_name": unit_capitalized,
+        "Object_name": unit,
         "Node_name": node,
         "Parameter_name": "ordered_unit_flow_op",
         "Value": "True" if is_decreasing else "False"
@@ -832,14 +830,15 @@ resolution_to_block = {
     'Y': 'yearly'
 }
 
-def check_demand_node(row, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections, df_object__node_values, df_object_node_node):
+def check_demand_node(row, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections,
+                      df_object__node_definitions, df_object__node_values, df_object_node_node):
     if not pd.isna(row['demand']):
         row_resolution = resolution_to_block[row['resolution_output']]
         if row_resolution != temporal_block:
             #definition
             new_def = pd.DataFrame([
                 {"Object_name": f"{row['Output1']}_demand", "Category": "node"},
-                {"Object_name": f"{row['Output1']}_demand_connection", "Category": "connection"}
+                {"Object_name": f"pl_{row['Output1']}_demand", "Category": "connection"}
             ])
             df_definition = pd.concat([df_definition, new_def], ignore_index=True)
             
@@ -854,7 +853,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
             #connection value
             new_con = {col: np.nan for col in df_connections.columns}
-            new_con["Object_name"] = f"{row['Output1']}_demand_connection"
+            new_con["Object_name"] = f"pl_{row['Output1']}_demand"
             new_con["Category"] = "connection"
             new_con["Connection_type"] = "connection_type_normal"
             df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
@@ -863,27 +862,28 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_rel = pd.DataFrame([
                 {"Relationship_class_name": "connection__from_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Object_name": f"pl_{row['Output1']}_demand",
                  "Node": row['Output1']
                 },
                 {"Relationship_class_name": "connection__to_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Object_name": f"pl_{row['Output1']}_demand",
                  "Node": f"{row['Output1']}_demand",
                 }
             ])
+            df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
             
             new_rel_value = pd.DataFrame([
                 {"Relationship_class_name": "connection__from_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Object_name": f"pl_{row['Output1']}_demand",
                  "Node": row['Output1'],
                  "Parameter": "connection_capacity",
                  "Value": 1000
                 },
                 {"Relationship_class_name": "connection__to_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Object_name": f"pl_{row['Output1']}_demand",
                  "Node": f"{row['Output1']}_demand",
                  "Parameter": "connection_capacity",
                  "Value": 1000
@@ -895,7 +895,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_rel_nn = pd.DataFrame([
                 {"Relationship": "connection__node__node", 
                  "Object_class": "connection", 
-                 "Object_name": f"{row['Output1']}_demand_connection",
+                 "Object_name": f"pl_{row['Output1']}_demand",
                  "Node1": f"{row['Output1']}_demand",
                  "Node2": row['Output1'],
                  "Parameter": "fix_ratio_out_in_connection_flow",

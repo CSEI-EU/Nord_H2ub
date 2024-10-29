@@ -184,7 +184,7 @@ def set_parameters(params):
         'capacity_Air_separation_unit': default_params['capacity_asu'],
         'capacity_Biomethanation': default_params['capacity_biomethanation'],
         'capacity_CO2_Vaporizer': default_params['capacity_co2_removal'],
-        'capacity_Distillation_tower': default_params['capacity_distillation'],
+        'capacity_Distillation_tower': default_params['capacity_methanol'], #same as methanol
         'capacity_EGasoline_Storage': default_params['capacity_egasoline_storage'],
         'capacity_Electric_Steam_Boiler': default_params['capacity_steam'],
         'capacity_Electrolyzer': default_params['capacity_electrolyzer'],
