@@ -193,25 +193,3 @@ def update_res_parameter_in_invest(df, update_dict, column_name):
             df.loc[df['Object_name'] == object_name, column_name] = value
 
     return df
-
-#define function to update investment data in case of methanol production
-#relevant to split the data for the methanol reactor and the Destilation tower
-#as input data is for one complete unit (e.g. total investment cost)
-def add_missing_investment_for_methanol(df, product_name):
-    if product_name.lower() == "methanol":
-        # Find the row with the object name 'Methanol Plant' (if exists)
-        methanol_plant_row = df[df['Object_name'] == 'Methanol_Reactor']
-        
-        if not methanol_plant_row.empty:
-            # Create a copy of the Methanol Plant row and modify the Object_name
-            new_row = methanol_plant_row.copy()
-            new_row['Object_name'] = 'Destilation_Tower'
-
-            # Set the investment_cost to 1 for the new row
-            #the cost avoid maximal investment up to the limit as cost would be 0
-            new_row['investment_cost'] = 1
-            
-            # Append the new row to the original dataframe
-            df = pd.concat([df, new_row], ignore_index=True)
-    
-    return df

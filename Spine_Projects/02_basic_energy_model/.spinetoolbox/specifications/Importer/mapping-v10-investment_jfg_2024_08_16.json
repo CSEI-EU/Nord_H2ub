@@ -226,8 +226,7 @@
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
+                                "position": 1
                             },
                             {
                                 "map_type": "Entity",
@@ -241,12 +240,14 @@
                     }
                 },
                 {
-                    "Value_balance_type": {
+                    "Values": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
+                                "position": 1,
+                                "skip_columns": [
+                                    1
+                                ]
                             },
                             {
                                 "map_type": "Entity",
@@ -258,8 +259,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 2
+                                "position": "header"
                             },
                             {
                                 "map_type": "Alternative",
@@ -272,192 +272,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 2
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_has_state": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 3
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 3
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_node_state_cap": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 4
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 4
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_frac_state_loss": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 5
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 5
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_demand": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 6
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 6
-                            }
-                        ]
-                    }
-                },
-                {
-                    "Value_node_slack_penalty": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden",
-                                "value": "node"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header",
-                                "value": 7
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": "hidden",
-                                "value": "Base"
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 7
                             }
                         ]
                     }
@@ -1380,7 +1195,7 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "boolean",
+                "3": "float",
                 "4": "float",
                 "5": "float",
                 "6": "float",

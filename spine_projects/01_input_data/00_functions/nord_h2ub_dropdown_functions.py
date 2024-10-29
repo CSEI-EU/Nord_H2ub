@@ -1357,7 +1357,7 @@ def set_inv_cap_values(values, parameters):
         parameters['capacity_rwgs'] = values['capacity_rwgs']
     if 'capacity_methanol' in values:
         parameters['capacity_methanol'] = values['capacity_methanol']
-        parameters['capacity_destilation'] = values['capacity_methanol']
+        parameters['capacity_distillation'] = values['capacity_methanol']
     if 'capacity_steam' in values:
         parameters['capacity_steam'] = values['capacity_steam']
     if 'capacity_anaerobic' in values:
@@ -1393,7 +1393,7 @@ def set_inv_cap_values(values, parameters):
         parameters['inv_limit_methane_storage'] = values['inv_limit_methane_storage']
     if 'inv_limit_methanol' in values:
         parameters['inv_limit_methanol'] = values['inv_limit_methanol']
-        parameters['inv_limit_destilation'] = values['inv_limit_methanol']
+        parameters['inv_limit_distillation'] = values['inv_limit_methanol']
     if 'inv_limit_methanol_storage' in values:
         parameters['inv_limit_methanol_storage'] = values['inv_limit_methanol_storage']
     if 'inv_limit_rwgs' in values:
