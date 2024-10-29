@@ -244,10 +244,7 @@
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-                                "position": 1,
-                                "skip_columns": [
-                                    1
-                                ]
+                                "position": 1
                             },
                             {
                                 "map_type": "Entity",
@@ -1195,7 +1192,7 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "float",
+                "3": "boolean",
                 "4": "float",
                 "5": "float",
                 "6": "float",
