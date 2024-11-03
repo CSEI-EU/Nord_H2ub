@@ -102,6 +102,18 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
+                                "Flexible_HiGHS": true,
+                                "GUROBI_same_data_assuming": true,
+                                "HIGHS_same_data_assuming": true,
+                                "HiGHS_PV_all_params_init_and_numbers_1": true,
+                                "HiGHS_PV_only_initial_invested1": true,
+                                "HiGHS_PV_only_initial_invested1_no_demand_node": true,
+                                "HiGHS_PV_only_initial_invested1_no_grid_tarif": true,
+                                "HiGHS_all_parameters_inlc_dist_unitson_five_OP": true,
+                                "HiGHS_all_params_inlc_dist_unitson_dist_ontype_int_five_OP": true,
+                                "HiGHS_including_ramping_and_vom_cost": true,
+                                "HiGHS_including_ramping_and_vom_cost_min_el_0point2": true,
+                                "HiGhS_PV_number_of_units1_and_initial_units_invested0": true,
                                 "Run SpineOpt@2024-10-13T11:47:14": true,
                                 "Run SpineOpt@2024-10-14T16:32:56": true,
                                 "Run SpineOpt@2024-10-18T11:36:44": true,
@@ -110,7 +122,6 @@
                                 "Run SpineOpt@2024-10-28T11:36:37": true,
                                 "Run SpineOpt@2024-10-28T13:38:59": true,
                                 "Run SpineOpt@2024-10-28T15:37:36": true,
-                                "Run SpineOpt@2024-10-28T15:57:01": true,
                                 "Run SpineOpt@2024-10-28T18:17:13": true,
                                 "Run SpineOpt@2024-10-28T18:39:38": true,
                                 "Run SpineOpt@2024-10-29T07:22:21": true,
@@ -122,7 +133,7 @@
                                 "Run SpineOpt@2024-10-30T07:21:24": true,
                                 "Run SpineOpt@2024-10-31T07:59:40": true,
                                 "Run SpineOpt@2024-10-31T11:47:23": true,
-                                "Run SpineOpt@2024-10-31T13:19:13": true
+                                "Run SpineOpt@2024-10-31T19:59:07": true
                             }
                         }
                     },
