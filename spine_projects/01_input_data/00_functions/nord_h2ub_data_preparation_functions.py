@@ -222,6 +222,7 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
     return df_unit_capacity_relations_data
 
 # function to get all the relations between units and nodes
+# function to get all the relations between units and nodes
 def object_relationship_unit_nodes(df_model_units):
     """
     Transform unit data into a list of dictionaries for unit relationship parameters.
@@ -249,12 +250,13 @@ def object_relationship_unit_nodes(df_model_units):
             ramp_down_output_col = f'ramp_down_{output_col}'
             start_up_output_col = f'start_up_{output_col}'
             shut_down_output_col = f'shut_down_{output_col}'
-            minimum_operating_point = f'minimum_op_point'
+            minimum_operating_point_input_col = f'minimum_op_point_{input_col}'
+            minimum_operating_point_output_col = f'minimum_op_point_{output_col}'
 
             # Check for Input columns
             input_value = row['Input1']
             vom_cost_input = row[vom_cost_input_col]
-            minimum_op = row[minimum_operating_point]
+            minimum_op_in = row[minimum_operating_point_input_col]
             
             if pd.notna(vom_cost_input):
                 unit_relation_parameter_data.append({
@@ -265,16 +267,16 @@ def object_relationship_unit_nodes(df_model_units):
                     'Parameter': 'vom_cost',
                     'Value': vom_cost_input
                 })
-                #so far working, but must be revised as there could be a min_op_point but no vom_cost
-                if pd.notna(minimum_op):
-                     unit_relation_parameter_data.append({
-                         'Relationship_class_name': 'unit__from_node',
-                         'Object_class': 'unit',
-                         'Object_name': unit,
-                         'Node': input_value,
-                         'Parameter': 'minimum_operating_point',
-                         'Value': minimum_op
-                     })
+            
+            if pd.notna(minimum_op_in):
+                 unit_relation_parameter_data.append({
+                     'Relationship_class_name': 'unit__from_node',
+                     'Object_class': 'unit',
+                     'Object_name': unit,
+                     'Node': input_value,
+                     'Parameter': 'minimum_operating_point',
+                     'Value': minimum_op_in
+                 })
             
             # Check for Output columns
             output_value = row[output_col]
@@ -283,6 +285,7 @@ def object_relationship_unit_nodes(df_model_units):
             ramp_down_output = row[ramp_down_output_col]
             start_up_output = row[start_up_output_col]
             shut_down_output = row[shut_down_output_col]
+            minimum_op_out = row[minimum_operating_point_output_col]
             
             if pd.notna(vom_cost_output):
                 unit_relation_parameter_data.append({
@@ -333,16 +336,16 @@ def object_relationship_unit_nodes(df_model_units):
                     'Parameter': 'shut_down_limit',
                     'Value': shut_down_output
                 })
-                #so far working, but must be revised as there could be a shut_down_output but no vom_cost
-                if pd.notna(minimum_op):
-                    unit_relation_parameter_data.append({
-                        'Relationship_class_name': 'unit__to_node',
-                        'Object_class': 'unit',
-                        'Object_name': unit,
-                        'Node': output_value,
-                        'Parameter': 'minimum_operating_point',
-                        'Value': minimum_op
-                    })
+
+            if pd.notna(minimum_op_out):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__to_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': output_value,
+                    'Parameter': 'minimum_operating_point',
+                    'Value': minimum_op_out
+                })
     
     # Create a new DataFrame from the transformed data
     df_unit_relation_parameter_data = pd.DataFrame(unit_relation_parameter_data)

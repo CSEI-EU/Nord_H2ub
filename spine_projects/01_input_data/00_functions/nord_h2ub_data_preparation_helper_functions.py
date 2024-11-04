@@ -21,6 +21,7 @@ from nord_h2ub_data_preparation_functions import *
 
 '''Define functions'''
 
+#the first function is potentially outdated and not necessary anymore
 # Function to map Object_name to Parameter with priority for pipelines (specific types), storage (specific types), then the rest
 def map_parameters_by_similarity(df1, df2, prefix):
     # Initialize a new column in df2 to store the matched Object_name
