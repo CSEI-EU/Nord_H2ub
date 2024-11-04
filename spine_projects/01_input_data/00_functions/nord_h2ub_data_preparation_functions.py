@@ -241,7 +241,7 @@ def object_relationship_unit_nodes(df_model_units):
 
         # Iterate over Input and Output columns
         for i in range(1, 3):
-            input_col = f'Output{i}'
+            input_col = f'Input{i}'
             output_col = f'Output{i}'
             vom_cost_input_col = f'vom_cost_{input_col}'
             vom_cost_output_col = f'vom_cost_{output_col}'
@@ -265,17 +265,17 @@ def object_relationship_unit_nodes(df_model_units):
                     'Parameter': 'vom_cost',
                     'Value': vom_cost_input
                 })
-                
+                #so far working, but must be revised as there could be a min_op_point but no vom_cost
                 if pd.notna(minimum_op):
-                    unit_relation_parameter_data.append({
-                        'Relationship_class_name': 'unit__from_node',
-                        'Object_class': 'unit',
-                        'Object_name': unit,
-                        'Node': input_value,
-                        'Parameter': 'minimum_operating_point',
-                        'Value': minimum_op
-                    })
-
+                     unit_relation_parameter_data.append({
+                         'Relationship_class_name': 'unit__from_node',
+                         'Object_class': 'unit',
+                         'Object_name': unit,
+                         'Node': input_value,
+                         'Parameter': 'minimum_operating_point',
+                         'Value': minimum_op
+                     })
+            
             # Check for Output columns
             output_value = row[output_col]
             vom_cost_output = row[vom_cost_output_col]
@@ -294,46 +294,46 @@ def object_relationship_unit_nodes(df_model_units):
                     'Value': vom_cost_output
                 })
 
-                if pd.notna(ramp_up_output):
-                    unit_relation_parameter_data.append({
-                        'Relationship_class_name': 'unit__to_node',
-                        'Object_class': 'unit',
-                        'Object_name': unit,
-                        'Node': output_value,
-                        'Parameter': 'ramp_up_limit',
-                        'Value': ramp_up_output
-                    })
-
-                if pd.notna(ramp_down_output):
-                    unit_relation_parameter_data.append({
-                        'Relationship_class_name': 'unit__to_node',
-                        'Object_class': 'unit',
-                        'Object_name': unit,
-                        'Node': output_value,
-                        'Parameter': 'ramp_down_limit',
-                        'Value': ramp_down_output
-                    })
+            if pd.notna(ramp_up_output):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__to_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': output_value,
+                    'Parameter': 'ramp_up_limit',
+                    'Value': ramp_up_output
+                })
                 
-                if pd.notna(start_up_output):
-                    unit_relation_parameter_data.append({
-                        'Relationship_class_name': 'unit__to_node',
-                        'Object_class': 'unit',
-                        'Object_name': unit,
-                        'Node': output_value,
-                        'Parameter': 'start_up_limit',
-                        'Value': start_up_output
-                    })
-                
-                if pd.notna(shut_down_output):
-                    unit_relation_parameter_data.append({
-                        'Relationship_class_name': 'unit__to_node',
-                        'Object_class': 'unit',
-                        'Object_name': unit,
-                        'Node': output_value,
-                        'Parameter': 'shut_down_limit',
-                        'Value': shut_down_output
-                    })
-                
+            if pd.notna(ramp_down_output):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__to_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': output_value,
+                    'Parameter': 'ramp_down_limit',
+                    'Value': ramp_down_output
+                })
+            
+            if pd.notna(start_up_output):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__to_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': output_value,
+                    'Parameter': 'start_up_limit',
+                    'Value': start_up_output
+                })
+            
+            if pd.notna(shut_down_output):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__to_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': output_value,
+                    'Parameter': 'shut_down_limit',
+                    'Value': shut_down_output
+                })
+                #so far working, but must be revised as there could be a shut_down_output but no vom_cost
                 if pd.notna(minimum_op):
                     unit_relation_parameter_data.append({
                         'Relationship_class_name': 'unit__to_node',
@@ -343,7 +343,7 @@ def object_relationship_unit_nodes(df_model_units):
                         'Parameter': 'minimum_operating_point',
                         'Value': minimum_op
                     })
-
+    
     # Create a new DataFrame from the transformed data
     df_unit_relation_parameter_data = pd.DataFrame(unit_relation_parameter_data)
 
