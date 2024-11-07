@@ -1062,7 +1062,7 @@ def convert_to_days(time_string, year):
 # Scale investment costs to actual model duration
 def scale_costs(df, start, end, object):
     # Calculate days in year
-    model_time = (end - start).days
+    model_time = (end - start).days + 1
     
     col_time = f"{object}_investment_tech_lifetime"
     col_costs = f"{object}_investment_cost"
@@ -1075,6 +1075,6 @@ def scale_costs(df, start, end, object):
     
     df = df.drop(['lifetime_days', 'factor'], axis=1)
     
-    return df   
+    return df
 
 
