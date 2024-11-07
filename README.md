@@ -18,7 +18,7 @@ For further information about the Spine tools look here: https://github.com/spin
 
 ## Description
 
-The energy hubmodel is a tool to evaluate the production of hydrogen and hydrogen derivatives based on renewable electricity. The model uses the framework provided by Spine tools, provides a data base of technology data, and enables the user to define the technologies and parameters of an energy hub. The model provides an investment as well as an pure dispatch optimization. The results are assessed based on the levelized cost of energy. 
+The energy hubmodel is a tool to evaluate the production of hydrogen and hydrogen derivatives based on renewable electricity. The model uses the framework provided by SpineOpt for the optimization. The data management is based on the tools provided by SpineToolbox. The energu hub model provides a data base of technology data, and enables the user to define the technologies and parameters of an energy hub as well as input data preparation and output data preperation routines. The energy hub model offers an investment as well as an pure dispatch optimization. The results are assessed based on the levelized cost of energy. 
 
 ## License
 
