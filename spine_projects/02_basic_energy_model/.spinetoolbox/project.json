@@ -103,7 +103,7 @@
                             "alternative_filter": {
                                 "Base": true,
                                 "Run SpineOpt@2024-11-07T21:53:07": true,
-                                "Run SpineOpt@2024-11-08T12:49:34": true
+                                "Run SpineOpt@2024-11-08T13:51:56": true
                             }
                         }
                     },
@@ -191,7 +191,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_base_4op.xlsx"
                 }
             ],
             "db_references": []
@@ -266,7 +266,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_base_4op.xlsx",
                     true
                 ]
             ]
