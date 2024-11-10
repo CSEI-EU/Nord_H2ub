@@ -103,7 +103,8 @@
                             "alternative_filter": {
                                 "Base": true,
                                 "Run SpineOpt@2024-11-09T17:51:41": true,
-                                "Run SpineOpt@2024-11-09T20:07:46": true
+                                "Run SpineOpt@2024-11-09T20:07:46": true,
+                                "Run SpineOpt@2024-11-09T23:17:38": true
                             }
                         }
                     },
@@ -204,13 +205,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -200.18725485217453,
+            "x": -198.16937755524876,
             "y": -159.84806465539899,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_invc_10pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_invc_10pup.xlsx"
                 }
             ],
             "db_references": []
@@ -279,13 +280,13 @@
             "type": "Importer",
             "description": "",
             "x": -69.87504700892357,
-            "y": -159.0175982908896,
+            "y": -158.00865964242672,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_invc_10pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_invc_10pup.xlsx",
                     true
                 ]
             ]
