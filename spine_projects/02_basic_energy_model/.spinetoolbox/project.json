@@ -102,8 +102,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2024-11-10T06:33:39": true,
-                                "Run SpineOpt@2024-11-10T11:19:43": true
+                                "Run SpineOpt@2024-11-10T21:10:26": true
                             }
                         }
                     },
@@ -210,7 +209,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_elprice_10pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_elprice_10pup.xlsx"
                 }
             ],
             "db_references": []
@@ -218,8 +217,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 392.952532898428,
-            "y": -157.70997997753707,
+            "x": 393.96147154689083,
+            "y": -157.7099799775371,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -285,7 +284,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_elprice_10pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_elprice_10pup.xlsx",
                     true
                 ]
             ]
@@ -293,8 +292,8 @@
         "Exporter": {
             "type": "Exporter",
             "description": "",
-            "x": 527.6006214551337,
-            "y": -163.38394848397618,
+            "x": 526.5916828066709,
+            "y": -161.36607118705038,
             "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
