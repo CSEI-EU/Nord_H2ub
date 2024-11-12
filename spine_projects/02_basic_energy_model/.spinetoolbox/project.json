@@ -101,9 +101,24 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
+                                "2050": true,
                                 "Base": true,
-                                "Run SpineOpt@2024-11-10T21:10:26": true,
-                                "Run SpineOpt@2024-11-11T21:11:23": true
+                                "Base_10op": true,
+                                "Base_1op": true,
+                                "Base_2op": true,
+                                "Base_3op": true,
+                                "Base_4op": true,
+                                "Base_5op": true,
+                                "Base_6op": true,
+                                "Base_7op": true,
+                                "Base_8op": true,
+                                "Base_9op": true,
+                                "Only_PV": true,
+                                "Sens_elprice_down": true,
+                                "Sens_elprice_up": true,
+                                "Sens_elpricevar_down": true,
+                                "Sens_invc_down": true,
+                                "Sens_invc_up": true
                             }
                         }
                     },
