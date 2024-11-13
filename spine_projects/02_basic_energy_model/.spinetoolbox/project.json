@@ -101,7 +101,7 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Run SpineOpt@2024-11-12T21:13:56": true
+                                "Run SpineOpt@2024-11-13T17:28:20": true
                             }
                         }
                     },
@@ -208,7 +208,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_elpricevar_10pup.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_demand_10pdown.xlsx"
                 }
             ],
             "db_references": []
@@ -216,7 +216,7 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 397.02661187167064,
+            "x": 398.55918203406054,
             "y": -157.70997997753707,
             "url": {
                 "dialect": "sqlite",
@@ -283,7 +283,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_elpricevar_10pup.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_demand_10pdown.xlsx",
                     true
                 ]
             ]
