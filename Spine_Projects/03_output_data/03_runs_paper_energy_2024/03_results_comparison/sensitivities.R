@@ -47,7 +47,7 @@ library(scales)
   variance10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pdown_run.xlsx", sheet = "LCOE"))
   #variance05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_05pdown_run.xlsx", sheet = "LCOE"))
   #variance05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_05pup_run.xlsx", sheet = "LCOE"))
-  #variance10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pup_run.xlsx", sheet = "LCOE"))
+  variance10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pup_run.xlsx", sheet = "LCOE"))
 }
 
 # Combined into separate dfs + _PV deleted (for now)
@@ -63,20 +63,21 @@ lifetime = rbind(lifetime10pdown, base, lifetime10pup) #include 5% when run
 lifetime = lifetime %>% 
   filter(!grepl('_PV', run_name))
 
-variance = rbind(variance10pdown, base) #include 5% and 10% when run
+variance = rbind(variance10pdown, base, variance10pup) #include 5% when run
+variance = variance %>% 
+  filter(!grepl('_PV', run_name))
 
 # Combined into one df
-data = setNames(data.frame(matrix(ncol = 4, nrow = 3)), c("percent", "elprice", "wacc", "lifetime"))
+data = setNames(data.frame(matrix(ncol = 5, nrow = 3)), c("percent", "elprice", "wacc", "lifetime", "variance"))
 data$percent = c("-10%", "0", "10%") #add -5% and 5%
 data$elprice = elprice$`LCOE [Euro/t]`
 data$wacc = wacc$`LCOE [Euro/t]`
 data$lifetime = lifetime$`LCOE [Euro/t]`
+data$variance = variance$`LCOE [Euro/t]`
 
 # Graph
 max.lcoe = max(data$elprice, data$wacc, data$lifetime)
 min.lcoe = min(data$elprice, data$wacc, data$lifetime)
-
-colors = c("Electricity price" = "#4967AA", "WACC" = "#52A596", "Lifetime" = "#6B1C26")
 
 plot = ggplot(data, aes(x = percent, group = 1)) +
   geom_line(aes(y = elprice, color = "Electricity price"), linewidth = 1) +
@@ -85,16 +86,18 @@ plot = ggplot(data, aes(x = percent, group = 1)) +
   geom_point(aes(y = wacc, color = "WACC"), size = 3) +
   geom_line(aes(y = lifetime, color = "Lifetime"), linewidth = 1) + 
   geom_point(aes(y = lifetime, color = "Lifetime"), size = 3) +
+  geom_line(aes(y = variance, color = "El. price variance"), linewidth = 1) + 
+  geom_point(aes(y = variance, color = "El. price variance"), size = 3) +
   scale_y_continuous(
     name = "LCOE [Euro/t]",
-    limits = c(0.9995*min.lcoe, 1.0005*max.lcoe),
+    limits = c(0.995*min.lcoe, 1.005*max.lcoe),
     breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
     labels = label_number(accuracy = 0.01),
   ) +
   theme_bw() +
   labs(x = "Percentage change in value", color = "Legend") +
-  scale_color_manual(breaks=c("Electricity price", "WACC", "Lifetime"),
-                     values=c("Electricity price" = "#4967AA", "WACC" = "#52A596", "Lifetime" = "#6B1C26")) +
+  scale_color_manual(breaks=c("Electricity price", "WACC", "Lifetime", "El. price variance"),
+                     values=c("Electricity price" = "#4967AA", "WACC" = "#52A596", "Lifetime" = "#6B1C26", "El. price variance" = "#E66A57")) +
   theme(
     axis.title.x = element_text(size = 12, face = "bold"),
     axis.text.x = element_text(face = "bold"),
