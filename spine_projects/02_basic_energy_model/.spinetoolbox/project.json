@@ -101,24 +101,7 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "2050": true,
-                                "Base": true,
-                                "Base_10op": true,
-                                "Base_1op": true,
-                                "Base_2op": true,
-                                "Base_3op": true,
-                                "Base_4op": true,
-                                "Base_5op": true,
-                                "Base_6op": true,
-                                "Base_7op": true,
-                                "Base_8op": true,
-                                "Base_9op": true,
-                                "Only_PV": true,
-                                "Sens_elprice_down": true,
-                                "Sens_elprice_up": true,
-                                "Sens_elpricevar_down": true,
-                                "Sens_invc_down": true,
-                                "Sens_invc_up": true
+                                "Run SpineOpt@2024-11-12T21:13:56": true
                             }
                         }
                     },
@@ -225,7 +208,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_elpricevar_10pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_elpricevar_10pup.xlsx"
                 }
             ],
             "db_references": []
@@ -233,8 +216,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 393.96147154689083,
-            "y": -157.7099799775371,
+            "x": 397.02661187167064,
+            "y": -157.70997997753707,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -293,14 +276,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -69.87504700892357,
-            "y": -158.00865964242672,
+            "x": -68.34247684653366,
+            "y": -158.0086596424267,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_elpricevar_10pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_elpricevar_10pup.xlsx",
                     true
                 ]
             ]
