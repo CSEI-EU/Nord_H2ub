@@ -74,6 +74,7 @@ data$elprice = elprice$`LCOE [Euro/t]`
 data$wacc = wacc$`LCOE [Euro/t]`
 data$lifetime = lifetime$`LCOE [Euro/t]`
 data$variance = variance$`LCOE [Euro/t]`
+data$percent <- as.numeric(gsub("%", "", data$percent))
 
 # Graph
 max.lcoe = max(data$elprice, data$wacc, data$lifetime)
@@ -90,12 +91,17 @@ plot = ggplot(data, aes(x = percent, group = 1)) +
   geom_point(aes(y = variance, color = "El. price variance"), size = 3) +
   scale_y_continuous(
     name = "LCOE [Euro/t]",
-    limits = c(0.995*min.lcoe, 1.005*max.lcoe),
+    limits = c(0.99*min.lcoe, 1.005*max.lcoe),
     breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
     labels = label_number(accuracy = 0.01),
   ) +
+  scale_x_continuous(
+    name = "Percentage change in value",  # Label for x-axis
+    minor_breaks = seq(min(data$percent), max(data$percent), by = 1),  # More gridlines on x-axis
+    breaks = seq(min(data$percent), max(data$percent), by = 5)  # Major breaks for the x-axis
+  ) +
   theme_bw() +
-  labs(x = "Percentage change in value", color = "Legend") +
+  labs(color = "") +
   scale_color_manual(breaks=c("Electricity price", "WACC", "Lifetime", "El. price variance"),
                      values=c("Electricity price" = "#4967AA", "WACC" = "#52A596", "Lifetime" = "#6B1C26", "El. price variance" = "#E66A57")) +
   theme(
@@ -104,7 +110,10 @@ plot = ggplot(data, aes(x = percent, group = 1)) +
     axis.title.y = element_text(color = "black", size = 12, face = "bold"),
     axis.text.y = element_text(color = "black", face = "bold"),
     panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
-    panel.grid.minor = element_line(color = "gray98", linewidth = 0.5)
+    panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+    legend.position = c(0.5, 0.1),
+    legend.text = element_text(size = 10),
+    legend.direction = "horizontal"
   )
 
 #ggsave("04_images/sensitivities.png", plot = plot, width = 7.5, height = 4, dpi = 300)
