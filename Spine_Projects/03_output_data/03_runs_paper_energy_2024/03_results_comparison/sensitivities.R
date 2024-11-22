@@ -29,43 +29,67 @@ library(scales)
 {
   base = as.data.frame(read_excel("02_output_prepared/output_base_10op_run.xlsx", sheet = "LCOE"))
   
+  #demand10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pdown_run.xlsx", sheet = "LCOE"))
+  #demand05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pdown_run.xlsx", sheet = "LCOE"))
+  #demand05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pup_run.xlsx", sheet = "LCOE"))
+  #demand10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pup_run.xlsx", sheet = "LCOE"))
+  
+  dhprice10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_10pdown_run.xlsx", sheet = "LCOE"))
+  dhprice05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_05pdown_run.xlsx", sheet = "LCOE"))
+  dhprice05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_05pup_run.xlsx", sheet = "LCOE"))
+  dhprice10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_10pup_run.xlsx", sheet = "LCOE"))
+  
   elprice10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_10pdown_run.xlsx", sheet = "LCOE"))
-  #elprice05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_05pdown_run.xlsx", sheet = "LCOE"))
-  #elprice05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_05pup_run.xlsx", sheet = "LCOE"))
+  elprice05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_05pdown_run.xlsx", sheet = "LCOE"))
+  elprice05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_05pup_run.xlsx", sheet = "LCOE"))
   elprice10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_10pup_run.xlsx", sheet = "LCOE"))
   
   wacc10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_10pdown_run.xlsx", sheet = "LCOE"))
-  #wacc05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_05pdown_run.xlsx", sheet = "LCOE"))
-  #wacc05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_05pup_run.xlsx", sheet = "LCOE"))
+  wacc05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_05pdown_run.xlsx", sheet = "LCOE"))
+  wacc05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_05pup_run.xlsx", sheet = "LCOE"))
   wacc10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_10pup_run.xlsx", sheet = "LCOE"))
   
   lifetime10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_10pdown_run.xlsx", sheet = "LCOE"))
-  #lifetime05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_05pdown_run.xlsx", sheet = "LCOE"))
-  #lifetime05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_05pup_run.xlsx", sheet = "LCOE"))
+  lifetime05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_05pdown_run.xlsx", sheet = "LCOE"))
+  lifetime05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_05pup_run.xlsx", sheet = "LCOE"))
   lifetime10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_10pup_run.xlsx", sheet = "LCOE"))
   
-  variance10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pdown_run.xlsx", sheet = "LCOE"))
+  #variance10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pdown_run.xlsx", sheet = "LCOE"))
   #variance05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_05pdown_run.xlsx", sheet = "LCOE"))
   #variance05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_05pup_run.xlsx", sheet = "LCOE"))
-  variance10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pup_run.xlsx", sheet = "LCOE"))
+  #variance10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pup_run.xlsx", sheet = "LCOE"))
+  
+  invc10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_10pdown_run.xlsx", sheet = "LCOE"))
+  invc05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_05pdown_run.xlsx", sheet = "LCOE"))
+  invc05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_05pup_run.xlsx", sheet = "LCOE"))
+  invc10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_10pup_run.xlsx", sheet = "LCOE"))
 }
 
 # Combined into separate dfs + _PV deleted (for now)
-elprice = rbind(elprice10pdown, base, elprice10pup) #include 5% when run
+#demand = rbind(demand10pdown, demand05pdown, base, demand05pup, demand10pup) 
+#demand = elprice %>% 
+  #filter(!grepl('_PV', run_name))
+
+elprice = rbind(elprice10pdown, elprice05pdown, base, elprice05pup, elprice10pup)
 elprice = elprice %>% 
   filter(!grepl('_PV', run_name))
 
-wacc = rbind(wacc10pdown, base, wacc10pup) #include 5% when run
+wacc = rbind(wacc10pdown, wacc05pdown, base, wacc05pup, wacc10pup)
 wacc = wacc %>% 
   filter(!grepl('_PV', run_name))
 
-lifetime = rbind(lifetime10pdown, base, lifetime10pup) #include 5% when run
+lifetime = rbind(lifetime10pdown, lifetime05pdown, base, lifetime05pup, lifetime10pup)
 lifetime = lifetime %>% 
   filter(!grepl('_PV', run_name))
 
-variance = rbind(variance10pdown, base, variance10pup) #include 5% when run
-variance = variance %>% 
+#variance = rbind(variance10pdown, base, variance10pup)
+#variance = variance %>% 
+  #filter(!grepl('_PV', run_name))
+
+invc = rbind(invc10pdown, invc05pdown, base, invc05pup, invc10pup)
+invc = lifetime %>% 
   filter(!grepl('_PV', run_name))
+
 
 # Combined into one df
 data = setNames(data.frame(matrix(ncol = 5, nrow = 3)), c("percent", "elprice", "wacc", "lifetime", "variance"))
