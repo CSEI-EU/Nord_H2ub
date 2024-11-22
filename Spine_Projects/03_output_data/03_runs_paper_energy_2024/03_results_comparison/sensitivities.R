@@ -67,7 +67,7 @@ library(scales)
 
 # Combined into separate dfs + _PV deleted (for now)
 #demand = rbind(demand10pdown, demand05pdown, base, demand05pup, demand10pup) 
-#demand = elprice %>% 
+#demand = demand %>% 
   #filter(!grepl('_PV', run_name))
 
 elprice = rbind(elprice10pdown, elprice05pdown, base, elprice05pup, elprice10pup)
@@ -87,47 +87,54 @@ lifetime = lifetime %>%
   #filter(!grepl('_PV', run_name))
 
 invc = rbind(invc10pdown, invc05pdown, base, invc05pup, invc10pup)
-invc = lifetime %>% 
+invc = invc %>% 
+  filter(!grepl('_PV', run_name))
+
+dhprice = rbind(dhprice10pdown, dhprice05pdown, base, dhprice05pup, dhprice10pup)
+dhprice = dhprice %>% 
   filter(!grepl('_PV', run_name))
 
 
 # Combined into one df
-data = setNames(data.frame(matrix(ncol = 5, nrow = 3)), c("percent", "elprice", "wacc", "lifetime", "variance"))
-data$percent = c("-10%", "0", "10%") #add -5% and 5%
+#add variance and demand when run
+data = setNames(data.frame(matrix(ncol = 6, nrow = 5)), c("percent", "elprice", "wacc", "lifetime", "invc", "dhprice"))
+data$percent = c("-10%", "-5%", "0", "5%", "10%")
+#data$demand = demand$`LCOE [Euro/t]`
 data$elprice = elprice$`LCOE [Euro/t]`
 data$wacc = wacc$`LCOE [Euro/t]`
 data$lifetime = lifetime$`LCOE [Euro/t]`
-data$variance = variance$`LCOE [Euro/t]`
+#data$variance = variance$`LCOE [Euro/t]`
+data$invc = invc$`LCOE [Euro/t]`
+data$dhprice = dhprice$`LCOE [Euro/t]`
 data$percent <- as.numeric(gsub("%", "", data$percent))
 
-# Graph
-max.lcoe = max(data$elprice, data$wacc, data$lifetime)
-min.lcoe = min(data$elprice, data$wacc, data$lifetime)
 
-plot = ggplot(data, aes(x = percent, group = 1)) +
-  geom_line(aes(y = elprice, color = "Electricity price"), linewidth = 1) +
-  geom_point(aes(y = elprice, color = "Electricity price"), size = 3) +
+# Graph investment
+max.lcoe.inv = max(data$wacc, data$lifetime, data$invc)
+min.lcoe.inv = min(data$wacc, data$lifetime, data$invc)
+
+ggplot(data, aes(x = percent, group = 1)) +
   geom_line(aes(y = wacc, color = "WACC"), linewidth = 1) +
   geom_point(aes(y = wacc, color = "WACC"), size = 3) +
   geom_line(aes(y = lifetime, color = "Lifetime"), linewidth = 1) + 
   geom_point(aes(y = lifetime, color = "Lifetime"), size = 3) +
-  geom_line(aes(y = variance, color = "El. price variance"), linewidth = 1) + 
-  geom_point(aes(y = variance, color = "El. price variance"), size = 3) +
+  geom_line(aes(y = invc, color = "Investment costs"), linewidth = 1) + 
+  geom_point(aes(y = invc, color = "Investment costs"), size = 3) +
   scale_y_continuous(
     name = "LCOE [Euro/t]",
-    limits = c(0.99*min.lcoe, 1.005*max.lcoe),
-    breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
+    limits = c(0.99*min.lcoe.inv, 1.005*max.lcoe.inv),
+    breaks = seq(min.lcoe.inv, max.lcoe.inv, (max.lcoe.inv - min.lcoe.inv)/4),
     labels = label_number(accuracy = 0.01),
   ) +
   scale_x_continuous(
     name = "Percentage change in value",  # Label for x-axis
-    minor_breaks = seq(min(data$percent), max(data$percent), by = 1),  # More gridlines on x-axis
-    breaks = seq(min(data$percent), max(data$percent), by = 5)  # Major breaks for the x-axis
+    minor_breaks = seq(min(data$percent), max(data$percent), by = 1),
+    breaks = seq(min(data$percent), max(data$percent), by = 5)
   ) +
   theme_bw() +
   labs(color = "") +
-  scale_color_manual(breaks=c("Electricity price", "WACC", "Lifetime", "El. price variance"),
-                     values=c("Electricity price" = "#4967AA", "WACC" = "#52A596", "Lifetime" = "#6B1C26", "El. price variance" = "#E66A57")) +
+  scale_color_manual(breaks=c("WACC", "Lifetime", "Investment costs"),
+                     values=c("WACC" = "#4967AA", "Lifetime" = "#52A596", "Investment costs" = "#E66A57")) +
   theme(
     axis.title.x = element_text(size = 12, face = "bold"),
     axis.text.x = element_text(face = "bold"),
@@ -139,5 +146,85 @@ plot = ggplot(data, aes(x = percent, group = 1)) +
     legend.text = element_text(size = 10),
     legend.direction = "horizontal"
   )
+
+# Graph investment
+max.lcoe.inv = max(data$wacc, data$lifetime, data$invc) #add demand
+min.lcoe.inv = min(data$wacc, data$lifetime, data$invc) #add demand
+
+ggplot(data, aes(x = percent, group = 1)) +
+  geom_line(aes(y = wacc, color = "WACC"), linewidth = 1) +
+  geom_point(aes(y = wacc, color = "WACC"), size = 3) +
+  geom_line(aes(y = lifetime, color = "Lifetime"), linewidth = 1) + 
+  geom_point(aes(y = lifetime, color = "Lifetime"), size = 3) +
+  geom_line(aes(y = invc, color = "Investment costs"), linewidth = 1) + 
+  geom_point(aes(y = invc, color = "Investment costs"), size = 3) +
+  #geom_line(aes(y = invc, color = "Demand"), linewidth = 1) + 
+  #geom_point(aes(y = invc, color = "Demand"), size = 3) +
+  scale_y_continuous(
+    name = "LCOE [Euro/t]",
+    limits = c(0.99*min.lcoe.inv, 1.005*max.lcoe.inv),
+    breaks = seq(min.lcoe.inv, max.lcoe.inv, (max.lcoe.inv - min.lcoe.inv)/4),
+    labels = label_number(accuracy = 0.01),
+  ) +
+  scale_x_continuous(
+    name = "Percentage change in value",  # Label for x-axis
+    minor_breaks = seq(min(data$percent), max(data$percent), by = 1),
+    breaks = seq(min(data$percent), max(data$percent), by = 5)
+  ) +
+  theme_bw() +
+  labs(color = "") +
+  scale_color_manual(breaks=c("WACC", "Lifetime", "Investment costs", "Demand"), #add demand
+                     values=c("WACC" = "#4967AA", "Lifetime" = "#52A596", "Investment costs" = "#E66A57", "Demand" = "yellow")) +
+  theme(
+    axis.title.x = element_text(size = 12, face = "bold"),
+    axis.text.x = element_text(face = "bold"),
+    axis.title.y = element_text(color = "black", size = 12, face = "bold"),
+    axis.text.y = element_text(color = "black", face = "bold"),
+    panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+    panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+    legend.position = c(0.5, 0.1),
+    legend.text = element_text(size = 10),
+    legend.direction = "horizontal"
+  )
+
+
+# Graph prices
+max.lcoe.elec = max(data$elprice, data$variance) #add variance
+min.lcoe.elec = min(data$elprice, data$variance) #add variance
+
+ggplot(data, aes(x = percent, group = 1)) +
+  geom_line(aes(y = elprice, color = "Electricity price"), linewidth = 1) +
+  geom_point(aes(y = elprice, color = "Electricity price"), size = 3) +
+  geom_line(aes(y = dhprice, color = "District heating price"), linewidth = 1) + 
+  geom_point(aes(y = dhprice, color = "District heating price"), size = 3) +
+  #geom_line(aes(y = variance, color = "Electricity price variance"), linewidth = 1) + 
+  #geom_point(aes(y = variance, color = "Electricity price variance"), size = 3) +
+  scale_y_continuous(
+    name = "LCOE [Euro/t]",
+    limits = c(0.99*min.lcoe.elec, 1.005*max.lcoe.elec),
+    breaks = seq(min.lcoe.elec, max.lcoe.elec, (max.lcoe.elec - min.lcoe.elec)/4),
+    labels = label_number(accuracy = 0.01),
+  ) +
+  scale_x_continuous(
+    name = "Percentage change in value",  # Label for x-axis
+    minor_breaks = seq(min(data$percent), max(data$percent), by = 1),  # More gridlines on x-axis
+    breaks = seq(min(data$percent), max(data$percent), by = 5)  # Major breaks for the x-axis
+  ) +
+  theme_bw() +
+  labs(color = "") +
+  scale_color_manual(breaks=c("Electricity price", "Electricity price variance", "District heating price"),
+                     values=c("Electricity price" = "#4967AA", "Electricity price variance" = "#52A596", "District heating price" = "#E66A57")) +
+  theme(
+    axis.title.x = element_text(size = 12, face = "bold"),
+    axis.text.x = element_text(face = "bold"),
+    axis.title.y = element_text(color = "black", size = 12, face = "bold"),
+    axis.text.y = element_text(color = "black", face = "bold"),
+    panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+    panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+    legend.position = c(0.5, 0.1),
+    legend.text = element_text(size = 10),
+    legend.direction = "horizontal"
+  )
+
 
 #ggsave("04_images/sensitivities.png", plot = plot, width = 7.5, height = 4, dpi = 300)
