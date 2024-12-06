@@ -32,10 +32,10 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 {
   base = as.data.frame(read_excel("02_output_prepared/output_base_10op_run.xlsx", sheet = "LCOE"))
   
-  #demand10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pdown_run.xlsx", sheet = "LCOE"))
-  #demand05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pdown_run.xlsx", sheet = "LCOE"))
-  #demand05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pup_run.xlsx", sheet = "LCOE"))
-  #demand10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pup_run.xlsx", sheet = "LCOE"))
+  demand10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pdown_run.xlsx", sheet = "LCOE"))
+  demand05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pdown_run.xlsx", sheet = "LCOE"))
+  demand05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pup_run.xlsx", sheet = "LCOE"))
+  demand10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pup_run.xlsx", sheet = "LCOE"))
   
   dhprice10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_10pdown_run.xlsx", sheet = "LCOE"))
   dhprice05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_05pdown_run.xlsx", sheet = "LCOE"))
@@ -69,9 +69,9 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 }
 
 # Combined into separate dfs + _PV deleted (for now)
-#demand = rbind(demand10pdown, demand05pdown, base, demand05pup, demand10pup) 
-#demand = demand %>% 
-  #filter(!grepl('_PV', run_name))
+demand = rbind(demand10pdown, demand05pdown, base, demand05pup, demand10pup) 
+demand = demand %>% 
+  filter(!grepl('_PV', run_name))
 
 elprice = rbind(elprice10pdown, elprice05pdown, base, elprice05pup, elprice10pup)
 elprice = elprice %>% 
@@ -99,10 +99,9 @@ dhprice = dhprice %>%
 
 
 # Combined into one df
-#add variance and demand when run
 data = setNames(data.frame(matrix(ncol = 7, nrow = 5)), c("percent", "elprice", "wacc", "lifetime", "invc", "dhprice", "elpricevar"))
 data$percent = c("-10%", "-5%", "0", "5%", "10%")
-#data$demand = demand$`LCOE [Euro/t]`
+data$demand = demand$`LCOE [Euro/t]`
 data$elprice = elprice$`LCOE [Euro/t]`
 data$wacc = wacc$`LCOE [Euro/t]`
 data$lifetime = lifetime$`LCOE [Euro/t]`
@@ -113,8 +112,8 @@ data$percent <- as.numeric(gsub("%", "", data$percent))
 
 
 # Graph investment
-max.lcoe = max(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance) #add demand
-min.lcoe = min(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance) #add demand
+max.lcoe = max(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand) 
+min.lcoe = min(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand)
 
 plot.inv = ggplot(data, aes(x = percent, group = 1)) +
   geom_line(aes(y = wacc, color = "WACC"), linewidth = 1) +
@@ -123,8 +122,8 @@ plot.inv = ggplot(data, aes(x = percent, group = 1)) +
   geom_point(aes(y = lifetime, color = "Lifetime"), size = 3) +
   geom_line(aes(y = invc, color = "Investment costs"), linewidth = 1) + 
   geom_point(aes(y = invc, color = "Investment costs"), size = 3) +
-  #geom_line(aes(y = invc, color = "Demand"), linewidth = 1) + 
-  #geom_point(aes(y = invc, color = "Demand"), size = 3) +
+  geom_line(aes(y = demand, color = "Demand"), linewidth = 1) + 
+  geom_point(aes(y = demand, color = "Demand"), size = 3) +
   scale_y_continuous(
     name = "LCOE [Euro/t]",
     limits = c(0.99*min.lcoe, 1.005*max.lcoe),

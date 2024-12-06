@@ -51,7 +51,7 @@ lcoe = combined_df %>%
 names(lcoe)[names(lcoe) == "LCOE [Euro/t]"] <- "LCOE_Euro_t"
 lcoe$op_points = sub('.....', '', lcoe$run_name)
 lcoe$op_points = ifelse(lcoe$op_points != "10op", paste0("0", lcoe$op_points), lcoe$op_points)
-lcoe$hours = c(1.1147, 0.6800, 1.4489, 2.7797, 1.7928, 2.3200, 2.5019, 3.0786, 3.3828, 6.6747)
+lcoe$hours = c(0.5333, 0.6800, 1.4489, 1.25, 1.55, 2.3200, 2.5019, 3.1333, 3.3828, 6.6747)
 
 #LCOE 
 ggplot(lcoe, aes(x = op_points, y = LCOE_Euro_t)) +
