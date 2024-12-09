@@ -101,7 +101,7 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Run SpineOpt@2024-11-24T12:44:40": true
+                                "Run SpineOpt@2024-12-09T10:40:31": true
                             }
                         }
                     },
@@ -208,7 +208,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_base_20op.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_demand_05pdown.xlsx"
                 }
             ],
             "db_references": []
@@ -283,7 +283,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_base_20op.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_demand_05pdown.xlsx",
                     true
                 ]
             ]
