@@ -150,6 +150,7 @@ plot.inv = ggplot(data, aes(x = percent, group = 1)) +
     legend.text = element_text(size = 10),
     legend.direction = "horizontal"
   )
+plot.inv
 #ggsave("04_images/sensitivities_inv.png", plot = plot.inv, width = 7.5, height = 5, dpi = 300)
 
 
@@ -187,5 +188,5 @@ plot.price = ggplot(data, aes(x = percent, group = 1)) +
     legend.text = element_text(size = 10),
     legend.direction = "horizontal"
   )
-
+plot.price
 #ggsave("04_images/sensitivities_prices.png", plot = plot.price, width = 7.5, height = 5, dpi = 300)
