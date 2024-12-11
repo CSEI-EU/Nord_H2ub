@@ -208,7 +208,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_demand_05pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_2022_10op.xlsx"
                 }
             ],
             "db_references": []
@@ -217,7 +217,7 @@
             "type": "Data Store",
             "description": "",
             "x": 398.55918203406054,
-            "y": -157.70997997753707,
+            "y": -159.3253917703264,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -283,7 +283,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_demand_05pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_2022_10op.xlsx",
                     true
                 ]
             ]
