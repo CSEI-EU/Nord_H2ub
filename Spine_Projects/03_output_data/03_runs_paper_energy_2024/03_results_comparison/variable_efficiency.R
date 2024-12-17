@@ -32,72 +32,79 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 {
   data_february = as.data.frame(read_excel("03_results_comparison/output_example_weeks.xlsx", sheet = "week february"))
   data_april = as.data.frame(read_excel("03_results_comparison/output_example_weeks.xlsx", sheet = "week april"))
+  
+  data_february$time = as.POSIXct(data_february$...1, format = "%Y-%m-%dT%H:%M:%S")
+  data_february$date <- as.Date(data_february$time)
+  
+  data_april$time = as.POSIXct(data_april$...1, format = "%Y-%m-%dT%H:%M:%S")
+  data_april$date <- as.Date(data_april$time)
 }
 
-data_february$time = as.POSIXct(data_february$...1, format = "%Y-%m-%dT%H:%M:%S")
-data_february$date <- as.Date(data_february$time)
-
-data_april$time = as.POSIXct(data_april$...1, format = "%Y-%m-%dT%H:%M:%S")
-data_april$date <- as.Date(data_april$time)
 
 #Plots
-plot.february = ggplot(data_february, aes(x = time, group = 1)) +
-  geom_line(aes(y = Constant, color = "1 op"), linewidth = 1) +
-  geom_line(aes(y = `10 op`, color = "10 op"), linewidth = 1) + 
-  scale_y_continuous(
-    name = "MW Electrolyzer",
-    labels = label_number(accuracy = 0.01),
-  ) +
-  scale_x_datetime(
-    name = "Time",  # Label for x-axis
-    date_breaks = "1 day",  # Breaks every day
-    date_labels = "%b %d"
-  ) +
-  theme_bw() +
-  labs(color = "") +
-  scale_color_manual(breaks=c("1 op", "10 op"),
-                     values=c("1 op" = "#4967AA", "10 op" = "#52A596")) +
-  theme(
-    axis.title.x = element_text(size = 12, face = "bold"),
-    axis.text.x = element_text(face = "bold"),
-    axis.title.y = element_text(color = "black", size = 12, face = "bold"),
-    axis.text.y = element_text(color = "black", face = "bold"),
-    panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
-    panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-    legend.position = c(0.9, 0.07),
-    legend.text = element_text(size = 10),
-    legend.direction = "horizontal"
-  )
-plot.february
-#ggsave("04_images/variable_efficiency_february.png", plot = plot.february, width = 9, height = 4, dpi = 300)
+#February
+{
+  plot.february = ggplot(data_february, aes(x = time, group = 1)) +
+    geom_line(aes(y = Constant, color = "1 op"), linewidth = 1) +
+    geom_line(aes(y = `10 op`, color = "10 op"), linewidth = 1) + 
+    scale_y_continuous(
+      name = "Electrolyzer [MW]",
+      labels = label_number(accuracy = 0.01),
+    ) +
+    scale_x_datetime(
+      name = "Time",  # Label for x-axis
+      date_breaks = "1 day",  # Breaks every day
+      date_labels = "%b %d"
+    ) +
+    theme_bw() +
+    labs(color = "") +
+    scale_color_manual(breaks=c("1 op", "10 op"),
+                       values=c("1 op" = "#6793D6", "10 op" = "#242E70")) +
+    theme(
+      axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+      axis.text.x = element_text(color = "black", face = "bold", size = 10),
+      axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+      axis.text.y = element_text(color = "black", face = "bold"),
+      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+      legend.position = c(0.9, 0.07),
+      legend.text = element_text(size = 10),
+      legend.direction = "horizontal"
+    )
+  plot.february
+  #ggsave("04_images/variable_efficiency_february.png", plot = plot.february, width = 9, height = 4, dpi = 300)
+}
 
-plot.april = ggplot(data_april, aes(x = time, group = 1)) +
-  geom_line(aes(y = Constant, color = "1 op"), linewidth = 1) +
-  geom_line(aes(y = `10 op`, color = "10 op"), linewidth = 1) + 
-  scale_y_continuous(
-    name = "MW Electrolyzer",
-    labels = label_number(accuracy = 0.01),
-  ) +
-  scale_x_datetime(
-    name = "Time",  # Label for x-axis
-    date_breaks = "1 day",  # Breaks every day
-    date_labels = "%b %d"
-  ) +
-  theme_bw() +
-  labs(color = "") +
-  scale_color_manual(breaks=c("1 op", "10 op"),
-                     values=c("1 op" = "#4967AA", "10 op" = "#52A596")) +
-  theme(
-    axis.title.x = element_text(size = 12, face = "bold"),
-    axis.text.x = element_text(face = "bold"),
-    axis.title.y = element_text(color = "black", size = 12, face = "bold"),
-    axis.text.y = element_text(color = "black", face = "bold"),
-    panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
-    panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-    legend.position = c(0.9, 0.07),
-    legend.text = element_text(size = 10),
-    legend.direction = "horizontal"
-  )
-plot.april
-#ggsave("04_images/variable_efficiency_april.png", plot = plot.april, width = 9, height = 4, dpi = 300)
+#April
+{
+  plot.april = ggplot(data_april, aes(x = time, group = 1)) +
+    geom_line(aes(y = Constant, color = "1 op"), linewidth = 1) +
+    geom_line(aes(y = `10 op`, color = "10 op"), linewidth = 1) + 
+    scale_y_continuous(
+      name = "Electrolyzer [MW]",
+      labels = label_number(accuracy = 0.01),
+    ) +
+    scale_x_datetime(
+      name = "Time",  # Label for x-axis
+      date_breaks = "1 day",  # Breaks every day
+      date_labels = "%b %d"
+    ) +
+    theme_bw() +
+    labs(color = "") +
+    scale_color_manual(breaks=c("1 op", "10 op"),
+                       values=c("1 op" = "#6793D6", "10 op" = "#242E70")) +
+    theme(
+      axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+      axis.text.x = element_text(color = "black", face = "bold", size = 10),
+      axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+      axis.text.y = element_text(color = "black", face = "bold"),
+      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+      legend.position = c(0.9, 0.07),
+      legend.text = element_text(size = 10),
+      legend.direction = "horizontal"
+    )
+  plot.april
+  #ggsave("04_images/variable_efficiency_april.png", plot = plot.april, width = 9, height = 4, dpi = 300)
+}
 

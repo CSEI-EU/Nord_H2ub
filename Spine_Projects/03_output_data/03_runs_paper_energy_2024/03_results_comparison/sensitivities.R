@@ -136,7 +136,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_line(aes(y = demand, color = "Demand"), linewidth = 1) + 
     geom_point(aes(y = demand, color = "Demand"), size = 3) +
     scale_y_continuous(
-      name = "LCOE [Euro/t]",
+      name = "LCOE [Euro/t CH3OH]",
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
       breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
       labels = label_number(accuracy = 0.01),
@@ -148,11 +148,11 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     ) +
     theme_bw() +
     labs(color = "") +
-    scale_color_manual(breaks=c("WACC", "Lifetime", "Investment costs", "Demand"),
-                       values=c("WACC" = "#4967AA", "Lifetime" = "#52A596", "Investment costs" = "#E66A57", "Demand" = "yellow")) +
+    scale_color_manual(breaks=c("Demand", "Lifetime", "WACC", "Investment costs"),
+                       values=c("Demand" = "#6793D6", "Lifetime" = "#50A192", "WACC" = "#242E70", "Investment costs" = "#B6DBE2")) +
     theme(
-      axis.title.x = element_text(size = 12, face = "bold"),
-      axis.text.x = element_text(face = "bold"),
+      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
+      axis.text.x = element_text(color = "black", face = "bold"),
       axis.title.y = element_text(color = "black", size = 12, face = "bold"),
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
@@ -176,7 +176,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_line(aes(y = variance, color = "Electricity price variance"), linewidth = 1) + 
     geom_point(aes(y = variance, color = "Electricity price variance"), size = 3) +
     scale_y_continuous(
-      name = "LCOE [Euro/t]",
+      name = "LCOE [Euro/t CH3OH]",
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
       breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
       labels = label_number(accuracy = 0.01)
@@ -188,11 +188,11 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     ) +
     theme_bw() +
     labs(color = "") +
-    scale_color_manual(breaks=c("Electricity price", "Electricity price variance", "District heating price"),
-                       values=c("Electricity price" = "#4967AA", "Electricity price variance" = "#52A596", "District heating price" = "#E66A57")) +
+    scale_color_manual(breaks=c("District heating price", "Electricity price variance", "Electricity price"),
+                       values=c("District heating price" = "#6793D6", "Electricity price variance" = "#50A192", "Electricity price" = "#242E70")) +
     theme(
-      axis.title.x = element_text(size = 12, face = "bold"),
-      axis.text.x = element_text(face = "bold"),
+      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
+      axis.text.x = element_text(color = "black", face = "bold"),
       axis.title.y = element_text(color = "black", size = 12, face = "bold"),
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
@@ -203,5 +203,4 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     )
   plot.price
   #ggsave("04_images/sensitivities_prices.png", plot = plot.price, width = 7.5, height = 5, dpi = 300)
-  
 }
