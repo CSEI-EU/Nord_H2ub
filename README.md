@@ -18,7 +18,11 @@ For further information about the Spine tools look here: https://github.com/spin
 
 ## Description
 
-The energy hubmodel is a tool to evaluate the production of hydrogen and hydrogen derivatives based on renewable electricity. The model uses the framework provided by SpineOpt for the optimization. The data management is based on the tools provided by SpineToolbox. The energu hub model provides a data base of technology data, and enables the user to define the technologies and parameters of an energy hub as well as input data preparation and output data preperation routines. The energy hub model offers an investment as well as an pure dispatch optimization. The results are assessed based on the levelized cost of energy. 
+The energy hubmodel is a tool to evaluate the production of hydrogen and hydrogen derivatives based on renewable electricity. The model uses the framework provided by SpineOpt for the optimization. The data management is based on the tools provided by SpineToolbox. The energy hub model provides three key features: input data preparation, optimization, and result analysis. The input data preparation consists of a data base of technology data, and enables the user to define the technologies and parameters of an energy hub as well as input data preparation and output data preperation routines. The input data preparation features an intuitive graphical interface built in Jupyter Notebook, supported by Python routines to specify case specific parameters.
+
+The optimization phase utilizes SpineOpt, a robust optimization platform implemented in Julia. The EHM currently supports the production of multiple renewable fuels, including hydrogen, ammonia, methanol, gasoline, jet fuel, and methane. The focus is on optimizing energy flows and system interactions within a multi-energy system. The MILP appraoch offers an investment as well as an pure dispatch optimization, while accounting for technical constraints, as well as the economic and technical processes involved in fuel production, storage, and transportation. Within the Spine environment, the energy hub is modeled using object types such as units, nodes, and connections. These objects are interconnected through direct relationships or indirect links mediated by a third object. Nodes serve as buses between units or connections and can also function as storage components.
+
+Finally, Python routines in Jupyter Notebook process and analyze the output data The results are assessed based on the levelized cost of energy. 
 
 ## Installation
 
