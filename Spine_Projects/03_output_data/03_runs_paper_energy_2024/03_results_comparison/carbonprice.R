@@ -36,7 +36,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 }
 
 
-#Graph
+#Graph old
 {
   max.cp = max(data$Low_emission)
   min.cp = 0
@@ -53,12 +53,12 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       name = "Year",
     ) +
     scale_y_continuous(
-      name = "Required Carbon Price [Euro/t CO2]",
+      name = bquote(bold("Required Carbon Price [€/t CO"[2]*"]")),
       breaks = seq(0, 4000, 500),
       #labels = label_number(accuracy = 0.01),
       sec.axis = sec_axis(
         trans = ~ (. - 0) / coeff, 
-        name = "Yearly Average EUA [Euro/t CO2]"
+        name = bquote(bold("Yearly Average EUA [€/t CO"[2]*"]")),
       )
     ) +
     labs(x = "Year") +
@@ -80,6 +80,63 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       legend.direction = "horizontal"
     )
   plot
-  ggsave("04_images/carbonprices.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
+  #ggsave("04_images/carbonprices_old.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
+}
+
+
+#Graph range
+{
+  plot = ggplot(data, aes(x = factor(Year), group = 1)) +
+    # Plot only the range as segments starting from Low_emission
+    geom_segment(aes(x = as.numeric(factor(Year)), 
+                     xend = as.numeric(factor(Year)), 
+                     y = Low_emission, 
+                     yend = High_emission), 
+                 color = "#242E70", size = 1) +
+    # Add feather lines
+    geom_segment(aes(x = as.numeric(factor(Year)) - 0.15, 
+                     xend = as.numeric(factor(Year)) + 0.15, 
+                     y = High_emission, 
+                     yend = High_emission), 
+                 color = "#242E70", size = 1) +
+    geom_segment(aes(x = as.numeric(factor(Year)) - 0.15, 
+                     xend = as.numeric(factor(Year)) + 0.15, 
+                     y = Low_emission, 
+                     yend = Low_emission), 
+                 color = "#242E70", size = 1) +
+    # Line for EUA
+    geom_line(aes(y = coeff * EUAs), color = "#50A192", linewidth = 1) +
+    geom_point(aes(y = coeff * EUAs), color = "#50A192", size = 3) +
+    scale_x_discrete(
+      name = "Year",
+    ) +
+    scale_y_continuous(
+      name = bquote(bold("Required Carbon Price [€/t CO"[2]*"]")),
+      breaks = seq(0, 4000, 500),
+      sec.axis = sec_axis(
+        trans = ~ (. - 0) / coeff, 
+        name = bquote(bold("Yearly Average EUA [€/t CO"[2]*"]")),
+      )
+    ) +
+    labs(x = "Year") +
+    theme_bw() +
+    scale_fill_manual(name = "", 
+                      breaks = c("Range of Required Carbon Prices"),
+                      values = c("Range of Required Carbon Prices" = "#242E70")) +
+    theme(
+      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
+      axis.text.x = element_text(color = "black", face = "bold"),
+      axis.title.y = element_text(color = "black", size = 12, face = "bold"),
+      axis.text.y = element_text(color = "black", face = "bold"),
+      axis.title.y.right = element_text(color = "#50A192", size = 12, face = "bold"),
+      axis.text.y.right = element_text(color = "#50A192", face = "bold"),
+      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+      legend.position = c(0.5, -0.09),
+      legend.text = element_text(size = 8),
+      legend.direction = "horizontal"
+    )
+  plot
+  #ggsave("04_images/carbonprices.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
 }
 

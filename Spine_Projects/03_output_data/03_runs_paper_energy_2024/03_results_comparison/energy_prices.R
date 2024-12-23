@@ -41,7 +41,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_line(aes(y = `2019`, color = "2019"), linewidth = 0.9) +
     geom_line(aes(y = `2050`, color = "2050"), linewidth = 0.9) + 
     scale_y_continuous(
-      name = "Power Price [Euro/MWh]",
+      name = "Power Price [€/MWh]",
       labels = label_number(accuracy = 0.01),
     ) +
     scale_x_datetime(
@@ -60,10 +60,10 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.5, 0.9),
+      legend.position = c(0.5, -0.106),
       legend.text = element_text(size = 10),
       legend.direction = "horizontal"
     )
   plot
-  #ggsave("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/03_output_data/03_runs_paper_energy_2024/04_images/powerprices.png", plot = plot, width = 9, height = 4, dpi = 300)
+  ggsave("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/03_output_data/03_runs_paper_energy_2024/04_images/powerprices.png", plot = plot, width = 9, height = 4, dpi = 300)
 }

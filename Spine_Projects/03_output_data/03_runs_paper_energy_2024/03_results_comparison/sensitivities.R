@@ -136,7 +136,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_line(aes(y = demand, color = "Demand"), linewidth = 1) + 
     geom_point(aes(y = demand, color = "Demand"), size = 3) +
     scale_y_continuous(
-      name = "LCOE [Euro/t CH3OH]",
+      name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
       breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
       labels = label_number(accuracy = 0.01),
@@ -176,7 +176,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_line(aes(y = variance, color = "Electricity price variance"), linewidth = 1) + 
     geom_point(aes(y = variance, color = "Electricity price variance"), size = 3) +
     scale_y_continuous(
-      name = "LCOE [Euro/t CH3OH]",
+      name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
       breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
       labels = label_number(accuracy = 0.01)

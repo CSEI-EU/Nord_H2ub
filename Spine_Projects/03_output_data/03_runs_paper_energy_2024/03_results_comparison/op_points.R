@@ -77,13 +77,13 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       breaks = seq(0, 10, by = 1)
     ) +
     scale_y_continuous(
-      name = "LCOE [Euro/t CH3OH]",
+      name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
       limits = c(0.9995*min.lcoe, 1.0005*max.lcoe),
       breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
       labels = label_number(accuracy = 0.01),
       sec.axis = sec_axis(
         trans = ~ (. - 0.9995*min.lcoe) / coeff, 
-        name = "Simulation time (h)",
+        name = "Simulation time [h]",
         breaks = c(0, 1, 2, 3, 4, 5, 6, 7)
       )
     ) +
