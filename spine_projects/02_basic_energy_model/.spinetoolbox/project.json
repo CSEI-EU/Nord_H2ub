@@ -9,11 +9,6 @@
             "Exporter": [
                 {
                     "type": "path",
-                    "relative": false,
-                    "path": "C:/Users/djh.eco/.spinetoolbox/plugins/SpineOpt/specifications/Exporter/spineopt_to_table.json"
-                },
-                {
-                    "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Exporter/exporter_energy_hub_model.json"
                 }
@@ -23,11 +18,6 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/mapping-v10-investment_jfg_2024_08_16.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Importer/importer_mapping.json"
                 }
             ],
             "Tool": [
@@ -35,6 +25,11 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Tool/run_data_prep.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/run_output_prep.json"
                 }
             ]
         },
@@ -85,25 +80,6 @@
                 ],
                 "to": [
                     "Data Store",
-                    "left"
-                ],
-                "filter_settings": {
-                    "known_filters": {},
-                    "auto_online": true,
-                    "enabled_filter_types": {
-                        "alternative_filter": false,
-                        "scenario_filter": true
-                    }
-                }
-            },
-            {
-                "name": "from Load template to Output",
-                "from": [
-                    "Load template",
-                    "right"
-                ],
-                "to": [
-                    "Output",
                     "left"
                 ],
                 "filter_settings": {
@@ -175,12 +151,29 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "Run SpineOpt@2025-01-16T13:32:03": true,
-                                "Run SpineOpt@2025-01-16T14:24:23": true
+                                "Run SpineOpt@2025-01-17T14:00:19": true
                             }
                         }
                     },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from Load template to Output",
+                "from": [
+                    "Load template",
+                    "right"
+                ],
+                "to": [
+                    "Output",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
                     "auto_online": true,
                     "enabled_filter_types": {
                         "alternative_filter": false,
@@ -216,11 +209,11 @@
             "cmd_line_args": [
                 {
                     "type": "resource",
-                    "arg": "db_url@Output"
+                    "arg": "db_url@Data Store"
                 },
                 {
                     "type": "resource",
-                    "arg": "db_url@Data Store"
+                    "arg": "db_url@Output"
                 }
             ],
             "kill_completed_processes": false,
@@ -280,7 +273,7 @@
             "description": "",
             "x": -66.20129821697168,
             "y": -158.3074522579758,
-            "specification": "importer_mapping",
+            "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
@@ -293,8 +286,8 @@
         "Data Store": {
             "type": "Data Store",
             "description": "",
-            "x": 92.40654877777789,
-            "y": -161.1191106894589,
+            "x": 91.01085464408187,
+            "y": -159.72341655576287,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -323,6 +316,17 @@
                 },
                 "schema": ""
             }
+        },
+        "run_output_prep": {
+            "type": "Tool",
+            "description": "",
+            "x": 655.9762428371216,
+            "y": -163.29621364243235,
+            "specification": "run_output_prep",
+            "execute_in_work": true,
+            "cmd_line_args": [],
+            "kill_completed_processes": true,
+            "log_process_output": false
         }
     }
 }

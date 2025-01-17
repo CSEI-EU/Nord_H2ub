@@ -16,16 +16,8 @@ import os
 import subprocess
 import sys
 
-
 with open('sys_log.txt', 'w') as f:
     f.write(f"Current sys: {sys.executable}\n")
-    print(sys.executable)
-
-'''get path to the script'''
-
-def get_script_path():
-    """Returns the absolute path of the current script."""
-    return os.path.abspath(os.path.dirname(__file__))
 
 '''functions to get the correct path of the script'''
 
@@ -50,7 +42,6 @@ def find_folder_path(root_path, target_folder):
     # Return None if the target folder is not found
     return None
 
-
 def combine_paths(common_folder='Documents'):
     """
     Combines the root part of the Nord_H2ub folder path up to a specified common folder with a new sub-path.
@@ -63,7 +54,7 @@ def combine_paths(common_folder='Documents'):
     folder_path = find_folder_path(root_path, target_folder)
     
     folder_path = folder_path
-    new_sub_path = '\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\'
+    new_sub_path = '\\GitHub\\Nord_H2ub\\Spine_Projects\\03_output_data\\00_functions\\'
 
     # Normalize the paths
     norm_folder_path = os.path.normpath(folder_path)
@@ -93,6 +84,8 @@ def start_specific_jupyter_notebook(notebook_relative_path):
         
         # Start Jupyter Notebook and open the specified notebook
         subprocess.run(['jupyter', 'notebook', notebook_full_path], check=True)
+    except FileNotFoundError:
+        print("Jupyter Notebook executable not found. Ensure Jupyter is installed and accessible.")
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
 
@@ -100,5 +93,5 @@ def start_specific_jupyter_notebook(notebook_relative_path):
 
 if __name__ == "__main__":
     # Replace 'relative/path/to/data_prep.ipynb' with the relative path to your notebook file
-    notebook_relative_path = 'nord_h2ub_main.ipynb'
+    notebook_relative_path = 'output_preparation.ipynb'
     start_specific_jupyter_notebook(notebook_relative_path)

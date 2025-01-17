@@ -11,11 +11,6 @@ SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 
 '''Import packages'''
 
-import sys
-import os
-import pandas as pd
-from datetime import timedelta
-import papermill as pm
 #packages to shutdown the notebook and be able to continue in spinetoolbox
 import time
 import requests
@@ -23,24 +18,6 @@ from IPython.display import display, Javascript
 import subprocess
 import platform
 import pickle
-
-
-# Get the current directory of the Jupyter Notebook
-notebook_dir = os.getcwd()
-
-# Construct the path to the subfolder
-subfolder_path = os.path.join(notebook_dir, '00_functions')
-
-# Add the subfolder to the system path
-if subfolder_path not in sys.path:
-    sys.path.append(subfolder_path)
-
-# Import custom functions from nord_h2ub_dropdown_functions
-try:
-    from nord_h2ub_dropdown_functions import *
-    print("Custom functions imported successfully.")
-except ImportError as e:
-    print(f"Error importing custom functions: {e}")
 
 #function to save_and_shutdown
 def avada_kedavra():
@@ -87,7 +64,7 @@ def avada_kedavra():
     # Ensure Jupyter server process is terminated
     try:
         if platform.system() == "Windows":
-            subprocess.run(["taskkill", "/F", "/IM", "jupyter-notebook"], check=True)
+            subprocess.run(["taskkill", "/F", "/IM", "jupyter-notebook.exe"], check=True)
         else:
             subprocess.run(["pkill", "-f", "jupyter-notebook"], check=True)
         print("Jupyter server process terminated.")

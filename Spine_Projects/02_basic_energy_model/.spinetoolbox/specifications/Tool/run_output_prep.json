@@ -1,0 +1,13 @@
+{
+    "name": "run_output_prep",
+    "tooltype": "python",
+    "includes": [
+        "nord_h2ub_start_output_preparation"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../03_output_data/00_functions"
+}
