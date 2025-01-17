@@ -18,6 +18,35 @@ from IPython.display import display, Javascript
 import subprocess
 import platform
 import pickle
+import os
+
+#find correct folder
+def get_base_path():
+    current_dir = os.getcwd()
+    while current_dir:
+        if os.path.basename(current_dir) == "Nord_H2ub":
+            return current_dir
+        directory = os.path.dirname(current_dir)
+        if directory == current_dir:
+            break
+        current_dir = directory
+    raise FileNotFoundError("The base directory 'Nord_H2ub' was not found.")
+
+def present_value_factor(n, r):
+    """
+    Calculate the present value factor of an annuity (Rentenbarwertfaktor).
+
+    Parameters:
+    n (int): The number of periods (time horizon).
+    r (float): The discount rate (WACC).
+
+    Returns:
+    float: The present value factor of the annuity.
+    """
+    if r == 0:
+        return n
+    else:
+        return (1 - (1 + r) ** -n) / r
 
 #function to save_and_shutdown
 def avada_kedavra():

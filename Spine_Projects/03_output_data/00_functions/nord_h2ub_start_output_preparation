@@ -83,7 +83,11 @@ def start_specific_jupyter_notebook(notebook_relative_path):
         notebook_full_path = os.path.join(folder_path, notebook_relative_path)
         
         # Start Jupyter Notebook and open the specified notebook
-        subprocess.run(['jupyter', 'notebook', notebook_full_path], check=True)
+        subprocess.run(
+            ['jupyter', 'nbconvert', '--to', 'notebook', '--execute', notebook_full_path],
+            check=True
+        )
+        print("The output preparation was executed successfully. The results can be found under '...'")
     except FileNotFoundError:
         print("Jupyter Notebook executable not found. Ensure Jupyter is installed and accessible.")
     except subprocess.CalledProcessError as e:
@@ -92,6 +96,5 @@ def start_specific_jupyter_notebook(notebook_relative_path):
 '''start'''
 
 if __name__ == "__main__":
-    # Replace 'relative/path/to/data_prep.ipynb' with the relative path to your notebook file
     notebook_relative_path = 'output_preparation.ipynb'
     start_specific_jupyter_notebook(notebook_relative_path)
