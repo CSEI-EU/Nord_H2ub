@@ -790,7 +790,7 @@ def create_dropdown_price_zone():
     label2 = widgets.Label("Please select the power price zone where the plant is located:")
     dropdown2 = widgets.Dropdown(
         options=['DE', 'DK1', 'DK2', 'NO2', 'SE3', 'SE4', 'SYSTEM'],
-        value=None
+        value='DK1'
     )
     dropdown2.observe(on_change)
     return widgets.VBox([label2, dropdown2], layout=widgets.Layout(margin='0 0 15px 0')), dropdown2   
@@ -1270,7 +1270,7 @@ def get_dropdown_values(dropdowns):
         
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],
-        'wacc': dropdowns['number_wacc'].value,
+        'wacc': dropdowns['number_wacc'].value / 100,
         'lcoe_years': dropdowns['lcoe_years'].value,
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
