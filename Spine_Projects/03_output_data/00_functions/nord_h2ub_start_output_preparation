@@ -3,9 +3,9 @@ This is the Energy Hub Model of CSEI, an Open-source Tool
 for Sector Coupling technologies. Developed at the Copenhagen School of
 Energy Infrastructure at the Copenhagen Business School.
 ---------------------------------------
-Functions File for Data Prep:
+Functions File for Output Prep:
 The functions include the logical prossecing, mathematical calculation
-logic for the preparation of the input data file for the model runs.
+logic for the preparation of the output data file for the model runs.
 SPDX-FileCopyrightText: Johannes Giehl <jfg.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
@@ -96,5 +96,5 @@ def start_specific_jupyter_notebook(notebook_relative_path):
 '''start'''
 
 if __name__ == "__main__":
-    notebook_relative_path = 'output_preparation.ipynb'
+    notebook_relative_path = 'output_preparation-spine.ipynb'
     start_specific_jupyter_notebook(notebook_relative_path)

@@ -188,8 +188,8 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -199.17831620371163,
-            "y": -159.84806465539899,
+            "x": -199.1783162037116,
+            "y": -155.66098225431097,
             "file_references": [
                 {
                     "type": "path",
@@ -202,8 +202,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 240.5272067486478,
-            "y": -259.0251666572682,
+            "x": 243.31859501603984,
+            "y": -264.6079431920522,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -222,7 +222,7 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 241.59656844013406,
+            "x": 242.99226257383003,
             "y": -52.43798104284602,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
@@ -245,8 +245,8 @@
         "Exporter": {
             "type": "Exporter",
             "description": "",
-            "x": 527.6006214551337,
-            "y": -163.38394848397618,
+            "x": 535.9747862573098,
+            "y": -156.40547781549614,
             "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
@@ -260,8 +260,8 @@
         "run_data_prep": {
             "type": "Tool",
             "description": "",
-            "x": -320.2773231230726,
-            "y": -156.05869566187928,
+            "x": -342.6084292622087,
+            "y": -158.85008392927125,
             "specification": "run data prep",
             "execute_in_work": true,
             "cmd_line_args": [],
@@ -271,8 +271,8 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -66.20129821697168,
-            "y": -158.3074522579758,
+            "x": -49.452968612619635,
+            "y": -155.51606399058383,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
@@ -286,8 +286,8 @@
         "Data Store": {
             "type": "Data Store",
             "description": "",
-            "x": 91.01085464408187,
-            "y": -159.72341655576287,
+            "x": 96.59363117886589,
+            "y": -155.53633415467488,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -303,8 +303,8 @@
         "Output": {
             "type": "Data Store",
             "description": "",
-            "x": 379.1037898575503,
-            "y": -161.1191106894589,
+            "x": 390.2693429271183,
+            "y": -158.3277224220669,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -320,8 +320,8 @@
         "run_output_prep": {
             "type": "Tool",
             "description": "",
-            "x": 655.9762428371216,
-            "y": -163.29621364243235,
+            "x": 681.0987372436497,
+            "y": -157.7134371076484,
             "specification": "run_output_prep",
             "execute_in_work": true,
             "cmd_line_args": [],
