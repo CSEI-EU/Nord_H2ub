@@ -31,7 +31,7 @@ def set_parameters(params):
         'powers_capacities': {},
         'scenario': 'Base',
         'frequency': '1h',
-        'model_name': 'toy',
+        'model_name': 'model',
         'temporal_block': 'hourly',
         'stochastic_scenario': 'realisation',
         'stochastic_structure': 'deterministic',

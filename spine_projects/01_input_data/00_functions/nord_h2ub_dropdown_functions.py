@@ -26,17 +26,6 @@ def on_text_change(change):
     if change['type'] == 'change' and change['name'] == 'value':
         print(f'You entered: {change["new"]}')
 
-        
-def create_name_input():
-    label1 = widgets.Label(
-        "Please type the name of the model if other than 'Model':")
-    default_text = "Model"
-    name_input = widgets.Text(
-        value=default_text,
-    )
-    name_input.observe(on_text_change, names='value')
-    return widgets.VBox([label1, name_input], layout=widgets.Layout(margin='0 0 15px 0')), name_input
-
 
 def create_name_rep_input():
     label2 = widgets.Label(
@@ -1261,7 +1250,6 @@ def create_combined_dropdowns_tabs():
     section_8 = widgets.HTML("<b>Section 8: Please define the parameters for the different scenarios</b>")
 
     # Get the dropdown menus
-    model_name_input_box, model_name_input = create_name_input()
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
@@ -1285,7 +1273,6 @@ def create_combined_dropdowns_tabs():
     
     # Store dropdowns in a dictionary
     dropdowns = {
-        'name': model_name_input,
         'year': dropdown_year,
         'price_zone': dropdown_price_zone,
         'product': dropdown_product,
@@ -1322,7 +1309,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page3 = widgets.VBox([
-        section_3, model_name_input_box, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
+        section_3, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
     ])
     
     page4 = widgets.VBox([
@@ -1399,7 +1386,6 @@ def create_combined_dropdowns_tabs():
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
     values = {
-        'model_name': dropdowns['name'].value,
         'year': dropdowns['year'].value,
         'price_zone': dropdowns['price_zone'].value,
         'product': dropdowns['product'].value,
