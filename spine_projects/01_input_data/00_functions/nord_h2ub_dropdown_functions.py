@@ -83,6 +83,15 @@ def create_stoch_struc_input():
     )
     return widgets.VBox([label5, stoch_struc_input], layout=widgets.Layout(margin='0 0 15px 0')), stoch_struc_input
 
+def create_run_name_input():
+    label6 = widgets.Label(
+        "Please choose the name of this run:")
+    default_text = "base_case"
+    run_name_input = widgets.Text(
+        value=default_text,
+    )
+    return widgets.VBox([label6, run_name_input], layout=widgets.Layout(margin='0 0 15px 0')), run_name_input
+
 
 '''Define numerical input functions'''
 
@@ -158,6 +167,44 @@ def create_sections_elec():
     )
     number_input_5.observe(on_number_change, names='value')
     return widgets.VBox([description_label_5, number_input_5], layout=widgets.Layout(margin='0 0 15px 0')), number_input_5
+
+def create_wacc_elec():
+    default_number = 8
+    description_label_6 = widgets.Label("Set the WACC you want to use for the LCOE calculation (%):")
+    number_input_6 = widgets.BoundedIntText(
+        value=8,
+        min=0,
+        max=15,
+        step=0.01,
+    )
+    number_input_6.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_6, number_input_6], layout=widgets.Layout(margin='0 0 15px 0')), number_input_6
+
+
+def create_lcoe_starting_year_elec():
+    default_number = 2020
+    description_label_7 = widgets.Label("Set the starting year you want to use for the LCOE calculation:")
+    number_input_7 = widgets.BoundedIntText(
+        value=2020,
+        min=0,
+        max=2200,
+        step=1,
+    )
+    number_input_7.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_7, number_input_7], layout=widgets.Layout(margin='0 0 15px 0')), number_input_7
+
+
+def create_lcoe_years_elec():
+    default_number = 25
+    description_label_8 = widgets.Label("Set the number of years for the LCOE calculation:")
+    number_input_8 = widgets.BoundedIntText(
+        value=25,
+        min=0,
+        max=100,
+        step=1,
+    )
+    number_input_8.observe(on_number_change, names='value')
+    return widgets.VBox([description_label_8, number_input_8], layout=widgets.Layout(margin='0 0 15px 0')), number_input_8
 
 
 # Set investment costs and capacity limit depending on type of product
@@ -923,7 +970,7 @@ def on_change_dict_investment(change):
 
 #create dropdown for the year
 def create_dropdown_year():
-    label1 = widgets.Label("Please select the base year:")
+    label1 = widgets.Label("Please select the base year for electricity prices:")
     dropdown1 = widgets.Dropdown(
         options=[2018, 2019, 2020, 2021, 2022],
         value=2019
@@ -937,7 +984,7 @@ def create_dropdown_price_zone():
     label2 = widgets.Label("Please select the power price zone where the plant is located:")
     dropdown2 = widgets.Dropdown(
         options=['DE', 'DK1', 'DK2', 'NO2', 'SE3', 'SE4', 'SYSTEM'],
-        value=None
+        value='DK1'
     )
     dropdown2.observe(on_change)
     return widgets.VBox([label2, dropdown2], layout=widgets.Layout(margin='0 0 15px 0')), dropdown2   
@@ -964,7 +1011,7 @@ def create_dropdown_electrolysis():
     label4 = widgets.Label("Please select the type of electrolysis:")
     dropdown4 = widgets.Dropdown(
         options=['PEM', 'Alkaline', 'SOEC'],
-        value=None
+        value='PEM'
     )
     dropdown4.observe(on_change)
     return widgets.VBox([label4, dropdown4], layout=widgets.Layout(margin='0 0 15px 0')), dropdown4  
@@ -1251,14 +1298,18 @@ def create_combined_dropdowns_tabs():
 
     # Get the dropdown menus
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
+    number_starting_year_box, number_starting_year = create_lcoe_starting_year_elec()
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
     dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
     dropdown_frequency_vbox, dropdown_frequency, dropdown_temporal = create_dropdown_frequency()
+    number_wacc_box, number_wacc = create_wacc_elec()
+    lcoe_years_box, lcoe_years = create_lcoe_years_elec()
     number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
     number_price_level_power_box, number_price_level_power = create_price_level_power()
     power_price_variance_box, power_price_variance = create_power_price_variance()
     report_name_box, report_name = create_name_rep_input()
+    run_name_box, run_name = create_run_name_input()
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
     multiple_choice_power_box, selected_powers, capacities_powers = create_multiple_choice_power()
     scen_name_box, base_scen = create_scen_name_input()
@@ -1274,6 +1325,7 @@ def create_combined_dropdowns_tabs():
     # Store dropdowns in a dictionary
     dropdowns = {
         'year': dropdown_year,
+        'starting_year': number_starting_year,
         'price_zone': dropdown_price_zone,
         'product': dropdown_product,
         'powers': selected_powers,
@@ -1281,10 +1333,13 @@ def create_combined_dropdowns_tabs():
         'electrolysis': dropdown_electrolysis,
         'frequency': dropdown_frequency,
         'temporal_block': dropdown_temporal,
+        'number_wacc': number_wacc,
+        'lcoe_years': lcoe_years,
         'number_dh_price_share': number_dh_price,
         'number_price_level_power': number_price_level_power,
         'power_price_variance': power_price_variance,
         'report_name': report_name,
+        'run_name': run_name,
         'reports': selected_reports,
         'base_scen': base_scen,
         #'other_scen': other_scen,
@@ -1300,16 +1355,15 @@ def create_combined_dropdowns_tabs():
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, dropdown_product_vbox, capacities_vbox, dropdown_year_vbox, 
-        dropdown_price_zone_vbox
+        section_1, dropdown_product_vbox, capacities_vbox
     ])
 
     page2 = widgets.VBox([
-        section_2, multiple_choice_power_box
+        section_2, multiple_choice_power_box, dropdown_year_vbox, dropdown_price_zone_vbox
     ])
     
     page3 = widgets.VBox([
-        section_3, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
+        section_3, run_name_box, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
     ])
     
     page4 = widgets.VBox([
@@ -1317,7 +1371,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page5 = widgets.VBox([
-        section_5, number_dh_price_box, number_price_level_power_box, power_price_variance_box
+        section_5, number_wacc_box, number_starting_year_box, lcoe_years_box, number_dh_price_box, number_price_level_power_box, power_price_variance_box
     ])
     
     page6 = widgets.VBox([
@@ -1387,6 +1441,7 @@ def create_combined_dropdowns_tabs():
 def get_dropdown_values(dropdowns):
     values = {
         'year': dropdowns['year'].value,
+        'starting_year': dropdowns['starting_year'].value,
         'price_zone': dropdowns['price_zone'].value,
         'product': dropdowns['product'].value,
         'electrolysis': dropdowns['electrolysis'].value,
@@ -1400,6 +1455,8 @@ def get_dropdown_values(dropdowns):
         
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],
+        'wacc': dropdowns['number_wacc'].value / 100,
+        'lcoe_years': dropdowns['lcoe_years'].value,
         'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
         'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
         'power_price_variance': dropdowns['power_price_variance'].value,
@@ -1412,6 +1469,7 @@ def get_dropdown_values(dropdowns):
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,
+        'run_name': dropdowns['run_name'].value,
         
         # Multiple choice values
         'outputs': dropdowns['reports'],
