@@ -19,6 +19,7 @@ import sys
 
 with open('sys_log.txt', 'w') as f:
     f.write(f"Current sys: {sys.executable}\n")
+    print(sys.executable)
 
 '''get path to the script'''
 

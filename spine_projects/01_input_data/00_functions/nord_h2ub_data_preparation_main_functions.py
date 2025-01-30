@@ -25,6 +25,7 @@ def set_parameters(params):
     # Default values
     default_params = {
         'year': 2019,
+        'starting_year': 2020,
         'area': 'DK1',
         'product': 'methanol',
         'powers': {'Solar plant'},
@@ -35,10 +36,12 @@ def set_parameters(params):
         'temporal_block': 'hourly',
         'stochastic_scenario': 'realisation',
         'stochastic_structure': 'deterministic',
+        'run_name': 'base_case',
         'report_name': 'Report',
         'reports': ['unit_flow', 'connection_flow', 'node_state', 'total_costs', 'unit_flow_op', 'node_slack_neg', 'node_slack_pos'],
         'electrolyzer_type': 'Alkaline',
         'des_segments_electrolyzer': 1,
+        'wacc': 0.08,
         'share_of_dh_price_cap': 0.5,
         'price_level_power': 1,
         'power_price_variance': 1,
@@ -116,6 +119,7 @@ def set_parameters(params):
     
     # Add to dictionary
     year = default_params['year']
+    starting_year = default_params['starting_year']
     area = default_params['area']
     product = default_params['product']
     powers = default_params['powers']
@@ -126,10 +130,12 @@ def set_parameters(params):
     temporal_block = default_params['temporal_block']
     stochastic_scenario = default_params['stochastic_scenario']
     stochastic_structure = default_params['stochastic_structure']
+    run_name = default_params['run_name']
     report_name = default_params['report_name']
     reports = default_params['reports']
     electrolyzer_type = default_params['electrolyzer_type']
     des_segments_electrolyzer = default_params['des_segments_electrolyzer']
+    wacc = default_params['wacc']
     share_of_dh_price_cap = default_params['share_of_dh_price_cap']
     price_level_power = default_params['price_level_power']
     power_price_variance = default_params['power_price_variance']
@@ -204,12 +210,12 @@ def set_parameters(params):
     }
 
     # Here you can add any additional processing or return the parameters
-    return (year, start_date, end_date, area, product, 
+    return (year, starting_year, start_date, end_date, area, product, 
             powers, powers_capacities, scenario, frequency, 
             model_name, temporal_block, 
-            stochastic_scenario, stochastic_structure, report_name, reports, 
+            stochastic_scenario, stochastic_structure, run_name, report_name, reports, 
             electrolyzer_type, des_segments_electrolyzer, 
-            share_of_dh_price_cap, price_level_power, power_price_variance, 
+            wacc, share_of_dh_price_cap, price_level_power, power_price_variance, 
             roll_forward_use, roll_forward_size, num_slices, datetime_index, 
             candidate_nonzero, 
             investment_period_default, investment_cost_params, investment_limit_params,

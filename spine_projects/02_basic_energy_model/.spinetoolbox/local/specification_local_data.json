@@ -28,6 +28,14 @@
                 "use_jupyter_console": false,
                 "executable": ""
             }
+        },
+        "run_output_prep": {
+            "execution_settings": {
+                "kernel_spec_name": "",
+                "env": "",
+                "use_jupyter_console": false,
+                "executable": ""
+            }
         }
     }
 }

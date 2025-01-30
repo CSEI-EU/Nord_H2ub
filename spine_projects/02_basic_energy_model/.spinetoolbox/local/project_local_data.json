@@ -3,14 +3,14 @@
         "Data Connection": {
             "db_credentials": {}
         },
-        "Output": {
+        "Exporter": {},
+        "Data Store": {
             "url": {
                 "username": "",
                 "password": ""
             }
         },
-        "Exporter": {},
-        "Input": {
+        "Output": {
             "url": {
                 "username": "",
                 "password": ""

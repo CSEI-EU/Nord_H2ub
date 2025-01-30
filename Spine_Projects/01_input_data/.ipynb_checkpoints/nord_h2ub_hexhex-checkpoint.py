@@ -23,11 +23,6 @@ from IPython.display import display, Javascript
 import subprocess
 import platform
 import pickle
-import sys
-
-
-with open('sys_log.txt', 'w') as f:
-    f.write(f"Current sys: {sys.executable}\n")
 
 
 # Get the current directory of the Jupyter Notebook
@@ -92,7 +87,7 @@ def avada_kedavra():
     # Ensure Jupyter server process is terminated
     try:
         if platform.system() == "Windows":
-            subprocess.run(["taskkill", "/F", "/IM", "jupyter-notebook.exe"], check=True)
+            subprocess.run(["taskkill", "/F", "/IM", "jupyter-notebook"], check=True)
         else:
             subprocess.run(["pkill", "-f", "jupyter-notebook"], check=True)
         print("Jupyter server process terminated.")

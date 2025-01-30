@@ -174,7 +174,7 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
             output_node = row[output_col]
             
             # Get chosen capacities
-            if object_type == 'PV_plant':
+            if object_type == 'solar_plant':
                 if 'Solar plant' in powers_capacities and powers_capacities['Solar plant'] is not None:
                     capacity = powers_capacities['Solar plant']
             elif object_type == 'Wind_onshore':
@@ -189,15 +189,14 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
                 matching_vars_cap = [key for key in capacities_exisiting_params if pattern_cap.match(key)]
                 matching_vars_inv = [key for key in investment_limit_params if pattern_inv.match(key)]
                 if matching_vars_cap:
-                    capacity_name = matching_vars_cap[0]
-                    capacity = capacities_exisiting_params[capacity_name]
+                    capacity = capacities_exisiting_params[matching_vars_cap[0]]
                 else:
                     capacity = 100
-                inv_limit_name = matching_vars_inv[0]
-                inv_limit = investment_limit_params[inv_limit_name]
-                if inv_limit is not None:
-                    capacity = max(inv_limit, capacity)
-            
+                if matching_vars_inv: 
+                    inv_limit = investment_limit_params[matching_vars_inv[0]]
+                    if inv_limit:
+                        capacity = max(inv_limit, capacity)
+         
         if object_type in from_group:
             unit_capacity_relations_data.append({
                 'Relationship_class_name': 'unit__from_node',
