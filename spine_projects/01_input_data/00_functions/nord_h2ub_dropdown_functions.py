@@ -1105,7 +1105,7 @@ def create_multiple_choice_power():
     label_power = widgets.Label("Please select the different power sources available:")
     
     # Define the list of options
-    options_power = ['Grid', 'Solar plant', 'Wind onshore', 'Wind offshore']
+    options_power = ['Grid', 'Solar plant', 'Wind onshore', 'Wind offshore', 'Power Storage']
     
     # Define preselected options and initialize selected_options_power
     preselected_options_power = {'Grid', 'Solar plant'}
@@ -1181,10 +1181,10 @@ def create_multiple_choice_power():
         checkboxes_powers.append(checkbox)
     
     # Create capacity fields for each option except grid (hidden initially):
-    res = ['Solar plant', 'Wind onshore', 'Wind offshore']
+    res = ['Solar plant', 'Wind onshore', 'Wind offshore', 'Power Storage']
     for option in res:
         capacity_widget = widgets.FloatText(
-            value=1.0,
+            value=50.0,
             layout=widgets.Layout(width='100px')
         )
         label = widgets.Label(f"{option} capacity (MW):", layout=widgets.Layout(width='220px'))
