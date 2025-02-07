@@ -1036,10 +1036,14 @@ def convert_to_days(time_string, year):
     
     try:
         # Extract the numeric value and the unit
-        num = int(time_string[:-1])
-        unit = time_string[-1].upper()  # The last character, uppercase for consistency
+        if time_string.isalpha():
+            num = 1  # Default to 1 if no numeric value is provided
+            unit = time_string.upper()  # Ensure uppercase for consistency
+        else:
+            num = int(time_string[:-1])  # Extract numeric part
+            unit = time_string[-1].upper()
     except ValueError:
-        unit = None
+        return None
     
     # Define conversion factors
     conversion_factors = {
@@ -1054,7 +1058,10 @@ def convert_to_days(time_string, year):
     # Convert to days using the appropriate factor
     if unit in conversion_factors:
         days = num * conversion_factors[unit]
-        return f"{days}D"
+        if time_string.isalpha():
+            return days
+        else:
+            return f"{days}D"
     else:
         return None
 

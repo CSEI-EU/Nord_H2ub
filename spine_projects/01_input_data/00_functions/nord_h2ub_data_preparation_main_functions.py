@@ -28,6 +28,8 @@ def set_parameters(params):
         'starting_year': 2020,
         'area': 'DK1',
         'product': 'methanol',
+        'demand': 180000,
+        'demand_res': 'daily',
         'powers': {'Solar plant'},
         'powers_capacities': {},
         'scenario': 'Base',
@@ -122,6 +124,8 @@ def set_parameters(params):
     starting_year = default_params['starting_year']
     area = default_params['area']
     product = default_params['product']
+    demand = default_params['demand']
+    demand_res = default_params['demand_res']
     powers = default_params['powers']
     powers_capacities = default_params['powers_capacities']
     scenario = default_params['scenario']
@@ -210,7 +214,7 @@ def set_parameters(params):
     }
 
     # Here you can add any additional processing or return the parameters
-    return (year, starting_year, start_date, end_date, area, product, 
+    return (year, starting_year, start_date, end_date, area, product, demand, demand_res,
             powers, powers_capacities, scenario, frequency, 
             model_name, temporal_block, 
             stochastic_scenario, stochastic_structure, run_name, report_name, reports, 

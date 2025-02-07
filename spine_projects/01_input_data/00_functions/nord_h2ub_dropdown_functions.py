@@ -942,6 +942,48 @@ def update_capacities(change, capacities_vbox):
                                    ]
 
 
+# Define demand
+def create_demand():
+    demand_vbox = widgets.VBox(layout=widgets.Layout(margin='0 0 0 0'))
+    
+    # Define a layout for descriptions and fields
+    description_layout = widgets.Layout(width='140px')
+    input_layout = widgets.Layout(width='85px')
+
+    demand_per = widgets.Label(" with this resolution:")
+
+    # Add fields
+    demand_description = widgets.Label("Yearly demand (MWh):", layout=description_layout)
+    demand_input = widgets.IntText(
+        value=180000, 
+        min=0, 
+        layout=input_layout
+    )
+    demand_input.observe(on_number_change, names='value')
+    demand_hbox = widgets.HBox([demand_description, demand_input])
+
+    def create_dropdown_year():
+        global option_values, selected_option_widget, selected_value_widget  
+        option_values = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'yearly']
+        
+        label_d_res = widgets.Label(" with a(n) ", layout=widgets.Layout(width='80px', justify_content='center'))
+        label_d_res_2 = widgets.Label(" resolution")
+        
+        dropdown_d_res = widgets.Dropdown(
+            options=option_values,
+            value='daily',
+            layout=input_layout
+        )
+        dropdown_d_res.observe(on_change)
+        demand_d_res_hbox = widgets.HBox([label_d_res, dropdown_d_res, label_d_res_2])
+
+        return demand_d_res_hbox, dropdown_d_res
+
+    demand_d_res_hbox, dropdown_d_res = create_dropdown_year() 
+    
+    return widgets.HBox([demand_hbox, demand_d_res_hbox], layout=widgets.Layout(margin='0 0 15px 0')), demand_input, dropdown_d_res
+
+
 '''Define dropdown functions'''
 
 #change the parameter values of the if the drop down menu value is changes
@@ -992,18 +1034,19 @@ def create_dropdown_price_zone():
 
 #create dropdown for the product
 def create_dropdown_product():
-    label3 = widgets.Label("Please set the product of the plant (required):")
+    label3 = widgets.Label("Please set the product of the plant (required): ")
     dropdown3 = widgets.Dropdown(
         options = ['ammonia', 'diesel', 'egasoline', 'hydrogen', 'jet_fuel', 'methane', 'methanol'],
-        value = None
+        value = None,
+        layout = widgets.Layout(width='100px')
     )
     def on_dropdown_change(change):
-        update_inv_costs(change, investment_cost_vbox)  # Update investment costs box
-        update_capacities(change, capacities_vbox)      # Update capacities box
+        update_inv_costs(change, investment_cost_vbox)   # Update investment costs box
+        update_capacities(change, capacities_vbox)   # Update capacities box
 
     dropdown3.observe(on_dropdown_change, names='value')
     
-    return widgets.VBox([label3, dropdown3]), dropdown3   
+    return widgets.HBox([label3, dropdown3], layout=widgets.Layout(margin='0 0 15px 0')), dropdown3   
 
 
 #create dropdown for the electrolysis type
@@ -1321,6 +1364,7 @@ def create_combined_dropdowns_tabs():
     levels_elec_box, levels_elec = create_sections_elec()
     dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
     dropdown_period_vbox, dropdown_number, dropdown_period = create_dropdown_invest_period()
+    demand_hbox, demand_input, demand_res = create_demand()
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -1350,12 +1394,14 @@ def create_combined_dropdowns_tabs():
         'levels_elec': levels_elec,
         'candidate_nonzero': dropdown_investment,
         'default_investment_number': dropdown_number,
-        'default_investment_duration': dropdown_period
+        'default_investment_duration': dropdown_period,
+        'demand': demand_input,
+        'demand_res': demand_res
     }
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, dropdown_product_vbox, capacities_vbox
+        section_1, dropdown_product_vbox, demand_hbox, capacities_vbox
     ])
 
     page2 = widgets.VBox([
@@ -1444,6 +1490,8 @@ def get_dropdown_values(dropdowns):
         'starting_year': dropdowns['starting_year'].value,
         'price_zone': dropdowns['price_zone'].value,
         'product': dropdowns['product'].value,
+        'demand': dropdowns['demand'].value,
+        'demand_res': dropdowns['demand_res'].value,
         'electrolysis': dropdowns['electrolysis'].value,
         'frequency': dropdowns['frequency'].value,
         'temporal_block': dropdowns['temporal_block'].value,

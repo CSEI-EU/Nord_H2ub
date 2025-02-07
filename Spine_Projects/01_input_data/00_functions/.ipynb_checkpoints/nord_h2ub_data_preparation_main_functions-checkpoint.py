@@ -28,11 +28,13 @@ def set_parameters(params):
         'starting_year': 2020,
         'area': 'DK1',
         'product': 'methanol',
+        'demand': 180000,
+        'demand_res': 'daily',
         'powers': {'Solar plant'},
         'powers_capacities': {},
         'scenario': 'Base',
         'frequency': '1h',
-        'model_name': 'toy',
+        'model_name': 'model',
         'temporal_block': 'hourly',
         'stochastic_scenario': 'realisation',
         'stochastic_structure': 'deterministic',
@@ -54,6 +56,7 @@ def set_parameters(params):
         'inv_cost_asu': None,
         'inv_cost_biomethanation': None,
         'inv_cost_co2_removal': None,
+        'inv_cost_diesel_storage': None,
         'inv_cost_egasoline_storage': None,
         'inv_cost_electrolyzer': None,
         'inv_cost_fischer': None,
@@ -87,6 +90,7 @@ def set_parameters(params):
         'inv_limit_asu': None,
         'inv_limit_biomethanation': None,
         'inv_limit_co2_removal': None,
+        'inv_limit_diesel': None,
         'inv_limit_distillation': None,
         'inv_limit_egasoline_storage': 1000,
         'inv_limit_electrolyzer': None,
@@ -120,6 +124,8 @@ def set_parameters(params):
     starting_year = default_params['starting_year']
     area = default_params['area']
     product = default_params['product']
+    demand = default_params['demand']
+    demand_res = default_params['demand_res']
     powers = default_params['powers']
     powers_capacities = default_params['powers_capacities']
     scenario = default_params['scenario']
@@ -149,6 +155,7 @@ def set_parameters(params):
         'inv_cost_Air_separation_unit': default_params['inv_cost_asu'],
         'inv_cost_Biomethanation': default_params['inv_cost_biomethanation'],
         'inv_cost_CO2_Vaporizer': default_params['inv_cost_co2_removal'],
+        'inv_cost_Diesel_storage': default_params['inv_cost_diesel_storage'],
         'inv_cost_Egasoline_storage': default_params['inv_cost_egasoline_storage'],
         'inv_cost_Electric_Steam_Boiler': default_params['inv_cost_steam'],
         'inv_cost_Electrolyzer': default_params['inv_cost_electrolyzer'],
@@ -169,6 +176,7 @@ def set_parameters(params):
         'inv_limit_Air_separation_unit': default_params['inv_limit_asu'],
         'inv_limit_Biomethanation': default_params['inv_limit_biomethanation'],
         'inv_limit_CO2_Vaporizer': default_params['inv_limit_co2_removal'],
+        'inv_limit_Diesel_storage': default_params['inv_limit_diesel'],
         'inv_limit_Distillation_tower': default_params['inv_limit_methanol'],   #assumed to be the same as methanol
         'inv_limit_Egasoline_storage': default_params['inv_limit_egasoline_storage'],
         'inv_limit_Electric_Steam_Boiler': default_params['inv_limit_steam'],
@@ -183,13 +191,14 @@ def set_parameters(params):
         'inv_limit_RWGS_unit': default_params['inv_limit_rwgs']
     }
     
-    # Create the exisitng capacities  dictionary
+    # Create the existing capacities  dictionary
     capacities_exisiting_params = {        
         'capacity_Ammonia_storage': default_params['capacity_ammonia_storage'],
         'capacity_Anaerobic': default_params['capacity_anaerobic'],
         'capacity_Air_separation_unit': default_params['capacity_asu'],
         'capacity_Biomethanation': default_params['capacity_biomethanation'],
         'capacity_CO2_Vaporizer': default_params['capacity_co2_removal'],
+        'capacity_Diesel_storage': default_params['inv_cost_diesel_storage'],
         'capacity_Distillation_tower': default_params['capacity_methanol'], #same as methanol
         'capacity_EGasoline_storage': default_params['capacity_egasoline_storage'],
         'capacity_Electric_Steam_Boiler': default_params['capacity_steam'],
@@ -205,7 +214,7 @@ def set_parameters(params):
     }
 
     # Here you can add any additional processing or return the parameters
-    return (year, starting_year, start_date, end_date, area, product, 
+    return (year, starting_year, start_date, end_date, area, product, demand, demand_res,
             powers, powers_capacities, scenario, frequency, 
             model_name, temporal_block, 
             stochastic_scenario, stochastic_structure, run_name, report_name, reports, 
