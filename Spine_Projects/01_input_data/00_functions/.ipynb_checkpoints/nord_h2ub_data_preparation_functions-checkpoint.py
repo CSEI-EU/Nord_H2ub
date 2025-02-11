@@ -98,7 +98,7 @@ def process_dataframe(df, column_name, category_value):
     df_new = df_new.rename(columns={column_name: 'Object_name'})
     return df_new
 
-def create_definition_dataframe(df_model_units, df_model_connections):
+def create_definition_dataframe(df1, df2):
     """
     Create a combined dataframe for units, connections, and nodes.
     
@@ -110,21 +110,26 @@ def create_definition_dataframe(df_model_units, df_model_connections):
     pd.DataFrame: A combined dataframe for units, connections, and nodes.
     """
 
-    df_units = process_dataframe(df_model_units, 'Unit', 'unit')
-    df_connections = process_dataframe(df_model_connections, 'Connection', 'connection')
+    df_units = process_dataframe(df1, 'Unit', 'unit')
+    df_connections = process_dataframe(df2, 'Connection', 'connection')
 
     # Create a list of nodes of the model
-    U_input1_nodes = df_model_units['Input1'].tolist()
-    U_input2_nodes = df_model_units['Input2'].tolist()
-    U_output1_nodes = df_model_units['Output1'].tolist()
-    U_output2_nodes = df_model_units['Output2'].tolist()
-    C_input1_nodes = df_model_connections['Input1'].tolist()
-    C_input2_nodes = df_model_connections['Input2'].tolist()
-    C_output1_nodes = df_model_connections['Output1'].tolist()
-    C_output2_nodes = df_model_connections['Output2'].tolist()
+    U_input1_nodes = df1['Input1'].tolist()
+    U_input2_nodes = df1['Input2'].tolist()
+    U_input3_nodes = df1['Input3'].tolist()
+    U_input4_nodes = df1['Input4'].tolist()
+    U_output1_nodes = df1['Output1'].tolist()
+    U_output2_nodes = df1['Output2'].tolist()
+    U_output3_nodes = df1['Output3'].tolist()
+    U_output4_nodes = df1['Output4'].tolist()
+    C_input1_nodes = df2['Input1'].tolist()
+    C_input2_nodes = df2['Input2'].tolist()
+    C_output1_nodes = df2['Output1'].tolist()
+    C_output2_nodes = df2['Output2'].tolist()
 
     # Combine values from all columns into a single list
-    all_nodes_list = (U_input1_nodes + U_input2_nodes + U_output1_nodes + U_output2_nodes +
+    all_nodes_list = (U_input1_nodes + U_input2_nodes + U_input3_nodes + U_input4_nodes + 
+                      U_output1_nodes + U_output2_nodes + U_output3_nodes + U_output4_nodes + 
                       C_input1_nodes + C_input2_nodes + C_output1_nodes + C_output2_nodes)
 
     # Create a list with unique entries
@@ -141,7 +146,7 @@ def create_definition_dataframe(df_model_units, df_model_connections):
     return df_definition, df_nodes
 
 # function to assign capacities
-def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, investment_limit_params, powers_capacities):
+def unit_capacity_relations(df1, capacities_exisiting_params, investment_limit_params, powers_capacities):
     """
     Assign chosen capacities to units create object__to/from_node relations.
     
@@ -155,7 +160,7 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
     unit_capacity_relations_data = []
     
     # Iterate over each row in the DataFrame
-    for index, row in df_model_units_raw.iterrows():
+    for index, row in df1.iterrows():
         unit = row['Unit']
         object_type = row['Object_type']
         if object_type in ['PEM_Electrolyzer', 'AEC_Electrolyzer', 'SOEC_Electrolyzer']:
@@ -222,7 +227,7 @@ def unit_capacity_relations(df_model_units_raw, capacities_exisiting_params, inv
 
 # function to get all the relations between units and nodes
 # function to get all the relations between units and nodes
-def object_relationship_unit_nodes(df_model_units):
+def object_relationship_unit_nodes(df1, df2):
     """
     Transform unit data into a list of dictionaries for unit relationship parameters.
     
@@ -236,116 +241,137 @@ def object_relationship_unit_nodes(df_model_units):
     unit_relation_parameter_data = []
 
     # Iterate over each row in the DataFrame
-    for index, row in df_model_units.iterrows():
+    for index, row in df1.iterrows():
         unit = row['Unit']
+        cap_node = row['unit_capacity']
+        inputs_df = df2.loc[df2['Unit'] == unit, ['Input1', 'Input2', 'Input3', 'Input4']]
+        inputs_list = inputs_df.values.flatten().tolist()
 
-        # Iterate over Input and Output columns
-        for i in range(1, 3):
-            input_col = f'Input{i}'
-            output_col = f'Output{i}'
-            vom_cost_input_col = f'vom_cost_{input_col}'
-            vom_cost_output_col = f'vom_cost_{output_col}'
-            ramp_up_output_col = f'ramp_up_{output_col}'
-            ramp_down_output_col = f'ramp_down_{output_col}'
-            start_up_output_col = f'start_up_{output_col}'
-            shut_down_output_col = f'shut_down_{output_col}'
-            minimum_operating_point_input_col = f'minimum_op_point_{input_col}'
-            minimum_operating_point_output_col = f'minimum_op_point_{output_col}'
+        vom_cost_col = f'vom_cost'
+        ramp_up_col = f'ramp_up'
+        ramp_down_col = f'ramp_down'
+        start_up_col = f'start_up_limit'
+        shut_down_col = f'shut_down_limit'
+        minimum_operating_point_col = f'minimum_op_point'
+        
+        vom_cost = row[vom_cost_col]
+        ramp_up = row[ramp_up_col]
+        ramp_down = row[ramp_down_col]
+        start_up = row[start_up_col]
+        shut_down = row[shut_down_col]
+        minimum_op = row[minimum_operating_point_col]
 
-            # Check for Input columns
-            input_value = row['Input1']
-            vom_cost_input = row[vom_cost_input_col]
-            minimum_op_in = row[minimum_operating_point_input_col]
-            
-            if pd.notna(vom_cost_input):
+        if cap_node in inputs_list:
+            if pd.notna(vom_cost):
                 unit_relation_parameter_data.append({
                     'Relationship_class_name': 'unit__from_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': row[input_col],
+                    'Node': cap_node,
                     'Parameter': 'vom_cost',
-                    'Value': vom_cost_input
+                    'Value': vom_cost
                 })
-            
-            if pd.notna(minimum_op_in):
+            if pd.notna(ramp_up):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__from_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': cap_node,
+                    'Parameter': 'ramp_up_limit',
+                    'Value': ramp_up
+                })
+            if pd.notna(ramp_down):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__from_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': cap_node,
+                    'Parameter': 'ramp_down_limit',
+                    'Value': ramp_down
+                })
+            if pd.notna(start_up):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__from_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': cap_node,
+                    'Parameter': 'start_up_limit',
+                    'Value': start_up
+                })
+            if pd.notna(shut_down):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__from_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': cap_node,
+                    'Parameter': 'shut_down_limit',
+                    'Value': shut_down
+                })
+            if pd.notna(minimum_op):
                  unit_relation_parameter_data.append({
                      'Relationship_class_name': 'unit__from_node',
                      'Object_class': 'unit',
                      'Object_name': unit,
-                     'Node': input_value,
+                     'Node': cap_node,
                      'Parameter': 'minimum_operating_point',
-                     'Value': minimum_op_in
+                     'Value': minimum_op
                  })
-            
-            # Check for Output columns
-            output_value = row[output_col]
-            vom_cost_output = row[vom_cost_output_col]
-            ramp_up_output = row[ramp_up_output_col]
-            ramp_down_output = row[ramp_down_output_col]
-            start_up_output = row[start_up_output_col]
-            shut_down_output = row[shut_down_output_col]
-            minimum_op_out = row[minimum_operating_point_output_col]
-            
-            if pd.notna(vom_cost_output):
+        else:
+            if pd.notna(vom_cost):
                 unit_relation_parameter_data.append({
                     'Relationship_class_name': 'unit__to_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': output_value,
+                    'Node': cap_node,
                     'Parameter': 'vom_cost',
-                    'Value': vom_cost_output
+                    'Value': vom_cost
                 })
-
-            if pd.notna(ramp_up_output):
+            if pd.notna(ramp_up):
                 unit_relation_parameter_data.append({
                     'Relationship_class_name': 'unit__to_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': output_value,
+                    'Node': cap_node,
                     'Parameter': 'ramp_up_limit',
-                    'Value': ramp_up_output
+                    'Value': ramp_up
                 })
-                
-            if pd.notna(ramp_down_output):
+            if pd.notna(ramp_down):
                 unit_relation_parameter_data.append({
                     'Relationship_class_name': 'unit__to_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': output_value,
+                    'Node': cap_node,
                     'Parameter': 'ramp_down_limit',
-                    'Value': ramp_down_output
+                    'Value': ramp_down
                 })
-            
-            if pd.notna(start_up_output):
+            if pd.notna(start_up):
                 unit_relation_parameter_data.append({
                     'Relationship_class_name': 'unit__to_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': output_value,
+                    'Node': cap_node,
                     'Parameter': 'start_up_limit',
-                    'Value': start_up_output
+                    'Value': start_up
                 })
-            
-            if pd.notna(shut_down_output):
+            if pd.notna(shut_down):
                 unit_relation_parameter_data.append({
                     'Relationship_class_name': 'unit__to_node',
                     'Object_class': 'unit',
                     'Object_name': unit,
-                    'Node': output_value,
+                    'Node': cap_node,
                     'Parameter': 'shut_down_limit',
-                    'Value': shut_down_output
+                    'Value': shut_down
+                })
+            if pd.notna(minimum_op):
+                unit_relation_parameter_data.append({
+                    'Relationship_class_name': 'unit__to_node',
+                    'Object_class': 'unit',
+                    'Object_name': unit,
+                    'Node': cap_node,
+                    'Parameter': 'minimum_operating_point',
+                    'Value': minimum_op
                 })
 
-            if pd.notna(minimum_op_out):
-                unit_relation_parameter_data.append({
-                    'Relationship_class_name': 'unit__to_node',
-                    'Object_class': 'unit',
-                    'Object_name': unit,
-                    'Node': output_value,
-                    'Parameter': 'minimum_operating_point',
-                    'Value': minimum_op_out
-                })
-    
     # Create a new DataFrame from the transformed data
     df_unit_relation_parameter_data = pd.DataFrame(unit_relation_parameter_data)
 
@@ -483,19 +509,29 @@ def check_exclusively_once(val):
     return count == 1
 
 #method to get information of all possible connections between nodes of the network
-def create_connection_dataframe(df, columns):
+def create_connection_dataframe(df1, df2, columns1, columns2):
     # Create the input dataframe
-    #df_input = pd.DataFrame(data)
-    df_input = df[columns]
+    df1_input = df1[columns1]
+    df2_input = df2[columns2]
 
     # Create a new dataframe for the connections
     connections = {'in': [], 'out': []}
 
     # Iterate through each row of the input dataframe
-    for _, row in df_input.iterrows():
+    for _, row in df1_input.iterrows():
+        in_values = [value for value in [row['Input1'], row['Input2'], row['Input3'], row['Input4']]]
+        out_values = [value for value in [row['Output1'], row['Output2'], row['Output3'], row['Output4']]]
+        
+        # Generate connections for each input-output pair
+        for in_val in in_values:
+            for out_val in out_values:
+                connections['in'].append(in_val)
+                connections['out'].append(out_val)
+
+    for _, row in df2_input.iterrows():
         in_values = [value for value in [row['Input1'], row['Input2']]]
         out_values = [value for value in [row['Output1'], row['Output2']]]
-        
+
         # Generate connections for each input-output pair
         for in_val in in_values:
             for out_val in out_values:
@@ -832,30 +868,32 @@ resolution_to_block = {
     'Y': 'yearly'
 }
 
-def check_demand_node(row, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections,
+def check_demand_node(row, df_model_units_relations, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections,
                       df_object__node_definitions, df_object__node_values, df_object_node_node):
     if not pd.isna(row['demand']):
         row_resolution = resolution_to_block[row['resolution_output']]
         if row_resolution != temporal_block:
             #definition
+            output = (df_model_units_relations.loc[df_model_units_relations['Unit'] == row['Unit'], 'Output1']).iloc[0]
             new_def = pd.DataFrame([
-                {"Object_name": f"{row['Output1']}_demand", "Category": "node"},
-                {"Object_name": f"pl_{row['Output1']}_demand", "Category": "connection"}
+                {"Object_name": f"{output}_demand", "Category": "node"},
+                {"Object_name": f"pl_{output}_demand", "Category": "connection"}
             ])
             df_definition = pd.concat([df_definition, new_def], ignore_index=True)
             
             #demand value
             new_value = {col: np.nan for col in df_nodes.columns}
-            new_value["Object_name"] = f"{row['Output1']}_demand"
+            new_value["Object_name"] = f"{output}_demand"
             new_value["Category"] = "node"
             new_value["balance_type"] = "balance_type_node"
+            new_value["nodal_balance_sense"] = ""
             new_value["demand"] = row['demand']
             new_value["node_slack_penalty"] = 100000000
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
             
             #connection value
             new_con = {col: np.nan for col in df_connections.columns}
-            new_con["Object_name"] = f"pl_{row['Output1']}_demand"
+            new_con["Object_name"] = f"pl_{output}_demand"
             new_con["Category"] = "connection"
             new_con["Connection_type"] = "connection_type_normal"
             df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
@@ -864,13 +902,13 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_rel = pd.DataFrame([
                 {"Relationship_class_name": "connection__from_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"pl_{row['Output1']}_demand",
-                 "Node": row['Output1']
+                 "Object_name": f"pl_{output}_demand",
+                 "Node": output
                 },
                 {"Relationship_class_name": "connection__to_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"pl_{row['Output1']}_demand",
-                 "Node": f"{row['Output1']}_demand",
+                 "Object_name": f"pl_{output}_demand",
+                 "Node": f"{output}_demand",
                 }
             ])
             df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
@@ -878,15 +916,15 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_rel_value = pd.DataFrame([
                 {"Relationship_class_name": "connection__from_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"pl_{row['Output1']}_demand",
-                 "Node": row['Output1'],
+                 "Object_name": f"pl_{output}_demand",
+                 "Node": output,
                  "Parameter": "connection_capacity",
                  "Value": 1000
                 },
                 {"Relationship_class_name": "connection__to_node", 
                  "Object_class": "connection", 
-                 "Object_name": f"pl_{row['Output1']}_demand",
-                 "Node": f"{row['Output1']}_demand",
+                 "Object_name": f"pl_{output}_demand",
+                 "Node": f"{output}_demand",
                  "Parameter": "connection_capacity",
                  "Value": 1000
                 }
@@ -897,9 +935,9 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             new_rel_nn = pd.DataFrame([
                 {"Relationship": "connection__node__node", 
                  "Object_class": "connection", 
-                 "Object_name": f"pl_{row['Output1']}_demand",
-                 "Node1": f"{row['Output1']}_demand",
-                 "Node2": row['Output1'],
+                 "Object_name": f"pl_{output}_demand",
+                 "Node1": f"{output}_demand",
+                 "Node2": output,
                  "Parameter": "fix_ratio_out_in_connection_flow",
                  "Value": 1
                 }
@@ -908,7 +946,7 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
             
         else: 
             new_value = {col: np.nan for col in df_nodes.columns}
-            new_value["Object_name"] = row['Output1']
+            new_value["Object_name"] = output
             new_value["Category"] = "node"
             new_value["demand"] = row['demand']
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
@@ -917,95 +955,90 @@ def check_demand_node(row, temporal_block, resolution_to_block, df_definition, d
 
 
 # Temporal slicing definition (for demand)
-def check_temporal_block(resolution_column, model_definitions):
-    if pd.isna(resolution_column):
+def check_temporal_block(df, df_model_components):
+    if pd.isnull(df['resolution_output']).any():
         return
-
-    temporal_block_name = resolution_to_block.get(resolution_column)
-    if temporal_block_name is None:
-        print("Warning: temporal slicing block does not exist for resolution", resolution_column)
-        return
-
-    # Check if the temporal block already exists
-    exists = model_definitions[
-        (model_definitions['Object_class_name'] == 'temporal_block') &
-        (model_definitions['Object_name'] == temporal_block_name)
-    ].shape[0] > 0
-
-    if not exists:
-        new_row = {'Object_class_name': 'temporal_block', 'Object_name': temporal_block_name}
-        model_definitions.loc[len(model_definitions)] = new_row
+    
+    for index, row in df.iterrows():
+        temporal_block_name = resolution_to_block.get(row['resolution_output'])
+        if temporal_block_name:
+            # Check if the temporal block already exists
+            exists = df[
+                (df_model_components['Object_class_name'] == 'temporal_block') &
+                (df_model_components['Object_name'] == temporal_block_name)
+            ].shape[0] > 0
+        
+            if not exists:
+                new_row = {'Object_class_name': 'temporal_block', 'Object_name': temporal_block_name}
+                df_model_components.loc[len(df_model_components)] = new_row
 
 # Temporal slicing relations
-def create_temporal_block_relationships(resolution_column, output_column, model_relations, model_name, df_definition, temporal_relations):
-    if pd.isna(resolution_column):
+def create_temporal_block_relationships(df1, df2, model_relations, model_name, df_definition, temporal_relations):
+    if pd.isnull(df1['resolution_output']).any():
         return
 
-    temporal_block_name = resolution_to_block.get(resolution_column)
-    if temporal_block_name is None:
-        print("Warning: temporal slicing block does not exist for resolution", resolution_column)
-        return
-    
-    #Check if specific demand node exists
-    if f"{output_column}_demand" in df_definition['Object_name'].values:
-        node_name = f"{output_column}_demand"
-    else:
-        node_name = output_column
-    
-    # Check if relationship already exists
-    relationship_exists = model_relations[
-        (model_relations['Object_name_1'] == node_name) &
-        (model_relations['Object_name_2'] == temporal_block_name)
-    ].shape[0] > 0
-    
-    if not relationship_exists:
-        new_relation_mod = {
-            "Relationship_class_name": "model__temporal_block",
-            "Object_class_name_1": "model",
-            "Object_class_name_2": "temporal_block",
-            "Object_name_1": model_name,
-            "Object_name_2": temporal_block_name
-        }
-        model_relations.loc[len(model_relations)] = new_relation_mod
-        new_relation = {
-            "Relationship_class_name": "node__temporal_block",
-            "Node": node_name,
-            "Temporal_block": temporal_block_name
-        }
-        temporal_relations.loc[len(temporal_relations)] = new_relation
+    for index, row in df1.iterrows():
+        temporal_block_name = resolution_to_block.get(row['resolution_output'])
+        if temporal_block_name:
+            #Check if specific demand node exists
+            output = (df2.loc[df2['Unit'] == row['Unit'], 'Output1']).iloc[0]
+            if f"{output}_demand" in df_definition['Object_name'].values:
+                node_name = f"{output}_demand"
+            else:
+                node_name = output
+            
+            # Check if relationship already exists
+            relationship_exists = model_relations[
+                (model_relations['Object_name_1'] == node_name) &
+                (model_relations['Object_name_2'] == temporal_block_name)
+            ].shape[0] > 0
+            
+            if not relationship_exists:
+                new_relation_mod = {
+                    "Relationship_class_name": "model__temporal_block",
+                    "Object_class_name_1": "model",
+                    "Object_class_name_2": "temporal_block",
+                    "Object_name_1": model_name,
+                    "Object_name_2": temporal_block_name
+                }
+                model_relations.loc[len(model_relations)] = new_relation_mod
+                new_relation = {
+                    "Relationship_class_name": "node__temporal_block",
+                    "Node": node_name,
+                    "Temporal_block": temporal_block_name
+                }
+                temporal_relations.loc[len(temporal_relations)] = new_relation
 
 # Temporal blocks values (use only for h, D, M, and Y)
-def create_temporal_block_input(resolution_column, model):
-    if pd.isna(resolution_column):
+def create_temporal_block_input(df, model):
+    if pd.isnull(df['resolution_output']).any():
         return
 
-    temporal_block_name = resolution_to_block.get(resolution_column)
-    if temporal_block_name is None:
-        print("Warning: temporal slicing block does not exist for resolution", resolution_column)
-        return
-    
-    # Check if parameter already exists
-    parameter_exists = model[
-        (model['Object_name'] == temporal_block_name) &
-        (model['Parameter'] == "resolution")
-    ].shape[0] > 0
-    
-    if resolution_column == 'W':
-        value = '{"type":"duration", "data": "7D"}'
-    elif resolution_column == 'Q':
-        value = '{"type":"duration", "data": "3M"}'
-    else:
-        value = '{"type":"duration", "data": "1' + resolution_column + '"}'
-    
-    if not parameter_exists:
-        new_parameter = {
-            "Object_class_name": "temporal_block",
-            "Object_name": temporal_block_name,
-            "Parameter": "resolution",
-            "Alternative": "Base",
-            "Value": value
-        }
-        model.loc[len(model)] = new_parameter
+    for index, row in df.iterrows():
+        temporal_block_name = resolution_to_block.get(row['resolution_output'])
+        if temporal_block_name:
+            # Check if parameter already exists
+            parameter_exists = model[
+                (model['Object_name'] == temporal_block_name) &
+                (model['Parameter'] == "resolution")
+            ].shape[0] > 0
+            
+            if row['resolution_output'] == 'W':
+                value = '{"type":"duration", "data": "7D"}'
+            elif row['resolution_output'] == 'Q':
+                value = '{"type":"duration", "data": "3M"}'
+            else:
+                value = '{"type":"duration", "data": "1' + row['resolution_output'] + '"}'
+        
+            if not parameter_exists:
+                new_parameter = {
+                    "Object_class_name": "temporal_block",
+                    "Object_name": temporal_block_name,
+                    "Parameter": "resolution",
+                    "Alternative": "Base",
+                    "Value": value
+                }
+                model.loc[len(model)] = new_parameter
 
 # Recalculate frac state loss
 def adjust_frac_state_loss(storages_df, column_name):

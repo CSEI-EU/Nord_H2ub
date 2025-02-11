@@ -1,0 +1,719 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 9
+
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T23:00~(1 hour)~>2019-01-18T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T14:00~(1 hour)~>2019-01-01T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T10:00~(1 hour)~>2019-01-11T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T20:00~(1 hour)~>2019-01-01T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T05:00~(1 hour)~>2019-01-09T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-30T04:00~(1 hour)~>2019-01-30T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T01:00~(1 hour)~>2019-01-21T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T10:00~(1 hour)~>2019-01-01T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T20:00~(1 hour)~>2019-01-16T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T17:00~(1 hour)~>2019-01-10T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T15:00~(1 hour)~>2019-01-08T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T13:00~(1 hour)~>2019-01-08T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T00:00~(1 hour)~>2019-01-08T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T13:00~(1 hour)~>2019-01-05T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-28T05:00~(1 hour)~>2019-01-28T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T04:00~(1 hour)~>2019-01-22T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-04T13:00~(1 hour)~>2019-01-04T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-18T09:00~(1 hour)~>2019-01-18T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-04T03:00~(1 hour)~>2019-01-04T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T14:00~(1 hour)~>2019-01-19T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T11:00~(1 hour)~>2019-01-01T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T23:00~(1 hour)~>2019-01-30T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T03:00~(1 hour)~>2019-01-14T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-13T00:00~(1 hour)~>2019-01-13T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T12:00~(1 hour)~>2019-01-21T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T22:00~(1 hour)~>2019-01-15T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T18:00~(1 hour)~>2019-01-22T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T08:00~(1 hour)~>2019-01-02T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T03:00~(1 hour)~>2019-01-29T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-13T03:00~(1 hour)~>2019-01-13T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T14:00~(1 hour)~>2019-01-07T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T15:00~(1 hour)~>2019-01-14T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T07:00~(1 hour)~>2019-01-14T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T06:00~(1 hour)~>2019-01-16T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T22:00~(1 hour)~>2019-01-14T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T18:00~(1 hour)~>2019-01-02T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T11:00~(1 hour)~>2019-01-23T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-03T05:00~(1 hour)~>2019-01-03T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-04T15:00~(1 hour)~>2019-01-04T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T07:00~(1 hour)~>2019-01-24T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-25T01:00~(1 hour)~>2019-01-25T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T02:00~(1 hour)~>2019-01-26T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T15:00~(1 hour)~>2019-01-20T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T10:00~(1 hour)~>2019-01-23T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T14:00~(1 hour)~>2019-01-31T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T03:00~(1 hour)~>2019-01-31T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T00:00~(1 hour)~>2019-01-17T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T08:00~(1 hour)~>2019-01-11T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T06:00~(1 hour)~>2019-01-17T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T11:00~(1 hour)~>2019-01-23T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T06:00~(1 hour)~>2019-01-23T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T20:00~(1 hour)~>2019-01-26T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T14:00~(1 hour)~>2019-01-01T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T16:00~(1 hour)~>2019-01-08T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T05:00~(1 hour)~>2019-01-06T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T16:00~(1 hour)~>2019-01-19T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-28T04:00~(1 hour)~>2019-01-28T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T18:00~(1 hour)~>2019-01-27T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T18:00~(1 hour)~>2019-01-11T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T14:00~(1 hour)~>2019-01-22T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T00:00~(1 hour)~>2019-01-10T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T18:00~(1 hour)~>2019-01-17T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T13:00~(1 hour)~>2019-01-09T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T06:00~(1 hour)~>2019-01-08T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T01:00~(1 hour)~>2019-01-02T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T11:00~(1 hour)~>2019-01-09T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T23:00~(1 hour)~>2019-01-15T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T20:00~(1 hour)~>2019-01-12T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T12:00~(1 hour)~>2019-01-14T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T23:00~(1 hour)~>2019-01-13T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T08:00~(1 hour)~>2019-01-12T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T00:00~(1 hour)~>2019-01-11T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T19:00~(1 hour)~>2019-01-02T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T20:00~(1 hour)~>2019-01-09T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T01:00~(1 hour)~>2019-01-29T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T19:00~(1 hour)~>2019-01-11T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T08:00~(1 hour)~>2019-01-24T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T10:00~(1 hour)~>2019-01-22T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T06:00~(1 hour)~>2019-01-01T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T05:00~(1 hour)~>2019-01-22T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T01:00~(1 hour)~>2019-01-10T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T01:00~(1 hour)~>2019-01-20T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T02:00~(1 hour)~>2019-01-27T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-25T06:00~(1 hour)~>2019-01-25T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T13:00~(1 hour)~>2019-01-20T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T01:00~(1 hour)~>2019-01-10T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T09:00~(1 hour)~>2019-01-23T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T12:00~(1 hour)~>2019-01-22T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T03:00~(1 hour)~>2019-01-12T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T13:00~(1 hour)~>2019-01-29T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-18T03:00~(1 hour)~>2019-01-18T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T16:00~(1 hour)~>2019-01-06T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T01:00~(1 hour)~>2019-01-15T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T00:00~(1 hour)~>2019-01-05T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T19:00~(1 hour)~>2019-01-12T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T14:00~(1 hour)~>2019-01-09T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T03:00~(1 hour)~>2019-01-11T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T02:00~(1 hour)~>2019-01-02T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T04:00~(1 hour)~>2019-01-14T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T22:00~(1 hour)~>2019-01-31T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T03:00~(1 hour)~>2019-01-23T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T10:00~(1 hour)~>2019-01-10T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T23:00~(1 hour)~>2019-01-07T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T00:00~(1 hour)~>2019-01-07T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T23:00~(1 hour)~>2019-01-22T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-03T07:00~(1 hour)~>2019-01-03T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T01:00~(1 hour)~>2019-01-08T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T13:00~(1 hour)~>2019-01-16T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T05:00~(1 hour)~>2019-01-31T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T11:00~(1 hour)~>2019-01-29T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T07:00~(1 hour)~>2019-01-01T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T23:00~(1 hour)~>2019-01-23T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T18:00~(1 hour)~>2019-01-07T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T19:00~(1 hour)~>2019-01-15T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T09:00~(1 hour)~>2019-01-12T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T15:00~(1 hour)~>2019-01-05T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T13:00~(1 hour)~>2019-01-06T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T00:00~(1 hour)~>2019-01-06T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T05:00~(1 hour)~>2019-01-05T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-25T19:00~(1 hour)~>2019-01-25T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T20:00~(1 hour)~>2019-01-08T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T13:00~(1 hour)~>2019-01-21T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-13T05:00~(1 hour)~>2019-01-13T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T12:00~(1 hour)~>2019-01-29T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T02:00~(1 hour)~>2019-01-26T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T04:00~(1 hour)~>2019-01-19T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T03:00~(1 hour)~>2019-01-11T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-13T20:00~(1 hour)~>2019-01-13T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T17:00~(1 hour)~>2019-01-26T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T07:00~(1 hour)~>2019-01-17T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-18T20:00~(1 hour)~>2019-01-18T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T02:00~(1 hour)~>2019-01-12T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T14:00~(1 hour)~>2019-01-11T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T20:00~(1 hour)~>2019-01-17T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T23:00~(1 hour)~>2019-01-16T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T02:00~(1 hour)~>2019-01-16T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T09:00~(1 hour)~>2019-01-15T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T06:00~(1 hour)~>2019-01-11T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T20:00~(1 hour)~>2019-01-19T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T22:00~(1 hour)~>2019-01-26T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T08:00~(1 hour)~>2019-01-06T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-28T02:00~(1 hour)~>2019-01-28T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T23:00~(1 hour)~>2019-01-18T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T15:00~(1 hour)~>2019-01-10T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-04T07:00~(1 hour)~>2019-01-04T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-18T09:00~(1 hour)~>2019-01-18T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-25T23:00~(1 hour)~>2019-01-26T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T05:00~(1 hour)~>2019-01-15T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T05:00~(1 hour)~>2019-01-14T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T15:00~(1 hour)~>2019-01-17T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T00:00~(1 hour)~>2019-01-26T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T17:00~(1 hour)~>2019-01-16T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T03:00~(1 hour)~>2019-01-06T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-04T21:00~(1 hour)~>2019-01-04T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T06:00~(1 hour)~>2019-01-05T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T16:00~(1 hour)~>2019-01-10T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T09:00~(1 hour)~>2019-01-11T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T11:00~(1 hour)~>2019-01-07T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-25T17:00~(1 hour)~>2019-01-25T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T03:00~(1 hour)~>2019-01-05T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T02:00~(1 hour)~>2019-01-19T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T17:00~(1 hour)~>2019-01-08T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T16:00~(1 hour)~>2019-01-07T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T13:00~(1 hour)~>2019-01-10T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T00:00~(1 hour)~>2019-01-31T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T22:00~(1 hour)~>2019-01-16T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-03T05:00~(1 hour)~>2019-01-03T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T16:00~(1 hour)~>2019-01-12T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T21:00~(1 hour)~>2019-01-19T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T09:00~(1 hour)~>2019-01-19T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T12:00~(1 hour)~>2019-01-11T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T11:00~(1 hour)~>2019-01-02T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T16:00~(1 hour)~>2019-01-14T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T11:00~(1 hour)~>2019-01-09T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-09T16:00~(1 hour)~>2019-01-09T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T21:00~(1 hour)~>2019-01-16T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T15:00~(1 hour)~>2019-01-21T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T14:00~(1 hour)~>2019-01-20T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-04T04:00~(1 hour)~>2019-01-04T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T04:00~(1 hour)~>2019-01-12T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T19:00~(1 hour)~>2019-01-22T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T12:00~(1 hour)~>2019-01-27T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T20:00~(1 hour)~>2019-01-23T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T04:00~(1 hour)~>2019-01-21T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T20:00~(1 hour)~>2019-01-10T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T13:00~(1 hour)~>2019-01-01T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T17:00~(1 hour)~>2019-01-31T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T08:00~(1 hour)~>2019-01-14T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T16:00~(1 hour)~>2019-01-31T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T19:00~(1 hour)~>2019-01-24T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T17:00~(1 hour)~>2019-01-11T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T14:00~(1 hour)~>2019-01-17T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T18:00~(1 hour)~>2019-01-23T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T21:00~(1 hour)~>2019-01-16T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T07:00~(1 hour)~>2019-01-16T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T22:00~(1 hour)~>2019-01-02T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T05:00~(1 hour)~>2019-01-16T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T21:00~(1 hour)~>2019-01-14T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T18:00~(1 hour)~>2019-01-23T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T23:00~(1 hour)~>2019-01-15T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-03T16:00~(1 hour)~>2019-01-03T17:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-31T12:00~(1 hour)~>2019-01-31T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-25T18:00~(1 hour)~>2019-01-25T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-28T18:00~(1 hour)~>2019-01-28T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-30T09:00~(1 hour)~>2019-01-30T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-13T15:00~(1 hour)~>2019-01-13T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T22:00~(1 hour)~>2019-01-21T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T11:00~(1 hour)~>2019-01-26T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T03:00~(1 hour)~>2019-01-27T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-28T12:00~(1 hour)~>2019-01-28T13:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T00:00~(1 hour)~>2019-01-23T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T00:00~(1 hour)~>2019-01-15T01:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T15:00~(1 hour)~>2019-01-19T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T03:00~(1 hour)~>2019-01-07T04:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-07T19:00~(1 hour)~>2019-01-07T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T18:00~(1 hour)~>2019-01-20T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T17:00~(1 hour)~>2019-01-08T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T01:00~(1 hour)~>2019-01-05T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T13:00~(1 hour)~>2019-01-01T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-14T18:00~(1 hour)~>2019-01-14T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T23:00~(1 hour)~>2019-01-20T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T13:00~(1 hour)~>2019-01-19T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T22:00~(1 hour)~>2019-01-05T23:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-16T07:00~(1 hour)~>2019-01-16T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T13:00~(1 hour)~>2019-01-21T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T19:00~(1 hour)~>2019-01-24T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T13:00~(1 hour)~>2019-01-26T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T18:00~(1 hour)~>2019-01-15T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-23T06:00~(1 hour)~>2019-01-23T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T06:00~(1 hour)~>2019-01-15T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T04:00~(1 hour)~>2019-01-22T05:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-26T11:00~(1 hour)~>2019-01-26T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T18:00~(1 hour)~>2019-01-24T19:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-08T23:00~(1 hour)~>2019-01-09T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-21T09:00~(1 hour)~>2019-01-21T10:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-03T06:00~(1 hour)~>2019-01-03T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T06:00~(1 hour)~>2019-01-24T07:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-06T08:00~(1 hour)~>2019-01-06T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T17:00~(1 hour)~>2019-01-24T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T10:00~(1 hour)~>2019-01-27T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T14:00~(1 hour)~>2019-01-27T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T05:00~(1 hour)~>2019-01-12T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T08:00~(1 hour)~>2019-01-10T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T17:00~(1 hour)~>2019-01-20T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T15:00~(1 hour)~>2019-01-12T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T20:00~(1 hour)~>2019-01-29T21:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T01:00~(1 hour)~>2019-01-15T02:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-28T14:00~(1 hour)~>2019-01-28T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-15T11:00~(1 hour)~>2019-01-15T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-20T08:00~(1 hour)~>2019-01-20T09:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T17:00~(1 hour)~>2019-01-01T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-19T11:00~(1 hour)~>2019-01-19T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T02:00~(1 hour)~>2019-01-24T03:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-01T11:00~(1 hour)~>2019-01-01T12:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T21:00~(1 hour)~>2019-01-17T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T10:00~(1 hour)~>2019-01-12T11:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-12T14:00~(1 hour)~>2019-01-12T15:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T15:00~(1 hour)~>2019-01-05T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-05T15:00~(1 hour)~>2019-01-05T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-10T21:00~(1 hour)~>2019-01-10T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-22T21:00~(1 hour)~>2019-01-22T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = steam_plant, node = water, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T23:00~(1 hour)~>2019-01-12T00:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-27T05:00~(1 hour)~>2019-01-27T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T15:00~(1 hour)~>2019-01-24T16:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-02T07:00~(1 hour)~>2019-01-02T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-18T05:00~(1 hour)~>2019-01-18T06:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T19:00~(1 hour)~>2019-01-11T20:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-30T17:00~(1 hour)~>2019-01-30T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = ch3oh_reactor, node = vaporized_co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-11T07:00~(1 hour)~>2019-01-11T08:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = co2_vaporizer, node = co2, direction = to_node, stochastic_scenario = realization, t = 2019-01-29T21:00~(1 hour)~>2019-01-29T22:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-24T17:00~(1 hour)~>2019-01-24T18:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+┌ Warning: can't find a value of min_unit_flow for argument(s) (analysis_time = Base.RefValue{Dates.DateTime}(Dates.DateTime("2019-01-01T00:00:00")), unit = dist_tower, node = steam, direction = to_node, stochastic_scenario = realization, t = 2019-01-17T13:00~(1 hour)~>2019-01-17T14:00)
+└ @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\util.jl:57
+- [variable_unit_flow] 11.374818 seconds (17.51 M allocations: 1.073 GiB, 5.96% gc time, 47.39% compilation time)
+- [variable_unit_flow_op]  3.374523 seconds (5.04 M allocations: 180.119 MiB, 92.71% compilation time)
+- [variable_unit_flow_op_active]  1.220377 seconds (3.67 M allocations: 111.770 MiB, 86.71% compilation time)
+- [variable_units_invested]  1.728404 seconds (3.32 M allocations: 197.759 MiB, 86.23% compilation time)
+- [variable_units_invested_available]  0.830597 seconds (2.73 M allocations: 172.740 MiB, 36.06% gc time, 36.57% compilation time)
+- [variable_units_mothballed]  0.174437 seconds (2.32 M allocations: 36.806 MiB, 42.46% compilation time)
+- [variable_units_on]  1.385590 seconds (4.89 M allocations: 170.781 MiB, 84.97% compilation time)
+- [variable_units_out_of_service]  0.901700 seconds (3.32 M allocations: 86.911 MiB, 85.33% compilation time)
+- [variable_units_returned_to_service]  0.272754 seconds (2.45 M allocations: 43.272 MiB, 61.18% compilation time)
+- [variable_units_shut_down]  0.757561 seconds (3.18 M allocations: 81.589 MiB, 81.60% compilation time)
+- [variable_units_started_up]  0.188801 seconds (2.43 M allocations: 44.124 MiB, 35.30% compilation time)
+- [variable_units_taken_out_of_service]  0.136573 seconds (2.31 M allocations: 36.316 MiB, 12.96% compilation time)
+- [variable_user_constraint_slack_neg]  0.851307 seconds (3.53 M allocations: 96.551 MiB, 85.70% compilation time)
+- [variable_user_constraint_slack_pos]  0.129369 seconds (2.29 M allocations: 35.344 MiB, 10.04% compilation time)
+ 68.242032 seconds (141.03 M allocations: 5.597 GiB, 19.04% gc time, 65.10% compilation time)
+Adding model expressions...
+- [expression_capacity_margin]  0.343694 seconds (943.39 k allocations: 46.756 MiB, 99.89% compilation time)
+  0.344049 seconds (943.47 k allocations: 46.761 MiB, 99.79% compilation time)
+Adding model constraints...
+- [constraint_candidate_connection_flow_lb]  0.728824 seconds (799.58 k allocations: 38.259 MiB, 99.82% compilation time)
+- [constraint_candidate_connection_flow_ub]  0.171100 seconds (100.19 k allocations: 4.880 MiB, 99.62% compilation time)
+- [constraint_compression_ratio]  0.292460 seconds (402.18 k allocations: 20.745 MiB, 99.92% compilation time)
+- [constraint_connection_flow_capacity]  5.997298 seconds (12.72 M allocations: 797.991 MiB, 4.36% gc time, 85.54% compilation time)
+- [constraint_connection_flow_gas_capacity]  0.350288 seconds (359.36 k allocations: 18.536 MiB, 99.93% compilation time)
+- [constraint_connection_flow_intact_flow]  0.470539 seconds (571.26 k allocations: 27.243 MiB, 99.88% compilation time)
+- [constraint_connection_flow_lodf]  0.588704 seconds (965.60 k allocations: 45.804 MiB, 99.87% compilation time)
+- [constraint_connection_intact_flow_capacity]  0.501006 seconds (605.05 k allocations: 30.280 MiB, 99.86% compilation time)
+- [constraint_connection_intact_flow_ptdf]  0.400461 seconds (611.82 k allocations: 30.216 MiB, 99.89% compilation time)
+- [constraint_connection_lifetime] 19.010266 seconds (97.25 M allocations: 10.818 GiB, 44.10% gc time, 14.89% compilation time)
+- [constraint_connection_unitary_gas_flow]  0.104026 seconds (335.47 k allocations: 16.585 MiB, 99.78% compilation time)
+- [constraint_connections_invested_available]  0.621619 seconds (790.11 k allocations: 38.734 MiB, 99.37% compilation time)
+- [constraint_connections_invested_transition]  1.678162 seconds (2.11 M allocations: 103.996 MiB, 99.41% compilation time)
+- [constraint_cyclic_node_state]  0.411310 seconds (426.68 k allocations: 21.469 MiB, 99.87% compilation time)
+- [constraint_fix_node_pressure_point]  0.308049 seconds (553.48 k allocations: 27.905 MiB, 99.93% compilation time)
+- [constraint_fix_ratio_in_in_unit_flow]  4.651510 seconds (7.75 M allocations: 469.356 MiB, 3.75% gc time, 90.56% compilation time)
+- [constraint_fix_ratio_in_out_unit_flow]  0.106055 seconds (289.61 k allocations: 13.923 MiB, 99.50% compilation time)
+- [constraint_fix_ratio_out_in_connection_flow]  1.916771 seconds (2.63 M allocations: 132.827 MiB, 98.83% compilation time)
+- [constraint_fix_ratio_out_in_unit_flow]  0.006810 seconds (729 allocations: 41.750 KiB, 95.85% compilation time)
+- [constraint_fix_ratio_out_out_unit_flow]  0.292735 seconds (1.23 M allocations: 95.293 MiB, 50.99% compilation time)
+- [constraint_investment_group_equal_investments]  0.306673 seconds (364.23 k allocations: 18.046 MiB, 99.86% compilation time)
+- [constraint_investment_group_maximum_capacity_invested_available]  0.252085 seconds (438.29 k allocations: 20.896 MiB, 99.92% compilation time)
+- [constraint_investment_group_maximum_entities_invested_available]  0.279260 seconds (437.53 k allocations: 21.608 MiB, 99.92% compilation time)
+- [constraint_investment_group_minimum_capacity_invested_available]  0.250382 seconds (277.06 k allocations: 14.539 MiB, 99.92% compilation time)
+- [constraint_investment_group_minimum_entities_invested_available]  0.222408 seconds (277.06 k allocations: 14.540 MiB, 99.91% compilation time)
+- [constraint_max_node_pressure]  0.551556 seconds (812.09 k allocations: 40.804 MiB, 99.84% compilation time)
+- [constraint_max_node_voltage_angle]  0.187495 seconds (173.32 k allocations: 8.796 MiB, 99.74% compilation time)
+- [constraint_max_ratio_in_in_unit_flow]  0.021000 seconds (2.36 k allocations: 118.570 KiB, 98.33% compilation time)
+- [constraint_max_ratio_in_out_unit_flow]  0.006993 seconds (729 allocations: 41.750 KiB, 95.50% compilation time)
+- [constraint_max_ratio_out_in_connection_flow]  0.118779 seconds (206.38 k allocations: 10.028 MiB, 99.80% compilation time)
+- [constraint_max_ratio_out_in_unit_flow]  0.006926 seconds (730 allocations: 41.844 KiB, 95.90% compilation time)
+- [constraint_max_ratio_out_out_unit_flow]  0.007724 seconds (729 allocations: 41.750 KiB, 96.50% compilation time)
+- [constraint_max_total_cumulated_unit_flow_from_node]  0.478265 seconds (634.06 k allocations: 32.073 MiB, 38.35% gc time, 99.95% compilation time)
+- [constraint_max_total_cumulated_unit_flow_to_node]  0.005857 seconds (627 allocations: 31.344 KiB, 97.72% compilation time)
+- [constraint_min_capacity_margin]  0.122075 seconds (171.42 k allocations: 8.657 MiB, 99.83% compilation time)
+- [constraint_min_down_time]  3.155124 seconds (9.14 M allocations: 658.207 MiB, 4.65% gc time, 76.16% compilation time)
+- [constraint_min_node_pressure]  0.137662 seconds (140.71 k allocations: 7.120 MiB, 99.67% compilation time)
+- [constraint_min_node_voltage_angle]  0.114913 seconds (140.77 k allocations: 7.124 MiB, 99.62% compilation time)
+- [constraint_min_ratio_in_in_unit_flow]  0.017524 seconds (2.36 k allocations: 118.492 KiB, 98.45% compilation time)
+- [constraint_min_ratio_in_out_unit_flow]  0.006072 seconds (730 allocations: 41.875 KiB, 95.77% compilation time)
+- [constraint_min_ratio_out_in_connection_flow]  0.063626 seconds (68.97 k allocations: 3.504 MiB, 99.67% compilation time)
+- [constraint_min_ratio_out_in_unit_flow]  0.006029 seconds (729 allocations: 41.750 KiB, 95.84% compilation time)
+- [constraint_min_ratio_out_out_unit_flow]  0.006322 seconds (734 allocations: 46.094 KiB, 96.07% compilation time)
+- [constraint_min_scheduled_outage_duration]  0.223812 seconds (377.90 k allocations: 19.324 MiB, 99.91% compilation time)
+- [constraint_min_total_cumulated_unit_flow_from_node]  0.051168 seconds (68.97 k allocations: 3.494 MiB, 99.67% compilation time)
+- [constraint_min_total_cumulated_unit_flow_to_node]  0.005869 seconds (627 allocations: 31.344 KiB, 97.73% compilation time)
+- [constraint_min_up_time]  0.206248 seconds (281.60 k allocations: 14.225 MiB, 99.87% compilation time)
+- [constraint_minimum_operating_point]  1.524453 seconds (2.62 M allocations: 143.808 MiB, 95.92% compilation time)
+- [constraint_nodal_balance]  2.063509 seconds (5.45 M allocations: 299.966 MiB, 86.77% compilation time)
+- [constraint_node_injection]  3.581198 seconds (12.62 M allocations: 718.820 MiB, 4.77% gc time, 65.96% compilation time)
+- [constraint_node_state_capacity]  1.718854 seconds (4.04 M allocations: 218.696 MiB, 17.50% gc time, 66.31% compilation time)
+- [constraint_node_voltage_angle]  0.290012 seconds (312.45 k allocations: 15.769 MiB, 99.90% compilation time)
+- [constraint_non_spinning_reserves_lower_bound]  0.483219 seconds (439.32 k allocations: 22.477 MiB, 99.85% compilation time)
+- [constraint_non_spinning_reserves_shut_down_upper_bound]  0.263001 seconds (370.97 k allocations: 18.279 MiB, 99.67% compilation time)
+- [constraint_non_spinning_reserves_start_up_upper_bound]  0.007017 seconds (1.17 k allocations: 58.531 KiB, 96.64% compilation time)
+- [constraint_operating_point_bounds]164.758745 seconds (735.54 M allocations: 58.186 GiB, 17.88% gc time, 1.30% compilation time)
+- [constraint_operating_point_rank]  0.524706 seconds (926.58 k allocations: 53.137 MiB, 96.31% compilation time)
+- [constraint_ramp_down]  3.151478 seconds (6.25 M allocations: 366.902 MiB, 87.68% compilation time)
+- [constraint_ramp_up]  1.572259 seconds (4.14 M allocations: 265.675 MiB, 80.85% compilation time)
+- [constraint_ratio_out_in_connection_intact_flow]  0.212474 seconds (306.27 k allocations: 14.913 MiB, 99.80% compilation time)
+- [constraint_storage_lifetime] 10.457828 seconds (34.57 M allocations: 3.912 GiB, 55.15% gc time, 13.06% compilation time)
+- [constraint_storage_line_pack]  0.257237 seconds (315.47 k allocations: 16.006 MiB, 99.92% compilation time)
+- [constraint_storages_invested_available]  0.547651 seconds (558.88 k allocations: 27.527 MiB, 99.70% compilation time)
+- [constraint_storages_invested_transition]  0.449436 seconds (430.81 k allocations: 21.552 MiB, 98.81% compilation time)
+- [constraint_unit_flow_capacity]  2.254181 seconds (6.70 M allocations: 383.271 MiB, 84.27% compilation time)
+- [constraint_unit_flow_op_bounds]  0.914359 seconds (1.53 M allocations: 91.020 MiB, 93.30% compilation time)
+- [constraint_unit_flow_op_rank]  1.133623 seconds (1.33 M allocations: 78.484 MiB, 95.30% compilation time)
+- [constraint_unit_flow_op_sum]  1.379873 seconds (1.45 M allocations: 75.336 MiB, 71.69% compilation time)
+- [constraint_unit_lifetime] 12.139396 seconds (91.00 M allocations: 10.570 GiB, 37.23% gc time, 9.02% compilation time)
+- [constraint_unit_pw_heat_rate]  0.267332 seconds (326.56 k allocations: 16.955 MiB, 99.90% compilation time)
+- [constraint_unit_state_transition]  0.985656 seconds (1.52 M allocations: 80.791 MiB, 97.08% compilation time)
+- [constraint_units_available]  1.615690 seconds (6.99 M allocations: 383.831 MiB, 68.80% compilation time)
+- [constraint_units_invested_available]  0.352299 seconds (265.34 k allocations: 14.667 MiB, 99.58% compilation time)
+- [constraint_units_invested_transition]  0.565638 seconds (435.75 k allocations: 21.779 MiB, 99.37% compilation time)
+- [constraint_units_out_of_service_contiguity]  0.261042 seconds (256.19 k allocations: 12.993 MiB, 99.92% compilation time)
+- [constraint_units_out_of_service_transition]  0.207470 seconds (232.81 k allocations: 11.642 MiB, 99.71% compilation time)
+- [constraint_user_constraint]  5.747934 seconds (8.78 M allocations: 448.969 MiB, 4.89% gc time, 91.48% compilation time)
+267.753605 seconds (1.08 G allocations: 90.414 GiB, 18.54% gc time, 22.89% compilation time)
+Setting model objective... 10.919520 seconds (15.31 M allocations: 803.252 MiB, 3.87% gc time, 94.89% compilation time)
+Bringing model to the first window...  1.004906 seconds (6.10 M allocations: 203.141 MiB, 21.78% compilation time)
+model - Window 1 of 1: 2019-01-01T00:00~(4 weeks, 2 days, 23 hours)~>2019-01-31T23:00
+Optimizing model...Running HiGHS 1.9.0 (git hash: 66f735e60): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [7e-04, 1e+03]
+  Cost   [1e-03, 2e+09]
+  Bound  [3e-01, 1e+03]
+  RHS    [1e+00, 2e+01]
+Presolving model
+28769 rows, 45158 cols, 122767 nonzeros  1s
+17861 rows, 30760 cols, 97980 nonzeros  1s
+13801 rows, 27436 cols, 91713 nonzeros  1s
+12244 rows, 26616 cols, 84635 nonzeros  1s
+Solving MIP model with:
+   12244 rows
+   26616 cols (1478 binary, 327 integer, 0 implied int., 24811 continuous)
+   84635 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic; L => Sub-MIP;
+     P => Empty MIP; R => Randomized rounding; S => Solve LP; T => Evaluate node; U => Unbounded;
+     z => Trivial zero; l => Trivial lower; u => Trivial upper; p => Trivial point
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -51447992.55497 inf                  inf        0      0      0         0     1.7s
+ T       0       0         0   0.00%   -51447992.55497 -13030543.0783   294.83%        0      0      0      5438     2.1s
+         1       0         1 100.00%   -13030543.0783  -13030543.0783     0.00%        0      0      0      5438     2.1s
+Solving report
+  Status            Optimal
+  Primal bound      -13030543.0783
+  Dual bound        -13030543.0783
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.00183743375792
+  Solution status   feasible
+                    -13030543.0783 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            2.09 (total)
+                    0.00 (presolve)
+                    0.00 (solve)
+                    0.00 (postsolve)
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0 (0 feasible; 0 iterations)
+  LP iterations     5438 (total)
+                    0 (strong br.)
+                    0 (separation)
+                    0 (heuristics)
+ 10.038728 seconds (26.51 M allocations: 1.357 GiB, 2.96% gc time, 0.36% compilation time)
+Optimal solution found, objective function value: -1.3030543078304086e7
+Saving model results...  6.857302 seconds (7.80 M allocations: 362.802 MiB, 4.58% gc time, 91.33% compilation time)
+Postprocessing model results...  0.016077 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  4.745305 seconds (7.42 M allocations: 459.997 MiB, 92.74% compilation time)
+model - Rolling temporal structure...
+  0.003960 seconds (658 allocations: 31.266 KiB, 7.14% compilation time)
+model ... Rolling complete
+Writing report to sqlite:///C:\Users\djh.eco\OneDrive - CBS - Copenhagen Business School\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\output\Output.sqlite?spinedbfilter=cfg%3Aexecution%3A%7B%22execution_item%22%3A+%22Run+SpineOpt%22%2C+%22scenarios%22%3A+%5B%5D%2C+%22timestamp%22%3A+%222025-02-11T15%3A48%3A54%22%7D...  6.769426 seconds (3.90 M allocations: 208.371 MiB, 57.29% compilation time)
+Execution complete. Started at 2025-02-11T15:50:10.566, ended at 2025-02-11T15:58:31.355, elapsed time: 8 minutes, 20 seconds, 789 milliseconds
+A JuMP Model
+├ solver: HiGHS
+├ objective_sense: MIN_SENSE
+│ └ objective_function_type: JuMP.AffExpr
+├ num_variables: 100828
+├ num_constraints: 1830016
+│ ├ JuMP.AffExpr in MOI.EqualTo{Float64}: 29829
+│ ├ JuMP.AffExpr in MOI.GreaterThan{Float64}: 3731
+│ ├ JuMP.AffExpr in MOI.LessThan{Float64}: 1690341
+│ ├ JuMP.VariableRef in MOI.EqualTo{Float64}: 23
+│ ├ JuMP.VariableRef in MOI.GreaterThan{Float64}: 87381
+│ ├ JuMP.VariableRef in MOI.LessThan{Float64}: 16385
+│ └ JuMP.VariableRef in MOI.Integer: 2326
+└ Names registered in the model: none
