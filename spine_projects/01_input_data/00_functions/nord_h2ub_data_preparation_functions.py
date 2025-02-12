@@ -484,6 +484,40 @@ def create_object_parameters(input_df, object_class_type, parameter_column):
 
     return unit_parameter_df
 
+def create_fom_units(df_units, df_inv, year, inv_res):
+    year_columns = {int(col.split()[-1]): col for col in df_inv.columns if 'Value' in col}
+    closest_year = min(year_columns.keys(), key=lambda x: abs(x - year))
+    selected_column = year_columns[closest_year]
+
+    unit_fom_cost_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value'])
+
+    for index, row in df_units.iterrows():
+        object_type = row['Object_type']
+        
+        matching_row = df_inv[df_inv['Object_type'] == object_type]
+        if not matching_row.empty:
+            # Extract the investment cost and percentage
+            investment_cost = matching_row[selected_column].values[0]
+            fom_perc = matching_row['fom_cost_share'].values[0]
+            fom_value = int(fom_perc * investment_cost)
+        else:
+            fom_value = row['fom_cost']
+        
+        if pd.notna(fom_value):
+            new_row = {'Object_name': row['Unit'],
+                       'Category': 'unit',
+                       'Parameter': 'fom_cost',
+                       'Value': fom_value}
+            unit_fom_cost_df = pd.concat([unit_fom_cost_df, pd.DataFrame([new_row])], ignore_index=True)
+    
+        if not inv_res:
+            #remove res from unit_fom_df
+            if object_type in {'PV_plant', 'Wind_onshore', 'Wind_offshore'}:
+                unit_name = row['Unit']
+                unit_fom_cost_df = unit_fom_cost_df[unit_fom_cost_df['Object_name'] != unit_name]
+    
+    return unit_fom_cost_df
+
 #method to identify all nodes that should become slack nodes within the network
 def check_entries_exist(df, type):
     # Get the entries in Input1 or Input2 that exist in Output1 or Output2
