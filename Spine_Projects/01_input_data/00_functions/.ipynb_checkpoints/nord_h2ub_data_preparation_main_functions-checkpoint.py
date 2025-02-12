@@ -102,7 +102,8 @@ def set_parameters(params):
         'inv_limit_methanol': None,
         'inv_limit_methanol_storage': 1000,
         'inv_limit_rwgs': None,
-        'inv_limit_steam': None
+        'inv_limit_steam': None,
+        'investment_res': False
     }
 
     # Update default values with provided parameters
@@ -147,6 +148,7 @@ def set_parameters(params):
     num_slices = default_params['num_slices']
     candidate_nonzero = default_params['candidate_nonzero']
     investment_period_default = default_params['investment_period_default']
+    investment_res = default_params['investment_res']
 
     # Create the investment cost dictionary
     investment_cost_params = {
@@ -223,5 +225,5 @@ def set_parameters(params):
             roll_forward_use, roll_forward_size, num_slices, datetime_index, 
             candidate_nonzero, 
             investment_period_default, investment_cost_params, investment_limit_params,
-            capacities_exisiting_params
+            capacities_exisiting_params, investment_res
            )

@@ -484,7 +484,7 @@ def create_object_parameters(input_df, object_class_type, parameter_column):
 
     return unit_parameter_df
 
-def create_fom_units(df_units, df_inv, year, inv_res):
+def create_fom_units(df_units, df_inv, year, investment_res):
     year_columns = {int(col.split()[-1]): col for col in df_inv.columns if 'Value' in col}
     closest_year = min(year_columns.keys(), key=lambda x: abs(x - year))
     selected_column = year_columns[closest_year]
@@ -510,7 +510,7 @@ def create_fom_units(df_units, df_inv, year, inv_res):
                        'Value': fom_value}
             unit_fom_cost_df = pd.concat([unit_fom_cost_df, pd.DataFrame([new_row])], ignore_index=True)
     
-        if not inv_res:
+        if not investment_res:
             #remove res from unit_fom_df
             if object_type in {'PV_plant', 'Wind_onshore', 'Wind_offshore'}:
                 unit_name = row['Unit']

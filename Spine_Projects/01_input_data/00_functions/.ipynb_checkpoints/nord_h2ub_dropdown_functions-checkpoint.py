@@ -1034,11 +1034,12 @@ def create_dropdown_price_zone():
 
 #create dropdown for the product
 def create_dropdown_product():
-    label3 = widgets.Label("Please set the product of the plant (required): ")
+    label3 = widgets.HTML("Please set the product of the plant <i>(required)</i>: ")
     dropdown3 = widgets.Dropdown(
         options = ['ammonia', 'diesel', 'egasoline', 'hydrogen', 'jet_fuel', 'methane', 'methanol'],
         value = None,
-        layout = widgets.Layout(width='100px')
+        layout = widgets.Layout(width='100px',
+                               padding='0px 0px 0px 5px')
     )
     def on_dropdown_change(change):
         update_inv_costs(change, investment_cost_vbox)   # Update investment costs box
@@ -1240,17 +1241,32 @@ def create_multiple_choice_power():
         
         capacities_powers_values[option] = capacity_widget.value
         capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
-    
+
     # Layout for checkboxes and capacity inputs
     power_column = widgets.VBox(checkboxes_powers)
     capacity_column = widgets.VBox(hbox_capacities_powers)
+    
+    # Add possibility for investment
+    def create_dropdown_inv():
+        label_inv = widgets.HTML(
+            "Possibility for investment in RES <i>(not recommended)</i>:"
+        )
+        dropdown_inv = widgets.Dropdown(
+            options=[True, False],
+            value=False,
+            layout=widgets.Layout(width='100px', padding='0px 0px 0px 5px')
+        )
+        dropdown_inv.observe(on_change)
+        return widgets.HBox([label_inv, dropdown_inv], layout=widgets.Layout(padding='0px 0px 0px 30px')), dropdown_inv
+
+    inv_res_column, investment_res = create_dropdown_inv()
     
     #Update capacity fields visibiliy based on preselected options
     update_capacity_fields()
     
     hbox_warning = widgets.HBox([power_column, warning_label])
     
-    return widgets.VBox([label_power, hbox_warning, capacity_column], layout=widgets.Layout(margin='0 0 15px 0')), selected_options_power, capacities_powers_values
+    return widgets.VBox([label_power, hbox_warning, capacity_column, inv_res_column], layout=widgets.Layout(margin='0 0 15px 0')), selected_options_power, capacities_powers_values, investment_res
   
 
 def create_multiple_choice_report():
@@ -1354,7 +1370,7 @@ def create_combined_dropdowns_tabs():
     report_name_box, report_name = create_name_rep_input()
     run_name_box, run_name = create_run_name_input()
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
-    multiple_choice_power_box, selected_powers, capacities_powers = create_multiple_choice_power()
+    multiple_choice_power_box, selected_powers, capacities_powers, investment_res = create_multiple_choice_power()
     scen_name_box, base_scen = create_scen_name_input()
     #scen_name_box, base_scen, other_scen = create_scen_name_input_sev()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
@@ -1396,7 +1412,8 @@ def create_combined_dropdowns_tabs():
         'default_investment_number': dropdown_number,
         'default_investment_duration': dropdown_period,
         'demand': demand_input,
-        'demand_res': demand_res
+        'demand_res': demand_res,
+        'investment_res': investment_res
     }
 
     # Create pages (tabs)
@@ -1500,6 +1517,7 @@ def get_dropdown_values(dropdowns):
         'candidate_nonzero': dropdowns['candidate_nonzero'].value,
         'default_investment_number': dropdowns['default_investment_number'].value,
         'default_investment_duration': dropdowns['default_investment_duration'].value,
+        'investment_res': dropdowns['investment_res'].value,
         
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],
