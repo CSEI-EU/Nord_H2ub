@@ -1014,7 +1014,7 @@ def on_change_dict_investment(change):
 def create_dropdown_year():
     label1 = widgets.Label("Please select the base year for electricity prices:")
     dropdown1 = widgets.Dropdown(
-        options=[2018, 2019, 2020, 2021, 2022],
+        options=[2018, 2019],
         value=2019
     )
     dropdown1.observe(on_change)
@@ -1025,7 +1025,7 @@ def create_dropdown_year():
 def create_dropdown_price_zone():
     label2 = widgets.Label("Please select the power price zone where the plant is located:")
     dropdown2 = widgets.Dropdown(
-        options=['DE', 'DK1', 'DK2', 'NO2', 'SE3', 'SE4', 'SYSTEM'],
+        options=['DK1', 'DK2', 'NO1', 'NO2', 'NO3', 'NO4', 'NO5', 'SE1', 'SE2', 'SE3', 'SE4'],
         value='DK1'
     )
     dropdown2.observe(on_change)
