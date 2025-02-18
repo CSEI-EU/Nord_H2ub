@@ -1025,8 +1025,8 @@ def create_dropdown_year():
 def create_dropdown_price_zone():
     label2 = widgets.Label("Please select the power price zone where the plant is located:")
     dropdown2 = widgets.Dropdown(
-        options=['DK1', 'DK2', 'NO1', 'NO2', 'NO3', 'NO4', 'NO5', 'SE1', 'SE2', 'SE3', 'SE4'],
-        value='DK1'
+        options=['DK_1', 'DK_2', 'DK_BHM', 'NO_1', 'NO_2', 'NO_3', 'NO_4', 'NO_5', 'SE_1', 'SE_2', 'SE_3', 'SE_4'],
+        value='DK_1'
     )
     dropdown2.observe(on_change)
     return widgets.VBox([label2, dropdown2], layout=widgets.Layout(margin='0 0 15px 0')), dropdown2   
