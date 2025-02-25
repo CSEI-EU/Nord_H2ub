@@ -90,7 +90,7 @@ def set_parameters(params):
         'inv_limit_asu': None,
         'inv_limit_biomethanation': None,
         'inv_limit_co2_removal': None,
-        'inv_limit_diesel': None,
+        'inv_limit_diesel_storage': None,
         'inv_limit_distillation': None,
         'inv_limit_egasoline_storage': 1000,
         'inv_limit_electrolyzer': None,
@@ -178,7 +178,7 @@ def set_parameters(params):
         'inv_limit_Air_separation_unit': default_params['inv_limit_asu'],
         'inv_limit_Biomethanation': default_params['inv_limit_biomethanation'],
         'inv_limit_CO2_Vaporizer': default_params['inv_limit_co2_removal'],
-        'inv_limit_Diesel_storage': default_params['inv_limit_diesel'],
+        'inv_limit_Diesel_storage': default_params['inv_limit_diesel_storage'],
         'inv_limit_Distillation_tower': default_params['inv_limit_methanol'],   #assumed to be the same as methanol
         'inv_limit_Egasoline_storage': default_params['inv_limit_egasoline_storage'],
         'inv_limit_Electric_Steam_Boiler': default_params['inv_limit_steam'],

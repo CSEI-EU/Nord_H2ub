@@ -450,7 +450,7 @@ def update_inv_costs(change, investment_cost_vbox):
 
         investment_limit_values['inv_limit_egasoline_storage'] = egasoline_storage_limit
         investment_limit_values['inv_limit_electrolyzer'] = electrolyzer_limit
-        investment_cost_values['inv_cost_fischer'] = fischer_input
+        investment_limit_values['inv_limit_fischer'] = fischer_limit
         investment_limit_values['inv_limit_hydrogen_storage'] = hydrogen_storage_limit
         investment_limit_values['inv_limit_rwgs'] = rwgs_limit
         investment_limit_values['inv_limit_steam'] = steam_limit
@@ -698,6 +698,11 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_cost_values['inv_cost_co2_removal'] = co2_remover_input
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
         investment_cost_values['inv_cost_methane_storage'] = methane_storage_input
+
+        investment_limit_values['inv_limit_electrolyzer'] = electrolyzer_limit
+        investment_limit_values['inv_limit_hydrogen_storage'] = hydrogen_storage_limit
+        investment_limit_values['inv_limit_methane_storage'] = methane_storage_limit
+        investment_limit_values['inv_limit_steam'] = steam_limit
         
         investment_cost_vbox.children = [investment_headline, 
                                          anaerobic_label, anaerobic_hbox,
@@ -1565,12 +1570,6 @@ def get_dropdown_values(dropdowns):
         else:
             values[key] = widget.value
     
-    # Removing the power capacities if unchanged
-    for key, value in dropdowns['capacities_powers'].items():
-        if value == 1:
-            dropdowns['capacities_powers'][key] = None
-    values['capacities_powers'] = dropdowns['capacities_powers']
-    
     return values
 
 
@@ -1623,8 +1622,6 @@ def compute_other_values(values):
 # Add investment costs and capacities to the parameters definition if previously set
 def set_inv_cap_values(values, parameters):
     # investment costs
-    if 'inv_cost_electrolyzer' in values:
-        parameters['inv_cost_electrolyzer'] = values['inv_cost_electrolyzer']
     if 'inv_cost_ammonia_storage' in values:
         parameters['inv_cost_ammonia_storage'] = values['inv_cost_ammonia_storage']
     if 'inv_cost_anaerobic' in values:
@@ -1639,6 +1636,8 @@ def set_inv_cap_values(values, parameters):
         parameters['inv_cost_diesel_storage'] = values['inv_cost_diesel_storage']
     if 'inv_cost_egasoline_storage' in values:
         parameters['inv_cost_egasoline_storage'] = values['inv_cost_egasoline_storage']
+    if 'inv_cost_electrolyzer' in values:
+        parameters['inv_cost_electrolyzer'] = values['inv_cost_electrolyzer']
     if 'inv_cost_fischer' in values:
         parameters['inv_cost_fischer'] = values['inv_cost_fischer'] 
     if 'inv_cost_haber' in values:
@@ -1680,8 +1679,6 @@ def set_inv_cap_values(values, parameters):
     if 'capacity_co2_removal' in values:
         parameters['capacity_co2_removal'] = values['capacity_co2_removal']
     # limits
-    if 'inv_limit_electrolyzer' in values:
-        parameters['inv_limit_electrolyzer'] = values['inv_limit_electrolyzer']
     if 'inv_limit_ammonia_storage' in values:
         parameters['inv_limit_ammonia_storage'] = values['inv_limit_ammonia_storage']
     if 'inv_limit_anaerobic' in values:
@@ -1696,6 +1693,8 @@ def set_inv_cap_values(values, parameters):
         parameters['inv_limit_diesel_storage'] = values['inv_limit_diesel_storage']
     if 'inv_limit_egasoline_storage' in values:
         parameters['inv_limit_egasoline_storage'] = values['inv_limit_egasoline_storage']
+    if 'inv_limit_electrolyzer' in values:
+        parameters['inv_limit_electrolyzer'] = values['inv_limit_electrolyzer']
     if 'inv_limit_fischer' in values:
         parameters['inv_limit_fischer'] = values['inv_limit_fischer'] 
     if 'inv_limit_haber' in values:

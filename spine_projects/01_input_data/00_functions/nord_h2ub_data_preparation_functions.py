@@ -1154,15 +1154,17 @@ def scale_costs(df, start, end, object):
 def translate_product(product):
     if product == 'ammonia':
         product_tr = 'nh3'
+    elif product == 'diesel':
+        product_tr = 'diesel'
     elif product == 'egasoline':
-        product_tr = 'c8h18' #not sure about this
+        product_tr = 'egasoline'
     elif product == 'hydrogen':
         product_tr = 'h2'
     elif product == 'jet_fuel':
-        product_tr = 'cnh2n_2' #also not sure about this
+        product_tr = 'jet_fuel'
     elif product == 'methanol':
         product_tr = 'ch3oh'
-    elif product == 'synthetic_methane_gas':
+    elif product == 'methane':
         product_tr = 'ch4'
     
     return product_tr
