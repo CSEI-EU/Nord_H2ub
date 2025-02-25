@@ -730,7 +730,7 @@ def update_capacities(change, capacities_vbox):
     capacities_values.clear()
     
     # Define the placeholder value for fields that are not yet interacted with
-    placeholder_value = 1.0
+    placeholder_value = 0
     
     # Define a layout for descriptions and fields + indent
     description_layout = widgets.Layout(width='220px')
@@ -1233,7 +1233,7 @@ def create_multiple_choice_power():
     res = ['Solar plant', 'Wind onshore', 'Wind offshore', 'Power Storage']
     for option in res:
         capacity_widget = widgets.FloatText(
-            value=50.0,
+            value=0,
             layout=widgets.Layout(width='100px')
         )
         label = widgets.Label(f"{option} capacity (MW):", layout=widgets.Layout(width='220px'))

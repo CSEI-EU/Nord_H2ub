@@ -66,6 +66,37 @@ def map_parameters_by_similarity(df1, df2, prefix):
     # Return the updated df2 with mapped Object_name
     return df2
 
+def remove_prefix(df, prefix):
+    for index, row in df.iterrows():
+        name = row['object']
+        new_name = name.replace(prefix, '')
+        df.at[index, 'object'] = new_name
+    return df
+
+def map_type_to_name(df1, df2):
+    name_col = []
+    for index, row in df1.iterrows():
+        object_type = row['object']
+
+        if object_type == "Electrolyzer":
+            matching_row = df2[df2['Object_type'].str.contains('Electrolyzer', case=False, na=False)]
+        else:
+            matching_row = df2[df2['Object_type'] == object_type]
+        
+        if not matching_row.empty:
+            name_col_value = matching_row['Object_name'].values[0]
+        else:
+            name_col_value = ''
+        name_col.append(name_col_value)  
+    df1.insert(loc=0, column='Object_name', value=name_col)
+
+    # Remove rows where Object_name is None
+    df1_new = df1[df1['Object_name'].notna() & (df1['Object_name'] != '')]
+    
+    #rename column "object" to "Object_type"
+    df1_new = df1_new.rename(columns={"object": "Object_type"})
+    
+    return df1_new
 
 #function to reset index by another column of the dataframe
 def replace_index_by_column(df, column_name):
