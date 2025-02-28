@@ -103,7 +103,7 @@ def on_number_change(change):
 def create_share_of_dh_price_cap():
     default_number = 50  # Set as a default to not assume 100%
     description_label_1 = widgets.Label(
-        "Set the assumed value for revenues from district heating as share of a max price (%):")
+        "Set the assumed value for revenues from district heating as share of a max price [%]:")
     number_input_1 = widgets.BoundedIntText(
         value=default_number,
         min=0,
@@ -117,7 +117,7 @@ def create_share_of_dh_price_cap():
 
 def create_price_level_power():
     description_label_2 = widgets.Label(
-        "Set the assumed value for scaling the power price level up/down (%):")
+        "Set the assumed value for scaling the power price level up/down [%]:")
     number_input_2 = widgets.BoundedIntText(
         value=100,
         min=0,
@@ -175,7 +175,7 @@ def create_sections_elec():
 
 def create_wacc_elec():
     default_number = 8
-    description_label_6 = widgets.Label("Set the WACC you want to use for the LCOE calculation (%):")
+    description_label_6 = widgets.Label("Set the WACC for the LCOE calculation [%]:")
     number_input_6 = widgets.BoundedIntText(
         value=8,
         min=0,
@@ -189,7 +189,7 @@ def create_wacc_elec():
 
 def create_lcoe_starting_year_elec():
     default_number = 2020
-    description_label_7 = widgets.Label("Set the starting year you want to use for the LCOE calculation:")
+    description_label_7 = widgets.Label("Set the starting year for the LCOE calculation:")
     number_input_7 = widgets.BoundedIntText(
         value=2020,
         min=0,
@@ -1006,7 +1006,7 @@ def create_dropdown_price_zone():
 
 #create dropdown for the product
 def create_dropdown_product():
-    label3 = widgets.HTML("Please set the product of the plant <i>(required)</i>: ")
+    label3 = widgets.HTML("Please select the product of the plant <i>(required)</i>: ")
     dropdown3 = widgets.Dropdown(
         options = ['ammonia', 'diesel', 'egasoline', 'hydrogen', 'jet_fuel', 'methane', 'methanol'],
         value = None,
@@ -1060,11 +1060,11 @@ def create_dropdown_frequency():
     return widgets.VBox([label5, dropdown5], layout=widgets.Layout(margin='0 0 15px 0')), selected_option_widget, selected_value_widget
 
 
-#create dropdown for the whether or not roll_forward is used
+#create dropdown for the whether roll_forward is used
 roll_forward_use = True
 def create_dropdown_roll():
     label6 = widgets.Label(
-        "Please select whether or not the model should run with a rolling horizon optimization:"
+        "Please select whether the model should run with a rolling horizon optimization:"
     )
     dropdown6 = widgets.Dropdown(
         options=[True, False],
@@ -1075,10 +1075,10 @@ def create_dropdown_roll():
     return widgets.VBox([label6, dropdown6], layout=widgets.Layout(margin='0 0 15px 0')), dropdown6
 
 
-#create dropdown for whether or not investments can be made
+#create dropdown for whether investments can be made
 def create_dropdown_investment():
     
-    label7 = widgets.Label("Please select whether or not the model should run an investment optimization:")
+    label7 = widgets.Label("Please select whether the model should run an investment optimization:")
     dropdown7 = widgets.Dropdown(
         options=[True, False],
         value=False,
@@ -1210,7 +1210,7 @@ def create_multiple_choice_power():
             value=0,
             layout=widgets.Layout(width='100px')
         )
-        label = widgets.Label(f"{option} capacity (MW):", layout=widgets.Layout(width='220px'))
+        label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='220px'))
         
         hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none', 
                                                                             padding='0px 0px 0px 30px',
