@@ -18,6 +18,7 @@ from IPython.display import display, HTML
 import pandas as pd
 import threading
 import time
+import math
 
 
 '''Define text query functions'''
@@ -232,7 +233,7 @@ def update_inv_costs(change, investment_cost_vbox):
     investment_limit_values.clear()
     
     # Define the placeholder value for fields that are not yet interacted with
-    placeholder_value = 1.0
+    placeholder_value = math.nan
 
     # Define a layout for descriptions and fields + indent
     description_layout = widgets.Layout(width='210px')
@@ -240,7 +241,7 @@ def update_inv_costs(change, investment_cost_vbox):
     indent_layout = widgets.Layout(padding='0px 0px 0px 30px', justify_content='flex-start')
 
     # Headline for the investment costs block
-    investment_headline = widgets.Label("Please define the investment cost and maximal installed capacities per MW or MWh",
+    investment_headline = widgets.Label("Please define the investment cost and maximal installed capacities per MW or MWh. If left empty, default values will be used.",
     style={'font_weight': 'bold', 'font_size': '13px'})
     
     # Assign to products
@@ -745,7 +746,7 @@ def update_capacities(change, capacities_vbox):
     input_layout = widgets.Layout(width='100px')
     indent_layout = widgets.Layout(padding='0px 0px 0px 40px', justify_content='flex-start')
 
-    label = widgets.Label("Existing capacity:")
+    label = widgets.Label("Please set the existing capacity:")
     
     steam_description = widgets.Label("Existing capacity [MW input power]:", layout=description_layout)
     steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
