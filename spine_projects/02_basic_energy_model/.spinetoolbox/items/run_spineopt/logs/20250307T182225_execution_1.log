@@ -1,0 +1,77 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:50648 http://127.0.0.1:50652
+2-element Vector{String}:
+ "http://127.0.0.1:50648"
+ "http://127.0.0.1:50652"
+Running SpineOpt...
+[SpineOpt version 0.8.3 (git hash: N/A)]
+[SpineInterface version 0.14.8 (git hash: N/A)]
+Execution started at 2025-03-07T18:22:25.700
+Reading input data from sqlite:///C:\Users\jfg.eco\Documents\GitHub\Nord_H2ub\spine_projects\02_basic_energy_model\.spinetoolbox\items\data_store\data store.sqlite...
+┌ Warning: The data structure is not the latest version.
+│ SpineOpt might still be able to run, but results aren't guaranteed.
+│ Please use `run_spineopt(url_in; upgrade=true)` to upgrade.
+└ @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:261
+Initializing base data structure from db...  0.601167 seconds (239.56 k allocations: 33.149 MiB)
+Preprocessing base data structure...  0.095515 seconds (34.29 k allocations: 2.508 MiB, 63.68% compilation time)
+Checking base data structure...  0.007885 seconds (4.14 k allocations: 358.000 KiB, 89.56% compilation time)
+┌ Warning: Some items are missing from the input database.
+│ We'll assume sensitive defaults for any missing parameter definitions,
+│ and empty collections for any missing classes.
+│ SpineOpt might still be able to run, but otherwise you'd need to check your input database.
+│ 
+│ Missing item list follows:
+│ 
+│     parameters  connection_decommissioning_time
+│                 connection_decommissioning_cost
+│                 connection_lead_time
+│                 connection_discount_rate_technology_specific
+│                 discount_rate
+│                 discount_year
+│                 model_algorithm
+│                 use_milestone_years
+│                 use_economic_representation
+│                 storage_lead_time
+│                 storage_discount_rate_technology_specific
+│                 storage_fom_cost
+│                 storage_decommissioning_time
+│                 storage_decommissioning_cost
+│                 unit_discount_rate_technology_specific
+│                 unit_lead_time
+│                 unit_decommissioning_time
+│                 unit_decommissioning_cost
+│ 
+└ @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:215
+ERROR: LoadError: UndefVarError: `model_algorithm` not defined
+Stacktrace:
+  [1] run_spineopt!(m::JuMP.Model, url_out::String; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:311
+  [2] run_spineopt!
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:300 [inlined]
+  [3] _run_spineopt(f::SpineOpt.var"#65#66", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:142
+  [4] _run_spineopt
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:119 [inlined]
+  [5] #68
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:99 [inlined]
+  [6] _log_to_file
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:225 [inlined]
+  [7] #run_spineopt#67
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:98 [inlined]
+  [8] run_spineopt
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:80 [inlined]
+  [9] #run_spineopt#64
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:64 [inlined]
+ [10] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:63
+ [11] top-level scope
+    @ C:\Users\jfg.eco\.spinetoolbox\work\run_spineopt__676e69fb96644188b4498243be478067__toolbox\run_spineopt.jl:3
+ [12] include(fname::String)
+    @ Base.MainInclude .\client.jl:489
+ [13] top-level scope
+    @ none:1
+in expression starting at C:\Users\jfg.eco\.spinetoolbox\work\run_spineopt__676e69fb96644188b4498243be478067__toolbox\run_spineopt.jl:3

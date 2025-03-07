@@ -6,6 +6,23 @@
             "enable_execute_all": true
         },
         "specifications": {
+            "Tool": [
+                {
+                    "type": "path",
+                    "relative": false,
+                    "path": "C:/Users/jfg.eco/.spinetoolbox/plugins/SpineOpt/specifications/Tool/run_spineopt.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/run_data_prep.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/run_output_prep.json"
+                }
+            ],
             "Exporter": [
                 {
                     "type": "path",
@@ -18,18 +35,6 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/mapping-v10-investment_jfg_2024_08_16.json"
-                }
-            ],
-            "Tool": [
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Tool/run_data_prep.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Tool/run_output_prep.json"
                 }
             ]
         },
@@ -151,7 +156,7 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Run SpineOpt@2025-01-17T14:00:19": true
+                                "Run SpineOpt@2024-12-14T19:15:16": true
                             }
                         }
                     },
@@ -194,7 +199,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -223,7 +228,7 @@
             "type": "Tool",
             "description": "",
             "x": 242.99226257383003,
-            "y": -52.43798104284602,
+            "y": -49.15228757353064,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -271,14 +276,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -49.452968612619635,
-            "y": -155.51606399058383,
+            "x": -46.16727514330426,
+            "y": -155.5160639905838,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
                     true
                 ]
             ]
