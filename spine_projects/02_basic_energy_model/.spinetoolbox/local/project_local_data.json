@@ -4,13 +4,13 @@
             "db_credentials": {}
         },
         "Exporter": {},
-        "Data Store": {
+        "Input": {
             "url": {
                 "username": "",
                 "password": ""
             }
         },
-        "Output": {
+        "OutputTest": {
             "url": {
                 "username": "",
                 "password": ""

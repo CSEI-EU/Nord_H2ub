@@ -6,6 +6,18 @@
             "enable_execute_all": true
         },
         "specifications": {
+            "Tool": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/run_data_prep.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/run_output_prep.json"
+                }
+            ],
             "Exporter": [
                 {
                     "type": "path",
@@ -18,18 +30,6 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Importer/mapping-v10-investment_jfg_2024_08_16.json"
-                }
-            ],
-            "Tool": [
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Tool/run_data_prep.json"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/specifications/Tool/run_output_prep.json"
                 }
             ]
         },
@@ -54,32 +54,13 @@
                 }
             },
             {
-                "name": "from Load template to Data Store",
-                "from": [
-                    "Load template",
-                    "left"
-                ],
-                "to": [
-                    "Data Store",
-                    "right"
-                ],
-                "filter_settings": {
-                    "known_filters": {},
-                    "auto_online": true,
-                    "enabled_filter_types": {
-                        "alternative_filter": false,
-                        "scenario_filter": true
-                    }
-                }
-            },
-            {
-                "name": "from Importer to Data Store",
+                "name": "from Importer to Input",
                 "from": [
                     "Importer",
                     "right"
                 ],
                 "to": [
-                    "Data Store",
+                    "Input",
                     "left"
                 ],
                 "filter_settings": {
@@ -92,9 +73,28 @@
                 }
             },
             {
-                "name": "from Data Store to Run SpineOpt",
+                "name": "from Load template to Input",
                 "from": [
-                    "Data Store",
+                    "Load template",
+                    "left"
+                ],
+                "to": [
+                    "Input",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from Input to Run SpineOpt",
+                "from": [
+                    "Input",
                     "right"
                 ],
                 "to": [
@@ -103,7 +103,7 @@
                 ],
                 "filter_settings": {
                     "known_filters": {
-                        "db_url@Data Store": {
+                        "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true
@@ -118,13 +118,13 @@
                 }
             },
             {
-                "name": "from Run SpineOpt to Output",
+                "name": "from Run SpineOpt to OutputTest",
                 "from": [
                     "Run SpineOpt",
                     "right"
                 ],
                 "to": [
-                    "Output",
+                    "OutputTest",
                     "left"
                 ],
                 "filter_settings": {
@@ -137,9 +137,9 @@
                 }
             },
             {
-                "name": "from Output to Exporter",
+                "name": "from OutputTest to Exporter",
                 "from": [
-                    "Output",
+                    "OutputTest",
                     "right"
                 ],
                 "to": [
@@ -148,10 +148,11 @@
                 ],
                 "filter_settings": {
                     "known_filters": {
-                        "db_url@Output": {
+                        "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Run SpineOpt@2025-01-17T14:00:19": true
+                                "Base": true,
+                                "Run SpineOpt@2025-03-10T10:25:38": true
                             }
                         }
                     },
@@ -163,13 +164,13 @@
                 }
             },
             {
-                "name": "from Load template to Output",
+                "name": "from Load template to OutputTest",
                 "from": [
                     "Load template",
                     "right"
                 ],
                 "to": [
-                    "Output",
+                    "OutputTest",
                     "left"
                 ],
                 "filter_settings": {
@@ -194,7 +195,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -209,11 +210,11 @@
             "cmd_line_args": [
                 {
                     "type": "resource",
-                    "arg": "db_url@Data Store"
+                    "arg": "db_url@Input"
                 },
                 {
                     "type": "resource",
-                    "arg": "db_url@Output"
+                    "arg": "db_url@OutputTest"
                 }
             ],
             "kill_completed_processes": false,
@@ -223,17 +224,17 @@
             "type": "Tool",
             "description": "",
             "x": 242.99226257383003,
-            "y": -52.43798104284602,
+            "y": -49.15228757353064,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
                 {
                     "type": "resource",
-                    "arg": "db_url@Data Store"
+                    "arg": "db_url@Input"
                 },
                 {
                     "type": "resource",
-                    "arg": "db_url@Output"
+                    "arg": "db_url@OutputTest"
                 }
             ],
             "options": {
@@ -251,8 +252,8 @@
             "cancel_on_error": true,
             "output_labels": [
                 {
-                    "in_label": "db_url@Output",
-                    "out_label": "Output_exported@Exporter"
+                    "in_label": "db_url@OutputTest",
+                    "out_label": "OutputTest_exported@Exporter"
                 }
             ],
             "specification": "SpineOptToTable"
@@ -271,51 +272,17 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -49.452968612619635,
-            "y": -155.51606399058383,
+            "x": -46.16727514330426,
+            "y": -155.5160639905838,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
                     true
                 ]
             ]
-        },
-        "Data Store": {
-            "type": "Data Store",
-            "description": "",
-            "x": 96.59363117886589,
-            "y": -155.53633415467488,
-            "url": {
-                "dialect": "sqlite",
-                "host": "",
-                "port": "",
-                "database": {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/items/data_store/data store.sqlite"
-                },
-                "schema": ""
-            }
-        },
-        "Output": {
-            "type": "Data Store",
-            "description": "",
-            "x": 390.2693429271183,
-            "y": -158.3277224220669,
-            "url": {
-                "dialect": "sqlite",
-                "host": "",
-                "port": "",
-                "database": {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/items/output/Output.sqlite"
-                },
-                "schema": ""
-            }
         },
         "run_output_prep": {
             "type": "Tool",
@@ -327,6 +294,40 @@
             "cmd_line_args": [],
             "kill_completed_processes": true,
             "log_process_output": false
+        },
+        "Input": {
+            "type": "Data Store",
+            "description": "",
+            "x": 62.42817591699213,
+            "y": 49.28540203973063,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/input/InputTest.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "OutputTest": {
+            "type": "Data Store",
+            "description": "",
+            "x": 436.9972314189449,
+            "y": 52.571095509046,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/outputtest/OutputTest.sqlite"
+                },
+                "schema": ""
+            }
         }
     }
 }
