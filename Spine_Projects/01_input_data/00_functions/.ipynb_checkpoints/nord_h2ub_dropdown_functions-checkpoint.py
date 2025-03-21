@@ -21,6 +21,14 @@ import time
 import math
 
 
+'''General Layout Settings'''
+general_input_layout = widgets.Layout(width='130px', padding = '0 0 0 30px')
+def get_general_vbox_layout():
+    return widgets.Layout(margin='0 0 15px 0')
+general_multiple_choice_layout = widgets.Layout(padding='0 0 0 30px')
+inv_cap_indent_layout = widgets.Layout(padding = '0 0 0 30px')
+
+
 '''Define text query functions'''
 
 def on_text_change(change):
@@ -28,70 +36,77 @@ def on_text_change(change):
         print(f'You entered: {change["new"]}')
 
 
-def create_name_rep_input():
+def create_name_rep_input():   # Necessary? I do not think so. D.H.
     label2 = widgets.Label(
         "Please type the name of the report if other than 'Report':")
     default_text = "Report"
     name_rep_input = widgets.Text(
-        value=default_text
+        value=default_text,
+        layout=general_input_layout
     )
-    return widgets.VBox([label2, name_rep_input], layout=widgets.Layout(margin='0 0 15px 0')), name_rep_input
+    return widgets.VBox([label2, name_rep_input], layout=get_general_vbox_layout()), name_rep_input
 
 
-def create_scen_name_input_sev():
+def create_scen_name_input_sev():   # Not used yet
     label3 = widgets.Label(
         "Please type the name of the scenario if other than 'Base':")
     default_text = "Base"
     base_name_input = widgets.Text(
-        value=default_text,
-        description="Base Scenario:"
+        value = default_text,
+        description = "Base Scenario:",
+        layout = general_input_layout
     )
     additional_names_input = widgets.Textarea(
-        value='',
-        placeholder='Enter each scenario name on a new line',
-        description='Other Scenarios:'
+        value = '',
+        placeholder = 'Enter each scenario name on a new line',
+        description = 'Other Scenarios:',
+        layout = general_input_layout
     )
-    return widgets.VBox([label3, base_name_input, additional_names_input], layout=widgets.Layout(margin='0 0 15px 0')), base_name_input, additional_names_input
+    return widgets.VBox([label3, base_name_input, additional_names_input], layout=get_general_vbox_layout()), base_name_input, additional_names_input
 
 
-def create_scen_name_input():
+def create_scen_name_input():   # Necessary? I do not think so. D.H.
     label3 = widgets.Label(
         "Please type the name of the scenario if other than 'Base':")
     default_text = "Base"
     base_name_input = widgets.Text(
         value=default_text,
-        description="Base Scenario:"
+        description="Base Scenario:",
+        layout = general_input_layout
     )
-    return widgets.VBox([label3, base_name_input], layout=widgets.Layout(margin='0 0 15px 0')), base_name_input
+    return widgets.VBox([label3, base_name_input], layout=get_general_vbox_layout()), base_name_input
 
 
-def create_stoch_scen_input():
+def create_stoch_scen_input():   # Not used yet
     label4 = widgets.Label(
         "Please type the name of the stochastic scenario if other than 'realization':")
     default_text = "realization"
     stoch_scen_input = widgets.Text(
-        value=default_text,
+        value = default_text,
+        layout = general_input_layout
     )
-    return widgets.VBox([label4, stoch_scen_input], layout=widgets.Layout(margin='0 0 15px 0')), stoch_scen_input
+    return widgets.VBox([label4, stoch_scen_input], layout=get_general_vbox_layout()), stoch_scen_input
 
 
-def create_stoch_struc_input():
+def create_stoch_struc_input():   # Necessary? I do not think so. D.H.
     label5 = widgets.Label(
         "Please type the name of the stochastic structure if other than 'deterministic':")
     default_text = "deterministic"
     stoch_struc_input = widgets.Text(
-        value=default_text,
+        value = default_text,
+        layout = general_input_layout
     )
-    return widgets.VBox([label5, stoch_struc_input], layout=widgets.Layout(margin='0 0 15px 0')), stoch_struc_input
+    return widgets.VBox([label5, stoch_struc_input], layout=get_general_vbox_layout()), stoch_struc_input
 
 def create_run_name_input():
     label6 = widgets.Label(
         "Please choose the name of this run:")
     default_text = "base_case"
     run_name_input = widgets.Text(
-        value=default_text,
+        value = default_text,
+        layout = general_input_layout
     )
-    return widgets.VBox([label6, run_name_input], layout=widgets.Layout(margin='0 0 15px 0')), run_name_input
+    return widgets.VBox([label6, run_name_input], layout=get_general_vbox_layout()), run_name_input
 
 
 '''Define numerical input functions'''
@@ -110,10 +125,10 @@ def create_share_of_dh_price_cap():
         min=0,
         max=200.0,
         step=0.1,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_1.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_1, number_input_1], layout=widgets.Layout(margin='0 0 15px 0')), number_input_1
+    return widgets.VBox([description_label_1, number_input_1], layout=get_general_vbox_layout()), number_input_1
 
 
 def create_price_level_power():
@@ -124,10 +139,10 @@ def create_price_level_power():
         min=0,
         max=200.0,
         step=0.1,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_2.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_2, number_input_2], layout=widgets.Layout(margin='0 0 15px 0')), number_input_2
+    return widgets.VBox([description_label_2, number_input_2], layout=get_general_vbox_layout()), number_input_2
 
 
 def create_power_price_variance():
@@ -139,10 +154,10 @@ def create_power_price_variance():
         min=0,
         max=2.0,
         step=0.01,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_3.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_3, number_input_3], layout=widgets.Layout(margin='0 0 15px 0')), number_input_3
+    return widgets.VBox([description_label_3, number_input_3], layout=get_general_vbox_layout()), number_input_3
 
 
 def create_number_opt_horizons():
@@ -155,10 +170,10 @@ def create_number_opt_horizons():
         min=0,
         max=200,
         step=1,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_4.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_4, number_input_4], layout=widgets.Layout(margin='0 0 15px 0')), number_input_4
+    return widgets.VBox([description_label_4, number_input_4], layout=get_general_vbox_layout()), number_input_4
 
 
 def create_sections_elec():
@@ -169,10 +184,10 @@ def create_sections_elec():
         min=0,
         max=10,
         step=1,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_5.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_5, number_input_5], layout=widgets.Layout(margin='0 0 15px 0')), number_input_5
+    return widgets.VBox([description_label_5, number_input_5], layout=get_general_vbox_layout()), number_input_5
 
 def create_wacc_elec():
     default_number = 8
@@ -182,10 +197,10 @@ def create_wacc_elec():
         min=0,
         max=15,
         step=0.01,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_6.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_6, number_input_6], layout=widgets.Layout(margin='0 0 15px 0')), number_input_6
+    return widgets.VBox([description_label_6, number_input_6], layout=get_general_vbox_layout()), number_input_6
 
 
 def create_lcoe_starting_year_elec():
@@ -196,10 +211,10 @@ def create_lcoe_starting_year_elec():
         min=0,
         max=2200,
         step=1,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_7.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_7, number_input_7], layout=widgets.Layout(margin='0 0 15px 0')), number_input_7
+    return widgets.VBox([description_label_7, number_input_7], layout=get_general_vbox_layout()), number_input_7
 
 
 def create_lcoe_years_elec():
@@ -210,10 +225,10 @@ def create_lcoe_years_elec():
         min=0,
         max=100,
         step=1,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     number_input_8.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_8, number_input_8], layout=widgets.Layout(margin='0 0 15px 0')), number_input_8
+    return widgets.VBox([description_label_8, number_input_8], layout=get_general_vbox_layout()), number_input_8
 
 
 # Set investment costs and capacity limit depending on type of product
@@ -237,8 +252,7 @@ def update_inv_costs(change, investment_cost_vbox):
 
     # Define a layout for descriptions and fields + indent
     description_layout = widgets.Layout(width='210px')
-    input_layout = widgets.Layout(width='110px')
-    indent_layout = widgets.Layout(padding='0px 0px 0px 30px', justify_content='flex-start')
+    input_layout = widgets.Layout(width='100px')
 
     # Headline for the investment costs block
     investment_headline = widgets.Label("Please define the investment cost and maximal installed capacities per MW or MWh. If left empty, default values will be used.",
@@ -250,47 +264,47 @@ def update_inv_costs(change, investment_cost_vbox):
         ammonia_storage_label = widgets.Label("Ammonia storage:")
         ammonia_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         ammonia_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        ammonia_hbox = widgets.HBox([ammonia_storage_description, ammonia_storage_input], layout=indent_layout)
+        ammonia_hbox = widgets.HBox([ammonia_storage_description, ammonia_storage_input], layout=inv_cap_indent_layout)
         
         ammonia_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         ammonia_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        ammonia_storage_limit_hbox = widgets.HBox([ammonia_storage_limit_description, ammonia_storage_limit], layout=indent_layout)
+        ammonia_storage_limit_hbox = widgets.HBox([ammonia_storage_limit_description, ammonia_storage_limit], layout=inv_cap_indent_layout)
         
         asu_label = widgets.Label("Air separation unit")
-        asu_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        asu_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         asu_input = widgets.FloatText(value=placeholder_value, min=0,layout=input_layout)
-        asu_hbox = widgets.HBox([asu_description, asu_input], layout=indent_layout)
+        asu_hbox = widgets.HBox([asu_description, asu_input], layout=inv_cap_indent_layout)
         
         asu_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         asu_limit_input = widgets.FloatText(value=placeholder_value, min=0,layout=input_layout)
-        asu_limit_hbox = widgets.HBox([asu_limit_description, asu_limit_input], layout=indent_layout)
+        asu_limit_hbox = widgets.HBox([asu_limit_description, asu_limit_input], layout=inv_cap_indent_layout)
         
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
         
         haber_label = widgets.Label("Haber-Bosch unit:")
-        haber_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
+        haber_description = widgets.Label("Costs [€/MW ammonia output]:", layout=description_layout)
         haber_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        haber_hbox = widgets.HBox([haber_description, haber_input], layout=indent_layout)
+        haber_hbox = widgets.HBox([haber_description, haber_input], layout=inv_cap_indent_layout)
 
-        haber_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        haber_limit_description = widgets.Label("Capacity limit [MW ammonia output]:", layout=description_layout)
         haber_limit_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        haber_limit_hbox = widgets.HBox([haber_limit_description, haber_limit_input], layout=indent_layout)
+        haber_limit_hbox = widgets.HBox([haber_limit_description, haber_limit_input], layout=inv_cap_indent_layout)
 
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_ammonia_storage'] = ammonia_storage_input
@@ -318,56 +332,56 @@ def update_inv_costs(change, investment_cost_vbox):
         diesel_storage_label = widgets.Label("Diesel storage:")
         diesel_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         diesel_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        diesel_storage_hbox = widgets.HBox([diesel_storage_description, diesel_storage_input], layout=indent_layout)
+        diesel_storage_hbox = widgets.HBox([diesel_storage_description, diesel_storage_input], layout=inv_cap_indent_layout)
         
         diesel_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         diesel_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        diesel_storage_limit_hbox = widgets.HBox([diesel_storage_limit_description, diesel_storage_limit], layout=indent_layout)
+        diesel_storage_limit_hbox = widgets.HBox([diesel_storage_limit_description, diesel_storage_limit], layout=inv_cap_indent_layout)
 
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
 
         fischer_label = widgets.Label("Fischer-Tropsch Reactor:")
-        fischer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        fischer_description = widgets.Label("Costs [€/MW fuels output]:", layout=description_layout)
         fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=inv_cap_indent_layout)
 
-        fischer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        fischer_limit_description = widgets.Label("Capacity limit [MW fuels output]:", layout=description_layout)
         fischer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_limit_hbox = widgets.HBox([fischer_limit_description, fischer_limit], layout=indent_layout)
+        fischer_limit_hbox = widgets.HBox([fischer_limit_description, fischer_limit], layout=inv_cap_indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_description = widgets.Label("Costs [€/MWh TBA]:", layout=description_layout)
+        rwgs_description = widgets.Label("Costs [€/MWh fuels output]:", layout=description_layout)
         rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=inv_cap_indent_layout)
         
-        rwgs_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        rwgs_limit_description = widgets.Label("Capacity limit [MW fuels output]:", layout=description_layout)
         rwgs_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_limit_hbox = widgets.HBox([rwgs_limit_description, rwgs_limit], layout=indent_layout)
+        rwgs_limit_hbox = widgets.HBox([rwgs_limit_description, rwgs_limit], layout=inv_cap_indent_layout)
         
         steam_label = widgets.Label("Steam plant:")
         steam_description = widgets.Label("Costs [€/MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         steam_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         steam_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=indent_layout)
+        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_diesel_storage'] = diesel_storage_input
@@ -398,11 +412,11 @@ def update_inv_costs(change, investment_cost_vbox):
         egasoline_storage_label = widgets.Label("E-Gasoline storage:")
         egasoline_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         egasoline_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        egasoline_storage_hbox = widgets.HBox([egasoline_storage_description, egasoline_storage_input], layout=indent_layout)
+        egasoline_storage_hbox = widgets.HBox([egasoline_storage_description, egasoline_storage_input], layout=inv_cap_indent_layout)
         
         egasoline_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         egasoline_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        egasoline_storage_limit_hbox = widgets.HBox([egasoline_storage_limit_description, egasoline_storage_limit], layout=indent_layout)
+        egasoline_storage_limit_hbox = widgets.HBox([egasoline_storage_limit_description, egasoline_storage_limit], layout=inv_cap_indent_layout)
 
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
@@ -411,43 +425,43 @@ def update_inv_costs(change, investment_cost_vbox):
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
 
         fischer_label = widgets.Label("Fischer-Tropsch Reactor:")
-        fischer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        fischer_description = widgets.Label("Costs [€/MW fuels output]:", layout=description_layout)
         fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=inv_cap_indent_layout)
 
-        fischer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        fischer_limit_description = widgets.Label("Capacity limit [MW fuels output]:", layout=description_layout)
         fischer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_limit_hbox = widgets.HBox([fischer_limit_description, fischer_limit], layout=indent_layout)
+        fischer_limit_hbox = widgets.HBox([fischer_limit_description, fischer_limit], layout=inv_cap_indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_description = widgets.Label("Costs [€/MWh TBA]:", layout=description_layout)
+        rwgs_description = widgets.Label("Costs [€/MWh fuels output]:", layout=description_layout)
         rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=inv_cap_indent_layout)
         
-        rwgs_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        rwgs_limit_description = widgets.Label("Capacity limit [MW fuels output]:", layout=description_layout)
         rwgs_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_limit_hbox = widgets.HBox([rwgs_limit_description, rwgs_limit], layout=indent_layout)
+        rwgs_limit_hbox = widgets.HBox([rwgs_limit_description, rwgs_limit], layout=inv_cap_indent_layout)
         
         steam_label = widgets.Label("Steam plant:")
         steam_description = widgets.Label("Costs [€/MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         steam_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         steam_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=indent_layout)
+        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_egasoline_storage'] = egasoline_storage_input
@@ -477,20 +491,20 @@ def update_inv_costs(change, investment_cost_vbox):
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
 
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
@@ -505,56 +519,56 @@ def update_inv_costs(change, investment_cost_vbox):
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
 
         fischer_label = widgets.Label("Fischer-Tropsch Reactor:")
-        fischer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
+        fischer_description = widgets.Label("Costs [€/MW fuels output]:", layout=description_layout)
         fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=inv_cap_indent_layout)
         
-        fischer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        fischer_limit_description = widgets.Label("Capacity limit [MW fuels output]:", layout=description_layout)
         fischer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_limit_hbox = widgets.HBox([fischer_limit_description, fischer_limit], layout=indent_layout)
+        fischer_limit_hbox = widgets.HBox([fischer_limit_description, fischer_limit], layout=inv_cap_indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
 
         jet_fuel_storage_label = widgets.Label("Jet Fuel storage:")
         jet_fuel_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         jet_fuel_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        jet_fuel_storage_hbox = widgets.HBox([jet_fuel_storage_description, jet_fuel_storage_input], layout=indent_layout)
+        jet_fuel_storage_hbox = widgets.HBox([jet_fuel_storage_description, jet_fuel_storage_input], layout=inv_cap_indent_layout)
         
         jet_fuel_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         jet_fuel_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        jet_fuel_storage_limit_hbox = widgets.HBox([jet_fuel_storage_limit_description, jet_fuel_storage_limit], layout=indent_layout)
+        jet_fuel_storage_limit_hbox = widgets.HBox([jet_fuel_storage_limit_description, jet_fuel_storage_limit], layout=inv_cap_indent_layout)
         
         rwgs_label = widgets.Label("RWGS reactor:")
-        rwgs_description = widgets.Label("Costs [€/MWh TBA]:", layout=description_layout)
+        rwgs_description = widgets.Label("Costs [€/MWh fuels output]:", layout=description_layout)
         rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=inv_cap_indent_layout)
         
-        rwgs_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
+        rwgs_limit_description = widgets.Label("Capacity limit [MW fuels output]:", layout=description_layout)
         rwgs_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_limit_hbox = widgets.HBox([rwgs_limit_description, rwgs_limit], layout=indent_layout)
+        rwgs_limit_hbox = widgets.HBox([rwgs_limit_description, rwgs_limit], layout=inv_cap_indent_layout)
         
         steam_label = widgets.Label("Steam plant:")
         steam_description = widgets.Label("Costs [€/MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         steam_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         steam_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=indent_layout)
+        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_jet_fuel_storage'] = jet_fuel_storage_input
@@ -584,47 +598,47 @@ def update_inv_costs(change, investment_cost_vbox):
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
         
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
         
         methanol_label = widgets.Label("Methanol reactor:")
         methanol_description = widgets.Label("Costs [€/MW output methanol]:", layout=description_layout)
         methanol_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=indent_layout)
+        methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=inv_cap_indent_layout)
         
         methanol_limit_description = widgets.Label("Capacity limit [MW output methanol]:", layout=widgets.Layout(width='210px'))
         methanol_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methanol_limit_hbox = widgets.HBox([methanol_limit_description, methanol_limit], layout=indent_layout)
+        methanol_limit_hbox = widgets.HBox([methanol_limit_description, methanol_limit], layout=inv_cap_indent_layout)
         
         methanol_storage_label = widgets.Label("Methanol storage:")
         methanol_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         methanol_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methanol_storage_hbox = widgets.HBox([methanol_storage_description, methanol_storage_input], layout=indent_layout)
+        methanol_storage_hbox = widgets.HBox([methanol_storage_description, methanol_storage_input], layout=inv_cap_indent_layout)
         
         methanol_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         methanol_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methanol_storage_limit_hbox = widgets.HBox([methanol_storage_limit_description, methanol_storage_limit], layout=indent_layout)
+        methanol_storage_limit_hbox = widgets.HBox([methanol_storage_limit_description, methanol_storage_limit], layout=inv_cap_indent_layout)
 
         steam_label = widgets.Label("Steam plant:")
         steam_description = widgets.Label("Costs [€/MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         steam_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         steam_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=indent_layout)
+        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=inv_cap_indent_layout)
                 
         # Store values in investment dictionary
         investment_cost_values['inv_cost_electrolyzer'] = electrolyzer_input
@@ -653,53 +667,65 @@ def update_inv_costs(change, investment_cost_vbox):
         anaerobic_label = widgets.Label("Anaerobic digestion plant:")
         anaerobic_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
         anaerobic_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        anaerobic_hbox = widgets.HBox([anaerobic_description, anaerobic_input], layout=indent_layout)
+        anaerobic_hbox = widgets.HBox([anaerobic_description, anaerobic_input], layout=inv_cap_indent_layout)
+
+        anaerobic_limit_description = widgets.Label("Capacity limit [MW TBA]:", layout=description_layout)
+        anaerobic_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        anaerobic_limit_hbox = widgets.HBox([anaerobic_limit_description, anaerobic_limit], layout=inv_cap_indent_layout)
         
         biomethanation_label = widgets.Label("Biomethanation plant:")
         biomethanation_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
         biomethanation_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        biomethanation_hbox = widgets.HBox([biomethanation_description, biomethanation_input], layout=indent_layout)
+        biomethanation_hbox = widgets.HBox([biomethanation_description, biomethanation_input], layout=inv_cap_indent_layout)
+
+        biomethanation_limit_description = widgets.Label("Capacity limit [MW TBA]:", layout=description_layout)
+        biomethanation_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        biomethanation_limit_hbox = widgets.HBox([biomethanation_limit_description, biomethanation_limit], layout=inv_cap_indent_layout)
         
         co2_remover_label = widgets.Label("CO2 removal plant:")
         co2_remover_description = widgets.Label("Costs [€/MW TBA]:", layout=description_layout)
         co2_remover_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        co2_remover_hbox = widgets.HBox([co2_remover_description, co2_remover_input], layout=indent_layout)
+        co2_remover_hbox = widgets.HBox([co2_remover_description, co2_remover_input], layout=inv_cap_indent_layout)
+
+        co2_remover_limit_description = widgets.Label("Capacity limit [MW TBA]:", layout=description_layout)
+        co2_remover_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        co2_remover_limit_hbox = widgets.HBox([co2_remover_limit_description, co2_remover_limit], layout=inv_cap_indent_layout)
 
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=indent_layout)
+        electrolyzer_limit_hbox = widgets.HBox([electrolyzer_limit_description, electrolyzer_limit], layout=inv_cap_indent_layout)
 
         hydrogen_storage_label = widgets.Label("Hydrogen storage:")
         hydrogen_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         hydrogen_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=indent_layout)
+        hydrogen_storage_hbox = widgets.HBox([hydrogen_storage_description, hydrogen_storage_input], layout=inv_cap_indent_layout)
         
         hydrogen_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         hydrogen_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=indent_layout)
+        hydrogen_storage_limit_hbox = widgets.HBox([hydrogen_storage_limit_description, hydrogen_storage_limit], layout=inv_cap_indent_layout)
         
         methane_storage_label = widgets.Label("Methane storage:")
         methane_storage_description = widgets.Label("Costs [€/MWh storage]:", layout=description_layout)
         methane_storage_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methane_storage_hbox = widgets.HBox([methane_storage_description, methane_storage_input], layout=indent_layout)
+        methane_storage_hbox = widgets.HBox([methane_storage_description, methane_storage_input], layout=inv_cap_indent_layout)
         
         methane_storage_limit_description = widgets.Label("Capacity limit [MWh storage]:", layout=description_layout)
         methane_storage_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methane_storage_limit_hbox = widgets.HBox([methane_storage_limit_description, methane_storage_limit], layout=indent_layout)
+        methane_storage_limit_hbox = widgets.HBox([methane_storage_limit_description, methane_storage_limit], layout=inv_cap_indent_layout)
 
         steam_label = widgets.Label("Steam plant:")
         steam_description = widgets.Label("Costs [€/MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         steam_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         steam_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=indent_layout)
+        steam_limit_hbox = widgets.HBox([steam_limit_description, steam_limit], layout=inv_cap_indent_layout)
                         
         # Store values in investment dictionary
         investment_cost_values['inv_cost_anaerobic'] = anaerobic_input
@@ -714,9 +740,9 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_limit_values['inv_limit_steam'] = steam_limit
         
         investment_cost_vbox.children = [investment_headline, 
-                                         anaerobic_label, anaerobic_hbox,
-                                         biomethanation_label, biomethanation_hbox,
-                                         co2_remover_label, co2_remover_hbox,
+                                         anaerobic_label, anaerobic_hbox, anaerobic_limit_hbox,
+                                         biomethanation_label, biomethanation_hbox, biomethanation_limit_hbox,
+                                         co2_remover_label, co2_remover_hbox, co2_remover_limit_hbox, 
                                          electrolyzer_label, electrolyzer_hbox, electrolyzer_limit_hbox,
                                          hydrogen_storage_label, hydrogen_storage_hbox, hydrogen_storage_limit_hbox,
                                          methane_storage_label, methane_storage_hbox, methane_storage_limit_hbox,
@@ -742,30 +768,29 @@ def update_capacities(change, capacities_vbox):
     placeholder_value = 0
     
     # Define a layout for descriptions and fields + indent
-    description_layout = widgets.Layout(width='220px')
-    input_layout = widgets.Layout(width='100px')
-    indent_layout = widgets.Layout(padding='0px 0px 0px 40px', justify_content='flex-start')
+    description_layout = widgets.Layout(width='245px')
+    input_layout = widgets.Layout(width='110px')
 
     label = widgets.Label("Please set the existing capacity:")
     
     steam_description = widgets.Label("Existing capacity [MW input power]:", layout=description_layout)
     steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-    steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+    steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
 
     # Assign fields to products
     if selected_product == 'ammonia':
-        asu_description = widgets.Label("Air separation unit []:", layout=description_layout)
+        asu_description = widgets.Label("Air separation unit [MW input power]:", layout=description_layout)
         asu_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        asu_hbox = widgets.HBox([asu_description, asu_input], layout=indent_layout)
+        asu_hbox = widgets.HBox([asu_description, asu_input], layout=inv_cap_indent_layout)
         
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:",
                                                  layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
-        haber_description = widgets.Label("Haber-Bosch unit []:", layout=description_layout)
+        haber_description = widgets.Label("Haber-Bosch unit [MW ammonia output]:", layout=description_layout)
         haber_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        haber_hbox = widgets.HBox([haber_description, haber_input], layout=indent_layout)
+        haber_hbox = widgets.HBox([haber_description, haber_input], layout=inv_cap_indent_layout)
               
         # Store values in investment dictionary
         capacities_values['capacity_asu'] = asu_input
@@ -778,19 +803,19 @@ def update_capacities(change, capacities_vbox):
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:",
                                                  layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
-        fischer_description = widgets.Label("Fischer-Tropsch reactor []:", layout=description_layout)
+        fischer_description = widgets.Label("Fischer-Tropsch reactor [MW fuels output]:", layout=description_layout)
         fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=inv_cap_indent_layout)
         
-        rwgs_description = widgets.Label("RWGS reactor []:", layout=description_layout)
+        rwgs_description = widgets.Label("RWGS reactor [MW fuels output]:", layout=description_layout)
         rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=inv_cap_indent_layout)
         
         steam_description = widgets.Label("Steam plant [MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
@@ -804,20 +829,19 @@ def update_capacities(change, capacities_vbox):
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:",
                                                  layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
-
-        fischer_label = widgets.Label("")
-        fischer_description = widgets.Label("Fischer-Tropsch reactor []:", layout=description_layout)
-        fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
-        rwgs_description = widgets.Label("RWGS reactor []:", layout=description_layout)
+        fischer_description = widgets.Label("Fischer-Tropsch reactor [MW fuels output]:", layout=description_layout)
+        fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=inv_cap_indent_layout)
+        
+        rwgs_description = widgets.Label("RWGS reactor [MW fuels output]:", layout=description_layout)
         rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=inv_cap_indent_layout)
         
         steam_description = widgets.Label("Steam plant [MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
@@ -831,7 +855,7 @@ def update_capacities(change, capacities_vbox):
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:",
                                                  layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
@@ -842,19 +866,19 @@ def update_capacities(change, capacities_vbox):
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:",
                                                  layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
-        fischer_description = widgets.Label("Fischer-Tropsch reactor []:", layout=description_layout)
+        fischer_description = widgets.Label("Fischer-Tropsch reactor [MW fuels output]:", layout=description_layout)
         fischer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=indent_layout)
+        fischer_hbox = widgets.HBox([fischer_description, fischer_input], layout=inv_cap_indent_layout)
         
-        rwgs_description = widgets.Label("RWGS reactor []:", layout=description_layout)
+        rwgs_description = widgets.Label("RWGS reactor [MW fuels output]:", layout=description_layout)
         rwgs_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=indent_layout)
+        rwgs_hbox = widgets.HBox([rwgs_description, rwgs_input], layout=inv_cap_indent_layout)
         
         steam_description = widgets.Label("Steam plant [MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
@@ -868,16 +892,16 @@ def update_capacities(change, capacities_vbox):
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:",
                                                  layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         methanol_description = widgets.Label("Methanol reactor [MW output methanol]:",
                                              layout=description_layout)
         methanol_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=indent_layout)
+        methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=inv_cap_indent_layout)
         
         steam_description = widgets.Label("Steam plant [MW input power]:", layout=description_layout)
         steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        steam_hbox = widgets.HBox([steam_description, steam_input], layout=indent_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
@@ -889,33 +913,36 @@ def update_capacities(change, capacities_vbox):
     elif selected_product == 'methane':
         anaerobic_description = widgets.Label("Anaerobic digestion plant []:", layout=description_layout)
         anaerobic_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        anaerobic_hbox = widgets.HBox([anaerobic_description, anaerobic_input], layout=indent_layout)
+        anaerobic_hbox = widgets.HBox([anaerobic_description, anaerobic_input], layout=inv_cap_indent_layout)
         
         biomethanation_description = widgets.Label("Biomethanation plant []:", layout=description_layout)
         biomethanation_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        biomethanation_hbox = widgets.HBox([biomethanation_description, biomethanation_input], layout=indent_layout)
+        biomethanation_hbox = widgets.HBox([biomethanation_description, biomethanation_input], layout=inv_cap_indent_layout)
         
         co2_remover_description = widgets.Label("CO2 removal plant []:", layout=description_layout)
         co2_remover_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        co2_remover_hbox = widgets.HBox([co2_remover_description, co2_remover_input], layout=indent_layout)
+        co2_remover_hbox = widgets.HBox([co2_remover_description, co2_remover_input], layout=inv_cap_indent_layout)
         
         electrolyzer_description = widgets.Label("Electrolyzer [MW input power]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
+
+        steam_description = widgets.Label("Steam plant [MW input power]:", layout=description_layout)
+        steam_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
+        steam_hbox = widgets.HBox([steam_description, steam_input], layout=inv_cap_indent_layout)
         
         # Store values in investment dictionary
         capacities_values['capacity_anaerobic'] = anaerobic_input
         capacities_values['capacity_biomethanation'] = biomethanation_input
         capacities_values['capacity_co2_removal'] = co2_remover_input
         capacities_values['capacity_electrolyzer'] = electrolyzer_input
+        capacities_values['capacity_steam'] = steam_input
         
-        capacities_vbox.children = [label, anaerobic_hbox, biomethanation_hbox, co2_remover_hbox, electrolyzer_hbox]
+        capacities_vbox.children = [label, anaerobic_hbox, biomethanation_hbox, co2_remover_hbox, electrolyzer_hbox, steam_hbox]
 
 
 # Define demand
 def create_demand():
-    demand_vbox = widgets.VBox(layout=widgets.Layout(margin='0 0 0 0'))
-    
     # Define a layout for descriptions and fields
     description_layout = widgets.Layout(width='140px')
     input_layout = widgets.Layout(width='85px')
@@ -950,9 +977,9 @@ def create_demand():
         return demand_d_res_hbox, dropdown_d_res
 
     demand_d_res_hbox, dropdown_d_res = create_dropdown_res() 
-    demand_input_hbox = widgets.HBox([demand_input, demand_d_res_hbox])
+    demand_input_hbox = widgets.HBox([demand_input, demand_d_res_hbox], layout = general_multiple_choice_layout)
     
-    return widgets.VBox([demand_description, demand_input_hbox], layout=widgets.Layout(margin='0 0 15px 0')), demand_input, dropdown_d_res
+    return widgets.VBox([demand_description, demand_input_hbox], layout=get_general_vbox_layout()), demand_input, dropdown_d_res
 
 
 '''Define dropdown functions'''
@@ -987,10 +1014,10 @@ def create_dropdown_year():
     dropdown1 = widgets.Dropdown(
         options=[2018, 2019],
         value=2019,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     dropdown1.observe(on_change)
-    return widgets.VBox([label1, dropdown1], layout=widgets.Layout(margin='0 0 15px 0')), dropdown1
+    return widgets.VBox([label1, dropdown1], layout=get_general_vbox_layout()), dropdown1
 
 
 #create dropdown for the power price zone
@@ -999,10 +1026,10 @@ def create_dropdown_price_zone():
     dropdown2 = widgets.Dropdown(
         options=['DK_1', 'DK_2', 'DK_BHM', 'FI', 'NO_1', 'NO_2', 'NO_3', 'NO_4', 'NO_5', 'SE_1', 'SE_2', 'SE_3', 'SE_4'],
         value='DK_1',
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     dropdown2.observe(on_change)
-    return widgets.VBox([label2, dropdown2], layout=widgets.Layout(margin='0 0 15px 0')), dropdown2   
+    return widgets.VBox([label2, dropdown2], layout=get_general_vbox_layout()), dropdown2   
 
 
 #create dropdown for the product
@@ -1011,7 +1038,7 @@ def create_dropdown_product():
     dropdown3 = widgets.Dropdown(
         options = ['ammonia', 'diesel', 'egasoline', 'hydrogen', 'jet_fuel', 'methane', 'methanol'],
         value = None,
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     def on_dropdown_change(change):
         update_inv_costs(change, investment_cost_vbox)   # Update investment costs box
@@ -1019,7 +1046,7 @@ def create_dropdown_product():
 
     dropdown3.observe(on_dropdown_change, names='value')
     
-    return widgets.VBox([label3, dropdown3], layout=widgets.Layout(margin='0 0 15px 0')), dropdown3   
+    return widgets.VBox([label3, dropdown3], layout=get_general_vbox_layout()), dropdown3   
 
 
 #create dropdown for the electrolysis type
@@ -1028,10 +1055,10 @@ def create_dropdown_electrolysis():
     dropdown4 = widgets.Dropdown(
         options=['PEM', 'Alkaline', 'SOEC'],
         value='PEM',
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     dropdown4.observe(on_change)
-    return widgets.VBox([label4, dropdown4], layout=widgets.Layout(margin='0 0 15px 0')), dropdown4  
+    return widgets.VBox([label4, dropdown4], layout=get_general_vbox_layout()), dropdown4  
 
 
 # Create dropdown for the model frequency
@@ -1052,13 +1079,13 @@ def create_dropdown_frequency():
     dropdown5 = widgets.Dropdown(
         options=list(option_values.keys()),
         value='1h',
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     selected_option_widget = widgets.Label(dropdown5.value)
     selected_value_widget = widgets.Label(option_values[dropdown5.value])
     
     dropdown5.observe(on_change_dict, names='value')
-    return widgets.VBox([label5, dropdown5], layout=widgets.Layout(margin='0 0 15px 0')), selected_option_widget, selected_value_widget
+    return widgets.VBox([label5, dropdown5], layout=get_general_vbox_layout()), selected_option_widget, selected_value_widget
 
 
 #create dropdown for the whether roll_forward is used
@@ -1070,10 +1097,10 @@ def create_dropdown_roll():
     dropdown6 = widgets.Dropdown(
         options=[True, False],
         value=False, 
-        layout = widgets.Layout(width='100px')
+        layout = general_input_layout
     )
     dropdown6.observe(on_change)
-    return widgets.VBox([label6, dropdown6], layout=widgets.Layout(margin='0 0 15px 0')), dropdown6
+    return widgets.VBox([label6, dropdown6], layout=get_general_vbox_layout()), dropdown6
 
 
 #create dropdown for whether investments can be made
@@ -1083,10 +1110,10 @@ def create_dropdown_investment():
     dropdown7 = widgets.Dropdown(
         options=[True, False],
         value=False,
-        layout=widgets.Layout(width='100px')
+        layout=general_input_layout
     )
     dropdown7.observe(on_change)
-    return widgets.VBox([label7, dropdown7], layout=widgets.Layout(margin='0 0 15px 0')), dropdown7
+    return widgets.VBox([label7, dropdown7], layout=get_general_vbox_layout()), dropdown7
 
 
 # Create dropdown for the default investment period
@@ -1099,7 +1126,7 @@ def create_dropdown_invest_period():
         min=1,
         max=30,
         step=1,
-        layout=widgets.Layout(width='100px')
+        layout=general_input_layout
     )
     number_input_8.observe(on_number_change, names='value')
     
@@ -1112,7 +1139,7 @@ def create_dropdown_invest_period():
 
     input_hbox = widgets.HBox([number_input_8, dropdown8])
     
-    return widgets.VBox([label8, input_hbox], layout=widgets.Layout(margin='0 0 15px 0')), number_input_8, dropdown8
+    return widgets.VBox([label8, input_hbox], layout=get_general_vbox_layout()), number_input_8, dropdown8
 
 
 '''Define multiple choice functions'''
@@ -1184,7 +1211,7 @@ def create_multiple_choice_power():
             value=True,  # All preselected options should be checked
             description=option,
             indent=False,
-            layout=widgets.Layout(padding='0px 0px 0px 30px')
+            layout=general_multiple_choice_layout
         )
         checkbox.observe(lambda change, 
                          checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
@@ -1197,7 +1224,7 @@ def create_multiple_choice_power():
             value=False,  # Non-preselected options should be unchecked
             description=option,
             indent=False,
-            layout=widgets.Layout(padding='0px 0px 0px 30px')
+            layout=general_multiple_choice_layout
         )
         checkbox.observe(lambda change, 
                          checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
@@ -1213,7 +1240,7 @@ def create_multiple_choice_power():
         )
         label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='220px'))
         
-        hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none', 
+        hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none',
                                                                             padding='0px 0px 0px 30px',
                                                                             justify_content='flex-start'))
         capacities_powers[option] = hbox
@@ -1234,7 +1261,7 @@ def create_multiple_choice_power():
         dropdown_inv = widgets.Dropdown(
             options=[True, False],
             value=False,
-            layout=widgets.Layout(width='100px', padding='0px 0px 0px 5px')
+            layout=widgets.Layout(width='100px')
         )
         dropdown_inv.observe(on_change)
         return widgets.HBox([label_inv, dropdown_inv], layout=widgets.Layout(padding='0px 0px 0px 30px')), dropdown_inv
@@ -1246,7 +1273,7 @@ def create_multiple_choice_power():
     
     hbox_warning = widgets.HBox([power_column, warning_label])
     
-    return widgets.VBox([label_power, hbox_warning, capacity_column, inv_res_column], layout=widgets.Layout(margin='0 0 15px 0')), selected_options_power, capacities_powers_values, investment_res
+    return widgets.VBox([label_power, hbox_warning, capacity_column, inv_res_column], layout=get_general_vbox_layout()), selected_options_power, capacities_powers_values, investment_res
   
 
 def create_multiple_choice_report():
@@ -1318,7 +1345,7 @@ def create_multiple_choice_report():
     
     label2 = widgets.Label("Please select the outputs for the report:")
     
-    return widgets.VBox([label2, hbox_report], layout=widgets.Layout(margin='0 0 15px 0')), selected_options_report
+    return widgets.VBox([label2, hbox_report], layout=get_general_vbox_layout()), selected_options_report
 
 
 
@@ -1448,6 +1475,17 @@ def create_combined_dropdowns_tabs():
                 #tabs.set_title(6, 'Scenario')
                 #tabs.set_title(7, 'Results')
     dropdown_product.observe(add_tabs_on_product_selection, names='value')
+
+    # Function to show/hide demand based on product value
+    def show_demand(change):
+        if change['new']:
+            demand_hbox.layout.display = 'block'
+        else:
+            demand_hbox.layout.display = 'none'
+    # Hide demand by default
+    demand_hbox.layout.display = 'none'
+    # Observe changes in product
+    dropdown_product.observe(show_demand, names='value')
     
     # Function to show/hide number_slices based on dropdown_roll value
     def toggle_number_slices(change):
