@@ -421,7 +421,7 @@ def update_inv_costs(change, investment_cost_vbox):
         electrolyzer_label = widgets.Label("Electrolyzer:")
         electrolyzer_description = widgets.Label("Costs [€/MW power input]:", layout=description_layout)
         electrolyzer_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
-        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=indent_layout)
+        electrolyzer_hbox = widgets.HBox([electrolyzer_description, electrolyzer_input], layout=inv_cap_indent_layout)
         
         electrolyzer_limit_description = widgets.Label("Capacity limit [MW input power]:", layout=description_layout)
         electrolyzer_limit = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
