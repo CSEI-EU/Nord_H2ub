@@ -168,9 +168,9 @@ def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate
 def update_res_parameter_in_invest(df, update_dict, column_name):
     # Create a mapping from the dictionary keys to the object names in the DataFrame
     mapping = {
-        'Solar plant': 'Solar_Plant',
-        'Wind onshore': 'Wind_onshore',
-        'Wind offshore': 'Wind_offshore'
+        'Solar plant': 'solar_plant',
+        'Wind onshore': 'wind_onshore',
+        'Wind offshore': 'wind_offshore'
     }
     
     # Iterate over the dictionary and update the corresponding rows in the DataFrame

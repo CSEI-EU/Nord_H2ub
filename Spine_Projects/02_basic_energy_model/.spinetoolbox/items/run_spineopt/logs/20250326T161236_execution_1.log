@@ -1,0 +1,185 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:56022 http://127.0.0.1:56029
+2-element Vector{String}:
+ "http://127.0.0.1:56022"
+ "http://127.0.0.1:56029"
+Running SpineOpt...
+[SpineOpt version 0.8.3 (git hash: N/A)]
+[SpineInterface version 0.14.8 (git hash: N/A)]
+Execution started at 2025-03-26T16:12:36.361
+Reading input data from sqlite:///C:\Users\djh.eco\OneDrive - CBS - Copenhagen Business School\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\InputTest.sqlite...
+Initializing base data structure from db...  0.472079 seconds (272.11 k allocations: 32.344 MiB)
+Preprocessing base data structure...  0.071350 seconds (42.46 k allocations: 2.086 MiB, 45.18% compilation time)
+Checking base data structure...  0.009811 seconds (7.96 k allocations: 415.328 KiB, 81.40% compilation time)
+[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
+Creating model temporal structure... 46.066090 seconds (442.10 M allocations: 25.095 GiB, 40.71% gc time, 0.22% compilation time)
+Creating model stochastic structure...  0.376985 seconds (3.44 M allocations: 504.015 MiB, 5.84% compilation time)
+Adding model variables...
+- [variable_binary_gas_connection_flow]  0.083349 seconds (2.28 M allocations: 35.962 MiB)
+- [variable_connection_flow] 32.977937 seconds (147.46 M allocations: 10.200 GiB, 52.40% gc time, 0.83% compilation time)
+- [variable_connection_intact_flow]  3.480239 seconds (40.70 M allocations: 2.761 GiB, 24.00% gc time)
+- [variable_connections_decommissioned]  0.089897 seconds (2.28 M allocations: 36.097 MiB)
+- [variable_connections_invested]  0.127589 seconds (1.42 M allocations: 120.135 MiB)
+- [variable_connections_invested_available]  0.281314 seconds (1.46 M allocations: 122.786 MiB, 49.17% gc time)
+- [variable_min_capacity_margin_slack]  0.087778 seconds (2.28 M allocations: 35.939 MiB)
+- [variable_node_injection]  3.138974 seconds (34.89 M allocations: 2.078 GiB, 23.83% gc time)
+- [variable_node_pressure]  0.079619 seconds (2.28 M allocations: 35.949 MiB)
+- [variable_node_slack_neg]  2.072900 seconds (24.47 M allocations: 1.409 GiB, 14.85% gc time)
+- [variable_node_slack_pos]  2.364618 seconds (24.47 M allocations: 1.449 GiB, 28.95% gc time)
+- [variable_node_state]  1.800613 seconds (22.34 M allocations: 1.140 GiB, 0.89% compilation time)
+- [variable_node_voltage_angle]  0.367452 seconds (2.28 M allocations: 35.949 MiB, 79.63% gc time)
+- [variable_nonspin_units_shut_down]  0.075315 seconds (2.28 M allocations: 35.969 MiB)
+- [variable_nonspin_units_started_up]  0.067912 seconds (2.28 M allocations: 35.959 MiB)
+- [variable_storages_decommissioned]  0.085102 seconds (2.28 M allocations: 36.043 MiB)
+- [variable_storages_invested]  0.114932 seconds (1.84 M allocations: 75.862 MiB, 16.23% compilation time)
+- [variable_storages_invested_available]  0.098654 seconds (1.85 M allocations: 76.455 MiB)
+- [variable_unit_flow] 18.397636 seconds (147.22 M allocations: 9.845 GiB, 34.76% gc time, 0.53% compilation time)
+- [variable_unit_flow_op]  0.520900 seconds (8.49 M allocations: 533.298 MiB)
+- [variable_unit_flow_op_active]  0.968938 seconds (11.39 M allocations: 681.458 MiB, 29.19% gc time)
+- [variable_units_invested]  0.145102 seconds (1.71 M allocations: 116.882 MiB)
+- [variable_units_invested_available]  0.176905 seconds (1.77 M allocations: 120.315 MiB)
+- [variable_units_mothballed]  0.079774 seconds (2.29 M allocations: 36.212 MiB)
+- [variable_units_on]  1.587697 seconds (25.57 M allocations: 1.258 GiB, 16.35% gc time)
+- [variable_units_out_of_service]  0.072211 seconds (2.28 M allocations: 35.946 MiB)
+- [variable_units_returned_to_service]  0.079742 seconds (2.28 M allocations: 35.942 MiB)
+- [variable_units_shut_down]  0.573198 seconds (4.71 M allocations: 182.238 MiB, 66.18% gc time)
+- [variable_units_started_up]  0.197159 seconds (4.70 M allocations: 181.905 MiB)
+- [variable_units_taken_out_of_service]  0.072525 seconds (2.28 M allocations: 35.943 MiB)
+- [variable_user_constraint_slack_neg]  0.079362 seconds (2.28 M allocations: 35.938 MiB)
+- [variable_user_constraint_slack_pos]  0.074557 seconds (2.28 M allocations: 35.938 MiB)
+ 70.846982 seconds (540.87 M allocations: 32.999 GiB, 38.96% gc time, 0.57% compilation time)
+Adding model expressions...
+- [expression_capacity_margin]  0.000262 seconds (68 allocations: 3.125 KiB)
+  0.001179 seconds (139 allocations: 6.820 KiB)
+Adding model constraints...
+- [constraint_candidate_connection_flow_lb]  0.000591 seconds (117 allocations: 5.250 KiB)
+- [constraint_candidate_connection_flow_ub]  0.000162 seconds (110 allocations: 4.547 KiB)
+- [constraint_compression_ratio]  0.000062 seconds (63 allocations: 4.047 KiB)
+- [constraint_connection_flow_capacity] 15.406503 seconds (162.33 M allocations: 11.459 GiB, 19.00% gc time, 0.18% compilation time)
+- [constraint_connection_flow_gas_capacity]  0.000159 seconds (63 allocations: 4.047 KiB)
+- [constraint_connection_flow_intact_flow]  0.000168 seconds (62 allocations: 2.875 KiB)
+- [constraint_connection_flow_lodf]  0.000641 seconds (63 allocations: 3.305 KiB)
+- [constraint_connection_intact_flow_capacity]  0.000845 seconds (98 allocations: 4.641 KiB)
+- [constraint_connection_intact_flow_ptdf]  0.000392 seconds (46 allocations: 2.438 KiB)
+- [constraint_connection_lifetime] 36.471261 seconds (282.16 M allocations: 31.956 GiB, 44.49% gc time, 0.04% compilation time)
+- [constraint_connection_unitary_gas_flow]  0.001550 seconds (66 allocations: 5.203 KiB)
+- [constraint_connections_invested_available]  0.003707 seconds (1.77 k allocations: 112.750 KiB)
+- [constraint_connections_invested_transition]  0.363076 seconds (33.06 k allocations: 1.673 MiB, 95.99% compilation time)
+- [constraint_cyclic_node_state]  0.017428 seconds (2.39 k allocations: 115.766 KiB, 92.53% compilation time)
+- [constraint_fix_node_pressure_point]  0.000363 seconds (63 allocations: 4.047 KiB)
+- [constraint_fix_ratio_in_in_unit_flow]  9.864165 seconds (66.07 M allocations: 5.128 GiB, 16.21% gc time, 0.17% compilation time)
+- [constraint_fix_ratio_in_out_unit_flow]  0.000207 seconds (184 allocations: 15.500 KiB)
+- [constraint_fix_ratio_out_in_connection_flow]  0.516312 seconds (3.52 M allocations: 266.628 MiB, 3.26% compilation time)
+- [constraint_fix_ratio_out_in_unit_flow]  0.000168 seconds (184 allocations: 15.500 KiB)
+- [constraint_fix_ratio_out_out_unit_flow]  4.012608 seconds (25.10 M allocations: 1.952 GiB, 9.88% gc time)
+- [constraint_investment_group_equal_investments]  0.001156 seconds (25 allocations: 1.547 KiB)
+- [constraint_investment_group_maximum_capacity_invested_available]  0.000079 seconds (25 allocations: 1.609 KiB)
+- [constraint_investment_group_maximum_entities_invested_available]  0.000060 seconds (24 allocations: 1.562 KiB)
+- [constraint_investment_group_minimum_capacity_invested_available]  0.000065 seconds (23 allocations: 1.516 KiB)
+- [constraint_investment_group_minimum_entities_invested_available]  0.000149 seconds (23 allocations: 1.516 KiB)
+- [constraint_max_node_pressure]  0.002234 seconds (191 allocations: 8.703 KiB)
+- [constraint_max_node_voltage_angle]  0.000439 seconds (246 allocations: 10.906 KiB)
+- [constraint_max_ratio_in_in_unit_flow]  0.000323 seconds (184 allocations: 15.500 KiB)
+- [constraint_max_ratio_in_out_unit_flow]  0.000129 seconds (184 allocations: 15.500 KiB)
+- [constraint_max_ratio_out_in_connection_flow]  0.000093 seconds (66 allocations: 4.203 KiB)
+- [constraint_max_ratio_out_in_unit_flow]  0.000102 seconds (184 allocations: 15.500 KiB)
+- [constraint_max_ratio_out_out_unit_flow]  0.000086 seconds (184 allocations: 15.500 KiB)
+- [constraint_max_total_cumulated_unit_flow_from_node]  0.000131 seconds (77 allocations: 4.906 KiB)
+- [constraint_max_total_cumulated_unit_flow_to_node]  0.000087 seconds (73 allocations: 4.656 KiB)
+- [constraint_min_capacity_margin]  0.000138 seconds (80 allocations: 3.891 KiB)
+- [constraint_min_down_time] 15.873027 seconds (150.41 M allocations: 11.971 GiB, 18.75% gc time, 0.10% compilation time)
+- [constraint_min_node_pressure]  0.000275 seconds (190 allocations: 8.672 KiB)
+- [constraint_min_node_voltage_angle]  0.000235 seconds (246 allocations: 10.906 KiB)
+- [constraint_min_ratio_in_in_unit_flow]  0.000329 seconds (184 allocations: 15.500 KiB)
+- [constraint_min_ratio_in_out_unit_flow]  0.000094 seconds (184 allocations: 15.500 KiB)
+- [constraint_min_ratio_out_in_connection_flow]  0.000043 seconds (66 allocations: 4.203 KiB)
+- [constraint_min_ratio_out_in_unit_flow]  0.000037 seconds (184 allocations: 15.500 KiB)
+- [constraint_min_ratio_out_out_unit_flow]  0.000037 seconds (189 allocations: 19.844 KiB)
+- [constraint_min_scheduled_outage_duration]  0.000143 seconds (50 allocations: 2.641 KiB)
+- [constraint_min_total_cumulated_unit_flow_from_node]  0.000078 seconds (77 allocations: 4.906 KiB)
+- [constraint_min_total_cumulated_unit_flow_to_node]  0.000055 seconds (73 allocations: 4.656 KiB)
+- [constraint_min_up_time]  0.000074 seconds (52 allocations: 2.734 KiB)
+- [constraint_minimum_operating_point]  1.930289 seconds (15.82 M allocations: 1.039 GiB, 14.87% gc time)
+- [constraint_nodal_balance]  4.322018 seconds (57.48 M allocations: 3.441 GiB, 14.78% gc time)
+- [constraint_node_injection] 20.237870 seconds (237.56 M allocations: 13.566 GiB, 17.76% gc time)
+- [constraint_node_state_capacity]  5.232118 seconds (59.57 M allocations: 3.299 GiB, 20.49% gc time)
+- [constraint_node_voltage_angle]  0.002363 seconds (42 allocations: 2.312 KiB)
+- [constraint_non_spinning_reserves_lower_bound]  0.000150 seconds (373 allocations: 18.312 KiB)
+- [constraint_non_spinning_reserves_shut_down_upper_bound]  0.000236 seconds (382 allocations: 19.109 KiB)
+- [constraint_non_spinning_reserves_start_up_upper_bound]  0.000335 seconds (382 allocations: 19.109 KiB)
+ERROR: LoadError: OutOfMemoryError()
+Stacktrace:
+  [1] GenericMemory
+    @ .\boot.jl:516 [inlined]
+  [2] array_new_memory
+    @ .\array.jl:1058 [inlined]
+  [3] (::Base.var"#133#134"{Vector{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, i::Int64, stochastic_path::Vector{SpineInterface.Object}, t::SpineInterface.TimeSlice}}, Int64, Int64, Int64, Int64, Int64, Memory{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, i::Int64, stochastic_path::Vector{SpineInterface.Object}, t::SpineInterface.TimeSlice}}, MemoryRef{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, i::Int64, stochastic_path::Vector{SpineInterface.Object}, t::SpineInterface.TimeSlice}}})()
+    @ Base .\array.jl:1129
+  [4] _growend!
+    @ .\array.jl:1116 [inlined]
+  [5] push!
+    @ .\array.jl:1261 [inlined]
+  [6] grow_to!(dest::Vector{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, i::Int64, stochastic_path::Vector{SpineInterface.Object}, t::SpineInterface.TimeSlice}}, itr::Base.Iterators.Flatten{Base.Generator{Base.Generator{Base.Iterators.Filter{SpineOpt.var"#1060#1062", Base.Iterators.Flatten{Base.Generator{Base.Iterators.Flatten{Base.Generator{Vector{Union{SpineInterface.ObjectClass, SpineInterface.RelationshipClass}}, SpineInterface.var"#275#276"{@Kwargs{unit::SpineInterface.Anything, node::SpineInterface.Anything, direction::SpineInterface.Anything}, SpineInterface.Parameter}}}, SpineOpt.var"#1054#1055"{SpineInterface.Anything, SpineInterface.Anything, SpineInterface.Anything, Vector{Union{Int64, SpineInterface.Object, SpineInterface.TimeSlice}}, JuMP.Model}}}}, SpineOpt.var"#1059#1061"}, SpineOpt.var"#1458#1459"{JuMP.Model}}}, st::Tuple{Tuple{Tuple{Int64, Base.Generator{Base.Generator{Base.Iterators.Filter{SpineInterface.var"#278#279"{SpineInterface.Parameter, SpineInterface.RelationshipClass}, Vector{NamedTuple{K, V} where {K, V<:Tuple{Union{Int64, SpineInterface.Object, SpineInterface.TimeSlice}, Vararg{Union{Int64, SpineInterface.Object, SpineInterface.TimeSlice}}}}}}, typeof(identity)}, typeof(identity)}, Int64}, Base.Iterators.Flatten{Base.Generator{Vector{Int64}, SpineOpt.var"#1053#1056"{SpineInterface.Object, SpineInterface.Object, SpineInterface.Object, SpineInterface.Anything, SpineInterface.Anything, Vector{Union{Int64, SpineInterface.Object, SpineInterface.TimeSlice}}, JuMP.Model}}}, Tuple{Int64, Base.Generator{Base.Iterators.Flatten{Base.Generator{Base.Iterators.Flatten{Base.Generator{Base.Generator{Vector{Int64}, SpineInterface.var"#243#244"{SpineInterface.RelationshipClass}}, SpineOpt.var"#511#512"{SpineInterface.Anything, JuMP.Model}}}, SpineOpt.var"#650#651"{SpineInterface.Anything, JuMP.Model}}}, SpineOpt.var"#1052#1057"{Int64, SpineInterface.Object, SpineInterface.Object}}, Tuple{Tuple{Int64, Base.Generator{Vector{SpineInterface.TimeSlice}, SpineOpt.var"#510#513"{SpineInterface.Object, SpineInterface.Object}}, Int64}, Base.Generator{Tuple{@NamedTuple{node::SpineInterface.Object, stochastic_scenario::SpineInterface.Object}}, SpineOpt.var"#649#652"{SpineInterface.TimeSlice}}, Int64}}}, Base.Generator{Base.Generator{Vector{SpineInterface.TimeSlice}, SpineOpt.var"#1141#1145"{SpineInterface.Object}}, SpineOpt.var"#1457#1460"{SpineInterface.TimeSlice, SpineInterface.Object, Int64, SpineInterface.Object, SpineInterface.Object, SpineInterface.Object}}, Int64})
+    @ Base .\array.jl:890
+  [7] grow_to!(dest::Vector{Any}, itr::Base.Iterators.Flatten{Base.Generator{Base.Generator{Base.Iterators.Filter{SpineOpt.var"#1060#1062", Base.Iterators.Flatten{Base.Generator{Base.Iterators.Flatten{Base.Generator{Vector{Union{SpineInterface.ObjectClass, SpineInterface.RelationshipClass}}, SpineInterface.var"#275#276"{@Kwargs{unit::SpineInterface.Anything, node::SpineInterface.Anything, direction::SpineInterface.Anything}, SpineInterface.Parameter}}}, SpineOpt.var"#1054#1055"{SpineInterface.Anything, SpineInterface.Anything, SpineInterface.Anything, Vector{Union{Int64, SpineInterface.Object, SpineInterface.TimeSlice}}, JuMP.Model}}}}, SpineOpt.var"#1059#1061"}, SpineOpt.var"#1458#1459"{JuMP.Model}}})
+    @ Base .\array.jl:868
+  [8] _collect
+    @ .\array.jl:768 [inlined]
+  [9] collect(itr::Base.Iterators.Flatten{Base.Generator{Base.Generator{Base.Iterators.Filter{SpineOpt.var"#1060#1062", Base.Iterators.Flatten{Base.Generator{Base.Iterators.Flatten{Base.Generator{Vector{Union{SpineInterface.ObjectClass, SpineInterface.RelationshipClass}}, SpineInterface.var"#275#276"{@Kwargs{unit::SpineInterface.Anything, node::SpineInterface.Anything, direction::SpineInterface.Anything}, SpineInterface.Parameter}}}, SpineOpt.var"#1054#1055"{SpineInterface.Anything, SpineInterface.Anything, SpineInterface.Anything, Vector{Union{Int64, SpineInterface.Object, SpineInterface.TimeSlice}}, JuMP.Model}}}}, SpineOpt.var"#1059#1061"}, SpineOpt.var"#1458#1459"{JuMP.Model}}})
+    @ Base .\array.jl:716
+ [10] _add_constraint!(m::JuMP.Model, name::Symbol, indices::typeof(SpineOpt.constraint_operating_point_bounds_indices), build_constraint::Function)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\constraints\constraint_common.jl:21
+ [11] add_constraint_operating_point_bounds!(m::JuMP.Model)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\constraints\constraint_operating_point_bounds.jl:37
+ [12] macro expansion
+    @ .\timing.jl:581 [inlined]
+ [13] macro expansion
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:51 [inlined]
+ [14] _add_constraints!(m::JuMP.Model; log_level::Int64)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt_basic.jl:243
+ [15] _add_constraints!
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt_basic.jl:162 [inlined]
+ [16] macro expansion
+    @ .\timing.jl:581 [inlined]
+ [17] macro expansion
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:51 [inlined]
+ [18] build_model!(m::JuMP.Model; log_level::Int64)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt_basic.jl:77
+ [19] build_model!
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt_basic.jl:66 [inlined]
+ [20] do_run_spineopt!(m::JuMP.Model, url_out::String, ::Val{:basic_algorithm}; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt_basic.jl:31
+ [21] #invokelatest#2
+    @ .\essentials.jl:1057 [inlined]
+ [22] invokelatest
+    @ .\essentials.jl:1052 [inlined]
+ [23] run_spineopt!(m::JuMP.Model, url_out::String; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:311
+ [24] run_spineopt!
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:300 [inlined]
+ [25] _run_spineopt(f::SpineOpt.var"#65#66", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:142
+ [26] #68
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:99 [inlined]
+ [27] _log_to_file
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:225 [inlined]
+ [28] #run_spineopt#67
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:98 [inlined]
+ [29] run_spineopt(f::Function, url_in::String, url_out::String)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:80
+ [30] #run_spineopt#64
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:64 [inlined]
+ [31] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:63
+ [32] top-level scope
+    @ C:\Users\djh.eco\.spinetoolbox\work\run_spineopt__180b4ef5f1704c41a8d3b89b24c66f30__toolbox\run_spineopt.jl:3
+ [33] include(fname::String)
+    @ Main .\sysimg.jl:38
+ [34] top-level scope
+    @ none:1
+in expression starting at C:\Users\djh.eco\.spinetoolbox\work\run_spineopt__180b4ef5f1704c41a8d3b89b24c66f30__toolbox\run_spineopt.jl:3

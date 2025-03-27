@@ -55,11 +55,11 @@ def update_investment_cost(df_investment_params, df_object_investment, parameter
 def update_number_of_objects(df_investment_params, df_object_investment, parameter_name):
     # Determine the column name to update based on the parameter_name string
     if 'unit' in parameter_name.lower():
-        number_of_objects_column = 'number_of_units'
+        number_of_objects_column = 'initial_units_invested_available'
     elif 'storage' in parameter_name.lower():
-        number_of_objects_column = 'number_of_storages'
+        number_of_objects_column = 'initial_storages_invested'
     elif 'connection' in parameter_name.lower():
-        number_of_objects_column = 'number_of_connections'
+        number_of_objects_column = 'initial_connections_invested_available'
     else:
         raise ValueError("The parameter_name does not contain 'unit', 'storage', or 'connection'. Unable to determine the correct column.")
 
@@ -146,7 +146,7 @@ def filter_investment_data(name_parameter, **kwargs):
 #get information of investment objects and update informatio
 def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate_nonzero):
     """
-    Updates the 'number_of_units' column in the df_units_inv_parameters DataFrame.
+    Updates the 'initial_units_invested_available' column in the df_units_inv_parameters DataFrame.
     
     Parameters:
     df_units_inv_parameters (pd.DataFrame): The DataFrame containing inventory parameters.
@@ -159,7 +159,37 @@ def update_units_inv_parameters(df_units_inv_parameters, object_names, candidate
     
     if candidate_nonzero:
         # Update the 'number_of_units' for the rows where 'Object_name' matches the given object names
-        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'number_of_units'] = 1
+        df_units_inv_parameters.loc[df_units_inv_parameters['Object_name'].isin(object_names), 'initial_units_invested_available'] = 1
     
     return df_units_inv_parameters
 
+# Function to map dictionary keys to DataFrame object names and update a given column
+#relevant to update the investment values based on the user interface
+def update_res_parameter_in_invest(df, update_dict, column_name):
+    # Create a mapping from the dictionary keys to the object names in the DataFrame
+    mapping = {
+        'Solar plant': 'solar_plant',
+        'Wind onshore': 'wind_onshore',
+        'Wind offshore': 'wind_offshore'
+    }
+    
+    # Iterate over the dictionary and update the corresponding rows in the DataFrame
+    for key, value in update_dict.items():
+        # Get the corresponding Object_name from the mapping
+        object_name = mapping.get(key)
+        
+        if object_name:
+            # Check if the object exists in the DataFrame
+            if object_name not in df['Object_name'].values:
+                # If the object does not exist and the value is not NaN, create a new row
+                if not pd.isna(value):
+                    # Create a new row with NaN for all columns except Object_name
+                    new_row = {col: np.nan for col in df.columns}
+                    new_row['Object_name'] = object_name
+                    # Concatenate the new row to the DataFrame
+                    df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+            
+            # Update the specified column where Object_name matches
+            df.loc[df['Object_name'] == object_name, column_name] = value
+
+    return df

@@ -193,7 +193,7 @@ def unit_capacity_relations(df1, capacities_exisiting_params, investment_limit_p
                 pattern_inv = re.compile(rf"inv_limit_{object_type}")
                 matching_vars_cap = [key for key in capacities_exisiting_params if pattern_cap.match(key)]
                 matching_vars_inv = [key for key in investment_limit_params if pattern_inv.match(key)]
-                if matching_vars_cap:
+                if pd.notna(matching_vars_cap):
                     capacity = capacities_exisiting_params[matching_vars_cap[0]]
                 else:
                     capacity = 100

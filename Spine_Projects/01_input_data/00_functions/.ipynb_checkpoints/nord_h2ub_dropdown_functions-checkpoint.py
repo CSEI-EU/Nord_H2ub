@@ -1153,10 +1153,10 @@ def on_change_MC_report(change, selected_options_report, checkbox):
 
         
 def create_multiple_choice_power():
-    label_power = widgets.Label("Please select the different power sources available:")
+    label_power = widgets.Label("Please select the different power sources already available:")
     
     # Define the list of options
-    options_power = ['Grid', 'Solar plant', 'Wind onshore', 'Wind offshore', 'Power Storage']
+    options_power = ['Grid', 'Solar plant', 'Wind onshore', 'Wind offshore']
     
     # Define preselected options and initialize selected_options_power
     preselected_options_power = {'Grid', 'Solar plant'}
@@ -1179,9 +1179,9 @@ def create_multiple_choice_power():
     hbox_capacities_powers = []
     
     # Function to update the capacity fields visibility
-    def update_capacity_fields():
-        for option, hbox in capacities_powers.items():
-            if option in selected_options_power:
+    def update_capacity_fields(selected_list, capacities_list):
+        for option, hbox in capacities_list.items():
+            if option in selected_list:
                 hbox.layout.display = 'flex'
             else:
                 hbox.layout.display = 'none'
@@ -1190,17 +1190,17 @@ def create_multiple_choice_power():
     def on_capacity_change(change, option):
         capacities_powers_values[option] = change['new']
     
-    def on_change_MC_power(change, selected_options_power, checkbox):
-        if change['new'] is False and len(selected_options_power) == 1:
+    def on_change_MC_power(change, selected_options, checkbox, capacities):
+        if change['new'] is False and len(selected_options) == 1:
             warning_label.value = "Warning: At least one power source must be selected!"
             threading.Thread(target=clear_warning, args=(change['owner'],)).start()
         else:
             warning_label.value = ""
             if change['new']:  # If the checkbox was checked
-                selected_options_power.add(checkbox.description)
+                selected_options.add(checkbox.description)
             else:  # If the checkbox was unchecked
-                selected_options_power.remove(checkbox.description)
-            update_capacity_fields()
+                selected_options.remove(checkbox.description)
+            update_capacity_fields(selected_options, capacities)
     
     # Create checkboxes
     checkboxes_powers = []
@@ -1214,7 +1214,7 @@ def create_multiple_choice_power():
             layout=general_multiple_choice_layout
         )
         checkbox.observe(lambda change, 
-                         checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
+                         checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox, capacities_powers),
                          names='value')
         checkboxes_powers.append(checkbox)
     
@@ -1227,21 +1227,21 @@ def create_multiple_choice_power():
             layout=general_multiple_choice_layout
         )
         checkbox.observe(lambda change, 
-                         checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox),
+                         checkbox=checkbox: on_change_MC_power(change, selected_options_power, checkbox, capacities_powers),
                          names='value')
         checkboxes_powers.append(checkbox)
     
     # Create capacity fields for each option except grid (hidden initially):
-    res = ['Solar plant', 'Wind onshore', 'Wind offshore', 'Power Storage']
+    res = ['Solar plant', 'Wind onshore', 'Wind offshore']
     for option in res:
         capacity_widget = widgets.FloatText(
-            value=0,
+            value=50,
             layout=widgets.Layout(width='100px')
         )
-        label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='220px'))
+        label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='180px'))
         
         hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none',
-                                                                            padding='0px 0px 0px 30px',
+                                                                            padding='0px 15px 0px 30px',
                                                                             justify_content='flex-start'))
         capacities_powers[option] = hbox
         hbox_capacities_powers.append(hbox)
@@ -1249,6 +1249,9 @@ def create_multiple_choice_power():
         capacities_powers_values[option] = capacity_widget.value
         capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
 
+    # Visibility of initially selected available powers
+    update_capacity_fields(preselected_checks_power, capacities_powers)
+    
     # Layout for checkboxes and capacity inputs
     power_column = widgets.VBox(checkboxes_powers)
     capacity_column = widgets.VBox(hbox_capacities_powers)
@@ -1256,24 +1259,55 @@ def create_multiple_choice_power():
     # Add possibility for investment
     def create_dropdown_inv():
         label_inv = widgets.HTML(
-            "Possibility for investment in RES <i>(not recommended)</i>:"
+            "Possibility for investment instead of fix values in RES <i>(not recommended)</i>:"
         )
         dropdown_inv = widgets.Dropdown(
             options=[True, False],
             value=False,
-            layout=widgets.Layout(width='100px')
+            layout=widgets.Layout(width='100px', margin='3px 0px 0 5px')
         )
         dropdown_inv.observe(on_change)
-        return widgets.HBox([label_inv, dropdown_inv], layout=widgets.Layout(padding='0px 0px 0px 30px')), dropdown_inv
-
+        return widgets.HBox([label_inv, dropdown_inv], layout=widgets.Layout(margin='0px 15px 0px 30px')), dropdown_inv
     inv_res_column, investment_res = create_dropdown_inv()
-    
-    #Update capacity fields visibiliy based on preselected options
-    update_capacity_fields()
+
+    # Add possibility of investment into a power storage
+    def create_dropdown_inv_ps():
+        label_inv_ps = widgets.HTML(
+            "Possibility for investment in a power storage:"
+        )
+        dropdown_inv_ps = widgets.Dropdown(
+            options=[True, False],
+            value=False,
+            layout=widgets.Layout(width='100px', margin='3px 5px 0 5px')
+        )
+        dropdown_inv_ps.observe(on_change)
+
+        capacity_label = widgets.Label("with a maximum capacity of", layout=widgets.Layout(width='170px'))
+        capacity_ps_widget = widgets.FloatText(
+            value=50,
+            min=0,
+            layout=widgets.Layout(width='100px'),
+        )
+        MW_label = widgets.Label(" MWh")
+        capacity_container = widgets.HBox([capacity_label, capacity_ps_widget, MW_label])
+
+        def toggle_capacity_widget(change):
+            capacity_container.layout.display = 'flex' if change['new'] else 'none'
+        
+        # Observe changes in dropdown
+        dropdown_inv_ps.observe(toggle_capacity_widget, names='value')
+        
+        # Initially hide capacity widgets if dropdown is False
+        toggle_capacity_widget({'new': dropdown_inv_ps.value})
+        
+        return widgets.HBox([label_inv_ps, dropdown_inv_ps, capacity_container], 
+                            layout=widgets.Layout(margin='0px 15px 0px 30px')), dropdown_inv_ps, capacity_ps_widget
+        
+    inv_ps_column, investment_ps, investment_ps_capacity = create_dropdown_inv_ps()
     
     hbox_warning = widgets.HBox([power_column, warning_label])
     
-    return widgets.VBox([label_power, hbox_warning, capacity_column, inv_res_column], layout=get_general_vbox_layout()), selected_options_power, capacities_powers_values, investment_res
+    return widgets.VBox([label_power, hbox_warning, capacity_column, inv_res_column, inv_ps_column], layout=get_general_vbox_layout()), selected_options_power, capacities_powers_values, investment_res, investment_ps, investment_ps_capacity
   
 
 def create_multiple_choice_report():
@@ -1377,7 +1411,7 @@ def create_combined_dropdowns_tabs():
     report_name_box, report_name = create_name_rep_input()
     run_name_box, run_name = create_run_name_input()
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
-    multiple_choice_power_box, selected_powers, capacities_powers, investment_res = create_multiple_choice_power()
+    multiple_choice_power_box, selected_powers, capacities_powers, investment_res, investment_ps, investment_ps_capacity = create_multiple_choice_power()
     scen_name_box, base_scen = create_scen_name_input()
     #scen_name_box, base_scen, other_scen = create_scen_name_input_sev()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
@@ -1420,7 +1454,9 @@ def create_combined_dropdowns_tabs():
         'default_investment_duration': dropdown_period,
         'demand': demand_input,
         'demand_res': demand_res,
-        'investment_res': investment_res
+        'investment_res': investment_res,
+        'investment_ps': investment_ps,
+        'investment_ps_capacity': investment_ps_capacity
     }
 
     # Create pages (tabs)
@@ -1536,6 +1572,8 @@ def get_dropdown_values(dropdowns):
         'default_investment_number': dropdowns['default_investment_number'].value,
         'default_investment_duration': dropdowns['default_investment_duration'].value,
         'investment_res': dropdowns['investment_res'].value,
+        'investment_ps': dropdowns['investment_ps'].value,
+        'investment_ps_capacity': dropdowns['investment_ps_capacity'].value,
         
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],

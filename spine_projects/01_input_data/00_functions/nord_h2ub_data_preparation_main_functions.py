@@ -103,11 +103,13 @@ def set_parameters(params):
         'inv_limit_methanol_storage': 1000,
         'inv_limit_rwgs': 100,
         'inv_limit_steam': 100,
-        'investment_res': False
+        'investment_res': False,
+        'investment_ps': False,
+        'investment_ps_capacity': None
     }
 
-    # Update default values with provided parameters
-    params = {k: (v if v is not None else default_params[k]) for k, v in params.items()}
+    # Update default values with provided parameters}
+    params = {k: (v if pd.notna(v) else default_params.get(k, None)) for k, v in params.items()}
     default_params.update(params)
 
     # Create time stamps
@@ -149,6 +151,7 @@ def set_parameters(params):
     candidate_nonzero = default_params['candidate_nonzero']
     investment_period_default = default_params['investment_period_default']
     investment_res = default_params['investment_res']
+    investment_ps = default_params['investment_ps']
 
     # Create the investment cost dictionary
     investment_cost_params = {
@@ -190,7 +193,8 @@ def set_parameters(params):
         'inv_limit_Methane_storage': default_params['inv_limit_methane_storage'],
         'inv_limit_Methanol_Plant': default_params['inv_limit_methanol'],
         'inv_limit_Methanol_storage': default_params['inv_limit_methanol_storage'],
-        'inv_limit_RWGS_unit': default_params['inv_limit_rwgs']
+        'inv_limit_RWGS_unit': default_params['inv_limit_rwgs'],
+        'investment_ps_capacity': default_params['investment_ps_capacity']
     }
     
     # Create the existing capacities  dictionary
@@ -201,7 +205,7 @@ def set_parameters(params):
         'capacity_Biomethanation': default_params['capacity_biomethanation'],
         'capacity_CO2_Vaporizer': default_params['capacity_co2_removal'],
         'capacity_Diesel_storage': default_params['inv_cost_diesel_storage'],
-        'capacity_Distillation_tower': default_params['capacity_methanol'], #same as methanol
+        'capacity_Distillation_tower': default_params['capacity_methanol'],   #same as methanol
         'capacity_EGasoline_storage': default_params['capacity_egasoline_storage'],
         'capacity_Electric_Steam_Boiler': default_params['capacity_steam'],
         'capacity_Electrolyzer': default_params['capacity_electrolyzer'],
@@ -225,5 +229,5 @@ def set_parameters(params):
             roll_forward_use, roll_forward_size, num_slices, datetime_index, 
             candidate_nonzero, 
             investment_period_default, investment_cost_params, investment_limit_params,
-            capacities_exisiting_params, investment_res
+            capacities_exisiting_params, investment_res, investment_ps
            )
