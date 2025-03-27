@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 import os
 from datetime import timedelta
+import math
 
 from nord_h2ub_data_preparation_functions import *
 
@@ -26,12 +27,13 @@ def set_parameters(params):
     default_params = {
         'year': 2019,
         'starting_year': 2020,
-        'area': 'DK1',
+        'lcoe_years': 25,
+        'area': 'DK_1',
         'product': 'methanol',
         'demand': 180000,
         'demand_res': 'daily',
         'powers': {'Solar plant'},
-        'powers_capacities': {},
+        'powers_capacities': {304},
         'scenario': 'Base',
         'frequency': '1h',
         'model_name': 'model',
@@ -42,7 +44,7 @@ def set_parameters(params):
         'report_name': 'Report',
         'reports': ['unit_flow', 'connection_flow', 'node_state', 'total_costs', 'unit_flow_op', 'node_slack_neg', 'node_slack_pos'],
         'electrolyzer_type': 'Alkaline',
-        'des_segments_electrolyzer': 1,
+        'des_segments_electrolyzer': 3,
         'wacc': 0.08,
         'share_of_dh_price_cap': 0.5,
         'price_level_power': 1,
@@ -109,9 +111,13 @@ def set_parameters(params):
     }
 
     # Update default values with provided parameters}
-    params = {k: (v if pd.notna(v) else default_params.get(k, None)) for k, v in params.items()}
+    #params = {k: (v if pd.notna(v) or not '' else default_params.get(k, None)) for k, v in params.items()}
+    params = {
+        k: v for k, v in params.items()
+        if v is not None and not (isinstance(v, str) and v.strip() == '') and not (isinstance(v, float) and math.isnan(v))
+    }
     default_params.update(params)
-
+    
     # Create time stamps
     start_date = pd.Timestamp(f'{default_params["year"]}-01-01 00:00:00')
     end_date = pd.Timestamp(f'{default_params["year"]}-12-31 23:00:00')
@@ -125,6 +131,7 @@ def set_parameters(params):
     # Add to dictionary
     year = default_params['year']
     starting_year = default_params['starting_year']
+    lcoe_years = default_params['lcoe_years']
     area = default_params['area']
     product = default_params['product']
     demand = default_params['demand']
@@ -220,7 +227,7 @@ def set_parameters(params):
     }
 
     # Here you can add any additional processing or return the parameters
-    return (year, starting_year, start_date, end_date, area, product, demand, demand_res,
+    return (year, starting_year, lcoe_years, start_date, end_date, area, product, demand, demand_res,
             powers, powers_capacities, scenario, frequency, 
             model_name, temporal_block, 
             stochastic_scenario, stochastic_structure, run_name, report_name, reports, 

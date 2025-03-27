@@ -19,14 +19,22 @@ import pandas as pd
 import threading
 import time
 import math
+import warnings
+warnings.simplefilter("ignore", UserWarning)
 
 
 '''General Layout Settings'''
 general_input_layout = widgets.Layout(width='130px', padding = '0 0 0 30px')
+
 def get_general_vbox_layout():
     return widgets.Layout(margin='0 0 15px 0')
+
 general_multiple_choice_layout = widgets.Layout(padding='0 0 0 30px')
+
 inv_cap_indent_layout = widgets.Layout(padding = '0 0 0 30px')
+
+# Define the placeholder value for fields that are not yet interacted with
+placeholder_value = math.nan
 
 
 '''Define text query functions'''
@@ -38,10 +46,9 @@ def on_text_change(change):
 
 def create_name_rep_input():   # Necessary? I do not think so. D.H.
     label2 = widgets.Label(
-        "Please type the name of the report if other than 'Report':")
-    default_text = "Report"
+        "Please choose the name of the report:")
     name_rep_input = widgets.Text(
-        value=default_text,
+        value = None,
         layout=general_input_layout
     )
     return widgets.VBox([label2, name_rep_input], layout=get_general_vbox_layout()), name_rep_input
@@ -49,15 +56,12 @@ def create_name_rep_input():   # Necessary? I do not think so. D.H.
 
 def create_scen_name_input_sev():   # Not used yet
     label3 = widgets.Label(
-        "Please type the name of the scenario if other than 'Base':")
-    default_text = "Base"
+        "Please choose the name of the scenario:")
     base_name_input = widgets.Text(
-        value = default_text,
         description = "Base Scenario:",
         layout = general_input_layout
     )
     additional_names_input = widgets.Textarea(
-        value = '',
         placeholder = 'Enter each scenario name on a new line',
         description = 'Other Scenarios:',
         layout = general_input_layout
@@ -67,10 +71,8 @@ def create_scen_name_input_sev():   # Not used yet
 
 def create_scen_name_input():   # Necessary? I do not think so. D.H.
     label3 = widgets.Label(
-        "Please type the name of the scenario if other than 'Base':")
-    default_text = "Base"
+        "Please choose the name of the scenario:")
     base_name_input = widgets.Text(
-        value=default_text,
         description="Base Scenario:",
         layout = general_input_layout
     )
@@ -79,10 +81,8 @@ def create_scen_name_input():   # Necessary? I do not think so. D.H.
 
 def create_stoch_scen_input():   # Not used yet
     label4 = widgets.Label(
-        "Please type the name of the stochastic scenario if other than 'realization':")
-    default_text = "realization"
+        "Please choose the name of the stochastic scenario:")
     stoch_scen_input = widgets.Text(
-        value = default_text,
         layout = general_input_layout
     )
     return widgets.VBox([label4, stoch_scen_input], layout=get_general_vbox_layout()), stoch_scen_input
@@ -90,10 +90,8 @@ def create_stoch_scen_input():   # Not used yet
 
 def create_stoch_struc_input():   # Necessary? I do not think so. D.H.
     label5 = widgets.Label(
-        "Please type the name of the stochastic structure if other than 'deterministic':")
-    default_text = "deterministic"
+        "Please choose the name of the stochastic structure:")
     stoch_struc_input = widgets.Text(
-        value = default_text,
         layout = general_input_layout
     )
     return widgets.VBox([label5, stoch_struc_input], layout=get_general_vbox_layout()), stoch_struc_input
@@ -101,9 +99,7 @@ def create_stoch_struc_input():   # Necessary? I do not think so. D.H.
 def create_run_name_input():
     label6 = widgets.Label(
         "Please choose the name of this run:")
-    default_text = "base_case"
     run_name_input = widgets.Text(
-        value = default_text,
         layout = general_input_layout
     )
     return widgets.VBox([label6, run_name_input], layout=get_general_vbox_layout()), run_name_input
@@ -117,16 +113,13 @@ def on_number_change(change):
 
 
 def create_share_of_dh_price_cap():
-    default_number = 50  # Set as a default to not assume 100%
     description_label_1 = widgets.Label(
         "Set the assumed value for revenues from district heating as share of a max price [%]:")
-    number_input_1 = widgets.BoundedIntText(
-        value=default_number,
-        min=0,
-        max=200.0,
-        step=0.1,
-        layout = general_input_layout
-    )
+    number_input_1 = widgets.BoundedFloatText(
+        value=placeholder_value, 
+        min=0, 
+        step=0.5,
+        layout=general_input_layout)
     number_input_1.observe(on_number_change, names='value')
     return widgets.VBox([description_label_1, number_input_1], layout=get_general_vbox_layout()), number_input_1
 
@@ -134,11 +127,10 @@ def create_share_of_dh_price_cap():
 def create_price_level_power():
     description_label_2 = widgets.Label(
         "Set the assumed value for scaling the power price level up/down [%]:")
-    number_input_2 = widgets.BoundedIntText(
-        value=100,
-        min=0,
-        max=200.0,
-        step=0.1,
+    number_input_2 = widgets.BoundedFloatText(
+       value=placeholder_value, 
+        min=0, 
+        step=0.5,
         layout = general_input_layout
     )
     number_input_2.observe(on_number_change, names='value')
@@ -146,13 +138,11 @@ def create_price_level_power():
 
 
 def create_power_price_variance():
-    default_number = 1
     description_label_3 = widgets.Label(
         "Set the assumed variance of the power prices:")
-    number_input_3 = widgets.BoundedIntText(
-        value=1,
+    number_input_3 = widgets.BoundedFloatText(
+        value=placeholder_value, 
         min=0,
-        max=2.0,
         step=0.01,
         layout = general_input_layout
     )
@@ -161,14 +151,11 @@ def create_power_price_variance():
 
 
 def create_number_opt_horizons():
-    #define the number of horizons for a rolling horizon optimization
-    default_number = 1
     description_label_4 = widgets.Label(
         "Set the number of optimization horizons for the model:")
-    number_input_4 = widgets.BoundedIntText(
-        value=12,
-        min=0,
-        max=200,
+    number_input_4 = widgets.BoundedFloatText(
+        value=placeholder_value, 
+        min=0, 
         step=1,
         layout = general_input_layout
     )
@@ -177,12 +164,10 @@ def create_number_opt_horizons():
 
 
 def create_sections_elec():
-    default_number = 1
     description_label_5 = widgets.Label("Set the number of operating sections to represent variable efficiency:")
-    number_input_5 = widgets.BoundedIntText(
-        value=3,
-        min=0,
-        max=10,
+    number_input_5 = widgets.BoundedFloatText(
+        value=placeholder_value, 
+        min=0, 
         step=1,
         layout = general_input_layout
     )
@@ -190,13 +175,11 @@ def create_sections_elec():
     return widgets.VBox([description_label_5, number_input_5], layout=get_general_vbox_layout()), number_input_5
 
 def create_wacc_elec():
-    default_number = 8
     description_label_6 = widgets.Label("Set the WACC for the LCOE calculation [%]:")
-    number_input_6 = widgets.BoundedIntText(
-        value=8,
-        min=0,
-        max=15,
-        step=0.01,
+    number_input_6 = widgets.BoundedFloatText(
+        value=placeholder_value, 
+        min=0, 
+        step = 0.01,
         layout = general_input_layout
     )
     number_input_6.observe(on_number_change, names='value')
@@ -204,13 +187,12 @@ def create_wacc_elec():
 
 
 def create_lcoe_starting_year_elec():
-    default_number = 2020
     description_label_7 = widgets.Label("Set the starting year for the LCOE calculation:")
-    number_input_7 = widgets.BoundedIntText(
-        value=2020,
-        min=0,
-        max=2200,
+    number_input_7 = widgets.BoundedFloatText(
+        value=placeholder_value, 
+        min=2015, 
         step=1,
+        max=2050,
         layout = general_input_layout
     )
     number_input_7.observe(on_number_change, names='value')
@@ -218,12 +200,10 @@ def create_lcoe_starting_year_elec():
 
 
 def create_lcoe_years_elec():
-    default_number = 25
     description_label_8 = widgets.Label("Set the number of years for the LCOE calculation:")
-    number_input_8 = widgets.BoundedIntText(
-        value=25,
+    number_input_8 = widgets.BoundedFloatText(
+        value=placeholder_value, 
         min=0,
-        max=100,
         step=1,
         layout = general_input_layout
     )
@@ -247,9 +227,6 @@ def update_inv_costs(change, investment_cost_vbox):
     investment_cost_values.clear()
     investment_limit_values.clear()
     
-    # Define the placeholder value for fields that are not yet interacted with
-    placeholder_value = math.nan
-
     # Define a layout for descriptions and fields + indent
     description_layout = widgets.Layout(width='210px')
     input_layout = widgets.Layout(width='100px')
@@ -764,9 +741,6 @@ def update_capacities(change, capacities_vbox):
     # Clear the capacities_values dictionary before updating
     capacities_values.clear()
     
-    # Define the placeholder value for fields that are not yet interacted with
-    placeholder_value = 0
-    
     # Define a layout for descriptions and fields + indent
     description_layout = widgets.Layout(width='245px')
     input_layout = widgets.Layout(width='110px')
@@ -952,8 +926,8 @@ def create_demand():
     # Add fields
     demand_description = widgets.Label("Yearly demand [MWh]:", layout=description_layout)
     
-    demand_input = widgets.IntText(
-        value=180000, 
+    demand_input = widgets.BoundedFloatText(
+        value = placeholder_value, 
         min=0, 
         layout=input_layout
     )
@@ -968,7 +942,7 @@ def create_demand():
         
         dropdown_d_res = widgets.Dropdown(
             options=option_values,
-            value='daily',
+            value = None,
             layout=input_layout
         )
         dropdown_d_res.observe(on_change)
@@ -1013,7 +987,7 @@ def create_dropdown_year():
     label1 = widgets.Label("Please select the base year for electricity prices:")
     dropdown1 = widgets.Dropdown(
         options=[2018, 2019],
-        value=2019,
+        value = None,
         layout = general_input_layout
     )
     dropdown1.observe(on_change)
@@ -1025,7 +999,7 @@ def create_dropdown_price_zone():
     label2 = widgets.Label("Please select the power price zone where the plant is located:")
     dropdown2 = widgets.Dropdown(
         options=['DK_1', 'DK_2', 'DK_BHM', 'FI', 'NO_1', 'NO_2', 'NO_3', 'NO_4', 'NO_5', 'SE_1', 'SE_2', 'SE_3', 'SE_4'],
-        value='DK_1',
+        value = None,
         layout = general_input_layout
     )
     dropdown2.observe(on_change)
@@ -1054,7 +1028,7 @@ def create_dropdown_electrolysis():
     label4 = widgets.Label("Please select the type of electrolysis:")
     dropdown4 = widgets.Dropdown(
         options=['PEM', 'Alkaline', 'SOEC'],
-        value='PEM',
+        value = None,
         layout = general_input_layout
     )
     dropdown4.observe(on_change)
@@ -1078,9 +1052,9 @@ def create_dropdown_frequency():
     label5 = widgets.Label("Please select the frequency:")
     dropdown5 = widgets.Dropdown(
         options=list(option_values.keys()),
-        value='1h',
         layout = general_input_layout
     )
+    
     selected_option_widget = widgets.Label(dropdown5.value)
     selected_value_widget = widgets.Label(option_values[dropdown5.value])
     
@@ -1096,7 +1070,7 @@ def create_dropdown_roll():
     )
     dropdown6 = widgets.Dropdown(
         options=[True, False],
-        value=False, 
+        value = None,
         layout = general_input_layout
     )
     dropdown6.observe(on_change)
@@ -1109,7 +1083,7 @@ def create_dropdown_investment():
     label7 = widgets.Label("Please select whether the model should run an investment optimization:")
     dropdown7 = widgets.Dropdown(
         options=[True, False],
-        value=False,
+        value = None,
         layout=general_input_layout
     )
     dropdown7.observe(on_change)
@@ -1121,8 +1095,8 @@ def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
     label8 = widgets.Label("Please select the investment period:")
     
-    number_input_8 = widgets.BoundedIntText(
-        value=1,
+    number_input_8 = widgets.BoundedFloatText(
+        value=placeholder_value,
         min=1,
         max=30,
         step=1,
@@ -1132,7 +1106,7 @@ def create_dropdown_invest_period():
     
     dropdown8 = widgets.Dropdown(
         options=['h', 'D', 'W', 'M', 'Q', 'Y'],
-        value='Y',
+        value=None,
         layout=widgets.Layout(width='100px')
     )
     dropdown8.observe(on_change)
@@ -1235,7 +1209,7 @@ def create_multiple_choice_power():
     res = ['Solar plant', 'Wind onshore', 'Wind offshore']
     for option in res:
         capacity_widget = widgets.FloatText(
-            value=50,
+            value=placeholder_value,
             layout=widgets.Layout(width='100px')
         )
         label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='180px'))
@@ -1263,7 +1237,7 @@ def create_multiple_choice_power():
         )
         dropdown_inv = widgets.Dropdown(
             options=[True, False],
-            value=False,
+            value=None,
             layout=widgets.Layout(width='100px', margin='3px 0px 0 5px')
         )
         dropdown_inv.observe(on_change)
@@ -1277,14 +1251,14 @@ def create_multiple_choice_power():
         )
         dropdown_inv_ps = widgets.Dropdown(
             options=[True, False],
-            value=False,
+            value=None,
             layout=widgets.Layout(width='100px', margin='3px 5px 0 5px')
         )
         dropdown_inv_ps.observe(on_change)
 
         capacity_label = widgets.Label("with a maximum capacity of", layout=widgets.Layout(width='170px'))
-        capacity_ps_widget = widgets.FloatText(
-            value=50,
+        capacity_ps_widget = widgets.BoundedFloatText(
+            value=placeholder_value,
             min=0,
             layout=widgets.Layout(width='100px'),
         )
@@ -1387,14 +1361,14 @@ def create_multiple_choice_report():
 
 def create_combined_dropdowns_tabs():
     # Provide information for each section
-    section_1 = widgets.HTML("<b>Section 1: Please define the base parameters</b>")
-    section_2 = widgets.HTML("<b>Section 2: Please define the energy sources</b>")
-    section_3 = widgets.HTML("<b>Section 3: Please define the parameters of the general model</b>")
-    section_4 = widgets.HTML("<b>Section 4: Please define the parameters of electrolysis</b>")
-    section_5 = widgets.HTML("<b>Section 5: Please define the economic parameters of the general model</b>")
-    section_6 = widgets.HTML("<b>Section 6: Please define the parameters for the investments</b>")
-    section_7 = widgets.HTML("<b>Section 7: Please define the variables for the report</b>")
-    section_8 = widgets.HTML("<b>Section 8: Please define the parameters for the different scenarios</b>")
+    section_1 = widgets.HTML("<b>Section 1: Define the base parameters. If not specified, default values will be applied.</b>")
+    section_2 = widgets.HTML("<b>Section 2: Define the energy sources. If not specified, default values will be applied.</b>")
+    section_3 = widgets.HTML("<b>Section 3: Define the parameters of the general model. If not specified, default values will be applied.</b>")
+    section_4 = widgets.HTML("<b>Section 4: Define the parameters of electrolysis. If not specified, default values will be applied.</b>")
+    section_5 = widgets.HTML("<b>Section 5: Define the economic parameters of the general model. If not specified, default values will be applied.</b>")
+    section_6 = widgets.HTML("<b>Section 6: Define the parameters for the investments. If not specified, default values will be applied.</b>")
+    section_7 = widgets.HTML("<b>Section 7: Define the variables for the report. If not specified, default values will be applied.</b>")
+    section_8 = widgets.HTML("<b>Section 8: Define the parameters for the different scenarios. If not specified, default values will be applied.</b>")
 
     # Get the dropdown menus
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
