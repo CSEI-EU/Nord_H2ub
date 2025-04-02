@@ -102,7 +102,8 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Run SpineOpt@2024-12-14T19:15:16": true,
-                                "Run SpineOpt@2025-03-30T19:55:37": true
+                                "Run SpineOpt@2025-03-30T19:55:37": true,
+                                "Run SpineOpt@2025-03-31T20:42:07": true
                             }
                         }
                     },
@@ -209,7 +210,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_input_base_15op.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_base_20op.xlsx"
                 }
             ],
             "db_references": []
@@ -254,8 +255,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 241.59656844013406,
-            "y": -52.43798104284602,
+            "x": 241.59656844013404,
+            "y": -55.206603867202006,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -284,7 +285,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_input_base_15op.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_base_20op.xlsx",
                     true
                 ]
             ]
