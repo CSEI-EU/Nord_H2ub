@@ -61,18 +61,19 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     scale_color_manual(breaks=c("1 op", "10 op"),
                        values=c("1 op" = "#6793D6", "10 op" = "#242E70")) +
     theme(
-      axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+      axis.title.x = element_text(color = "black", size = 15, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold", size = 10),
-      axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+      axis.title.y = element_text(color = "black", size = 15, face = "bold"),
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.9, 0.07),
-      legend.text = element_text(size = 10),
+      legend.position = c(0.875, -0.09),
+      legend.text = element_text(size = 10, face="bold"),
+      legend.background=element_rect(fill = alpha("white", 0)),
       legend.direction = "horizontal"
     )
   plot.february
-  #ggsave("04_images/variable_efficiency_february.png", plot = plot.february, width = 9, height = 4, dpi = 300)
+  ggsave("04_images/variable_efficiency_february.png", plot = plot.february, width = 7, height = 4, dpi = 300)
 }
 
 #April
@@ -94,17 +95,18 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     scale_color_manual(breaks=c("1 op", "10 op"),
                        values=c("1 op" = "#6793D6", "10 op" = "#242E70")) +
     theme(
-      axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+      axis.title.x = element_text(color = "black", size = 15, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold", size = 10),
-      axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+      axis.title.y = element_text(color = "black", size = 15, face = "bold"),
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.9, 0.07),
-      legend.text = element_text(size = 10),
+      legend.position = c(0.875, -0.09),
+      legend.text = element_text(size = 10, face="bold"),
+      legend.background=element_rect(fill = alpha("white", 0)),
       legend.direction = "horizontal"
     )
   plot.april
-  #ggsave("04_images/variable_efficiency_april.png", plot = plot.april, width = 9, height = 4, dpi = 300)
+  ggsave("04_images/variable_efficiency_april.png", plot = plot.april, width = 7, height = 4, dpi = 300)
 }
 
