@@ -32,42 +32,42 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 
 #Import data
 {
-  base = as.data.frame(read_excel("02_output_prepared/output_base_10op_run.xlsx", sheet = "LCOE"))
+  base = as.data.frame(read_excel("02_output_prepared/review_1/output_base_10op_run.xlsx", sheet = "LCOE"))
   
-  demand10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pdown_run.xlsx", sheet = "LCOE"))
-  demand05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pdown_run.xlsx", sheet = "LCOE"))
-  demand05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_05pup_run.xlsx", sheet = "LCOE"))
-  demand10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_demand_10pup_run.xlsx", sheet = "LCOE"))
+  demand10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_demand_10pdown_run.xlsx", sheet = "LCOE"))
+  demand05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_demand_05pdown_run.xlsx", sheet = "LCOE"))
+  demand05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_demand_05pup_run.xlsx", sheet = "LCOE"))
+  demand10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_demand_10pup_run.xlsx", sheet = "LCOE"))
   
-  dhprice10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_10pdown_run.xlsx", sheet = "LCOE"))
-  dhprice05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_05pdown_run.xlsx", sheet = "LCOE"))
-  dhprice05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_05pup_run.xlsx", sheet = "LCOE"))
-  dhprice10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_dhprice_10pup_run.xlsx", sheet = "LCOE"))
+  dhprice10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_dhprice_10pdown_run.xlsx", sheet = "LCOE"))
+  dhprice05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_dhprice_05pdown_run.xlsx", sheet = "LCOE"))
+  dhprice05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_dhprice_05pup_run.xlsx", sheet = "LCOE"))
+  dhprice10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_dhprice_10pup_run.xlsx", sheet = "LCOE"))
   
-  elprice10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_10pdown_run.xlsx", sheet = "LCOE"))
-  elprice05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_05pdown_run.xlsx", sheet = "LCOE"))
-  elprice05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_05pup_run.xlsx", sheet = "LCOE"))
-  elprice10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elprice_10pup_run.xlsx", sheet = "LCOE"))
+  elprice10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elprice_10pdown_run.xlsx", sheet = "LCOE"))
+  elprice05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elprice_05pdown_run.xlsx", sheet = "LCOE"))
+  elprice05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elprice_05pup_run.xlsx", sheet = "LCOE"))
+  elprice10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elprice_10pup_run.xlsx", sheet = "LCOE"))
   
-  wacc10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_10pdown_run.xlsx", sheet = "LCOE"))
-  wacc05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_05pdown_run.xlsx", sheet = "LCOE"))
-  wacc05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_05pup_run.xlsx", sheet = "LCOE"))
-  wacc10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_WACC_10pup_run.xlsx", sheet = "LCOE"))
+  wacc10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_WACC_10pdown_run.xlsx", sheet = "LCOE"))
+  wacc05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_WACC_05pdown_run.xlsx", sheet = "LCOE"))
+  wacc05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_WACC_05pup_run.xlsx", sheet = "LCOE"))
+  wacc10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_WACC_10pup_run.xlsx", sheet = "LCOE"))
   
-  lifetime10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_10pdown_run.xlsx", sheet = "LCOE"))
-  lifetime05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_05pdown_run.xlsx", sheet = "LCOE"))
-  lifetime05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_05pup_run.xlsx", sheet = "LCOE"))
-  lifetime10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_lifetime_10pup_run.xlsx", sheet = "LCOE"))
+  lifetime10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_lifetime_10pdown_run.xlsx", sheet = "LCOE"))
+  lifetime05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_lifetime_05pdown_run.xlsx", sheet = "LCOE"))
+  lifetime05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_lifetime_05pup_run.xlsx", sheet = "LCOE"))
+  lifetime10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_lifetime_10pup_run.xlsx", sheet = "LCOE"))
   
-  variance10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pdown_run.xlsx", sheet = "LCOE"))
-  variance05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_05pdown_run.xlsx", sheet = "LCOE"))
-  variance05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_05pup_run.xlsx", sheet = "LCOE"))
-  variance10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_elpricevar_10pup_run.xlsx", sheet = "LCOE"))
+  variance10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elpricevar_10pdown_run.xlsx", sheet = "LCOE"))
+  variance05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elpricevar_05pdown_run.xlsx", sheet = "LCOE"))
+  variance05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elpricevar_05pup_run.xlsx", sheet = "LCOE"))
+  variance10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_elpricevar_10pup_run.xlsx", sheet = "LCOE"))
   
-  invc10pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_10pdown_run.xlsx", sheet = "LCOE"))
-  invc05pdown = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_05pdown_run.xlsx", sheet = "LCOE"))
-  invc05pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_05pup_run.xlsx", sheet = "LCOE"))
-  invc10pup = as.data.frame(read_excel("02_output_prepared/output_sens_10op_invc_10pup_run.xlsx", sheet = "LCOE"))
+  invc10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_10pdown_run.xlsx", sheet = "LCOE"))
+  invc05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_05pdown_run.xlsx", sheet = "LCOE"))
+  invc05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_05pup_run.xlsx", sheet = "LCOE"))
+  invc10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_10pup_run.xlsx", sheet = "LCOE"))
 }
 
 
@@ -127,18 +127,19 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   min.lcoe = min(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand)
   
   plot.inv = ggplot(data, aes(x = percent, group = 1)) +
-    geom_line(aes(y = wacc, color = "WACC"), linewidth = 1) +
-    geom_point(aes(y = wacc, color = "WACC"), size = 3) +
-    geom_line(aes(y = lifetime, color = "Lifetime"), linewidth = 1) + 
-    geom_point(aes(y = lifetime, color = "Lifetime"), size = 3) +
-    geom_line(aes(y = invc, color = "Investment costs"), linewidth = 1) + 
-    geom_point(aes(y = invc, color = "Investment costs"), size = 3) +
     geom_line(aes(y = demand, color = "Demand"), linewidth = 1) + 
     geom_point(aes(y = demand, color = "Demand"), size = 3) +
+    geom_line(aes(y = lifetime, color = "Lifetime"), linewidth = 1) + 
+    geom_point(aes(y = lifetime, color = "Lifetime"), size = 3) +
+    geom_line(aes(y = wacc, color = "WACC"), linewidth = 1) +
+    geom_point(aes(y = wacc, color = "WACC"), size = 3) +
+    geom_line(aes(y = invc, color = "Investment costs"), linewidth = 1) + 
+    geom_point(aes(y = invc, color = "Investment costs"), size = 3) +
+    
     scale_y_continuous(
       name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
-      breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
+      breaks = seq(1280, 1480, (1480 - 1280)/4),
       labels = label_number(accuracy = 0.01),
     ) +
     scale_x_continuous(
@@ -149,7 +150,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     theme_bw() +
     labs(color = "") +
     scale_color_manual(breaks=c("Demand", "Lifetime", "WACC", "Investment costs"),
-                       values=c("Demand" = "#6793D6", "Lifetime" = "#50A192", "WACC" = "#242E70", "Investment costs" = "#B6DBE2")) +
+                       values=c("Demand" = "#6793D6", "Lifetime" = "#50A192", "WACC" = "#4967AA", "Investment costs" = "#E66A57")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -162,23 +163,24 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       legend.direction = "horizontal"
     )
   plot.inv
-  #ggsave("04_images/sensitivities_inv.png", plot = plot.inv, width = 7.5, height = 5, dpi = 300)
+  #ggsave("04_images/sensitivities_inv.png", plot = plot.inv, width = 7.5, height = 4, dpi = 300)
 }
 
 
 # Graph prices
 {
   plot.price = ggplot(data, aes(x = percent, group = 1)) +
-    geom_line(aes(y = elprice, color = "Electricity price"), linewidth = 1) +
-    geom_point(aes(y = elprice, color = "Electricity price"), size = 3) +
     geom_line(aes(y = dhprice, color = "District heating price"), linewidth = 1) + 
     geom_point(aes(y = dhprice, color = "District heating price"), size = 3) +
+    geom_line(aes(y = elprice, color = "Electricity price"), linewidth = 1) +
+    geom_point(aes(y = elprice, color = "Electricity price"), size = 3) +
     geom_line(aes(y = variance, color = "Electricity price variance"), linewidth = 1) + 
     geom_point(aes(y = variance, color = "Electricity price variance"), size = 3) +
+    
     scale_y_continuous(
       name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
-      breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
+      breaks = seq(1280, 1480, (1480 - 1280)/4),
       labels = label_number(accuracy = 0.01)
     ) +
     scale_x_continuous(
@@ -188,8 +190,8 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     ) +
     theme_bw() +
     labs(color = "") +
-    scale_color_manual(breaks=c("District heating price", "Electricity price variance", "Electricity price"),
-                       values=c("District heating price" = "#6793D6", "Electricity price variance" = "#50A192", "Electricity price" = "#242E70")) +
+    scale_color_manual(breaks=c("District heating price", "Electricity price", "Electricity price variance"),
+                       values=c("District heating price" = "#6793D6", "Electricity price" = "#4967AA", "Electricity price variance" = "#50A192")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -202,5 +204,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       legend.direction = "horizontal"
     )
   plot.price
-  #ggsave("04_images/sensitivities_prices.png", plot = plot.price, width = 7.5, height = 5, dpi = 300)
+  #ggsave("04_images/sensitivities_prices.png", plot = plot.price, width = 7.5, height = 4, dpi = 300)
 }
+
+0.995*min.lcoe

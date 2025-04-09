@@ -101,7 +101,14 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Run SpineOpt@2025-04-02T21:43:00": true
+                                "Run SpineOpt@2025-04-02T21:43:00": true,
+                                "Run SpineOpt@2025-04-03T08:29:52": true,
+                                "Run SpineOpt@2025-04-03T17:53:12": true,
+                                "Run SpineOpt@2025-04-03T22:05:38": true,
+                                "Run SpineOpt@2025-04-05T08:07:14": true,
+                                "Run SpineOpt@2025-04-06T07:47:06": true,
+                                "Run SpineOpt@2025-04-06T21:11:05": true,
+                                "Run SpineOpt@2025-04-07T19:19:17": true
                             }
                         }
                     },
@@ -208,7 +215,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_eff_05pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_eff_05pup.xlsx"
                 }
             ],
             "db_references": []
@@ -234,7 +241,7 @@
             "type": "Tool",
             "description": "",
             "x": 232.04345069181693,
-            "y": -261.2524888991986,
+            "y": -258.48386607484264,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -283,7 +290,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_eff_05pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_eff_05pup.xlsx",
                     true
                 ]
             ]

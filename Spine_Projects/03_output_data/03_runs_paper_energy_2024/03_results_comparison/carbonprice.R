@@ -32,87 +32,63 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 
 #Import data
 {
-  data = as.data.frame(read_excel("03_results_comparison/carbonprice.xlsx"))
+  data = as.data.frame(read_excel("03_results_comparison/CO2_prices.xlsx"))
 }
 
-
-#Graph old
-{
-  max.cp = max(data$Low_emission)
-  min.cp = 0
-  max.eua = max(data$EUAs)
-  coeff = max.cp / max.eua
-  
-  #Combined
-  plot = ggplot(data, aes(x = factor(Year), group = 1)) +
-    geom_bar(aes(y = Low_emission, fill = "Min Emission of Fossil Based Methanol"), stat = "identity", width = 0.6, alpha = 0.8) +
-    geom_bar(aes(y = High_emission, fill = "Max Emission of Fossil Based Methanol"), stat = "identity", width = 0.6, alpha = 0.8) +
-    geom_line(aes(y = coeff  * EUAs), color = "#50A192", linewidth = 1) +
-    geom_point(aes(y = coeff  * EUAs), color = "#50A192", size = 3) +
-    scale_x_discrete(
-      name = "Year",
-    ) +
-    scale_y_continuous(
-      name = bquote(bold("Required Carbon Price [€/t CO"[2]*"]")),
-      breaks = seq(0, 4000, 500),
-      #labels = label_number(accuracy = 0.01),
-      sec.axis = sec_axis(
-        trans = ~ (. - 0) / coeff, 
-        name = bquote(bold("Yearly Average EUA [€/t CO"[2]*"]")),
-      )
-    ) +
-    labs(x = "Year") +
-    theme_bw() +
-    scale_fill_manual(name = "", 
-                      breaks = c("Min Emission of Fossil Based Methanol", "Max Emission of Fossil Based Methanol"),
-                      values=c("Min Emission of Fossil Based Methanol" = "#242E70", "Max Emission of Fossil Based Methanol" = "#B6DBE2")) +
-    theme(
-      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
-      axis.title.y = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "black", face = "bold"),
-      axis.title.y.right = element_text(color = "#50A192", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#50A192", face = "bold"),
-      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
-      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.5, -0.09),
-      legend.text = element_text(size = 8),
-      legend.direction = "horizontal"
-    )
-  plot
-  #ggsave("04_images/carbonprices_old.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
-}
-
+max.cp = max(data$`Carbon Price Lower Emission`, data$`Carbon Price Lower Emission (Green Case)`)
+min.cp = 0
+max.eua = max(data$`CO2 Price [EUA]`)
+coeff = max.cp / max.eua
 
 #Graph range
 {
   plot = ggplot(data, aes(x = factor(Year), group = 1)) +
-    # Plot only the range as segments starting from Low_emission
-    geom_segment(aes(x = as.numeric(factor(Year)), 
-                     xend = as.numeric(factor(Year)), 
-                     y = Low_emission, 
-                     yend = High_emission), 
-                 color = "#242E70", size = 1) +
-    # Add feather lines
-    geom_segment(aes(x = as.numeric(factor(Year)) - 0.15, 
-                     xend = as.numeric(factor(Year)) + 0.15, 
-                     y = High_emission, 
-                     yend = High_emission), 
-                 color = "#242E70", size = 1) +
-    geom_segment(aes(x = as.numeric(factor(Year)) - 0.15, 
-                     xend = as.numeric(factor(Year)) + 0.15, 
-                     y = Low_emission, 
-                     yend = Low_emission), 
-                 color = "#242E70", size = 1) +
+    
     # Line for EUA
-    geom_line(aes(y = coeff * EUAs), color = "#50A192", linewidth = 1) +
-    geom_point(aes(y = coeff * EUAs), color = "#50A192", size = 3) +
+    geom_line(aes(y = coeff * `CO2 Price [EUA]`), color = "#E66A57", linewidth = 1) +
+    geom_point(aes(y = coeff * `CO2 Price [EUA]`), color = "#E66A57", size = 3) +
     scale_x_discrete(
       name = "Year",
     ) +
+    
+    # Plot only the range as segments starting from Low_emission
+    geom_segment(aes(x = as.numeric(factor(Year))-0.1, 
+                     xend = as.numeric(factor(Year))-0.1, 
+                     y = `Carbon Price Lower Emission`, 
+                     yend = `Carbon Price Higher Emission`), 
+                 color = "#4967AA", size = 1) +
+    # Add feather lines
+    geom_segment(aes(x = as.numeric(factor(Year)) - 0.18, 
+                     xend = as.numeric(factor(Year)) - 0.02, 
+                     y = `Carbon Price Higher Emission`, 
+                     yend = `Carbon Price Higher Emission`), 
+                 color = "#4967AA", size = 1) +
+    geom_segment(aes(x = as.numeric(factor(Year)) - 0.18, 
+                     xend = as.numeric(factor(Year)) - 0.02, 
+                     y = `Carbon Price Lower Emission`, 
+                     yend = `Carbon Price Lower Emission`), 
+                 color = "#4967AA", size = 1) +
+    # Plot only the range as segments starting from Low_emission
+    geom_segment(aes(x = as.numeric(factor(Year))+0.1, 
+                     xend = as.numeric(factor(Year))+0.1, 
+                     y = `Carbon Price Lower Emission (Green Case)`, 
+                     yend = `Carbon Price Higher Emission (Green Case)`), 
+                 color = "#6793D6", size = 1) +
+    # Add feather lines
+    geom_segment(aes(x = as.numeric(factor(Year)) + 0.02, 
+                     xend = as.numeric(factor(Year)) + 0.18, 
+                     y = `Carbon Price Higher Emission (Green Case)`, 
+                     yend = `Carbon Price Higher Emission (Green Case)`), 
+                 color = "#6793D6", size = 1) +
+    geom_segment(aes(x = as.numeric(factor(Year)) + 0.02, 
+                     xend = as.numeric(factor(Year)) + 0.18, 
+                     y = `Carbon Price Lower Emission (Green Case)`, 
+                     yend = `Carbon Price Lower Emission (Green Case)`), 
+                 color = "#6793D6", size = 1) +
+    
     scale_y_continuous(
       name = bquote(bold("Required Carbon Price [€/t CO"[2]*"]")),
-      breaks = seq(0, 4000, 500),
+      breaks = seq(0, 5500, 1000),
       sec.axis = sec_axis(
         trans = ~ (. - 0) / coeff, 
         name = bquote(bold("Yearly Average EUA [€/t CO"[2]*"]")),
@@ -122,14 +98,14 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     theme_bw() +
     scale_fill_manual(name = "", 
                       breaks = c("Range of Required Carbon Prices"),
-                      values = c("Range of Required Carbon Prices" = "#242E70")) +
+                      values = c("Range of Required Carbon Prices" = "#4967AA")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
       axis.title.y = element_text(color = "black", size = 12, face = "bold"),
       axis.text.y = element_text(color = "black", face = "bold"),
-      axis.title.y.right = element_text(color = "#50A192", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#50A192", face = "bold"),
+      axis.title.y.right = element_text(color = "#E66A57", size = 12, face = "bold"),
+      axis.text.y.right = element_text(color = "#E66A57", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       legend.position = c(0.5, -0.09),
@@ -137,6 +113,6 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       legend.direction = "horizontal"
     )
   plot
-  #ggsave("04_images/carbonprices.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
+  #ggsave("04_images/carbonprices_new.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
 }
 
