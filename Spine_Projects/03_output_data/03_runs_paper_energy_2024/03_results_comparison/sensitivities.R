@@ -68,6 +68,11 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   invc05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_05pdown_run.xlsx", sheet = "LCOE"))
   invc05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_05pup_run.xlsx", sheet = "LCOE"))
   invc10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_invc_10pup_run.xlsx", sheet = "LCOE"))
+  
+  eff10pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_eff_10pdown_run.xlsx", sheet = "LCOE"))
+  eff05pdown = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_eff_05pdown_run.xlsx", sheet = "LCOE"))
+  eff05pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_eff_05pup_run.xlsx", sheet = "LCOE"))
+  eff10pup = as.data.frame(read_excel("02_output_prepared/review_1/output_sens_10op_eff_10pup_run.xlsx", sheet = "LCOE"))
 }
 
 
@@ -100,7 +105,10 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   dhprice = rbind(dhprice10pdown, dhprice05pdown, base, dhprice05pup, dhprice10pup)
   dhprice = dhprice %>% 
     filter(!grepl('_PV', run_name))
-
+  
+  eff = rbind(eff10pdown, eff05pdown, base, eff05pup, eff10pup)
+  eff = eff %>% 
+    filter(!grepl('_PV', run_name))
 }
 
 
@@ -117,14 +125,14 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   data$invc = invc$`LCOE [Euro/t]`
   data$dhprice = dhprice$`LCOE [Euro/t]`
   data$percent <- as.numeric(gsub("%", "", data$percent))
-  
+  data$eff = eff$`LCOE [Euro/t]`
 }
 
 
 # Graph investment
 {
-  max.lcoe = max(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand) 
-  min.lcoe = min(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand)
+  max.lcoe = max(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand, data$eff) 
+  min.lcoe = min(data$wacc, data$lifetime, data$invc, data$elprice, data$dhprice, data$variance, data$demand, data$eff)
   
   plot.inv = ggplot(data, aes(x = percent, group = 1)) +
     geom_line(aes(y = demand, color = "Demand"), linewidth = 1) + 
@@ -137,13 +145,13 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_point(aes(y = invc, color = "Investment costs"), size = 3) +
     
     scale_y_continuous(
-      name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
+      name = bquote(bold("LCOM [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
       breaks = seq(1280, 1480, (1480 - 1280)/4),
       labels = label_number(accuracy = 0.01),
     ) +
     scale_x_continuous(
-      name = "Percentage change in value",  # Label for x-axis
+      name = "Percentage change in input value",  # Label for x-axis
       minor_breaks = seq(min(data$percent), max(data$percent), by = 1),
       breaks = seq(min(data$percent), max(data$percent), by = 5)
     ) +
@@ -158,8 +166,8 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.5, 0.1),
-      legend.text = element_text(size = 10),
+      legend.position = c(0.5, 0.07),
+      legend.text = element_text(size = 9),
       legend.direction = "horizontal"
     )
   plot.inv
@@ -176,22 +184,24 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_point(aes(y = elprice, color = "Electricity price"), size = 3) +
     geom_line(aes(y = variance, color = "Electricity price variance"), linewidth = 1) + 
     geom_point(aes(y = variance, color = "Electricity price variance"), size = 3) +
+    geom_line(aes(y = eff, color = "Efficiency Electrolyser"), linewidth = 1) + 
+    geom_point(aes(y = eff, color = "Efficiency Electrolyser"), size = 3) +
     
     scale_y_continuous(
-      name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
+      name = bquote(bold("LCOM [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
       breaks = seq(1280, 1480, (1480 - 1280)/4),
       labels = label_number(accuracy = 0.01)
     ) +
     scale_x_continuous(
-      name = "Percentage change in value",  # Label for x-axis
+      name = "Percentage change in input value",  # Label for x-axis
       minor_breaks = seq(min(data$percent), max(data$percent), by = 1),  # More gridlines on x-axis
       breaks = seq(min(data$percent), max(data$percent), by = 5)  # Major breaks for the x-axis
     ) +
     theme_bw() +
     labs(color = "") +
-    scale_color_manual(breaks=c("District heating price", "Electricity price", "Electricity price variance"),
-                       values=c("District heating price" = "#6793D6", "Electricity price" = "#4967AA", "Electricity price variance" = "#50A192")) +
+    scale_color_manual(breaks=c("District heating price", "Electricity price", "Electricity price variance", "Efficiency Electrolyser"),
+                       values=c("District heating price" = "#6793D6", "Electricity price" = "#4967AA", "Electricity price variance" = "#50A192", "Efficiency Electrolyser" = "#E66A57")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -199,12 +209,11 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.5, 0.1),
-      legend.text = element_text(size = 10),
+      legend.position = c(0.5, 0.07),
+      legend.text = element_text(size = 9),
       legend.direction = "horizontal"
     )
   plot.price
   #ggsave("04_images/sensitivities_prices.png", plot = plot.price, width = 7.5, height = 4, dpi = 300)
 }
 
-0.995*min.lcoe

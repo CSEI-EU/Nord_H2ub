@@ -80,31 +80,35 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_point(aes(y = LCOE_Euro_t), color = "#6793D6", 
                size = ifelse(number == 11, NA, 3)) + 
     
-    # Manually add a fake "scale break" with a white rectangle
-    #annotate("rect", xmin = 10.45, xmax = 10.55, ymin = -Inf, ymax = Inf, fill = "lightgrey", color = "lightgrey") +
-    coord_cartesian(xlim = c(NA, 13.89), ylim=c(1373.5, 1381.8), expand=FALSE, clip="off") +
     scale_x_discrete(
       name = "Number of operating points",
       breaks = c(1:10, 15, 20),
       labels = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "15", "20")
     ) +
-    annotate("segment", x = 0, xend = 13.89, 
-             y=1381.8, yend = 1381.8, color="black", linewidth =0.5) + #upper axis
-    annotate("segment", x = c(0,11.15), xend = c(10.85, 13.89), 
-             y=1373.5, yend = 1373.5, color="black", linewidth =0.5) + #lower axis
-    annotate("segment", x = 10.75, xend = 10.95, y = 1373.3, yend= 1373.7, color = "black") +
-    annotate("segment", x = 11.05, xend = 11.25, y = 1373.3, yend= 1373.7, color = "black") +
-    annotate("segment", x = 11, xend=11, y =1379.3, yend=1379.6, color="white", linewidth=7) +
-    annotate("segment", x = 11, xend=11, y =1380, yend=1380.7, color="white", linewidth=7) +
     
-    #Axis break right y axis
+    # Manually add a fake "scale break" with a white rectangle
+    coord_cartesian(xlim = c(NA, 13.89), ylim=c(1368, 1377), expand=FALSE, clip="off") +
+    
+    # Axis break x axis
+    annotate("segment", x = 0, xend = 13.89, 
+             y=1377, yend = 1377, color="black", linewidth =0.5) + #upper axis
+    annotate("segment", x = c(0,11.15), xend = c(10.85, 13.89), 
+             y=1368, yend = 1368, color="black", linewidth =0.5) + #lower axis
+    annotate("segment", x = 10.75, xend = 10.95, y = 1368-0.2, yend= 1368+0.2, color = "black") +
+    annotate("segment", x = 11.05, xend = 11.25, y = 1368-0.2, yend= 1368+0.2, color = "black") +
+    
+    # Axis break right y axis
     annotate("segment", x = 13.89, xend = 13.89, 
-             y=c(1373.5,1379.55), yend = c(1379.3, 1381.8), color="#4967AA", linewidth =0.5) + 
-    annotate("segment", x = 14.09, xend = 13.69, y = 1379.2, yend= 1379.4, color = "#4967AA") +
-    annotate("segment", x = 14.09, xend = 13.69, y = 1379.45, yend= 1379.65, color = "#4967AA") +
+             y=c(1368,1374.25), yend = c(1374, 1377), color="#4967AA", linewidth =0.5) + 
+    annotate("segment", x = 14.09, xend = 13.69, y = 1374-0.1, yend= 1374+0.1, color = "#4967AA") +
+    annotate("segment", x = 14.09, xend = 13.69, y = 1374.25-0.1, yend= 1374.25+0.1, color = "#4967AA") +
+    
+    # Paint white over cross
+    annotate("segment", x = 11, xend=11, y =1374, yend=1374.25, color="white", linewidth=4) +
+    annotate("segment", x = 11, xend=11, y =1374.8, yend=1375.4, color="white", linewidth=4) +
     
     scale_y_continuous(
-      name = bquote(bold("LCOE [€/t CH"[3]*"OH]")),
+      name = bquote(bold("LCOM [€/t CH"[3]*"OH]")),
       #limits = c(0.9995*min.lcoe, 1.0005*max.lcoe),
       breaks = seq(min.lcoe, max.lcoe, (max.lcoe - min.lcoe)/4),
       labels = label_number(accuracy = 0.01),
