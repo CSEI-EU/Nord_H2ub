@@ -103,7 +103,7 @@ coeff = max.cp / max.eua
     labs(x = "Year") +
     theme_bw() +
     scale_color_manual(breaks = c("With PV", "Without PV"),
-                      values = c("With PV" = "#4967AA", "Without PV" = "#50A192")) +
+                      values = c("With PV" = "#4967AA", "Without PV" = "#6793D6")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -113,10 +113,12 @@ coeff = max.cp / max.eua
       axis.text.y.right = element_text(color = "#E66A57", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.25, 0.9),
-      legend.text = element_text(size = 8),
+      legend.position = c(0.09, 0.93),
+      legend.background = element_rect(fill='transparent'),
+      legend.text = element_text(size = 9),
       legend.title = element_blank(),
-      legend.direction = "horizontal"
+      legend.direction = "vertical",
+      axis(3, at=x,labels=x, col.axis="red", las=2)
     )
   plot
   #ggsave("04_images/carbonprices_new.png", plot = plot, width = 7.5, height = 4.5, dpi = 300)
