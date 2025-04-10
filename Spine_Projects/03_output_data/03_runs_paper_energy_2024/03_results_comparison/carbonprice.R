@@ -44,47 +44,53 @@ coeff = max.cp / max.eua
 {
   plot = ggplot(data, aes(x = factor(Year), group = 1)) +
     
+    # Plot only the range as segments starting from Low_emission
+    geom_segment(aes(x = as.numeric(factor(Year))-0.1, 
+                     xend = as.numeric(factor(Year))-0.1, 
+                     y = `Carbon Price Lower Emission`, 
+                     yend = `Carbon Price Higher Emission`,
+                     color = "With PV"), 
+                 size = 1) +
+    # Add feather lines
+    geom_segment(aes(x = as.numeric(factor(Year)) - 0.18, 
+                     xend = as.numeric(factor(Year)) - 0.02, 
+                     y = `Carbon Price Higher Emission`, 
+                     yend = `Carbon Price Higher Emission`, 
+                     color = "With PV"), 
+                 size = 1) +
+    geom_segment(aes(x = as.numeric(factor(Year)) - 0.18, 
+                     xend = as.numeric(factor(Year)) - 0.02, 
+                     y = `Carbon Price Lower Emission`, 
+                     yend = `Carbon Price Lower Emission`, 
+                     color = "With PV"), 
+                 size = 1) +
+    # Plot only the range as segments starting from Low_emission
+    geom_segment(aes(x = as.numeric(factor(Year))+0.1, 
+                     xend = as.numeric(factor(Year))+0.1, 
+                     y = `Carbon Price Lower Emission (Green Case)`, 
+                     yend = `Carbon Price Higher Emission (Green Case)`,
+                     color = "Without PV"), 
+                 size = 1) +
+    # Add feather lines
+    geom_segment(aes(x = as.numeric(factor(Year)) + 0.02, 
+                     xend = as.numeric(factor(Year)) + 0.18, 
+                     y = `Carbon Price Higher Emission (Green Case)`, 
+                     yend = `Carbon Price Higher Emission (Green Case)`,
+                     color = "Without PV"), 
+                 size = 1) +
+    geom_segment(aes(x = as.numeric(factor(Year)) + 0.02, 
+                     xend = as.numeric(factor(Year)) + 0.18, 
+                     y = `Carbon Price Lower Emission (Green Case)`, 
+                     yend = `Carbon Price Lower Emission (Green Case)`,
+                     color = "Without PV"), 
+                 size = 1) +
+    
     # Line for EUA
     geom_line(aes(y = coeff * `CO2 Price [EUA]`), color = "#E66A57", linewidth = 1) +
     geom_point(aes(y = coeff * `CO2 Price [EUA]`), color = "#E66A57", size = 3) +
     scale_x_discrete(
       name = "Year",
     ) +
-    
-    # Plot only the range as segments starting from Low_emission
-    geom_segment(aes(x = as.numeric(factor(Year))-0.1, 
-                     xend = as.numeric(factor(Year))-0.1, 
-                     y = `Carbon Price Lower Emission`, 
-                     yend = `Carbon Price Higher Emission`), 
-                 color = "#4967AA", size = 1) +
-    # Add feather lines
-    geom_segment(aes(x = as.numeric(factor(Year)) - 0.18, 
-                     xend = as.numeric(factor(Year)) - 0.02, 
-                     y = `Carbon Price Higher Emission`, 
-                     yend = `Carbon Price Higher Emission`), 
-                 color = "#4967AA", size = 1) +
-    geom_segment(aes(x = as.numeric(factor(Year)) - 0.18, 
-                     xend = as.numeric(factor(Year)) - 0.02, 
-                     y = `Carbon Price Lower Emission`, 
-                     yend = `Carbon Price Lower Emission`), 
-                 color = "#4967AA", size = 1) +
-    # Plot only the range as segments starting from Low_emission
-    geom_segment(aes(x = as.numeric(factor(Year))+0.1, 
-                     xend = as.numeric(factor(Year))+0.1, 
-                     y = `Carbon Price Lower Emission (Green Case)`, 
-                     yend = `Carbon Price Higher Emission (Green Case)`), 
-                 color = "#6793D6", size = 1) +
-    # Add feather lines
-    geom_segment(aes(x = as.numeric(factor(Year)) + 0.02, 
-                     xend = as.numeric(factor(Year)) + 0.18, 
-                     y = `Carbon Price Higher Emission (Green Case)`, 
-                     yend = `Carbon Price Higher Emission (Green Case)`), 
-                 color = "#6793D6", size = 1) +
-    geom_segment(aes(x = as.numeric(factor(Year)) + 0.02, 
-                     xend = as.numeric(factor(Year)) + 0.18, 
-                     y = `Carbon Price Lower Emission (Green Case)`, 
-                     yend = `Carbon Price Lower Emission (Green Case)`), 
-                 color = "#6793D6", size = 1) +
     
     scale_y_continuous(
       name = bquote(bold("Required Carbon Price [€/t CO"[2]*"]")),
@@ -96,9 +102,8 @@ coeff = max.cp / max.eua
     ) +
     labs(x = "Year") +
     theme_bw() +
-    scale_fill_manual(name = "", 
-                      breaks = c("Range of Required Carbon Prices"),
-                      values = c("Range of Required Carbon Prices" = "#4967AA")) +
+    scale_color_manual(breaks = c("With PV", "Without PV"),
+                      values = c("With PV" = "#4967AA", "Without PV" = "#50A192")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -108,8 +113,9 @@ coeff = max.cp / max.eua
       axis.text.y.right = element_text(color = "#E66A57", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
-      legend.position = c(0.5, -0.09),
+      legend.position = c(0.25, 0.9),
       legend.text = element_text(size = 8),
+      legend.title = element_blank(),
       legend.direction = "horizontal"
     )
   plot
