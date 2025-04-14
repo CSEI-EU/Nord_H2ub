@@ -40,10 +40,8 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 }
 
 {
-  coeff.1.f = 2.5 * max(february$`10 op`) / max(february$`PV Production`)
-  coeff.1.a = 2.5 * max(april$`10 op`) / max(april$`PV Production`)
-  coeff.2.f = 0.75 * max(february$`10 op`) / max(february$`power price`)
-  coeff.2.a = 0.75 * max(april$`10 op`) / max(april$`power price`)
+  coeff.1 = 2.5 * max(february$`10 op`, april$`10 op`) / max(february$`PV Production`, april$`PV Production`)
+  coeff.2 = 0.75 * max(february$`10 op`, april$`10 op`) / max(february$`power price`,april$`power price`)
 }
 
 # February - H2 PV production
@@ -51,14 +49,14 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   #Combined
   plot.1.f = ggplot(february, aes(x = Time, group = 1)) +
     geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1) +
-    geom_line(aes(y = coeff.1.f  * `PV Production`), color = "#50A192", linewidth = 1) +
+    geom_line(aes(y = coeff.1  * `PV Production`), color = "#50A192", linewidth = 1) +
     
     scale_y_continuous(
-      name = bquote(bold("MWh H2")),
+      name = bquote(bold("Electrolyzer [MW]")),
       breaks = seq(0, 80, 10),
       sec.axis = sec_axis(
-        trans = ~ (. - 0) / coeff.1.f, 
-        name = bquote(bold("MWh PV")),
+        trans = ~ . / coeff.1, 
+        name = bquote(bold("PV [MW]")),
         breaks = seq(0,300, 50)
       )
     ) +
@@ -68,7 +66,6 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       date_labels = "%d/%m"
     ) +
     theme_bw() +
-    #theme_classic() +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -91,14 +88,14 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   #Combined
   plot.2.f = ggplot(february, aes(x = Time, group = 1)) +
     geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1) +
-    geom_line(aes(y = coeff.2.f  * `power price`), color = "#4967AA", linewidth = 1) +
+    geom_line(aes(y = coeff.2  * `power price`), color = "#4967AA", linewidth = 1) +
     
     scale_y_continuous(
-      name = bquote(bold("MWh H2")),
+      name = bquote(bold("Electrolyzer [MW]")),
       breaks = seq(0, 70, 10),
       sec.axis = sec_axis(
-        trans = ~ (. - 0) / coeff.2.f, 
-        name = bquote(bold("Power Price")),
+        trans = ~ (. - 0) / coeff.2, 
+        name = bquote(bold("Power Price [€/MWh]")),
         breaks = seq(0,80, 10)
       )
     ) +
@@ -130,14 +127,14 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   #Combined
   plot.1.a = ggplot(april, aes(x = Time, group = 1)) +
     geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1) +
-    geom_line(aes(y = coeff.1.a  * `PV Production`), color = "#50A192", linewidth = 1) +
+    geom_line(aes(y = coeff.1  * `PV Production`), color = "#50A192", linewidth = 1) +
     
     scale_y_continuous(
-      name = bquote(bold("MWh H2")),
+      name = bquote(bold("Electrolyzer [MW]")),
       breaks = seq(0, 80, 10),
       sec.axis = sec_axis(
-        trans = ~ . / coeff.1.a, 
-        name = bquote(bold("MWh PV")),
+        trans = ~ . / coeff.1, 
+        name = bquote(bold("PV [MW]")),
         breaks = seq(0,300, 50)
       )
     ) +
@@ -147,7 +144,6 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
       date_labels = "%d/%m"
     ) +
     theme_bw() +
-    #theme_classic() +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
       axis.text.x = element_text(color = "black", face = "bold"),
@@ -169,15 +165,15 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 {
   #Combined
   plot.2.a = ggplot(april, aes(x = Time, group = 1)) +
-    geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1.25) +
-    geom_line(aes(y = coeff.2.a  * `power price`), color = "#4967AA", linewidth = 1.25) +
+    geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1) +
+    geom_line(aes(y = coeff.2  * `power price`), color = "#4967AA", linewidth = 1) +
     
     scale_y_continuous(
-      name = bquote(bold("MWh H2")),
+      name = bquote(bold("Electrolyzer [MW]")),
       breaks = seq(0, 70, 10),
       sec.axis = sec_axis(
-        trans = ~ (. - 0) / coeff.2.a, 
-        name = bquote(bold("Power Price")),
+        trans = ~ (. - 0) / coeff.2, 
+        name = bquote(bold("Power Price [€/MWh]")),
         breaks = seq(0,80, 10)
       )
     ) +
