@@ -41,8 +41,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     geom_line(aes(y = `2019`, color = "2019"), linewidth = 0.9) +
     geom_line(aes(y = `2050`, color = "2050"), linewidth = 0.9) + 
     scale_y_continuous(
-      name = "Power Price [€/MWh]",
-      labels = label_number(accuracy = 0.01),
+      name = "Power Price [€/MWh]"
     ) +
     scale_x_datetime(
       name = "Time",
@@ -55,9 +54,9 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
                        values=c("2019" = "#242E70", "2050" = "#6793D6")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
+      axis.text.x = element_text(color = "black", size = 10, face = "bold"),
       axis.title.y = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "black", face = "bold"),
+      axis.text.y = element_text(color = "black", size = 10, face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       legend.position = c(0.5, -0.106),

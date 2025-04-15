@@ -76,9 +76,13 @@ values_short = c(inv_costs_pv, inv_costs_elec, inv_costs_methanol, inv_costs_res
            costs_power, costs_grid, costs_co2 + costs_water, costs_fom,
            rev_dh, rev_pv)
 total = - sum(values_short)
-category = c("Investment", "Investment", "Investment", "Investment", "Investment", "Variable", "Variable", "Variable", "Variable", "Revenue", "Revenue", "LCOM")
+category = c("Investment Costs", "Investment Costs", "Investment Costs", "Investment Costs", "Investment Costs", 
+             "Variable Costs", "Variable Costs", "Variable Costs", "Variable Costs", 
+             "Revenue", "Revenue", "LCOM")
 
 df = data.frame(x = factor(names, levels = names), values = round(c(values_short, total)), category = category)
+
+df$category <- factor(df$category, levels = c("Investment Costs", "Variable Costs", "Revenue", "LCOM"))
 
 for (i in 1:(nrow(df)-1)) {
   
@@ -90,28 +94,37 @@ for (i in 1:(nrow(df)-1)) {
     value_new = value + 60
   }
   
+  df$test[i] = value
   df$former[i] = value_new
 }
-df$former[nrow(df)] = -df$values[nrow(df)] + 60
 
-col <- ifelse (df$category == "Investment", "#4967AA", 
-               ifelse(df$category == "Variable", "#6793D6", 
+df$before[1] = 0
+for (i in 2:(nrow(df))) {
+  df$before[i] = df$test[i-1]-2
+}
+df$former[nrow(df)] = -df$values[nrow(df)] + 60
+df$test[nrow(df)] = sum(df$values[1:nrow(df)])
+
+col <- ifelse (df$category == "Investment Costs", "#4967AA", 
+               ifelse(df$category == "Variable Costs", "#6793D6", 
                       ifelse(df$category == "Revenue", "#50A192", "grey")))
 
 #Graph
 {
   # Create waterfall diagram
   p = waterfall(df, 
-                calc_total = FALSE, linetype = 1,
+                calc_total = FALSE, 
+                linetype = 1,
                 rect_text_labels = rep("", nrow(df)),
-                fill_by_sign = FALSE, fill_colours = col, rect_border = col) +
+                fill_by_sign = FALSE, 
+                fill_colours = col, 
+                rect_border = col) +
     
     # Add y axis label
     scale_y_continuous(
       name = bquote(bold("[€/t CH"[3]*"OH]")),
       breaks = seq(0, 1600, 500)
     ) +
-    #labs(y = "€ / t") +
     
     # Add top and right axis
     coord_cartesian(xlim = c(NA, 13), ylim=c(-50, 1650), expand=FALSE, clip="off") +
@@ -120,25 +133,97 @@ col <- ifelse (df$category == "Investment", "#4967AA",
     annotate("segment", x = 13, xend = 13, 
              y=-50, yend = 1650, color="black", linewidth =0.5) + #upper axis
     
-    scale_color_manual(breaks=c("Investment", "Variable", "Revenue", "LCOM"),
-                       values=c("Investment" = "#4967AA", "Variable" = "#6793D6", "Revenue" = "#50A192", "LCOM" = "grey")) +
+    # Dummy layer to trigger legend
+    geom_point(data = df, 
+               aes(x = x, y = 0, fill = category), 
+               shape = 22, size = 5, alpha = 0) +
+    
+    scale_fill_manual(values=c("Investment Costs" = "#4967AA", 
+                               "Variable Costs" = "#6793D6", 
+                               "Revenue" = "#50A192", 
+                               "LCOM" = "grey")) +
+    
+    scale_color_manual(values = c("Investment Costs" = "#4967AA",
+                                  "Variable Costs" = "#6793D6",
+                                  "Revenue" = "#50A192",
+                                  "LCOM" = "grey"
+                                  )) +
+    geom_text(data = df,
+              aes(x = x, y = former, 
+                  label = round(c(values_short, -total)), colour = category
+              ),
+              size = 3, fontface ="bold") + 
+    
+    # Force legend appearance for fill
+    guides(fill = guide_legend(override.aes = list(shape = 16, size = 4))) +
+    
     theme_classic() +
-    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
     theme(
-      axis.text.x = element_text(color = "black", face = "bold"),
+      axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, color = "black", face = "bold"),
       axis.text.y = element_text(color = "black", face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       axis.title.x = element_blank(),
-      legend.title=element_blank(),
+      legend.title = element_blank(),
       legend.text = element_text(color = "black", face="bold")
-    ) + 
-    geom_text(data = df,
-              aes(x = x, y = former, 
-                  label = round(c(values_short, -total)), colour = category),
-              size = 3, fontface ="bold")
+    )
   p
   #ggsave("04_images/waterfall.png", plot = p, width = 7.5, height = 4, dpi = 300)
 }
 
+
+#Graph
+{
+  # Create waterfall diagram
+  plot = ggplot(df, aes(x = x, group = 1)) +
+    
+    # Plot only the range as segments starting from Low_emission
+    geom_segment(aes(x = as.numeric(x), 
+                     xend = as.numeric(x), 
+                     y = `before`, 
+                     yend = `test`,
+                     color = `category`), 
+                 #color = col,
+                 size = 7) +
+    
+    # Add black line at 0
+    annotate("segment", x = 0, xend = 12.89, 
+             y=0, yend = 0, color="black", linewidth =0.25) + 
+    
+    scale_y_continuous(
+      name = bquote(bold("[€/t CO"[2]*"]")),
+      breaks = seq(0, 1500, 500)
+    ) +
+    
+    scale_x_discrete(
+      name = "",
+    ) +
+    
+    scale_color_manual(values=c("Investment Costs" = "#4967AA", 
+                               "Variable Costs" = "#6793D6", 
+                               "Revenue" = "#50A192", 
+                               "LCOM" = "grey")) +
+    geom_text(data = df,
+              aes(x = x, y = former, 
+                  label = round(c(values_short, -total)), colour = category
+              ),
+              size = 3.5, fontface ="bold") +
+    theme_bw() +
+    theme(
+      axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, color = "black", size = 10, face = "bold"),
+      axis.title.y = element_text(color = "black", size = 12, face = "bold"),
+      axis.text.y = element_text(color = "black", size = 10, face = "bold"),
+      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
+      #legend.position = c(0.09, 0.9),
+      #legend.background = element_rect(fill='transparent'),
+      legend.text = element_text(size = 10),
+      legend.title = element_blank(),
+      legend.direction = "vertical",
+      axis.ticks.y.right = element_blank(),
+      axis.text.y.right = element_blank()
+    )
+  plot
+  #ggsave("04_images/waterfall.png", plot = p, width = 7.5, height = 4, dpi = 300)
+}
 

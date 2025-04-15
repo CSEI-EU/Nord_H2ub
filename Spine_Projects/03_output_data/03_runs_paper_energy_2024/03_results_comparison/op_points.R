@@ -124,11 +124,11 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     theme_classic() +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
+      axis.text.x = element_text(color = "black", size = 10, face = "bold"),
       axis.title.y = element_text(color = "#6793D6", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "#6793D6", face = "bold"),
+      axis.text.y = element_text(color = "#6793D6", size = 10, face = "bold"),
       axis.title.y.right = element_text(color = "#4967AA", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#4967AA", face = "bold"),
+      axis.text.y.right = element_text(color = "#4967AA", size = 10, face = "bold"),
       axis.line.x = element_blank(),
       axis.line.y.right = element_blank(),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),

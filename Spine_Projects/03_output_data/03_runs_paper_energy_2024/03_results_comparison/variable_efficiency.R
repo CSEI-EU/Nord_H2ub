@@ -33,23 +33,22 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   data_february = as.data.frame(read_excel("03_results_comparison/output_example_weeks.xlsx", sheet = "week february"))
   data_april = as.data.frame(read_excel("03_results_comparison/output_example_weeks.xlsx", sheet = "week april"))
   
-  data_february$time = as.POSIXct(data_february$...1, format = "%Y-%m-%dT%H:%M:%S")
-  data_february$date <- as.Date(data_february$time)
+  data_february$Time = as.POSIXct(data_february$Time, format = "%Y-%m-%dT%H:%M:%S")
+  data_february$Date <- as.Date(data_february$Time)
   
-  data_april$time = as.POSIXct(data_april$...1, format = "%Y-%m-%dT%H:%M:%S")
-  data_april$date <- as.Date(data_april$time)
+  data_april$Time = as.POSIXct(data_april$Time, format = "%Y-%m-%dT%H:%M:%S")
+  data_april$Date <- as.Date(data_april$Time)
 }
 
 
 #Plots
 #February
 {
-  plot.february = ggplot(data_february, aes(x = time, group = 1)) +
+  plot.february = ggplot(data_february, aes(x = Time, group = 1)) +
     geom_line(aes(y = Constant, color = "1 op"), linewidth = 1) +
     geom_line(aes(y = `10 op`, color = "10 op"), linewidth = 1) + 
     scale_y_continuous(
-      name = "Electrolyzer [MW]",
-      labels = label_number(accuracy = 0.01),
+      name = "Electrolyzer [MW]"
     ) +
     scale_x_datetime(
       name = "Time",  # Label for x-axis
@@ -62,13 +61,13 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
                        values=c("1 op" = "#6793D6", "10 op" = "#242E70")) +
     theme(
       axis.title.x = element_text(color = "black", size = 15, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold", size = 10),
+      axis.text.x = element_text(color = "black", size = 12, face = "bold"),
       axis.title.y = element_text(color = "black", size = 15, face = "bold"),
-      axis.text.y = element_text(color = "black", face = "bold"),
+      axis.text.y = element_text(color = "black", size = 12, face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       legend.position = c(0.875, -0.09),
-      legend.text = element_text(size = 10, face="bold"),
+      legend.text = element_text(size = 12, face="bold"),
       legend.background=element_rect(fill = alpha("white", 0)),
       legend.direction = "horizontal"
     )
@@ -78,12 +77,11 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
 
 #April
 {
-  plot.april = ggplot(data_april, aes(x = time, group = 1)) +
+  plot.april = ggplot(data_april, aes(x = Time, group = 1)) +
     geom_line(aes(y = Constant, color = "1 op"), linewidth = 1) +
     geom_line(aes(y = `10 op`, color = "10 op"), linewidth = 1) + 
     scale_y_continuous(
-      name = "Electrolyzer [MW]",
-      labels = label_number(accuracy = 0.01),
+      name = "Electrolyzer [MW]"
     ) +
     scale_x_datetime(
       name = "Time",  # Label for x-axis
@@ -96,13 +94,13 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
                        values=c("1 op" = "#6793D6", "10 op" = "#242E70")) +
     theme(
       axis.title.x = element_text(color = "black", size = 15, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold", size = 10),
+      axis.text.x = element_text(color = "black", size = 12, face = "bold"),
       axis.title.y = element_text(color = "black", size = 15, face = "bold"),
-      axis.text.y = element_text(color = "black", face = "bold"),
+      axis.text.y = element_text(color = "black", size =12, face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       legend.position = c(0.875, -0.09),
-      legend.text = element_text(size = 10, face="bold"),
+      legend.text = element_text(size = 12, face="bold"),
       legend.background=element_rect(fill = alpha("white", 0)),
       legend.direction = "horizontal"
     )

@@ -54,6 +54,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     scale_y_continuous(
       name = bquote(bold("Electrolyzer [MW]")),
       breaks = seq(0, 80, 10),
+      limits = c(0, 80),
       sec.axis = sec_axis(
         trans = ~ . / coeff.1, 
         name = bquote(bold("PV [MW]")),
@@ -67,12 +68,12 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     ) +
     theme_bw() +
     theme(
-      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
-      axis.title.y = element_text(color = "#E66A57", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "#E66A57", face = "bold"),
-      axis.title.y.right = element_text(color = "#50A192", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#50A192", face = "bold"),
+      axis.title.x = element_text(color = "black", size = 16, face = "bold"),
+      axis.text.x = element_text(color = "black", size=13, face = "bold"),
+      axis.title.y = element_text(color = "#E66A57", size = 16, face = "bold"),
+      axis.text.y = element_text(color = "#E66A57", size = 13, face = "bold"),
+      axis.title.y.right = element_text(color = "#50A192", size = 16, face = "bold"),
+      axis.text.y.right = element_text(color = "#50A192", size = 13, face = "bold"),
       axis.line.x = element_blank(),
       axis.line.y.right = element_blank(),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
@@ -81,6 +82,46 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
   plot.1.f
   #ggsave("04_images/h2_pv_feb_prod.png", plot = plot.1.f, width = 7.5, height = 4, dpi = 300)
 }
+
+# April - H2 PV production
+{
+  #Combined
+  plot.1.a = ggplot(april, aes(x = Time, group = 1)) +
+    geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1) +
+    geom_line(aes(y = coeff.1  * `PV Production`), color = "#50A192", linewidth = 1) +
+    
+    scale_y_continuous(
+      name = bquote(bold("Electrolyzer [MW]")),
+      breaks = seq(0, 80, 10),
+      limits = c(0, 80),
+      sec.axis = sec_axis(
+        trans = ~ . / coeff.1, 
+        name = bquote(bold("PV [MW]")),
+        breaks = seq(0,300, 50)
+      )
+    ) +
+    scale_x_datetime(
+      name = "Time",
+      date_breaks = "1 day",
+      date_labels = "%d/%m"
+    ) +
+    theme_bw() +
+    theme(
+      axis.title.x = element_text(color = "black", size = 16, face = "bold"),
+      axis.text.x = element_text(color = "black", size=13, face = "bold"),
+      axis.title.y = element_text(color = "#E66A57", size = 16, face = "bold"),
+      axis.text.y = element_text(color = "#E66A57", size = 13, face = "bold"),
+      axis.title.y.right = element_text(color = "#50A192", size = 16, face = "bold"),
+      axis.text.y.right = element_text(color = "#50A192", size = 13, face = "bold"),
+      axis.line.x = element_blank(),
+      axis.line.y.right = element_blank(),
+      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
+      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5)
+    )
+  plot.1.a
+  #ggsave("04_images/h2_pv_april_prod.png", plot = plot.1.a, width = 7.5, height = 4, dpi = 300)
+}
+
 
 
 # February - H2 PV price
@@ -106,12 +147,12 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     ) +
     theme_bw() +
     theme(
-      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
-      axis.title.y = element_text(color = "#E66A57", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "#E66A57", face = "bold"),
-      axis.title.y.right = element_text(color = "#4967AA", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#4967AA", face = "bold"),
+      axis.title.x = element_text(color = "black", size = 16, face = "bold"),
+      axis.text.x = element_text(color = "black", size=13, face = "bold"),
+      axis.title.y = element_text(color = "#E66A57", size = 16, face = "bold"),
+      axis.text.y = element_text(color = "#E66A57", size = 13, face = "bold"),
+      axis.title.y.right = element_text(color = "#4967AA", size = 16, face = "bold"),
+      axis.text.y.right = element_text(color = "#4967AA", size = 13, face = "bold"),
       axis.line.x = element_blank(),
       axis.line.y.right = element_blank(),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
@@ -119,45 +160,6 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     )
   plot.2.f
   #ggsave("04_images/h2_pv_feb_price.png", plot = plot.2.f, width = 7.5, height = 4, dpi = 300)
-}
-
-
-# April - H2 PV production
-{
-  #Combined
-  plot.1.a = ggplot(april, aes(x = Time, group = 1)) +
-    geom_line(aes(y = `10 op`), color = "#E66A57", linewidth = 1) +
-    geom_line(aes(y = coeff.1  * `PV Production`), color = "#50A192", linewidth = 1) +
-    
-    scale_y_continuous(
-      name = bquote(bold("Electrolyzer [MW]")),
-      breaks = seq(0, 80, 10),
-      sec.axis = sec_axis(
-        trans = ~ . / coeff.1, 
-        name = bquote(bold("PV [MW]")),
-        breaks = seq(0,300, 50)
-      )
-    ) +
-    scale_x_datetime(
-      name = "Time",
-      date_breaks = "1 day",
-      date_labels = "%d/%m"
-    ) +
-    theme_bw() +
-    theme(
-      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
-      axis.title.y = element_text(color = "#E66A57", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "#E66A57", face = "bold"),
-      axis.title.y.right = element_text(color = "#50A192", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#50A192", face = "bold"),
-      axis.line.x = element_blank(),
-      axis.line.y.right = element_blank(),
-      panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
-      panel.grid.minor = element_line(color = "gray98", linewidth = 0.5)
-    )
-  plot.1.a
-  #ggsave("04_images/h2_pv_april_prod.png", plot = plot.1.a, width = 7.5, height = 4, dpi = 300)
 }
 
 
@@ -185,12 +187,12 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     theme_bw() +
     #theme_classic() +
     theme(
-      axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
-      axis.title.y = element_text(color = "#E66A57", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "#E66A57", face = "bold"),
-      axis.title.y.right = element_text(color = "#4967AA", size = 12, face = "bold"),
-      axis.text.y.right = element_text(color = "#4967AA", face = "bold"),
+      axis.title.x = element_text(color = "black", size = 16, face = "bold"),
+      axis.text.x = element_text(color = "black", size=13, face = "bold"),
+      axis.title.y = element_text(color = "#E66A57", size = 16, face = "bold"),
+      axis.text.y = element_text(color = "#E66A57", size = 13, face = "bold"),
+      axis.title.y.right = element_text(color = "#4967AA", size = 16, face = "bold"),
+      axis.text.y.right = element_text(color = "#4967AA", size = 13, face = "bold"),
       axis.line.x = element_blank(),
       axis.line.y.right = element_blank(),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),

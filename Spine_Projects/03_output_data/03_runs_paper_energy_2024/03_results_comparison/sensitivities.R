@@ -147,8 +147,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     scale_y_continuous(
       name = bquote(bold("LCOM [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
-      breaks = seq(1280, 1480, (1480 - 1280)/4),
-      labels = label_number(accuracy = 0.01),
+      breaks = seq(1280, 1480, (1480 - 1280)/4)
     ) +
     scale_x_continuous(
       name = "Percentage change in input value",  # Label for x-axis
@@ -161,12 +160,13 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
                        values=c("Demand" = "#6793D6", "Lifetime" = "#50A192", "WACC" = "#4967AA", "Investment costs" = "#E66A57")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
+      axis.text.x = element_text(color = "black", size = 10, face = "bold"),
       axis.title.y = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "black", face = "bold"),
+      axis.text.y = element_text(color = "black", size = 10, face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       legend.position = c(0.5, 0.07),
+      legend.background = element_rect(fill='transparent'),
       legend.text = element_text(size = 9),
       legend.direction = "horizontal"
     )
@@ -190,8 +190,7 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
     scale_y_continuous(
       name = bquote(bold("LCOM [€/t CH"[3]*"OH]")),
       limits = c(0.99*min.lcoe, 1.005*max.lcoe),
-      breaks = seq(1280, 1480, (1480 - 1280)/4),
-      labels = label_number(accuracy = 0.01)
+      breaks = seq(1280, 1480, (1480 - 1280)/4)
     ) +
     scale_x_continuous(
       name = "Percentage change in input value",  # Label for x-axis
@@ -204,13 +203,14 @@ setwd("C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/Gi
                        values=c("District heating price" = "#6793D6", "Electricity price" = "#4967AA", "Electricity price variance" = "#50A192", "Efficiency Electrolyser" = "#E66A57")) +
     theme(
       axis.title.x = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.x = element_text(color = "black", face = "bold"),
+      axis.text.x = element_text(color = "black", size = 10, face = "bold"),
       axis.title.y = element_text(color = "black", size = 12, face = "bold"),
-      axis.text.y = element_text(color = "black", face = "bold"),
+      axis.text.y = element_text(color = "black", size = 10, face = "bold"),
       panel.grid.major = element_line(color = "gray98", linewidth = 0.5),
       panel.grid.minor = element_line(color = "gray98", linewidth = 0.5),
       legend.position = c(0.5, 0.07),
-      legend.text = element_text(size = 9),
+      legend.background = element_rect(fill='transparent'),
+      legend.text = element_text(size = 10),
       legend.direction = "horizontal"
     )
   plot.price
