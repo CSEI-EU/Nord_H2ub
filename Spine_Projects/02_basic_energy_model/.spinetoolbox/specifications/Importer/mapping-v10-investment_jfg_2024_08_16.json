@@ -52,7 +52,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 4
+                                "position": 3
                             }
                         ]
                     }
@@ -1266,8 +1266,7 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "string",
-                "4": "string"
+                "3": "string"
             },
             "Unit_Inv_Parameters": {
                 "0": "string",

@@ -152,7 +152,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2025-03-10T10:25:38": true
+                                "Run SpineOpt@2025-03-26T16:03:38": true
                             }
                         }
                     },
@@ -195,7 +195,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
+                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -272,14 +272,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -46.16727514330426,
+            "x": -63.626146976682634,
             "y": -155.5160639905838,
-            "specification": "mapping-v11-investment_djh_2024_08_19",
+            "specification": "mapping-v13-_djh_2025_04_29",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
+                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -298,8 +298,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 62.42817591699213,
-            "y": 49.28540203973063,
+            "x": 68.77685658367517,
+            "y": -157.04671962746832,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -307,7 +307,7 @@
                 "database": {
                     "type": "path",
                     "relative": true,
-                    "path": ".spinetoolbox/items/input/InputTest.sqlite"
+                    "path": ".spinetoolbox/items/input/Input.sqlite"
                 },
                 "schema": ""
             }
@@ -315,8 +315,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 436.9972314189449,
-            "y": 52.571095509046,
+            "x": 417.95118941889575,
+            "y": -156.93536649149445,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
