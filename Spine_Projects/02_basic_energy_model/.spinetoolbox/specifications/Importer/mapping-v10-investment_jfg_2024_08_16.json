@@ -1,5 +1,5 @@
 {
-    "name": "mapping-v11-investment_djh_2024_08_19",
+    "name": "mapping-v13-_djh_2025_04_29",
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
@@ -43,7 +43,8 @@
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": 3
+                                "position": "hidden",
+                                "value": "Base"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -978,12 +979,11 @@
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-                                "position": -1
+                                "position": -2
                             },
                             {
                                 "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "connection"
+                                "position": -1
                             },
                             {
                                 "map_type": "Dimension",
@@ -997,11 +997,11 @@
                             },
                             {
                                 "map_type": "Element",
-                                "position": -2
+                                "position": -3
                             },
                             {
                                 "map_type": "Element",
-                                "position": -3
+                                "position": -4
                             },
                             {
                                 "map_type": "EntityMetadata",
@@ -1009,7 +1009,7 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": -4
+                                "position": -5
                             },
                             {
                                 "map_type": "Alternative",
@@ -1247,7 +1247,9 @@
                 "2": "float",
                 "3": "float",
                 "4": "float",
-                "5": "float"
+                "5": "float",
+                "6": "float",
+                "7": "float"
             },
             "Model_components": {
                 "0": "string",
@@ -1345,7 +1347,8 @@
             "Energy_prices": {
                 "1": "string",
                 "2": "string",
-                "3": "string"
+                "3": "string",
+                "4": "string"
             },
             "Time_series": {
                 "1": "string"
