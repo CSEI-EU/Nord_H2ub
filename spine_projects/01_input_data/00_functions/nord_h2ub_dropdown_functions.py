@@ -54,26 +54,10 @@ def create_name_rep_input():   # Necessary? I do not think so. D.H.
     return widgets.VBox([label2, name_rep_input], layout=get_general_vbox_layout()), name_rep_input
 
 
-def create_scen_name_input_sev():   # Not used yet
+def create_scen_name_input():
     label3 = widgets.Label(
         "Please choose the name of the scenario:")
     base_name_input = widgets.Text(
-        description = "Base Scenario:",
-        layout = general_input_layout
-    )
-    additional_names_input = widgets.Textarea(
-        placeholder = 'Enter each scenario name on a new line',
-        description = 'Other Scenarios:',
-        layout = general_input_layout
-    )
-    return widgets.VBox([label3, base_name_input, additional_names_input], layout=get_general_vbox_layout()), base_name_input, additional_names_input
-
-
-def create_scen_name_input():   # Necessary? I do not think so. D.H.
-    label3 = widgets.Label(
-        "Please choose the name of the scenario:")
-    base_name_input = widgets.Text(
-        description="Base Scenario:",
         layout = general_input_layout
     )
     return widgets.VBox([label3, base_name_input], layout=get_general_vbox_layout()), base_name_input
@@ -1367,8 +1351,7 @@ def create_combined_dropdowns_tabs():
     section_4 = widgets.HTML("<b>Section 4: Define the parameters of electrolysis. If not specified, default values will be applied.</b>")
     section_5 = widgets.HTML("<b>Section 5: Define the economic parameters of the general model. If not specified, default values will be applied.</b>")
     section_6 = widgets.HTML("<b>Section 6: Define the parameters for the investments. If not specified, default values will be applied.</b>")
-    section_7 = widgets.HTML("<b>Section 7: Define the variables for the report. If not specified, default values will be applied.</b>")
-    section_8 = widgets.HTML("<b>Section 8: Define the parameters for the different scenarios. If not specified, default values will be applied.</b>")
+    section_7 = widgets.HTML("<b>Section 8: Define the scenario name. If not specified, default values will be applied.</b>")
 
     # Get the dropdown menus
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
@@ -1387,7 +1370,6 @@ def create_combined_dropdowns_tabs():
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
     multiple_choice_power_box, selected_powers, capacities_powers, investment_res, investment_ps, investment_ps_capacity = create_multiple_choice_power()
     scen_name_box, base_scen = create_scen_name_input()
-    #scen_name_box, base_scen, other_scen = create_scen_name_input_sev()
     stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
     stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
@@ -1417,7 +1399,6 @@ def create_combined_dropdowns_tabs():
         'run_name': run_name,
         'reports': selected_reports,
         'base_scen': base_scen,
-        #'other_scen': other_scen,
         'stoch_scen': stoch_scen,
         'stoch_struc': stoch_struc,
         'roll_forward': dropdown_roll,
@@ -1459,12 +1440,8 @@ def create_combined_dropdowns_tabs():
     ])
 
     page7 = widgets.VBox([
-        section_7, scen_name_box, stoch_scen_vbox, stoch_struc_vbox
+        section_7, scen_name_box #, stoch_scen_vbox, stoch_struc_vbox
     ])
-
-    page8 = widgets.VBox([
-        section_8, report_name_box, multiple_choice_report_box
-    ])  
 
     # Create Tab widget
     tabs = widgets.Tab()
@@ -1483,7 +1460,6 @@ def create_combined_dropdowns_tabs():
                 tabs.set_title(4, 'Economic')
                 tabs.set_title(5, 'Investment')
                 #tabs.set_title(6, 'Scenario')
-                #tabs.set_title(7, 'Results')
     dropdown_product.observe(add_tabs_on_product_selection, names='value')
 
     # Function to show/hide demand based on product value
@@ -1561,7 +1537,6 @@ def get_dropdown_values(dropdowns):
         
         # Other text fields
         'base_scen': dropdowns['base_scen'].value,
-        #'other_scen': dropdowns['other_scen'].value,
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,
