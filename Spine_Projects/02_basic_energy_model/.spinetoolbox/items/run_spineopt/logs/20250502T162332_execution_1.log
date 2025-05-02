@@ -1,0 +1,61 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:57290 http://127.0.0.1:57302
+Setting model objective...2-element Vector{String}:
+ "http://127.0.0.1:57290"
+ "http://127.0.0.1:57302"
+Running SpineOpt...
+[SpineOpt version 0.8.3 (git hash: N/A)]
+[SpineInterface version 0.14.8 (git hash: N/A)]
+Execution started at 2025-05-02T16:23:32.244
+Reading input data from sqlite:///C:\Users\djh.eco\OneDrive - CBS - Copenhagen Business School\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+ERROR: LoadError: cannot assign a value to imported variable Base.Base from module SpineOpt
+Stacktrace:
+  [1] top-level scope
+    @ C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:304
+  [2] eval
+    @ .\boot.jl:430 [inlined]
+  [3] _generate_convenience_functions(data::Dict{String, Any}, mod::Module; filters::Nothing, extend::Bool)
+    @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:303
+  [4] _generate_convenience_functions
+    @ C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:248 [inlined]
+  [5] #using_spinedb#106
+    @ C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:43 [inlined]
+  [6] macro expansion
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:247 [inlined]
+  [7] macro expansion
+    @ .\timing.jl:581 [inlined]
+  [8] macro expansion
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:51 [inlined]
+  [9] _init_data_from_db(url_in::String, log_level::Int64, upgrade::Bool, templates::Tuple{}, filters::Dict{String, String}, st::Nothing)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:240
+ [10] _init_data_from_db(url_in::String, log_level::Int64, upgrade::Bool, templates::Tuple{}, filters::Dict{String, String})
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:239
+ [11] prepare_spineopt(url_in::String; log_level::Int64, upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:211
+ [12] prepare_spineopt
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:199 [inlined]
+ [13] _run_spineopt(f::SpineOpt.var"#65#66", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:140
+ [14] #68
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:99 [inlined]
+ [15] _log_to_file
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:225 [inlined]
+ [16] #run_spineopt#67
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:98 [inlined]
+ [17] run_spineopt(f::Function, url_in::String, url_out::String)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:80
+ [18] #run_spineopt#64
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:64 [inlined]
+ [19] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:63
+ [20] top-level scope
+    @ C:\Users\djh.eco\.spinetoolbox\work\run_spineopt__16b608233fa34f5bbc44e15f1af46d9d__toolbox\run_spineopt.jl:3
+ [21] include(fname::String)
+    @ Main .\sysimg.jl:38
+ [22] top-level scope
+    @ none:1
+in expression starting at C:\Users\djh.eco\.spinetoolbox\work\run_spineopt__16b608233fa34f5bbc44e15f1af46d9d__toolbox\run_spineopt.jl:3

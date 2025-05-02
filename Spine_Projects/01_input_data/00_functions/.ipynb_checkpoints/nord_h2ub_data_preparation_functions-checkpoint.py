@@ -461,16 +461,18 @@ def object_relationship_connection_nodes(df_model_connections):
 
 
 #function to prepare all parameters that are directly linked to a unit
-def create_object_parameters(input_df, object_class_type, parameter_column):
+def create_object_parameters(input_df, object_class_type, parameter_column, run_name):
     # New DataFrame to store the information
-    unit_parameter_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value'])
+    unit_parameter_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value', 'Alternative'])
 
     # Iterate through rows and add new rows to the new DataFrame if the parameter has a value
     for index, row in input_df.iterrows():
         if pd.notna(row[parameter_column]):
             new_row = {'Object_name': row[object_class_type], 
                        'Category': object_class_type.lower(), 
-                       'Parameter': parameter_column, 'Value': row[parameter_column]}
+                       'Parameter': parameter_column, 
+                       'Value': row[parameter_column], 
+                       'Alternative': run_name}
             unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([new_row])], ignore_index=True)
 
             # Check if parameter_column is 'min_down_time'
@@ -479,17 +481,18 @@ def create_object_parameters(input_df, object_class_type, parameter_column):
                 online_variable_row = {'Object_name': row[object_class_type], 
                                        'Category': object_class_type.lower(), 
                                        'Parameter': 'online_variable_type', 
-                                       'Value': 'unit_online_variable_type_integer'}
+                                       'Value': 'unit_online_variable_type_integer',
+                                       'Alternative': run_name}
                 unit_parameter_df = pd.concat([unit_parameter_df, pd.DataFrame([online_variable_row])], ignore_index=True)
 
     return unit_parameter_df
 
-def create_fom_units(df_units, df_inv, year, investment_res):
+def create_fom_units(df_units, df_inv, year, investment_res, run_name):
     year_columns = {int(col.split()[-1]): col for col in df_inv.columns if 'Value' in col}
     closest_year = min(year_columns.keys(), key=lambda x: abs(x - year))
     selected_column = year_columns[closest_year]
 
-    unit_fom_cost_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value'])
+    unit_fom_cost_df = pd.DataFrame(columns=['Object_name', 'Category', 'Parameter', 'Value', 'Alternative'])
 
     for index, row in df_units.iterrows():
         object_type = row['Object_type']
@@ -507,7 +510,8 @@ def create_fom_units(df_units, df_inv, year, investment_res):
             new_row = {'Object_name': row['Unit'],
                        'Category': 'unit',
                        'Parameter': 'fom_cost',
-                       'Value': fom_value}
+                       'Value': fom_value,
+                       'Alternative': run_name}
             unit_fom_cost_df = pd.concat([unit_fom_cost_df, pd.DataFrame([new_row])], ignore_index=True)
     
         if not investment_res:
@@ -799,7 +803,7 @@ def create_adj_efficiency(dataframe, mean_eff_goal, unit):
 
 
 # Operating points and variable efficiency 
-def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1):
+def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1, run_name):
     constraint_name = 'effcurve_' + unit
     #Calculate operating points
     num_segments = des_segment - 1
@@ -845,13 +849,14 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
     })
     
     initial_rows_var = pd.DataFrame({
-        'relationship_class_name:': ['User_constraint_name', 'Object_name', 'Node_name', 'Parameter'],
-        'unit__from_node__user_constraint': [constraint_name, unit, input_1, 'unit_flow_coefficient'],
-        'unit__to_node__user_constraint': [constraint_name, unit, output_1, 'unit_flow_coefficient']      
+        'relationship_class_name:': ['User_constraint_name', 'Object_name', 'Node_name', 'Alternative', 'Parameter'],
+        'unit__from_node__user_constraint': [constraint_name, unit, input_1, run_name, 'unit_flow_coefficient'],
+        'unit__to_node__user_constraint': [constraint_name, unit, output_1, run_name, 'unit_flow_coefficient']      
     })
+    
     initial_rows_op = pd.DataFrame({
-        'relationship_class_name:': ['Object_name', 'Node_name', 'Parameter'],
-        'unit__from_node': [unit, input_1, 'operating_points']        
+        'relationship_class_name:': ['Object_name', 'Node_name', 'Alternative', 'Parameter'],
+        'unit__from_node': [unit, input_1, run_name, 'operating_points']        
     })
     
     var_efficiency_info_df = pd.DataFrame()
@@ -872,12 +877,12 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1)
 
 
 # Ordered_unit_flow_op
-def check_decreasing(dataframe, unit, node):
+def check_decreasing(dataframe, unit, node, run_name):
     is_decreasing = False
     for column in dataframe.columns:
         if column.startswith('unit__from_node__user_constraint'):
             values = dataframe[column].values
-            if len(values) > 5 and values[4] > values[5]:
+            if len(values) > 6 and values[5] > values[6]:
                 is_decreasing = True
                 break
     
@@ -885,6 +890,7 @@ def check_decreasing(dataframe, unit, node):
         "Relationship_class_name": "unit__from_node",
         "Object_name": unit,
         "Node_name": node,
+        "Alternative": run_name,
         "Parameter_name": "ordered_unit_flow_op",
         "Value": "True" if is_decreasing else "False"
     }
@@ -903,7 +909,7 @@ resolution_to_block = {
 }
 
 def check_demand_node(row, df_model_units_relations, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections,
-                      df_object__node_definitions, df_object__node_values, df_object_node_node):
+                      df_object__node_definitions, df_object__node_values, df_object_node_node, run_name):
     if not pd.isna(row['demand']):
         row_resolution = resolution_to_block[row['resolution_output']]
         if row_resolution != temporal_block:
@@ -920,6 +926,7 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
             new_value["Object_name"] = f"{output}_demand"
             new_value["Category"] = "node"
             new_value["balance_type"] = "balance_type_node"
+            new_value["Alternative"] = run_name
             new_value["nodal_balance_sense"] = ""
             new_value["demand"] = row['demand']
             new_value["node_slack_penalty"] = 100000000
@@ -953,14 +960,16 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
                  "Object_name": f"pl_{output}_demand",
                  "Node": output,
                  "Parameter": "connection_capacity",
-                 "Value": 1000
+                 "Value": 1000,
+                 "Alternative": run_name
                 },
                 {"Relationship_class_name": "connection__to_node", 
                  "Object_class": "connection", 
                  "Object_name": f"pl_{output}_demand",
                  "Node": f"{output}_demand",
                  "Parameter": "connection_capacity",
-                 "Value": 1000
+                 "Value": 1000,
+                 "Alternative": run_name
                 }
             ])
             df_object__node_values = pd.concat([df_object__node_values, new_rel_value], ignore_index=True)
@@ -973,7 +982,8 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
                  "Node1": f"{output}_demand",
                  "Node2": output,
                  "Parameter": "fix_ratio_out_in_connection_flow",
-                 "Value": 1
+                 "Value": 1,
+                 "Alternative": run_name
                 }
             ])
             df_object_node_node = pd.concat([df_object_node_node, new_rel_nn], ignore_index=True)
@@ -982,7 +992,8 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
             new_value = {col: np.nan for col in df_nodes.columns}
             new_value["Object_name"] = output
             new_value["Category"] = "node"
-            new_value["demand"] = row['demand']
+            new_value["demand"] = row["demand"]
+            new_value["Alternative"] = run_name
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
             
     return df_definition, df_nodes, df_connections, df_object__node_values, df_object_node_node
@@ -1044,7 +1055,7 @@ def create_temporal_block_relationships(df1, df2, model_relations, model_name, d
                 temporal_relations.loc[len(temporal_relations)] = new_relation
 
 # Temporal blocks values (use only for h, D, M, and Y)
-def create_temporal_block_input(df, model):
+def create_temporal_block_input(df, model, run_name):
     if pd.isnull(df['resolution_output']).any():
         return
 
@@ -1069,8 +1080,8 @@ def create_temporal_block_input(df, model):
                     "Object_class_name": "temporal_block",
                     "Object_name": temporal_block_name,
                     "Parameter": "resolution",
-                    "Alternative": "Base",
-                    "Value": value
+                    "Value": value,
+                    "Alternative": run_name
                 }
                 model.loc[len(model)] = new_parameter
 

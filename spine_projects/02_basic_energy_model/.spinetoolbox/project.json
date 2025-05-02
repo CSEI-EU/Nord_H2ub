@@ -106,7 +106,8 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true
+                                "base_case": true,
+                                "node_state_min": true
                             }
                         }
                     },
@@ -223,8 +224,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 242.99226257383003,
-            "y": -49.15228757353064,
+            "x": 238.74273300792342,
+            "y": -50.56879742883285,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [

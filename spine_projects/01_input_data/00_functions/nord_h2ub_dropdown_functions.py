@@ -54,7 +54,7 @@ def create_name_rep_input():   # Necessary? I do not think so. D.H.
     return widgets.VBox([label2, name_rep_input], layout=get_general_vbox_layout()), name_rep_input
 
 
-def create_scen_name_input():
+def create_scen_name_input(): # maybe replace with run_name!
     label3 = widgets.Label(
         "Please choose the name of the scenario:")
     base_name_input = widgets.Text(
@@ -1398,7 +1398,7 @@ def create_combined_dropdowns_tabs():
         'report_name': report_name,
         'run_name': run_name,
         'reports': selected_reports,
-        'base_scen': base_scen,
+        #'base_scen': base_scen,
         'stoch_scen': stoch_scen,
         'stoch_struc': stoch_struc,
         'roll_forward': dropdown_roll,
@@ -1536,7 +1536,7 @@ def get_dropdown_values(dropdowns):
         'des_segments_electrolyzer': dropdowns['levels_elec'].value,
         
         # Other text fields
-        'base_scen': dropdowns['base_scen'].value,
+        #'scenario': dropdowns['base_scen'].value,
         'stoch_scen': dropdowns['stoch_scen'].value,
         'stoch_struc': dropdowns['stoch_struc'].value,
         'report_name': dropdowns['report_name'].value,

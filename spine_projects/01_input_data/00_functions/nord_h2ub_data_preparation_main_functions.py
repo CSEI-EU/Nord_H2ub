@@ -34,7 +34,7 @@ def set_parameters(params):
         'demand_res': 'daily',
         'powers': {'Solar plant'},
         'powers_capacities': {304},
-        'scenario': 'Base',
+        #'scenario': 'base_case',
         'frequency': '1h',
         'model_name': 'model',
         'temporal_block': 'hourly',
@@ -138,7 +138,7 @@ def set_parameters(params):
     demand_res = default_params['demand_res']
     powers = default_params['powers']
     powers_capacities = default_params['powers_capacities']
-    scenario = default_params['scenario']
+    #scenario = default_params['scenario']
     frequency = default_params['frequency']
     model_name = default_params['model_name']
     temporal_block = default_params['temporal_block']
@@ -228,7 +228,7 @@ def set_parameters(params):
 
     # Here you can add any additional processing or return the parameters
     return (year, starting_year, lcoe_years, start_date, end_date, area, product, demand, demand_res,
-            powers, powers_capacities, scenario, frequency, 
+            powers, powers_capacities, frequency, 
             model_name, temporal_block, 
             stochastic_scenario, stochastic_structure, run_name, report_name, reports, 
             electrolyzer_type, des_segments_electrolyzer, 
