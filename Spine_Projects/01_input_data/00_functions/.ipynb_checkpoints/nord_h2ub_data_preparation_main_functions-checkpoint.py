@@ -34,7 +34,6 @@ def set_parameters(params):
         'demand_res': 'daily',
         'powers': {'Solar plant'},
         'powers_capacities': {304},
-        #'scenario': 'base_case',
         'frequency': '1h',
         'model_name': 'model',
         'temporal_block': 'hourly',
@@ -112,8 +111,7 @@ def set_parameters(params):
 
     # Update default values with provided parameters}
     #params = {k: (v if pd.notna(v) or not '' else default_params.get(k, None)) for k, v in params.items()}
-    params = {
-        k: v for k, v in params.items()
+    params = {k: v for k, v in params.items()
         if v is not None and not (isinstance(v, str) and v.strip() == '') and not (isinstance(v, float) and math.isnan(v))
     }
     default_params.update(params)
@@ -138,7 +136,6 @@ def set_parameters(params):
     demand_res = default_params['demand_res']
     powers = default_params['powers']
     powers_capacities = default_params['powers_capacities']
-    #scenario = default_params['scenario']
     frequency = default_params['frequency']
     model_name = default_params['model_name']
     temporal_block = default_params['temporal_block']
