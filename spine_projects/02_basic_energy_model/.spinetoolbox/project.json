@@ -106,8 +106,7 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "dana": true,
-                                "node_state_min": true
+                                "testing": true
                             }
                         }
                     },
@@ -153,7 +152,11 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2025-03-26T16:03:38": true
+                                "Run SpineOpt@2025-03-26T16:03:38": true,
+                                "Run SpineOpt@2025-05-19T14:38:11": true,
+                                "Run SpineOpt@2025-05-19T14:48:18": true,
+                                "Run SpineOpt@2025-05-19T14:59:22": true,
+                                "Run SpineOpt@2025-05-19T15:09:09": true
                             }
                         }
                     },

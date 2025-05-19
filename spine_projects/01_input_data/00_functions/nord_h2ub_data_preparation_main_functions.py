@@ -124,7 +124,7 @@ def set_parameters(params):
     datetime_index = pd.date_range(start=start_date, end=end_date, freq=default_params["frequency"])
     
     # Create roll forward size (if used)
-    roll_forward_size = calculate_opt_horizons(datetime_index, default_params["num_slices"])
+    roll_forward_size = calculate_opt_horizons(datetime_index, int(default_params["num_slices"]))
     
     # Add to dictionary
     year = default_params['year']
