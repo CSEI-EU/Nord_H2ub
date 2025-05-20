@@ -37,7 +37,7 @@ if subfolder_path not in sys.path:
 
 # Import custom functions from nord_h2ub_dropdown_functions
 try:
-    from nord_h2ub_dropdown_functions import *
+    from nord_h2ub_data_preparation_dropdown_functions import *
     print("Custom functions imported successfully.")
 except ImportError as e:
     print(f"Error importing custom functions: {e}")

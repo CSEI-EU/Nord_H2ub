@@ -20,6 +20,7 @@ import threading
 import time
 import math
 import warnings
+import re
 warnings.simplefilter("ignore", UserWarning)
 
 
@@ -38,162 +39,78 @@ placeholder_value = math.nan
 
 
 '''Define text query functions'''
+text_values = {}
 
-def on_text_change(change):
-    if change['type'] == 'change' and change['name'] == 'value':
-        print(f'You entered: {change["new"]}')
+def on_text_change(change, key, input_widget):
+    value = change['new']
+    if value is not None:
+        text_values[key] = value
 
+def create_text_with_label(key: str, description: str, placeholder: str = 'e.g. xyz'):
+    desc_label = widgets.Label(description)
+    input_widget = widgets.Text(
+        value=None,
+        placeholder=placeholder,
+        layout=general_input_layout)
+    
+    input_widget.observe(lambda change: on_text_change(change, key, input_widget), names='value')
 
-def create_name_rep_input():   # Necessary? I do not think so. D.H.
-    label2 = widgets.Label(
-        "Please choose the name of the report:")
-    name_rep_input = widgets.Text(
-        value = None,
-        layout=general_input_layout
-    )
-    return widgets.VBox([label2, name_rep_input], layout=get_general_vbox_layout()), name_rep_input
-
-
-def create_scen_name_input(): # maybe replace with run_name!
-    label3 = widgets.Label(
-        "Please choose the name of the scenario:")
-    base_name_input = widgets.Text(
-        layout = general_input_layout
-    )
-    return widgets.VBox([label3, base_name_input], layout=get_general_vbox_layout()), base_name_input
+    return widgets.VBox([desc_label, input_widget]), input_widget
 
 
-def create_stoch_scen_input():   # Not used yet
-    label4 = widgets.Label(
-        "Please choose the name of the stochastic scenario:")
-    stoch_scen_input = widgets.Text(
-        layout = general_input_layout
-    )
-    return widgets.VBox([label4, stoch_scen_input], layout=get_general_vbox_layout()), stoch_scen_input
+'''Define 'numerical' input functions'''
 
+parsed_values = {}
 
-def create_stoch_struc_input():   # Necessary? I do not think so. D.H.
-    label5 = widgets.Label(
-        "Please choose the name of the stochastic structure:")
-    stoch_struc_input = widgets.Text(
-        layout = general_input_layout
-    )
-    return widgets.VBox([label5, stoch_struc_input], layout=get_general_vbox_layout()), stoch_struc_input
+def smart_parse_number(text):
+    # no spaces in between numbers
+    text = text.strip().replace(' ', '')
 
-def create_run_name_input():
-    label6 = widgets.Label(
-        "Please choose the name of this run:")
-    run_name_input = widgets.Text(
-        layout = general_input_layout
-    )
-    return widgets.VBox([label6, run_name_input], layout=get_general_vbox_layout()), run_name_input
+    # Non-english style
+    if re.match(r'^\d{1,3}(\.\d{3})*(,\d+)?$', text):
+        normalized = text.replace('.', '').replace(',', '.')
+        return float(normalized)
+    
+    # English style
+    if re.match(r'^\d{1,3}(,\d{3})*(\.\d+)?$', text):
+        normalized = text.replace(',', '')
+        return float(normalized)
 
+    # Avoid 12.34.56
+    try:
+        return float(text.replace(',', '.'))
+    except ValueError:
+        return None
 
-'''Define numerical input functions'''
+def on_number_change_2(change, error_label, parsed_key, input_widget):
+    raw_input = change['new']
+    value = smart_parse_number(raw_input)
 
+    if value is not None:
+        parsed_values[parsed_key] = value
+        error_label.value = ''
+
+        input_widget.observe(lambda change: on_number_change_2(change, error_label, parsed_key, input_widget), names='value')
+    else:
+        parsed_values[parsed_key] = None
+        error_label.value = '❌ Invalid number format'
+
+def create_input_with_label(key: str, description: str, placeholder: str = 'e.g. 50.000,25'):
+    desc_label = widgets.Label(description)
+    input_widget = widgets.Text(
+        value='',
+        placeholder=placeholder,
+        layout=general_input_layout)
+    error_label = widgets.Label()
+
+    input_widget.observe(lambda change: on_number_change_2(change, error_label, key, input_widget), names='value')
+
+    return widgets.VBox([desc_label, widgets.HBox([input_widget, error_label])]), input_widget
+
+############# Old way
 def on_number_change(change):
     if change['type'] == 'change' and change['name'] == 'value':
         print(f'You entered: {change["new"]}')
-
-
-def create_share_of_dh_price_cap():
-    description_label_1 = widgets.Label(
-        "Set the assumed value for revenues from district heating as share of a max price [%]:")
-    number_input_1 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=0, 
-        step=0.5,
-        layout=general_input_layout)
-    number_input_1.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_1, number_input_1], layout=get_general_vbox_layout()), number_input_1
-
-
-def create_price_level_power():
-    description_label_2 = widgets.Label(
-        "Set the assumed value for scaling the power price level up/down [%]:")
-    number_input_2 = widgets.BoundedFloatText(
-       value=placeholder_value, 
-        min=0, 
-        step=0.5,
-        layout = general_input_layout
-    )
-    number_input_2.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_2, number_input_2], layout=get_general_vbox_layout()), number_input_2
-
-
-def create_power_price_variance():
-    description_label_3 = widgets.Label(
-        "Set the assumed variance of the power prices:")
-    number_input_3 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=0,
-        step=0.01,
-        layout = general_input_layout
-    )
-    number_input_3.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_3, number_input_3], layout=get_general_vbox_layout()), number_input_3
-
-
-def create_number_opt_horizons():
-    description_label_4 = widgets.Label(
-        "Set the number of optimization horizons for the model:")
-    number_input_4 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=0, 
-        step=1,
-        layout = general_input_layout
-    )
-    number_input_4.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_4, number_input_4], layout=get_general_vbox_layout()), number_input_4
-
-
-def create_sections_elec():
-    description_label_5 = widgets.Label("Set the number of operating sections to represent variable efficiency:")
-    number_input_5 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=0, 
-        step=1,
-        layout = general_input_layout
-    )
-    number_input_5.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_5, number_input_5], layout=get_general_vbox_layout()), number_input_5
-
-def create_wacc_elec():
-    description_label_6 = widgets.Label("Set the WACC for the LCOE calculation [%]:")
-    number_input_6 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=0, 
-        step = 0.01,
-        layout = general_input_layout
-    )
-    number_input_6.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_6, number_input_6], layout=get_general_vbox_layout()), number_input_6
-
-
-def create_lcoe_starting_year_elec():
-    description_label_7 = widgets.Label("Set the starting year for the LCOE calculation:")
-    number_input_7 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=2015, 
-        step=1,
-        max=2050,
-        layout = general_input_layout
-    )
-    number_input_7.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_7, number_input_7], layout=get_general_vbox_layout()), number_input_7
-
-
-def create_lcoe_years_elec():
-    description_label_8 = widgets.Label("Set the number of years for the LCOE calculation:")
-    number_input_8 = widgets.BoundedFloatText(
-        value=placeholder_value, 
-        min=0,
-        step=1,
-        layout = general_input_layout
-    )
-    number_input_8.observe(on_number_change, names='value')
-    return widgets.VBox([description_label_8, number_input_8], layout=get_general_vbox_layout()), number_input_8
-
 
 # Set investment costs and capacity limit depending on type of product
 investment_cost_vbox = widgets.VBox(layout=widgets.Layout(align_items='flex-start', margin='0 0 15px 0'))
@@ -1350,31 +1267,53 @@ def create_combined_dropdowns_tabs():
     section_3 = widgets.HTML("<b>Section 3: Define the parameters of the general model. If not specified, default values will be applied.</b>")
     section_4 = widgets.HTML("<b>Section 4: Define the parameters of electrolysis. If not specified, default values will be applied.</b>")
     section_5 = widgets.HTML("<b>Section 5: Define the economic parameters of the general model. If not specified, default values will be applied.</b>")
-    section_6 = widgets.HTML("<b>Section 6: Define the parameters for the investments. If not specified, default values will be applied.</b>")
-    section_7 = widgets.HTML("<b>Section 8: Define the scenario name. If not specified, default values will be applied.</b>")
-
+    section_6 = widgets.HTML("<b>Section 6: Define the parameters for additional investments. If not specified, default values will be applied.</b>")
+    
     # Get the dropdown menus
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
-    number_starting_year_box, number_starting_year = create_lcoe_starting_year_elec()
+    number_starting_year_box, number_starting_year = create_input_with_label(
+        key='lcoe_starting_year', 
+        description='Set the starting year for the LCOE calculation:', 
+        placeholder='e.g. 2020')
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
     dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
     dropdown_frequency_vbox, dropdown_frequency, dropdown_temporal = create_dropdown_frequency()
-    number_wacc_box, number_wacc = create_wacc_elec()
-    lcoe_years_box, lcoe_years = create_lcoe_years_elec()
-    number_dh_price_box, number_dh_price = create_share_of_dh_price_cap()
-    number_price_level_power_box, number_price_level_power = create_price_level_power()
-    power_price_variance_box, power_price_variance = create_power_price_variance()
-    report_name_box, report_name = create_name_rep_input()
-    run_name_box, run_name = create_run_name_input()
+    number_wacc_box, number_wacc = create_input_with_label(
+        key='wacc', 
+        description='Set the WACC for the LCOE calculation [%]:', 
+        placeholder='e.g. 8')
+    lcoe_years_box, lcoe_years = create_input_with_label(
+        key='lcoe_years', 
+        description='Set the number of years for the LCOE calculation:', 
+        placeholder='e.g. 25')
+    number_dh_price_box, number_dh_price = create_input_with_label(
+        key='dh_price', 
+        description='Set the assumed value for revenues from district heating as share of a max price [%]:', 
+        placeholder='e.g. 50')
+    number_price_level_power_box, number_price_level_power = create_input_with_label(
+        key='power_price_scale', 
+        description='Set the assumed value for scaling the power price level up/down [%]:', 
+        placeholder='e.g. 100')
+    power_price_variance_box, power_price_variance = create_input_with_label(
+        key='power_price_var', 
+        description='Set the assumed variance of the power prices:', 
+        placeholder='e.g. 1')
+    run_name_box, run_name = create_text_with_label(
+        key='run_name', 
+        description='Please choose the name of this run:', 
+        placeholder='e.g. base')
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
     multiple_choice_power_box, selected_powers, capacities_powers, investment_res, investment_ps, investment_ps_capacity = create_multiple_choice_power()
-    scen_name_box, base_scen = create_scen_name_input()
-    stoch_scen_vbox, stoch_scen = create_stoch_scen_input()
-    stoch_struc_vbox, stoch_struc = create_stoch_struc_input()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
-    number_slices_vbox, number_slices = create_number_opt_horizons()
-    levels_elec_box, levels_elec = create_sections_elec()
+    number_slices_vbox, number_slices = create_input_with_label(
+        key='opt_horizons', 
+        description='Set the number of optimization horizons for the model:',
+        placeholder='e.g. 12')
+    levels_elec_box, levels_elec = create_input_with_label(
+        key='levels_elec', 
+        description='Set the number of operating sections to represent variable efficiency:',
+        placeholder='e.g. 3')
     dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
     dropdown_period_vbox, dropdown_number, dropdown_period = create_dropdown_invest_period()
     demand_hbox, demand_input, demand_res = create_demand()
@@ -1395,11 +1334,8 @@ def create_combined_dropdowns_tabs():
         'number_dh_price_share': number_dh_price,
         'number_price_level_power': number_price_level_power,
         'power_price_variance': power_price_variance,
-        'report_name': report_name,
         'run_name': run_name,
         'reports': selected_reports,
-        'stoch_scen': stoch_scen,
-        'stoch_struc': stoch_struc,
         'roll_forward': dropdown_roll,
         'number_slices': number_slices,
         'levels_elec': levels_elec,
@@ -1415,7 +1351,7 @@ def create_combined_dropdowns_tabs():
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, dropdown_product_vbox, demand_hbox, capacities_vbox
+        section_1, dropdown_product_vbox, demand_hbox
     ])
 
     page2 = widgets.VBox([
@@ -1435,11 +1371,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page6 = widgets.VBox([
-        section_6, dropdown_investment_vbox, dropdown_period_vbox, investment_cost_vbox
-    ])
-
-    page7 = widgets.VBox([
-        section_7, scen_name_box #, stoch_scen_vbox, stoch_struc_vbox
+        section_6, capacities_vbox, dropdown_investment_vbox, dropdown_period_vbox, investment_cost_vbox
     ])
 
     # Create Tab widget
@@ -1458,7 +1390,6 @@ def create_combined_dropdowns_tabs():
                 tabs.set_title(3, 'Electrolysis')
                 tabs.set_title(4, 'Economic')
                 tabs.set_title(5, 'Investment')
-                #tabs.set_title(6, 'Scenario')
     dropdown_product.observe(add_tabs_on_product_selection, names='value')
 
     # Function to show/hide demand based on product value
@@ -1502,12 +1433,15 @@ def create_combined_dropdowns_tabs():
     
     return tabs, dropdowns
 
+# Function to turn empty string into 0
+def safe_float(s):
+    return float(s) if s.strip() else 0
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
     values = {
         'year': dropdowns['year'].value,
-        'starting_year': dropdowns['starting_year'].value,
+        'starting_year': safe_float(dropdowns['starting_year'].value),
         'price_zone': dropdowns['price_zone'].value,
         'product': dropdowns['product'].value,
         'demand': dropdowns['demand'].value,
@@ -1525,18 +1459,15 @@ def get_dropdown_values(dropdowns):
         
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],
-        'wacc': dropdowns['number_wacc'].value / 100,
-        'lcoe_years': dropdowns['lcoe_years'].value,
-        'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value / 100,
-        'number_price_level_power': dropdowns['number_price_level_power'].value / 100,
-        'power_price_variance': dropdowns['power_price_variance'].value,
-        'num_slices': dropdowns['number_slices'].value,
-        'des_segments_electrolyzer': dropdowns['levels_elec'].value,
+        'wacc': safe_float(dropdowns['number_wacc'].value) / 100,
+        'lcoe_years': safe_float(dropdowns['lcoe_years'].value),
+        'share_of_dh_price_cap': safe_float(dropdowns['number_dh_price_share'].value) / 100,
+        'number_price_level_power': safe_float(dropdowns['number_price_level_power'].value) / 100,
+        'power_price_variance': safe_float(dropdowns['power_price_variance'].value),
+        'num_slices': safe_float(dropdowns['number_slices'].value),
+        'des_segments_electrolyzer': safe_float(dropdowns['levels_elec'].value),
         
         # Other text fields
-        'stoch_scen': dropdowns['stoch_scen'].value,
-        'stoch_struc': dropdowns['stoch_struc'].value,
-        'report_name': dropdowns['report_name'].value,
         'run_name': dropdowns['run_name'].value,
         
         # Multiple choice values
