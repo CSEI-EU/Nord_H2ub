@@ -125,6 +125,17 @@ def set_parameters(params):
     
     # Create roll forward size (if used)
     roll_forward_size = calculate_opt_horizons(datetime_index, int(default_params["num_slices"]))
+
+    # Determine the temporal block
+    frequency_mapping = {
+        'hourly': '1h',
+        'daily': '1D',
+        'weekly': '1W',
+        'monthly': '1M',
+        'quarterly': '1Q',
+        'yearly': '1Y'
+    }
+    frequency = frequency_mapping.get(default_params['temporal_block'])
     
     # Add to dictionary
     year = default_params['year']
@@ -136,9 +147,8 @@ def set_parameters(params):
     demand_res = default_params['demand_res']
     powers = default_params['powers']
     powers_capacities = default_params['powers_capacities']
-    frequency = default_params['frequency']
-    model_name = default_params['model_name']
     temporal_block = default_params['temporal_block']
+    model_name = default_params['model_name']
     stochastic_scenario = default_params['stochastic_scenario']
     stochastic_structure = default_params['stochastic_structure']
     run_name = default_params['run_name']

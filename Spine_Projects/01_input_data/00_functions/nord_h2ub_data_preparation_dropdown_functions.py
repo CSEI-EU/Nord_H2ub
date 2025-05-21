@@ -821,9 +821,7 @@ def create_demand():
     # Define a layout for descriptions and fields
     description_layout = widgets.Layout(width='140px')
     input_layout = widgets.Layout(width='85px')
-
-    demand_per = widgets.Label(" with this resolution:")
-
+    
     # Add fields
     demand_description = widgets.Label("Yearly demand [MWh]:", layout=description_layout)
     
@@ -839,7 +837,7 @@ def create_demand():
         option_values = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'yearly']
         
         label_d_res = widgets.Label(" with a(n) ", layout=widgets.Layout(width='80px', justify_content='center'))
-        label_d_res_2 = widgets.Label(" resolution")
+        label_d_res_2 = widgets.Label(" demand resolution")
         
         dropdown_d_res = widgets.Dropdown(
             options=option_values,
@@ -859,13 +857,13 @@ def create_demand():
 
 '''Define dropdown functions'''
 
-#change the parameter values of the if the drop down menu value is changes
+# Function to handle the change in dropdown selection
 def on_change(change):
     if change['name'] == 'value' and change['new'] != "":
         print(f'You selected: {change["new"]}')
 
 
-# Function to handle the change in dropdown selection
+# Function to handle the change in dropdown selection for dictionaries
 def on_change_dict(change):
     if change['type'] == 'change' and change['name'] == 'value':
         selected_option = change['new']
@@ -937,30 +935,19 @@ def create_dropdown_electrolysis():
 
 
 # Create dropdown for the model frequency
-def create_dropdown_frequency():
-    # Dictionary to map options to their corresponding values
-    # Declare as global to access in on_change_dict
-    global option_values, selected_option_widget, selected_value_widget  
-    option_values = {
-        '1h': 'hourly',
-        '1D': 'daily',
-        '1W': 'weekly',
-        '1M': 'monthly',
-        '1Q': 'quarterly',
-        '1Y': 'yearly'
-    }
+def create_dropdown_temp_block():
+    global option_values
 
-    label5 = widgets.Label("Please select the frequency:")
+    option_values = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'yearly']
+    
+    label5 = widgets.Label("Please select the model resolution:")
     dropdown5 = widgets.Dropdown(
-        options=list(option_values.keys()),
+        options=option_values,
         layout = general_input_layout
     )
     
-    selected_option_widget = widgets.Label(dropdown5.value)
-    selected_value_widget = widgets.Label(option_values[dropdown5.value])
-    
-    dropdown5.observe(on_change_dict, names='value')
-    return widgets.VBox([label5, dropdown5], layout=get_general_vbox_layout()), selected_option_widget, selected_value_widget
+    dropdown5.observe(on_change, names='value')
+    return widgets.VBox([label5, dropdown5], layout=get_general_vbox_layout()), dropdown5
 
 
 #create dropdown for the whether roll_forward is used
@@ -1278,7 +1265,7 @@ def create_combined_dropdowns_tabs():
     dropdown_price_zone_vbox, dropdown_price_zone = create_dropdown_price_zone()
     dropdown_product_vbox, dropdown_product = create_dropdown_product()
     dropdown_electrolysis_vbox, dropdown_electrolysis = create_dropdown_electrolysis()
-    dropdown_frequency_vbox, dropdown_frequency, dropdown_temporal = create_dropdown_frequency()
+    dropdown_temp_box_vbox, dropdown_temp_block = create_dropdown_temp_block()
     number_wacc_box, number_wacc = create_input_with_label(
         key='wacc', 
         description='Set the WACC for the LCOE calculation [%]:', 
@@ -1327,8 +1314,8 @@ def create_combined_dropdowns_tabs():
         'powers': selected_powers,
         'capacities_powers': capacities_powers,
         'electrolysis': dropdown_electrolysis,
-        'frequency': dropdown_frequency,
-        'temporal_block': dropdown_temporal,
+        #'frequency': dropdown_frequency,
+        'temporal_block': dropdown_temp_block,
         'number_wacc': number_wacc,
         'lcoe_years': lcoe_years,
         'number_dh_price_share': number_dh_price,
@@ -1359,7 +1346,7 @@ def create_combined_dropdowns_tabs():
     ])
     
     page3 = widgets.VBox([
-        section_3, run_name_box, dropdown_frequency_vbox, dropdown_roll_vbox, number_slices_vbox
+        section_3, run_name_box, dropdown_temp_box_vbox, dropdown_roll_vbox, number_slices_vbox
     ])
     
     page4 = widgets.VBox([
@@ -1441,13 +1428,13 @@ def safe_float(s):
 def get_dropdown_values(dropdowns):
     values = {
         'year': dropdowns['year'].value,
-        'starting_year': safe_float(dropdowns['starting_year'].value),
+        'starting_year': dropdowns['starting_year'].value,
         'price_zone': dropdowns['price_zone'].value,
         'product': dropdowns['product'].value,
         'demand': dropdowns['demand'].value,
         'demand_res': dropdowns['demand_res'].value,
         'electrolysis': dropdowns['electrolysis'].value,
-        'frequency': dropdowns['frequency'].value,
+        #'frequency': dropdowns['frequency'].value,
         'temporal_block': dropdowns['temporal_block'].value,
         'roll_forward': dropdowns['roll_forward'].value,
         'candidate_nonzero': dropdowns['candidate_nonzero'].value,
@@ -1460,12 +1447,12 @@ def get_dropdown_values(dropdowns):
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],
         'wacc': safe_float(dropdowns['number_wacc'].value) / 100,
-        'lcoe_years': safe_float(dropdowns['lcoe_years'].value),
+        'lcoe_years': dropdowns['lcoe_years'].value,
         'share_of_dh_price_cap': safe_float(dropdowns['number_dh_price_share'].value) / 100,
         'number_price_level_power': safe_float(dropdowns['number_price_level_power'].value) / 100,
         'power_price_variance': safe_float(dropdowns['power_price_variance'].value),
-        'num_slices': safe_float(dropdowns['number_slices'].value),
-        'des_segments_electrolyzer': safe_float(dropdowns['levels_elec'].value),
+        'num_slices': dropdowns['number_slices'].value,
+        'des_segments_electrolyzer': dropdowns['levels_elec'].value,
         
         # Other text fields
         'run_name': dropdowns['run_name'].value,
