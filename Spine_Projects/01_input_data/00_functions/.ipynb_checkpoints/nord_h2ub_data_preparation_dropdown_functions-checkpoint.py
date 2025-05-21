@@ -69,16 +69,19 @@ def smart_parse_number(text):
     # Non-english style
     if re.match(r'^\d{1,3}(\.\d{3})*(,\d+)?$', text):
         normalized = text.replace('.', '').replace(',', '.')
-        return float(normalized)
+        result = float(normalized)
+        return result if result >= 0 else None   # Avoids negative numbers
     
     # English style
     if re.match(r'^\d{1,3}(,\d{3})*(\.\d+)?$', text):
         normalized = text.replace(',', '')
-        return float(normalized)
+        result = float(normalized)
+        return result if result >= 0 else None
 
     # Avoid 12.34.56
     try:
-        return float(text.replace(',', '.'))
+        result = float(text.replace(',', '.'))
+        return result if result >= 0 else None
     except ValueError:
         return None
 
@@ -106,6 +109,7 @@ def create_input_with_label(key: str, description: str, placeholder: str = 'e.g.
     input_widget.observe(lambda change: on_number_change_2(change, error_label, key, input_widget), names='value')
 
     return widgets.VBox([desc_label, widgets.HBox([input_widget, error_label])]), input_widget
+
 
 ############# Old way
 def on_number_change(change):
@@ -825,13 +829,15 @@ def create_demand():
     # Add fields
     demand_description = widgets.Label("Yearly demand [MWh]:", layout=description_layout)
     
-    demand_input = widgets.BoundedFloatText(
-        value = placeholder_value, 
-        min=0, 
+    demand_input = widgets.Text(
+        value = '', 
+        placeholder = 'e.g. 30,000',
         layout=input_layout
     )
-    demand_input.observe(on_number_change, names='value')
-
+    error_label = widgets.Label()
+    
+    demand_input.observe(lambda change: on_number_change_2(change, error_label, 'demand', demand_input), names='value')
+    
     def create_dropdown_res():
         global option_values, selected_option_widget, selected_value_widget  
         option_values = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'yearly']
@@ -850,7 +856,7 @@ def create_demand():
         return demand_d_res_hbox, dropdown_d_res
 
     demand_d_res_hbox, dropdown_d_res = create_dropdown_res() 
-    demand_input_hbox = widgets.HBox([demand_input, demand_d_res_hbox], layout = general_multiple_choice_layout)
+    demand_input_hbox = widgets.HBox([demand_input, error_label, demand_d_res_hbox], layout = general_multiple_choice_layout)
     
     return widgets.VBox([demand_description, demand_input_hbox], layout=get_general_vbox_layout()), demand_input, dropdown_d_res
 
@@ -926,7 +932,7 @@ def create_dropdown_product():
 def create_dropdown_electrolysis():
     label4 = widgets.Label("Please select the type of electrolysis:")
     dropdown4 = widgets.Dropdown(
-        options=['PEM', 'Alkaline', 'SOEC'],
+        options = ['PEM', 'Alkaline', 'SOEC'],
         value = None,
         layout = general_input_layout
     )
@@ -942,7 +948,8 @@ def create_dropdown_temp_block():
     
     label5 = widgets.Label("Please select the model resolution:")
     dropdown5 = widgets.Dropdown(
-        options=option_values,
+        options = option_values,
+        value = None,
         layout = general_input_layout
     )
     

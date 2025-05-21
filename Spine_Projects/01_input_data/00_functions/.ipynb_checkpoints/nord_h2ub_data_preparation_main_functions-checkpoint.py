@@ -143,7 +143,7 @@ def set_parameters(params):
     lcoe_years = int(default_params['lcoe_years'])
     area = default_params['area']
     product = default_params['product']
-    demand = default_params['demand']
+    demand = float(default_params['demand'])
     demand_res = default_params['demand_res']
     powers = default_params['powers']
     powers_capacities = default_params['powers_capacities']
