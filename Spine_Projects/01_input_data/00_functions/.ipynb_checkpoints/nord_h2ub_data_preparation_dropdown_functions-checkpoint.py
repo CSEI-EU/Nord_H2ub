@@ -1268,20 +1268,20 @@ def create_combined_dropdowns_tabs():
     dropdown_temp_box_vbox, dropdown_temp_block = create_dropdown_temp_block()
     number_wacc_box, number_wacc = create_input_with_label(
         key='wacc', 
-        description='Set the WACC for the LCOE calculation [%]:', 
-        placeholder='e.g. 8')
+        description='Set the WACC for the LCOE calculation:', 
+        placeholder='e.g. 0.08')
     lcoe_years_box, lcoe_years = create_input_with_label(
         key='lcoe_years', 
         description='Set the number of years for the LCOE calculation:', 
         placeholder='e.g. 25')
     number_dh_price_box, number_dh_price = create_input_with_label(
         key='dh_price', 
-        description='Set the assumed value for revenues from district heating as share of a max price [%]:', 
-        placeholder='e.g. 50')
+        description='Set the assumed value for revenues from district heating as share of a max price:', 
+        placeholder='e.g. 0.5')
     number_price_level_power_box, number_price_level_power = create_input_with_label(
         key='power_price_scale', 
-        description='Set the assumed value for scaling the power price level up/down [%]:', 
-        placeholder='e.g. 100')
+        description='Set the assumed value for scaling the power price level up/down:', 
+        placeholder='e.g. 1')
     power_price_variance_box, power_price_variance = create_input_with_label(
         key='power_price_var', 
         description='Set the assumed variance of the power prices:', 
@@ -1420,9 +1420,6 @@ def create_combined_dropdowns_tabs():
     
     return tabs, dropdowns
 
-# Function to turn empty string into 0
-def safe_float(s):
-    return float(s) if s.strip() else 0
 
 #create a function to access the values in combined function
 def get_dropdown_values(dropdowns):
@@ -1446,11 +1443,11 @@ def get_dropdown_values(dropdowns):
         
         # Numerical values (percent) adjusted
         'capacities_powers': dropdowns['capacities_powers'],
-        'wacc': safe_float(dropdowns['number_wacc'].value) / 100,
+        'wacc': dropdowns['number_wacc'].value,
         'lcoe_years': dropdowns['lcoe_years'].value,
-        'share_of_dh_price_cap': safe_float(dropdowns['number_dh_price_share'].value) / 100,
-        'number_price_level_power': safe_float(dropdowns['number_price_level_power'].value) / 100,
-        'power_price_variance': safe_float(dropdowns['power_price_variance'].value),
+        'share_of_dh_price_cap': dropdowns['number_dh_price_share'].value,
+        'number_price_level_power': dropdowns['number_price_level_power'].value,
+        'power_price_variance': dropdowns['power_price_variance'].value,
         'num_slices': dropdowns['number_slices'].value,
         'des_segments_electrolyzer': dropdowns['levels_elec'].value,
         
@@ -1486,52 +1483,6 @@ def get_dropdown_values(dropdowns):
             values[key] = widget.value
     
     return values
-
-
-def compute_other_values(values):
-    # Create DatetimeIndex for the range of dates
-    start_date = pd.Timestamp(f"{values['year']}-01-01 00:00:00")
-    end_date = pd.Timestamp(f"{values['year']}-12-31 23:00:00")
-    datetime_index = pd.date_range(start=start_date, end=end_date, freq=values['frequency'])
-    
-    # Calculate the number of steps within the horizon
-    num_slices = int(values['num_slices'])
-    num_steps = len(datetime_index)
-
-    # Find the largest integer divisor that fulfills the condition
-    for i in range(num_slices, 0, -1):
-        if num_steps % i == 0:
-            roll_forward_size = num_steps // i
-            used_slices = i
-            break
-    else:
-        print("Cannot divide the number of steps into any integer slices. Please choose a different number of slices.")
-        return None
-
-    # Check if num_slices matches the used_slices
-    if num_slices != used_slices:
-        print("\033[91mWARNING:\033[0m The specified number of slices (", num_slices, ")",
-              "does not match the final division factor (", used_slices, ").",
-             "\n The calculation uses the factor: ", used_slices, ".")
-
-    # Determine the temporal block
-    frequency_mapping = {
-        '1h': 'hourly',
-        '1D': 'daily',
-        '1W': 'weekly',
-        '1M': 'monthly',
-        '1Q': 'quarterly'
-    }
-    temporal_block = frequency_mapping.get(values['frequency'], 'yearly')
-
-    return {
-        'start_date': start_date,
-        'end_date': end_date,
-        'datetime_index': datetime_index,
-        'roll_forward_size': roll_forward_size,
-        'temporal_block': temporal_block,
-        'num_steps': num_steps
-    }
 
 
 # Add investment costs and capacities to the parameters definition if previously set

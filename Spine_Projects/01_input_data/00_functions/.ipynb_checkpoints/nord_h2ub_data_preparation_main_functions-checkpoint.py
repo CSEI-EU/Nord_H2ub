@@ -138,9 +138,9 @@ def set_parameters(params):
     frequency = frequency_mapping.get(default_params['temporal_block'])
     
     # Add to dictionary
-    year = default_params['year']
-    starting_year = default_params['starting_year']
-    lcoe_years = default_params['lcoe_years']
+    year = int(default_params['year'])
+    starting_year = int(default_params['starting_year'])
+    lcoe_years = int(default_params['lcoe_years'])
     area = default_params['area']
     product = default_params['product']
     demand = default_params['demand']
@@ -155,13 +155,13 @@ def set_parameters(params):
     report_name = default_params['report_name']
     reports = default_params['reports']
     electrolyzer_type = default_params['electrolyzer_type']
-    des_segments_electrolyzer = default_params['des_segments_electrolyzer']
-    wacc = default_params['wacc']
-    share_of_dh_price_cap = default_params['share_of_dh_price_cap']
-    price_level_power = default_params['price_level_power']
-    power_price_variance = default_params['power_price_variance']
+    des_segments_electrolyzer = int(default_params['des_segments_electrolyzer'])
+    wacc = float(default_params['wacc'])
+    share_of_dh_price_cap = float(default_params['share_of_dh_price_cap'])
+    price_level_power = float(default_params['price_level_power'])
+    power_price_variance = float(default_params['power_price_variance'])
     roll_forward_use = default_params['roll_forward_use']
-    num_slices = default_params['num_slices']
+    num_slices = int(default_params['num_slices'])
     candidate_nonzero = default_params['candidate_nonzero']
     investment_period_default = default_params['investment_period_default']
     investment_res = default_params['investment_res']
