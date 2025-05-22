@@ -85,28 +85,33 @@ def smart_parse_number(text):
     except ValueError:
         return None
 
-def on_number_change_2(change, error_label, parsed_key, input_widget):
+def on_number_change_2(change, error_label, parsed_key):
     raw_input = change['new']
+
+    if raw_input == '':
+        parsed_values[parsed_key] = None
+        error_label.value = ''
+        return
+    
     value = smart_parse_number(raw_input)
 
     if value is not None:
         parsed_values[parsed_key] = value
         error_label.value = ''
-
-        input_widget.observe(lambda change: on_number_change_2(change, error_label, parsed_key, input_widget), names='value')
     else:
         parsed_values[parsed_key] = None
         error_label.value = '❌ Invalid number format'
 
-def create_input_with_label(key: str, description: str, placeholder: str = 'e.g. 50.000,25'):
+def create_input_with_label(key: str, description: str, placeholder: str = 'e.g. 12,345.57'):
     desc_label = widgets.Label(description)
     input_widget = widgets.Text(
         value='',
         placeholder=placeholder,
-        layout=general_input_layout)
+        layout=general_input_layout
+    )
     error_label = widgets.Label()
 
-    input_widget.observe(lambda change: on_number_change_2(change, error_label, key, input_widget), names='value')
+    input_widget.observe(lambda change: on_number_change_2(change, error_label, key), names='value')
 
     return widgets.VBox([desc_label, widgets.HBox([input_widget, error_label])]), input_widget
 
@@ -835,8 +840,8 @@ def create_demand():
         layout=input_layout
     )
     error_label = widgets.Label()
-    
-    demand_input.observe(lambda change: on_number_change_2(change, error_label, 'demand', demand_input), names='value')
+
+    demand_input.observe(lambda change: on_number_change_2(change, error_label, 'demand'), names='value')
     
     def create_dropdown_res():
         global option_values, selected_option_widget, selected_value_widget  
