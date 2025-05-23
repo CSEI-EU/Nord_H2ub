@@ -125,7 +125,7 @@ def set_parameters(params):
     
     # Create roll forward size (if used)
     roll_forward_size = calculate_opt_horizons(datetime_index, int(default_params["num_slices"]))
-
+    
     # Determine the temporal block
     frequency_mapping = {
         'hourly': '1h',

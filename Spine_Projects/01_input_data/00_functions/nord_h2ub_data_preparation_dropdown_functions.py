@@ -133,13 +133,30 @@ def create_inv_cap_with_label(key: str, description: str, placeholder: str):
     input_widget = widgets.Text(
         value = '',
         placeholder = placeholder,
-        layout = widgets.Layout(width='110px')
+        layout = widgets.Layout(width='140px')
     )
     error_label = widgets.Label()
 
     input_widget.observe(lambda change: on_number_change_2(change, error_label, key), names='value')
 
     return input_widget, widgets.HBox([desc_label, input_widget, error_label], layout=inv_cap_indent_layout)
+
+def create_inv_cap_with_2labels(key: str, description: str, placeholder: str):
+    desc_label = widgets.Label(description, 
+                               layout=widgets.Layout(width='250px')
+                              )
+    input_widget = widgets.Text(
+        value = '',
+        placeholder = placeholder,
+        layout = widgets.Layout(width='140px')
+    )
+    error_label = widgets.Label()
+
+    extra_label = widgets.Label(' (value depends on start year)')
+
+    input_widget.observe(lambda change: on_number_change_2(change, error_label, key), names='value')
+
+    return input_widget, widgets.HBox([desc_label, input_widget, extra_label, error_label], layout=inv_cap_indent_layout)
 
 def update_inv_costs(change, investment_cost_vbox):
     # Get selected product from the dropdown (ammonia, diesel, egasoline, hydrogen, jet_fuel, methanol, and synthetic_methane_gas)
@@ -160,12 +177,12 @@ def update_inv_costs(change, investment_cost_vbox):
 
     # Shared items (for all)
     electrolyzer_label = widgets.Label("Electrolyzer:")
-    electrolyzer_input, electrolyzer_hbox = create_inv_cap_with_label('electrolyzer_inv', 'Costs [€/MW power input]:', 'test')
+    electrolyzer_input, electrolyzer_hbox = create_inv_cap_with_2labels('electrolyzer_inv', 'Costs [€/MW power input]:', '1,400,000 - 2,900,000')
     electrolyzer_limit, electrolyzer_limit_hbox = create_inv_cap_with_label('electrolyzer_inv_limit', 
                                                                             'Capacity limit [MW input power]:', '100')
     
     hydrogen_st_label = widgets.Label("Hydrogen storage:")
-    hydrogen_st_input, hydrogen_st_hbox = create_inv_cap_with_label('hydrogen_inv', 'Costs [€/MWh storage]:', 'test')
+    hydrogen_st_input, hydrogen_st_hbox = create_inv_cap_with_2labels('hydrogen_inv', 'Costs [€/MWh storage]:', '121,000')
     hydrogen_st_limit, hydrogen_st_limit_hbox = create_inv_cap_with_label('hydrogen_inv_limit', 
                                                                           'Capacity limit [MW input power]:', '1000')
       
@@ -179,31 +196,31 @@ def update_inv_costs(change, investment_cost_vbox):
 
     # Shared items for some
     fischer_label = widgets.Label("Fischer-Tropsch Reactor:")
-    fischer_input, fischer_hbox = create_inv_cap_with_label('fischer_inv', 'Costs [€/MW fuels output]:', 'test')
+    fischer_input, fischer_hbox = create_inv_cap_with_2labels('fischer_inv', 'Costs [€/MW fuels output]:', '2,233,000')
     fischer_limit, fischer_limit_hbox = create_inv_cap_with_label('fischer_inv_limit', 'Capacity limit [MW fuels output]:', '100')
     
     rwgs_label = widgets.Label("RWGS reactor:")
-    rwgs_input, rwgs_hbox = create_inv_cap_with_label('rwgs_inv', 'Costs [€/MWh fuels output]:', 'test')
+    rwgs_input, rwgs_hbox = create_inv_cap_with_2labels('rwgs_inv', 'Costs [€/MWh fuels output]:', '1.0')
     rwgs_limit, rwgs_limit_hbox = create_inv_cap_with_label('rwgs_inv_limit', 'Capacity limit [MW fuels output]:', '100')
     
     steam_label = widgets.Label("Steam plant:")
-    steam_input, steam_hbox = create_inv_cap_with_label('steam_inv', 'Costs [€/MW input power]:', 'test')
+    steam_input, steam_hbox = create_inv_cap_with_2labels('steam_inv', 'Costs [€/MW input power]:', '150,000')
     steam_limit, steam_limit_hbox = create_inv_cap_with_label('steam_inv_limit', 'Capacity limit [MW input power]:', '100')
     
     # Product specific investment:
     if selected_product == 'ammonia':
         
         ammonia_st_label = widgets.Label("Ammonia storage:")
-        ammonia_st_input, ammonia_st_hbox = create_inv_cap_with_label('ammonia_st_inv', 'Costs [€/MWh storage]:', 'test')
+        ammonia_st_input, ammonia_st_hbox = create_inv_cap_with_2labels('ammonia_st_inv', 'Costs [€/MWh storage]:', '4,400')
         ammonia_st_limit, ammonia_st_limit_hbox = create_inv_cap_with_label('ammonia_st_inv_limit', 
                                                                             'Capacity limit [MWh storage]:', '1000')
     
         asu_label = widgets.Label("Air separation unit")
-        asu_input, asu_hbox = create_inv_cap_with_label('asu_inv', 'Costs [€/MW input power]:', 'test')
+        asu_input, asu_hbox = create_inv_cap_with_2labels('asu_inv', 'Costs [€/MW input power]:', '413,513')
         asu_limit, asu_limit_hbox = create_inv_cap_with_label('asu_inv_limit', 'Capacity limit [MW input power]:', '100')
         
         haber_label = widgets.Label("Haber-Bosch unit:")
-        haber_input, haber_hbox = create_inv_cap_with_label('haber_inv', 'Costs [€/MW ammonia output]:', 'test')
+        haber_input, haber_hbox = create_inv_cap_with_2labels('haber_inv', 'Costs [€/MW ammonia output]:', '1,700,000')
         haber_limit, haber_limit_hbox = create_inv_cap_with_label('haber_inv_limit', 'Capacity limit [MW ammonia output]:', '100')
         
         # Store values in investment dictionary
@@ -224,7 +241,7 @@ def update_inv_costs(change, investment_cost_vbox):
     elif selected_product == 'diesel':
 
         diesel_st_label = widgets.Label("Diesel storage:")
-        diesel_st_input, diesel_st_hbox = create_inv_cap_with_label('diesel_st_inv', 'Costs [€/MWh storage]:', 'test')
+        diesel_st_input, diesel_st_hbox = create_inv_cap_with_2labels('diesel_st_inv', 'Costs [€/MWh storage]:', '25')
         diesel_st_limit, diesel_st_limit_hbox = create_inv_cap_with_label('diesel_st_inv_limit', 
                                                                           'Capacity limit [MWh storage]:', '1000')
         
@@ -249,7 +266,7 @@ def update_inv_costs(change, investment_cost_vbox):
     elif selected_product == 'egasoline':
         
         egasoline_st_label = widgets.Label("E-Gasoline storage:")
-        egasoline_st_input, egasoline_st_hbox = create_inv_cap_with_label('egasoline_st_inv', 'Costs [€/MWh storage]:', 'test')
+        egasoline_st_input, egasoline_st_hbox = create_inv_cap_with_2labels('egasoline_st_inv', 'Costs [€/MWh storage]:', '0')
         egasoline_st_limit, egasoline_st_limit_hbox = create_inv_cap_with_label('egasoline_st_inv_limit', 
                                                                                 'Capacity limit [MWh storage]:', '1000')
         
@@ -277,7 +294,7 @@ def update_inv_costs(change, investment_cost_vbox):
     elif selected_product == 'jet_fuel':
         
         jet_fuel_st_label = widgets.Label("Jet Fuel storage:")
-        jet_fuel_st_input, jet_fuel_st_hbox = create_inv_cap_with_label('jet_fuel_st_inv', 'Costs [€/MWh storage]:', 'test')
+        jet_fuel_st_input, jet_fuel_st_hbox = create_inv_cap_with_2labels('jet_fuel_st_inv', 'Costs [€/MWh storage]:', '0')
         jet_fuel_st_limit, jet_fuel_st_limit_hbox = create_inv_cap_with_label('jet_fuel_st_inv_limit', 
                                                                               'Capacity limit [MWh storage]:', '1000')
         
@@ -300,12 +317,12 @@ def update_inv_costs(change, investment_cost_vbox):
     
     elif selected_product == 'methanol':
         methanol_label = widgets.Label("Methanol reactor:")
-        methanol_input, methanol_hbox = create_inv_cap_with_label('methanol_inv', 'Costs [€/MW output methanol]:', 'test')
+        methanol_input, methanol_hbox = create_inv_cap_with_2labels('methanol_inv', 'Costs [€/MW output methanol]:', '1,350,000')
         methanol_limit, methanol_limit_hbox = create_inv_cap_with_label('methanol_inv_limit', 
                                                                         'Capacity limit [MW output methanol]:', '100')
         
         methanol_st_label = widgets.Label("Methanol storage:")
-        methanol_st_input, methanol_st_hbox = create_inv_cap_with_label('methanol_st_inv', 'Costs [€/MWh storage]:', 'test')
+        methanol_st_input, methanol_st_hbox = create_inv_cap_with_2labels('methanol_st_inv', 'Costs [€/MWh storage]:', '139.59')
         methanol_st_limit, methanol_st_limit_hbox = create_inv_cap_with_label('methanol_st_inv_limit', 
                                                                               'Capacity limit [MWh storage]:', '1000')
         
@@ -327,20 +344,20 @@ def update_inv_costs(change, investment_cost_vbox):
     elif selected_product == 'methane':
         
         anaerobic_label = widgets.Label("Anaerobic digestion plant:")
-        anaerobic_input, anaerobic_hbox = create_inv_cap_with_label('methanol_inv', 'Costs [€/MW TBA]:', 'test')
+        anaerobic_input, anaerobic_hbox = create_inv_cap_with_2labels('methanol_inv', 'Costs [€/MW TBA]:', '0')
         anaerobic_limit, anaerobic_limit_hbox = create_inv_cap_with_label('methanol_inv_limit', 'Capacity limit [MW TBA]:', '100')
         
         biomethanation_label = widgets.Label("Biomethanation plant:")
-        biomethanation_input, biomethanation_hbox = create_inv_cap_with_label('biomethanation_inv', 'Costs [€/MW TBA]:', 'test')
+        biomethanation_input, biomethanation_hbox = create_inv_cap_with_2labels('biomethanation_inv', 'Costs [€/MW TBA]:', '0')
         biomethanation_limit, biomethanation_limit_hbox = create_inv_cap_with_label('biomethanation_inv_limit', 
                                                                                     'Capacity limit [MW TBA]:', '100')
         
         co2_remover_label = widgets.Label("CO2 removal plant:")
-        co2_remover_input, co2_remover_hbox = create_inv_cap_with_label('co2_remover_inv', 'Costs [€/MW TBA]:', 'test')
+        co2_remover_input, co2_remover_hbox = create_inv_cap_with_2labels('co2_remover_inv', 'Costs [€/MW TBA]:', '1')
         co2_remover_limit, co2_remover_limit_hbox = create_inv_cap_with_label('co2_remover_inv_limit', 'Capacity limit [MW TBA]:', '100')
         
         methane_st_label = widgets.Label("Methane storage:")
-        methane_st_input, methane_st_hbox = create_inv_cap_with_label('methane_st_inv', 'Costs [€/MWh storage]:', 'test')
+        methane_st_input, methane_st_hbox = create_inv_cap_with_2labels('methane_st_inv', 'Costs [€/MWh storage]:', '9,600,000')
         methane_st_limit, methane_st_limit_hbox = create_inv_cap_with_label('methane_st_inv_limit', 
                                                                             'Capacity limit [MWh storage]:', '1000')
         
@@ -731,20 +748,25 @@ def create_multiple_choice_power():
     # Create capacity fields for each option except grid (hidden initially):
     res = ['Solar plant', 'Wind onshore', 'Wind offshore']
     for option in res:
-        capacity_widget = widgets.FloatText(
-            value=placeholder_value,
-            layout=widgets.Layout(width='100px')
-        )
         label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='180px'))
         
-        hbox = widgets.HBox([label, capacity_widget], layout=widgets.Layout(display='none',
-                                                                            padding='0px 15px 0px 30px',
-                                                                            justify_content='flex-start'))
+        capacity_widget = widgets.Text(
+            value='',
+            placeholder = '304',
+            layout=widgets.Layout(width='100px')
+        )
+        error_label_c = widgets.Label()
+
+        capacity_widget.observe(lambda change: on_number_change_2(change, error_label_c, f"cap_{option}"), names='value')
+        
+        hbox = widgets.HBox([label, capacity_widget, error_label_c], layout=widgets.Layout(display='none',
+                                                                                         padding='0px 15px 0px 30px',
+                                                                                         justify_content='flex-start'))
         capacities_powers[option] = hbox
         hbox_capacities_powers.append(hbox)
         
         capacities_powers_values[option] = capacity_widget.value
-        capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
+        #capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
 
     # Visibility of initially selected available powers
     update_capacity_fields(preselected_checks_power, capacities_powers)
@@ -1094,27 +1116,26 @@ def get_dropdown_values(dropdowns):
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed
-    placeholder_value = 1.0
+    placeholder_value = ''
     for key, widget in investment_cost_values.items():
         if widget.value == placeholder_value:
             values[key] = None
         else:
-            values[key] = widget.value
+            values[key] = float(smart_parse_number(widget.value))
 
     # Adding the investment limit values from investment_limit_values if changed
-    placeholder_value = 1.0
     for key, widget in investment_limit_values.items():
         if widget.value == placeholder_value:
             values[key] = None
         else:
-            values[key] = widget.value
+            values[key] = float(smart_parse_number(widget.value))
 
     # Adding the dynamic capacities values if changed
     for key, widget in capacities_values.items():
         if widget.value == placeholder_value:
             values[key] = None
         else:
-            values[key] = widget.value
+            values[key] = float(smart_parse_number(widget.value))
     
     return values
 
