@@ -139,8 +139,8 @@ def update_inv_costs(change, investment_cost_vbox):
     investment_limit_values.clear()
     
     # Define a layout for descriptions and fields + indent
-    description_layout = widgets.Layout(width='230px')
-    input_layout = widgets.Layout(width='100px')
+    description_layout = widgets.Layout(width='250px')
+    input_layout = widgets.Layout(width='110px')
 
     # Headline for the investment costs block
     investment_headline = widgets.Label("Please define the investment cost and maximal installed capacities per MW or MWh. If left empty, default values will be used.",
@@ -270,7 +270,7 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_limit_values['inv_limit_rwgs'] = rwgs_limit
         investment_limit_values['inv_limit_steam'] = steam_limit
 
-        elements += [diesel_storage_label, diesel_hbox, diesel_storage_limit_hbox, 
+        elements += [diesel_storage_label, diesel_storage_hbox, diesel_storage_limit_hbox, 
                      fischer_label, fischer_hbox, fischer_limit_hbox,
                      rwgs_label, rwgs_hbox, rwgs_limit_hbox, 
                      steam_label, steam_hbox, steam_limit_hbox]
@@ -299,7 +299,7 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_limit_values['inv_limit_rwgs'] = rwgs_limit
         investment_limit_values['inv_limit_steam'] = steam_limit
         
-        elements += [egasoline_storage_label, egasoline_hbox, egasoline_storage_limit_hbox, 
+        elements += [egasoline_storage_label, egasoline_storage_hbox, egasoline_storage_limit_hbox, 
                      fischer_label, fischer_hbox, fischer_limit_hbox,
                      rwgs_label, rwgs_hbox, rwgs_limit_hbox, 
                      steam_label, steam_hbox, steam_limit_hbox]
@@ -330,7 +330,7 @@ def update_inv_costs(change, investment_cost_vbox):
         investment_limit_values['inv_limit_rwgs'] = rwgs_limit
         investment_limit_values['inv_limit_steam'] = steam_limit
         
-        elements += [jet_fuel_storage_label, jet_fuel_hbox, jet_fuel_storage_limit_hbox, 
+        elements += [jet_fuel_storage_label, jet_fuel_storage_hbox, jet_fuel_storage_limit_hbox, 
                      fischer_label, fischer_hbox, fischer_limit_hbox,
                      rwgs_label, rwgs_hbox, rwgs_limit_hbox, 
                      steam_label, steam_hbox, steam_limit_hbox]
@@ -441,7 +441,7 @@ def update_capacities(change, capacities_vbox):
     capacities_values.clear()
     
     # Define a layout for descriptions and fields + indent
-    description_layout = widgets.Layout(width='300px')
+    description_layout = widgets.Layout(width='250px')
     input_layout = widgets.Layout(width='110px')
 
     # Headline for the investment costs block
@@ -485,8 +485,7 @@ def update_capacities(change, capacities_vbox):
         capacities_vbox.children = elements_capacities
     
     elif selected_product == 'methanol':
-        methanol_description = widgets.Label("Methanol reactor [MW output methanol]:",
-                                             layout=description_layout)
+        methanol_description = widgets.Label("Methanol reactor [MW output methanol]:", layout=description_layout)
         methanol_input = widgets.FloatText(value=placeholder_value, min=0, layout=input_layout)
         methanol_hbox = widgets.HBox([methanol_description, methanol_input], layout=inv_cap_indent_layout)
         
