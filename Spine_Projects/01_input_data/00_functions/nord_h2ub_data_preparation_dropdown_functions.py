@@ -622,7 +622,9 @@ def create_dropdown_product():
 
 #create dropdown for the electrolysis type
 def create_dropdown_electrolysis():
+    
     label4 = widgets.Label("Please select the type of electrolysis:")
+    
     dropdown4 = widgets.Dropdown(
         options = ['PEM', 'Alkaline', 'SOEC'],
         value = None,
@@ -634,13 +636,11 @@ def create_dropdown_electrolysis():
 
 # Create dropdown for the model frequency
 def create_dropdown_temp_block():
-    global option_values
-
-    option_values = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'yearly']
     
     label5 = widgets.Label("Please select the model resolution:")
+    
     dropdown5 = widgets.Dropdown(
-        options = option_values,
+        options = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'yearly'],
         value = None,
         layout = general_input_layout
     )
@@ -652,14 +652,15 @@ def create_dropdown_temp_block():
 #create dropdown for the whether roll_forward is used
 roll_forward_use = True
 def create_dropdown_roll():
-    label6 = widgets.Label(
-        "Please select whether the model should run with a rolling horizon optimization:"
-    )
+    
+    label6 = widgets.Label("Please select whether the model should run with a rolling horizon optimization:")
+    
     dropdown6 = widgets.Dropdown(
         options=[True, False],
         value = None,
         layout = general_input_layout
     )
+    
     dropdown6.observe(on_change)
     return widgets.VBox([label6, dropdown6], layout=get_general_vbox_layout()), dropdown6
 
@@ -668,11 +669,13 @@ def create_dropdown_roll():
 def create_dropdown_investment():
     
     label7 = widgets.Label("Please select whether the model should run an investment optimization:")
+    
     dropdown7 = widgets.Dropdown(
-        options=[True, False],
+        options = [True, False],
         value = None,
-        layout=general_input_layout
+        layout = general_input_layout
     )
+    
     dropdown7.observe(on_change)
     return widgets.VBox([label7, dropdown7], layout=get_general_vbox_layout()), dropdown7
 
@@ -682,23 +685,23 @@ def create_dropdown_invest_period():
     # Dictionary to map options to their corresponding values
     label8 = widgets.Label("Please select the investment period:")
     
-    number_input_8 = widgets.BoundedFloatText(
-        value=placeholder_value,
-        min=1,
-        max=30,
-        step=1,
-        layout=general_input_layout
+    number_input_8 = widgets.Text(
+        value = '',
+        placeholder = '1',
+        layout = general_input_layout
     )
-    number_input_8.observe(on_number_change, names='value')
+    error_label = widgets.Label()
+    
+    number_input_8.observe(lambda change: on_number_change_2(change, error_label, 'dropdown_inv_period'), names='value')
     
     dropdown8 = widgets.Dropdown(
-        options=['h', 'D', 'W', 'M', 'Q', 'Y'],
-        value=None,
-        layout=widgets.Layout(width='100px')
+        options = ['h', 'D', 'W', 'M', 'Q', 'Y'],
+        value = None,
+        layout = widgets.Layout(width='100px')
     )
     dropdown8.observe(on_change)
 
-    input_hbox = widgets.HBox([number_input_8, dropdown8])
+    input_hbox = widgets.HBox([number_input_8, error_label, dropdown8])
     
     return widgets.VBox([label8, input_hbox], layout=get_general_vbox_layout()), number_input_8, dropdown8
 
