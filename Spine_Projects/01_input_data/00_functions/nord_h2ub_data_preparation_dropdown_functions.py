@@ -77,13 +77,31 @@ def smart_parse_number(text):
         normalized = text.replace(',', '')
         result = float(normalized)
         return result if result >= 0 else None
-
+    
     # Avoid 12.34.56
     try:
         result = float(text.replace(',', '.'))
         return result if result >= 0 else None
     except ValueError:
         return None
+
+def smart_parse_integer(text):
+    # no spaces in between numbers
+    text = text.strip().replace(' ', '')
+
+    # Return None if the input is a plain integer (no commas or dots)
+    if re.fullmatch(r'\d+', text):
+        result = int(text)
+        return result if result >= 0 else None
+
+    # If it has thousands separators (dots or commas), remove them
+    if re.fullmatch(r'[\d.,]+', text) and not re.search(r'[.,]\d{1,2}$', text):
+        cleaned = re.sub(r'[.,]', '', text)
+        if cleaned.isdigit():
+            return int(cleaned)
+
+    # Else:
+    return None
 
 def on_number_change_2(change, error_label, parsed_key):
     raw_input = change['new']
@@ -102,6 +120,23 @@ def on_number_change_2(change, error_label, parsed_key):
         parsed_values[parsed_key] = None
         error_label.value = '❌ Invalid number format'
 
+def on_integer_change(change, error_label, parsed_key):
+    raw_input = change['new']
+
+    if raw_input == '':
+        parsed_values[parsed_key] = None
+        error_label.value = ''
+        return
+    
+    value = smart_parse_integer(raw_input)
+
+    if value is not None:
+        parsed_values[parsed_key] = value
+        error_label.value = ''
+    else:
+        parsed_values[parsed_key] = None
+        error_label.value = '❌ Invalid number format, must be an integer'
+
 def create_input_with_label(key: str, description: str, placeholder: str = 'e.g. 12,345.57'):
     desc_label = widgets.Label(description)
     input_widget = widgets.Text(
@@ -115,6 +150,18 @@ def create_input_with_label(key: str, description: str, placeholder: str = 'e.g.
 
     return widgets.VBox([desc_label, widgets.HBox([input_widget, error_label])]), input_widget
 
+def create_integer_with_label(key: str, description: str, placeholder: str = 'e.g. 5'):
+    desc_label = widgets.Label(description)
+    input_widget = widgets.Text(
+        value='',
+        placeholder=placeholder,
+        layout=general_input_layout
+    )
+    error_label = widgets.Label()
+
+    input_widget.observe(lambda change: on_integer_change(change, error_label, key), names='value')
+
+    return widgets.VBox([desc_label, widgets.HBox([input_widget, error_label])]), input_widget
 
 ############# Old way
 def on_number_change(change):
@@ -397,7 +444,7 @@ def update_capacities(change, capacities_vbox):
     label = widgets.Label("Please define the existing capacities. If left empty, default values will be used.",
     style={'font_weight': 'bold'})
     elements_capacities.append(label) 
-
+    
     # Shared values
     electrolyzer_input, electrolyzer_hbox = create_inv_cap_with_label('electrolyzer_cap', 'Electrolyzer [MW input power]:', '0')
     elements_capacities += [electrolyzer_hbox]
@@ -690,7 +737,6 @@ def create_multiple_choice_power():
     # Initiate dictionary for the capacity of each option
     capacities_powers = {}
     capacities_powers_values = {}
-    hbox_capacities_powers = []
     
     # Function to update the capacity fields visibility
     def update_capacity_fields(selected_list, capacities_list):
@@ -702,7 +748,7 @@ def create_multiple_choice_power():
     
     # Function to update the capacities_powers_values when changed
     def on_capacity_change(change, option):
-        capacities_powers_values[option] = change['new']
+        capacities_powers_values[option] = smart_parse_number(change['new'])
     
     def on_change_MC_power(change, selected_options, checkbox, capacities):
         if change['new'] is False and len(selected_options) == 1:
@@ -746,6 +792,7 @@ def create_multiple_choice_power():
         checkboxes_powers.append(checkbox)
     
     # Create capacity fields for each option except grid (hidden initially):
+    hbox_capacities_powers = []
     res = ['Solar plant', 'Wind onshore', 'Wind offshore']
     for option in res:
         label = widgets.Label(f"{option} capacity [MW]:", layout=widgets.Layout(width='180px'))
@@ -756,17 +803,17 @@ def create_multiple_choice_power():
             layout=widgets.Layout(width='100px')
         )
         error_label_c = widgets.Label()
-
-        capacity_widget.observe(lambda change: on_number_change_2(change, error_label_c, f"cap_{option}"), names='value')
+        
+        capacity_widget.observe(lambda change, error_label_c=error_label_c: on_number_change_2(change, error_label_c, f"{option}_cap"), names='value')
         
         hbox = widgets.HBox([label, capacity_widget, error_label_c], layout=widgets.Layout(display='none',
                                                                                          padding='0px 15px 0px 30px',
                                                                                          justify_content='flex-start'))
         capacities_powers[option] = hbox
         hbox_capacities_powers.append(hbox)
-        
         capacities_powers_values[option] = capacity_widget.value
-        #capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
+        
+        capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
 
     # Visibility of initially selected available powers
     update_capacity_fields(preselected_checks_power, capacities_powers)
@@ -915,7 +962,7 @@ def create_combined_dropdowns_tabs():
     
     # Get the dropdown menus
     dropdown_year_vbox, dropdown_year = create_dropdown_year()
-    number_starting_year_box, number_starting_year = create_input_with_label(
+    number_starting_year_box, number_starting_year = create_integer_with_label(
         key='lcoe_starting_year', 
         description='Set the starting year for the LCOE calculation:', 
         placeholder='2020')
@@ -927,7 +974,7 @@ def create_combined_dropdowns_tabs():
         key='wacc', 
         description='Set the WACC for the LCOE calculation:', 
         placeholder='0.08')
-    lcoe_years_box, lcoe_years = create_input_with_label(
+    lcoe_years_box, lcoe_years = create_integer_with_label(
         key='lcoe_years', 
         description='Set the number of years for the LCOE calculation:', 
         placeholder='25')
@@ -950,11 +997,11 @@ def create_combined_dropdowns_tabs():
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
     multiple_choice_power_box, selected_powers, capacities_powers, investment_res, investment_ps, investment_ps_capacity = create_multiple_choice_power()
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
-    number_slices_vbox, number_slices = create_input_with_label(
+    number_slices_vbox, number_slices = create_integer_with_label(
         key='opt_horizons', 
         description='Set the number of optimization horizons for the model:',
         placeholder='12')
-    levels_elec_box, levels_elec = create_input_with_label(
+    levels_elec_box, levels_elec = create_integer_with_label(
         key='levels_elec', 
         description='Set the number of operating sections to represent variable efficiency:',
         placeholder='3')
@@ -971,7 +1018,6 @@ def create_combined_dropdowns_tabs():
         'powers': selected_powers,
         'capacities_powers': capacities_powers,
         'electrolysis': dropdown_electrolysis,
-        #'frequency': dropdown_frequency,
         'temporal_block': dropdown_temp_block,
         'number_wacc': number_wacc,
         'lcoe_years': lcoe_years,
