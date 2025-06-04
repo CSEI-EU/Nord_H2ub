@@ -650,13 +650,11 @@
                             },
                             {
                                 "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "unit"
+                                "position": 1
                             },
                             {
                                 "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "node"
+                                "position": 2
                             },
                             {
                                 "map_type": "Entity",
@@ -665,11 +663,11 @@
                             },
                             {
                                 "map_type": "Element",
-                                "position": 1
+                                "position": 3
                             },
                             {
                                 "map_type": "Element",
-                                "position": 2
+                                "position": 4
                             },
                             {
                                 "map_type": "EntityMetadata",
@@ -677,11 +675,11 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": 4
+                                "position": 5
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": 3
+                                "position": 7
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -689,7 +687,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 5
+                                "position": 6
                             }
                         ]
                     }
@@ -1043,6 +1041,80 @@
                         ]
                     }
                 }
+            ],
+            "Grouped_inv": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "unit"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "investment_group"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Boolean_values": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 3
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
@@ -1065,7 +1137,9 @@
             "Time_series",
             "Time_series_storage",
             "Energy_prices",
-            "Temporal_relations"
+            "Temporal_relations",
+            "Grouped_inv",
+            "Boolean_values"
         ],
         "table_options": {
             "Definition": {
@@ -1127,6 +1201,12 @@
             },
             "Storage_Inv_Parameters": {
                 "header": true
+            },
+            "Grouped_inv": {
+                "header": true
+            },
+            "Boolean_values": {
+                "header": true
             }
         },
         "table_types": {
@@ -1175,7 +1255,9 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "boolean"
+                "5": "string",
+                "6": "boolean",
+                "7": "string"
             },
             "Object__node_node": {
                 "0": "string",
@@ -1279,6 +1361,18 @@
                 "1": "string",
                 "2": "string",
                 "3": "string"
+            },
+            "Grouped_inv": {
+                "0": "string",
+                "1": "string",
+                "2": "string"
+            },
+            "Boolean_values": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "boolean",
+                "4": "string"
             }
         },
         "table_default_column_type": {

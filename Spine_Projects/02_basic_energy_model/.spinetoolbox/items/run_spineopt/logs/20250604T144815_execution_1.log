@@ -1,0 +1,97 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:62535 http://127.0.0.1:62540
+2-element Vector{String}:
+ "http://127.0.0.1:62535"
+ "http://127.0.0.1:62540"
+Running SpineOpt...
+[SpineOpt version 0.8.3 (git hash: N/A)]
+[SpineInterface version 0.14.8 (git hash: N/A)]
+Execution started at 2025-06-04T14:48:16.044
+Reading input data from sqlite:///C:\Users\djh.eco\OneDrive - CBS - Copenhagen Business School\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+ERROR: LoadError: KeyError: key ("unit", "linked_inv") not found
+Stacktrace:
+  [1] getindex
+    @ .\dict.jl:477 [inlined]
+  [2] getindex
+    @ .\abstractdict.jl:551 [inlined]
+  [3] (::SpineInterface.var"#128#132"{Dict{Tuple{String, String}, SpineInterface.Object}})(::Tuple{String, String})
+    @ SpineInterface .\none:0
+  [4] iterate
+    @ .\generator.jl:48 [inlined]
+  [5] collect(itr::Base.Generator{Base.Iterators.Zip{Tuple{Vector{Any}, Vector{Any}}}, SpineInterface.var"#128#132"{Dict{Tuple{String, String}, SpineInterface.Object}}})
+    @ Base .\array.jl:791
+  [6] _totuple
+    @ .\tuple.jl:489 [inlined]
+  [7] Tuple(itr::Base.Generator{Base.Iterators.Zip{Tuple{Vector{Any}, Vector{Any}}}, SpineInterface.var"#128#132"{Dict{Tuple{String, String}, SpineInterface.Object}}})
+    @ Base .\tuple.jl:455
+  [8] (::SpineInterface.var"#127#131"{Vector{Any}, Dict{Tuple{String, String}, SpineInterface.Object}})(::Vector{Any})
+    @ SpineInterface .\none:0
+  [9] iterate
+    @ .\generator.jl:48 [inlined]
+ [10] collect(itr::Base.Generator{Vector{Any}, SpineInterface.var"#127#131"{Vector{Any}, Dict{Tuple{String, String}, SpineInterface.Object}}})
+    @ Base .\array.jl:791
+ [11] _rels_and_vals(object_class_name_list::Vector{Any}, relationships::Vector{Any}, full_objs_per_id::Dict{Tuple{String, String}, SpineInterface.Object}, param_defs::Tuple{}, param_vals_per_ent::Dict{Tuple{String, Any, String}, Vector{Any}})
+    @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:186
+ [12] _rel_class_args(class::Vector{Any}, rels_per_cls::Dict{Any, Any}, full_objs_per_id::Dict{Tuple{String, String}, SpineInterface.Object}, param_defs_per_cls::Dict{Any, Any}, param_vals_per_ent::Dict{Tuple{String, Any, String}, Vector{Any}})
+    @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:178
+ [13] (::SpineInterface.var"#137#138"{Dict{Any, Any}, Dict{Tuple{String, String}, SpineInterface.Object}, Dict{Any, Any}, Dict{Tuple{String, Any, String}, Vector{Any}}})(class::Vector{Any})
+    @ SpineInterface .\essentials.jl:0
+ [14] iterate
+    @ .\generator.jl:48 [inlined]
+ [15] grow_to!(dest::Dict{Symbol, Tuple{Vector{Symbol}, Vector, Dict, Dict}}, itr::Base.Generator{Vector{Vector{Any}}, SpineInterface.var"#137#138"{Dict{Any, Any}, Dict{Tuple{String, String}, SpineInterface.Object}, Dict{Any, Any}, Dict{Tuple{String, Any, String}, Vector{Any}}}}, st::Int64)
+    @ Base .\abstractdict.jl:625
+ [16] grow_to!(dest::Dict{Symbol, Tuple{Vector{Symbol}, Vector{Tuple{SpineInterface.Object, SpineInterface.Object}}, Dict{Tuple{SpineInterface.Object, SpineInterface.Object}, Dict{Symbol}}, Dict{Symbol, SpineInterface.ParameterValue}}}, itr::Base.Generator{Vector{Vector{Any}}, SpineInterface.var"#137#138"{Dict{Any, Any}, Dict{Tuple{String, String}, SpineInterface.Object}, Dict{Any, Any}, Dict{Tuple{String, Any, String}, Vector{Any}}}}, st::Int64)
+    @ Base .\abstractdict.jl:623
+ [17] grow_to!(dest::Dict{Any, Any}, itr::Base.Generator{Vector{Vector{Any}}, SpineInterface.var"#137#138"{Dict{Any, Any}, Dict{Tuple{String, String}, SpineInterface.Object}, Dict{Any, Any}, Dict{Tuple{String, Any, String}, Vector{Any}}}})
+    @ Base .\abstractdict.jl:602
+ [18] dict_with_eltype(DT_apply::Base.var"#421#422", kv::Base.Generator{Vector{Vector{Any}}, SpineInterface.var"#137#138"{Dict{Any, Any}, Dict{Tuple{String, String}, SpineInterface.Object}, Dict{Any, Any}, Dict{Tuple{String, Any, String}, Vector{Any}}}}, t::Type)
+    @ Base .\abstractdict.jl:641
+ [19] Dict
+    @ .\dict.jl:117 [inlined]
+ [20] _rel_args_per_class(classes::Vector{Vector{Any}}, ents_per_cls::Dict{Any, Any}, full_objs_per_id::Dict{Tuple{String, String}, SpineInterface.Object}, param_defs_per_cls::Dict{Any, Any}, param_vals_per_ent::Dict{Tuple{String, Any, String}, Vector{Any}})
+    @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:216
+ [21] _generate_convenience_functions(data::Dict{String, Any}, mod::Module; filters::Nothing, extend::Bool)
+    @ SpineInterface C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:266
+ [22] _generate_convenience_functions
+    @ C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:248 [inlined]
+ [23] #using_spinedb#106
+    @ C:\Users\djh.eco\.julia\packages\SpineInterface\mumtf\src\api\db.jl:43 [inlined]
+ [24] macro expansion
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:247 [inlined]
+ [25] macro expansion
+    @ .\timing.jl:581 [inlined]
+ [26] macro expansion
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:51 [inlined]
+ [27] _init_data_from_db(url_in::String, log_level::Int64, upgrade::Bool, templates::Tuple{}, filters::Dict{String, String}, st::Nothing)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:240
+ [28] _init_data_from_db(url_in::String, log_level::Int64, upgrade::Bool, templates::Tuple{}, filters::Dict{String, String})
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:239
+ [29] prepare_spineopt(url_in::String; log_level::Int64, upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:211
+ [30] prepare_spineopt
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:199 [inlined]
+ [31] _run_spineopt(f::SpineOpt.var"#65#66", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:140
+ [32] #68
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:99 [inlined]
+ [33] _log_to_file
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\util\misc.jl:225 [inlined]
+ [34] #run_spineopt#67
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:98 [inlined]
+ [35] run_spineopt(f::Function, url_in::String, url_out::String)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:80
+ [36] #run_spineopt#64
+    @ C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:64 [inlined]
+ [37] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\djh.eco\.julia\packages\SpineOpt\ZV0Yy\src\run_spineopt.jl:63
+ [38] top-level scope
+    @ C:\Users\djh.eco\.spinetoolbox\work\run_spineopt__0ffbebba39c64b0f85dc5e0f00ac10a3__toolbox\run_spineopt.jl:3
+ [39] include(fname::String)
+    @ Main .\sysimg.jl:38
+ [40] top-level scope
+    @ none:1
+in expression starting at C:\Users\djh.eco\.spinetoolbox\work\run_spineopt__0ffbebba39c64b0f85dc5e0f00ac10a3__toolbox\run_spineopt.jl:3
