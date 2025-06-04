@@ -763,26 +763,6 @@
                     }
                 }
             ],
-            "Variable_Eff_Definition": [
-                {
-                    "definition_user_constraints": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Variable_Eff": [
                 {
                     "User_constraint_value": {
@@ -1081,7 +1061,6 @@
             "Object__node_node",
             "Boolean_relations",
             "Operating_points",
-            "Variable_Eff_Definition",
             "Variable_Eff",
             "Time_series",
             "Time_series_storage",
@@ -1111,9 +1090,6 @@
                 "header": true
             },
             "Object__node_node": {
-                "header": true
-            },
-            "Variable_Eff_Definition": {
                 "header": true
             },
             "Variable_Eff": {
@@ -1210,10 +1186,6 @@
                 "5": "string",
                 "6": "float",
                 "7": "string"
-            },
-            "Variable_Eff_Definition": {
-                "0": "string",
-                "1": "string"
             },
             "Variable_Eff": {
                 "0": "float",
