@@ -106,7 +106,7 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "testing": true
+                                "base_case": true
                             }
                         }
                     },
