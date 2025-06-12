@@ -1042,44 +1042,6 @@
                     }
                 }
             ],
-            "Grouped_inv": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "unit"
-                            },
-                            {
-                                "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "investment_group"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Element",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Boolean_values": [
                 {
                     "Mapping 1": {
@@ -1095,22 +1057,26 @@
                             {
                                 "map_type": "EntityMetadata",
                                 "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Grouped_inv": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 0
                             },
                             {
-                                "map_type": "ParameterDefinition",
-                                "position": 2
+                                "map_type": "Entity",
+                                "position": 1
                             },
                             {
-                                "map_type": "Alternative",
-                                "position": 4
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
+                                "map_type": "EntityMetadata",
                                 "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": 3
                             }
                         ]
                     }
@@ -1138,8 +1104,8 @@
             "Time_series_storage",
             "Energy_prices",
             "Temporal_relations",
-            "Grouped_inv",
-            "Boolean_values"
+            "Boolean_values",
+            "Grouped_inv"
         ],
         "table_options": {
             "Definition": {
@@ -1280,9 +1246,7 @@
             },
             "Time_series_storage": {
                 "0": "datetime",
-                "1": "float",
-                "2": "float",
-                "3": "float"
+                "1": "float"
             },
             "Energy_prices": {
                 "0": "datetime",
@@ -1291,8 +1255,7 @@
                 "3": "float",
                 "4": "float",
                 "5": "float",
-                "6": "float",
-                "7": "float"
+                "6": "float"
             },
             "Model_components": {
                 "0": "string",
@@ -1337,8 +1300,7 @@
             },
             "Time_series": {
                 "0": "datetime",
-                "1": "float",
-                "2": "float"
+                "1": "float"
             },
             "Temporal_relations": {
                 "0": "string",
@@ -1371,8 +1333,7 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "boolean",
-                "4": "string"
+                "3": "string"
             }
         },
         "table_default_column_type": {
