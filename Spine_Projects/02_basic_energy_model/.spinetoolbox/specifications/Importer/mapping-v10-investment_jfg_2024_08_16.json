@@ -1057,6 +1057,22 @@
                             {
                                 "map_type": "EntityMetadata",
                                 "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": 4
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": 3
                             }
                         ]
                     }
@@ -1071,8 +1087,26 @@
                                 "position": 0
                             },
                             {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "unit"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "investment_group"
+                            },
+                            {
                                 "map_type": "Entity",
                                 "position": 1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 2
                             },
                             {
                                 "map_type": "EntityMetadata",
@@ -1246,7 +1280,9 @@
             },
             "Time_series_storage": {
                 "0": "datetime",
-                "1": "float"
+                "1": "float",
+                "2": "string",
+                "3": "string"
             },
             "Energy_prices": {
                 "0": "datetime",
@@ -1255,7 +1291,8 @@
                 "3": "float",
                 "4": "float",
                 "5": "float",
-                "6": "float"
+                "6": "float",
+                "7": "string"
             },
             "Model_components": {
                 "0": "string",
@@ -1300,7 +1337,8 @@
             },
             "Time_series": {
                 "0": "datetime",
-                "1": "float"
+                "1": "float",
+                "2": "string"
             },
             "Temporal_relations": {
                 "0": "string",
@@ -1333,7 +1371,8 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "string"
+                "3": "boolean",
+                "4": "string"
             }
         },
         "table_default_column_type": {
