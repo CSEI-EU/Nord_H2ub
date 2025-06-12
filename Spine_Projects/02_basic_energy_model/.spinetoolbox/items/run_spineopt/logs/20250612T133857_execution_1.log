@@ -1,0 +1,274 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:51341 http://127.0.0.1:51346
+2-element Vector{String}:
+ "http://127.0.0.1:51341"
+ "http://127.0.0.1:51346"
+Running SpineOpt...
+[SpineOpt version 0.8.3 (git hash: N/A)]
+[SpineInterface version 0.14.8 (git hash: N/A)]
+Execution started at 2025-06-12T13:38:58.099
+Reading input data from sqlite:///C:\Users\djh.eco\OneDrive - CBS - Copenhagen Business School\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+Initializing base data structure from db...  1.323239 seconds (307.63 k allocations: 42.406 MiB)
+Preprocessing base data structure...  0.623638 seconds (41.70 k allocations: 2.045 MiB, 44.82% compilation time)
+Checking base data structure...  0.604715 seconds (7.87 k allocations: 410.484 KiB, 96.93% compilation time)
+[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
+Creating model temporal structure... 85.875222 seconds (433.79 M allocations: 23.798 GiB, 55.74% gc time, 0.05% compilation time)
+Creating model stochastic structure...  0.335263 seconds (3.22 M allocations: 490.763 MiB, 13.32% compilation time)
+Adding model variables...
+- [variable_binary_gas_connection_flow]  0.092260 seconds (2.29 M allocations: 34.958 MiB)
+- [variable_connection_flow]  1.265023 seconds (10.37 M allocations: 541.037 MiB, 17.72% compilation time)
+- [variable_connection_intact_flow]  1.237575 seconds (3.55 M allocations: 137.170 MiB, 85.68% gc time)
+- [variable_connections_decommissioned]  0.084939 seconds (2.29 M allocations: 35.016 MiB)
+- [variable_connections_invested]  0.170643 seconds (1.70 M allocations: 135.196 MiB)
+- [variable_connections_invested_available]  1.183716 seconds (5.10 M allocations: 294.813 MiB, 82.52% compilation time)
+- [variable_min_capacity_margin_slack]  0.103630 seconds (2.29 M allocations: 34.938 MiB)
+- [variable_node_injection]  0.218350 seconds (3.57 M allocations: 124.727 MiB)
+- [variable_node_pressure]  0.106674 seconds (2.29 M allocations: 34.948 MiB)
+- [variable_node_slack_neg]  0.183889 seconds (3.13 M allocations: 90.608 MiB)
+- [variable_node_slack_pos]  0.817161 seconds (3.13 M allocations: 94.852 MiB, 77.96% gc time)
+- [variable_node_state]  0.180115 seconds (3.13 M allocations: 80.686 MiB, 8.58% compilation time)
+- [variable_node_voltage_angle]  0.089466 seconds (2.29 M allocations: 34.948 MiB)
+- [variable_nonspin_units_shut_down]  0.107482 seconds (2.29 M allocations: 34.968 MiB)
+- [variable_nonspin_units_started_up]  0.107747 seconds (2.29 M allocations: 34.958 MiB)
+- [variable_storages_decommissioned]  0.104376 seconds (2.29 M allocations: 34.985 MiB)
+- [variable_storages_invested]  0.145985 seconds (1.92 M allocations: 79.400 MiB, 11.26% compilation time)
+- [variable_storages_invested_available]  0.142019 seconds (1.99 M allocations: 83.511 MiB, 11.70% compilation time)
+- [variable_unit_flow]  1.521240 seconds (12.47 M allocations: 700.702 MiB, 20.87% gc time, 8.44% compilation time)
+- [variable_unit_flow_op]  0.101774 seconds (2.55 M allocations: 55.666 MiB)
+- [variable_unit_flow_op_active]  0.116021 seconds (2.67 M allocations: 61.828 MiB)
+- [variable_units_invested]  0.196241 seconds (2.17 M allocations: 141.457 MiB)
+- [variable_units_invested_available]  0.301174 seconds (2.72 M allocations: 172.317 MiB, 6.41% compilation time)
+- [variable_units_mothballed]  0.386521 seconds (2.29 M allocations: 35.108 MiB, 75.66% gc time)
+- [variable_units_on]  0.141199 seconds (3.32 M allocations: 92.997 MiB)
+- [variable_units_out_of_service]  0.086581 seconds (2.29 M allocations: 34.945 MiB)
+- [variable_units_returned_to_service]  0.101831 seconds (2.29 M allocations: 34.941 MiB)
+- [variable_units_shut_down]  0.104122 seconds (2.39 M allocations: 41.990 MiB)
+- [variable_units_started_up]  0.106034 seconds (2.39 M allocations: 41.657 MiB)
+- [variable_units_taken_out_of_service]  0.090737 seconds (2.29 M allocations: 34.943 MiB)
+- [variable_user_constraint_slack_neg]  0.095694 seconds (2.29 M allocations: 34.937 MiB)
+- [variable_user_constraint_slack_pos]  0.090359 seconds (2.29 M allocations: 34.937 MiB)
+  9.843877 seconds (100.86 M allocations: 3.423 GiB, 23.44% gc time, 14.19% compilation time)
+Adding model expressions...
+- [expression_capacity_margin]  0.000677 seconds (65 allocations: 3.000 KiB)
+  0.002041 seconds (136 allocations: 6.695 KiB)
+Adding model constraints...
+- [constraint_candidate_connection_flow_lb]  0.001787 seconds (113 allocations: 5.047 KiB)
+- [constraint_candidate_connection_flow_ub]  0.000219 seconds (106 allocations: 4.344 KiB)
+- [constraint_compression_ratio]  0.000073 seconds (55 allocations: 3.547 KiB)
+- [constraint_connection_flow_capacity]  1.524307 seconds (11.00 M allocations: 651.355 MiB, 16.60% gc time, 25.74% compilation time)
+- [constraint_connection_flow_gas_capacity]  0.000633 seconds (55 allocations: 3.547 KiB)
+- [constraint_connection_flow_intact_flow]  0.000123 seconds (59 allocations: 2.734 KiB)
+- [constraint_connection_flow_lodf]  0.001169 seconds (63 allocations: 3.305 KiB)
+- [constraint_connection_intact_flow_capacity]  0.000646 seconds (96 allocations: 4.531 KiB)
+- [constraint_connection_intact_flow_ptdf]  0.000099 seconds (43 allocations: 2.297 KiB)
+- [constraint_connection_lifetime] 17.690148 seconds (77.42 M allocations: 8.750 GiB, 65.38% gc time, 0.45% compilation time)
+- [constraint_connection_unitary_gas_flow]  0.000445 seconds (58 allocations: 4.703 KiB)
+- [constraint_connections_invested_available]  0.033805 seconds (25.41 k allocations: 1.238 MiB, 97.21% compilation time)
+- [constraint_connections_invested_transition]  0.005648 seconds (3.02 k allocations: 177.172 KiB)
+- [constraint_cyclic_node_state]  0.008806 seconds (2.36 k allocations: 114.531 KiB, 95.44% compilation time)
+- [constraint_fix_node_pressure_point]  0.000410 seconds (55 allocations: 3.547 KiB)
+- [constraint_fix_ratio_in_in_unit_flow]  0.422565 seconds (4.42 M allocations: 297.738 MiB)
+- [constraint_fix_ratio_in_out_unit_flow]  0.000374 seconds (1.04 k allocations: 62.266 KiB)
+- [constraint_fix_ratio_out_in_connection_flow]  0.053938 seconds (214.97 k allocations: 15.523 MiB, 27.12% compilation time)
+- [constraint_fix_ratio_out_in_unit_flow]  0.000165 seconds (220 allocations: 17.750 KiB)
+- [constraint_fix_ratio_out_out_unit_flow]  0.287190 seconds (2.85 M allocations: 186.139 MiB)
+- [constraint_investment_group_equal_investments]  0.010636 seconds (20.95 k allocations: 4.795 MiB)
+- [constraint_investment_group_maximum_capacity_invested_available]  0.000089 seconds (28 allocations: 1.734 KiB)
+- [constraint_investment_group_maximum_entities_invested_available]  0.000097 seconds (27 allocations: 1.688 KiB)
+- [constraint_investment_group_minimum_capacity_invested_available]  0.000691 seconds (26 allocations: 1.641 KiB)
+- [constraint_investment_group_minimum_entities_invested_available]  0.000062 seconds (26 allocations: 1.641 KiB)
+- [constraint_max_node_pressure]  0.000177 seconds (185 allocations: 8.453 KiB)
+- [constraint_max_node_voltage_angle]  0.000402 seconds (237 allocations: 10.531 KiB)
+- [constraint_max_ratio_in_in_unit_flow]  0.000255 seconds (220 allocations: 17.750 KiB)
+- [constraint_max_ratio_in_out_unit_flow]  0.000131 seconds (220 allocations: 17.750 KiB)
+- [constraint_max_ratio_out_in_connection_flow]  0.000065 seconds (58 allocations: 3.703 KiB)
+- [constraint_max_ratio_out_in_unit_flow]  0.000118 seconds (220 allocations: 17.750 KiB)
+- [constraint_max_ratio_out_out_unit_flow]  0.000104 seconds (220 allocations: 17.750 KiB)
+- [constraint_max_total_cumulated_unit_flow_from_node]  0.000075 seconds (77 allocations: 4.906 KiB)
+- [constraint_max_total_cumulated_unit_flow_to_node]  0.000061 seconds (73 allocations: 4.656 KiB)
+- [constraint_min_capacity_margin]  0.000051 seconds (77 allocations: 3.766 KiB)
+- [constraint_min_down_time]  1.402217 seconds (13.21 M allocations: 810.341 MiB, 25.94% gc time, 1.00% compilation time)
+- [constraint_min_node_pressure]  0.000172 seconds (184 allocations: 8.422 KiB)
+- [constraint_min_node_voltage_angle]  0.000102 seconds (237 allocations: 10.531 KiB)
+- [constraint_min_ratio_in_in_unit_flow]  0.000102 seconds (220 allocations: 17.750 KiB)
+- [constraint_min_ratio_in_out_unit_flow]  0.000103 seconds (220 allocations: 17.750 KiB)
+- [constraint_min_ratio_out_in_connection_flow]  0.000076 seconds (58 allocations: 3.703 KiB)
+- [constraint_min_ratio_out_in_unit_flow]  0.000146 seconds (220 allocations: 17.750 KiB)
+- [constraint_min_ratio_out_out_unit_flow]  0.000452 seconds (225 allocations: 22.094 KiB)
+- [constraint_min_scheduled_outage_duration]  0.000060 seconds (50 allocations: 2.641 KiB)
+- [constraint_min_total_cumulated_unit_flow_from_node]  0.000068 seconds (77 allocations: 4.906 KiB)
+- [constraint_min_total_cumulated_unit_flow_to_node]  0.000053 seconds (73 allocations: 4.656 KiB)
+- [constraint_min_up_time]  0.000062 seconds (52 allocations: 2.734 KiB)
+- [constraint_minimum_operating_point]  0.087197 seconds (945.80 k allocations: 57.865 MiB)
+- [constraint_nodal_balance]  0.188027 seconds (2.92 M allocations: 166.462 MiB)
+- [constraint_node_injection]  1.621940 seconds (18.34 M allocations: 916.792 MiB, 22.81% gc time)
+- [constraint_node_state_capacity]  0.178242 seconds (2.17 M allocations: 117.375 MiB, 12.97% compilation time)
+- [constraint_node_voltage_angle]  0.000120 seconds (39 allocations: 2.188 KiB)
+- [constraint_non_spinning_reserves_lower_bound]  0.000182 seconds (375 allocations: 18.344 KiB)
+- [constraint_non_spinning_reserves_shut_down_upper_bound]  0.000373 seconds (384 allocations: 19.141 KiB)
+- [constraint_non_spinning_reserves_start_up_upper_bound]  0.000184 seconds (384 allocations: 19.141 KiB)
+- [constraint_operating_point_bounds]129.330152 seconds (707.62 M allocations: 56.160 GiB, 20.44% gc time)
+- [constraint_operating_point_rank]  0.017747 seconds (188.59 k allocations: 16.774 MiB)
+- [constraint_ramp_down]  0.422587 seconds (5.95 M allocations: 336.627 MiB)
+- [constraint_ramp_up]  0.979248 seconds (6.07 M allocations: 343.355 MiB, 56.22% gc time)
+- [constraint_ratio_out_in_connection_intact_flow]  0.001112 seconds (57 allocations: 2.672 KiB)
+- [constraint_storage_lifetime]  3.975125 seconds (20.78 M allocations: 2.405 GiB, 52.04% gc time, 2.25% compilation time)
+- [constraint_storage_line_pack]  0.000816 seconds (56 allocations: 3.594 KiB)
+- [constraint_storages_invested_available]  0.002354 seconds (593 allocations: 32.938 KiB)
+- [constraint_storages_invested_transition]  0.006931 seconds (2.88 k allocations: 142.859 KiB)
+- [constraint_unit_flow_capacity]  8.781458 seconds (7.94 M allocations: 436.857 MiB, 83.80% gc time, 8.91% compilation time)
+- [constraint_unit_flow_op_bounds]  0.122646 seconds (1.47 M allocations: 82.930 MiB, 12.22% compilation time)
+- [constraint_unit_flow_op_rank]  0.067677 seconds (1.01 M allocations: 59.829 MiB)
+- [constraint_unit_flow_op_sum]  0.383811 seconds (80.52 k allocations: 6.433 MiB)
+- [constraint_unit_lifetime] 11.140590 seconds (102.93 M allocations: 11.989 GiB, 38.79% gc time)
+- [constraint_unit_pw_heat_rate]  0.000212 seconds (79 allocations: 5.047 KiB)
+- [constraint_unit_state_transition]  0.025389 seconds (287.36 k allocations: 20.116 MiB)
+- [constraint_units_available]  0.641123 seconds (9.06 M allocations: 470.031 MiB, 10.93% compilation time)
+- [constraint_units_invested_available]  0.001787 seconds (2.19 k allocations: 126.102 KiB)
+- [constraint_units_invested_transition]  0.003560 seconds (8.66 k allocations: 475.703 KiB)
+- [constraint_units_out_of_service_contiguity]  0.000108 seconds (51 allocations: 2.688 KiB)
+- [constraint_units_out_of_service_transition]  0.000111 seconds (68 allocations: 3.578 KiB)
+- [constraint_user_constraint]  0.299581 seconds (2.09 M allocations: 128.459 MiB, 20.46% compilation time)
+180.203223 seconds (1.01 G allocations: 84.648 GiB, 29.57% gc time, 0.88% compilation time)
+Setting model objective...  1.159584 seconds (6.51 M allocations: 357.147 MiB, 61.86% compilation time)
+Bringing model to the first window...  2.240193 seconds (21.00 M allocations: 1.131 GiB, 19.14% gc time, 17.83% compilation time)
+model - Window 1 of 2: 2019-01-01T00:00~(4 weeks, 2 days, 10 hours)~>2019-01-31T10:00
+Optimizing model...Running HiGHS 1.9.0 (git hash: 66f735e60): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [7e-04, 1e+04]
+  Cost   [1e-03, 3e+09]
+  Bound  [3e-01, 1e+04]
+  RHS    [1e+00, 2e+01]
+Presolving model
+1636433 rows, 45805 cols, 3339843 nonzeros  0s
+22252 rows, 31987 cols, 113079 nonzeros  3s
+20792 rows, 31252 cols, 110134 nonzeros  3s
+Solving MIP model with:
+   20792 rows
+   31252 cols (1453 binary, 322 integer, 0 implied int., 29477 continuous)
+   110134 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic; L => Sub-MIP;
+     P => Empty MIP; R => Randomized rounding; S => Solve LP; T => Evaluate node; U => Unbounded;
+     z => Trivial zero; l => Trivial lower; u => Trivial upper; p => Trivial point
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   1932160627.043  inf                  inf        0      0      0         0     3.9s
+ R       0       0         0   0.00%   3073321911.563  1.23957787e+12    99.75%        0      0      0     17901    16.3s
+         0       0         0   0.00%   3073340921.741  1.23957787e+12    99.75%     3710    199      0     19026    22.4s
+         0       0         0   0.00%   3073341050.349  1.23957787e+12    99.75%     3724    210      0     19039    28.1s
+         0       0         0   0.00%   3073341094.438  1.23957787e+12    99.75%     3726    219      0     19053    34.2s
+         0       0         0   0.00%   3073341123.277  1.23957787e+12    99.75%     3731    222      0     19057    39.7s
+ L       0       0         0   0.00%   3073341132.468  3073348782.369     0.00%     3732    224      0     19059    77.0s
+ B       0       0         0   0.00%   3073344296.659  3073348782.369     0.00%     4056     80    170     41813    83.6s
+         1       0         1 100.00%   3073348782.369  3073348782.369     0.00%     4057     80    172     42305    83.6s
+Solving report
+  Status            Optimal
+  Primal bound      3073348782.37
+  Dual bound        3073348782.37
+  Gap               0% (tolerance: 0%)
+  P-D integral      60.5906744929
+  Solution status   feasible
+                    3073348782.37 (objective)
+                    0 (bound viol.)
+                    2.84217096718e-14 (int. viol.)
+                    0 (row viol.)
+  Timing            83.61 (total)
+                    0.00 (presolve)
+                    0.00 (solve)
+                    0.00 (postsolve)
+  Max sub-MIP depth 2
+  Nodes             1
+  Repair LPs        1 (1 feasible; 12409 iterations)
+  LP iterations     42305 (total)
+                    366 (strong br.)
+                    1294 (separation)
+                    22618 (heuristics)
+ 89.488456 seconds (25.47 M allocations: 1.314 GiB, 0.43% gc time)
+Optimal solution found, objective function value: 3.0733487823690624e9
+Saving model results...  0.747656 seconds (3.68 M allocations: 159.505 MiB, 67.08% gc time)
+Postprocessing model results...  0.000736 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.213099 seconds (2.40 M allocations: 187.313 MiB)
+model - Rolling temporal structure...
+  0.380053 seconds (4.09 M allocations: 112.307 MiB, 18.18% compilation time)
+Fixing history...  2.182926 seconds (14.78 M allocations: 1.106 GiB, 14.41% gc time, 35.06% compilation time)
+Applying non-anticipativity constraints...  0.002948 seconds (413 allocations: 20.641 KiB)
+model - Window 2 of 2: 2019-01-31T10:00~(4 weeks, 2 days, 10 hours)~>2019-03-02T20:00
+Optimizing model...Coefficient ranges:
+  Matrix [7e-04, 1e+04]
+  Cost   [1e-03, 3e+09]
+  Bound  [6e-15, 1e+04]
+  RHS    [1e+00, 2e+01]
+Presolving model
+1637014 rows, 45936 cols, 3340615 nonzeros  0s
+21953 rows, 31712 cols, 109679 nonzeros  3s
+20489 rows, 30978 cols, 106751 nonzeros  3s
+Solving MIP model with:
+   20489 rows
+   30978 cols (1365 binary, 302 integer, 0 implied int., 29311 continuous)
+   106751 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic; L => Sub-MIP;
+     P => Empty MIP; R => Randomized rounding; S => Solve LP; T => Evaluate node; U => Unbounded;
+     z => Trivial zero; l => Trivial lower; u => Trivial upper; p => Trivial point
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   3039227632.81   inf                  inf        0      0      0         0     4.2s
+ R       0       0         0   0.00%   19697148958.08  1.21109155e+12    98.37%        0      0      0     15860     6.7s
+         0       0         0   0.00%   19697165805.2   1.21109155e+12    98.37%     4483    294      0     17265    11.8s
+         0       0         0   0.00%   19697166690.83  1.21109155e+12    98.37%     4519    302      0     17361    17.3s
+         0       0         0   0.00%   19697167817.71  1.21109155e+12    98.37%     4600    135      0     17441    22.5s
+         0       0         0   0.00%   19697169395.9   1.21109155e+12    98.37%     4608     94      0     17526    28.1s
+         0       0         0   0.00%   19697169916.03  1.21109155e+12    98.37%     1559     82      0     17576    33.5s
+ L       0       0         0   0.00%   19697169947.92  19697169991.14     0.00%     1577     87      0     17587    61.5s
+ T       0       0         0   0.00%   19697169947.92  19697169947.92     0.00%     1577     87      0     37152    61.6s
+         1       0         1 100.00%   19697169947.92  19697169947.92     0.00%     1559     87      0     37152    61.6s
+Solving report
+  Status            Optimal
+  Primal bound      19697169947.9
+  Dual bound        19697169947.9
+  Gap               0% (tolerance: 0%)
+  P-D integral      53.9606839853
+  Solution status   feasible
+                    19697169947.9 (objective)
+                    0 (bound viol.)
+                    9.39248678833e-14 (int. viol.)
+                    0 (row viol.)
+  Timing            61.56 (total)
+                    0.00 (presolve)
+                    0.00 (solve)
+                    0.00 (postsolve)
+  Max sub-MIP depth 3
+  Nodes             1
+  Repair LPs        0 (0 feasible; 0 iterations)
+  LP iterations     37152 (total)
+                    0 (strong br.)
+                    1727 (separation)
+                    19565 (heuristics)
+ 61.634290 seconds (2 allocations: 32 bytes)
+Optimal solution found, objective function value: 1.969716994791835e10
+Saving model results...  0.208776 seconds (3.68 M allocations: 159.499 MiB)
+Postprocessing model results...  0.000080 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.175541 seconds (2.29 M allocations: 185.429 MiB)
+model - Rolling temporal structure...
+  0.000110 seconds (47 allocations: 1.312 KiB)
+model ... Rolling complete
+Writing report to sqlite:///C:\Users\djh.eco\OneDrive - CBS - Copenhagen Business School\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\outputtest\OutputTest.sqlite?spinedbfilter=cfg%3Aexecution%3A%7B%22execution_item%22%3A+%22Run+SpineOpt%22%2C+%22scenarios%22%3A+%5B%5D%2C+%22timestamp%22%3A+%222025-06-12T13%3A38%3A39%22%7D...  1.745694 seconds (2.27 M allocations: 132.125 MiB)
+Execution complete. Started at 2025-06-12T13:38:58.099, ended at 2025-06-12T13:46:18.405, elapsed time: 7 minutes, 20 seconds, 306 milliseconds
+A JuMP Model
+├ solver: HiGHS
+├ objective_sense: MIN_SENSE
+│ └ objective_function_type: JuMP.AffExpr
+├ num_variables: 87347
+├ num_constraints: 1753443
+│ ├ JuMP.AffExpr in MOI.EqualTo{Float64}: 28579
+│ ├ JuMP.AffExpr in MOI.GreaterThan{Float64}: 3665
+│ ├ JuMP.AffExpr in MOI.LessThan{Float64}: 1630105
+│ ├ JuMP.VariableRef in MOI.EqualTo{Float64}: 632
+│ ├ JuMP.VariableRef in MOI.GreaterThan{Float64}: 74274
+│ ├ JuMP.VariableRef in MOI.LessThan{Float64}: 13901
+│ └ JuMP.VariableRef in MOI.Integer: 2287
+└ Names registered in the model: none

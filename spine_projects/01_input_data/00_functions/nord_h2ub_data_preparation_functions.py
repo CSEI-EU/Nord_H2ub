@@ -188,6 +188,8 @@ def unit_capacity_relations(df1, capacities_exisiting_params, investment_limit_p
             elif object_type == 'Wind_offshore':
                 if 'Wind offshore' in powers_capacities and powers_capacities['Wind offshore'] is not None:
                     capacity = powers_capacities['Wind offshore']
+            elif unit in ['water_import', 'co2_import', 'biogas_import']:
+                capacity = 10000
             else:
                 pattern_cap = re.compile(rf"capacity_{object_type}")
                 pattern_inv = re.compile(rf"inv_limit_{object_type}")

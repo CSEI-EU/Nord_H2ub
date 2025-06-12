@@ -33,7 +33,7 @@ def set_parameters(params):
         'demand': 180000,
         'demand_res': 'daily',
         'powers': {'Solar plant'},
-        'powers_capacities': {304},
+        'powers_capacities': {'Solar plant': 304, 'Wind onshore': None, 'Wind offshore': None},
         'frequency': '1h',
         'model_name': 'model',
         'temporal_block': 'hourly',
@@ -109,11 +109,19 @@ def set_parameters(params):
         'investment_ps_capacity': None
     }
 
-    # Update default values with provided parameters}
-    #params = {k: (v if pd.notna(v) or not '' else default_params.get(k, None)) for k, v in params.items()}
-    params = {k: v for k, v in params.items()
-        if v is not None and not (isinstance(v, str) and v.strip() == '') and not (isinstance(v, float) and math.isnan(v))
-    }
+    # Update default values with provided parameters
+    def clean_values(d):
+        cleaned = {}
+        for k, v in d.items():
+            if isinstance(v, dict):
+                nested = clean_values(v)
+                if nested:  # only keep if not empty
+                    cleaned[k] = nested
+            elif v is not None and not (isinstance(v, str) and v.strip() == '') and not (isinstance(v, float) and math.isnan(v)):
+                cleaned[k] = v
+        return cleaned
+    
+    params = clean_values(params)
     default_params.update(params)
     
     # Create time stamps
