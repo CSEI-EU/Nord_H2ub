@@ -28,7 +28,7 @@ Finally, Python routines in Jupyter Notebook process and analyze the output data
 
 Please follow the instructions to install SpineOpt (https://github.com/spine-tools/SpineOpt.jl) and SpineToolbox (https://github.com/Spine-tools/Spine-Toolbox). 
 
-The current version of the energy hub model uses SpineOpt v0.8.3 and SpineToolbox v.0.8.2 in combination with Pytohn 3.9.
+The current version of the energy hub model uses SpineOpt v0.8.3 and SpineToolbox v.0.8.2 in combination with Python 3.9.
 
 For the data prepratation, we recommend a virtual environment (e.g. using Anaconda). There you have to install the follwoing packages: 
 
