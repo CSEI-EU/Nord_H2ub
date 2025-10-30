@@ -2,7 +2,7 @@
     "name": "run data prep",
     "tooltype": "python",
     "includes": [
-        "nord_h2ub_start_jupyter_notebook.py"
+        "nord_h2ub_data_preparation_start_jupyter_notebook.py"
     ],
     "description": "",
     "inputfiles": [],

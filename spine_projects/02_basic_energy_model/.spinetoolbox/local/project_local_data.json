@@ -3,7 +3,15 @@
         "Data Connection": {
             "db_credentials": {}
         },
+        "Load template": {},
+        "Run SpineOpt": {
+            "options": {
+                "julia_sysimage": ""
+            }
+        },
         "Exporter": {},
+        "run_data_prep": {},
+        "run_output_prep": {},
         "Input": {
             "url": {
                 "username": "",

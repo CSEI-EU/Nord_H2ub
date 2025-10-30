@@ -1182,7 +1182,7 @@
                 "6": "float",
                 "7": "float",
                 "8": "float",
-                "9": "float"
+                "9": "string"
             },
             "Object__to_from_node": {
                 "0": "string",
@@ -1221,7 +1221,7 @@
                 "2": "float"
             },
             "Operating_points": {
-                "0": "float",
+                "0": "string",
                 "1": "float"
             },
             "Time_series_storage": {
@@ -1236,9 +1236,7 @@
                 "2": "float",
                 "3": "float",
                 "4": "float",
-                "5": "float",
-                "6": "float",
-                "7": "float"
+                "5": "float"
             },
             "Model_components": {
                 "0": "string",
@@ -1355,7 +1353,7 @@
                 "2": "string"
             }
         },
-        "source_type": "ExcelConnector"
+        "source_type": "ExcelReader"
     },
     "description": ""
 }
