@@ -1,0 +1,65 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:49266 http://127.0.0.1:49269
+2-element Vector{String}:
+ "http://127.0.0.1:49266"
+ "http://127.0.0.1:49269"
+Running SpineOpt...
+[SpineOpt version 0.10.2 (git hash: N/A)]
+[SpineInterface version 0.15.2 (git hash: N/A)]
+Execution started at 2025-11-03T12:51:12.034
+Reading input data from sqlite:///C:\Users\kar.eco\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+┌ Warning: The data structure is not the latest version.
+│ SpineOpt might still be able to run, but results aren't guaranteed.
+│ Please use `run_spineopt(url_in; upgrade=true)` to upgrade.
+└ @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:319
+Initializing  data structure from db...  2.079987 seconds (1.88 M allocations: 115.953 MiB, 16.80% gc time, 82.39% compilation time)
+Preprocessing  data structure...ERROR: LoadError: MethodError: objects of type Nothing are not callable
+The object of type `Nothing` exists, but no method is defined for this combination of argument types when trying to treat it as a callable object.
+Stacktrace:
+  [1] expand_model__default_temporal_block()
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\data_structure\preprocess_data_structure.jl:688
+  [2] expand_model_default_relationships
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\data_structure\preprocess_data_structure.jl:563 [inlined]
+  [3] preprocess_data_structure()
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\data_structure\preprocess_data_structure.jl:32
+  [4] macro expansion
+    @ .\timing.jl:581 [inlined]
+  [5] (::SpineOpt.var"#80#86")()
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:60
+  [6] (::Base.RedirectStdStream)(thunk::SpineOpt.var"#80#86", stream::Pipe)
+    @ Base .\stream.jl:1464
+  [7] macro expansion
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:59 [inlined]
+  [8] _init_data_from_db(url_in::String, log_level::Int64, upgrade::Bool, templates::Tuple{}, filters::Dict{String, String}, scenario::String)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:307
+  [9] _init_data_from_db(url_in::String, log_level::Int64, upgrade::Bool, templates::Tuple{}, filters::Dict{String, String})
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:298
+ [10] prepare_spineopt(url_in::String; log_level::Int64, upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, use_model_names::Bool, add_bridges::Bool)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:265
+ [11] prepare_spineopt
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:251 [inlined]
+ [12] _run_spineopt(f::SpineOpt.var"#64#65", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, use_model_names::Bool, add_bridges::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:149
+ [13] #67
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:104 [inlined]
+ [14] _log_to_file
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:246 [inlined]
+ [15] #run_spineopt#66
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:103 [inlined]
+ [16] run_spineopt(f::Function, url_in::String, url_out::String)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:83
+ [17] #run_spineopt#63
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:67 [inlined]
+ [18] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:66
+ [19] top-level scope
+    @ C:\Users\kar.eco\.spinetoolbox\work\run_spineopt__3aae2dfd2af14f0b811dca3e1c368491__toolbox\run_spineopt.jl:3
+ [20] include(fname::String)
+    @ Main .\sysimg.jl:38
+ [21] top-level scope
+    @ none:1
+in expression starting at C:\Users\kar.eco\.spinetoolbox\work\run_spineopt__3aae2dfd2af14f0b811dca3e1c368491__toolbox\run_spineopt.jl:3

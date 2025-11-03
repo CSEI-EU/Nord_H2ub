@@ -1,0 +1,33 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:56717 http://127.0.0.1:56721
+2-element Vector{String}:
+ "http://127.0.0.1:56717"
+ "http://127.0.0.1:56721"
+WARNING: using JuMP.parameter_value in module SpineInterface conflicts with an existing identifier.
+WARNING: using JuMP.Parameter in module SpineInterface conflicts with an existing identifier.
+ERROR: LoadError: ┌ Error: SYSTEM: display_error(errio, lasterr) caused an error
+└ @ Base client.jl:164
+ERROR: InterruptException:
+Stacktrace:
+ [1] showerror(io::IOContext{Base.PipeEndpoint}, ex::LoadError, bt::Vector{Base.StackTraces.StackFrame}; backtrace::Bool)
+   @ Base .\errorshow.jl:105
+ [2] show_exception_stack(io::IOContext{Base.PipeEndpoint}, stack::Base.ExceptionStack)
+   @ Base .\errorshow.jl:996
+ [3] display_error(io::IOContext{Base.PipeEndpoint}, stack::Base.ExceptionStack)
+   @ Base .\client.jl:117
+ [4] #invokelatest#2
+   @ .\essentials.jl:1055 [inlined]
+ [5] invokelatest
+   @ .\essentials.jl:1052 [inlined]
+ [6] eval_user_input(errio::IOContext{Base.PipeEndpoint}, ast::Any, show_value::Bool)
+   @ Base .\client.jl:142
+ [7] run_main_repl(interactive::Bool, quiet::Bool, banner::Symbol, history_file::Bool, color_set::Bool)
+   @ Base .\client.jl:483
+ [8] repl_main
+   @ .\client.jl:567 [inlined]
+ [9] _start()
+   @ Base .\client.jl:541

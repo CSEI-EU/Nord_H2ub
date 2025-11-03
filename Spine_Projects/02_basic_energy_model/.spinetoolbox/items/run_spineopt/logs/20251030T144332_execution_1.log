@@ -1,0 +1,151 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:62717 http://127.0.0.1:62720
+2-element Vector{String}:
+ "http://127.0.0.1:62717"
+ "http://127.0.0.1:62720"
+WARNING: using JuMP.parameter_value in module SpineInterface conflicts with an existing identifier.
+Running SpineOpt...
+WARNING: using JuMP.Parameter in module SpineInterface conflicts with an existing identifier.
+[SpineOpt version 0.10.2 (git hash: N/A)]
+[SpineInterface version 0.15.2 (git hash: N/A)]
+Execution started at 2025-10-30T14:43:43.020
+Reading input data from sqlite:///C:\Users\kar.eco\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+Initializing  data structure from db... 14.357112 seconds (28.52 M allocations: 1.432 GiB, 2.55% gc time, 95.18% compilation time)
+Preprocessing  data structure... 13.115150 seconds (15.21 M allocations: 755.955 MiB, 0.97% gc time, 99.55% compilation time)
+Checking  data structure...  1.397436 seconds (1.03 M allocations: 52.025 MiB, 2.42% gc time, 99.69% compilation time)
+Build started at 2025-10-30T14:44:31.944
+Creating Model temporal structure...[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
+ 46.430142 seconds (438.02 M allocations: 22.527 GiB, 32.86% gc time, 11.16% compilation time)
+Creating Model stochastic structure...  6.194104 seconds (10.20 M allocations: 806.140 MiB, 40.29% gc time, 94.81% compilation time)
+Adding Model independent variables...
+- [variable_binary_gas_connection_flow]  2.293661 seconds (5.84 M allocations: 208.151 MiB, 96.23% compilation time)
+- [variable_connection_flow] 11.317681 seconds (34.37 M allocations: 2.057 GiB, 9.61% gc time, 78.91% compilation time)
+- [variable_connection_intact_flow]  4.364956 seconds (16.04 M allocations: 1.112 GiB, 53.72% gc time, 24.64% compilation time)
+- [variable_connections_decommissioned]  2.605327 seconds (6.45 M allocations: 238.325 MiB, 96.64% compilation time)
+- [variable_connections_invested]  0.309972 seconds (2.70 M allocations: 155.022 MiB, 35.03% compilation time)
+- [variable_connections_invested_available]  0.963137 seconds (3.55 M allocations: 198.496 MiB, 23.91% gc time, 55.91% compilation time)
+- [variable_min_capacity_margin_slack]  1.008151 seconds (4.06 M allocations: 121.427 MiB, 92.97% compilation time)
+- [variable_node_injection]  2.643014 seconds (15.11 M allocations: 932.653 MiB, 8.02% gc time, 62.44% compilation time)
+- [variable_node_pressure]  0.600168 seconds (3.09 M allocations: 75.582 MiB, 85.72% compilation time)
+- [variable_node_slack_neg]  1.277842 seconds (11.15 M allocations: 619.900 MiB, 12.07% gc time, 41.75% compilation time)
+- [variable_node_slack_pos]  0.726631 seconds (10.51 M allocations: 592.465 MiB, 18.11% gc time)
+- [variable_node_state]  2.061942 seconds (8.96 M allocations: 398.732 MiB, 83.18% compilation time)
+- [variable_node_voltage_angle]  0.713950 seconds (3.10 M allocations: 75.839 MiB, 17.23% gc time, 73.85% compilation time)
+- [variable_nonspin_units_shut_down]  1.079382 seconds (4.34 M allocations: 134.022 MiB, 93.31% compilation time)
+- [variable_nonspin_units_started_up]  0.611093 seconds (3.38 M allocations: 86.512 MiB, 87.10% compilation time)
+- [variable_storages_decommissioned]  1.798764 seconds (4.68 M allocations: 152.714 MiB, 95.25% compilation time)
+- [variable_storages_invested]  0.413012 seconds (2.60 M allocations: 97.624 MiB, 28.97% gc time, 44.85% compilation time)
+- [variable_storages_invested_available]  0.190551 seconds (2.27 M allocations: 80.826 MiB, 46.87% compilation time)
+- [variable_unit_flow] 13.649671 seconds (58.73 M allocations: 5.199 GiB, 29.23% gc time, 42.73% compilation time)
+- [variable_unit_flow_op]  3.302297 seconds (9.16 M allocations: 445.836 MiB, 93.64% compilation time)
+- [variable_unit_flow_op_active]  1.800474 seconds (6.11 M allocations: 304.539 MiB, 10.33% gc time, 75.20% compilation time)
+- [variable_units_invested]  2.774008 seconds (7.26 M allocations: 380.170 MiB, 89.01% compilation time)
+- [variable_units_invested_available]  0.515721 seconds (3.84 M allocations: 213.725 MiB, 34.83% compilation time)
+- [variable_units_mothballed]  0.078565 seconds (2.31 M allocations: 36.297 MiB)
+- [variable_units_on]  3.237244 seconds (13.86 M allocations: 736.949 MiB, 5.45% gc time, 83.48% compilation time)
+- [variable_units_out_of_service]  0.575723 seconds (3.03 M allocations: 72.657 MiB, 86.99% compilation time)
+- [variable_units_returned_to_service]  0.142431 seconds (2.38 M allocations: 39.665 MiB, 44.73% compilation time)
+- [variable_units_shut_down]  1.319304 seconds (4.67 M allocations: 176.501 MiB, 90.34% compilation time)
+- [variable_units_started_up]  0.143851 seconds (3.48 M allocations: 115.888 MiB)
+- [variable_units_taken_out_of_service]  0.082775 seconds (2.31 M allocations: 35.945 MiB, 10.90% compilation time)
+- [variable_user_constraint_slack_neg]  0.886435 seconds (3.95 M allocations: 115.227 MiB, 91.15% compilation time)
+- [variable_user_constraint_slack_pos]  0.074214 seconds (2.29 M allocations: 34.897 MiB)
+ 67.165353 seconds (282.95 M allocations: 15.910 GiB, 13.30% gc time, 69.32% compilation time)
+Adding Model dependent variables...
+- [variable_connection_flow]  2.576696 seconds (9.94 M allocations: 463.155 MiB, 6.72% gc time, 83.30% compilation time)
+- [variable_unit_flow]ERROR: LoadError: KeyError: key (unit = fuel_synthesizer, node = h2, direction = to_node, stochastic_scenario = realization, t = 2019-12-01T14:00~(1 hour)~>2019-12-01T15:00) not found
+Stacktrace:
+  [1] (::SpineOpt.var"#1279#1280"{JuMP.Model, Symbol, @NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}})()
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\variables\variable_common.jl:196
+  [2] get(default::SpineOpt.var"#1279#1280"{JuMP.Model, Symbol, @NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}}, h::Dict{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, Union{JuMP.GenericAffExpr{T, JuMP.VariableRef} where T<:Union{Number, SpineInterface.Call}, JuMP.VariableRef}}, key::@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice})
+    @ Base .\dict.jl:526
+  [3] _get_var_with_replacement(m::JuMP.Model, var_name::Symbol, ind::@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice})
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\variables\variable_common.jl:189
+  [4] (::SpineOpt.var"#1275#1278"{Dict{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, SpineInterface.Call}, Symbol, JuMP.Model})(::Pair{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, SpineInterface.Call})
+    @ SpineOpt .\none:0
+  [5] MappingRF
+    @ .\reduce.jl:100 [inlined]
+  [6] _foldl_impl(op::Base.MappingRF{SpineOpt.var"#1275#1278"{Dict{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, SpineInterface.Call}, Symbol, JuMP.Model}, Base.BottomRF{typeof(Base.add_sum)}}, init::Base._InitialValue, itr::Dict{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, SpineInterface.Call})
+    @ Base .\reduce.jl:58
+  [7] FlatteningRF
+    @ .\reduce.jl:126 [inlined]
+  [8] MappingRF
+    @ .\reduce.jl:100 [inlined]
+  [9] _foldl_impl(op::Base.MappingRF{SpineOpt.var"#1276#1277"{JuMP.Model}, Base.FlatteningRF{Base.BottomRF{typeof(Base.add_sum)}}}, init::Base._InitialValue, itr::Dict{Symbol, Dict})
+    @ Base .\reduce.jl:58
+ [10] foldl_impl
+    @ .\reduce.jl:48 [inlined]
+ [11] mapfoldl_impl
+    @ .\reduce.jl:44 [inlined]
+ [12] mapfoldl
+    @ .\reduce.jl:175 [inlined]
+ [13] mapreduce
+    @ .\reduce.jl:307 [inlined]
+ [14] sum
+    @ .\reduce.jl:532 [inlined]
+ [15] sum
+    @ .\reduce.jl:561 [inlined]
+ [16] _resolve_formula(m::JuMP.Model, formula::Dict{Symbol, Dict})
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\variables\variable_common.jl:181
+ [17] macro expansion
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\variables\variable_common.jl:167 [inlined]
+ [18] macro expansion
+    @ .\timing.jl:581 [inlined]
+ [19] (::SpineOpt.var"#1268#1272"{JuMP.Model, Symbol, typeof(unit_flow_indices), Vector{Any}, OrderedCollections.OrderedDict{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, Dict{Symbol}}, Dict{Symbol, Any}})()
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:60
+ [20] (::Base.RedirectStdStream)(thunk::SpineOpt.var"#1268#1272"{JuMP.Model, Symbol, typeof(unit_flow_indices), Vector{Any}, OrderedCollections.OrderedDict{@NamedTuple{unit::SpineInterface.Object, node::SpineInterface.Object, direction::SpineInterface.Object, stochastic_scenario::SpineInterface.Object, t::SpineInterface.TimeSlice}, Dict{Symbol}}, Dict{Symbol, Any}}, stream::Pipe)
+    @ Base .\stream.jl:1464
+ [21] macro expansion
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:59 [inlined]
+ [22] _add_dependent_variables!(m::JuMP.Model; log_level::Int64)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\variables\variable_common.jl:163
+ [23] _add_dependent_variables!
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\variables\variable_common.jl:158 [inlined]
+ [24] macro expansion
+    @ .\timing.jl:581 [inlined]
+ [25] (::SpineOpt.var"#157#173"{Int64, JuMP.Model})()
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:60
+ [26] (::Base.RedirectStdStream)(thunk::SpineOpt.var"#157#173"{Int64, JuMP.Model}, stream::Pipe)
+    @ Base .\stream.jl:1464
+ [27] macro expansion
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:59 [inlined]
+ [28] build_model!(m::JuMP.Model; log_level::Int64)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt_basic.jl:85
+ [29] build_model!
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt_basic.jl:73 [inlined]
+ [30] do_run_spineopt!(m::JuMP.Model, url_out::String, ::Val{:basic_algorithm}; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt_basic.jl:32
+ [31] #invokelatest#2
+    @ .\essentials.jl:1057 [inlined]
+ [32] invokelatest
+    @ .\essentials.jl:1052 [inlined]
+ [33] run_spineopt!(m::JuMP.Model, url_out::String; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:369
+ [34] run_spineopt!
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:358 [inlined]
+ [35] _run_spineopt(f::SpineOpt.var"#64#65", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, use_model_names::Bool, add_bridges::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:162
+ [36] #67
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:104 [inlined]
+ [37] _log_to_file
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:246 [inlined]
+ [38] #run_spineopt#66
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:103 [inlined]
+ [39] run_spineopt(f::Function, url_in::String, url_out::String)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:83
+ [40] #run_spineopt#63
+    @ C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:67 [inlined]
+ [41] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\kar.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:66
+ [42] top-level scope
+    @ C:\Users\kar.eco\.spinetoolbox\work\run_spineopt__5117dfd23018483a959eb3994ea1753d__toolbox\run_spineopt.jl:3
+ [43] include(fname::String)
+    @ Main .\sysimg.jl:38
+ [44] top-level scope
+    @ none:1
+in expression starting at C:\Users\kar.eco\.spinetoolbox\work\run_spineopt__5117dfd23018483a959eb3994ea1753d__toolbox\run_spineopt.jl:3

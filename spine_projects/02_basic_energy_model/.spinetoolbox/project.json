@@ -107,7 +107,6 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base_case": true,
                                 "test": true
                             }
                         }
@@ -196,7 +195,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/kar.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/kar.eco/Downloads/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -224,8 +223,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 238.74273300792342,
-            "y": -50.56879742883285,
+            "x": 239.76184968567281,
+            "y": -52.49751627576164,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -270,14 +269,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -63.626146976682634,
-            "y": -155.5160639905838,
+            "x": -61.585626897149965,
+            "y": -157.55887079415027,
             "specification": "mapping-v13-_djh_2025_04_29",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\kar.eco\\Downloads\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -297,7 +296,7 @@
             "type": "Data Store",
             "description": "",
             "x": 68.77685658367517,
-            "y": -157.04671962746832,
+            "y": -158.06583630521772,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
