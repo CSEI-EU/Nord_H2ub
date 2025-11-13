@@ -911,10 +911,11 @@ resolution_to_block = {
 def check_demand_node(row, df_model_units_relations, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections,
                       df_object__node_definitions, df_object__node_values, df_object_node_node, run_name):
     if not pd.isna(row['demand']):
+        output = (df_model_units_relations.loc[df_model_units_relations['Unit'] == row['Unit'], 'Output1']).iloc[0]
         row_resolution = resolution_to_block[row['resolution_output']]
         if row_resolution != temporal_block:
-            #definition
-            output = (df_model_units_relations.loc[df_model_units_relations['Unit'] == row['Unit'], 'Output1']).iloc[0]
+            #definitio
+            # n
             new_def = pd.DataFrame([
                 {"Object_name": f"{output}_demand", "Category": "node"},
                 {"Object_name": f"pl_{output}_demand", "Category": "connection"}

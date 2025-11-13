@@ -106,7 +106,8 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "testing": true
+                                "Base": true,
+                                "base_case": true
                             }
                         }
                     },
@@ -152,11 +153,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2025-03-26T16:03:38": true,
-                                "Run SpineOpt@2025-05-19T14:38:11": true,
-                                "Run SpineOpt@2025-05-19T14:48:18": true,
-                                "Run SpineOpt@2025-05-19T14:59:22": true,
-                                "Run SpineOpt@2025-05-19T15:09:09": true
+                                "Run SpineOpt@2025-11-03T15:07:29": true
                             }
                         }
                     },
@@ -193,13 +190,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -199.1783162037116,
+            "x": -197.1355094001451,
             "y": -155.66098225431097,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/djh.eco/OneDrive - CBS - Copenhagen Business School/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/kar.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -228,7 +225,7 @@
             "type": "Tool",
             "description": "",
             "x": 238.74273300792342,
-            "y": -50.56879742883285,
+            "y": -50.56879742883284,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -241,9 +238,6 @@
                     "arg": "db_url@OutputTest"
                 }
             ],
-            "options": {
-                "julia_sysimage": ""
-            },
             "kill_completed_processes": false,
             "log_process_output": true
         },
@@ -276,14 +270,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -63.626146976682634,
-            "y": -155.5160639905838,
+            "x": -64.64755037846588,
+            "y": -157.55887079415035,
             "specification": "mapping-v13-_djh_2025_04_29",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\djh.eco\\OneDrive - CBS - Copenhagen Business School\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\kar.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
                     true
                 ]
             ]
@@ -303,7 +297,7 @@
             "type": "Data Store",
             "description": "",
             "x": 68.77685658367517,
-            "y": -157.04671962746832,
+            "y": -158.06812302925152,
             "url": {
                 "dialect": "sqlite",
                 "host": "",

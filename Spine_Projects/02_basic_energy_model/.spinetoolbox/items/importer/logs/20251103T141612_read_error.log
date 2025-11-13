@@ -1,0 +1,11 @@
+Column ref 5 is out of range for the source table "Model"
+Column ref 5 is out of range for the source table "Definition_parameters"
+Column ref 5 is out of range for the source table "Definition_parameters_duration"
+('Nodes', "Could not convert '1000' to type 'boolean' (near row 1)")
+('Nodes', "Could not convert '1000' to type 'boolean' (near row 11)")
+('Nodes', "Could not convert '1000' to type 'boolean' (near row 1)")
+('Nodes', "Could not convert '1000' to type 'boolean' (near row 11)")
+Column ref 7 is out of range for the source table "Object__to_from_node"
+Column ref 8 is out of range for the source table "Object__node_node"
+Column ref 6 is out of range for the source table "Boolean_relations"
+('Operating_points', InvalidMappingComponent("Required key 'Alternative names' is invalid"))

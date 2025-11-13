@@ -1221,7 +1221,7 @@
                 "2": "float"
             },
             "Operating_points": {
-                "0": "float",
+                "0": "string",
                 "1": "float"
             },
             "Time_series_storage": {
@@ -1355,7 +1355,7 @@
                 "2": "string"
             }
         },
-        "source_type": "ExcelConnector"
+        "source_type": "ExcelReader"
     },
     "description": ""
 }
