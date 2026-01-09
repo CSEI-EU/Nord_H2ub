@@ -3,8 +3,7 @@
         "version": 13,
         "description": "",
         "settings": {
-            "enable_execute_all": true,
-            "store_external_paths_as_relative": false
+            "enable_execute_all": true
         },
         "specifications": {
             "Tool": [
@@ -107,6 +106,7 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
+                                "Base": true,
                                 "base_case": true
                             }
                         }
@@ -189,24 +189,22 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -195.24087583665522,
-            "y": -155.66098225431094,
+            "x": -197.13550940014514,
+            "y": -154.4805555420741,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_PPA_structure.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_PPA_structure.xlsx"
                 }
             ],
-            "file_patterns": [],
-            "directory_references": [],
             "db_references": []
         },
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 243.31859501603984,
-            "y": -264.6079431920522,
+            "x": 244.48656837276567,
+            "y": -263.4399698353265,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -226,7 +224,7 @@
             "type": "Tool",
             "description": "",
             "x": 238.74273300792342,
-            "y": -50.56879742883284,
+            "y": -49.56359030669361,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -271,14 +269,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -62.75291681497598,
-            "y": -157.55887079415035,
+            "x": -65.82797709070277,
+            "y": -156.39089743742457,
             "specification": "mapping-v13-_djh_2025_04_29",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_PPA_structure.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_PPA_structure.xlsx",
                     true
                 ]
             ]
@@ -297,12 +295,12 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 66.88222302018525,
-            "y": -158.06812302925152,
+            "x": 69.94482994040095,
+            "y": -159.2360963859773,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": null,
+                "port": "",
                 "database": {
                     "type": "path",
                     "relative": true,
@@ -319,11 +317,28 @@
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": null,
+                "port": "",
                 "database": {
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/items/outputtest/OutputTest.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "Data Store": {
+            "type": "Data Store",
+            "description": "",
+            "x": -199.03101018356705,
+            "y": 32.16662790845528,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/data_store/Data Store.sqlite"
                 },
                 "schema": ""
             }
