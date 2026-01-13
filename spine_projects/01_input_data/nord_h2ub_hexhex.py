@@ -37,10 +37,29 @@ if subfolder_path not in sys.path:
 
 # Import custom functions from nord_h2ub_dropdown_functions
 try:
+    # Use os.path.join for cross-platform compatibility
+    custom_functions_path = os.path.join(notebook_dir, 'Spine_Projects', '01_input_data', '00_functions')
+    
+    # Add to path if not already there
+    if custom_functions_path not in sys.path:
+        sys.path.append(custom_functions_path)
+    
+    # Try importing
     from nord_h2ub_data_preparation_dropdown_functions import *
     print("Custom functions imported successfully.")
 except ImportError as e:
     print(f"Error importing custom functions: {e}")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Python path: {sys.path}")
+    print(f"Looking for file in: {custom_functions_path}")
+    
+    # List files in the target directory to help debug
+    if os.path.exists(custom_functions_path):
+        print(f"Files in {custom_functions_path}:")
+        for file in os.listdir(custom_functions_path):
+            print(f"  - {file}")
+    else:
+        print(f"Directory does not exist: {custom_functions_path}")
 
 #function to save_and_shutdown
 def avada_kedavra():
