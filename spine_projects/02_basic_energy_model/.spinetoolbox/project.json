@@ -152,7 +152,13 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true
+                                "Base": true,
+                                "Run SpineOpt@2026-01-13T10:26:42": true,
+                                "Run SpineOpt@2026-01-13T13:13:33": true,
+                                "Run SpineOpt@2026-01-13T13:36:48": true,
+                                "Run SpineOpt@2026-01-13T15:24:16": true,
+                                "Run SpineOpt@2026-01-13T15:34:28": true,
+                                "Run SpineOpt@2026-01-13T16:43:10": true
                             }
                         }
                     },
@@ -195,7 +201,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_PPA_structure.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_manual_testing.xlsx"
                 }
             ],
             "db_references": []
@@ -270,13 +276,13 @@
             "type": "Importer",
             "description": "",
             "x": -65.82797709070277,
-            "y": -156.39089743742457,
+            "y": -163.79211717632168,
             "specification": "mapping-v13-_djh_2025_04_29",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_PPA_structure.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_manual_testing.xlsx",
                     true
                 ]
             ]
@@ -296,7 +302,7 @@
             "type": "Data Store",
             "description": "",
             "x": 69.94482994040095,
-            "y": -159.2360963859773,
+            "y": -158.00255976282784,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -312,8 +318,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 417.95118941889575,
-            "y": -156.93536649149445,
+            "x": 413.0170429262976,
+            "y": -156.93536649149448,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -322,23 +328,6 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/items/outputtest/OutputTest.sqlite"
-                },
-                "schema": ""
-            }
-        },
-        "Data Store": {
-            "type": "Data Store",
-            "description": "",
-            "x": -199.03101018356705,
-            "y": 32.16662790845528,
-            "url": {
-                "dialect": "sqlite",
-                "host": "",
-                "port": "",
-                "database": {
-                    "type": "path",
-                    "relative": true,
-                    "path": ".spinetoolbox/items/data_store/Data Store.sqlite"
                 },
                 "schema": ""
             }

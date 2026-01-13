@@ -1,0 +1,11 @@
+no entity_class matching {'name': 'User_constraint_name'}
+no entity_class matching {'name': 'solar_PPA_fix_1'}
+no entity_class matching {'name': 'solar_PPA_fix_2'}
+no entity_class matching {'name': 'relationship_class_name:'}
+non-existent elements in byname ('connection', 'pl_solar_PPA', 'solar_plant_node') for class connection__from_node__user_constraint
+non-existent elements in byname ('connection', 'pl_solar_PPA', 'power') for class connection__to_node__user_constraint
+no entity_class matching {'name': 'relationship_class_name:'}
+non-existent elements in byname ('connection', 'pl_solar_PPA', 'solar_plant_node') for class connection__from_node__user_constraint
+non-existent elements in byname ('connection', 'pl_solar_PPA', 'solar_plant_node') for class connection__from_node__user_constraint
+non-existent elements in byname ('connection', 'pl_solar_PPA', 'power') for class connection__to_node__user_constraint
+non-existent elements in byname ('connection', 'pl_solar_PPA', 'power') for class connection__to_node__user_constraint
