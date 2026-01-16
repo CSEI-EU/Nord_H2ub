@@ -158,7 +158,10 @@
                                 "Run SpineOpt@2026-01-13T13:36:48": true,
                                 "Run SpineOpt@2026-01-13T15:24:16": true,
                                 "Run SpineOpt@2026-01-13T15:34:28": true,
-                                "Run SpineOpt@2026-01-13T16:43:10": true
+                                "Run SpineOpt@2026-01-13T16:43:10": true,
+                                "Run SpineOpt@2026-01-14T14:28:48": true,
+                                "Run SpineOpt@2026-01-14T14:39:12": true,
+                                "Run SpineOpt@2026-01-15T15:17:59": true
                             }
                         }
                     },
@@ -209,7 +212,7 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 244.48656837276567,
+            "x": 245.65345016560664,
             "y": -263.4399698353265,
             "specification": "Load template",
             "execute_in_work": true,
@@ -230,7 +233,7 @@
             "type": "Tool",
             "description": "",
             "x": 238.74273300792342,
-            "y": -49.56359030669361,
+            "y": -47.22982672101166,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -291,7 +294,7 @@
             "type": "Tool",
             "description": "",
             "x": 681.0987372436497,
-            "y": -157.7134371076484,
+            "y": -156.35289009684521,
             "specification": "run_output_prep",
             "execute_in_work": true,
             "cmd_line_args": [],
@@ -328,6 +331,23 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/items/outputtest/OutputTest.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "Data Store": {
+            "type": "Data Store",
+            "description": "",
+            "x": -129.5238790053482,
+            "y": -29.172044821024357,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/items/data_store/Data Store.sqlite"
                 },
                 "schema": ""
             }
