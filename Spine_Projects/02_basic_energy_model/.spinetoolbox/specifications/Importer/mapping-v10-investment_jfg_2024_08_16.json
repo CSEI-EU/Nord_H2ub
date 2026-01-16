@@ -272,6 +272,26 @@
                     }
                 }
             ],
+            "Variable_Eff_Definition": [
+                {
+                    "definition_user_constraints": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
             "Unit_Inv_Parameters": [
                 {
                     "Definition": {
@@ -454,8 +474,7 @@
                             },
                             {
                                 "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "node"
+                                "position": 3
                             },
                             {
                                 "map_type": "Entity",
@@ -468,7 +487,7 @@
                             },
                             {
                                 "map_type": "Element",
-                                "position": 3
+                                "position": 4
                             },
                             {
                                 "map_type": "EntityMetadata",
@@ -492,8 +511,7 @@
                             },
                             {
                                 "map_type": "Dimension",
-                                "position": "hidden",
-                                "value": "node"
+                                "position": 3
                             },
                             {
                                 "map_type": "Entity",
@@ -506,7 +524,7 @@
                             },
                             {
                                 "map_type": "Element",
-                                "position": 3
+                                "position": 4
                             },
                             {
                                 "map_type": "EntityMetadata",
@@ -514,11 +532,11 @@
                             },
                             {
                                 "map_type": "ParameterDefinition",
-                                "position": 4
+                                "position": 5
                             },
                             {
                                 "map_type": "Alternative",
-                                "position": 6
+                                "position": 7
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -526,7 +544,7 @@
                             },
                             {
                                 "map_type": "ParameterValue",
-                                "position": 5
+                                "position": 6
                             }
                         ]
                     }
@@ -690,26 +708,6 @@
                             {
                                 "map_type": "ParameterValue",
                                 "position": 5
-                            }
-                        ]
-                    }
-                }
-            ],
-            "Variable_Eff_Definition": [
-                {
-                    "definition_user_constraints": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
                             }
                         ]
                     }
@@ -1190,6 +1188,7 @@
             "Definition_parameters",
             "Definition_parameters_duration",
             "Nodes",
+            "Variable_Eff_Definition",
             "Unit_Inv_Parameters",
             "Connection_Inv_Parameters",
             "Storage_Inv_Parameters",
@@ -1197,7 +1196,6 @@
             "Object__to_from_node",
             "Object__node_node",
             "Boolean_relations",
-            "Variable_Eff_Definition",
             "Variable_Eff",
             "user_constr_relation_val",
             "Operating_points",
@@ -1316,8 +1314,9 @@
                 "2": "string",
                 "3": "string",
                 "4": "string",
-                "5": "float",
-                "6": "string"
+                "5": "string",
+                "6": "float",
+                "7": "string"
             },
             "Boolean_relations": {
                 "0": "string",
@@ -1344,9 +1343,7 @@
             "Variable_Eff": {
                 "0": "float",
                 "1": "float",
-                "2": "float",
-                "3": "float",
-                "4": "float"
+                "2": "float"
             },
             "Operating_points": {
                 "0": "string",
@@ -1435,7 +1432,8 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "string"
+                "3": "string",
+                "4": "string"
             },
             "user_constr_val": {
                 "0": "string",
