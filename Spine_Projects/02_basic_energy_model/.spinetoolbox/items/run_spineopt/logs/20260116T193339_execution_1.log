@@ -1,0 +1,20 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:63397 http://127.0.0.1:63400
+2-element Vector{String}:
+ "http://127.0.0.1:63397"
+ "http://127.0.0.1:63400"
+Running SpineOpt...
+[SpineOpt version 0.10.2 (git hash: N/A)]
+[SpineInterface version 0.15.2 (git hash: N/A)]
+Execution started at 2026-01-16T19:33:39.235
+Reading input data from sqlite:///C:\Users\jfg.eco\Documents\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+Initializing  data structure from db...  0.423830 seconds (322.31 k allocations: 45.760 MiB, 2.96% gc time)
+Preprocessing  data structure...  0.087502 seconds (34.22 k allocations: 2.518 MiB)
+Checking  data structure...  0.018999 seconds (5.67 k allocations: 472.375 KiB)
+Build started at 2026-01-16T19:33:39.882
+Creating model temporal structure...[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
