@@ -851,6 +851,42 @@
                     }
                 }
             ],
+            "user_constr_val": [
+                {
+                    "Values": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "header"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
             "Operating_points": [
                 {
                     "operating_points": {
@@ -1123,42 +1159,6 @@
                     }
                 }
             ],
-            "user_constr_val": [
-                {
-                    "Values": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": 1
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": 0
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterDefinition",
-                                "position": "header"
-                            },
-                            {
-                                "map_type": "Alternative",
-                                "position": 2
-                            },
-                            {
-                                "map_type": "ParameterValueMetadata",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "ParameterValue",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
             "Variable_Eff_Definition (2)": [
                 {
                     "Mapping 1": {
@@ -1198,12 +1198,12 @@
             "Boolean_relations",
             "Variable_Eff",
             "user_constr_relation_val",
+            "user_constr_val",
             "Operating_points",
             "Time_series",
             "Time_series_storage",
             "Energy_prices",
-            "Temporal_relations",
-            "user_constr_val"
+            "Temporal_relations"
         ],
         "table_options": {
             "Definition": {
@@ -1440,8 +1440,7 @@
                 "1": "string",
                 "2": "string",
                 "3": "float",
-                "4": "string",
-                "5": "string"
+                "4": "string"
             },
             "user_constr_relation_val": {
                 "0": "string",
@@ -1451,6 +1450,10 @@
                 "4": "string",
                 "5": "string",
                 "6": "float"
+            },
+            "Variable_Eff_Definition (2)": {
+                "0": "string",
+                "1": "string"
             }
         },
         "table_default_column_type": {

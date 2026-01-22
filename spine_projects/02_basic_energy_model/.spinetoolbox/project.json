@@ -3,7 +3,8 @@
         "version": 13,
         "description": "",
         "settings": {
-            "enable_execute_all": true
+            "enable_execute_all": true,
+            "store_external_paths_as_relative": false
         },
         "specifications": {
             "Tool": [
@@ -106,7 +107,6 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
                                 "base_case": true
                             }
                         }
@@ -153,19 +153,10 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2026-01-13T10:26:42": true,
-                                "Run SpineOpt@2026-01-13T13:13:33": true,
-                                "Run SpineOpt@2026-01-13T13:36:48": true,
-                                "Run SpineOpt@2026-01-13T15:24:16": true,
-                                "Run SpineOpt@2026-01-13T15:34:28": true,
-                                "Run SpineOpt@2026-01-13T16:43:10": true,
-                                "Run SpineOpt@2026-01-14T14:28:48": true,
-                                "Run SpineOpt@2026-01-14T14:39:12": true,
-                                "Run SpineOpt@2026-01-15T15:17:59": true,
-                                "Run SpineOpt@2026-01-16T16:45:28": true,
-                                "Run SpineOpt@2026-01-16T19:03:36": true,
-                                "Run SpineOpt@2026-01-16T19:16:25": true,
-                                "Run SpineOpt@2026-01-16T19:33:36": true
+                                "Run SpineOpt@2026-01-22T16:21:14": true,
+                                "Run SpineOpt@2026-01-22T16:29:20": true,
+                                "Run SpineOpt@2026-01-22T16:43:07": true,
+                                "Run SpineOpt@2026-01-22T16:56:16": true
                             }
                         }
                     },
@@ -202,15 +193,17 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -197.13550940014514,
-            "y": -154.4805555420741,
+            "x": -200.91903521329618,
+            "y": -163.3087824394265,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_manual_testing.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_manual_testing.xlsx"
                 }
             ],
+            "file_patterns": [],
+            "directory_references": [],
             "db_references": []
         },
         "Load template": {
@@ -289,7 +282,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_manual_testing.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_manual_testing.xlsx",
                     true
                 ]
             ]
@@ -308,12 +301,12 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 71.57348078202304,
-            "y": -158.00255976282784,
+            "x": 71.57348078202305,
+            "y": -159.80975185552245,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
@@ -330,7 +323,7 @@
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
