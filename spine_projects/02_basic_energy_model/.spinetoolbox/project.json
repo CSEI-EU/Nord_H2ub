@@ -174,7 +174,14 @@
                                 "Run SpineOpt@2026-01-20T16:31:41": true,
                                 "Run SpineOpt@2026-01-29T14:45:08": true,
                                 "Run SpineOpt@2026-01-29T15:50:00": true,
-                                "Run SpineOpt@2026-01-30T16:44:15": true
+                                "Run SpineOpt@2026-01-30T16:44:15": true,
+                                "Run SpineOpt@2026-02-02T13:12:07": true,
+                                "Run SpineOpt@2026-02-02T13:35:38": true,
+                                "Run SpineOpt@2026-02-02T14:04:46": true,
+                                "Run SpineOpt@2026-02-02T16:20:56": true,
+                                "Run SpineOpt@2026-02-02T16:47:16": true,
+                                "Run SpineOpt@2026-02-02T17:00:42": true,
+                                "Run SpineOpt@2026-02-02T17:30:30": true
                             }
                         }
                     },
@@ -217,7 +224,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_manual_testing_with_wind.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/01_input_raw/methanol_Input_prepared_manual_testing_with_wind.xlsx"
                 }
             ],
             "db_references": []
@@ -291,14 +298,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -65.82797709070277,
-            "y": -165.42076801794374,
+            "x": -64.66218482334531,
+            "y": -165.42076801794371,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_manual_testing_with_wind.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\01_input_raw\\methanol_Input_prepared_manual_testing_with_wind.xlsx",
                     true
                 ]
             ]
