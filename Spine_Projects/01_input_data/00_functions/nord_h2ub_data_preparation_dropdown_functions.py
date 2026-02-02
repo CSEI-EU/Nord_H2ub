@@ -1570,7 +1570,12 @@ def get_dropdown_values(dropdowns):
         
         # Multiple choice values
         'outputs': dropdowns['reports'],
-        'powers': dropdowns['powers']
+        'powers': dropdowns['powers'],
+        
+        # PPA values 
+        'ppa_values': dropdowns['ppa_values'],
+        'ppa_capacity_values': dropdowns['ppa_capacity_values'],
+        'ppa_price_values': dropdowns['ppa_price_values']        
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed
