@@ -1158,26 +1158,6 @@
                         ]
                     }
                 }
-            ],
-            "Variable_Eff_Definition (2)": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
             ]
         },
         "selected_tables": [
@@ -1272,7 +1252,6 @@
             "user_constr_val": {
                 "header": true
             },
-            "Variable_Eff_Definition (2)": {},
             "user_constr_relation_val": {
                 "header": true
             }
@@ -1439,8 +1418,7 @@
                 "0": "string",
                 "1": "string",
                 "2": "string",
-                "3": "float",
-                "4": "string"
+                "3": "string"
             },
             "user_constr_relation_val": {
                 "0": "string",
@@ -1450,10 +1428,6 @@
                 "4": "string",
                 "5": "string",
                 "6": "float"
-            },
-            "Variable_Eff_Definition (2)": {
-                "0": "string",
-                "1": "string"
             }
         },
         "table_default_column_type": {
