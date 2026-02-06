@@ -1223,3 +1223,146 @@ def translate_product(product):
         product_tr = 'ch4'
     
     return product_tr
+
+def add_ppa_connections(df_object__node, ppa_values=None, ppa_capacity_values=None, ppa_price_values=None):
+    """
+    Add PPA connection relationships.
+    
+    Args:
+    df_object__node (pd.DataFrame): DataFrame containing object-node relationships.
+    ppa_values (dict, optional): Dictionary with PPA agreement status for each power source.
+                                 Format: {'Solar plant': True, 'Wind onshore': None, ...}
+    ppa_capacity_values (dict, optional): Dictionary with PPA capacity values for each power source.
+                                          Format: {'Solar plant': 200.0, 'Wind onshore': nan, ...}
+    ppa_price_values (dict, optional): Dictionary with PPA price values for each power source.
+                                       Format: {'Solar plant': 2.0, 'Wind onshore': nan, ...}
+    
+    Returns:
+    pd.DataFrame: DataFrame with added PPA connections.
+    """
+    
+    # If no PPA values provided, return the original dataframe
+    if not ppa_values:
+        return df_object__node
+    
+# Define PPA connection configurations
+    ppa_config = {
+        'Solar plant': {
+            'ppa_connection': 'pl_solar_PPA',
+            'wholesale_connection': 'pl_wholesale_solar',
+            'plant_node': 'solar_plant_node',
+            'power_node': 'power',
+            'wholesale_node': 'power_wholesale'
+        },
+        'Wind onshore': {
+            'ppa_connection': 'pl_wind_onshore_PPA',
+            'wholesale_connection': 'pl_wholesale_wind_onshore',
+            'plant_node': 'wind_onshore_node',
+            'power_node': 'power',
+            'wholesale_node': 'power_wholesale'
+        },
+        'Wind offshore': {
+            'ppa_connection': 'pl_wind_offshore_PPA',
+            'wholesale_connection': 'pl_wholesale_wind_offshore',
+            'plant_node': 'wind_offshore_node',
+            'power_node': 'power',
+            'wholesale_node': 'power_wholesale'
+        }
+    }
+    
+    # List to store new rows
+    new_rows = []
+    
+    # Process each power source with PPA enabled
+    for power_source, has_ppa in ppa_values.items():
+        if has_ppa is True and power_source in ppa_config:
+            config = ppa_config[power_source]
+            
+            # Get capacity value
+            capacity = ppa_capacity_values.get(power_source) if ppa_capacity_values else None
+            
+            # Skip if capacity is nan or None
+            if pd.isna(capacity):
+                continue
+            
+            # Add PPA connections
+            # From plant node - with capacity
+            new_rows.append({
+                'Relationship_class_name': 'connection__from_node',
+                'Object_class': 'connection',
+                'Object_name': config['ppa_connection'],
+                'Object_to_from': 'node',
+                'Object_to_from_name': config['plant_node'],
+                'Parameter': 'connection_capacity',
+                'Value': capacity,
+                'Alternative': 'base_case'
+            })
+            
+            # To power node - with capacity
+            new_rows.append({
+                'Relationship_class_name': 'connection__to_node',
+                'Object_class': 'connection',
+                'Object_name': config['ppa_connection'],
+                'Object_to_from': 'node',
+                'Object_to_from_name': config['power_node'],
+                'Parameter': 'connection_capacity',
+                'Value': capacity,
+                'Alternative': 'base_case'
+            })
+            
+            # Add bidirectional wholesale connections (using same capacity as PPA)
+            # From wholesale to plant node
+            new_rows.append({
+                'Relationship_class_name': 'connection__from_node',
+                'Object_class': 'connection',
+                'Object_name': config['wholesale_connection'],
+                'Object_to_from': 'node',
+                'Object_to_from_name': config['wholesale_node'],
+                'Parameter': 'connection_capacity',
+                'Value': capacity,
+                'Alternative': 'base_case'
+            })
+            
+            # To plant node from wholesale
+            new_rows.append({
+                'Relationship_class_name': 'connection__to_node',
+                'Object_class': 'connection',
+                'Object_name': config['wholesale_connection'],
+                'Object_to_from': 'node',
+                'Object_to_from_name': config['plant_node'],
+                'Parameter': 'connection_capacity',
+                'Value': capacity,
+                'Alternative': 'base_case'
+            })
+            
+            # From plant node to wholesale
+            new_rows.append({
+                'Relationship_class_name': 'connection__from_node',
+                'Object_class': 'connection',
+                'Object_name': config['wholesale_connection'],
+                'Object_to_from': 'node',
+                'Object_to_from_name': config['plant_node'],
+                'Parameter': 'connection_capacity',
+                'Value': capacity,
+                'Alternative': 'base_case'
+            })
+            
+            # To wholesale from plant node
+            new_rows.append({
+                'Relationship_class_name': 'connection__to_node',
+                'Object_class': 'connection',
+                'Object_name': config['wholesale_connection'],
+                'Object_to_from': 'node',
+                'Object_to_from_name': config['wholesale_node'],
+                'Parameter': 'connection_capacity',
+                'Value': capacity,
+                'Alternative': 'base_case'
+            })
+    
+    # Convert new rows to DataFrame and concatenate
+    if new_rows:
+        df_new_rows = pd.DataFrame(new_rows)
+        df_result = pd.concat([df_object__node, df_new_rows], ignore_index=True)
+        return df_result
+    
+    return df_object__node
