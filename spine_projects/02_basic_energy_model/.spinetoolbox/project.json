@@ -3,7 +3,8 @@
         "version": 13,
         "description": "",
         "settings": {
-            "enable_execute_all": true
+            "enable_execute_all": true,
+            "store_external_paths_as_relative": false
         },
         "specifications": {
             "Tool": [
@@ -106,7 +107,6 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
                                 "base_case": true
                             }
                         }
@@ -153,7 +153,9 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2026-02-06T10:58:58": true
+                                "Run SpineOpt@2026-02-05T18:53:44": true,
+                                "Run SpineOpt@2026-02-06T17:15:41": true,
+                                "Run SpineOpt@2026-02-06T18:52:33": true
                             }
                         }
                     },
@@ -196,9 +198,11 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/01_input_raw/methanol_Input_prepared_manual_paper_PPA_without_trade.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/01_input_raw/methanol_Input_prepared_manual_paper_PPA_without_trade_as_produced.xlsx"
                 }
             ],
+            "file_patterns": [],
+            "directory_references": [],
             "db_references": []
         },
         "Load template": {
@@ -270,14 +274,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -64.66218482334531,
-            "y": -165.42076801794371,
+            "x": -64.6621848233453,
+            "y": -163.5290051113682,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\01_input_raw\\methanol_Input_prepared_manual_paper_PPA_without_trade.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\01_input_raw\\methanol_Input_prepared_manual_paper_PPA_without_trade_as_produced.xlsx",
                     true
                 ]
             ]
@@ -301,7 +305,7 @@
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
@@ -318,7 +322,7 @@
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
