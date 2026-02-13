@@ -892,9 +892,9 @@ def calculate_op_points(unit, des_segment, df_efficiency_adj, input_1, output_1,
     })
     
     initial_rows_var = pd.DataFrame({
-        'relationship_class_name:': ['User_constraint_name', 'Object_name', 'Node_name', 'Alternative', 'Parameter'],
-        'unit__from_node__user_constraint': [constraint_name, unit, input_1, run_name, 'unit_flow_coefficient'],
-        'unit__to_node__user_constraint': [constraint_name, unit, output_1, run_name, 'unit_flow_coefficient']      
+        'relationship_class_name:': ['User_constraint_name', 'Object_type', 'Object_name', 'Node_name', 'Alternative', 'Parameter'],
+        'unit__from_node__user_constraint': [constraint_name, 'unit',  unit, input_1, run_name, 'unit_flow_coefficient'],
+        'unit__to_node__user_constraint': [constraint_name, 'unit', unit, output_1, run_name, 'unit_flow_coefficient']      
     })
     
     initial_rows_op = pd.DataFrame({
@@ -925,7 +925,7 @@ def check_decreasing(dataframe, unit, node, run_name):
     for column in dataframe.columns:
         if column.startswith('unit__from_node__user_constraint'):
             values = dataframe[column].values
-            if len(values) > 6 and values[5] > values[6]:
+            if len(values) > 7 and values[6] > values[7]:
                 is_decreasing = True
                 break
     
