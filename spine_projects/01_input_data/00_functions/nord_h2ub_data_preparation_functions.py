@@ -98,14 +98,12 @@ def process_dataframe(df, column_name, category_value):
     df_new = df_new.rename(columns={column_name: 'Object_name'})
     return df_new
 
-def create_definition_dataframe(df1, df2, ppa_values = None):
+def create_definition_dataframe(df1, df2):
     """
     Create a combined dataframe for units, connections, and nodes.
 
     df1 (pd.DataFrame): DataFrame containing model units.
     df2 (pd.DataFrame): DataFrame containing model connections.
-    ppa_values (dict, optional): Dictionary with PPA agreement status for each power source.
-                                 Format: {'Solar plant': True, 'Wind onshore': False, ...}
     
     Returns:
     pd.DataFrame: A combined dataframe for units, connections, and nodes.
@@ -132,40 +130,10 @@ def create_definition_dataframe(df1, df2, ppa_values = None):
     all_nodes_list = (U_input1_nodes + U_input2_nodes + U_input3_nodes + U_input4_nodes + 
                       U_output1_nodes + U_output2_nodes + U_output3_nodes + U_output4_nodes + 
                       C_input1_nodes + C_input2_nodes + C_output1_nodes + C_output2_nodes)
-    
-    # Initialize list for PPA connections
-    ppa_connections_list = []
-    
-    # Add PPA nodes and connections if PPA agreements are enabled
-    if ppa_values:
-        ppa_nodes_list = []
-        
-        # Mapping of power sources to their node/connection names
-        ppa_mapping = {
-            'Solar plant': {
-                'node': 'solar_plant_node',
-                'connections': ['pl_wholesale_solar', 'pl_solar_PPA']
-            },
-            'Wind onshore': {
-                'node': 'wind_onshore_node',
-                'connections': ['pl_wholesale_wind_onshore', 'pl_wind_onshore_PPA']
-            },
-            'Wind offshore': {
-                'node': 'wind_offshore_node',
-                'connections': ['pl_wholesale_wind_offshore', 'pl_wind_offshore_PPA']
-            }
-        }
-        
-        for power_source, has_ppa in ppa_values.items():
-            if has_ppa is True and power_source in ppa_mapping:
-                # Add the node
-                ppa_nodes_list.append(ppa_mapping[power_source]['node'])
-                
-                # Add the connections
-                ppa_connections_list.extend(ppa_mapping[power_source]['connections'])
-        
-        # Add PPA nodes to the all_nodes_list
-        all_nodes_list.extend(ppa_nodes_list)
+
+
+   
+
 
 
     # Create a list with unique entries
@@ -176,12 +144,7 @@ def create_definition_dataframe(df1, df2, ppa_values = None):
     df_nodes['Category'] = 'node'
     df_nodes = df_nodes.dropna()
 
-    # Create dataframe for PPA connections if any exist
-    if ppa_connections_list:
-        df_ppa_connections = pd.DataFrame(ppa_connections_list, columns=['Object_name'])
-        df_ppa_connections['Category'] = 'connection'
-        # Combine with existing connections
-        df_connections = pd.concat([df_connections, df_ppa_connections], ignore_index=True)
+
 
     # Combine dataframes
     df_definition = pd.concat([df_units, df_nodes, df_connections], ignore_index=True)
