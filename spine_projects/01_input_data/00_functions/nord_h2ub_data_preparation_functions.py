@@ -98,7 +98,7 @@ def process_dataframe(df, column_name, category_value):
     df_new = df_new.rename(columns={column_name: 'Object_name'})
     return df_new
 
-def create_definition_dataframe(df1, df2):
+def create_definition_dataframe(df1, df2, RES_powers=None):
     """
     Create a combined dataframe for units, connections, and nodes.
 
@@ -111,6 +111,27 @@ def create_definition_dataframe(df1, df2):
 
     df_units = process_dataframe(df1, 'Unit', 'unit')
     df_connections = process_dataframe(df2, 'Connection', 'connection')
+
+    # ADD system to filter RES nodes only if selected in the dropdown
+    if RES_powers:
+        power_element_map = {
+            'Solar plant': ['solar_plant_node', 'pl_wholesale_solar', 'pl_solar_PPA'],
+            'Wind onshore': ['wind_onshore_plant_node', 'pl_wholesale_wind_onshore', 'pl_wind_onshore_PPA'],
+            'Wind offshore': ['wind_offshore_plant_node', 'pl_wholesale_wind_offshore', 'pl_wind_ofshore_PPA'],
+        }
+        
+        elements_to_remove = {
+            element
+            for power, elements in power_element_map.items()
+            if power not in RES_powers
+            for element in elements
+        }
+
+        def matches_active(name):
+            return name not in elements_to_remove
+
+        df_units = df_units[df_units['Object_name'].apply(matches_active)]
+        df_connections = df_connections[df_connections['Object_name'].apply(matches_active)]
 
     # Create a list of nodes of the model
     U_input1_nodes = df1['Input1'].tolist()
@@ -130,11 +151,10 @@ def create_definition_dataframe(df1, df2):
     all_nodes_list = (U_input1_nodes + U_input2_nodes + U_input3_nodes + U_input4_nodes + 
                       U_output1_nodes + U_output2_nodes + U_output3_nodes + U_output4_nodes + 
                       C_input1_nodes + C_input2_nodes + C_output1_nodes + C_output2_nodes)
-
-
-   
-
-
+    
+    # Filter nodes based on RES_powers
+    if RES_powers:
+        all_nodes_list = [node for node in all_nodes_list if matches_active(node)]
 
     # Create a list with unique entries
     unique_nodes_list = list(set(all_nodes_list))
@@ -145,10 +165,10 @@ def create_definition_dataframe(df1, df2):
     df_nodes = df_nodes.dropna()
 
 
-
     # Combine dataframes
     df_definition = pd.concat([df_units, df_nodes, df_connections], ignore_index=True)
     #return both dataframes
+
     return df_definition, df_nodes
 
 # function to assign capacities
