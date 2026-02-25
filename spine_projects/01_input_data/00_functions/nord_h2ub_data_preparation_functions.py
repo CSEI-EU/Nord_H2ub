@@ -117,7 +117,7 @@ def create_definition_dataframe(df1, df2, RES_powers=None):
         power_element_map = {
             'Solar plant': ['solar_plant_node', 'pl_wholesale_solar', 'pl_solar_PPA'],
             'Wind onshore': ['wind_onshore_plant_node', 'pl_wholesale_wind_onshore', 'pl_wind_onshore_PPA'],
-            'Wind offshore': ['wind_offshore_plant_node', 'pl_wholesale_wind_offshore', 'pl_wind_ofshore_PPA'],
+            'Wind offshore': ['wind_offshore_plant_node', 'pl_wholesale_wind_offshore', 'pl_wind_offshore_PPA'],
         }
         
         elements_to_remove = {
