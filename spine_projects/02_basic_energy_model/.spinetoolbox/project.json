@@ -107,7 +107,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base_case": true
+                                "base": true
                             }
                         }
                     },
@@ -153,7 +153,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2026-02-06T10:58:58": true
+                                "Run SpineOpt@2026-03-13T15:00:08": true
                             }
                         }
                     },
@@ -196,7 +196,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/01_input_raw/methanol_Input_prepared_manual_paper_PPA_without_trade.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -204,8 +204,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 245.65345016560664,
-            "y": -259.55562425039795,
+            "x": 245.6534501656066,
+            "y": -256.0582474483255,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -277,7 +277,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\01_input_raw\\methanol_Input_prepared_manual_paper_PPA_without_trade.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -296,7 +296,7 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 71.57348078202305,
+            "x": 72.73927304938051,
             "y": -159.80975185552245,
             "url": {
                 "dialect": "sqlite",
