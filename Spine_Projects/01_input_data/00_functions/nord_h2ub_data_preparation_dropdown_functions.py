@@ -1058,6 +1058,7 @@ def create_multiple_choice_power():
     ppa_details_containers = {}
     ppa_capacity_values = {}
     ppa_price_values = {}
+    ppa_type_values = {}  # <-- new
     
     # Function to update the capacity fields visibility
     def update_capacity_fields(selected_list, capacities_list):
@@ -1086,15 +1087,6 @@ def create_multiple_choice_power():
     # Function to handle PPA price change
     def on_ppa_price_change(change, option):
         ppa_price_values[option] = change['new']
-    
-    # Function to handle PPA dropdown change
-    def on_ppa_dropdown_change(change, option):
-        ppa_values[option] = change['new']
-        # Show/hide PPA details based on dropdown value
-        if change['new'] is True:
-            ppa_details_containers[option].layout.display = 'flex'
-        else:
-            ppa_details_containers[option].layout.display = 'none'
     
     def on_change_MC_power(change, selected_options, checkbox, capacities):
         if change['new'] is False and len(selected_options) == 1:
@@ -1162,7 +1154,8 @@ def create_multiple_choice_power():
         # Skip Grid - no PPA for Grid
         if option == 'Grid':
             continue
-        # PPA dropdown
+
+        # PPA agreement dropdown
         ppa_label = widgets.Label(f"{option} - PPA agreement:", layout=widgets.Layout(width='200px'))
         ppa_dropdown = widgets.Dropdown(
             options=[True, False],
@@ -1170,7 +1163,17 @@ def create_multiple_choice_power():
             layout=widgets.Layout(width='100px')
         )
         ppa_values[option] = None
-        
+
+        # PPA type dropdown - shown inline when PPA is True
+        ppa_type_label = widgets.Label("Type:", layout=widgets.Layout(width='40px', margin='0px 0px 0px 15px', display='none'))
+        ppa_type_dropdown = widgets.Dropdown(
+            options=['Base load', 'Pay-as-produced'],
+            value=None,
+            layout=widgets.Layout(width='100px', display='none')
+        )
+        ppa_type_values[option] = None
+        ppa_type_dropdown.observe(lambda change, option=option: ppa_type_values.update({option: change['new']}), names='value')
+
         # PPA details (capacity and price) - initially hidden
         ppa_capacity_label = widgets.Label("PPA capacity [MW]:", layout=widgets.Layout(width='150px'))
         ppa_capacity_input = widgets.FloatText(
@@ -1194,14 +1197,31 @@ def create_multiple_choice_power():
             layout=widgets.Layout(display='none', padding='5px 0px 0px 30px')
         )
         ppa_details_containers[option] = ppa_details
+
+        # Observe PPA agreement dropdown changes
+        def on_ppa_dropdown_change(change, option=option, ppa_type_label=ppa_type_label, ppa_type_dropdown=ppa_type_dropdown):
+            ppa_values[option] = change['new']
+            if change['new'] is True:
+                ppa_details_containers[option].layout.display = 'flex'
+                ppa_type_label.layout.display = 'flex'
+                ppa_type_dropdown.layout.display = 'flex'
+            else:
+                ppa_details_containers[option].layout.display = 'none'
+                ppa_type_label.layout.display = 'none'
+                ppa_type_dropdown.layout.display = 'none'
+                ppa_type_values[option] = None
+
+        ppa_dropdown.observe(lambda change, option=option, ppa_type_label=ppa_type_label, 
+                             ppa_type_dropdown=ppa_type_dropdown: on_ppa_dropdown_change(
+                                 change, option, ppa_type_label, ppa_type_dropdown), names='value')
         
-        # Observe PPA dropdown changes
-        ppa_dropdown.observe(lambda change, option=option: on_ppa_dropdown_change(change, option), names='value')
-        
-        # Main PPA container (dropdown + details in VBox)
+        # Main PPA container (agreement + type on same line, details below)
         ppa_main_container = widgets.VBox(
             [
-                widgets.HBox([ppa_label, ppa_dropdown], layout=widgets.Layout(padding='5px 15px 0px 30px')),
+                widgets.HBox(
+                    [ppa_label, ppa_dropdown, ppa_type_label, ppa_type_dropdown],
+                    layout=widgets.Layout(padding='5px 15px 0px 30px')
+                ),
                 ppa_details
             ],
             layout=widgets.Layout(display='none', margin='10px 0px 0px 0px')
@@ -1209,6 +1229,7 @@ def create_multiple_choice_power():
         
         ppa_containers[option] = ppa_main_container
         ppa_section_list.append(ppa_main_container)
+
     # Visibility of initially selected available powers
     update_capacity_fields(preselected_checks_power, capacities_powers)
     update_ppa_visibility(preselected_checks_power)
@@ -1275,7 +1296,8 @@ def create_multiple_choice_power():
             investment_ps_capacity,
             ppa_values,
             ppa_capacity_values,
-            ppa_price_values)
+            ppa_price_values,
+            ppa_type_values)
 
 def create_multiple_choice_report():
     # Define the list of options
@@ -1400,7 +1422,7 @@ def create_combined_dropdowns_tabs():
     # Updated to handle 9 return values from create_multiple_choice_power()
     (multiple_choice_power_box, selected_powers, capacities_powers, investment_res, 
      investment_ps, investment_ps_capacity, ppa_values, ppa_capacity_values, 
-     ppa_price_values) = create_multiple_choice_power()
+     ppa_price_values, ppa_type_values) = create_multiple_choice_power()
     
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
     number_slices_vbox, number_slices = create_input_with_label(
