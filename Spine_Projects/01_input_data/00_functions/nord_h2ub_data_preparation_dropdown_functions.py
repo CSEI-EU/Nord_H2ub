@@ -1469,7 +1469,8 @@ def create_combined_dropdowns_tabs():
         # Added PPA-related values
         'ppa_values': ppa_values,
         'ppa_capacity_values': ppa_capacity_values,
-        'ppa_price_values': ppa_price_values
+        'ppa_price_values': ppa_price_values,
+        'ppa_type_values': ppa_type_values
     }
 
     # Create pages (tabs)
@@ -1597,7 +1598,8 @@ def get_dropdown_values(dropdowns):
         # PPA values 
         'ppa_values': dropdowns['ppa_values'],
         'ppa_capacity_values': dropdowns['ppa_capacity_values'],
-        'ppa_price_values': dropdowns['ppa_price_values']        
+        'ppa_price_values': dropdowns['ppa_price_values'],   
+        'ppa_type_values': dropdowns['ppa_type_values']     
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed
