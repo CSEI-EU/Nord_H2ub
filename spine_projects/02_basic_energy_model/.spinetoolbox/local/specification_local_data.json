@@ -21,7 +21,7 @@
         "Run SpineOpt detached": {
             "execution_settings": {}
         },
-        "run_output_prep": {
+        "run data prep": {
             "execution_settings": {
                 "kernel_spec_name": "",
                 "env": "",
@@ -29,7 +29,7 @@
                 "executable": ""
             }
         },
-        "run data prep": {
+        "run_output_prep": {
             "execution_settings": {
                 "kernel_spec_name": "",
                 "env": "",

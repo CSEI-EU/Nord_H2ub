@@ -1039,9 +1039,9 @@ def create_multiple_choice_power():
     # Create warning label
     warning_label = widgets.Label(value='')
     def clear_warning(checkbox, delay=2):
-        time.sleep(delay)  # Waits for the specified time
-        warning_label.value = ''  # Clears the warning message
-        checkbox.value = True # Rechecks checkbox
+        time.sleep(delay)
+        warning_label.value = ''
+        checkbox.value = True
     
     # Separate options into preselected and non-preselected
     preselected_checks_power = [option for option in options_power if option in preselected_options_power]
@@ -1052,6 +1052,14 @@ def create_multiple_choice_power():
     capacities_powers_values = {}
     hbox_capacities_powers = []
     
+    # Initialize PPA-related dictionaries
+    ppa_containers = {}
+    ppa_values = {}
+    ppa_details_containers = {}
+    ppa_capacity_values = {}
+    ppa_price_values = {}
+    ppa_type_values = {}  # <-- new
+    
     # Function to update the capacity fields visibility
     def update_capacity_fields(selected_list, capacities_list):
         for option, hbox in capacities_list.items():
@@ -1060,9 +1068,25 @@ def create_multiple_choice_power():
             else:
                 hbox.layout.display = 'none'
     
+    # Function to update PPA section visibility
+    def update_ppa_visibility(selected_list):
+        for option, container in ppa_containers.items():
+            if option in selected_list:
+                container.layout.display = 'flex'
+            else:
+                container.layout.display = 'none'
+    
     # Function to update the capacities_powers_values when changed
     def on_capacity_change(change, option):
         capacities_powers_values[option] = change['new']
+    
+    # Function to handle PPA capacity change
+    def on_ppa_capacity_change(change, option):
+        ppa_capacity_values[option] = change['new']
+    
+    # Function to handle PPA price change
+    def on_ppa_price_change(change, option):
+        ppa_price_values[option] = change['new']
     
     def on_change_MC_power(change, selected_options, checkbox, capacities):
         if change['new'] is False and len(selected_options) == 1:
@@ -1070,11 +1094,12 @@ def create_multiple_choice_power():
             threading.Thread(target=clear_warning, args=(change['owner'],)).start()
         else:
             warning_label.value = ""
-            if change['new']:  # If the checkbox was checked
+            if change['new']:
                 selected_options.add(checkbox.description)
-            else:  # If the checkbox was unchecked
+            else:
                 selected_options.remove(checkbox.description)
             update_capacity_fields(selected_options, capacities)
+            update_ppa_visibility(selected_options)
     
     # Create checkboxes
     checkboxes_powers = []
@@ -1082,7 +1107,7 @@ def create_multiple_choice_power():
     # preselected options
     for option in preselected_checks_power:
         checkbox = widgets.Checkbox(
-            value=True,  # All preselected options should be checked
+            value=True,
             description=option,
             indent=False,
             layout=general_multiple_choice_layout
@@ -1095,7 +1120,7 @@ def create_multiple_choice_power():
     # non-preselected options
     for option in non_preselected_checks_power:
         checkbox = widgets.Checkbox(
-            value=False,  # Non-preselected options should be unchecked
+            value=False,
             description=option,
             indent=False,
             layout=general_multiple_choice_layout
@@ -1122,13 +1147,97 @@ def create_multiple_choice_power():
         
         capacities_powers_values[option] = capacity_widget.value
         capacity_widget.observe(lambda change, option=option: on_capacity_change(change, option), names='value')
+    
+    # Create PPA sections for power sources (excluding Grid)
+    ppa_section_list = []
+    for option in options_power:
+        # Skip Grid - no PPA for Grid
+        if option == 'Grid':
+            continue
+
+        # PPA agreement dropdown
+        ppa_label = widgets.Label(f"{option} - PPA agreement:", layout=widgets.Layout(width='200px'))
+        ppa_dropdown = widgets.Dropdown(
+            options=[True, False],
+            value=None,
+            layout=widgets.Layout(width='100px')
+        )
+        ppa_values[option] = None
+
+        # PPA type dropdown - shown inline when PPA is True
+        ppa_type_label = widgets.Label("Type:", layout=widgets.Layout(width='40px', margin='0px 0px 0px 15px', display='none'))
+        ppa_type_dropdown = widgets.Dropdown(
+            options=['Base load', 'Pay-as-produced'],
+            value=None,
+            layout=widgets.Layout(width='100px', display='none')
+        )
+        ppa_type_values[option] = None
+        ppa_type_dropdown.observe(lambda change, option=option: ppa_type_values.update({option: change['new']}), names='value')
+
+        # PPA details (capacity and price) - initially hidden
+        ppa_capacity_label = widgets.Label("PPA capacity [MW]:", layout=widgets.Layout(width='150px'))
+        ppa_capacity_input = widgets.FloatText(
+            value=placeholder_value,
+            layout=widgets.Layout(width='100px')
+        )
+        ppa_capacity_values[option] = placeholder_value
+        ppa_capacity_input.observe(lambda change, option=option: on_ppa_capacity_change(change, option), names='value')
+        
+        ppa_price_label = widgets.Label("PPA price [€/MWh]:", layout=widgets.Layout(width='150px', margin='0px 0px 0px 10px'))
+        ppa_price_input = widgets.FloatText(
+            value=placeholder_value,
+            layout=widgets.Layout(width='100px')
+        )
+        ppa_price_values[option] = placeholder_value
+        ppa_price_input.observe(lambda change, option=option: on_ppa_price_change(change, option), names='value')
+        
+        # Container for PPA details (capacity and price)
+        ppa_details = widgets.HBox(
+            [ppa_capacity_label, ppa_capacity_input, ppa_price_label, ppa_price_input],
+            layout=widgets.Layout(display='none', padding='5px 0px 0px 30px')
+        )
+        ppa_details_containers[option] = ppa_details
+
+        # Observe PPA agreement dropdown changes
+        def on_ppa_dropdown_change(change, option=option, ppa_type_label=ppa_type_label, ppa_type_dropdown=ppa_type_dropdown):
+            ppa_values[option] = change['new']
+            if change['new'] is True:
+                ppa_details_containers[option].layout.display = 'flex'
+                ppa_type_label.layout.display = 'flex'
+                ppa_type_dropdown.layout.display = 'flex'
+            else:
+                ppa_details_containers[option].layout.display = 'none'
+                ppa_type_label.layout.display = 'none'
+                ppa_type_dropdown.layout.display = 'none'
+                ppa_type_values[option] = None
+
+        ppa_dropdown.observe(lambda change, option=option, ppa_type_label=ppa_type_label, 
+                             ppa_type_dropdown=ppa_type_dropdown: on_ppa_dropdown_change(
+                                 change, option, ppa_type_label, ppa_type_dropdown), names='value')
+        
+        # Main PPA container (agreement + type on same line, details below)
+        ppa_main_container = widgets.VBox(
+            [
+                widgets.HBox(
+                    [ppa_label, ppa_dropdown, ppa_type_label, ppa_type_dropdown],
+                    layout=widgets.Layout(padding='5px 15px 0px 30px')
+                ),
+                ppa_details
+            ],
+            layout=widgets.Layout(display='none', margin='10px 0px 0px 0px')
+        )
+        
+        ppa_containers[option] = ppa_main_container
+        ppa_section_list.append(ppa_main_container)
 
     # Visibility of initially selected available powers
     update_capacity_fields(preselected_checks_power, capacities_powers)
+    update_ppa_visibility(preselected_checks_power)
     
     # Layout for checkboxes and capacity inputs
     power_column = widgets.VBox(checkboxes_powers)
     capacity_column = widgets.VBox(hbox_capacities_powers)
+    ppa_column = widgets.VBox(ppa_section_list, layout=widgets.Layout(margin='15px 0px 0px 0px'))
     
     # Add possibility for investment
     def create_dropdown_inv():
@@ -1141,7 +1250,7 @@ def create_multiple_choice_power():
             layout=widgets.Layout(width='100px', margin='3px 0px 0 5px')
         )
         dropdown_inv.observe(on_change)
-        return widgets.HBox([label_inv, dropdown_inv], layout=widgets.Layout(margin='0px 15px 0px 30px')), dropdown_inv
+        return widgets.HBox([label_inv, dropdown_inv], layout=widgets.Layout(margin='30px 15px 0px 30px')), dropdown_inv
     inv_res_column, investment_res = create_dropdown_inv()
 
     # Add possibility of investment into a power storage
@@ -1168,10 +1277,7 @@ def create_multiple_choice_power():
         def toggle_capacity_widget(change):
             capacity_container.layout.display = 'flex' if change['new'] else 'none'
         
-        # Observe changes in dropdown
         dropdown_inv_ps.observe(toggle_capacity_widget, names='value')
-        
-        # Initially hide capacity widgets if dropdown is False
         toggle_capacity_widget({'new': dropdown_inv_ps.value})
         
         return widgets.HBox([label_inv_ps, dropdown_inv_ps, capacity_container], 
@@ -1181,8 +1287,17 @@ def create_multiple_choice_power():
     
     hbox_warning = widgets.HBox([power_column, warning_label])
     
-    return widgets.VBox([label_power, hbox_warning, capacity_column, inv_res_column, inv_ps_column], layout=get_general_vbox_layout()), selected_options_power, capacities_powers_values, investment_res, investment_ps, investment_ps_capacity
-  
+    return (widgets.VBox([label_power, hbox_warning, capacity_column, ppa_column, inv_res_column, inv_ps_column], 
+                         layout=get_general_vbox_layout()), 
+            selected_options_power, 
+            capacities_powers_values, 
+            investment_res, 
+            investment_ps, 
+            investment_ps_capacity,
+            ppa_values,
+            ppa_capacity_values,
+            ppa_price_values,
+            ppa_type_values)
 
 def create_multiple_choice_report():
     # Define the list of options
@@ -1303,7 +1418,12 @@ def create_combined_dropdowns_tabs():
         description='Please choose the name of this run:', 
         placeholder='e.g. base')
     multiple_choice_report_box, selected_reports = create_multiple_choice_report()
-    multiple_choice_power_box, selected_powers, capacities_powers, investment_res, investment_ps, investment_ps_capacity = create_multiple_choice_power()
+    
+    # Updated to handle 9 return values from create_multiple_choice_power()
+    (multiple_choice_power_box, selected_powers, capacities_powers, investment_res, 
+     investment_ps, investment_ps_capacity, ppa_values, ppa_capacity_values, 
+     ppa_price_values, ppa_type_values) = create_multiple_choice_power()
+    
     dropdown_roll_vbox, dropdown_roll = create_dropdown_roll()
     number_slices_vbox, number_slices = create_input_with_label(
         key='opt_horizons', 
@@ -1345,7 +1465,12 @@ def create_combined_dropdowns_tabs():
         'demand_res': demand_res,
         'investment_res': investment_res,
         'investment_ps': investment_ps,
-        'investment_ps_capacity': investment_ps_capacity
+        'investment_ps_capacity': investment_ps_capacity,
+        # Added PPA-related values
+        'ppa_values': ppa_values,
+        'ppa_capacity_values': ppa_capacity_values,
+        'ppa_price_values': ppa_price_values,
+        'ppa_type_values': ppa_type_values
     }
 
     # Create pages (tabs)
@@ -1468,7 +1593,13 @@ def get_dropdown_values(dropdowns):
         
         # Multiple choice values
         'outputs': dropdowns['reports'],
-        'powers': dropdowns['powers']
+        'powers': dropdowns['powers'],
+        
+        # PPA values 
+        'ppa_values': dropdowns['ppa_values'],
+        'ppa_capacity_values': dropdowns['ppa_capacity_values'],
+        'ppa_price_values': dropdowns['ppa_price_values'],   
+        'ppa_type_values': dropdowns['ppa_type_values']     
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed

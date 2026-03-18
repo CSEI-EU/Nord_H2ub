@@ -107,7 +107,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base_case": true
+                                "base": true
                             }
                         }
                     },
@@ -153,7 +153,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2025-11-03T15:07:29": true
+                                "Run SpineOpt@2026-03-13T15:00:08": true
                             }
                         }
                     },
@@ -190,13 +190,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -197.1355094001451,
-            "y": -155.66098225431097,
+            "x": -202.27831187208176,
+            "y": -163.3087824394265,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/kar.eco/Documents/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -204,8 +204,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 243.31859501603984,
-            "y": -264.6079431920522,
+            "x": 245.6534501656066,
+            "y": -256.0582474483255,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -224,8 +224,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 238.74273300792342,
-            "y": -50.56879742883284,
+            "x": 237.38345634913784,
+            "y": -48.589103379797244,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -270,14 +270,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -64.64755037846588,
-            "y": -157.55887079415035,
-            "specification": "mapping-v13-_djh_2025_04_29",
+            "x": -64.66218482334531,
+            "y": -165.42076801794371,
+            "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\kar.eco\\Documents\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -286,7 +286,7 @@
             "type": "Tool",
             "description": "",
             "x": 681.0987372436497,
-            "y": -157.7134371076484,
+            "y": -156.35289009684521,
             "specification": "run_output_prep",
             "execute_in_work": true,
             "cmd_line_args": [],
@@ -296,8 +296,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 68.77685658367517,
-            "y": -158.06812302925152,
+            "x": 72.73927304938051,
+            "y": -159.80975185552245,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -313,8 +313,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 417.95118941889575,
-            "y": -156.93536649149445,
+            "x": 413.0170429262976,
+            "y": -156.93536649149448,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
