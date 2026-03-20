@@ -59,7 +59,8 @@ The energy hub model development is developed by the following people.
 | --- | --- |
 | Johannes Giehl | major development & conceptualization & data collection <br> development of the basic model and tool structure, conceptualizing the input and output data preparation structure and developing functions |
 | Dana Hentschel | major development & conceptualization & data collection <br> development of the basic model and tool structure, conceptualizing the input data preparation structure and developing functions |
-| Lucia Ciprian | major development & data collection <br> development of the structure of the hub configurations, conceptualizing the output data preparation structure and developing functions|
+| Lucia Ciprian | major development & data collection <br> development of the structure of the hub configurations, conceptualizing the output data preparation structure and developing functions |
+| Kacper Rokosz | major development & conceptualization <br> development of the model and tool structure, conceptualizing the input data preparation structure and developing functions |
 | Jens Weibezahn | Conceptualization & modelling feedback |
 
 ## Citing
@@ -67,7 +68,7 @@ The energy hub model development is developed by the following people.
 We are currently working on a publication to introduce and apply the energy hub model. 
 
 For the current use of the model, please cite: 
-Giehl, J., Hentschel, D., Ciprian, L., and Weibezahn, J. (2024): The energy hub model. Applying SpineOpt and SpineToolbox to model synthetic fuels. Copenhagen School of Energy Infrastructure (CSEI), https://github.com/CSEI-EU/Nord_H2ub/, accessed YYYY-MM-DD.
+Giehl, J., Hentschel, D., Ciprian, L., Rokosz, K., and Weibezahn, J. (2024): The energy hub model. Applying SpineOpt and SpineToolbox to model synthetic fuels. Copenhagen School of Energy Infrastructure (CSEI), https://github.com/CSEI-EU/Nord_H2ub/, accessed YYYY-MM-DD.
 
 ## License
 
