@@ -9,6 +9,7 @@ logic for the preparation of the input data file for the model runs.
 SPDX-FileCopyrightText: Johannes Giehl <jfg.eco@cbs.dk>
 SPDX-FileCopyrightText: Dana Hentschel <djh.eco@cbs.dk>
 SPDX-FileCopyrightText: Lucia Ciprian <luc.eco@cbs.dk>
+SPDX-FileCopyrightText: Kacper Rokosz <kar.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
 

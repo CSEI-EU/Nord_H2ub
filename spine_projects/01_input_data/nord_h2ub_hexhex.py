@@ -6,6 +6,7 @@ Energy Infrastructure at the Copenhagen Business School.
 File to define the import of packages for the main data prep script:
 SPDX-FileCopyrightText: Johannes Giehl <jfg.eco@cbs.dk>
 SPDX-FileCopyrightText: Dana Hentschel <djh.eco@cbs.dk>
+SPDX-FileCopyrightText: Kacper Rokosz <kar.eco@cbs.dk>
 SPDX-License-Identifier: GNU GENERAL PUBLIC LICENSE GPL 3.0
 '''
 
