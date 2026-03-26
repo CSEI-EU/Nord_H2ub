@@ -1254,16 +1254,16 @@ def get_district_heating_sheets(run_name):
         "Relationship_class_name": ["unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__investment_group", "unit__investment_group"],
         "Object_class":            ["unit", "unit", "unit", "unit", "unit", "unit", "unit", "unit"],
         "Object_name":             ["pth_dummy_unit", "pth_dummy_unit", "excess_heat_exchanger", "excess_heat_exchanger", "dh_heat_exchanger", "dh_heat_exchanger", "steam_plant", "excess_heat_exchanger"],
-        "object_to_from":          ["node", "node", "node", "node", "node", "node", "investment_group", "investment_group"],
-        "object_to_from_name":     ["pth_dummy_node", "power", "pth_dummy_node", "excess_heat", "heat", "excess_heat", "heat_recovery", "heat_recovery"]
+        "Object_to_from":          ["node", "node", "node", "node", "node", "node", "investment_group", "investment_group"],
+        "Object_to_from_name":     ["pth_dummy_node", "power", "pth_dummy_node", "excess_heat", "heat", "excess_heat", "heat_recovery", "heat_recovery"]
     })
 
     dh__object__to_from_node = pd.DataFrame({
         "Relationship_class_name": ["unit__to_node"],
         "Object_class":            ["unit"],
         "Object_name":             ["excess_heat_exchanger"],
-        "object_to_from":          ["node"],
-        "object_to_from_name":     ["pth_dummy_node"],
+        "Object_to_from":          ["node"],
+        "Object_to_from_name":     ["pth_dummy_node"],
         "Parameter":               ["unit_capacity"],
         "Value":                   [500],
         "Alternative":             [run_name]
