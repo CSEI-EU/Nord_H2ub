@@ -1,0 +1,12 @@
+non-existent elements in byname ('dh_heat_exchanger', 'heat') for class unit__to_node
+non-existent elements in byname ('dh_heat_exchanger', 'excess_heat', 'heat') for class unit__node__node
+non-existent elements in byname ('dh_heat_exchanger', 'excess_heat', 'heat') for class unit__node__node
+non-existent elements in byname ('dh_heat_exchanger', 'excess_heat', 'heat') for class unit__node__node
+non-existent elements in byname ('pl_wind_onshore_PPA', 'wind_onshore_node', 'wind_onshore_PPA_fix_1') for class connection__from_node__user_constraint
+non-existent elements in byname ('pl_wind_offshore_PPA', 'wind_offshore_node', 'wind_offshore_PPA_fix_1') for class connection__from_node__user_constraint
+non-existent elements in byname ('pl_wind_onshore_PPA', 'wind_onshore_node', 'wind_onshore_PPA_fix_1') for class connection__from_node__user_constraint
+non-existent elements in byname ('pl_wind_offshore_PPA', 'wind_offshore_node', 'wind_offshore_PPA_fix_1') for class connection__from_node__user_constraint
+non-existent elements in byname ('pl_wind_onshore_PPA', 'wind_onshore_node') for class connection__from_node
+non-existent elements in byname ('pl_wind_offshore_PPA', 'wind_offshore_node') for class connection__from_node
+non-existent elements in byname ('pl_wind_onshore_PPA', 'wind_onshore_node') for class connection__from_node
+non-existent elements in byname ('pl_wind_offshore_PPA', 'wind_offshore_node') for class connection__from_node
