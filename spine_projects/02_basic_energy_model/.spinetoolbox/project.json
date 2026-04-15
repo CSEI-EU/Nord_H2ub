@@ -107,7 +107,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base": true
+                                "base_case": true
                             }
                         }
                     },
@@ -153,7 +153,8 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2026-03-13T15:00:08": true
+                                "Run SpineOpt@2025-11-03T15:07:29": true,
+                                "Run SpineOpt@2025-11-20T13:59:37": true
                             }
                         }
                     },
@@ -190,13 +191,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -202.27831187208176,
-            "y": -163.3087824394265,
+            "x": -202.27831187208182,
+            "y": -165.33103661356688,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared.xlsx"
+                    "path": "C:/Users/kar.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/egasoline_Input_prepared.xlsx"
                 }
             ],
             "db_references": []
@@ -270,14 +271,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -64.66218482334531,
-            "y": -165.42076801794371,
+            "x": -65.6733119104155,
+            "y": -165.4207680179437,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared.xlsx",
+                    "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\egasoline_Input_prepared.xlsx",
                     true
                 ]
             ]
@@ -296,8 +297,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 72.73927304938051,
-            "y": -159.80975185552245,
+            "x": 72.73927304938053,
+            "y": -160.82087894259266,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
