@@ -1210,7 +1210,108 @@ def translate_product(product):
 
 
 # District heating mapping for adding data to the sheets
-def get_district_heating_sheets(run_name):
+def get_district_heating_sheets(run_name, product, electrolyzer_type):
+
+    NO_STEAM_PLANT_PRODUCTS = {"ammonia", "hydrogen", "methane"}
+    has_steam_plant = product not in NO_STEAM_PLANT_PRODUCTS
+ 
+
+    if not has_steam_plant:
+        if electrolyzer_type == 'SOEC':
+
+            dh__object__to_from_node_definition = pd.DataFrame({
+                "Relationship_class_name": ["unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__investment_group", "unit__investment_group"],
+                "Object_class":            ["unit", "unit", "unit", "unit", "unit", "unit", "unit", "unit"],
+                "Object_name":             ["pth_dummy_unit", "pth_dummy_unit", "excess_heat_exchanger", "excess_heat_exchanger", "dh_heat_exchanger", "dh_heat_exchanger", "process_heat_plant", "excess_heat_exchanger"],
+                "Object_to_from":          ["node", "node", "node", "node", "node", "node", "investment_group", "investment_group"],
+                "Object_to_from_name":     ["pth_dummy_node", "power", "pth_dummy_node", "excess_heat", "heat", "excess_heat", "heat_recovery", "heat_recovery"]
+            })
+
+            dh__object__node_node_def = pd.DataFrame({
+                "Relationship":    ["unit__to_node__investment_group", "unit__from_node__investment_group"],
+                "Object_class_1":  ["unit", "unit"],
+                "Object_name_1":   ["excess_heat_exchanger", "process_heat_plant"],
+                "Object_class_2":  ["node", "node"],
+                "Object_name_2":   ["pth_dummy_node", "pth_dummy_node"],
+                "Object_class_3":  ["investment_group", "investment_group"],
+                "Object_name_3":   ["heat_recovery", "heat_recovery"]
+            })
+
+            dh__object__node_node = pd.DataFrame({
+                "Relationship": ["unit__node__node", "unit__node__node", "unit__node__node"],
+                "Object_class": ["unit", "unit", "unit"],
+                "Object_name":  ["pth_dummy_unit", "excess_heat_exchanger", "dh_heat_exchanger"],
+                "Node1":        ["power", "excess_heat", "excess_heat"],
+                "Node2":        ["pth_dummy_node", "pth_dummy_node", "heat"],
+                "Parameter":    ["fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow"],
+                "Value":        [0.991, 10, 1],
+                "Alternative":  [run_name, run_name, run_name]
+            })
+
+        else: # for electrolyzer types 'PEM' and 'Alkaline'
+
+            dh__object__to_from_node_definition = pd.DataFrame({
+                "Relationship_class_name": ["unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__investment_group", "unit__investment_group"],
+                "Object_class":            ["unit", "unit", "unit", "unit", "unit", "unit", "unit", "unit"],
+                "Object_name":             ["pth_dummy_unit", "pth_dummy_unit", "excess_heat_exchanger", "excess_heat_exchanger", "dh_heat_exchanger", "dh_heat_exchanger", "steam_plant", "excess_heat_exchanger"],
+                "Object_to_from":          ["node", "node", "node", "node", "node", "node", "investment_group", "investment_group"],
+                "Object_to_from_name":     ["pth_dummy_node", "power", "pth_dummy_node", "excess_heat", "heat", "excess_heat", "heat_recovery", "heat_recovery"]
+            })
+
+
+            dh__object__node_node_def = pd.DataFrame({
+                "Relationship":    ["unit__to_node__investment_group", "unit__from_node__investment_group"],
+                "Object_class_1":  ["unit", "unit"],
+                "Object_name_1":   ["excess_heat_exchanger", "steam_plant"],
+                "Object_class_2":  ["node", "node"],
+                "Object_name_2":   ["pth_dummy_node", "pth_dummy_node"],
+                "Object_class_3":  ["investment_group", "investment_group"],
+                "Object_name_3":   ["heat_recovery", "heat_recovery"]
+            })
+
+            dh__object__node_node = pd.DataFrame({
+                "Relationship": ["unit__node__node", "unit__node__node", "unit__node__node", "unit__node__node", "unit__node__node"],
+                "Object_class": ["unit", "unit", "unit", "unit", "unit"],
+                "Object_name":  ["steam_plant", "steam_plant", "pth_dummy_unit", "excess_heat_exchanger", "dh_heat_exchanger"],
+                "Node1":        ["pth_dummy_node", "pth_dummy_node", "power", "excess_heat", "excess_heat"],
+                "Node2":        ["water", "steam", "pth_dummy_node", "pth_dummy_node", "heat"],
+                "Parameter":    ["fix_ratio_in_in_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow"],
+                "Value":        [0.000724378, 0.99, 0.991, 10, 1],
+                "Alternative":  [run_name, run_name, run_name, run_name, run_name]
+            })
+
+    else: # so the product has steam plant 
+
+        dh__object__to_from_node_definition = pd.DataFrame({
+            "Relationship_class_name": ["unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__investment_group", "unit__investment_group"],
+            "Object_class":            ["unit", "unit", "unit", "unit", "unit", "unit", "unit", "unit"],
+            "Object_name":             ["pth_dummy_unit", "pth_dummy_unit", "excess_heat_exchanger", "excess_heat_exchanger", "dh_heat_exchanger", "dh_heat_exchanger", "steam_plant", "excess_heat_exchanger"],
+            "Object_to_from":          ["node", "node", "node", "node", "node", "node", "investment_group", "investment_group"],
+            "Object_to_from_name":     ["pth_dummy_node", "power", "pth_dummy_node", "excess_heat", "heat", "excess_heat", "heat_recovery", "heat_recovery"]
+        })
+
+        dh__object__node_node_def = pd.DataFrame({
+            "Relationship":    ["unit__to_node__investment_group", "unit__from_node__investment_group"],
+            "Object_class_1":  ["unit", "unit"],
+            "Object_name_1":   ["excess_heat_exchanger", "steam_plant"],
+            "Object_class_2":  ["node", "node"],
+            "Object_name_2":   ["pth_dummy_node", "pth_dummy_node"],
+            "Object_class_3":  ["investment_group", "investment_group"],
+            "Object_name_3":   ["heat_recovery", "heat_recovery"]
+        })
+
+        dh__object__node_node = pd.DataFrame({
+            "Relationship": ["unit__node__node", "unit__node__node", "unit__node__node", "unit__node__node", "unit__node__node"],
+            "Object_class": ["unit", "unit", "unit", "unit", "unit"],
+            "Object_name":  ["steam_plant", "steam_plant", "pth_dummy_unit", "excess_heat_exchanger", "dh_heat_exchanger"],
+            "Node1":        ["pth_dummy_node", "pth_dummy_node", "power", "excess_heat", "excess_heat"],
+            "Node2":        ["water", "steam", "pth_dummy_node", "pth_dummy_node", "heat"],
+            "Parameter":    ["fix_ratio_in_in_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow"],
+            "Value":        [0.000724378, 0.99, 0.991, 10, 1],
+            "Alternative":  [run_name, run_name, run_name, run_name, run_name]
+        })
+        
+    # Rest of the sheets are the same for all cases 
 
     dh__definition = pd.DataFrame({
         "Object_name": ["pth_dummy_unit", "pth_dummy_node", "excess_heat_exchanger", "heat_recovery", "dh_heat_exchanger"],
@@ -1249,15 +1350,7 @@ def get_district_heating_sheets(run_name):
         "demand":               [None],
         "node_slack_penalty":   [100000000]
     })
-
-    dh__object__to_from_node_definition = pd.DataFrame({
-        "Relationship_class_name": ["unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__to_node", "unit__from_node", "unit__investment_group", "unit__investment_group"],
-        "Object_class":            ["unit", "unit", "unit", "unit", "unit", "unit", "unit", "unit"],
-        "Object_name":             ["pth_dummy_unit", "pth_dummy_unit", "excess_heat_exchanger", "excess_heat_exchanger", "dh_heat_exchanger", "dh_heat_exchanger", "steam_plant", "excess_heat_exchanger"],
-        "Object_to_from":          ["node", "node", "node", "node", "node", "node", "investment_group", "investment_group"],
-        "Object_to_from_name":     ["pth_dummy_node", "power", "pth_dummy_node", "excess_heat", "heat", "excess_heat", "heat_recovery", "heat_recovery"]
-    })
-
+    
     dh__object__to_from_node = pd.DataFrame({
         "Relationship_class_name": ["unit__to_node"],
         "Object_class":            ["unit"],
@@ -1268,28 +1361,6 @@ def get_district_heating_sheets(run_name):
         "Value":                   [500],
         "Alternative":             [run_name]
     })
-
-    dh__object__node_node_def = pd.DataFrame({
-        "Relationship":    ["unit__to_node__investment_group", "unit__from_node__investment_group"],
-        "Object_class_1":  ["unit", "unit"],
-        "Object_name_1":   ["excess_heat_exchanger", "steam_plant"],
-        "Object_class_2":  ["node", "node"],
-        "Object_name_2":   ["pth_dummy_node", "pth_dummy_node"],
-        "Object_class_3":  ["investment_group", "investment_group"],
-        "Object_name_3":   ["heat_recovery", "heat_recovery"]
-    })
-
-    dh__object__node_node = pd.DataFrame({
-        "Relationship": ["unit__node__node", "unit__node__node", "unit__node__node", "unit__node__node", "unit__node__node"],
-        "Object_class": ["unit", "unit", "unit", "unit", "unit"],
-        "Object_name":  ["steam_plant", "steam_plant", "pth_dummy_unit", "excess_heat_exchanger", "dh_heat_exchanger"],
-        "Node1":        ["pth_dummy_node", "pth_dummy_node", "power", "excess_heat", "excess_heat"],
-        "Node2":        ["water", "steam", "pth_dummy_node", "pth_dummy_node", "heat"],
-        "Parameter":    ["fix_ratio_in_in_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_out_unit_flow"],
-        "Value":        [0.000724378, 0.99, 0.991, 10, 1],
-        "Alternative":  [run_name, run_name, run_name, run_name, run_name]
-    })
-
     dh_sheets_mapping = {
         "Definition":                       dh__definition,
         "Definition_parameters":            dh__definition_parameters,
