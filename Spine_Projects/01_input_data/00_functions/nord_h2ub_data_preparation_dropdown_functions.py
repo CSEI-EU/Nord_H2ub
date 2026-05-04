@@ -1437,6 +1437,69 @@ def create_combined_dropdowns_tabs():
     dropdown_investment_vbox, dropdown_investment = create_dropdown_investment()
     dropdown_period_vbox, dropdown_number, dropdown_period = create_dropdown_invest_period()
     demand_hbox, demand_input, demand_res = create_demand()
+
+    # --- Side Products subsection ---
+    side_products_header = widgets.HTML(
+        "<div style='margin-top:15px; margin-bottom:5px;'>"
+        "<b>Side Products</b>"
+        "</div>"
+    )
+
+    # District heating toggle
+    dh_toggle_label = widgets.Label(
+        "District heating:",
+        layout=widgets.Layout(width='170px')
+    )
+    dh_toggle = widgets.Dropdown(
+        options=[True, False],
+        value=None,
+        layout=widgets.Layout(width='100px')
+    )
+    dh_toggle.observe(on_change, names='value')
+
+    dh_toggle_row = widgets.HBox(
+        [dh_toggle_label, dh_toggle],
+        layout=widgets.Layout(padding='3px 0px 0px 30px')
+    )
+
+    # District heating details (shown when toggle is True)
+    dh_demand_label = widgets.Label(
+        "Max DH demand [MW]:",
+        layout=widgets.Layout(width='170px')
+    )
+    dh_demand_input = widgets.FloatText(
+        value=placeholder_value,
+        min=0,
+        layout=widgets.Layout(width='100px')
+    )
+
+    dh_price_label = widgets.Label(
+        "DH price [€/MWh]:",
+        layout=widgets.Layout(width='150px', margin='0px 0px 0px 15px')
+    )
+    dh_price_input = widgets.FloatText(
+        value=placeholder_value,
+        min=0,
+        layout=widgets.Layout(width='100px')
+    )
+
+    dh_details = widgets.HBox(
+        [dh_demand_label, dh_demand_input, dh_price_label, dh_price_input],
+        layout=widgets.Layout(display='none', padding='5px 0px 5px 30px')
+    )
+
+    def on_dh_toggle_change(change):
+        if change['new'] is True:
+            dh_details.layout.display = 'flex'
+        else:
+            dh_details.layout.display = 'none'
+
+    dh_toggle.observe(on_dh_toggle_change, names='value')
+
+    dh_section = widgets.VBox(
+        [side_products_header, dh_toggle_row, dh_details],
+        layout=widgets.Layout(display='none', margin='10px 0px 0px 0px')
+    )
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -1467,16 +1530,20 @@ def create_combined_dropdowns_tabs():
         'investment_res': investment_res,
         'investment_ps': investment_ps,
         'investment_ps_capacity': investment_ps_capacity,
-        # Added PPA-related values
+        # PPA-related values
         'ppa_values': ppa_values,
         'ppa_capacity_values': ppa_capacity_values,
         'ppa_price_values': ppa_price_values,
-        'ppa_type_values': ppa_type_values
+        'ppa_type_values': ppa_type_values,
+        # District heating values
+        'dh_toggle': dh_toggle,
+        'dh_demand_input': dh_demand_input,
+        'dh_price_input': dh_price_input,
     }
 
     # Create pages (tabs)
     page1 = widgets.VBox([
-        section_1, dropdown_product_vbox, demand_hbox
+        section_1, dropdown_product_vbox, demand_hbox, dh_section
     ])
 
     page2 = widgets.VBox([
@@ -1521,10 +1588,13 @@ def create_combined_dropdowns_tabs():
     def show_demand(change):
         if change['new']:
             demand_hbox.layout.display = 'block'
+            dh_section.layout.display = 'block'
         else:
             demand_hbox.layout.display = 'none'
+            dh_section.layout.display = 'none'
     # Hide demand by default
     demand_hbox.layout.display = 'none'
+    dh_section.layout.display = 'none'
     # Observe changes in product
     dropdown_product.observe(show_demand, names='value')
     
@@ -1600,7 +1670,11 @@ def get_dropdown_values(dropdowns):
         'ppa_values': dropdowns['ppa_values'],
         'ppa_capacity_values': dropdowns['ppa_capacity_values'],
         'ppa_price_values': dropdowns['ppa_price_values'],   
-        'ppa_type_values': dropdowns['ppa_type_values']     
+        'ppa_type_values': dropdowns['ppa_type_values'],
+        # District heating values
+        'district_heating': dropdowns['dh_toggle'].value,
+        'dh_max_demand': dropdowns['dh_demand_input'].value,
+        'dh_price': dropdowns['dh_price_input'].value,
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed
@@ -1631,99 +1705,35 @@ def get_dropdown_values(dropdowns):
 
 # Add investment costs and capacities to the parameters definition if previously set
 def set_inv_cap_values(values, parameters):
-    # investment costs
-    if 'inv_cost_ammonia_storage' in values:
-        parameters['inv_cost_ammonia_storage'] = values['inv_cost_ammonia_storage']
-    if 'inv_cost_anaerobic' in values:
-        parameters['inv_cost_anaerobic'] = values['inv_cost_anaerobic']
-    if 'inv_cost_asu' in values:
-        parameters['inv_cost_asu'] = values['inv_cost_asu']
-    if 'inv_cost_biomethanation' in values:
-        parameters['inv_cost_biomethanation'] = values['inv_cost_biomethanation']
-    if 'inv_cost_co2_removal' in values:
-        parameters['inv_cost_co2_removal'] = values['inv_cost_co2_removal']
-    if 'inv_cost_diesel_storage' in values:
-        parameters['inv_cost_diesel_storage'] = values['inv_cost_diesel_storage']
-    if 'inv_cost_egasoline_storage' in values:
-        parameters['inv_cost_egasoline_storage'] = values['inv_cost_egasoline_storage']
-    if 'inv_cost_electrolyzer' in values:
-        parameters['inv_cost_electrolyzer'] = values['inv_cost_electrolyzer']
-    if 'inv_cost_fischer' in values:
-        parameters['inv_cost_fischer'] = values['inv_cost_fischer'] 
-    if 'inv_cost_haber' in values:
-        parameters['inv_cost_haber'] = values['inv_cost_haber'] 
-    if 'inv_cost_hydrogen_storage' in values:
-        parameters['inv_cost_hydrogen_storage'] = values['inv_cost_hydrogen_storage']
-    if 'inv_cost_jet_fuel_storage' in values:
-        parameters['inv_cost_jet_fuel_storage'] = values['inv_cost_jet_fuel_storage']    
-    if 'inv_cost_methane_storage' in values:
-        parameters['inv_cost_methane_storage'] = values['inv_cost_methane_storage']
-    if 'inv_cost_methanol' in values:
-        parameters['inv_cost_methanol'] = values['inv_cost_methanol']
-    if 'inv_cost_methanol_storage' in values:
-        parameters['inv_cost_methanol_storage'] = values['inv_cost_methanol_storage']
-    if 'inv_cost_rwgs' in values:
-        parameters['inv_cost_rwgs'] = values['inv_cost_rwgs']
-    if 'inv_cost_steam' in values:
-        parameters['inv_cost_steam'] = values['inv_cost_steam']
-    # capacities
-    if 'capacity_asu' in values:
-        parameters['capacity_asu'] = values['capacity_asu']
-    if 'capacity_electrolyzer' in values:
-        parameters['capacity_electrolyzer'] = values['capacity_electrolyzer']
-    if 'capacity_haber' in values:
-        parameters['capacity_haber'] = values['capacity_haber']
-    if 'capacity_fischer' in values:
-        parameters['capacity_fischer'] = values['capacity_fischer']
-    if 'capacity_rwgs' in values:
-        parameters['capacity_rwgs'] = values['capacity_rwgs']
+    direct_keys = [
+        # investment costs
+        'inv_cost_ammonia_storage', 'inv_cost_anaerobic', 'inv_cost_asu',
+        'inv_cost_biomethanation', 'inv_cost_co2_removal', 'inv_cost_diesel_storage',
+        'inv_cost_egasoline_storage', 'inv_cost_electrolyzer', 'inv_cost_fischer',
+        'inv_cost_haber', 'inv_cost_hydrogen_storage', 'inv_cost_jet_fuel_storage',
+        'inv_cost_methane_storage', 'inv_cost_methanol', 'inv_cost_methanol_storage',
+        'inv_cost_rwgs', 'inv_cost_steam',
+        # capacities
+        'capacity_asu', 'capacity_electrolyzer', 'capacity_haber', 'capacity_fischer',
+        'capacity_rwgs', 'capacity_steam', 'capacity_anaerobic',
+        'capacity_biomethanation', 'capacity_co2_removal',
+        # limits
+        'inv_limit_ammonia_storage', 'inv_limit_anaerobic', 'inv_limit_asu',
+        'inv_limit_biomethanation', 'inv_limit_co2_removal', 'inv_limit_diesel_storage',
+        'inv_limit_egasoline_storage', 'inv_limit_electrolyzer', 'inv_limit_fischer',
+        'inv_limit_haber', 'inv_limit_hydrogen_storage', 'inv_limit_jet_fuel_storage',
+        'inv_limit_methane_storage', 'inv_limit_methanol', 'inv_limit_methanol_storage',
+        'inv_limit_rwgs', 'inv_limit_steam',
+    ]
+
+    for key in direct_keys:
+        if key in values:
+            parameters[key] = values[key]
+
+    # Special cases: methanol capacity/limit also drives distillation
     if 'capacity_methanol' in values:
-        parameters['capacity_methanol'] = values['capacity_methanol']
         parameters['capacity_distillation'] = values['capacity_methanol']
-    if 'capacity_steam' in values:
-        parameters['capacity_steam'] = values['capacity_steam']
-    if 'capacity_anaerobic' in values:
-        parameters['capacity_anaerobic'] = values['capacity_anaerobic']
-    if 'capacity_biomethanation' in values:
-        parameters['capacity_biomethanation'] = values['capacity_biomethanation']
-    if 'capacity_co2_removal' in values:
-        parameters['capacity_co2_removal'] = values['capacity_co2_removal']
-    # limits
-    if 'inv_limit_ammonia_storage' in values:
-        parameters['inv_limit_ammonia_storage'] = values['inv_limit_ammonia_storage']
-    if 'inv_limit_anaerobic' in values:
-        parameters['inv_limit_anaerobic'] = values['inv_limit_anaerobic']
-    if 'inv_limit_asu' in values:
-        parameters['inv_limit_asu'] = values['inv_limit_asu']
-    if 'inv_limit_biomethanation' in values:
-        parameters['inv_limit_biomethanation'] = values['inv_limit_biomethanation']
-    if 'inv_limit_co2_removal' in values:
-        parameters['inv_limit_co2_removal'] = values['inv_limit_co2_removal']
-    if 'inv_limit_diesel_storage' in values:
-        parameters['inv_limit_diesel_storage'] = values['inv_limit_diesel_storage']
-    if 'inv_limit_egasoline_storage' in values:
-        parameters['inv_limit_egasoline_storage'] = values['inv_limit_egasoline_storage']
-    if 'inv_limit_electrolyzer' in values:
-        parameters['inv_limit_electrolyzer'] = values['inv_limit_electrolyzer']
-    if 'inv_limit_fischer' in values:
-        parameters['inv_limit_fischer'] = values['inv_limit_fischer'] 
-    if 'inv_limit_haber' in values:
-        parameters['inv_limit_haber'] = values['inv_limit_haber'] 
-    if 'inv_limit_hydrogen_storage' in values:
-        parameters['inv_limit_hydrogen_storage'] = values['inv_limit_hydrogen_storage']
-    if 'inv_limit_jet_fuel_storage' in values:
-        parameters['inv_limit_jet_fuel_storage'] = values['inv_limit_jet_fuel_storage']    
-    if 'inv_limit_methane_storage' in values:
-        parameters['inv_limit_methane_storage'] = values['inv_limit_methane_storage']
     if 'inv_limit_methanol' in values:
-        parameters['inv_limit_methanol'] = values['inv_limit_methanol']
         parameters['inv_limit_distillation'] = values['inv_limit_methanol']
-    if 'inv_limit_methanol_storage' in values:
-        parameters['inv_limit_methanol_storage'] = values['inv_limit_methanol_storage']
-    if 'inv_limit_rwgs' in values:
-        parameters['inv_limit_rwgs'] = values['inv_limit_rwgs']
-    if 'inv_limit_steam' in values:
-        parameters['inv_limit_steam'] = values['inv_limit_steam']
-    
+
     return parameters
-    
