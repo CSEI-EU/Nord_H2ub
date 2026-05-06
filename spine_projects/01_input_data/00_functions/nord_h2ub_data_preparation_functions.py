@@ -1461,3 +1461,115 @@ def get_district_heating_sheets(run_name, product, electrolyzer_type):
         
 
     return dh_sheets_mapping
+
+def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df_units_inv_parameters,
+                             df_nodes, df_connections_inv_parameters, df_object__node_definitions,
+                             df_object__node_values, df_object__node_node_definition, df_object_node_node):
+
+    o2__definition = pd.DataFrame({
+        "Object_name": ["o2_node", "o2_demand", "pl_o2", "liquid_o2", "o2_liquefier"],
+        "Category":    ["node", "node", "connection", "node", "unit"]
+    })
+    
+    o2__definition_parameters = pd.DataFrame({
+        "Object_name": ["o2_liquefier"],
+        "Category":    ["unit"],
+        "Parameter":   ["fom_cost"],
+        "Value":       [0.1],
+        "Alternative": [run_name]
+    })
+    
+    o2__unit_inv_parameters = pd.DataFrame({
+        "Object_name":                      ["o2_liquefier"],
+        "unit_investment_variable_type":    ["unit_investment_variable_type_continuous"],
+        "initial_units_invested_available": [0],
+        "number_of_units":                  [0],
+        "candidate_units":                  [1],
+        "unit_investment_cost":             [6000000],
+        "unit_investment_tech_lifetime":    ["10950D"],
+        "unit_investment_econ_lifetime":    ["10950D"],
+        "Alternative":                      [run_name]
+    })
+
+    o2__nodes = pd.DataFrame({
+        "Object_name":         ["o2_node", "o2_demand", "liquid_o2"],
+        "Category":            ["node", "node", "node"],
+        "balance_type":        ["balance_type_node", "balance_type_none", "balance_type_node"],
+        "Alternative":         [run_name, run_name, run_name],
+        "nodal_balance_sense": [None, None, None],
+        "has_state":           [None, None, None],
+        "node_state_cap":      [None, None, None],
+        "frac_state_loss":     [None, None, None],
+        "demand":              [None, None, None],
+        "node_slack_penalty":  [100000000, None, 100000000]
+    })
+
+    o2__connection_inv_parameters = pd.DataFrame({
+        "Object_name":                              ["pl_o2"],
+        "connection_type":                          ["connection_type_normal"],
+        "connection_investment_variable_type":      ["connection_investment_variable_type_continuous"],
+        "initial_connections_invested_available":   [1],
+        "number_of_connections":                    [0],
+        "candidate_connections":                    [1],
+        "connection_investment_cost":               [0],
+        "connection_investment_tech_lifetime":      ["14600D"],
+        "connection_investment_econ_lifetime":      ["14600D"],
+        "Alternative":                              [run_name]
+    })
+
+    o2__object__to_from_node_definition = pd.DataFrame({
+        "Relationship_class_name": ["connection__from_node", "connection__to_node", "unit__to_node", "unit__to_node",   "unit__from_node", "unit__from_node"],
+        "Object_class":            ["connection", "connection", "unit", "unit", "unit", "unit"],
+        "Object_name":             ["pl_o2", "pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier", "o2_liquefier"],
+        "object_to_from":          ["node", "node", "node", "node", "node", "node"],
+        "object_to_from_name":     ["liquid_o2", "o2_demand", "o2_node", "liquid_o2", "o2_node", "power"]
+    })
+
+    o2__object__to_from_node = pd.DataFrame({
+        "Relationship_class_name": ["connection__from_node", "connection__to_node", "unit__from_node"],
+        "Object_class":            ["connection", "connection", "unit"],
+        "Object_name":             ["pl_o2", "pl_o2", "o2_liquefier"],
+        "object_to_from":          ["node", "node", "node"],
+        "object_to_from_name":     ["liquid_o2", "o2_demand", "power"],
+        "Parameter":               ["connection_capacity", "connection_capacity", "unit_capacity"],
+        "Value":                   [1000, 1000, 1000],
+        "Alternative":             [run_name, run_name, run_name]
+    })
+
+    o2__object__node_node_def = pd.DataFrame({
+        "Relationship":   ["connection__node__node", "unit__node__node", "unit__node__node", "unit__node__node"],
+        "Object_class_1": ["connection", "unit", "unit", "unit"],
+        "Object_name_1":  ["pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier"],
+        "Object_class_2": ["node", "node", "node", "node"],
+        "Object_name_2":  ["o2_demand", "h2", "power", "power"],
+        "Object_class_3": ["node", "node", "node", "node"],
+        "Object_name_3":  ["liquid_o2", "o2_node", "liquid_o2", "o2_node"]
+    }) 
+
+    o2__object__node_node = pd.DataFrame({
+        "Object_class": ["connection", "unit", "unit", "unit"],
+        "Object_name":  ["pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier"],
+        "Node1":        ["o2_demand", "h2", "power", "power"],
+        "Node2":        ["liquid_o2", "o2_node", "liquid_o2", "o2_node"],
+        "Parameter":    ["fix_ratio_out_in_connection_flow", "fix_ratio_out_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_in_unit_flow"],
+        "Value":        [1, 4.16625, 0.5, 0.5],
+        "Alternative":  [run_name,  run_name,     run_name,     run_name]
+    })
+
+    mappings = [
+        (o2__definition,                        df_definition),
+        (o2__definition_parameters,             unit_parameters_rest_df),
+        (o2__unit_inv_parameters,               df_units_inv_parameters),
+        (o2__nodes,                             df_nodes),
+        (o2__connection_inv_parameters,         df_connections_inv_parameters),
+        (o2__object__to_from_node_definition,   df_object__node_definitions),
+        (o2__object__to_from_node,              df_object__node_values),
+        (o2__object__node_node_def,             df_object__node_node_definition),
+        (o2__object__node_node,                 df_object_node_node),
+    ]
+
+    results = []
+    for o2_df, main_df in mappings:
+        results.append(pd.concat([main_df, o2_df], ignore_index=True))
+
+    return results
