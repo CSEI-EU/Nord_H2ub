@@ -1496,10 +1496,63 @@ def create_combined_dropdowns_tabs():
 
     dh_toggle.observe(on_dh_toggle_change, names='value')
 
+    # Oxygen toggle
+    o2_toggle_label = widgets.Label(
+        "Oxygen:",
+        layout=widgets.Layout(width='170px')
+    )
+    o2_toggle = widgets.Dropdown(
+        options=[True, False],
+        value=None,
+        layout=widgets.Layout(width='100px')
+    )
+    o2_toggle.observe(on_change, names='value')
+
+    o2_toggle_row = widgets.HBox(
+        [o2_toggle_label, o2_toggle],
+        layout=widgets.Layout(padding='3px 0px 0px 30px')
+    )
+
+    o2_demand_label = widgets.Label(
+        "Max O2 demand [MW]:",
+        layout=widgets.Layout(width='170px')
+    )
+    o2_demand_input = widgets.FloatText(
+        value=placeholder_value,
+        min=0,
+        layout=widgets.Layout(width='100px')
+    )
+
+    o2_price_label = widgets.Label(
+        "O2 price [€/MWh]:",
+        layout=widgets.Layout(width='150px', margin='0px 0px 0px 15px')
+    )
+    o2_price_input = widgets.FloatText(
+        value=placeholder_value,
+        min=0,
+        layout=widgets.Layout(width='100px')
+    )
+
+    o2_details = widgets.HBox(
+        [o2_demand_label, o2_demand_input, o2_price_label, o2_price_input],
+        layout=widgets.Layout(display='none', padding='5px 0px 5px 30px')
+    )
+
+    def on_o2_toggle_change(change):
+        if change['new'] is True:
+            o2_details.layout.display = 'flex'
+        else:
+            o2_details.layout.display = 'none'
+
+    o2_toggle.observe(on_o2_toggle_change, names='value')
+
+    
     dh_section = widgets.VBox(
-        [side_products_header, dh_toggle_row, dh_details],
+        [side_products_header, dh_toggle_row, dh_details, o2_toggle_row, o2_details],
         layout=widgets.Layout(display='none', margin='10px 0px 0px 0px')
     )
+
+   
     
     # Store dropdowns in a dictionary
     dropdowns = {
@@ -1539,6 +1592,10 @@ def create_combined_dropdowns_tabs():
         'dh_toggle': dh_toggle,
         'dh_demand_input': dh_demand_input,
         'dh_price_input': dh_price_input,
+        # Oxygen values
+        'o2_toggle': o2_toggle,
+        'o2_demand_input': o2_demand_input,
+        'o2_price_input': o2_price_input,
     }
 
     # Create pages (tabs)
@@ -1671,10 +1728,16 @@ def get_dropdown_values(dropdowns):
         'ppa_capacity_values': dropdowns['ppa_capacity_values'],
         'ppa_price_values': dropdowns['ppa_price_values'],   
         'ppa_type_values': dropdowns['ppa_type_values'],
+        
         # District heating values
         'district_heating': dropdowns['dh_toggle'].value,
         'dh_max_demand': dropdowns['dh_demand_input'].value,
         'dh_price': dropdowns['dh_price_input'].value,
+
+        # Oxygen values
+        'oxygen': dropdowns['o2_toggle'].value,
+        'o2_max_demand': dropdowns['o2_demand_input'].value,
+        'o2_price': dropdowns['o2_price_input'].value,
     }
     
     # Adding the dynamic investment cost values from investment_cost_values if changed
