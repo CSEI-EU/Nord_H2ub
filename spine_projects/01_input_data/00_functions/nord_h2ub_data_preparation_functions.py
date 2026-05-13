@@ -1521,16 +1521,16 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
         "Relationship_class_name": ["connection__from_node", "connection__to_node", "unit__to_node", "unit__to_node",   "unit__from_node", "unit__from_node"],
         "Object_class":            ["connection", "connection", "unit", "unit", "unit", "unit"],
         "Object_name":             ["pl_o2", "pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier", "o2_liquefier"],
-        "object_to_from":          ["node", "node", "node", "node", "node", "node"],
-        "object_to_from_name":     ["liquid_o2", "o2_demand", "o2_node", "liquid_o2", "o2_node", "power"]
+        "Object_to_from":          ["node", "node", "node", "node", "node", "node"],
+        "Object_to_from_name":     ["liquid_o2", "o2_demand", "o2_node", "liquid_o2", "o2_node", "power"]
     })
 
     o2__object__to_from_node = pd.DataFrame({
         "Relationship_class_name": ["connection__from_node", "connection__to_node", "unit__from_node"],
         "Object_class":            ["connection", "connection", "unit"],
         "Object_name":             ["pl_o2", "pl_o2", "o2_liquefier"],
-        "object_to_from":          ["node", "node", "node"],
-        "object_to_from_name":     ["liquid_o2", "o2_demand", "power"],
+        "Object_to_from":          ["node", "node", "node"],
+        "Object_to_from_name":     ["liquid_o2", "o2_demand", "power"],
         "Parameter":               ["connection_capacity", "connection_capacity", "unit_capacity"],
         "Value":                   [1000, 1000, 1000],
         "Alternative":             [run_name, run_name, run_name]
@@ -1547,13 +1547,14 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
     }) 
 
     o2__object__node_node = pd.DataFrame({
+        "Relationship": ["connection__node__node", "unit__node__node", "unit__node__node", "unit__node__node"],
         "Object_class": ["connection", "unit", "unit", "unit"],
         "Object_name":  ["pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier"],
         "Node1":        ["o2_demand", "h2", "power", "power"],
         "Node2":        ["liquid_o2", "o2_node", "liquid_o2", "o2_node"],
         "Parameter":    ["fix_ratio_out_in_connection_flow", "fix_ratio_out_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_in_unit_flow"],
         "Value":        [1, 4.16625, 0.5, 0.5],
-        "Alternative":  [run_name,  run_name,     run_name,     run_name]
+        "Alternative":  [run_name, run_name, run_name, run_name]
     })
 
     mappings = [

@@ -1524,7 +1524,7 @@ def create_combined_dropdowns_tabs():
     )
 
     o2_price_label = widgets.Label(
-        "O2 price [€/MWh]:",
+        "O2 price [€/kg]:",
         layout=widgets.Layout(width='150px', margin='0px 0px 0px 15px')
     )
     o2_price_input = widgets.FloatText(
