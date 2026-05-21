@@ -1464,7 +1464,7 @@ def get_district_heating_sheets(run_name, product, electrolyzer_type):
 
 def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df_units_inv_parameters,
                              df_nodes, df_connections_inv_parameters, df_object__node_definitions,
-                             df_object__node_values, df_object__node_node_definition, df_object_node_node):
+                             df_object__node_values, df_object__node_node_definition, df_object_node_node, df_energy_prices, o2_price):
 
     o2__definition = pd.DataFrame({
         "Object_name": ["o2_node", "o2_demand", "pl_o2", "liquid_o2", "o2_liquefier"],
@@ -1557,6 +1557,13 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
         "Alternative":  [run_name, run_name, run_name, run_name]
     })
 
+    n_data_rows = len(df_energy_prices) - 6
+
+    if o2_price is not np.nan:
+        df_energy_prices['o2_price'] = ['connection', 'connection__to_node', 'pl_o2', 'o2_demand', run_name, 'connection_flow_cost'] + [-o2_price] * n_data_rows
+    else:
+        df_energy_prices['o2_price'] = ['connection', 'connection__to_node', 'pl_o2', 'o2_demand', run_name, 'connection_flow_cost'] + [-150] * n_data_rows    
+
     mappings = [
         (o2__definition,                        df_definition),
         (o2__definition_parameters,             unit_parameters_rest_df),
@@ -1573,4 +1580,4 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
     for o2_df, main_df in mappings:
         results.append(pd.concat([main_df, o2_df], ignore_index=True))
 
-    return results
+    return results, df_energy_prices
