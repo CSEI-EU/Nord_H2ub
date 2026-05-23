@@ -1300,16 +1300,16 @@ def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_d
             })
                         
 
-            dh_sheets_mapping = {
-                "Definition":                       dh__definition,
-                "Definition_parameters":            dh__definition_parameters,
-                "Unit_inv_parameters":              dh__unit_inv_parameters,
-                "Nodes":                            dh__nodes,
-                "Object__to_from_node_definition":  dh__object__to_from_node_definition,
-                "Object__to_from_node":             dh__object__to_from_node,
-                "Object__node_node_def":            dh__object__node_node_def,
-                "Object__node_node":                dh__object__node_node
-            }
+            # dh_sheets_mapping = {
+            #     "Definition":                       dh__definition,
+            #     "Definition_parameters":            dh__definition_parameters,
+            #     "Unit_inv_parameters":              dh__unit_inv_parameters,
+            #     "Nodes":                            dh__nodes,
+            #     "Object__to_from_node_definition":  dh__object__to_from_node_definition,
+            #     "Object__to_from_node":             dh__object__to_from_node,
+            #     "Object__node_node_def":            dh__object__node_node_def,
+            #     "Object__node_node":                dh__object__node_node
+            # }
 
         else: # for electrolyzer types 'PEM' and 'Alkaline'
 
@@ -1358,16 +1358,16 @@ def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_d
             })
 
 
-            dh_sheets_mapping = {
-                "Definition":                       dh__definition,
-                "Definition_parameters":            dh__definition_parameters,
-                "Unit_inv_parameters":              dh__unit_inv_parameters,
-                "Nodes":                            dh__nodes,
-                "Object__to_from_node_definition":  dh__object__to_from_node_definition,
-                "Object__to_from_node":             dh__object__to_from_node,
-                "Object__node_node_def":            dh__object__node_node_def,
-                "Object__node_node":                dh__object__node_node
-            }
+            # dh_sheets_mapping = {
+            #     "Definition":                       dh__definition,
+            #     "Definition_parameters":            dh__definition_parameters,
+            #     "Unit_inv_parameters":              dh__unit_inv_parameters,
+            #     "Nodes":                            dh__nodes,
+            #     "Object__to_from_node_definition":  dh__object__to_from_node_definition,
+            #     "Object__to_from_node":             dh__object__to_from_node,
+            #     "Object__node_node_def":            dh__object__node_node_def,
+            #     "Object__node_node":                dh__object__node_node
+            # }
 
     else: # so the product has steam plant 
 
@@ -1450,17 +1450,18 @@ def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_d
         })
 
 
-        dh_sheets_mapping = {
-            "Definition":                       dh__definition,
-            "Definition_parameters":            dh__definition_parameters,
-            "Unit_inv_parameters":              dh__unit_inv_parameters,
-            "Nodes":                            dh__nodes,
-            "Object__to_from_node_definition":  dh__object__to_from_node_definition,
-            "Object__to_from_node":             dh__object__to_from_node,
-            "Object__node_node_def":            dh__object__node_node_def,
-            "Object__node_node":                dh__object__node_node
-        }
+        # dh_sheets_mapping = {
+        #     "Definition":                       dh__definition,
+        #     "Definition_parameters":            dh__definition_parameters,
+        #     "Unit_inv_parameters":              dh__unit_inv_parameters,
+        #     "Nodes":                            dh__nodes,
+        #     "Object__to_from_node_definition":  dh__object__to_from_node_definition,
+        #     "Object__to_from_node":             dh__object__to_from_node,
+        #     "Object__node_node_def":            dh__object__node_node_def,
+        #     "Object__node_node":                dh__object__node_node
+        # }
         
+    # dh prices --- to be discussed  
     n_data_rows = len(df_energy_prices) - 6
 
     if dh_price is not np.nan:
@@ -1481,8 +1482,12 @@ def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_d
     ]
 
     results = []
-    for o2_df, main_df in mappings:
-        results.append(pd.concat([main_df, o2_df], ignore_index=True))
+    for dh_df, main_df in mappings:
+        results.append(pd.concat([main_df, dh_df], ignore_index=True))
+
+    # Change nodal sense 
+    df_nodes.loc[df_nodes['Object_name'] == 'excess_heat', 'nodal_balance_sense'] = '>='
+    df_nodes.loc[df_nodes['Object_name'] == 'excess_heat', 'node_slack_penalty'] = 100000000
 
     return results, df_energy_prices
 
