@@ -1210,7 +1210,9 @@ def translate_product(product):
 
 
 # District heating mapping for adding data to the sheets
-def get_district_heating_sheets(run_name, product, electrolyzer_type):
+def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_definition, unit_parameters_rest_df,
+                                 df_units_inv_parameters, df_nodes, df_object__node_definitions, df_object__node_values, 
+                                 df_object__node_node_definition, df_object_node_node, df_energy_prices, dh_price):
 
     NO_STEAM_PLANT_PRODUCTS = {"ammonia", "hydrogen", "methane"}
     has_steam_plant = product not in NO_STEAM_PLANT_PRODUCTS
@@ -1459,8 +1461,32 @@ def get_district_heating_sheets(run_name, product, electrolyzer_type):
             "Object__node_node":                dh__object__node_node
         }
         
+    n_data_rows = len(df_energy_prices) - 6
 
-    return dh_sheets_mapping
+    if dh_price is not np.nan:
+        df_energy_prices['dh_price'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-dh_price] * n_data_rows
+    else:
+        df_energy_prices['dh_price'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-100] * n_data_rows    
+
+    mappings = [
+        (dh__definition,                        df_definition),
+        (dh__definition_parameters,             unit_parameters_rest_df),
+        (dh__unit_inv_parameters,               df_units_inv_parameters),
+        (dh__nodes,                             df_nodes),
+        # (dh__connection_inv_parameters,         df_connections_inv_parameters),
+        (dh__object__to_from_node_definition,   df_object__node_definitions),
+        (dh__object__to_from_node,              df_object__node_values),
+        (dh__object__node_node_def,             df_object__node_node_definition),
+        (dh__object__node_node,                 df_object_node_node),
+    ]
+
+    results = []
+    for o2_df, main_df in mappings:
+        results.append(pd.concat([main_df, o2_df], ignore_index=True))
+
+    return results, df_energy_prices
+
+
 
 def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df_units_inv_parameters,
                              df_nodes, df_connections_inv_parameters, df_object__node_definitions,
