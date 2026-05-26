@@ -967,17 +967,21 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
             new_con["Connection_type"] = "connection_type_normal"
             df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
             
-            #object_to/from_node
+# -------------------------------- DOESN'T WORK-----------------------------------------
+
+            #object_to/from_node  
             new_rel = pd.DataFrame([
                 {"Relationship_class_name": "connection__from_node", 
                  "Object_class": "connection", 
                  "Object_name": f"pl_{output}_demand",
-                 "Node": output
+                 "Object_to_from": "node",
+                 "Object_to_from_name": output
                 },
                 {"Relationship_class_name": "connection__to_node", 
                  "Object_class": "connection", 
                  "Object_name": f"pl_{output}_demand",
-                 "Node": f"{output}_demand",
+                 "Object_to_from": "node",
+                 "Object_to_from_name": f"{output}_demand",
                 }
             ])
             df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
@@ -1001,6 +1005,7 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
                 }
             ])
             df_object__node_values = pd.concat([df_object__node_values, new_rel_value], ignore_index=True)
+# ---------------------------------------------------------------------------------------------------------------
             
             #object__node__node
             new_rel_nn = pd.DataFrame([
@@ -1024,7 +1029,7 @@ def check_demand_node(row, df_model_units_relations, temporal_block, resolution_
             new_value["Alternative"] = run_name
             df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
             
-    return df_definition, df_nodes, df_connections, df_object__node_values, df_object_node_node
+    return df_definition, df_nodes, df_connections, df_object__node_definitions, df_object__node_values, df_object_node_node
 
 
 # Temporal slicing definition (for demand)
