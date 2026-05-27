@@ -1463,14 +1463,15 @@ def apply_district_heating_as_product(run_name, df_other_costs, product, electro
 
     if not pd.isna(dh_price):
         df_energy_prices['district_heating'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-dh_price] * n_data_rows
-    else:
+    else:                                                               
+        # Value divided by 2 by assumption that it is not possible to have full district heating price cap
         df_energy_prices['district_heating'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-value_dh/2] * n_data_rows    
 
     # dh flow
     if not pd.isna(dh_max_demand):
         df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [dh_max_demand] * n_data_rows  
     else:
-        df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [100] * n_data_rows  
+        df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [1000] * n_data_rows  
 
     mappings = [
         (dh__definition,                        df_definition),
