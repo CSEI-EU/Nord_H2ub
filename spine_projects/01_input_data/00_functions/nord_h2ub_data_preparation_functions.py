@@ -1205,9 +1205,9 @@ def translate_product(product):
 
 
 # District heating mapping for adding data to the sheets
-def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_definition, unit_parameters_rest_df,
+def apply_district_heating_as_product(run_name, df_other_costs, product, electrolyzer_type, df_definition, unit_parameters_rest_df,
                                  df_units_inv_parameters, df_nodes, df_object__node_definitions, df_object__node_values, 
-                                 df_object__node_node_definition, df_object_node_node, df_energy_prices, dh_price):
+                                 df_object__node_node_definition, df_object_node_node, df_energy_prices, dh_price, dh_max_demand):
 
     NO_STEAM_PLANT_PRODUCTS = {"ammonia", "hydrogen", "methane"}
     has_steam_plant = product not in NO_STEAM_PLANT_PRODUCTS
@@ -1456,13 +1456,21 @@ def apply_district_heating_as_product(run_name, product, electrolyzer_type, df_d
         #     "Object__node_node":                dh__object__node_node
         # }
         
-    # dh prices --- to be discussed  
     n_data_rows = len(df_energy_prices) - 6
+    
+    # District heating prices    
+    value_dh = df_other_costs[df_other_costs.iloc[:, 0] == 'district_heating'].iloc[0, 2]
 
-    if dh_price is not np.nan:
-        df_energy_prices['dh_price'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-dh_price] * n_data_rows
+    if not pd.isna(dh_price):
+        df_energy_prices['district_heating'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-dh_price] * n_data_rows
     else:
-        df_energy_prices['dh_price'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-100] * n_data_rows    
+        df_energy_prices['district_heating'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-value_dh/2] * n_data_rows    
+
+    # dh flow
+    if not pd.isna(dh_max_demand):
+        df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [dh_max_demand] * n_data_rows  
+    else:
+        df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [100] * n_data_rows  
 
     mappings = [
         (dh__definition,                        df_definition),
