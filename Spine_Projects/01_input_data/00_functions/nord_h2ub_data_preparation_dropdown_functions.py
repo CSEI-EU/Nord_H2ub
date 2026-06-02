@@ -1448,7 +1448,7 @@ def create_combined_dropdowns_tabs():
     # District heating toggle
     dh_toggle_label = widgets.Label(
         "District heating:",
-        layout=widgets.Layout(width='170px')
+        layout=widgets.Layout(width='190px')
     )
     dh_toggle = widgets.Dropdown(
         options=[True, False],
@@ -1464,8 +1464,8 @@ def create_combined_dropdowns_tabs():
 
     # District heating details (shown when toggle is True)
     dh_demand_label = widgets.Label(
-        "Max DH demand [MW]:",
-        layout=widgets.Layout(width='170px')
+        "Total annual DH demand [MWh]:",
+        layout=widgets.Layout(width='190px')
     )
     dh_demand_input = widgets.FloatText(
         value=placeholder_value,
@@ -1475,7 +1475,7 @@ def create_combined_dropdowns_tabs():
 
     dh_price_label = widgets.Label(
         "DH price [€/MWh]:",
-        layout=widgets.Layout(width='150px', margin='0px 0px 0px 15px')
+        layout=widgets.Layout(width='120px', margin='0px 0px 0px 15px')
     )
     dh_price_input = widgets.FloatText(
         value=placeholder_value,
@@ -1499,7 +1499,7 @@ def create_combined_dropdowns_tabs():
     # Oxygen toggle
     o2_toggle_label = widgets.Label(
         "Oxygen:",
-        layout=widgets.Layout(width='170px')
+        layout=widgets.Layout(width='190px')
     )
     o2_toggle = widgets.Dropdown(
         options=[True, False],
@@ -1515,7 +1515,7 @@ def create_combined_dropdowns_tabs():
 
     o2_demand_label = widgets.Label(
         "Max O2 demand [MW]:",
-        layout=widgets.Layout(width='170px')
+        layout=widgets.Layout(width='190px')
     )
     o2_demand_input = widgets.FloatText(
         value=placeholder_value,
@@ -1525,7 +1525,7 @@ def create_combined_dropdowns_tabs():
 
     o2_price_label = widgets.Label(
         "O2 price [€/kg]:",
-        layout=widgets.Layout(width='150px', margin='0px 0px 0px 15px')
+        layout=widgets.Layout(width='120px', margin='0px 0px 0px 15px')
     )
     o2_price_input = widgets.FloatText(
         value=placeholder_value,
