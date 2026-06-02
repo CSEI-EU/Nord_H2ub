@@ -1468,10 +1468,21 @@ def apply_district_heating_as_product(run_name, df_other_costs, product, electro
         df_energy_prices['district_heating'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_flow_cost'] + [-value_dh/2] * n_data_rows    
 
     # dh flow
+    base_dir = os.path.dirname(os.path.abspath(__file__))  # ...Nord_H2ub\Spine_Projects\01_input_data\00_functions
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(base_dir)))  # ...Nord_H2ub
+    heat_demand_path = os.path.join(repo_root, "Spine_Projects", "01_input_data", "01_input_raw", "further_inputs", "hourly_heat_demand_as_share_of_a_year.xlsx")
+    # base_dir = os.path.dirname(os.path.abspath(__file__))
+    # heat_demand_path = os.path.join(base_dir, "Spine_Projects", "01_input_data", "01_input_raw", "further_inputs", "hourly_heat_demand_as_share_of_a_year.xlsx")
+
+    heat_demand_df = pd.read_excel(heat_demand_path, decimal=',')
+    heat_demand_shares = heat_demand_df['Heat_Demand_share'].tolist()
+
     if not pd.isna(dh_max_demand):
-        df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [dh_max_demand] * n_data_rows  
+        heating_hourly_demand = [dh_max_demand * share for share in heat_demand_shares]
     else:
-        df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + [1000] * n_data_rows  
+        heating_hourly_demand = [1000 * share for share in heat_demand_shares]
+
+    df_energy_prices['pl_dh'] = ['connection', 'connection__to_node', 'pl_dh', 'dh', run_name, 'connection_capacity'] + heating_hourly_demand
 
     mappings = [
         (dh__definition,                        df_definition),
