@@ -935,98 +935,88 @@ resolution_to_block = {
     'Y': 'yearly'
 }
 
-def check_demand_node(row, df_model_units_relations, temporal_block, resolution_to_block, df_definition, df_nodes, df_connections,
+def check_demand_node(row, df_model_units_relations, df_definition, df_nodes, df_connections,
                       df_object__node_definitions, df_object__node_values, df_object_node_node, run_name):
     if not pd.isna(row['demand']):
         output = (df_model_units_relations.loc[df_model_units_relations['Unit'] == row['Unit'], 'Output1']).iloc[0]
-        row_resolution = resolution_to_block[row['resolution_output']]
 
-        if row_resolution != temporal_block:
-            #definition
-            new_def = pd.DataFrame([
-                {"Object_name": f"{output}_demand", "Category": "node"},
-                {"Object_name": f"pl_{output}_demand", "Category": "connection"}
-            ])
-            df_definition = pd.concat([df_definition, new_def], ignore_index=True)
-            
-            #demand value
-            new_value = {col: np.nan for col in df_nodes.columns}
-            new_value["Object_name"] = f"{output}_demand"
-            new_value["Category"] = "node"
-            new_value["balance_type"] = "balance_type_node"
-            new_value["Alternative"] = run_name
-            new_value["nodal_balance_sense"] = ""
-            new_value["demand"] = row['demand']
-            new_value["node_slack_penalty"] = 100000000
-            df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
-            
-            #connection value
-            new_con = {col: np.nan for col in df_connections.columns}
-            new_con["Object_name"] = f"pl_{output}_demand"
-            new_con["Category"] = "connection"
-            new_con["Connection_type"] = "connection_type_normal"
-            df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
+        #definition
+        new_def = pd.DataFrame([
+            {"Object_name": f"{output}_demand", "Category": "node"},
+            {"Object_name": f"pl_{output}_demand", "Category": "connection"}
+        ])
+        df_definition = pd.concat([df_definition, new_def], ignore_index=True)
+        
+        #demand value
+        new_value = {col: np.nan for col in df_nodes.columns}
+        new_value["Object_name"] = f"{output}_demand"
+        new_value["Category"] = "node"
+        new_value["balance_type"] = "balance_type_node"
+        new_value["Alternative"] = run_name
+        new_value["nodal_balance_sense"] = ""
+        new_value["demand"] = row['demand']
+        new_value["node_slack_penalty"] = 100000000
+        df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
+        
+        #connection value
+        new_con = {col: np.nan for col in df_connections.columns}
+        new_con["Object_name"] = f"pl_{output}_demand"
+        new_con["Category"] = "connection"
+        new_con["Connection_type"] = "connection_type_normal"
+        df_connections = pd.concat([df_connections, pd.DataFrame([new_con])], ignore_index=True)
 
-            #object_to/from_node  
-            new_rel = pd.DataFrame([
-                {"Relationship_class_name": "connection__from_node", 
-                    "Object_class": "connection", 
-                    "Object_name": f"pl_{output}_demand",
-                    "Object_to_from": "node",
-                    "Object_to_from_name": output
-                },
-                {"Relationship_class_name": "connection__to_node", 
-                    "Object_class": "connection", 
-                    "Object_name": f"pl_{output}_demand",
-                    "Object_to_from": "node",
-                    "Object_to_from_name": f"{output}_demand",
-                }
-            ])
-            df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
-            
-            new_rel_value = pd.DataFrame([
-                {"Relationship_class_name": "connection__from_node", 
-                    "Object_class": "connection", 
-                    "Object_name": f"pl_{output}_demand",
-                    "Object_to_from": "node",
-                    "Object_to_from_name": output,
-                    "Parameter": "connection_capacity",
-                    "Value": 1000,
-                    "Alternative": run_name
-                },
-                {"Relationship_class_name": "connection__to_node", 
-                    "Object_class": "connection", 
-                    "Object_name": f"pl_{output}_demand",
-                    "Object_to_from": "node",
-                    "Object_to_from_name": f"{output}_demand",
-                    "Parameter": "connection_capacity",
-                    "Value": 1000,
-                    "Alternative": run_name
-                }
-            ])
-            df_object__node_values = pd.concat([df_object__node_values, new_rel_value], ignore_index=True)
-            
-            #object__node__node
-            new_rel_nn = pd.DataFrame([
-                {"Relationship": "connection__node__node", 
-                    "Object_class": "connection", 
-                    "Object_name": f"pl_{output}_demand",
-                    "Node1": f"{output}_demand",
-                    "Node2": output,
-                    "Parameter": "fix_ratio_out_in_connection_flow",
-                    "Value": 1,
-                    "Alternative": run_name
-                }
-            ])
-            df_object_node_node = pd.concat([df_object_node_node, new_rel_nn], ignore_index=True)
-
-        else: 
-            new_value = {col: np.nan for col in df_nodes.columns}
-            new_value["Object_name"] = output
-            new_value["Category"] = "node"
-            new_value["demand"] = row["demand"]
-            new_value["Alternative"] = run_name
-            df_nodes = pd.concat([df_nodes, pd.DataFrame([new_value])], ignore_index=True)
+        #object_to/from_node  
+        new_rel = pd.DataFrame([
+            {"Relationship_class_name": "connection__from_node", 
+                "Object_class": "connection", 
+                "Object_name": f"pl_{output}_demand",
+                "Object_to_from": "node",
+                "Object_to_from_name": output
+            },
+            {"Relationship_class_name": "connection__to_node", 
+                "Object_class": "connection", 
+                "Object_name": f"pl_{output}_demand",
+                "Object_to_from": "node",
+                "Object_to_from_name": f"{output}_demand",
+            }
+        ])
+        df_object__node_definitions = pd.concat([df_object__node_definitions, new_rel], ignore_index=True)
+        
+        new_rel_value = pd.DataFrame([
+            {"Relationship_class_name": "connection__from_node", 
+                "Object_class": "connection", 
+                "Object_name": f"pl_{output}_demand",
+                "Object_to_from": "node",
+                "Object_to_from_name": output,
+                "Parameter": "connection_capacity",
+                "Value": 1000,
+                "Alternative": run_name
+            },
+            {"Relationship_class_name": "connection__to_node", 
+                "Object_class": "connection", 
+                "Object_name": f"pl_{output}_demand",
+                "Object_to_from": "node",
+                "Object_to_from_name": f"{output}_demand",
+                "Parameter": "connection_capacity",
+                "Value": 1000,
+                "Alternative": run_name
+            }
+        ])
+        df_object__node_values = pd.concat([df_object__node_values, new_rel_value], ignore_index=True)
+        
+        #object__node__node
+        new_rel_nn = pd.DataFrame([
+            {"Relationship": "connection__node__node", 
+                "Object_class": "connection", 
+                "Object_name": f"pl_{output}_demand",
+                "Node1": f"{output}_demand",
+                "Node2": output,
+                "Parameter": "fix_ratio_out_in_connection_flow",
+                "Value": 1,
+                "Alternative": run_name
+            }
+        ])
+        df_object_node_node = pd.concat([df_object_node_node, new_rel_nn], ignore_index=True)
             
     return df_definition, df_nodes, df_connections, df_object__node_definitions, df_object__node_values, df_object_node_node
 
