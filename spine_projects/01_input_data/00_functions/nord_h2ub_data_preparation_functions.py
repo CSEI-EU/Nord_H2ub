@@ -1512,8 +1512,8 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
                              df_object__node_values, df_object__node_node_definition, df_object_node_node, df_energy_prices, o2_price):
 
     o2__definition = pd.DataFrame({
-        "Object_name": ["o2_node", "o2_demand", "pl_o2", "liquid_o2", "o2_liquefier"],
-        "Category":    ["node", "node", "connection", "node", "unit"]
+        "Object_name": ["o2_demand", "pl_o2", "liquid_o2", "o2_liquefier"],
+        "Category":    ["node", "connection", "node", "unit"]
     })
     
     o2__definition_parameters = pd.DataFrame({
@@ -1537,16 +1537,16 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
     })
 
     o2__nodes = pd.DataFrame({
-        "Object_name":         ["o2_node", "o2_demand", "liquid_o2"],
-        "Category":            ["node", "node", "node"],
-        "balance_type":        ["balance_type_node", "balance_type_none", "balance_type_node"],
-        "Alternative":         [run_name, run_name, run_name],
-        "nodal_balance_sense": [None, None, None],
-        "has_state":           [None, None, None],
-        "node_state_cap":      [None, None, None],
-        "frac_state_loss":     [None, None, None],
-        "demand":              [None, None, None],
-        "node_slack_penalty":  [100000000, None, 100000000]
+        "Object_name":         ["o2_demand", "liquid_o2"],
+        "Category":            ["node", "node"],
+        "balance_type":        ["balance_type_none", "balance_type_node"],
+        "Alternative":         [run_name, run_name],
+        "nodal_balance_sense": [None, None],
+        "has_state":           [None, None],
+        "node_state_cap":      [None, None],
+        "frac_state_loss":     [None, None],
+        "demand":              [None, None],
+        "node_slack_penalty":  [None, 100000000]
     })
 
     o2__connection_inv_parameters = pd.DataFrame({
@@ -1567,7 +1567,7 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
         "Object_class":            ["connection", "connection", "unit", "unit", "unit", "unit"],
         "Object_name":             ["pl_o2", "pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier", "o2_liquefier"],
         "Object_to_from":          ["node", "node", "node", "node", "node", "node"],
-        "Object_to_from_name":     ["liquid_o2", "o2_demand", "o2_node", "liquid_o2", "o2_node", "power"]
+        "Object_to_from_name":     ["liquid_o2", "o2_demand", "o2", "liquid_o2", "o2", "power"]
     })
 
     o2__object__to_from_node = pd.DataFrame({
@@ -1588,18 +1588,18 @@ def apply_oxygen_as_product(run_name, df_definition, unit_parameters_rest_df, df
         "Object_class_2": ["node", "node", "node", "node"],
         "Object_name_2":  ["o2_demand", "h2", "power", "power"],
         "Object_class_3": ["node", "node", "node", "node"],
-        "Object_name_3":  ["liquid_o2", "o2_node", "liquid_o2", "o2_node"]
+        "Object_name_3":  ["liquid_o2", "o2", "liquid_o2", "o2"]
     }) 
 
     o2__object__node_node = pd.DataFrame({
-        "Relationship": ["connection__node__node", "unit__node__node", "unit__node__node", "unit__node__node"],
-        "Object_class": ["connection", "unit", "unit", "unit"],
-        "Object_name":  ["pl_o2", "electrolyzer", "o2_liquefier", "o2_liquefier"],
-        "Node1":        ["o2_demand", "h2", "power", "power"],
-        "Node2":        ["liquid_o2", "o2_node", "liquid_o2", "o2_node"],
-        "Parameter":    ["fix_ratio_out_in_connection_flow", "fix_ratio_out_out_unit_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_in_unit_flow"],
-        "Value":        [1, 4.16625, 0.5, 0.5],
-        "Alternative":  [run_name, run_name, run_name, run_name]
+        "Relationship": ["connection__node__node", "unit__node__node", "unit__node__node"],
+        "Object_class": ["connection", "unit", "unit"],
+        "Object_name":  ["pl_o2", "o2_liquefier", "o2_liquefier"],
+        "Node1":        ["o2_demand", "power", "power"],
+        "Node2":        ["liquid_o2", "liquid_o2", "o2"],
+        "Parameter":    ["fix_ratio_out_in_connection_flow", "fix_ratio_in_out_unit_flow", "fix_ratio_in_in_unit_flow"],
+        "Value":        [1, 0.5, 0.5],
+        "Alternative":  [run_name, run_name, run_name]
     })
 
     n_data_rows = len(df_energy_prices) - 6
