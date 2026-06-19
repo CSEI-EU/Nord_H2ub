@@ -1,0 +1,74 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:51490 http://127.0.0.1:51492
+2-element Vector{String}:
+ "http://127.0.0.1:51490"
+ "http://127.0.0.1:51492"
+WARNING: using JuMP.parameter_value in module SpineInterface conflicts with an existing identifier.
+Running SpineOpt...
+WARNING: using JuMP.Parameter in module SpineInterface conflicts with an existing identifier.
+[SpineOpt version 0.10.2 (git hash: N/A)]
+[SpineInterface version 0.15.2 (git hash: N/A)]
+Execution started at 2026-06-12T09:46:03.221
+Reading input data from sqlite:///C:\Users\jfg.eco\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+Initializing  data structure from db... 28.697775 seconds (32.28 M allocations: 1.595 GiB, 1.93% gc time, 95.81% compilation time)
+Preprocessing  data structure... 21.008138 seconds (13.08 M allocations: 651.018 MiB, 0.59% gc time, 99.58% compilation time)
+Checking  data structure...  2.045228 seconds (1.03 M allocations: 52.028 MiB, 1.33% gc time, 99.80% compilation time)
+┌ Warning: Some items are missing from the input database.
+│ We'll assume sensitive defaults for any missing parameter definitions,
+│ and empty collections for any missing classes.
+│ SpineOpt might still be able to run, but otherwise you'd need to check your input database.
+│ 
+│ Missing item list follows:
+│ 
+│     parameters  graph_view_position
+│                 use_milestone_years
+│                 use_economic_representation
+│ 
+└ @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:269
+Build started at 2026-06-12T09:47:28.937
+Creating model temporal structure...[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
+ 74.706485 seconds (436.95 M allocations: 22.473 GiB, 29.39% gc time, 9.49% compilation time)
+Creating model stochastic structure... 13.530436 seconds (10.22 M allocations: 800.358 MiB, 29.52% gc time, 93.88% compilation time)
+ERROR: LoadError: UndefVarError: `use_economic_representation` not defined in `SpineOpt`
+Suggestion: check for spelling errors or missing imports.
+Stacktrace:
+  [1] build_model!(m::JuMP.Model; log_level::Int64)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt_basic.jl:80
+  [2] build_model!
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt_basic.jl:73 [inlined]
+  [3] do_run_spineopt!(m::JuMP.Model, url_out::String, ::Val{:basic_algorithm}; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt_basic.jl:32
+  [4] #invokelatest#2
+    @ .\essentials.jl:1057 [inlined]
+  [5] invokelatest
+    @ .\essentials.jl:1052 [inlined]
+  [6] run_spineopt!(m::JuMP.Model, url_out::String; log_level::Int64, optimize::Bool, update_names::Bool, alternative::String, write_as_roll::Int64, resume_file_path::Nothing)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:369
+  [7] run_spineopt!
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:358 [inlined]
+  [8] _run_spineopt(f::SpineOpt.var"#64#65", url_in::String, url_out::String; upgrade::Bool, filters::Dict{String, String}, templates::Tuple{}, mip_solver::Nothing, lp_solver::Nothing, use_direct_model::Bool, use_model_names::Bool, add_bridges::Bool, log_level::Int64, alternative::String, kwargs::@Kwargs{optimize::Bool, update_names::Bool, write_as_roll::Int64, resume_file_path::Nothing})
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:162
+  [9] #67
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:104 [inlined]
+ [10] _log_to_file
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\util\misc.jl:246 [inlined]
+ [11] #run_spineopt#66
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:103 [inlined]
+ [12] run_spineopt(f::Function, url_in::String, url_out::String)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:83
+ [13] #run_spineopt#63
+    @ C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:67 [inlined]
+ [14] run_spineopt(url_in::String, url_out::String)
+    @ SpineOpt C:\Users\jfg.eco\.julia\packages\SpineOpt\HEhN7\src\run_spineopt.jl:66
+ [15] top-level scope
+    @ C:\Users\jfg.eco\.spinetoolbox\work\run_spineopt__2c69181d112844dd8ff85d623fdf933e__toolbox\run_spineopt.jl:3
+ [16] include(fname::String)
+    @ Main .\sysimg.jl:38
+ [17] top-level scope
+    @ none:1
+in expression starting at C:\Users\jfg.eco\.spinetoolbox\work\run_spineopt__2c69181d112844dd8ff85d623fdf933e__toolbox\run_spineopt.jl:3

@@ -3,7 +3,8 @@
         "version": 13,
         "description": "",
         "settings": {
-            "enable_execute_all": true
+            "enable_execute_all": true,
+            "store_external_paths_as_relative": false
         },
         "specifications": {
             "Tool": [
@@ -152,13 +153,8 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "Run SpineOpt@2026-03-13T15:00:08": true,
-                                "Run SpineOpt@2026-05-12T14:06:18": true,
-                                "Run SpineOpt@2026-05-12T14:53:57": true,
-                                "Run SpineOpt@2026-05-12T14:59:01": true,
-                                "Run SpineOpt@2026-05-12T15:06:00": true,
-                                "Run SpineOpt@2026-05-12T15:12:57": true
+                                "2045_desal": true,
+                                "Base": true
                             }
                         }
                     },
@@ -201,9 +197,11 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/OneDrive - CBS - Copenhagen Business School/LCOM/bornholm_paper/input/01_review/paper_smart_energy_2045_desal_payasproduced.xlsx"
                 }
             ],
+            "file_patterns": [],
+            "directory_references": [],
             "db_references": []
         },
         "Load template": {
@@ -259,7 +257,7 @@
                     "out_label": "OutputTest_exported@Exporter"
                 }
             ],
-            "specification": "SpineOptToTable"
+            "specification": "exporter_energy_hub_model"
         },
         "run_data_prep": {
             "type": "Tool",
@@ -276,13 +274,13 @@
             "type": "Importer",
             "description": "",
             "x": -65.6733119104155,
-            "y": -165.4207680179437,
+            "y": -167.30681562872897,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\OneDrive - CBS - Copenhagen Business School\\LCOM\\bornholm_paper\\input\\01_review\\paper_smart_energy_2045_desal_payasproduced.xlsx",
                     true
                 ]
             ]
@@ -301,12 +299,12 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 73.905065316738,
-            "y": -160.82087894259266,
+            "x": 72.01901770595276,
+            "y": -162.70692655337788,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
@@ -319,11 +317,11 @@
             "type": "Data Store",
             "description": "",
             "x": 413.0170429262976,
-            "y": -156.93536649149448,
+            "y": -160.707461713065,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
