@@ -223,7 +223,14 @@ def exchange_rate(year, rates, from_curreny, to_currency):
 
 
 ### CALCULATION FUNCTIONS ###
-def compute_electricity_breakdown(scenario):
+def compute_electricity_breakdown(
+        production_pv_mwh,
+        production_wind_onshore_mwh,
+        production_wind_offshore_mwh,
+        pv_ppa_mwh,
+        wind_ppa_mwh,
+        grid_from_mwh,
+):
     """
     Calculate the electricity breakdown. 
     Electricity can come from on-site or PPA RES (wind or PV), and the grid (from more than one country).
@@ -231,25 +238,19 @@ def compute_electricity_breakdown(scenario):
 
     Parameters
     ----------
-    Expected keys in `scenario`:
-        (option 1)
-        production_pv_mwh               : float  — on-site PV generation (MWh/a)
-        production_wind_onshore_mwh     : float  — on-site onshore generation (MWh/a)
-        production_wind_offshore_mwh    : float  — on-site offshore generation (MWh/a)
-        el_from_grid_mwh                : float  — electricity imported from the grid (MWh/a)
-        el_to_grid_mwh                  : float  — electricity exported to the grid (MWh/a)
-
-        (option 2)
-        pv_ppa_mwh                      : float  — electricity from PV PPA (MWh/a), default 0
-        wind_ppa_mwh                    : float  — electricity from wind PPA (MWh/a), default 0
-        grid_from_mwh                   : dict   — {zone_name: MWh, ...} multi-zone grid import
+    production_pv_mwh               : float  — on-site PV generation (MWh/a)
+    production_wind_onshore_mwh     : float  — on-site onshore generation (MWh/a)
+    production_wind_offshore_mwh    : float  — on-site offshore generation (MWh/a)
+    pv_ppa_mwh                      : float  — electricity from PV PPA (MWh/a), default 0
+    wind_ppa_mwh                    : float  — electricity from wind PPA (MWh/a), default 0
+    grid_from_mwh                   : dict   — {zone_name: MWh, ...} multi-zone grid import
 
     
 
     Returns
     --------
     Returns dict with keys:
-        el_used_total_mwh               : total electricity consumed in production (MWh/a)
+        total_elec_mwh                  : total electricity consumed in production (MWh/a)
         res_used_mwh                    : total on-site RES electricity used for production (MWh/a)
         pv_ppa_mwh                      : PV PPA electricity (MWh/a)
         wind_ppa_mwh                    : wind PPA electricity (MWh/a)
@@ -258,40 +259,24 @@ def compute_electricity_breakdown(scenario):
         grid_zone_breakdown_mwh         : {zone: MWh, ...}
 
     """
-    pv_produced = float(scenario.get("production_pv_mwh") or 0.0)
-    wind_on_produced = float(scenario.get("production_wind_onshore_mwh") or 0.0)
-    wind_off_produced = float(scenario.get("production_wind_offshore_mwh") or 0.0)
-    el_from_grid = float(scenario.get("el_from_grid_mwh") or 0.0)
-    el_to_grid = float(scenario.get("el_to_grid_mwh") or 0.0)
+    pv_produced = float(production_pv_mwh or 0.0)
+    wind_on_produced = float(production_wind_onshore_mwh or 0.0)
+    wind_off_produced = float(production_wind_offshore_mwh or 0.0)
+    res_used = pv_produced + wind_on_produced + wind_off_produced
 
-    wind_ppa = float(scenario.get("wind_ppa_mwh") or 0.0)
-    pv_ppa = float(scenario.get("pv_ppa_mwh") or 0.0)
+
+    wind_ppa = float(wind_ppa_mwh or 0.0)
+    pv_ppa = float(pv_ppa_mwh or 0.0)
     ppa_total = wind_ppa + pv_ppa
 
 
-    # If 'grid_from' is provided, then there isn't a need to calculate the amount of electricity from the grid
-    grid_zone = scenario.get("grid_from_mwh") or {}
-
-    if isinstance(grid_zone, dict) and grid_zone:
-
-        grid_total = sum(v for v in grid_zone.values() if v is not None)
-        res_used = 0
-        
-    else: # Single-source grid:
-        grid_zone = {}
-        
-        res_produced = pv_produced + wind_on_produced + wind_off_produced
-        el_used = res_produced + el_from_grid - el_to_grid
-        res_used = res_produced - el_to_grid
-        res_used_rel = safe_div(res_used, el_used) if el_used > 0 else None
-        
-        grid_total = el_from_grid * (1.0 - (res_used_rel or 0.0))
-
+    grid_zone = grid_from_mwh or {}
+    grid_total = sum(v for v in grid_zone.values() if v is not None)
 
     el_used = res_used + ppa_total + grid_total
 
     return {
-        "el_used_total_mwh": el_used,
+        "total_elec_mwh": el_used,
         "res_used_mwh": res_used,
         "pv_ppa_mwh": pv_ppa,
         "wind_ppa_mwh": wind_ppa,
