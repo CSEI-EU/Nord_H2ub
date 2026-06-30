@@ -343,7 +343,7 @@ def compute_hub_emissions(
 def compute_fossil_emissions(
         product,
         demand,
-        df_fossil_ef,
+        df_fossil_ef
 ):
     """
     Compute annual CO2 emissions from the fossil-fuel alternative.
