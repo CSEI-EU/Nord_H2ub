@@ -424,7 +424,8 @@ def compute_hub_costs(
     Parameters
     ----------
     hub_costs_eur_t             : float  - hub costs in € / t
-    side_product_revenues_eur   : dict   — {name: €/a}  e.g. {'oxygen': ..., 'district_heating': ...}
+    side_product_revenues_eur   : dict or float  — {name: €/a} e.g. {'oxygen': ..., 'district_heating': ...},
+                                                    or a single €/a value
     res_sale_revenues_eur       : float  — revenue from selling surplus RES electricity (€/a)
     
 
@@ -440,8 +441,11 @@ def compute_hub_costs(
     hub_costs_eur_t = hub_costs_eur_t
     total_costs = (hub_costs_eur_t * demand) if hub_costs_eur_t is not None else None
 
-    side_products = side_product_revenues_eur or {}
-    revenue_side_products = sum(v for v in side_products.values() if v is not None) if side_products else 0.0
+    if isinstance(side_product_revenues_eur, dict):
+        side_products = side_product_revenues_eur or {}
+        revenue_side_products = sum(v for v in side_products.values() if v is not None) if side_products else 0.0
+    else:
+        revenue_side_products = float(side_product_revenues_eur or 0.0)
 
     revenue_res = float(res_sale_revenues_eur or 0.0)
 
@@ -449,7 +453,7 @@ def compute_hub_costs(
 
     costs_net_after_revenues = (total_costs - revenue) if total_costs is not None else None
 
-    return total_costs, revenue_side_products, revenue_res, revenue, costs_net_after_revenues,
+    return total_costs, revenue_side_products, revenue_res, revenue, costs_net_after_revenues
 
 
 def compute_carbon_price(
