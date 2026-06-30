@@ -407,9 +407,6 @@ def compute_industrial_costs(
     else:
         print(f"Product '{product}' not found in fossil prices sheet.")
         return None
-    print(df_fossil_prices.loc[year, product])
-    print(exchange_rate(year, exchange_rates, fossil_prices_currency, "€"))
-    print(price)
     industrial_cost = price * demand 
 
     return industrial_cost
