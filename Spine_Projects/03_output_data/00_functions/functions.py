@@ -79,6 +79,12 @@ def load_cost_factors(
         index_col=0,
         usecols = "A:H"
     )
+    fossil_prices_currency = pd.read_excel(
+        path, 
+        sheet_name=sheet_fossil, 
+        usecols = "I",
+        nrows=1
+    ).values[0][0].split('/')[0]
 
     eua_prices = pd.read_excel(
         path, 
@@ -119,8 +125,33 @@ def load_results(
     
     return results
 
+def load_exchange_rates(
+        path,
+        sheet_rates = "Exchange_Rates",
+):
+    """
+    Load model results from Excel.
 
+    Parameters
+    ----------
+    path : str or Path
+        Path to exchange_rates.xlsx
+    sheet_results : str
+        Sheet name with exchange rates (rows = years, cols = currencies).
 
+    Returns
+    -------
+    results : pd.DataFrame
+        Index = year (int), columns = currencies.
+    """
+
+    rates = pd.read_excel(
+        path, 
+        sheet_name=sheet_rates,
+        index_col=0
+    )
+    
+    return rates
 
 
 
@@ -184,7 +215,9 @@ def parse_dict_cell(cell):
     except (ValueError, SyntaxError):
         return cell
 
-
+def exchange_rate(year, rates, from_curreny, to_currency):
+    rate = rates.loc[year, f"{to_currency}/{from_curreny}"]
+    return rate
 
 
 
@@ -364,18 +397,44 @@ def compute_fossil_emissions(
 
     return fossil_emissions_tco2_low, fossil_emissions_tco2_high
 
-def compute_carbon_price(
-        ptx_annual_cost_eur,
-        fossil_annual_cost_eur,
-        hub_emissions_tco2,
-        fossil_fuel_alternative_emissions_tco2,
+def compute_industrial_costs(
+        year,
+        product,
+        demand,
+        df_fossil_prices,
+        exchange_rates,
+        fossil_prices_currency = "€"
 ):
-    delta_costs = ptx_annual_cost_eur - fossil_annual_cost_eur
-    delta_emissions = fossil_fuel_alternative_emissions_tco2 - hub_emissions_tco2
+    """
+    Compute annual CO2 emissions from the fossil-fuel alternative.
 
-    carbon_price = delta_costs / delta_emissions
+    Parameters
+    ----------
+    year                    : int — the year for which to look up the price of fossil fuel alternative
+    product                 : str — e.g. 'Methanol', 'Hydrogen', 'Ammonia'
+    demand                  : float — annual demand in tonnes of product
+    df_fossil_prices        : DataFrame with prices of the fossil fuel alternatives,
+                            Index = year (int), columns = product names
+    exchange_rates          : DataFrame with exchnage rates pf currency, by year,
+                            Index = year (int), columns = currencies
+    fossil_prices_currency  : Curreny of the prices in df_fossil_prices
 
-    return carbon_price
+    Returns float
+    ----------------------
+    industrial_cost     : cost of using the fossil fuel alternative (€ / t)
+    """
+
+    if product in df_fossil_prices.columns:
+        price = df_fossil_prices.loc[year, product] if fossil_prices_currency == "€" else df_fossil_prices.loc[year, product] * exchange_rate(year, exchange_rates, fossil_prices_currency, "€")
+    else:
+        print(f"Product '{product}' not found in fossil prices sheet.")
+        return None
+    print(df_fossil_prices.loc[year, product])
+    print(exchange_rate(year, exchange_rates, fossil_prices_currency, "€"))
+    print(price)
+    industrial_cost = price * demand 
+
+    return industrial_cost
 
 def compute_hub_costs(
         scenario, 
