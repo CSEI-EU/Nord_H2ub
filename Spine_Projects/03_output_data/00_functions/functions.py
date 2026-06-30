@@ -1,3 +1,8 @@
+import pandas as pd
+import numpy as np
+import ast
+
+
 ### LOAD FUNCTIONS ###
 
 def load_emission_factors(
@@ -82,7 +87,38 @@ def load_cost_factors(
         usecols = "A:B"
     )['EUA'].to_dict()
 
-    return fossil_prices, eua_prices
+    return fossil_prices, fossil_prices_currency, eua_prices
+
+def load_results(
+        path,
+        sheet_results = "Results",
+):
+    """
+    Load model results from Excel.
+
+    Parameters
+    ----------
+    path : str or Path
+        Path to results.xlsx
+    sheet_results : str
+        Sheet name with results (rows = years, cols = variables).
+
+    Returns
+    -------
+    results : pd.DataFrame
+        Index = year (int), columns = variables.
+    """
+
+    results = pd.read_excel(
+        path, 
+        sheet_name=sheet_results, 
+        index_col=0
+    )
+
+    results = results.map(parse_dict_cell)
+    
+    return results
+
 
 
 
@@ -131,7 +167,22 @@ def kg_to_t(value):
         return None
     return float(value) / 1e3
 
+def parse_dict_cell(cell):
+    """
+    Try to parse a cell value as a Python dict if it looks like one,
+    otherwise return the value as-is.
+    """
+    if not isinstance(cell, str):
+        return cell
+    
+    stripped = cell.strip()
 
+    if not stripped.startswith("{"):
+        return cell
+    try:
+        return ast.literal_eval(stripped)
+    except (ValueError, SyntaxError):
+        return cell
 
 
 
