@@ -286,9 +286,11 @@ def compute_electricity_breakdown(
     }
 
 def compute_hub_emissions(
-        el_breakdown,
-        df_grid_ef,
         year,
+        pv_ppa_mwh,
+        wind_ppa_mwh,
+        grid_from_mwh,
+        df_grid_ef,
         ppa_emission_factor_gkwh,
         primary_zone = "DK1",
 ):
@@ -297,22 +299,24 @@ def compute_hub_emissions(
 
     Parameters
     ----------
-    el_breakdown                : dict from compute_electricity_breakdown()
-    df_grid_ef                  : pandas.DataFrame with grid emission factors (g CO2/kWh), index=year, columns=zone
     year                        : int — the year for which to look up the grid emission factor
+    pv_ppa_mwh                  : float  — electricity from PV PPA (MWh/a), default 0
+    wind_ppa_mwh                : float  — electricity from wind PPA (MWh/a), default 0
     ppa_emission_factor_gkwh    : float — CO2 intensity of PPA electricity (g CO2/kWh)
+    grid_from_mwh               : dict   — {zone_name: MWh, ...} multi-zone grid import
+    df_grid_ef                  : pandas.DataFrame with grid emission factors (g CO2/kWh), index=year, columns=zone
     primary_zone                : str — which column of df_grid_ef to use when no zone breakdown
 
     Returns dict with keys
     ----------------------
-    hub_emissions_tco2        : total annual hub CO2 emissions (t CO2/a)
-    emissions_by_source       : {source: tCO2, ...}
+    total           : total annual hub CO2 emissions (t CO2/a)
+    sources         : {source: tCO2, ...}
     """
 
     # Calculate emissions from grid
     sources: dict[str, float | None] = {}
 
-    zone_breakdown = el_breakdown.get("grid_zone_breakdown") or {}
+    zone_breakdown = grid_from_mwh or {"DK1": 0}
     if zone_breakdown:
         for zone, mwh in zone_breakdown.items():
             # look up emission factor for the zone (column) and year
@@ -320,32 +324,21 @@ def compute_hub_emissions(
             if zone in df_grid_ef.columns and year in df_grid_ef.index:
                 ef_zone = gCO2_per_kwh_to_kgCO2_per_wh(df_grid_ef.at[year, zone])
             sources[f"grid_{zone}"] = kg_to_t(mwh_to_wh(mwh) * ef_zone)
-    else:
-        grid_mwh = el_breakdown.get("grid_total_mwh") or 0.0
-        ef_primary = None
-        if primary_zone in df_grid_ef.columns and year in df_grid_ef.index:
-            ef_primary = gCO2_per_kwh_to_kgCO2_per_wh(df_grid_ef.at[year, primary_zone])
-        sources[f"grid_{primary_zone}"] = kg_to_t(mwh_to_wh(grid_mwh) * ef_primary)
 
 
     # Calculate emissions from PPA
     ef_ppa = gCO2_per_kwh_to_kgCO2_per_wh(ppa_emission_factor_gkwh)
 
-
     # PPA sources (wind + PV via PPA)
-    wind_ppa_mwh = el_breakdown.get("wind_ppa_mwh")
+    wind_ppa_mwh = wind_ppa_mwh or 0.0
     sources["wind_ppa"] = kg_to_t(mwh_to_wh(wind_ppa_mwh) * ef_ppa)
-    pv_ppa_mwh = el_breakdown.get("pv_ppa_mwh")
-    sources["pv_ppa"] = kg_to_t(mwh_to_wh(wind_ppa_mwh) * ef_ppa)
+    pv_ppa_mwh = pv_ppa_mwh or 0.0
+    sources["pv_ppa"] = kg_to_t(mwh_to_wh(pv_ppa_mwh) * ef_ppa)
 
     
-
     total = sum(v for v in sources.values() if v is not None) 
 
-    return {
-        "hub_emissions_tco2": total,
-        "emissions_by_source": sources,
-    }
+    return total, sources
 
 def compute_fossil_emissions(
         product,
