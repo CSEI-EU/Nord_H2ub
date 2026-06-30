@@ -415,57 +415,55 @@ def compute_industrial_costs(
     return industrial_cost
 
 def compute_hub_costs(
-        scenario, 
+        hub_costs_eur_t, 
+        side_product_revenues_eur,
+        res_sale_revenues_eur,
         demand
 ):
     """
     Aggregate all cost and revenue components for a scenario.
 
-    Expected keys in `scenario`
-    ---------------------------
-    lcoe_eur_per_t              : float  — Levelized Cost of Energy (€/t)
-    investment_cost_eur_per_t   : float  
-    variable_cost_eur_per_t     : float  
-    side_product_revenues       : dict   — {name: €/a}  e.g. {'oxygen': ..., 'district_heating': ...}
-    res_sale_revenues_eur_pa    : float  — revenue from selling surplus RES electricity (€/a) 
+    
+    Parameters
+    ----------
+    hub_costs_eur_t             : float  - hub costs in € / t
+    side_product_revenues_eur   : dict   — {name: €/a}  e.g. {'oxygen': ..., 'district_heating': ...}
+    res_sale_revenues_eur       : float  — revenue from selling surplus RES electricity (€/a)
+    
 
-    Returns dict with keys
-    ----------------------
-    lcoe_eur_per_t                  : levelised cost of product (€)
-    total_costs_eur_pa              : total annual cost (€/a)  = lcom × demand
-    investment_cost_eur_pa          : annualised CAPEX (€/a)
-    variable_cost_eur_pa            : annual OPEX (€/a)
-    revenue_side_products_eur_pa    : total side-product revenue (€/a)
-    revenue_res_sale_eur_pa         : RES electricity sale revenue (€/a)
-    net_costs_eur_pa                : total costs minus all revenues (€/a)
+    Returns
+    -------
+    hub_costs_eur                   : total annual hub costs (€/a)
+    revenue_side_products_eur       : total side-product revenue (€/a)
+    revenue_res_sale_eur            : RES electricity sale revenue (€/a)
+    revenue_eur                     : total revenue (€/a)
+    net_costs_eur                   : total costs minus all revenues (€/a)
     """
 
-    lcom = scenario.get("lcom_eur_per_t")
-    total_costs = (lcom * demand) if lcom is not None else None
+    hub_costs_eur_t = hub_costs_eur_t
+    total_costs = (hub_costs_eur_t * demand) if hub_costs_eur_t is not None else None
 
-    inv_cost_per_t = scenario.get("investment_cost_eur_per_t")
-    investment_cost = (inv_cost_per_t * demand) if inv_cost_per_t is not None else None
-
-
-    var_cost_per_t = scenario.get("variable_cost_eur_per_t")
-    variable_cost = (var_cost_per_t * demand) if var_cost_per_t is not None else None
-
-
-    side_products = scenario.get("side_product_revenues") or {}
+    side_products = side_product_revenues_eur or {}
     revenue_side_products = sum(v for v in side_products.values() if v is not None) if side_products else 0.0
 
-    revenue_res = float(scenario.get("res_sale_revenues_eur_pa") or 0.0)
+    revenue_res = float(res_sale_revenues_eur or 0.0)
 
     revenue = revenue_side_products + revenue_res
 
     costs_net_after_revenues = (total_costs - revenue) if total_costs is not None else None
 
-    return {
-        "hub_costs": total_costs,
-        "investment_costs": investment_cost,
-        "variable_costs": variable_cost,
-        "revenue_side_products": revenue_side_products,
-        "revenue_res": revenue_res,
-        "revenue": revenue,
-        "costs_net_after_revenues": costs_net_after_revenues,
-    }
+    return total_costs, revenue_side_products, revenue_res, revenue, costs_net_after_revenues,
+
+
+def compute_carbon_price(
+        ptx_annual_cost_eur,
+        fossil_annual_cost_eur,
+        hub_emissions_tco2,
+        fossil_fuel_alternative_emissions_tco2,
+):
+    delta_costs = ptx_annual_cost_eur - fossil_annual_cost_eur
+    delta_emissions = fossil_fuel_alternative_emissions_tco2 - hub_emissions_tco2
+
+    carbon_price = delta_costs / delta_emissions
+
+    return carbon_price
