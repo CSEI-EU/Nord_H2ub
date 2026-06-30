@@ -125,6 +125,55 @@ def load_results(
     
     return results
 
+def load_results_temp(
+        path
+):
+    """
+    Load model results from temporary Excel.
+
+    Parameters
+    ----------
+    path : str or Path
+        Path to results.xlsx
+
+    Returns
+    -------
+
+    """
+    lcom_sheet = pd.read_excel(
+        "test_data/example_output 1.xlsx", 
+        sheet_name="LCOM", 
+        index_col = 0,
+        header=None,
+        names=["variable", "value"],
+        usecols="A:B",
+    )
+
+    hub_costs = lcom_sheet.loc['LCOM/MWh'].value
+    revenues = lcom_sheet.loc['Total_revenue'].value
+    demand = lcom_sheet.loc['totoal_production t'].value
+
+    energy_sheet = pd.read_excel(
+        "test_data/example_output 1.xlsx", 
+        sheet_name="energy_consumption", 
+        index_col = 0,
+        header=None,
+        names=["variable", "value"],
+        usecols="A:B",
+    )
+    electricity_from_grid = {'DK': energy_sheet.loc['power from Grid (DK)'].value, 'DE': energy_sheet.loc['power from Grid (DE)'].value}
+    wind_from_hub = energy_sheet.loc['power from wind'].value
+    pv_from_hub = energy_sheet.loc['power from PV'].value
+    
+    return{
+        'hub_costs': hub_costs, 
+        'revenue_side_products': revenues, 
+        'demand_t': demand, 
+        'electricity_from_grid': electricity_from_grid, 
+        'wind_from_hub': wind_from_hub, 
+        'pv_from_hub': pv_from_hub
+        }
+
 def load_exchange_rates(
         path,
         sheet_rates = "Exchange_Rates",
@@ -292,7 +341,7 @@ def compute_hub_emissions(
         grid_from_mwh,
         df_grid_ef,
         ppa_emission_factor_gkwh,
-        primary_zone = "DK1",
+        primary_zone = "DK",
 ):
     """
     Compute the CO2 emissions from hub's electricity (grid) consumption.
@@ -316,7 +365,7 @@ def compute_hub_emissions(
     # Calculate emissions from grid
     sources: dict[str, float | None] = {}
 
-    zone_breakdown = grid_from_mwh or {"DK1": 0}
+    zone_breakdown = grid_from_mwh or {"DK": 0}
     if zone_breakdown:
         for zone, mwh in zone_breakdown.items():
             # look up emission factor for the zone (column) and year
