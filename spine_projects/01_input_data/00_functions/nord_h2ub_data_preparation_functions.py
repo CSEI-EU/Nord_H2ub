@@ -1114,36 +1114,59 @@ def create_temporal_block_relationships(df1, df2, model_relations, model_name, d
             }
             temporal_relations.loc[len(temporal_relations)] = new_relation
 
-# Temporal blocks values (use only for h, D, M, and Y)
+# Temporal block values (use only for h, D, M, and Y)
 def create_temporal_block_input(df, model, run_name):
-    if pd.isnull(df['resolution_output']).any():
-        return
+    """
+    Add the resolution parameter for temporal blocks used in the input DataFrame.
 
-    for index, row in df.iterrows():
+    Rows with missing resolution_output are skipped.
+    If the corresponding temporal block already has a resolution parameter,
+    nothing is added.
+    """
+
+    # Loop through all units
+    for _, row in df.iterrows():
+
+        # Skip units without a temporal resolution
+        if pd.isna(row['resolution_output']):
+            continue
+
+        # Map the resolution output to the temporal block name
         temporal_block_name = resolution_to_block.get(row['resolution_output'])
-        if temporal_block_name:
-            # Check if parameter already exists
-            parameter_exists = model[
-                (model['Object_name'] == temporal_block_name) &
-                (model['Parameter'] == "resolution")
-            ].shape[0] > 0
-            
-            if row['resolution_output'] == 'W':
-                value = '{"type":"duration", "data": "7D"}'
-            elif row['resolution_output'] == 'Q':
-                value = '{"type":"duration", "data": "3M"}'
-            else:
-                value = '{"type":"duration", "data": "1' + row['resolution_output'] + '"}'
-        
-            if not parameter_exists:
-                new_parameter = {
-                    "Object_class_name": "temporal_block",
-                    "Object_name": temporal_block_name,
-                    "Parameter": "resolution",
-                    "Value": value,
-                    "Alternative": run_name
-                }
-                model.loc[len(model)] = new_parameter
+
+        # Skip if no mapping exists for this resolution
+        if temporal_block_name is None:
+            continue
+
+        # Check whether the resolution parameter already exists
+        parameter_exists = (
+            (model['Object_class_name'] == 'temporal_block') &
+            (model['Object_name'] == temporal_block_name) &
+            (model['Parameter'] == 'resolution')
+        ).any()
+
+        # Do nothing if the parameter is already present
+        if parameter_exists:
+            continue
+
+        # Convert the resolution code to the duration format expected by SpineOpt
+        if row['resolution_output'] == 'W':
+            value = '{"type":"duration", "data": "7D"}'
+        elif row['resolution_output'] == 'Q':
+            value = '{"type":"duration", "data": "3M"}'
+        else:
+            value = '{"type":"duration", "data": "1' + str(row['resolution_output']) + '"}'
+
+        # Add the temporal block resolution parameter
+        new_parameter = {
+            "Object_class_name": "temporal_block",
+            "Object_name": temporal_block_name,
+            "Parameter": "resolution",
+            "Value": value,
+            "Alternative": run_name
+        }
+
+        model.loc[len(model)] = new_parameter
 
 # Recalculate frac state loss
 def adjust_frac_state_loss(storages_df, column_name):

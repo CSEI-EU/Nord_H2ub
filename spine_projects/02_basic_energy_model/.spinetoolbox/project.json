@@ -3,7 +3,8 @@
         "version": 13,
         "description": "",
         "settings": {
-            "enable_execute_all": true
+            "enable_execute_all": true,
+            "store_external_paths_as_relative": false
         },
         "specifications": {
             "Tool": [
@@ -107,7 +108,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base_case": true
+                                "base": true
                             }
                         }
                     },
@@ -153,12 +154,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "Run SpineOpt@2026-03-13T15:00:08": true,
-                                "Run SpineOpt@2026-05-12T14:06:18": true,
-                                "Run SpineOpt@2026-05-12T14:53:57": true,
-                                "Run SpineOpt@2026-05-12T14:59:01": true,
-                                "Run SpineOpt@2026-05-12T15:06:00": true,
-                                "Run SpineOpt@2026-05-12T15:12:57": true
+                                "base_payasproduced_2018": true
                             }
                         }
                     },
@@ -195,7 +191,7 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -202.27831187208182,
+            "x": -200.39226426129656,
             "y": -165.33103661356688,
             "file_references": [
                 {
@@ -204,6 +200,8 @@
                     "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
                 }
             ],
+            "file_patterns": [],
+            "directory_references": [],
             "db_references": []
         },
         "Load template": {
@@ -265,7 +263,7 @@
             "type": "Tool",
             "description": "",
             "x": -342.6084292622087,
-            "y": -158.85008392927125,
+            "y": -160.7361315400565,
             "specification": "run data prep",
             "execute_in_work": true,
             "cmd_line_args": [],
@@ -275,7 +273,7 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -65.6733119104155,
+            "x": -63.78726429963025,
             "y": -165.4207680179437,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
@@ -306,7 +304,7 @@
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
@@ -323,7 +321,7 @@
             "url": {
                 "dialect": "sqlite",
                 "host": "",
-                "port": "",
+                "port": null,
                 "database": {
                     "type": "path",
                     "relative": true,
