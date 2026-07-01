@@ -1023,58 +1023,96 @@ def check_demand_node(row, df_model_units_relations, df_definition, df_nodes, df
 
 # Temporal slicing definition (for demand)
 def check_temporal_block(df, df_model_components):
-    if pd.isnull(df['resolution_output']).any():
-        return
-    
-    for index, row in df.iterrows():
+    """
+    Add temporal_block objects to the model components based on the
+    'resolution_output' column of the input DataFrame.
+
+    Rows without a temporal resolution are ignored.
+    """
+
+    # Iterate over all rows
+    for _, row in df.iterrows():
+
+        # Skip rows without a temporal resolution
+        if pd.isna(row['resolution_output']):
+            continue
+
+        # Get the corresponding temporal block name from the dictionary
         temporal_block_name = resolution_to_block.get(row['resolution_output'])
-        if temporal_block_name:
-            # Check if the temporal block already exists
-            exists = df[
-                (df_model_components['Object_class_name'] == 'temporal_block') &
-                (df_model_components['Object_name'] == temporal_block_name)
-            ].shape[0] > 0
-        
-            if not exists:
-                new_row = {'Object_class_name': 'temporal_block', 'Object_name': temporal_block_name}
-                df_model_components.loc[len(df_model_components)] = new_row
+
+        # Skip if no mapping exists for this resolution
+        if temporal_block_name is None:
+            continue
+
+        # Check whether the temporal block already exists
+        exists = (
+            (df_model_components['Object_class_name'] == 'temporal_block') &
+            (df_model_components['Object_name'] == temporal_block_name)
+        ).any()
+
+        # Add the temporal block only if it does not yet exist
+        if not exists:
+            new_row = {
+                'Object_class_name': 'temporal_block',
+                'Object_name': temporal_block_name
+            }
+
+            df_model_components.loc[len(df_model_components)] = new_row
 
 # Temporal slicing relations
 def create_temporal_block_relationships(df1, df2, model_relations, model_name, df_definition, temporal_relations):
-    if pd.isnull(df1['resolution_output']).any():
-        return
+    """
+    Create relationships between the model, nodes, and temporal blocks
+    based on the resolution_output assigned to each unit.
+    """
 
-    for index, row in df1.iterrows():
+    for _, row in df1.iterrows():
+
+        # Skip rows without a temporal resolution
+        if pd.isna(row['resolution_output']):
+            continue
+
+        # Map resolution to temporal block
         temporal_block_name = resolution_to_block.get(row['resolution_output'])
-        if temporal_block_name:
-            #Check if specific demand node exists
-            output = (df2.loc[df2['Unit'] == row['Unit'], 'Output1']).iloc[0]
-            if f"{output}_demand" in df_definition['Object_name'].values:
-                node_name = f"{output}_demand"
-            else:
-                node_name = output
-            
-            # Check if relationship already exists
-            relationship_exists = model_relations[
-                (model_relations['Object_name_1'] == node_name) &
-                (model_relations['Object_name_2'] == temporal_block_name)
-            ].shape[0] > 0
-            
-            if not relationship_exists:
-                new_relation_mod = {
-                    "Relationship_class_name": "model__temporal_block",
-                    "Object_class_name_1": "model",
-                    "Object_class_name_2": "temporal_block",
-                    "Object_name_1": model_name,
-                    "Object_name_2": temporal_block_name
-                }
-                model_relations.loc[len(model_relations)] = new_relation_mod
-                new_relation = {
-                    "Relationship_class_name": "node__temporal_block",
-                    "Node": node_name,
-                    "Temporal_block": temporal_block_name
-                }
-                temporal_relations.loc[len(temporal_relations)] = new_relation
+        if temporal_block_name is None:
+            continue
+
+        # Find the output node of the unit
+        match = df2.loc[df2['Unit'] == row['Unit'], 'Output1']
+        if match.empty:
+            continue
+
+        output = match.iloc[0]
+
+        # Use demand node if it exists
+        if f"{output}_demand" in df_definition['Object_name'].values:
+            node_name = f"{output}_demand"
+        else:
+            node_name = output
+
+        # Check whether the model-temporal block relation already exists
+        relationship_exists = (
+            (model_relations['Relationship_class_name'] == 'model__temporal_block') &
+            (model_relations['Object_name_1'] == model_name) &
+            (model_relations['Object_name_2'] == temporal_block_name)
+        ).any()
+
+        if not relationship_exists:
+            new_relation_mod = {
+                "Relationship_class_name": "model__temporal_block",
+                "Object_class_name_1": "model",
+                "Object_class_name_2": "temporal_block",
+                "Object_name_1": model_name,
+                "Object_name_2": temporal_block_name
+            }
+            model_relations.loc[len(model_relations)] = new_relation_mod
+
+            new_relation = {
+                "Relationship_class_name": "node__temporal_block",
+                "Node": node_name,
+                "Temporal_block": temporal_block_name
+            }
+            temporal_relations.loc[len(temporal_relations)] = new_relation
 
 # Temporal blocks values (use only for h, D, M, and Y)
 def create_temporal_block_input(df, model, run_name):
