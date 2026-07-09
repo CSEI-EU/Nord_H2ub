@@ -197,7 +197,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_demand_05p_up.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -257,7 +257,7 @@
                     "out_label": "OutputTest_exported@Exporter"
                 }
             ],
-            "specification": "SpineOptToTable"
+            "specification": "exporter_energy_hub_model"
         },
         "run_data_prep": {
             "type": "Tool",
@@ -280,7 +280,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_demand_05p_up.xlsx",
                     true
                 ]
             ]
