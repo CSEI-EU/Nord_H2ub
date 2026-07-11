@@ -107,8 +107,7 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "base": true
+                                "Base": true
                             }
                         }
                     },
@@ -153,8 +152,7 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "base_payasproduced_2018": true
+                                "Base": true
                             }
                         }
                     },
@@ -197,7 +195,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_demand_05p_up.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_o2_05pdown.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -207,8 +205,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 245.6534501656066,
-            "y": -256.0582474483255,
+            "x": 248.28586164677827,
+            "y": -256.05824744832546,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -280,7 +278,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_demand_05p_up.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_o2_05pdown.xlsx",
                     true
                 ]
             ]
