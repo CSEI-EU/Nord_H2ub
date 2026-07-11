@@ -107,7 +107,8 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true
+                                "Base": true,
+                                "base": true
                             }
                         }
                     },
@@ -152,7 +153,8 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true
+                                "Base": true,
+                                "base_payasproduced_2018": true
                             }
                         }
                     },
@@ -195,7 +197,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_o2_05pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_powerpr_05pdown.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -278,7 +280,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_o2_05pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_powerpr_05pdown.xlsx",
                     true
                 ]
             ]
@@ -314,8 +316,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 413.0170429262976,
-            "y": -156.93536649149448,
+            "x": 413.0170429262977,
+            "y": -159.5677779726661,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
