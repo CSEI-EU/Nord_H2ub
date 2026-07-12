@@ -108,7 +108,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base": true
+                                "chile": true
                             }
                         }
                     },
@@ -154,7 +154,7 @@
                             "scenario_filter": {},
                             "alternative_filter": {
                                 "Base": true,
-                                "base_payasproduced_2018": true
+                                "methanol_escondida_eff_05pup": true
                             }
                         }
                     },
@@ -197,7 +197,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_powerpr_05pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_eff_05pdown.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -247,8 +247,8 @@
         "Exporter": {
             "type": "Exporter",
             "description": "",
-            "x": 535.9747862573098,
-            "y": -156.40547781549614,
+            "x": 535.9747862573099,
+            "y": -161.67030077783943,
             "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
@@ -273,14 +273,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -63.78726429963025,
-            "y": -165.4207680179437,
+            "x": -61.154852818458615,
+            "y": -168.05317949911534,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_powerpr_05pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_eff_05pdown.xlsx",
                     true
                 ]
             ]
