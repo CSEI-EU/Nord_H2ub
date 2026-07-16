@@ -1,0 +1,709 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:61914 http://127.0.0.1:61916
+2-element Vector{String}:
+ "http://127.0.0.1:61914"
+ "http://127.0.0.1:61916"
+WARNING: using JuMP.parameter_value in module SpineInterface conflicts with an existing identifier.
+Running SpineOpt...
+WARNING: using JuMP.Parameter in module SpineInterface conflicts with an existing identifier.
+[SpineOpt version 0.10.2 (git hash: N/A)]
+[SpineInterface version 0.15.2 (git hash: N/A)]
+Execution started at 2026-07-14T17:55:11.094
+Reading input data from sqlite:///C:\Users\jfg.eco\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+Initializing  data structure from db... 22.004775 seconds (30.05 M allocations: 1.474 GiB, 1.27% gc time, 96.65% compilation time)
+Preprocessing  data structure... 19.487832 seconds (15.42 M allocations: 765.445 MiB, 1.72% gc time, 99.63% compilation time)
+Checking  data structure...  1.847880 seconds (1.07 M allocations: 53.939 MiB, 99.79% compilation time)
+Build started at 2026-07-14T17:56:23.193
+Creating model temporal structure...[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
+ 62.589314 seconds (438.03 M allocations: 22.527 GiB, 29.09% gc time, 11.24% compilation time)
+Creating model stochastic structure... 10.618934 seconds (10.20 M allocations: 798.948 MiB, 33.20% gc time, 61.26% compilation time)
+Adding model independent variables...
+- [variable_binary_gas_connection_flow]  3.523032 seconds (5.84 M allocations: 208.152 MiB, 97.22% compilation time)
+- [variable_connection_flow] 17.636042 seconds (25.67 M allocations: 1.391 GiB, 6.54% gc time, 85.82% compilation time)
+- [variable_connection_intact_flow]  2.977194 seconds (10.32 M allocations: 618.848 MiB, 13.00% gc time, 57.20% compilation time)
+- [variable_connections_decommissioned]  3.909262 seconds (6.27 M allocations: 229.171 MiB, 97.25% compilation time)
+- [variable_connections_invested]  4.174396 seconds (2.39 M allocations: 136.736 MiB, 84.24% gc time, 6.77% compilation time)
+- [variable_connections_invested_available]  1.624316 seconds (3.20 M allocations: 178.873 MiB, 78.03% compilation time)
+- [variable_min_capacity_margin_slack]  2.454335 seconds (4.06 M allocations: 121.432 MiB, 93.51% compilation time)
+- [variable_node_injection]  4.374258 seconds (8.03 M allocations: 404.479 MiB, 82.52% compilation time)
+- [variable_node_pressure]  1.163748 seconds (3.09 M allocations: 75.497 MiB, 88.78% compilation time)
+- [variable_node_slack_neg]  2.204534 seconds (6.26 M allocations: 281.894 MiB, 63.67% compilation time)
+- [variable_node_slack_pos]  1.152627 seconds (5.61 M allocations: 251.456 MiB, 35.66% gc time)
+- [variable_node_state]  3.466574 seconds (6.71 M allocations: 267.097 MiB, 88.18% compilation time)
+- [variable_node_voltage_angle]  0.985829 seconds (3.10 M allocations: 75.813 MiB, 90.36% compilation time)
+- [variable_nonspin_units_shut_down]  2.002934 seconds (4.34 M allocations: 133.878 MiB, 94.02% compilation time)
+- [variable_nonspin_units_started_up]  1.199530 seconds (3.44 M allocations: 89.501 MiB, 89.05% compilation time)
+- [variable_storages_decommissioned]  2.621562 seconds (4.48 M allocations: 142.175 MiB, 96.57% compilation time)
+- [variable_storages_invested]  0.485509 seconds (2.38 M allocations: 88.100 MiB, 71.50% compilation time)
+- [variable_storages_invested_available]  0.284860 seconds (2.04 M allocations: 70.794 MiB, 44.69% compilation time)
+- [variable_unit_flow] 14.341850 seconds (24.59 M allocations: 1.962 GiB, 5.18% gc time, 80.46% compilation time)
+- [variable_unit_flow_op]  6.318911 seconds (8.56 M allocations: 392.276 MiB, 1.74% gc time, 94.82% compilation time)
+- [variable_unit_flow_op_active]  2.950992 seconds (5.52 M allocations: 247.268 MiB, 85.99% compilation time)
+- [variable_units_invested]  4.533782 seconds (5.72 M allocations: 286.426 MiB, 2.48% gc time, 91.19% compilation time)
+- [variable_units_invested_available]  0.685370 seconds (2.55 M allocations: 133.016 MiB, 51.93% compilation time)
+- [variable_units_mothballed]  0.217224 seconds (2.29 M allocations: 35.356 MiB, 56.58% gc time)
+- [variable_units_on]  4.157469 seconds (8.10 M allocations: 355.634 MiB, 92.09% compilation time)
+- [variable_units_out_of_service]  0.965789 seconds (3.03 M allocations: 72.677 MiB, 89.02% compilation time)
+- [variable_units_returned_to_service]  0.383886 seconds (2.38 M allocations: 39.663 MiB, 47.15% gc time, 26.30% compilation time)
+- [variable_units_shut_down]  2.239144 seconds (3.64 M allocations: 108.381 MiB, 94.41% compilation time)
+- [variable_units_started_up]  0.266416 seconds (2.58 M allocations: 54.218 MiB, 31.82% compilation time)
+- [variable_units_taken_out_of_service]  0.174631 seconds (2.31 M allocations: 35.938 MiB, 11.04% compilation time)
+- [variable_user_constraint_slack_neg]  1.733384 seconds (3.95 M allocations: 115.223 MiB, 92.50% compilation time)
+- [variable_user_constraint_slack_pos]  0.201847 seconds (2.29 M allocations: 34.898 MiB, 55.62% gc time)
+102.407963 seconds (202.08 M allocations: 9.340 GiB, 6.95% gc time, 81.77% compilation time)
+Adding model dependent variables...
+- [variable_connection_flow]  4.602821 seconds (8.81 M allocations: 421.342 MiB, 90.92% compilation time)
+- [variable_unit_flow]  3.143866 seconds (7.07 M allocations: 344.807 MiB, 5.38% gc time, 72.18% compilation time)
+  8.413952 seconds (16.93 M allocations: 816.954 MiB, 2.01% gc time, 84.58% compilation time)
+Adding model expressions...
+- [expression_capacity_margin]  0.434307 seconds (1.04 M allocations: 49.175 MiB, 99.91% compilation time)
+  0.447502 seconds (1.04 M allocations: 49.236 MiB, 99.73% compilation time)
+Adding model constraints...
+- [constraint_candidate_connection_flow_lb]  0.735681 seconds (790.77 k allocations: 38.012 MiB, 99.85% compilation time)
+- [constraint_candidate_connection_flow_ub]  0.174380 seconds (354.09 k allocations: 17.392 MiB, 99.78% compilation time)
+- [constraint_compression_ratio]  0.105034 seconds (114.70 k allocations: 5.771 MiB, 99.76% compilation time)
+- [constraint_connection_flow_capacity]  8.909964 seconds (23.71 M allocations: 1.289 GiB, 5.21% gc time, 66.23% compilation time)
+- [constraint_connection_flow_gas_capacity]  0.113439 seconds (102.85 k allocations: 5.047 MiB, 99.80% compilation time)
+- [constraint_connection_flow_intact_flow]  0.281870 seconds (272.30 k allocations: 13.362 MiB, 99.84% compilation time)
+- [constraint_connection_flow_lodf]  0.285765 seconds (520.06 k allocations: 24.519 MiB, 99.80% compilation time)
+- [constraint_connection_intact_flow_capacity]  0.601511 seconds (755.53 k allocations: 37.041 MiB, 99.89% compilation time)
+- [constraint_connection_intact_flow_ptdf]  0.365496 seconds (324.41 k allocations: 16.254 MiB, 99.87% compilation time)
+- [constraint_connection_lifetime] 32.393115 seconds (132.16 M allocations: 13.638 GiB, 47.49% gc time, 8.73% compilation time)
+- [constraint_connection_unitary_gas_flow]  0.114994 seconds (303.38 k allocations: 15.024 MiB, 99.79% compilation time)
+- [constraint_connections_invested_available]  0.811771 seconds (1.15 M allocations: 55.207 MiB, 99.53% compilation time)
+- [constraint_connections_invested_transition]  2.392618 seconds (2.28 M allocations: 111.836 MiB, 99.60% compilation time)
+- [constraint_cyclic_node_state]  0.405135 seconds (241.27 k allocations: 11.977 MiB, 99.87% compilation time)
+- [constraint_fix_node_pressure_point]  0.092451 seconds (69.34 k allocations: 3.424 MiB, 99.78% compilation time)
+- [constraint_fix_ratio_in_in_unit_flow]  5.448300 seconds (5.27 M allocations: 272.850 MiB, 93.02% compilation time)
+- [constraint_fix_ratio_in_out_unit_flow]  0.183564 seconds (371.66 k allocations: 17.912 MiB, 99.37% compilation time)
+- [constraint_fix_ratio_out_in_connection_flow]  3.844403 seconds (4.07 M allocations: 207.395 MiB, 10.64% gc time, 96.65% compilation time)
+- [constraint_fix_ratio_out_in_unit_flow]  0.000192 seconds (181 allocations: 11.258 KiB)
+- [constraint_fix_ratio_out_out_unit_flow]  0.000508 seconds (1.08 k allocations: 58.008 KiB)
+- [constraint_investment_group_equal_investments]  0.272435 seconds (183.65 k allocations: 9.230 MiB, 99.85% compilation time)
+- [constraint_investment_group_maximum_capacity_invested_available]  0.221575 seconds (240.75 k allocations: 11.791 MiB, 99.90% compilation time)
+- [constraint_investment_group_maximum_entities_invested_available]  0.258179 seconds (242.64 k allocations: 11.847 MiB, 99.91% compilation time)
+- [constraint_investment_group_minimum_capacity_invested_available]  0.064842 seconds (37.40 k allocations: 1.897 MiB, 99.63% compilation time)
+- [constraint_investment_group_minimum_entities_invested_available]  0.076944 seconds (37.41 k allocations: 1.900 MiB, 99.74% compilation time)
+- [constraint_max_node_pressure]  0.316505 seconds (401.36 k allocations: 19.604 MiB, 99.83% compilation time)
+- [constraint_max_node_voltage_angle]  0.099070 seconds (77.04 k allocations: 3.833 MiB, 99.62% compilation time)
+- [constraint_max_ratio_in_in_unit_flow]  0.000271 seconds (181 allocations: 11.258 KiB)
+- [constraint_max_ratio_in_out_unit_flow]  0.000216 seconds (181 allocations: 11.258 KiB)
+- [constraint_max_ratio_out_in_connection_flow]  0.097386 seconds (166.17 k allocations: 8.016 MiB, 99.74% compilation time)
+- [constraint_max_ratio_out_in_unit_flow]  0.000178 seconds (181 allocations: 11.258 KiB)
+- [constraint_max_ratio_out_out_unit_flow]  0.000164 seconds (181 allocations: 11.258 KiB)
+- [constraint_max_total_cumulated_unit_flow_from_node]  0.269111 seconds (130.94 k allocations: 6.526 MiB, 99.90% compilation time)
+- [constraint_max_total_cumulated_unit_flow_to_node]  0.000101 seconds (76 allocations: 4.789 KiB)
+- [constraint_min_capacity_margin]  0.071582 seconds (51.32 k allocations: 2.595 MiB, 99.71% compilation time)
+- [constraint_min_down_time]  3.874131 seconds (6.69 M allocations: 398.692 MiB, 81.55% compilation time)
+- [constraint_min_node_pressure]  0.154597 seconds (64.11 k allocations: 3.182 MiB, 99.56% compilation time)
+- [constraint_min_node_voltage_angle]  0.169723 seconds (64.15 k allocations: 3.170 MiB, 99.72% compilation time)
+- [constraint_min_ratio_in_in_unit_flow]  0.000266 seconds (181 allocations: 11.258 KiB)
+- [constraint_min_ratio_in_out_unit_flow]  0.000183 seconds (181 allocations: 11.258 KiB)
+- [constraint_min_ratio_out_in_connection_flow]  0.092101 seconds (34.77 k allocations: 1.752 MiB, 99.75% compilation time)
+- [constraint_min_ratio_out_in_unit_flow]  0.000210 seconds (181 allocations: 11.258 KiB)
+- [constraint_min_ratio_out_out_unit_flow]  0.000212 seconds (181 allocations: 11.258 KiB)
+- [constraint_min_scheduled_outage_duration]  0.345101 seconds (145.72 k allocations: 7.222 MiB, 99.92% compilation time)
+- [constraint_min_total_cumulated_unit_flow_from_node]  0.101810 seconds (34.75 k allocations: 1.749 MiB, 99.76% compilation time)
+- [constraint_min_total_cumulated_unit_flow_to_node]  0.000145 seconds (76 allocations: 4.789 KiB)
+- [constraint_min_up_time]  1.179514 seconds (1.40 M allocations: 77.184 MiB, 90.17% compilation time)
+- [constraint_minimum_operating_point]  3.447367 seconds (5.52 M allocations: 302.532 MiB, 8.20% gc time, 79.26% compilation time)
+- [constraint_nodal_balance]  3.557995 seconds (7.49 M allocations: 395.217 MiB, 82.86% compilation time)
+- [constraint_node_injection]  6.599817 seconds (25.55 M allocations: 1.268 GiB, 5.82% gc time, 57.65% compilation time)
+- [constraint_node_state_capacity]  2.058208 seconds (5.68 M allocations: 288.181 MiB, 77.12% compilation time)
+- [constraint_node_voltage_angle]  0.189892 seconds (90.09 k allocations: 4.600 MiB, 99.90% compilation time)
+- [constraint_non_spinning_reserves_lower_bound]  0.117387 seconds (152.21 k allocations: 7.686 MiB, 99.73% compilation time)
+- [constraint_non_spinning_reserves_shut_down_upper_bound]  0.216691 seconds (259.28 k allocations: 12.685 MiB, 99.71% compilation time)
+- [constraint_non_spinning_reserves_start_up_upper_bound]  0.000198 seconds (398 allocations: 19.633 KiB)
+- [constraint_operating_point_bounds] 24.154136 seconds (165.34 M allocations: 18.824 GiB, 17.68% gc time, 9.37% compilation time)
+- [constraint_operating_point_rank]  0.844646 seconds (1.33 M allocations: 78.860 MiB, 11.17% gc time, 95.00% compilation time)
+- [constraint_ramp_down]  3.244864 seconds (5.61 M allocations: 302.829 MiB, 90.85% compilation time)
+- [constraint_ramp_up]  1.390699 seconds (3.13 M allocations: 182.274 MiB, 79.79% compilation time)
+- [constraint_ratio_out_in_connection_intact_flow]  0.144640 seconds (114.27 k allocations: 5.844 MiB, 99.74% compilation time)
+- [constraint_storage_lifetime]  6.625261 seconds (36.46 M allocations: 3.828 GiB, 24.99% gc time, 25.34% compilation time)
+- [constraint_storage_line_pack]  0.176065 seconds (169.35 k allocations: 8.291 MiB, 99.87% compilation time)
+- [constraint_storages_invested_available]  0.441129 seconds (426.12 k allocations: 20.604 MiB, 99.77% compilation time)
+- [constraint_storages_invested_transition]  0.525966 seconds (366.84 k allocations: 18.733 MiB, 99.55% compilation time)
+- [constraint_unit_flow_capacity]  3.286775 seconds (9.04 M allocations: 485.670 MiB, 10.23% gc time, 72.45% compilation time)
+- [constraint_unit_flow_op_bounds]  1.042367 seconds (3.12 M allocations: 166.725 MiB, 77.44% compilation time)
+- [constraint_unit_flow_op_rank]  0.929132 seconds (2.49 M allocations: 137.758 MiB, 80.67% compilation time)
+- [constraint_unit_flow_op_sum]  0.801982 seconds (877.02 k allocations: 45.772 MiB, 98.19% compilation time)
+- [constraint_unit_lifetime] 18.897481 seconds (111.26 M allocations: 11.950 GiB, 40.65% gc time, 5.13% compilation time)
+- [constraint_unit_state_transition]  1.118932 seconds (1.64 M allocations: 87.262 MiB, 97.46% compilation time)
+- [constraint_units_available]  2.873730 seconds (11.20 M allocations: 567.044 MiB, 56.76% compilation time)
+- [constraint_units_invested_available]  0.253858 seconds (130.69 k allocations: 6.582 MiB, 99.53% compilation time)
+- [constraint_units_invested_transition]  0.751264 seconds (502.28 k allocations: 25.164 MiB, 99.50% compilation time)
+- [constraint_units_out_of_service_contiguity]  0.210153 seconds (78.09 k allocations: 4.010 MiB, 99.90% compilation time)
+- [constraint_units_out_of_service_transition]  0.148537 seconds (119.57 k allocations: 6.070 MiB, 99.70% compilation time)
+- [constraint_user_constraint]  9.240681 seconds (12.80 M allocations: 658.639 MiB, 2.46% gc time, 93.88% compilation time)
+174.529896 seconds (624.23 M allocations: 57.371 GiB, 17.99% gc time, 49.07% compilation time)
+Setting model objective... 12.869789 seconds (17.20 M allocations: 888.412 MiB, 1.96% gc time, 90.41% compilation time)
+Build complete. Started at 2026-07-14T17:56:23.193, ended at 2026-07-14T18:02:36.401, elapsed time: 6 minutes, 13 seconds, 208 milliseconds
+Solve started at 2026-07-14T18:02:36.894
+Bringing model to the first window...  8.159382 seconds (32.48 M allocations: 1.586 GiB, 6.00% gc time, 51.04% compilation time)
+model - window 1 of 12: 2019-01-01T00:00~(4 weeks, 2 days, 10 hours)~>2019-01-31T10:00
+Optimizing model...Running HiGHS 1.14.0 (git hash: 7df0786de3): Copyright (c) 2026 under Apache 2.0 license terms
+Using BLAS: blastrampoline-5
+MIP has 100129 rows; 106307 cols; 250152 nonzeros; 2239 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 5e+05]
+  Cost    [4e-03, 3e+11]
+  Bound   [1e+00, 1e+05]
+  RHS     [1e+00, 2e+04]
+WARNING: Problem has some excessively large costs
+WARNING:    Consider scaling the objective by 1e-6, or setting the user_objective_scale option to -19
+Presolving model
+49021 rows, 54925 cols, 159507 nonzeros 0s
+31406 rows, 40238 cols, 141530 nonzeros 0s
+28822 rows, 33106 cols, 129493 nonzeros 1s
+Presolve reductions: rows 28822(-71307); columns 33106(-73201); nonzeros 129493(-120659)
+Solving MIP model with:
+   28822 rows
+   33106 cols (2188 binary, 1 integer, 1 implied int., 30916 continuous, 0 domain fixed)
+   129493 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -137022052.2804 inf                  inf        0      0      0         0     2.1s
+ R       0       0         0   0.00%   1.16499182e+13  1.68007988e+13    30.66%        0      0      0     16877     6.4s
+         0       0         0   0.00%   1.4112297e+13   1.68007988e+13    16.00%     3109    459      0     35136    20.7s
+         0       0         0   0.00%   1.56854229e+13  1.68007988e+13     6.64%     7938   1243      0     44405    35.4s
+         0       0         0   0.00%   1.56879679e+13  1.68007988e+13     6.62%     8202   2024      0     45049    42.1s
+ L       0       0         0   0.00%   1.56879679e+13  1.59637939e+13     1.73%     8202   2024      0     45049   299.2s
+        51       0         1   0.00%   1.56879679e+13  1.59637939e+13     1.73%     8202   1722    107    394647   574.7s
+ T      51       0         1   0.00%   1.56879679e+13  1.59634017e+13     1.73%     8202   1722    107    394647   578.5s
+        56       3         4   0.00%   1.56879679e+13  1.59634017e+13     1.73%     8202   1722    107    398775   584.8s
+        62       3         5   0.00%   1.56879679e+13  1.59634017e+13     1.73%     8202   1722    115    404854   591.1s
+ T      62       3         5   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    121    404854   593.4s
+        72       3         8   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    124    408414   598.7s
+        80       7        12   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    124    410186   604.3s
+        88      10        15   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    126    413398   611.7s
+        94      11        17   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    127    417013   616.9s
+        97      13        18   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    134    421830   622.2s
+       153      63        20   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    231    811564  1377.9s
+       162      65        22   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    237    816522  1384.3s
+       176      66        27   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    244    820422  1390.0s
+       180      66        29   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    244    824592  1395.1s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       190      67        34   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    250    830031  1401.4s
+       199      68        38   0.00%   1.56879679e+13  1.59634016e+13     1.73%     8202   1722    258    834636  1407.1s
+       204     124        40   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    258    845861  1422.6s
+       212     124        44   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    853733  1432.9s
+       218     124        47   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    857707  1438.1s
+       228     124        52   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    861114  1443.3s
+       236     124        56   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    866443  1449.0s
+       242     124        59   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    872339  1455.3s
+       250     124        63   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    878722  1462.4s
+       254     124        65   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    882764  1468.3s
+       258     124        67   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    886372  1473.5s
+       262     124        69   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    893001  1481.2s
+       266     124        71   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    262    896942  1487.1s
+       270     124        73   0.00%   1.56907782e+13  1.59634016e+13     1.71%     8202   1722    263    900803  1492.7s
+ B     270     124        73   0.00%   1.56907782e+13  1.59633687e+13     1.71%     8202   1722    263    900803  1494.1s
+ T     271     123        74   0.00%   1.56907782e+13  1.59633681e+13     1.71%     8202   1722    263    902109  1495.9s
+ T     272     122        75   0.00%   1.56907782e+13  1.59633676e+13     1.71%     8202   1722    263    902515  1496.3s
+       275     121        77   0.00%   1.56907782e+13  1.59633676e+13     1.71%     8202   1722    267    909901  1506.2s
+ T     279     121        79   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    268    910858  1508.4s
+       283     121        81   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    275    918513  1518.2s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       290     120        85   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    277    921981  1523.7s
+       297     120        88   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    279    927588  1530.3s
+       312     122        95   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    281    932306  1539.3s
+       319     121        99   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    281    937145  1545.6s
+       327     121       103   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8202   1722    281    940777  1551.4s
+       379     121       107   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8211   1730    329     1028k  1667.2s
+       392     123       113   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8211   1730    329     1028k  1672.2s
+       406     125       119   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8211   1730    329     1029k  1677.6s
+       421     128       125   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8211   1730    330     1030k  1683.0s
+       431     128       130   0.00%   1.56907782e+13  1.59633675e+13     1.71%     8211   1730    331     1030k  1688.0s
+       437     173       132   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    331     1044k  1706.1s
+       440     172       134   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    332     1046k  1711.3s
+       447     173       137   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    334     1048k  1716.5s
+       452     172       140   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    335     1050k  1722.1s
+       460     172       144   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    335     1052k  1727.8s
+       464     172       146   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    342     1057k  1736.6s
+       472     172       150   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    343     1060k  1744.2s
+       480     173       154   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    343     1061k  1749.8s
+       490     172       159   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1063k  1755.7s
+       494     172       161   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1067k  1762.2s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       498     172       163   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1070k  1768.5s
+       502     172       165   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1072k  1773.7s
+       508     172       168   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1075k  1782.3s
+       516     172       172   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1077k  1788.9s
+       522     172       175   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1079k  1794.1s
+       529     173       178   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    344     1080k  1799.2s
+       534     172       181   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    345     1081k  1804.5s
+       542     172       185   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    345     1085k  1810.6s
+       546     172       187   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    355     1090k  1816.6s
+       598     173       192   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    457     1188k  1915.5s
+       609     177       194   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    472     1193k  1925.5s
+       612     180       196   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    472     1196k  1933.6s
+       620     182       199   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    477     1200k  1944.2s
+       627     187       201   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    479     1204k  1951.7s
+       639     190       203   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    491     1210k  1963.9s
+       643     192       205   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    492     1214k  1971.5s
+       652     194       208   0.00%   1.56921878e+13  1.59633675e+13     1.70%     8211   1730    492     1215k  1977.4s
+       654     237       209   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    504     1221k  1988.5s
+       660     236       210   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    508     1226k  1997.8s
+       669     238       214   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    508     1229k  2003.4s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       681     241       218   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    509     1231k  2009.8s
+       689     241       221   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    509     1233k  2015.5s
+       698     243       226   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    509     1235k  2021.4s
+       706     243       228   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    510     1239k  2026.9s
+       714     244       232   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    510     1240k  2032.4s
+       719     244       235   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    510     1243k  2039.0s
+       728     245       238   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    510     1244k  2044.0s
+       738     246       242   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    510     1247k  2049.7s
+       750     247       247   0.00%   1.56937288e+13  1.59633675e+13     1.69%     8211   1730    510     1248k  2055.1s
+       757     258       249   0.00%   1.56937288e+13  1.59633675e+13     1.69%     6870   1730    512     1252k  2061.2s
+       765     259       253   0.00%   1.56937288e+13  1.59633675e+13     1.69%     6870   1730    512     1255k  2067.3s
+       774     259       256   0.00%   1.56937288e+13  1.59633675e+13     1.69%     6870   1730    512     1259k  2074.3s
+       779     261       259   0.00%   1.56937288e+13  1.59633675e+13     1.69%     6870   1730    512     1262k  2079.8s
+       783     262       261   0.00%   1.56937288e+13  1.59633675e+13     1.69%     6870   1730    512     1266k  2085.4s
+       789     261       264   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    512     1268k  2090.7s
+       795     262       266   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    513     1272k  2095.8s
+       800     263       268   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    513     1275k  2101.7s
+       810     265       272   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    513     1276k  2107.2s
+       822     267       277   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    514     1277k  2112.8s
+       833     269       281   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    514     1280k  2119.0s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       841     269       285   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    514     1282k  2124.9s
+       849     270       288   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    516     1284k  2131.2s
+       853     270       290   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    516     1288k  2139.1s
+       857     270       292   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    516     1290k  2144.9s
+       859     270       293   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    516     1295k  2157.1s
+       865     270       296   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    517     1296k  2162.5s
+       869     270       298   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    517     1296k  2167.5s
+       873     270       300   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    517     1297k  2172.6s
+       877     270       302   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    518     1299k  2178.5s
+       883     274       305   0.00%   1.56937288e+13  1.59633675e+13     1.69%     5995   1730    519     1300k  2186.4s
+       891     274       307   0.00%   1.56937288e+13  1.59633675e+13     1.69%     3970   1730    519     1301k  2192.2s
+       895     275       310   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    519     1303k  2199.3s
+       906     276       313   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    519     1304k  2204.5s
+       915     278       316   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    521     1306k  2210.0s
+       925     283       321   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    521     1308k  2216.6s
+       934     286       324   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    523     1310k  2221.8s
+       942     287       328   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    523     1312k  2228.3s
+       992     285       332   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    613     1477k  2394.0s
+      1001     285       334   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    616     1480k  2400.0s
+      1009     289       337   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    616     1481k  2405.9s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1020     291       340   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    616     1484k  2412.7s
+      1024     293       342   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    616     1486k  2418.1s
+      1029     293       344   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    621     1489k  2424.6s
+      1036     293       346   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    623     1493k  2430.9s
+      1040     293       348   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    623     1495k  2435.9s
+      1044     294       350   0.00%   1.56937288e+13  1.59633675e+13     1.69%     1744   1730    624     1497k  2441.3s
+      1048     344       352   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    627     1504k  2452.2s
+      1051     343       354   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    630     1509k  2458.5s
+      1058     344       357   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    630     1513k  2463.8s
+      1063     343       359   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    630     1518k  2470.7s
+      1071     344       363   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    631     1519k  2475.9s
+      1078     345       365   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    631     1523k  2481.5s
+      1086     347       369   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1527k  2488.2s
+      1092     348       372   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1529k  2493.4s
+      1101     348       376   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1531k  2498.7s
+      1110     349       381   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1533k  2504.2s
+      1119     349       385   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1536k  2511.7s
+      1126     349       389   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1538k  2517.8s
+      1134     348       393   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1540k  2523.4s
+      1142     348       397   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1542k  2528.9s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1152     348       402   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1543k  2534.3s
+      1158     349       405   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1730    633     1546k  2540.1s
+Restarting search from the root node
+Model after restart has 28743 rows, 33010 cols (2188 bin., 0 int., 1 impl., 30821 cont., 0 dom.fix.), and 128879 nonzeros
+      1158       0         0   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1730      0      0     1546k  2541.2s
+      1158       0         0   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1730   1457      0     1570k  2553.1s
+      1202       1         1   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1731   1457     66     1659k  2640.2s
+      1214       2         5   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1735   1457    158     1665k  2645.9s
+      1239       8        14   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1738   1457    302     1668k  2651.4s
+      1265      55        24   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1744   1457    418     1679k  2666.3s
+      1271      56        25   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1748   1457    451     1684k  2672.5s
+      1294      58        34   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1757   1457    525     1688k  2678.5s
+      1308      58        41   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1766   1457    611     1692k  2684.2s
+      1316      58        45   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1784   1457    690     1696k  2689.8s
+      1337      58        55   0.00%   1.57004879e+13  1.59633675e+13     1.65%     1798   1457    812     1698k  2695.3s
+ T    1339      58        56   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1799   1457    825     1698k  2696.9s
+      1354      61        63   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1810   1457    865     1701k  2703.3s
+      1368      67        70   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1815   1457    907     1703k  2711.7s
+      1382      67        77   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1827   1457   1044     1707k  2717.1s
+      1398      66        85   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1837   1458   1131     1710k  2723.1s
+      1408      66        90   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1843   1458   1155     1715k  2729.6s
+      1428      68        99   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1853   1458   1205     1717k  2734.8s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+ T    1433      67       102   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1857   1458   1223     1717k  2737.5s
+      1440      65       106   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1820   1458   1327     1723k  2745.7s
+      1448      65       110   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1833   1458   1465     1728k  2751.8s
+      1462      65       117   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1845   1458   1570     1732k  2757.9s
+      1477      66       124   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1858   1458   1677     1736k  2763.2s
+      1483      66       127   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1864   1458   1687     1739k  2768.6s
+ T    1489      66       130   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1867   1458   1701     1739k  2771.7s
+      1501      68       135   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1876   1458   1967     1743k  2777.0s
+      1509      68       139   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1890   1458   2077     1747k  2783.0s
+      1530      69       148   0.00%   1.57004879e+13  1.59632586e+13     1.65%     1906   1458   2180     1749k  2788.0s
+ T    1532      69       149   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1907   1458   2189     1749k  2789.6s
+      1541      70       155   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1896   1458   2293     1754k  2794.7s
+      1546      69       157   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1895   1458   2325     1759k  2800.6s
+      1556      70       161   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1905   1458   2509     1763k  2806.4s
+      1572      70       169   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1920   1458   2662     1766k  2812.1s
+      1620      72       177   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1918   1459   2816     1862k  2900.8s
+      1636      72       178   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1919   1459   2849     1869k  2909.2s
+      1655      75       183   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1923   1459   2924     1872k  2916.3s
+      1667      76       188   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1927   1459   2983     1873k  2921.3s
+      1675      76       192   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1931   1459   3010     1873k  2926.4s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1683      76       196   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1935   1459   3056     1874k  2931.5s
+      1689     129       199   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1917   1459   3113     1881k  2953.6s
+      1694     130       202   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1919   1459   3142     1931k  3000.1s
+      1694     130       202   0.00%   1.57004879e+13  1.59632585e+13     1.65%     1919   1459   3142     1931k  3000.1s
+Solving report
+  Status            Time limit reached
+  Primal bound      1.59632585485e+13
+  Dual bound        1.57004879195e+13
+  Gap               1.65% (tolerance: 0%)
+  P-D integral      70.0207312686
+  Solution status   feasible
+                    1.59632585485e+13 (objective)
+                    0 (bound viol.)
+                    1.98951966013e-16 (int. viol.)
+                    0 (row viol.)
+  Timing            3000.08
+  Max sub-MIP depth 5
+  Nodes             1694
+  Repair LPs        0
+  LP iterations     1931111
+                    543353 (strong br.)
+                    29630 (separation)
+                    497303 (heuristics)
+3002.530069 seconds (2.45 M allocations: 191.624 MiB, 0.01% gc time, 0.07% compilation time)
+Feasible solution found, objective function value: 1.596325854850715e13
+Saving model results...  5.660471 seconds (7.42 M allocations: 314.186 MiB, 81.38% compilation time)
+Postprocessing model results...  0.001980 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  3.569274 seconds (6.33 M allocations: 333.174 MiB, 84.88% compilation time)
+Rolling model temporal structure...  2.116248 seconds (4.78 M allocations: 108.953 MiB, 32.68% gc time, 61.40% compilation time)
+Fixing model history...  1.014878 seconds (1.37 M allocations: 67.005 MiB, 93.13% compilation time)
+Applying model non-anticipativity constraints...  0.184074 seconds (57.87 k allocations: 2.985 MiB, 98.86% compilation time)
+model - window 2 of 12: 2019-01-31T10:00~(4 weeks, 2 days, 10 hours)~>2019-03-02T20:00
+Optimizing model...MIP has 100129 rows; 106307 cols; 250149 nonzeros; 2239 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 5e+05]
+  Cost    [4e-03, 3e+11]
+  Bound   [1e-15, 1e+05]
+  RHS     [1e+00, 2e+04]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-6, or setting the user_objective_scale option to -19
+Presolving model
+67615 rows, 54911 cols, 175872 nonzeros 0s
+30271 rows, 40590 cols, 136226 nonzeros 0s
+27356 rows, 33239 cols, 128020 nonzeros 1s
+Presolve reductions: rows 27356(-72773); columns 33239(-73068); nonzeros 128020(-122129)
+Solving MIP model with:
+   27356 rows
+   33239 cols (1829 binary, 0 integer, 0 implied int., 31410 continuous, 0 domain fixed)
+   128020 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   3.57273689e+11  inf                  inf        0      0      0         0     2.1s
+ R       0       0         0   0.00%   1.10081938e+13  1.61393758e+13    31.79%        0      0      0     18701     6.7s
+         0       0         0   0.00%   1.30063625e+13  1.61393758e+13    19.41%     2690    386      0     31243    16.6s
+         0       0         0   0.00%   1.43218742e+13  1.61393758e+13    11.26%     5406    974      0     42696    22.1s
+         0       0         0   0.00%   1.43454603e+13  1.61393758e+13    11.12%     7327   1409      0     52019    29.3s
+         0       0         0   0.00%   1.43689442e+13  1.61393758e+13    10.97%     8476   1563      0     60003    35.7s
+         0       0         0   0.00%   1.45128803e+13  1.61393758e+13    10.08%     9696   1859      0     68882    41.7s
+         0       0         0   0.00%   1.47754065e+13  1.61393758e+13     8.45%    11713   2125      0     77461    46.9s
+         0       0         0   0.00%   1.49025075e+13  1.61393758e+13     7.66%     8805   2258      0     85950    52.3s
+         0       0         0   0.00%   1.49365094e+13  1.61393758e+13     7.45%     9618   2175      0     91587    57.8s
+         0       0         0   0.00%   1.49531688e+13  1.61393758e+13     7.35%    10165   2217      0     96942    62.9s
+         0       0         0   0.00%   1.49631835e+13  1.61393758e+13     7.29%    10495   2243      0    103906    69.3s
+         0       0         0   0.00%   1.49727805e+13  1.61393758e+13     7.23%    10794   2114      0    112379    75.9s
+         0       0         0   0.00%   1.49761525e+13  1.61393758e+13     7.21%    11217   2153      0    120837    82.1s
+         0       0         0   0.00%   1.49850665e+13  1.61393758e+13     7.15%    11645   2200      0    129477    89.2s
+         0       0         0   0.00%   1.49915887e+13  1.61393758e+13     7.11%    11978   2005      0    134947    94.6s
+         0       0         0   0.00%   1.49958556e+13  1.61393758e+13     7.09%    10501   2022      0    140012    99.8s
+         0       0         0   0.00%   1.50004407e+13  1.61393758e+13     7.06%    10797   1952      0    146309   106.4s
+         0       0         0   0.00%   1.50038537e+13  1.61393758e+13     7.04%    10967   1966      0    152574   112.3s
+         0       0         0   0.00%   1.50049805e+13  1.61393758e+13     7.03%    11062   1973      0    166189   123.3s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+ L       0       0         0   0.00%   1.50049805e+13  1.50229048e+13     0.12%    11062   1973      0    166189   402.8s
+        51       1         1   0.00%   1.50049805e+13  1.50229048e+13     0.12%    10326   1724     16    727392   643.2s
+        61       3         5   0.00%   1.50049805e+13  1.50229048e+13     0.12%    10326   1724     16    732356   649.7s
+        72       3        10   0.00%   1.50049805e+13  1.50229048e+13     0.12%    10326   1724     16    737112   656.0s
+        78       3        13   0.00%   1.50049805e+13  1.50229048e+13     0.12%    10326   1724     16    741304   661.6s
+        87       3        17   0.00%   1.50049805e+13  1.50229048e+13     0.12%    10326   1724     16    743430   666.8s
+        95       3        21   0.00%   1.50049805e+13  1.50229048e+13     0.12%    10326   1724     18    747205   674.3s
+       142      56        24   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     45    832954   748.0s
+       159      56        25   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     47    844971   759.8s
+       163      57        27   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     47    850882   766.8s
+       169      57        30   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     55    856758   775.4s
+       175      57        32   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     60    859852   780.6s
+       179      57        34   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     61    864331   789.1s
+       189      58        38   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     61    866795   795.8s
+       193      58        40   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     62    869421   800.8s
+       198      58        42   0.00%   1.50049805e+13  1.50229048e+13     0.12%     6775   1742     63    872202   806.5s
+       203     115        44   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     70    879214   821.3s
+       211     116        47   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     72    882559   828.8s
+       220     119        49   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     72    886538   835.5s
+       225     119        51   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     79    889619   840.9s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       230     121        54   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     79    893240   848.3s
+       236     121        56   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     80    897748   854.9s
+       243     121        59   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    901292   861.7s
+       247     121        61   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    905662   867.1s
+       255     121        65   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    907709   872.4s
+       263     121        69   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    909365   877.6s
+       271     121        73   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    912444   884.5s
+       278     121        76   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    914483   889.8s
+       282     122        79   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    915764   895.0s
+       286     122        81   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    920117   903.1s
+       294     122        84   0.00%   1.50052272e+13  1.50229048e+13     0.12%     6072   1737     83    922190   908.6s
+ L     301     127        87   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741     88    924706  1036.2s
+       306     127        88   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741     92     1058k  1045.0s
+       310     128        90   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    104     1070k  1057.7s
+       316     128        92   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    107     1078k  1068.8s
+       321     131        94   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    108     1088k  1079.4s
+       328     132        96   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1094k  1087.4s
+       330     133        97   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1100k  1096.1s
+       336     133       100   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1102k  1103.0s
+       340     133       102   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1111k  1114.4s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       344     133       104   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1120k  1122.3s
+       346     133       105   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1124k  1128.9s
+       355     134       109   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1127k  1135.5s
+       358     134       111   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1133k  1143.7s
+       362     134       113   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1140k  1154.0s
+       369     134       116   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1145k  1161.6s
+       374     135       118   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1148k  1167.0s
+       384     135       121   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1151k  1173.5s
+       388     135       123   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1154k  1179.6s
+       394     135       126   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1160k  1190.2s
+       399     138       129   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5624   1741    109     1162k  1195.3s
+       403     141       131   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    114     1167k  1207.7s
+       408     141       133   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    118     1172k  1216.3s
+       418     143       135   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    118     1176k  1223.0s
+       422     143       136   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    119     1181k  1230.2s
+       426     143       138   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    120     1188k  1240.1s
+       432     144       140   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    120     1192k  1245.9s
+       439     145       142   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    120     1197k  1253.8s
+       445     145       145   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    121     1203k  1264.3s
+       449     146       147   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    121     1206k  1269.3s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       453     146       149   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    121     1211k  1277.4s
+       462     146       151   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    126     1213k  1283.5s
+       468     146       154   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    126     1216k  1289.9s
+       475     146       157   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    127     1220k  1300.6s
+       480     148       161   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    127     1222k  1306.7s
+       490     150       165   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    127     1225k  1313.9s
+       499     151       168   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5432   1742    128     1228k  1319.8s
+       505     163       170   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    134     1239k  1340.1s
+       511     163       173   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    136     1243k  1346.4s
+       521     163       176   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    137     1248k  1355.1s
+       526     164       178   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    138     1252k  1361.0s
+       538     166       182   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    140     1258k  1369.8s
+       541     168       184   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    140     1262k  1375.3s
+       548     168       187   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    141     1264k  1380.9s
+       554     168       189   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    141     1269k  1387.4s
+       564     169       192   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    143     1274k  1395.5s
+       568     169       194   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    143     1277k  1400.6s
+       577     170       198   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    143     1280k  1406.8s
+       583     171       202   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    143     1282k  1412.7s
+       592     172       205   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    144     1285k  1418.8s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       602     187       208   0.00%   1.50052272e+13  1.50227339e+13     0.12%     5160   1638    144     1288k  1423.9s
+       628     188       209   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    157     1314k  1450.5s
+       637     189       213   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    166     1320k  1457.6s
+       646     191       216   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    166     1325k  1462.9s
+       653     193       219   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    169     1329k  1468.2s
+       661     193       222   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    170     1334k  1474.1s
+       673     194       227   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    179     1340k  1482.0s
+       684     194       231   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    180     1344k  1487.2s
+       693     195       235   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    181     1350k  1494.1s
+       701     197       238   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4240   1661    181     1354k  1499.3s
+       705     225       240   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    186     1366k  1517.7s
+       715     226       242   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1373k  1527.6s
+       721     226       245   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1378k  1536.6s
+       725     226       247   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1382k  1543.2s
+       731     228       250   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1386k  1549.5s
+       738     228       252   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1389k  1555.0s
+       744     228       255   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1392k  1561.2s
+       750     228       258   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1395k  1567.2s
+       754     228       260   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1399k  1572.8s
+       763     228       263   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    189     1402k  1578.6s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       769     231       266   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    190     1404k  1583.8s
+       771     232       268   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    190     1407k  1588.9s
+       777     232       271   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    191     1411k  1597.0s
+       781     232       273   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    191     1419k  1608.1s
+       785     232       275   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    192     1425k  1614.9s
+       789     232       277   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    192     1429k  1621.1s
+       795     232       280   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    192     1432k  1626.4s
+       799     233       282   0.00%   1.50052272e+13  1.50227339e+13     0.12%     4128   1663    192     1436k  1631.4s
+       830     236       285   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    205     1684k  1921.0s
+       842     239       288   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    208     1689k  1926.4s
+       851     239       292   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    209     1693k  1931.9s
+       861     239       297   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    209     1698k  1937.4s
+       871     239       302   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    209     1702k  1942.6s
+       882     240       307   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    210     1706k  1948.4s
+       894     240       311   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    211     1711k  1955.7s
+       903     274       315   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3931   1586    212     1714k  1961.1s
+       920     273       316   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    220     1726k  1974.9s
+       933     273       317   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    220     1734k  1981.7s
+       942     273       320   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    220     1738k  1987.1s
+       948     273       323   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1745k  1994.4s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+       954     273       326   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1750k  2000.0s
+       962     273       330   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1752k  2005.0s
+       970     273       334   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1756k  2011.5s
+       976     273       337   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1760k  2017.3s
+       989     273       343   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1764k  2023.3s
+       999     273       348   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3800   1587    222     1770k  2029.5s
+Restarting search from the root node
+Model after restart has 27193 rows, 33070 cols (1829 bin., 0 int., 0 impl., 31241 cont., 0 dom.fix.), and 126548 nonzeros
+ J    1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     1587   1750      0     1773k  2034.0s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     1587   1447      0     1795k  2046.4s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     1968   1498      0     1803k  2054.8s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     2209   1525      0     1810k  2061.5s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     2573   1561      0     1817k  2069.3s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     2859   1588      0     1821k  2076.2s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3142   1624      0     1827k  2083.5s
+      1003       0         0   0.00%   1.50052272e+13  1.50227339e+13     0.12%     3389   1656      0     1835k  2093.1s
+      1003       0         0   0.00%   1.50076902e+13  1.50227339e+13     0.10%     3648   1673      0     1842k  2100.8s
+      1003       0         0   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3802   1635      0     1849k  2109.7s
+      1022       2         1   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3822   1513     21     2031k  2252.0s
+      1053       3         2   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3824   1513     70     2055k  2269.7s
+      1067      11         7   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3828   1513    312     2062k  2275.0s
+      1086      12        15   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3836   1513    543     2065k  2280.5s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1099      12        20   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3843   1513    635     2068k  2286.1s
+      1112      54        24   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3852   1513    778     2076k  2295.3s
+      1132      58        32   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3859   1513    843     2082k  2300.5s
+      1153      59        43   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3869   1513    905     2088k  2305.7s
+      1178      59        54   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3882   1513    967     2095k  2311.6s
+      1198      61        65   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3892   1513   1024     2101k  2316.9s
+      1212      63        71   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3897   1514   1048     2107k  2322.8s
+      1230      64        78   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3904   1514   1075     2110k  2328.2s
+      1244      65        85   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3918   1514   1177     2113k  2333.3s
+      1263      66        95   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3929   1514   1244     2116k  2338.6s
+      1279      66       103   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3937   1514   1293     2119k  2343.7s
+      1296      68       111   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3946   1514   1364     2122k  2348.8s
+      1318      73       117   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3953   1515   1401     2125k  2354.4s
+      1329      76       124   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3960   1515   1503     2127k  2359.6s
+      1350      78       132   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3969   1515   1561     2130k  2365.3s
+      1366      78       140   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3977   1515   1607     2133k  2370.3s
+      1388      81       150   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3987   1515   1668     2135k  2375.6s
+      1412      87       159   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3996   1515   1704     2137k  2380.9s
+      1432      89       167   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4003   1515   1903     2140k  2386.5s
+      1464      97       179   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4015   1515   1975     2142k  2392.2s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1484     104       186   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4023   1515   2031     2145k  2397.3s
+      1503     108       194   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4031   1515   2140     2148k  2402.5s
+      1521     115       201   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4027   1515   2209     2150k  2408.1s
+      1534     116       206   0.00%   1.50108471e+13  1.50227339e+13     0.08%     3997   1100   2241     2153k  2413.2s
+      1557     120       215   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4006   1100   2285     2156k  2418.3s
+      1581     125       224   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4014   1100   2346     2159k  2423.6s
+      1633     129       229   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4658   1428   2430     2249k  2490.0s
+      1649     131       232   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4661   1428   2479     2258k  2501.4s
+      1658     131       235   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4667   1428   2516     2261k  2506.9s
+      1668     131       241   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4674   1428   2544     2263k  2512.8s
+      1682     132       247   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4679   1428   2567     2264k  2518.6s
+      1702     185       252   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4721   1464   2639     2480k  2770.8s
+      1710     187       255   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4725   1464   2658     2484k  2776.0s
+      1716     187       258   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4731   1464   2707     2488k  2782.4s
+      1726     187       262   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4735   1464   2739     2490k  2788.1s
+      1730     187       264   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4740   1464   2766     2494k  2793.5s
+      1738     187       268   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4748   1464   2853     2496k  2799.1s
+      1746     187       271   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4756   1464   2942     2499k  2805.5s
+      1755     188       276   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4759   1464   3012     2501k  2811.1s
+      1761     188       277   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4763   1464   3092     2505k  2816.9s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1772     190       282   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4767   1464   3175     2506k  2822.8s
+      1779     190       286   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4770   1464   3227     2509k  2829.3s
+      1786     191       290   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4774   1464   3256     2511k  2835.0s
+      1798     203       293   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4786   1473   3311     2517k  2846.6s
+      1806     203       295   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4793   1473   3872     2520k  2852.0s
+      1813     204       298   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4797   1473   4196     2523k  2858.3s
+      1822     205       302   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4803   1473   4770     2526k  2864.8s
+      1830     207       304   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4809   1473   4846     2530k  2870.1s
+      1839     207       307   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4812   1473   4886     2533k  2876.4s
+      1847     208       311   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4815   1473   4908     2535k  2881.9s
+      1854     209       314   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4820   1473   4938     2537k  2887.6s
+      1861     209       318   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4825   1473   4975     2539k  2892.8s
+      1868     209       322   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4829   1473   5004     2540k  2897.9s
+      1880     210       327   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4833   1473   5037     2542k  2904.4s
+      1891     211       332   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4837   1473   5099     2543k  2910.8s
+      1909     221       334   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4609   1390   5136     2554k  2934.5s
+      1918     222       339   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4615   1390   5162     2556k  2940.2s
+      1934     224       344   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4622   1390   5179     2559k  2947.9s
+      1947     225       349   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4627   1390   5199     2561k  2955.8s
+      1959     226       355   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4635   1390   5251     2563k  2962.0s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+      1967     228       360   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4640   1390   5285     2565k  2967.6s
+      1973     229       363   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4644   1390   5303     2567k  2972.7s
+      1982     230       367   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4648   1390   5347     2568k  2977.7s
+      1992     243       371   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4652   1390   5360     2571k  2983.7s
+      2006     244       372   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4620   1391   5378     2575k  2990.0s
+      2015     247       375   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4623   1391   5418     2577k  2995.1s
+      2024     258       380   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4627   1391   5435     2579k  3000.2s
+      2024     258       380   0.00%   1.50108471e+13  1.50227339e+13     0.08%     4627   1391   5435     2579k  3000.2s
+Solving report
+  Status            Time limit reached
+  Primal bound      1.50227338939e+13
+  Dual bound        1.50108470746e+13
+  Gap               0.0791% (tolerance: 0%)
+  P-D integral      34.6347862104
+  Solution status   feasible
+                    1.50227338939e+13 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            3000.17
+  Max sub-MIP depth 7
+  Nodes             2024
+  Repair LPs        0
+  LP iterations     2579235
+                    651825 (strong br.)
+                    235062 (separation)
+                    800496 (heuristics)
+3000.227881 seconds (31.00 k allocations: 1.284 MiB)
+Feasible solution found, objective function value: 1.5022733893851012e13
+Saving model results...  0.543807 seconds (3.32 M allocations: 109.501 MiB)
+Postprocessing model results...  0.000112 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.460628 seconds (2.14 M allocations: 131.617 MiB)
+Rolling model temporal structure...  0.905689 seconds (4.37 M allocations: 88.509 MiB, 23.50% gc time)
+Fixing model history...  0.050779 seconds (324.30 k allocations: 15.877 MiB)
+Applying model non-anticipativity constraints...  0.000183 seconds (497 allocations: 25.891 KiB)
+model - window 3 of 12: 2019-03-02T20:00~(4 weeks, 2 days, 10 hours)~>2019-04-02T06:00

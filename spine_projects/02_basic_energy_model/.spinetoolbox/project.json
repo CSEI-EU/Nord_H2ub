@@ -153,8 +153,7 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "methanol_escondida_eff_05pup": true
+                                "Base": true
                             }
                         }
                     },
@@ -197,7 +196,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_methanol_escondida_eff_05pdown.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared_chile.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -207,8 +206,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 248.28586164677827,
-            "y": -256.05824744832546,
+            "x": 248.28586164677824,
+            "y": -257.9442950591108,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -228,7 +227,7 @@
             "type": "Tool",
             "description": "",
             "x": 237.38345634913784,
-            "y": -48.589103379797244,
+            "y": -50.475150990582506,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -280,7 +279,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_methanol_escondida_eff_05pdown.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared_chile.xlsx",
                     true
                 ]
             ]
@@ -299,8 +298,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 73.905065316738,
-            "y": -160.82087894259266,
+            "x": 73.90506531673802,
+            "y": -164.5929741641632,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
