@@ -196,7 +196,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/ammonia_input_prepared_chile.xlsx"
+                    "path": "C:/Users/jfg.eco/Downloads/paper_iaee_ammonia_testing.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -226,8 +226,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 237.38345634913784,
-            "y": -50.475150990582506,
+            "x": 237.38345634913782,
+            "y": -52.36119860136776,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -272,14 +272,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -61.154852818458615,
-            "y": -168.05317949911534,
+            "x": -61.15485281845861,
+            "y": -169.9392271099006,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\ammonia_input_prepared_chile.xlsx",
+                    "C:\\Users\\jfg.eco\\Downloads\\paper_iaee_ammonia_testing.xlsx",
                     true
                 ]
             ]
@@ -298,7 +298,7 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 73.90506531673802,
+            "x": 72.01901770595278,
             "y": -164.5929741641632,
             "url": {
                 "dialect": "sqlite",
