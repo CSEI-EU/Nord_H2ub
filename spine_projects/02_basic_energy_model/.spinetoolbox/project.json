@@ -107,8 +107,7 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "chile": true
+                                "Base": true
                             }
                         }
                     },
@@ -196,7 +195,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Downloads/paper_iaee_ammonia_testing.xlsx"
+                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/methanol_Input_prepared_iaee_2026_ammonia_desal_base.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -206,8 +205,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 248.28586164677824,
-            "y": -257.9442950591108,
+            "x": 248.28586164677827,
+            "y": -265.48848550225176,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -226,8 +225,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-            "x": 237.38345634913782,
-            "y": -52.36119860136776,
+            "x": 237.3834563491378,
+            "y": -54.24724621215303,
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -247,7 +246,7 @@
             "type": "Exporter",
             "description": "",
             "x": 535.9747862573099,
-            "y": -161.67030077783943,
+            "y": -163.55634838862468,
             "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
@@ -272,14 +271,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -61.15485281845861,
-            "y": -169.9392271099006,
+            "x": -61.154852818458615,
+            "y": -171.82527472068588,
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Downloads\\paper_iaee_ammonia_testing.xlsx",
+                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\methanol_Input_prepared_iaee_2026_ammonia_desal_base.xlsx",
                     true
                 ]
             ]
@@ -299,7 +298,7 @@
             "type": "Data Store",
             "description": "",
             "x": 72.01901770595278,
-            "y": -164.5929741641632,
+            "y": -166.47902177494845,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -315,8 +314,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 413.0170429262977,
-            "y": -159.5677779726661,
+            "x": 414.9030905370828,
+            "y": -170.88406363737764,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
