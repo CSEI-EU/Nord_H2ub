@@ -107,12 +107,8 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-<<<<<<< Updated upstream
                                 "Base": true,
                                 "base_case": true
-=======
-                                "Base": true
->>>>>>> Stashed changes
                             }
                         }
                     },
@@ -157,11 +153,8 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-<<<<<<< Updated upstream
-                                "2045_desal": true,
-=======
->>>>>>> Stashed changes
-                                "Base": true
+                                "Base": true,
+                                "smartenergy_2045_o2_vol_05pup": true
                             }
                         }
                     },
@@ -198,17 +191,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -202.27831187208182,
-            "y": -165.33103661356688,
+            "x": -200.3922642612966,
+            "y": -169.10313183513745,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-<<<<<<< Updated upstream
-                    "path": "C:/Users/jfg.eco/OneDrive - CBS - Copenhagen Business School/LCOM/bornholm_paper/input/01_review/paper_smart_energy_2045_desal_payasproduced.xlsx"
-=======
-                    "path": "C:/Users/jfg.eco/OneDrive - CBS - Copenhagen Business School/LCOM/bornholm_paper/input/done/paper_smart_energy_2045_payasproduced_o2_vol_05pdown.xlsx"
->>>>>>> Stashed changes
+                    "path": "C:/Users/jfg.eco/OneDrive - CBS - Copenhagen Business School/LCOM/bornholm_paper/input/done/paper_smart_energy_2045_payasproduced_o2_vol_05pup.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -218,8 +207,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 245.6534501656066,
-            "y": -256.0582474483255,
+            "x": 250.17190925756353,
+            "y": -265.48848550225176,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -238,13 +227,8 @@
         "Run SpineOpt": {
             "type": "Tool",
             "description": "",
-<<<<<<< Updated upstream
-            "x": 237.38345634913784,
-            "y": -48.589103379797244,
-=======
             "x": 237.3834563491378,
             "y": -58.019341433723554,
->>>>>>> Stashed changes
             "specification": "Run SpineOpt",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -263,13 +247,8 @@
         "Exporter": {
             "type": "Exporter",
             "description": "",
-<<<<<<< Updated upstream
-            "x": 535.9747862573098,
-            "y": -156.40547781549614,
-=======
             "x": 549.1771195328067,
             "y": -174.87263405333624,
->>>>>>> Stashed changes
             "output_time_stamps": true,
             "cancel_on_error": true,
             "output_labels": [
@@ -284,7 +263,7 @@
             "type": "Tool",
             "description": "",
             "x": -342.6084292622087,
-            "y": -158.85008392927125,
+            "y": -160.7361315400565,
             "specification": "run data prep",
             "execute_in_work": true,
             "cmd_line_args": [],
@@ -294,23 +273,14 @@
         "Importer": {
             "type": "Importer",
             "description": "",
-<<<<<<< Updated upstream
-            "x": -65.6733119104155,
-            "y": -167.30681562872897,
-=======
             "x": -63.04090042924388,
             "y": -171.8252747206859,
->>>>>>> Stashed changes
             "specification": "mapping_importer_ehm",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-<<<<<<< Updated upstream
-                    "C:\\Users\\jfg.eco\\OneDrive - CBS - Copenhagen Business School\\LCOM\\bornholm_paper\\input\\01_review\\paper_smart_energy_2045_desal_payasproduced.xlsx",
-=======
-                    "C:\\Users\\jfg.eco\\OneDrive - CBS - Copenhagen Business School\\LCOM\\bornholm_paper\\input\\done\\paper_smart_energy_2045_payasproduced_o2_vol_05pdown.xlsx",
->>>>>>> Stashed changes
+                    "C:\\Users\\jfg.eco\\OneDrive - CBS - Copenhagen Business School\\LCOM\\bornholm_paper\\input\\done\\paper_smart_energy_2045_payasproduced_o2_vol_05pup.xlsx",
                     true
                 ]
             ]
@@ -329,13 +299,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-<<<<<<< Updated upstream
-            "x": 72.01901770595276,
-            "y": -162.70692655337788,
-=======
             "x": 73.905065316738,
             "y": -168.36506938573368,
->>>>>>> Stashed changes
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -351,8 +316,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 413.0170429262976,
-            "y": -160.707461713065,
+            "x": 416.7891381478681,
+            "y": -176.5422064697334,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
