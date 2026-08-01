@@ -107,8 +107,7 @@
                         "db_url@Input": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "base_case": true
+                                "Base": true
                             }
                         }
                     },
@@ -153,8 +152,7 @@
                         "db_url@OutputTest": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Base": true,
-                                "smartenergy_2045_o2_vol_05pup": true
+                                "Base": true
                             }
                         }
                     },
@@ -191,13 +189,13 @@
         "Data Connection": {
             "type": "Data Connection",
             "description": "",
-            "x": -200.3922642612966,
-            "y": -169.10313183513745,
+            "x": -202.27831187208184,
+            "y": -169.10313183513742,
             "file_references": [
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/OneDrive - CBS - Copenhagen Business School/LCOM/bornholm_paper/input/done/paper_smart_energy_2045_payasproduced_o2_vol_05pup.xlsx"
+                    "path": "C:/Users/jfg.eco/OneDrive - CBS - Copenhagen Business School/LCOM/bornholm_paper/01_final_input/paper_smart_energy_2045_payasproduced_eff_05pdown.xlsx"
                 }
             ],
             "file_patterns": [],
@@ -207,8 +205,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 250.17190925756353,
-            "y": -265.48848550225176,
+            "x": 252.05795686834878,
+            "y": -265.4884855022518,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -247,7 +245,7 @@
         "Exporter": {
             "type": "Exporter",
             "description": "",
-            "x": 549.1771195328067,
+            "x": 551.063167143592,
             "y": -174.87263405333624,
             "output_time_stamps": true,
             "cancel_on_error": true,
@@ -280,7 +278,7 @@
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\OneDrive - CBS - Copenhagen Business School\\LCOM\\bornholm_paper\\input\\done\\paper_smart_energy_2045_payasproduced_o2_vol_05pup.xlsx",
+                    "C:\\Users\\jfg.eco\\OneDrive - CBS - Copenhagen Business School\\LCOM\\bornholm_paper\\01_final_input\\paper_smart_energy_2045_payasproduced_eff_05pdown.xlsx",
                     true
                 ]
             ]
@@ -316,8 +314,8 @@
         "OutputTest": {
             "type": "Data Store",
             "description": "",
-            "x": 416.7891381478681,
-            "y": -176.5422064697334,
+            "x": 414.9030905370828,
+            "y": -178.42825408051874,
             "url": {
                 "dialect": "sqlite",
                 "host": "",

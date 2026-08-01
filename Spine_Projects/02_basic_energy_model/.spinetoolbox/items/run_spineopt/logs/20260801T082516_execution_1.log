@@ -1,0 +1,1107 @@
+### Spine execution log file
+### Item name: Run SpineOpt
+### Filter id: 
+### Part: 1
+
+# Running julia run_spineopt.jl http://127.0.0.1:65010 http://127.0.0.1:65012
+2-element Vector{String}:
+ "http://127.0.0.1:65010"
+ "http://127.0.0.1:65012"
+Running SpineOpt...
+[SpineOpt version 0.10.2 (git hash: N/A)]
+[SpineInterface version 0.15.2 (git hash: N/A)]
+Execution started at 2026-08-01T08:25:16.410
+Reading input data from sqlite:///C:\Users\jfg.eco\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\input\Input.sqlite...
+Initializing  data structure from db...  1.358221 seconds (1.93 M allocations: 130.936 MiB)
+Preprocessing  data structure...  0.202482 seconds (48.48 k allocations: 2.446 MiB, 51.65% compilation time)
+Checking  data structure...  0.039168 seconds (9.05 k allocations: 477.016 KiB, 70.60% compilation time)
+Build started at 2026-08-01T08:25:18.145
+Creating model temporal structure...[ Info: the last time slice of temporal block Default_Investment_period has been cut to fit within the block
+[ Info: the last time slice of temporal block daily has been cut to fit within the block
+ 72.098963 seconds (431.06 M allocations: 22.181 GiB, 54.96% gc time, 0.05% compilation time)
+Creating model stochastic structure...  1.242354 seconds (3.22 M allocations: 453.173 MiB, 76.53% gc time, 3.84% compilation time)
+Adding model independent variables...
+- [variable_binary_gas_connection_flow]  0.068837 seconds (2.29 M allocations: 34.946 MiB)
+- [variable_connection_flow]  6.296417 seconds (13.99 M allocations: 1.458 GiB, 72.33% gc time, 3.07% compilation time)
+- [variable_connection_intact_flow]  0.855270 seconds (11.02 M allocations: 725.250 MiB, 12.63% gc time)
+- [variable_connections_decommissioned]  0.079012 seconds (2.30 M allocations: 35.579 MiB)
+- [variable_connections_invested]  0.457101 seconds (2.54 M allocations: 146.441 MiB, 25.30% gc time)
+- [variable_connections_invested_available]  0.337628 seconds (2.63 M allocations: 146.058 MiB, 6.48% compilation time)
+- [variable_min_capacity_margin_slack]  0.061915 seconds (2.29 M allocations: 34.901 MiB)
+- [variable_node_injection]  0.476125 seconds (6.86 M allocations: 370.935 MiB, 29.22% gc time)
+- [variable_node_pressure]  0.061145 seconds (2.29 M allocations: 34.920 MiB)
+- [variable_node_slack_neg]  0.331314 seconds (6.73 M allocations: 321.233 MiB)
+- [variable_node_slack_pos]  0.489357 seconds (6.73 M allocations: 321.237 MiB, 28.55% gc time)
+- [variable_node_state]  0.209430 seconds (4.26 M allocations: 143.007 MiB, 9.20% compilation time)
+- [variable_node_voltage_angle]  0.060785 seconds (2.29 M allocations: 34.920 MiB)
+- [variable_nonspin_units_shut_down]  0.062003 seconds (2.29 M allocations: 34.936 MiB)
+- [variable_nonspin_units_started_up]  0.061640 seconds (2.29 M allocations: 34.933 MiB)
+- [variable_storages_decommissioned]  0.065610 seconds (2.29 M allocations: 35.092 MiB)
+- [variable_storages_invested]  0.120861 seconds (1.99 M allocations: 64.959 MiB, 14.93% compilation time)
+- [variable_storages_invested_available]  0.100422 seconds (1.99 M allocations: 64.871 MiB)
+- [variable_unit_flow]  3.149072 seconds (16.39 M allocations: 2.228 GiB, 29.88% gc time, 2.64% compilation time)
+- [variable_unit_flow_op]  0.303827 seconds (3.78 M allocations: 156.503 MiB, 26.11% gc time)
+- [variable_unit_flow_op_active]  0.297671 seconds (4.25 M allocations: 184.322 MiB)
+- [variable_units_invested]  0.402606 seconds (2.53 M allocations: 132.870 MiB)
+- [variable_units_invested_available]  0.527406 seconds (2.60 M allocations: 135.804 MiB, 30.88% gc time, 3.38% compilation time)
+- [variable_units_mothballed]  0.066370 seconds (2.30 M allocations: 35.614 MiB)
+- [variable_units_on]  0.399677 seconds (5.72 M allocations: 258.949 MiB)
+- [variable_units_out_of_service]  0.079778 seconds (2.29 M allocations: 34.912 MiB)
+- [variable_units_returned_to_service]  0.093301 seconds (2.29 M allocations: 34.907 MiB)
+- [variable_units_shut_down]  0.121849 seconds (2.57 M allocations: 53.711 MiB)
+- [variable_units_started_up]  0.107224 seconds (2.56 M allocations: 53.019 MiB)
+- [variable_units_taken_out_of_service]  0.107516 seconds (2.29 M allocations: 34.908 MiB)
+- [variable_user_constraint_slack_neg]  0.100155 seconds (2.29 M allocations: 34.899 MiB)
+- [variable_user_constraint_slack_pos]  0.263998 seconds (2.29 M allocations: 34.899 MiB, 68.73% gc time)
+ 16.242219 seconds (131.18 M allocations: 7.367 GiB, 39.53% gc time, 2.18% compilation time)
+Adding model dependent variables...
+- [variable_connection_flow]  0.311831 seconds (4.68 M allocations: 203.033 MiB)
+- [variable_unit_flow]  0.423649 seconds (6.40 M allocations: 302.910 MiB)
+  0.739264 seconds (11.08 M allocations: 505.955 MiB)
+Adding model expressions...
+- [expression_capacity_margin]  0.001547 seconds (86 allocations: 3.875 KiB)
+  0.002473 seconds (200 allocations: 9.664 KiB)
+Adding model constraints...
+- [constraint_candidate_connection_flow_lb]  0.000705 seconds (146 allocations: 6.461 KiB)
+- [constraint_candidate_connection_flow_ub]  0.000122 seconds (144 allocations: 6.180 KiB)
+- [constraint_compression_ratio]  0.000092 seconds (94 allocations: 5.930 KiB)
+- [constraint_connection_flow_capacity]  2.259389 seconds (22.42 M allocations: 1.265 GiB, 22.08% gc time, 0.03% compilation time)
+- [constraint_connection_flow_gas_capacity]  0.000097 seconds (97 allocations: 7.086 KiB)
+- [constraint_connection_flow_intact_flow]  0.000102 seconds (87 allocations: 4.008 KiB)
+- [constraint_connection_flow_lodf]  0.000641 seconds (66 allocations: 3.438 KiB)
+- [constraint_connection_intact_flow_capacity]  0.000182 seconds (118 allocations: 5.648 KiB)
+- [constraint_connection_intact_flow_ptdf]  0.000105 seconds (72 allocations: 3.602 KiB)
+- [constraint_connection_lifetime] 34.832468 seconds (219.78 M allocations: 22.942 GiB, 52.99% gc time, 0.05% compilation time)
+- [constraint_connection_unitary_gas_flow]  0.001638 seconds (94 allocations: 5.930 KiB)
+- [constraint_connections_invested_available]  0.000918 seconds (2.82 k allocations: 164.122 KiB)
+- [constraint_connections_invested_transition]  0.003652 seconds (16.29 k allocations: 859.613 KiB)
+- [constraint_cyclic_node_state]  0.008343 seconds (2.56 k allocations: 123.836 KiB, 97.20% compilation time)
+- [constraint_fix_node_pressure_point]  0.000112 seconds (94 allocations: 5.930 KiB)
+- [constraint_fix_ratio_in_in_unit_flow]  0.109120 seconds (1.09 M allocations: 69.085 MiB)
+- [constraint_fix_ratio_in_out_unit_flow]  0.000409 seconds (3.20 k allocations: 167.633 KiB)
+- [constraint_fix_ratio_out_in_connection_flow]  0.339346 seconds (822.60 k allocations: 48.705 MiB, 70.75% gc time, 4.37% compilation time)
+- [constraint_fix_ratio_out_in_unit_flow]  0.000112 seconds (194 allocations: 12.289 KiB)
+- [constraint_fix_ratio_out_out_unit_flow]  0.000237 seconds (1.10 k allocations: 58.758 KiB)
+- [constraint_investment_group_equal_investments]  0.009472 seconds (37.15 k allocations: 8.371 MiB)
+- [constraint_investment_group_maximum_capacity_invested_available]  0.000056 seconds (35 allocations: 2.273 KiB)
+- [constraint_investment_group_maximum_entities_invested_available]  0.000054 seconds (32 allocations: 1.898 KiB)
+- [constraint_investment_group_minimum_capacity_invested_available]  0.000059 seconds (32 allocations: 1.898 KiB)
+- [constraint_investment_group_minimum_entities_invested_available]  0.000054 seconds (33 allocations: 2.180 KiB)
+- [constraint_max_node_pressure]  0.000152 seconds (219 allocations: 10.758 KiB)
+- [constraint_max_node_voltage_angle]  0.000093 seconds (293 allocations: 13.742 KiB)
+- [constraint_max_ratio_in_in_unit_flow]  0.000117 seconds (194 allocations: 12.289 KiB)
+- [constraint_max_ratio_in_out_unit_flow]  0.000121 seconds (193 allocations: 12.008 KiB)
+- [constraint_max_ratio_out_in_connection_flow]  0.000098 seconds (114 allocations: 6.570 KiB)
+- [constraint_max_ratio_out_in_unit_flow]  0.000068 seconds (194 allocations: 12.289 KiB)
+- [constraint_max_ratio_out_out_unit_flow]  0.000083 seconds (193 allocations: 12.008 KiB)
+- [constraint_max_total_cumulated_unit_flow_from_node]  0.000090 seconds (96 allocations: 6.039 KiB)
+- [constraint_max_total_cumulated_unit_flow_to_node]  0.000037 seconds (93 allocations: 6.070 KiB)
+- [constraint_min_capacity_margin]  0.000082 seconds (101 allocations: 4.773 KiB)
+- [constraint_min_down_time]  0.646703 seconds (6.69 M allocations: 499.627 MiB, 5.85% compilation time)
+- [constraint_min_node_pressure]  0.000116 seconds (225 allocations: 15.475 KiB)
+- [constraint_min_node_voltage_angle]  0.000082 seconds (293 allocations: 13.742 KiB)
+- [constraint_min_ratio_in_in_unit_flow]  0.000092 seconds (193 allocations: 12.008 KiB)
+- [constraint_min_ratio_in_out_unit_flow]  0.000076 seconds (193 allocations: 12.008 KiB)
+- [constraint_min_ratio_out_in_connection_flow]  0.000077 seconds (114 allocations: 6.570 KiB)
+- [constraint_min_ratio_out_in_unit_flow]  0.000077 seconds (193 allocations: 12.008 KiB)
+- [constraint_min_ratio_out_out_unit_flow]  0.000059 seconds (193 allocations: 12.008 KiB)
+- [constraint_min_scheduled_outage_duration]  0.000073 seconds (66 allocations: 3.320 KiB)
+- [constraint_min_total_cumulated_unit_flow_from_node]  0.000306 seconds (96 allocations: 6.039 KiB)
+- [constraint_min_total_cumulated_unit_flow_to_node]  0.000036 seconds (92 allocations: 5.789 KiB)
+- [constraint_min_up_time]  0.064422 seconds (819.94 k allocations: 49.034 MiB)
+- [constraint_minimum_operating_point]  0.090876 seconds (944.49 k allocations: 56.703 MiB)
+- [constraint_nodal_balance]  0.327913 seconds (4.68 M allocations: 264.892 MiB)
+- [constraint_node_injection]  2.376190 seconds (26.96 M allocations: 1.351 GiB, 17.77% gc time)
+- [constraint_node_state_capacity]  0.342200 seconds (4.07 M allocations: 208.694 MiB)
+- [constraint_node_voltage_angle]  0.000093 seconds (69 allocations: 3.445 KiB)
+- [constraint_non_spinning_reserves_lower_bound]  0.000273 seconds (471 allocations: 22.898 KiB)
+- [constraint_non_spinning_reserves_shut_down_upper_bound]  0.000183 seconds (480 allocations: 23.695 KiB)
+- [constraint_non_spinning_reserves_start_up_upper_bound]  0.000098 seconds (480 allocations: 23.695 KiB)
+- [constraint_operating_point_bounds] 21.355979 seconds (163.32 M allocations: 18.732 GiB, 33.54% gc time)
+- [constraint_operating_point_rank]  0.028405 seconds (334.78 k allocations: 29.587 MiB)
+- [constraint_ramp_down]  0.243973 seconds (2.56 M allocations: 156.981 MiB, 16.11% compilation time)
+- [constraint_ramp_up]  0.212127 seconds (2.57 M allocations: 157.848 MiB)
+- [constraint_ratio_out_in_connection_intact_flow]  0.000098 seconds (87 allocations: 4.008 KiB)
+- [constraint_storage_lifetime]  4.297125 seconds (31.00 M allocations: 3.319 GiB, 34.54% gc time, 0.38% compilation time)
+- [constraint_storage_line_pack]  0.000948 seconds (96 allocations: 6.023 KiB)
+- [constraint_storages_invested_available]  0.000726 seconds (904 allocations: 49.602 KiB)
+- [constraint_storages_invested_transition]  0.001787 seconds (4.04 k allocations: 208.896 KiB)
+- [constraint_unit_flow_capacity]  0.913081 seconds (8.50 M allocations: 470.475 MiB)
+- [constraint_unit_flow_op_bounds]  0.384921 seconds (2.47 M allocations: 134.015 MiB, 5.22% compilation time)
+- [constraint_unit_flow_op_rank]  0.206036 seconds (1.93 M allocations: 109.220 MiB)
+- [constraint_unit_flow_op_sum]  0.015219 seconds (88.62 k allocations: 7.014 MiB)
+- [constraint_unit_lifetime] 18.286817 seconds (153.15 M allocations: 16.535 GiB, 33.93% gc time)
+- [constraint_unit_state_transition]  0.041409 seconds (310.07 k allocations: 22.204 MiB)
+- [constraint_units_available]  1.952727 seconds (15.33 M allocations: 778.447 MiB, 14.63% gc time)
+- [constraint_units_invested_available]  0.000610 seconds (3.03 k allocations: 175.669 KiB)
+- [constraint_units_invested_transition]  0.002725 seconds (17.63 k allocations: 923.691 KiB)
+- [constraint_units_out_of_service_contiguity]  0.001770 seconds (66 allocations: 3.320 KiB)
+- [constraint_units_out_of_service_transition]  0.000169 seconds (95 allocations: 4.883 KiB)
+- [constraint_user_constraint]  0.499339 seconds (4.30 M allocations: 255.670 MiB, 17.54% compilation time)
+ 90.827074 seconds (690.23 M allocations: 68.131 GiB, 38.27% gc time, 0.26% compilation time)
+Setting model objective...  1.072280 seconds (11.78 M allocations: 624.844 MiB, 24.07% gc time, 6.48% compilation time)
+Build complete. Started at 2026-08-01T08:25:18.145, ended at 2026-08-01T08:28:20.599, elapsed time: 3 minutes, 2 seconds, 454 milliseconds
+Solve started at 2026-08-01T08:28:20.605
+Bringing model to the first window...  3.449884 seconds (36.56 M allocations: 1.789 GiB, 18.52% gc time)
+model - window 1 of 12: 2019-01-01T00:00~(4 weeks, 2 days, 10 hours)~>2019-01-31T10:00
+Optimizing model...Running HiGHS 1.14.0 (git hash: 7df0786de3): Copyright (c) 2026 under Apache 2.0 license terms
+Using BLAS: blastrampoline-5
+MIP has 119868 rows; 139893 cols; 309909 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [3e-01, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+57447 rows, 70648 cols, 200884 nonzeros 0s
+38750 rows, 53424 cols, 189101 nonzeros 0s
+36708 rows, 48585 cols, 180396 nonzeros 0s
+Presolve reductions: rows 36708(-83160); columns 48585(-91308); nonzeros 180396(-129513)
+Solving MIP model with:
+   36708 rows
+   48585 cols (1777 binary, 0 integer, 0 implied int., 46808 continuous, 0 domain fixed)
+   180396 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -427997081.8136 inf                  inf        0      0      0         0     1.7s
+         0       0         0   0.00%   -107427374.352  inf                  inf        0      0      3     30005    10.3s
+ R       0       0         0   0.00%   -107426674.0355 1.6748826e+12    100.01%     5062    227      3     31071    22.0s
+         0       0         0   0.00%   -107421134.089  1.6748826e+12    100.01%     8334    455      3     31799    28.0s
+         0       0         0   0.00%   -107420873.1245 1.6748826e+12    100.01%    10107    499      3     31939    37.9s
+ C       0       0         0   0.00%   -107420870.1025 -107420661.8457    0.00%    10136    501      3     32263    45.3s
+         0       0         0   0.00%   -107420870.1025 -107420661.8457    0.00%    10136    382      3     33781   115.8s
+96.6% inactive integer columns, restarting
+Model after restart has 31824 rows, 40076 cols (29 bin., 0 int., 0 impl., 40047 cont., 0 dom.fix.), and 125619 nonzeros
+         0       0         0   0.00%   -107420870.1025 -107420661.8457    0.00%        6      0      0     33781   116.1s
+         0       0         0   0.00%   -107420870.1025 -107420661.8457    0.00%        6      4      0     34776   121.1s
+         0       0         0   0.00%   -107420855.2787 -107420661.8457    0.00%      130      6      0     37611   287.4s
+10.3% inactive integer columns, restarting
+Model after restart has 31810 rows, 40071 cols (25 bin., 0 int., 0 impl., 40046 cont., 0 dom.fix.), and 125511 nonzeros
+         0       0         0   0.00%   -107420855.2787 -107420661.8457    0.00%        4      0      0     37611   287.6s
+         0       0         0   0.00%   -107420855.2787 -107420661.8457    0.00%        4      4      0     37914   293.5s
+         0       0         0   0.00%   -107420852.263  -107420661.8457    0.00%      262      6      0     37921   301.3s
+         0       0         0   0.00%   -107420847.7117 -107420661.8457    0.00%      396      9      0     37931   308.7s
+         0       0         0   0.00%   -107420843.658  -107420661.8457    0.00%      536     12      0     37939   316.6s
+         0       0         0   0.00%   -107420834.7963 -107420661.8457    0.00%      683     16      0     37951   325.4s
+         0       0         0   0.00%   -107420777.8371 -107420661.8457    0.00%      748     16      0     69221   424.5s
+52.0% inactive integer columns, restarting
+Model after restart has 31775 rows, 40055 cols (10 bin., 0 int., 0 impl., 40045 cont., 0 dom.fix.), and 125384 nonzeros
+         0       0         0   0.00%   -107420777.8371 -107420661.8457    0.00%       15      0      0     69221   424.8s
+         0       0         0   0.00%   -107420777.8371 -107420661.8457    0.00%       15     15      0     69240   429.9s
+         0       0         0   0.00%   -107420774.8213 -107420661.8457    0.00%      251     17      0     69245   438.4s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -107420773.3134 -107420661.8457    0.00%      328     18      0     69249   444.1s
+         0       0         0   0.00%   -107420770.2976 -107420661.8457    0.00%      456     20      0     69254   452.9s
+         0       0         0   0.00%   -107420767.2818 -107420661.8457    0.00%      564     22      0     69259   461.7s
+         0       0         0   0.00%   -107420764.266  -107420661.8457    0.00%      654     24      0     69263   470.9s
+         0       0         0   0.00%   -107420762.7581 -107420661.8457    0.00%      694     25      0     69267   476.4s
+20.0% inactive integer columns, restarting
+Model after restart has 31772 rows, 40053 cols (8 bin., 0 int., 0 impl., 40045 cont., 0 dom.fix.), and 125368 nonzeros
+         0       0         0   0.00%   -107420761.2501 -107420661.8457    0.00%       26      0      0     69268   481.0s
+         0       0         0   0.00%   -107420761.2501 -107420661.8457    0.00%       26     26      0     69300   486.2s
+         0       0         0   0.00%   -107420758.2915 -107420661.8457    0.00%      227     28      0     69302   494.6s
+         0       0         0   0.00%   -107420666.0994 -107420661.8457    0.00%      391     30      0     69318   504.8s
+62.5% inactive integer columns, restarting
+Model after restart has 31764 rows, 40041 cols (1 bin., 0 int., 0 impl., 40040 cont., 0 dom.fix.), and 125331 nonzeros
+         0       0         0   0.00%   -107420666.0994 -107420661.8457    0.00%       26      0      0     69318   505.1s
+         0       0         0   0.00%   -107420666.0994 -107420661.8457    0.00%       26     26      0     69394   513.1s
+         1       0         1 100.00%   -107420661.8457 -107420661.8457    0.00%       26     26      1     69412   515.0s
+Solving report
+  Status            Optimal
+  Primal bound      -107420661.846
+  Dual bound        -107420661.846
+  Gap               0% (tolerance: 0%)
+  P-D integral      23.291657312
+  Solution status   feasible
+                    -107420661.846 (objective)
+                    0 (bound viol.)
+                    1.62869717713e-13 (int. viol.)
+                    0 (row viol.)
+  Timing            515.04
+  Max sub-MIP depth 2
+  Nodes             1
+  Repair LPs        0
+  LP iterations     69412
+                    17 (strong br.)
+                    2350 (separation)
+                    35614 (heuristics)
+515.264609 seconds (868.68 k allocations: 121.465 MiB)
+Optimal solution found, objective function value: -1.074206618457227e8
+Saving model results...  0.494696 seconds (4.27 M allocations: 149.144 MiB)
+Postprocessing model results...  0.000116 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.463862 seconds (2.76 M allocations: 170.359 MiB)
+Rolling model temporal structure...  0.668533 seconds (4.74 M allocations: 102.054 MiB)
+Fixing model history...  0.049493 seconds (418.32 k allocations: 20.434 MiB)
+Applying model non-anticipativity constraints...  0.000288 seconds (603 allocations: 32.203 KiB)
+model - window 2 of 12: 2019-01-31T10:00~(4 weeks, 2 days, 10 hours)~>2019-03-02T20:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 309966 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [7e-03, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+78750 rows, 70758 cols, 220587 nonzeros 0s
+37623 rows, 53398 cols, 181104 nonzeros 0s
+35999 rows, 48404 cols, 175908 nonzeros 1s
+Presolve reductions: rows 35999(-83869); columns 48404(-91489); nonzeros 175908(-134058)
+Solving MIP model with:
+   35999 rows
+   48404 cols (1668 binary, 0 integer, 0 implied int., 46736 continuous, 0 domain fixed)
+   175908 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -419961511.0055 inf                  inf        0      0      0         0     2.0s
+         0       0         0   0.00%   -93906960.8678  inf                  inf        0      0      2     29226     8.2s
+ R       0       0         0   0.00%   -93902955.38759 -93897160.28945    0.01%    11865    442      7     31311    14.9s
+ C       0       0         0   0.00%   -93902864.61251 -93902808.05797    0.00%     1506    450      7     31359    19.1s
+96.3% inactive integer columns, restarting
+Model after restart has 30773 rows, 39335 cols (14 bin., 0 int., 0 impl., 39321 cont., 0 dom.fix.), and 122799 nonzeros
+         0       0         0   0.00%   -93902864.61251 -93902808.05797    0.00%       38      0      0     31590    23.6s
+         0       0         0   0.00%   -93902864.61251 -93902808.05797    0.00%       38     34      0     31871    24.1s
+         0       0         0   0.00%   -93902860.36315 -93902808.05797    0.00%      798     44      0     31879    30.6s
+         0       0         0   0.00%   -93902853.52198 -93902808.05797    0.00%     1071     55      0     31886    37.1s
+         0       0         0   0.00%   -93902850.34935 -93902808.05797    0.00%     1191     63      0     31892    42.3s
+ L       0       0         0   0.00%   -93902850.34935 -93902808.05797    0.00%     1191     63      0     31892    55.9s
+         0       0         0   0.00%   -93902850.34935 -93902808.05797    0.00%     1191     43      0     32200    67.6s
+14.3% inactive integer columns, restarting
+Model after restart has 30765 rows, 39320 cols (11 bin., 0 int., 0 impl., 39309 cont., 0 dom.fix.), and 122776 nonzeros
+         0       0         0   0.00%   -93902850.34935 -93902808.05797    0.00%       42      0      0     32200    68.2s
+         0       0         0   0.00%   -93902850.34935 -93902808.05797    0.00%       42     42      0     32250    68.6s
+         1       0         1 100.00%   -93902808.06027 -93902808.05797    0.00%      259     43      3     32373    72.4s
+Solving report
+  Status            Optimal
+  Primal bound      -93902808.058
+  Dual bound        -93902808.0603
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.000286991928698
+  Solution status   feasible
+                    -93902808.058 (objective)
+                    0 (bound viol.)
+                    1.11022302463e-15 (int. viol.)
+                    0 (row viol.)
+  Timing            72.35
+  Max sub-MIP depth 1
+  Nodes             1
+  Repair LPs        0
+  LP iterations     32373
+                    0 (strong br.)
+                    2158 (separation)
+                    651 (heuristics)
+ 72.402760 seconds (275 allocations: 11.547 KiB)
+Optimal solution found, objective function value: -9.390280805796517e7
+Saving model results...  1.192052 seconds (4.27 M allocations: 149.138 MiB)
+Postprocessing model results...  0.000099 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.928430 seconds (2.76 M allocations: 170.350 MiB)
+Rolling model temporal structure...  1.413699 seconds (4.74 M allocations: 102.043 MiB)
+Fixing model history...  0.084900 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000223 seconds (603 allocations: 32.203 KiB)
+model - window 3 of 12: 2019-03-02T20:00~(4 weeks, 2 days, 10 hours)~>2019-04-02T06:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310029 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [5e-03, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+78876 rows, 70884 cols, 220839 nonzeros 0s
+37631 rows, 53467 cols, 181241 nonzeros 0s
+36028 rows, 48604 cols, 176204 nonzeros 2s
+Presolve reductions: rows 36028(-83840); columns 48604(-91289); nonzeros 176204(-133825)
+Solving MIP model with:
+   36028 rows
+   48604 cols (1670 binary, 0 integer, 0 implied int., 46934 continuous, 0 domain fixed)
+   176204 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -383169972.7575 inf                  inf        0      0      0         0     4.1s
+         0       0         0   0.00%   -102645469.0452 inf                  inf        0      0      3     29967    21.0s
+ R       0       0         0   0.00%   -102641596.5417 -102641275.8946    0.00%    10242    401      6     31791    29.3s
+         0       0         0   0.00%   -102641596.5417 -102641275.8946    0.00%    10242    337      6     61693    89.3s
+82.7% inactive integer columns, restarting
+Model after restart has 32045 rows, 39855 cols (106 bin., 0 int., 0 impl., 39749 cont., 0 dom.fix.), and 126388 nonzeros
+         0       0         0   0.00%   -102641596.5417 -102641275.8946    0.00%       85      0      0     61693    90.0s
+58.5% inactive integer columns, restarting
+Model after restart has 31792 rows, 39787 cols (39 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 125431 nonzeros
+         0       0         0   0.00%   -102641596.5249 -102641275.8946    0.00%       48      0      0     63974    91.8s
+         0       0         0   0.00%   -102641596.5249 -102641275.8946    0.00%       48     48      0     64075    92.4s
+         0       0         0   0.00%   -102641569.7603 -102641275.8946    0.00%     3558     70      0     64098    99.1s
+17.9% inactive integer columns, restarting
+Model after restart has 31773 rows, 39780 cols (32 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 125335 nonzeros
+         0       0         0   0.00%   -102641541.4518 -102641275.8946    0.00%       64      0      0     64111   103.3s
+         0       0         0   0.00%   -102641541.4518 -102641275.8946    0.00%       64     64      0     64197   104.0s
+         0       0         0   0.00%   -102641525.2442 -102641275.8946    0.00%     2894     80      0     64212   109.3s
+         0       0         0   0.00%   -102641511.4198 -102641275.8946    0.00%     5091     94      0     64225   115.3s
+21.9% inactive integer columns, restarting
+Model after restart has 31757 rows, 39772 cols (24 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 125272 nonzeros
+         0       0         0   0.00%   -102641500.9017 -102641275.8946    0.00%       74      0      0     64235   120.5s
+         0       0         0   0.00%   -102641500.9017 -102641275.8946    0.00%       74     73      0     64324   121.2s
+         0       0         0   0.00%   -102641486.3161 -102641275.8946    0.00%     3554     89      0     64339   127.6s
+37.5% inactive integer columns, restarting
+Model after restart has 31647 rows, 39763 cols (15 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 124924 nonzeros
+         0       0         0   0.00%   -102641449.9648 -102641275.8946    0.00%       47      0      0     64344   129.6s
+         0       0         0   0.00%   -102641449.9648 -102641275.8946    0.00%       47     46      0     64392   130.3s
+13.3% inactive integer columns, restarting
+Model after restart has 31641 rows, 39760 cols (12 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 124895 nonzeros
+         0       0         0   0.00%   -102641443.7526 -102641275.8946    0.00%       43      0      0     64398   133.6s
+         0       0         0   0.00%   -102641443.7526 -102641275.8946    0.00%       43     43      0     64464   134.1s
+         0       0         0   0.00%   -102641433.635  -102641275.8946    0.00%     1960     51      0     64472   140.2s
+41.7% inactive integer columns, restarting
+Model after restart has 31539 rows, 39754 cols (6 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 124581 nonzeros
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -102641362.4338 -102641275.8946    0.00%       25      0      0     64480   144.8s
+         0       0         0   0.00%   -102641362.4338 -102641275.8946    0.00%       25     25      0     64517   145.3s
+16.7% inactive integer columns, restarting
+Model after restart has 31536 rows, 39753 cols (5 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 124568 nonzeros
+         0       0         0   0.00%   -102641358.6396 -102641275.8946    0.00%       25      0      0     64521   150.0s
+         0       0         0   0.00%   -102641358.6396 -102641275.8946    0.00%       25     25      0     64570   150.5s
+         0       0         0   0.00%   -102641353.5808 -102641275.8946    0.00%     1012     29      0     64574   156.2s
+20.0% inactive integer columns, restarting
+Model after restart has 31534 rows, 39752 cols (4 bin., 0 int., 0 impl., 39748 cont., 0 dom.fix.), and 124560 nonzeros
+         0       0         0   0.00%   -102641353.5808 -102641275.8946    0.00%       29      0      0     64574   156.5s
+         0       0         0   0.00%   -102641353.5808 -102641275.8946    0.00%       29     29      0     64603   156.8s
+         1       0         1 100.00%   -102641275.8946 -102641275.8946    0.00%      626     31      0     64608   159.8s
+Solving report
+  Status            Optimal
+  Primal bound      -102641275.895
+  Dual bound        -102641275.895
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.000325625651191
+  Solution status   feasible
+                    -102641275.895 (objective)
+                    0 (bound viol.)
+                    2.68023416083e-15 (int. viol.)
+                    0 (row viol.)
+  Timing            159.78
+  Max sub-MIP depth 3
+  Nodes             1
+  Repair LPs        0
+  LP iterations     64608
+                    0 (strong br.)
+                    1953 (separation)
+                    29902 (heuristics)
+159.822433 seconds (506 allocations: 21.344 KiB)
+Optimal solution found, objective function value: -1.0264127589455426e8
+Saving model results...  0.581092 seconds (4.27 M allocations: 149.139 MiB)
+Postprocessing model results...  0.000082 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  1.276989 seconds (2.76 M allocations: 170.351 MiB, 61.39% gc time)
+Rolling model temporal structure...  2.368824 seconds (4.74 M allocations: 102.043 MiB)
+Fixing model history...  0.089362 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000264 seconds (603 allocations: 32.203 KiB)
+model - window 4 of 12: 2019-04-02T06:00~(4 weeks, 2 days, 10 hours)~>2019-05-02T16:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310112 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [1e-16, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+79042 rows, 71050 cols, 221171 nonzeros 0s
+37623 rows, 53544 cols, 181250 nonzeros 0s
+36170 rows, 49167 cols, 176813 nonzeros 1s
+Presolve reductions: rows 36170(-83698); columns 49167(-90726); nonzeros 176813(-133299)
+Solving MIP model with:
+   36170 rows
+   49167 cols (1667 binary, 0 integer, 0 implied int., 47500 continuous, 0 domain fixed)
+   176813 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -382599365.1952 inf                  inf        0      0      0         0     3.0s
+         0       0         0   0.00%   -46158850.54317 inf                  inf        0      0      3     30201    12.8s
+ R       0       0         0   0.00%   -46154384.88783 -46154219.76663    0.00%     9927    458      6     32228    18.2s
+ L       0       0         0   0.00%   -46154384.88783 -46154219.76663    0.00%     9927    458      6     32228    40.4s
+93.4% inactive integer columns, restarting
+Model after restart has 31538 rows, 38989 cols (40 bin., 0 int., 0 impl., 38949 cont., 0 dom.fix.), and 124193 nonzeros
+         0       0         0   0.00%   -46154384.88783 -46154219.76663    0.00%       35      0      0     63513    41.0s
+30.0% inactive integer columns, restarting
+Model after restart has 31488 rows, 38973 cols (25 bin., 0 int., 0 impl., 38948 cont., 0 dom.fix.), and 123999 nonzeros
+         0       0         0   0.00%   -46154384.87741 -46154219.76663    0.00%       32      0      0     63861    42.0s
+         0       0         0   0.00%   -46154384.87741 -46154219.76663    0.00%       32     32      0     63917    42.5s
+16.0% inactive integer columns, restarting
+Model after restart has 31483 rows, 38969 cols (21 bin., 0 int., 0 impl., 38948 cont., 0 dom.fix.), and 123982 nonzeros
+         0       0         0   0.00%   -46154382.52495 -46154219.76663    0.00%       33      0      0     63919    44.8s
+         0       0         0   0.00%   -46154382.52495 -46154219.76663    0.00%       33     33      0     63962    45.3s
+         0       0         0   0.00%   -46154376.00333 -46154219.76663    0.00%     1198     39      0     63968    51.6s
+         0       0         0   0.00%   -46154369.74958 -46154219.76663    0.00%     1717     45      0     63974    56.7s
+         0       0         0   0.00%   -46154362.3196  -46154219.76663    0.00%     2429     53      0     63984    62.9s
+         0       0         0   0.00%   -46154351.70735 -46154219.76663    0.00%     3052     63      0     64004    69.0s
+         0       0         0   0.00%   -46154342.92499 -46154219.76663    0.00%     3704     71      0     64012    75.1s
+23.8% inactive integer columns, restarting
+Model after restart has 31384 rows, 38963 cols (15 bin., 0 int., 0 impl., 38948 cont., 0 dom.fix.), and 123670 nonzeros
+         0       0         0   0.00%   -46154285.51652 -46154219.76663    0.00%       32      0      0     64017    77.1s
+         0       0         0   0.00%   -46154285.51652 -46154219.76663    0.00%       32     32      0     64554    77.8s
+         0       0         0   0.00%   -46154282.79116 -46154219.76663    0.00%      574     35      0     64557    82.9s
+Optimal solution found, objective function value: -4.615421976662504e7
+         1       0         1 100.00%   -46154219.76663 -46154219.76663    0.00%      901     39      0     64567    89.4s
+Solving report
+  Status            Optimal
+  Primal bound      -46154219.7666
+  Dual bound        -46154219.7666
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.000212749167254
+  Solution status   feasible
+                    -46154219.7666 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            89.44
+  Max sub-MIP depth 1
+  Nodes             1
+  Repair LPs        0
+  LP iterations     64567
+                    0 (strong br.)
+                    2097 (separation)
+                    31285 (heuristics)
+ 89.471840 seconds (317 allocations: 13.328 KiB)
+Saving model results...  0.402334 seconds (4.27 M allocations: 149.139 MiB)
+Postprocessing model results...  0.000047 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.342277 seconds (2.76 M allocations: 170.350 MiB)
+Rolling model temporal structure...  0.692348 seconds (4.74 M allocations: 102.043 MiB)
+Fixing model history...  0.044717 seconds (413.88 k allocations: 20.191 MiB)
+model - window 5 of 12: 2019-05-02T16:00~(4 weeks, 2 days, 10 hours)~>2019-06-02T02:00
+Applying model non-anticipativity constraints...  0.000162 seconds (603 allocations: 32.203 KiB)
+Optimizing model...MIP has 119868 rows; 139893 cols; 310164 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [1e-16, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+79146 rows, 71154 cols, 221379 nonzeros 0s
+37623 rows, 53596 cols, 181302 nonzeros 0s
+36214 rows, 49347 cols, 177066 nonzeros 0s
+Presolve reductions: rows 36214(-83654); columns 49347(-90546); nonzeros 177066(-133098)
+Solving MIP model with:
+   36214 rows
+   49347 cols (1668 binary, 0 integer, 0 implied int., 47679 continuous, 0 domain fixed)
+   177066 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -375277740.9414 inf                  inf        0      0      0         0     1.7s
+         0       0         0   0.00%   -51080930.21698 inf                  inf        0      0      3     30249     9.5s
+ R       0       0         0   0.00%   -51076705.42356 -51076004.68816    0.00%    10645    462      5     32469    13.4s
+ L       0       0         0   0.00%   -51076705.42356 -51076004.68816    0.00%    10645    462      5     32469    69.5s
+17.6% inactive integer columns, restarting
+Model after restart has 33866 rows, 40255 cols (1280 bin., 0 int., 0 impl., 38975 cont., 0 dom.fix.), and 153739 nonzeros
+         0       0         0   0.00%   -51076705.42356 -51076004.68816    0.00%      382      0      0     66623    70.9s
+         0       0         0   0.00%   -51076705.42356 -51076004.68816    0.00%      382    289      0     70640    76.9s
+92.6% inactive integer columns, restarting
+Model after restart has 31566 rows, 39017 cols (42 bin., 0 int., 0 impl., 38975 cont., 0 dom.fix.), and 124288 nonzeros
+         0       0         0   0.00%   -51076137.211   -51076004.68816    0.00%       71      0      0     70775    78.8s
+         0       0         0   0.00%   -51076137.211   -51076004.68816    0.00%       71     68      0     71397    79.4s
+         0       0         0   0.00%   -51076132.80188 -51076004.68816    0.00%      859     72      0     71401    85.5s
+         0       0         0   0.00%   -51076128.39275 -51076004.68816    0.00%     1238     76      0     71405    91.7s
+         0       0         0   0.00%   -51076123.98362 -51076004.68816    0.00%     1480     80      0     71409    97.8s
+35.7% inactive integer columns, restarting
+Model after restart has 31427 rows, 39000 cols (25 bin., 0 int., 0 impl., 38975 cont., 0 dom.fix.), and 123792 nonzeros
+         0       0         0   0.00%   -51076091.64189 -51076004.68816    0.00%       49      0      0     71412   102.8s
+60.0% inactive integer columns, restarting
+Model after restart has 31389 rows, 38983 cols (8 bin., 0 int., 0 impl., 38975 cont., 0 dom.fix.), and 123651 nonzeros
+         0       0         0   0.00%   -51076061.22424 -51076004.68816    0.00%       42      0      0     71855   103.5s
+         0       0         0   0.00%   -51076061.22424 -51076004.68816    0.00%       42     42      0     71932   104.0s
+100.0% inactive integer columns, restarting
+Model after restart has 31260 rows, 38970 cols (0 bin., 0 int., 0 impl., 38970 cont., 0 dom.fix.), and 123251 nonzeros
+         0       0         0   0.00%   -51076004.69421 -51076004.68816    0.00%        2      0      0     71936   105.8s
+         0       0         0   0.00%   -51076004.69421 -51076004.68816    0.00%        2      0      0     99425   115.9s
+         1       0         1 100.00%   -51076004.68816 -51076004.68816    0.00%        2      0      0     99425   116.0s
+Solving report
+  Status            Optimal
+  Primal bound      -51076004.6882
+  Dual bound        -51076004.6882
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.00095559812397
+  Solution status   feasible
+                    -51076004.6882 (objective)
+                    0 (bound viol.)
+                    4.94890795011e-11 (int. viol.)
+                    0 (row viol.)
+  Timing            115.95
+  Max sub-MIP depth 2
+  Nodes             1
+  Repair LPs        0
+  LP iterations     99425
+                    0 (strong br.)
+                    2374 (separation)
+                    34154 (heuristics)
+115.987064 seconds (289 allocations: 12.141 KiB)
+Optimal solution found, objective function value: -5.1076004688163236e7
+Saving model results...  0.423594 seconds (4.27 M allocations: 149.139 MiB)
+Postprocessing model results...  0.000047 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.730362 seconds (2.76 M allocations: 170.350 MiB, 46.99% gc time)
+Rolling model temporal structure...  0.620945 seconds (4.74 M allocations: 102.044 MiB)
+Fixing model history...  0.045884 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000135 seconds (603 allocations: 32.203 KiB)
+model - window 6 of 12: 2019-06-02T02:00~(4 weeks, 2 days, 10 hours)~>2019-07-02T12:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310176 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [3e-14, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+79170 rows, 71178 cols, 221427 nonzeros 0s
+37623 rows, 53608 cols, 181314 nonzeros 0s
+36222 rows, 49422 cols, 177103 nonzeros 0s
+Presolve reductions: rows 36222(-83646); columns 49422(-90471); nonzeros 177103(-133073)
+Solving MIP model with:
+   36222 rows
+   49422 cols (1667 binary, 0 integer, 0 implied int., 47755 continuous, 0 domain fixed)
+   177103 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -391759410.6671 inf                  inf        0      0      0         0     1.7s
+         0       0         0   0.00%   -46432239.95203 inf                  inf        0      0      3     29480     8.8s
+ R       0       0         0   0.00%   -46427764.95073 -46427737.8558     0.00%     5161    527      8     31966    15.6s
+         0       0         0   0.00%   -46427764.95073 -46427737.8558     0.00%     5161    440      8     32360    21.8s
+87.6% inactive integer columns, restarting
+Model after restart has 32073 rows, 38965 cols (50 bin., 0 int., 0 impl., 38915 cont., 0 dom.fix.), and 125688 nonzeros
+         0       0         0   0.00%   -46427764.95073 -46427737.8558     0.00%      234      0      0     32360    22.1s
+         0       0         0   0.00%   -46427764.92268 -46427737.8558     0.00%      234    222      0     38011    24.9s
+         0       0         0   0.00%   -46427759.9989  -46427737.8558     0.00%      240    222      0     38568    34.6s
+26.0% inactive integer columns, restarting
+Model after restart has 32045 rows, 38948 cols (35 bin., 0 int., 0 impl., 38913 cont., 0 dom.fix.), and 125589 nonzeros
+         0       0         0   0.00%   -46427759.9989  -46427737.8558     0.00%      222      0      0     38568    34.9s
+         0       0         0   0.00%   -46427759.9989  -46427737.8558     0.00%      222    221      0     38947    35.6s
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      241    225      0     38951    40.8s
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      241    221      0     40532    69.2s
+11.4% inactive integer columns, restarting
+Model after restart has 32026 rows, 38940 cols (29 bin., 0 int., 0 impl., 38911 cont., 0 dom.fix.), and 125535 nonzeros
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      219      0      0     40532    69.5s
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      219    218      0     40991    70.2s
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      219    218      0     41303    76.8s
+3.4% inactive integer columns, restarting
+Model after restart has 32021 rows, 38938 cols (27 bin., 0 int., 0 impl., 38911 cont., 0 dom.fix.), and 125520 nonzeros
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      218      0      0     41303    77.0s
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      218    217      0     41606    82.5s
+         0       0         0   0.00%   -46427752.451   -46427737.8558     0.00%      218    217      0     42021    89.0s
+         1       0         1 100.00%   -46427737.8558  -46427737.8558     0.00%      218    217      8     42939    95.2s
+         1       0         1 100.00%   -46427737.8558  -46427737.8558     0.00%      218    217      8     42939    95.2s
+Solving report
+  Status            Optimal
+  Primal bound      -46427737.8558
+  Dual bound        -46427737.8558
+  Gap               0% (tolerance: 0%)
+  P-D integral      3.01033303191e-05
+  Solution status   feasible
+                    -46427737.8558 (objective)
+                    0 (bound viol.)
+                    5.99520433298e-15 (int. viol.)
+                    0 (row viol.)
+  Timing            95.23
+  Max sub-MIP depth 2
+  Nodes             1
+  Repair LPs        0
+  LP iterations     42939
+                    495 (strong br.)
+                    2494 (separation)
+                    3670 (heuristics)
+ 95.272190 seconds (352 allocations: 14.812 KiB)
+Optimal solution found, objective function value: -4.642773785580216e7
+Saving model results...  0.679931 seconds (4.27 M allocations: 149.138 MiB)
+Postprocessing model results...  0.000054 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.327991 seconds (2.76 M allocations: 170.350 MiB)
+Rolling model temporal structure...  0.662242 seconds (4.74 M allocations: 102.043 MiB)
+Fixing model history...  0.051911 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000167 seconds (603 allocations: 32.203 KiB)
+model - window 7 of 12: 2019-07-02T12:00~(4 weeks, 2 days, 10 hours)~>2019-08-01T22:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310173 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [4e-17, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+79164 rows, 71172 cols, 221415 nonzeros 0s
+37623 rows, 53605 cols, 181311 nonzeros 0s
+36236 rows, 49445 cols, 177186 nonzeros 1s
+Presolve reductions: rows 36236(-83632); columns 49445(-90448); nonzeros 177186(-132987)
+Solving MIP model with:
+   36236 rows
+   49445 cols (1668 binary, 0 integer, 0 implied int., 47777 continuous, 0 domain fixed)
+   177186 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -411090581.1669 inf                  inf        0      0      0         0     1.9s
+         0       0         0   0.00%   -42133306.6745  inf                  inf        0      0      3     30270    16.5s
+ R       0       0         0   0.00%   -42127907.43011 -42126569.68941    0.00%    10632    514      6     31247    20.5s
+ T       0       0         0   0.00%   -42127810.48684 -42127792.954      0.00%     2695    607      6     31304    23.7s
+         1       0         1 100.00%   -42127792.954   -42127792.954      0.00%     2695    607      6     31304    23.7s
+Solving report
+  Status            Optimal
+  Primal bound      -42127792.954
+  Dual bound        -42127792.954
+  Gap               0% (tolerance: 0%)
+  P-D integral      9.97948033067e-05
+  Solution status   feasible
+                    -42127792.954 (objective)
+                    0 (bound viol.)
+                    1.33313499129e-15 (int. viol.)
+                    0 (row viol.)
+  Timing            23.68
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0
+  LP iterations     31304
+                    0 (strong br.)
+                    1034 (separation)
+                    0 (heuristics)
+ 23.714224 seconds (51 allocations: 2.047 KiB)
+Optimal solution found, objective function value: -4.2127792954000026e7
+Saving model results...  0.487084 seconds (4.27 M allocations: 149.138 MiB)
+Postprocessing model results...  0.000053 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.376685 seconds (2.76 M allocations: 170.351 MiB)
+Rolling model temporal structure...  0.949147 seconds (4.74 M allocations: 102.043 MiB, 27.37% gc time)
+Fixing model history...  0.054491 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000115 seconds (603 allocations: 32.203 KiB)
+model - window 8 of 12: 2019-08-01T22:00~(4 weeks, 2 days, 10 hours)~>2019-09-01T08:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310126 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [4e-17, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+79070 rows, 71078 cols, 221227 nonzeros 0s
+37639 rows, 53570 cols, 181412 nonzeros 0s
+36205 rows, 49256 cols, 177096 nonzeros 0s
+Presolve reductions: rows 36205(-83663); columns 49256(-90637); nonzeros 177096(-133030)
+Solving MIP model with:
+   36205 rows
+   49256 cols (1672 binary, 0 integer, 0 implied int., 47584 continuous, 0 domain fixed)
+   177096 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -399659476.3329 inf                  inf        0      0      0         0     1.8s
+         0       0         0   0.00%   -36660509.31759 inf                  inf        0      0      2     30401     8.6s
+ R       0       0         0   0.00%   -36656112.99589 -36656013.0279     0.00%    10821    435      5     32183    12.8s
+         0       0         0   0.00%   -36656112.99589 -36656013.0279     0.00%    10821    348      5     60020    34.5s
+94.6% inactive integer columns, restarting
+Model after restart has 31522 rows, 38782 cols (23 bin., 0 int., 0 impl., 38759 cont., 0 dom.fix.), and 123941 nonzeros
+         0       0         0   0.00%   -36656112.99589 -36656013.0279     0.00%       80      0      0     60020    34.9s
+         0       0         0   0.00%   -36656112.98769 -36656013.0279     0.00%       80     71      0     61013    35.6s
+17.4% inactive integer columns, restarting
+Model after restart has 31509 rows, 38776 cols (19 bin., 0 int., 0 impl., 38757 cont., 0 dom.fix.), and 123887 nonzeros
+         0       0         0   0.00%   -36656097.77991 -36656013.0279     0.00%       75      0      0     61026    39.4s
+         0       0         0   0.00%   -36656097.77991 -36656013.0279     0.00%       75     75      0     61162    39.8s
+10.5% inactive integer columns, restarting
+Model after restart has 31501 rows, 38772 cols (17 bin., 0 int., 0 impl., 38755 cont., 0 dom.fix.), and 123869 nonzeros
+         0       0         0   0.00%   -36656090.89275 -36656013.0279     0.00%       76      0      0     61169    44.4s
+         0       0         0   0.00%   -36656090.89275 -36656013.0279     0.00%       76     76      0     61292    45.0s
+11.8% inactive integer columns, restarting
+Model after restart has 31498 rows, 38770 cols (15 bin., 0 int., 0 impl., 38755 cont., 0 dom.fix.), and 123857 nonzeros
+         0       0         0   0.00%   -36656085.10588 -36656013.0279     0.00%       79      0      0     61304    49.0s
+         0       0         0   0.00%   -36656085.10588 -36656013.0279     0.00%       79     79      0     61396    49.3s
+         0       0         0   0.00%   -36656080.8001  -36656013.0279     0.00%     3015     86      0     61407    55.0s
+26.7% inactive integer columns, restarting
+Model after restart has 31488 rows, 38765 cols (10 bin., 0 int., 0 impl., 38755 cont., 0 dom.fix.), and 123814 nonzeros
+         0       0         0   0.00%   -36656055.78328 -36656013.0279     0.00%       79      0      0     61412    56.9s
+         0       0         0   0.00%   -36656055.78328 -36656013.0279     0.00%       79     79      0     61536    57.4s
+         0       0         0   0.00%   -36656052.619   -36656013.0279     0.00%     1445     82      0     61539    62.9s
+         0       0         0   0.00%   -36656049.09233 -36656013.0279     0.00%     2130     85      0     61542    69.5s
+         0       0         0   0.00%   -36656045.56567 -36656013.0279     0.00%     2575     88      0     61545    75.6s
+         0       0         0   0.00%   -36656042.039   -36656013.0279     0.00%     2939     91      0     61548    81.2s
+20.0% inactive integer columns, restarting
+Model after restart has 31478 rows, 38757 cols (7 bin., 0 int., 0 impl., 38750 cont., 0 dom.fix.), and 123786 nonzeros
+         0       0         0   0.00%   -36656039.68789 -36656013.0279     0.00%       93      0      0     61550    84.9s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -36656039.68789 -36656013.0279     0.00%       93     93      0     89620    96.0s
+71.4% inactive integer columns, restarting
+Model after restart has 31327 rows, 38751 cols (1 bin., 0 int., 0 impl., 38750 cont., 0 dom.fix.), and 123335 nonzeros
+Optimal solution found, objective function value: -3.665601302789703e7
+         0       0         0   0.00%   -36656013.89285 -36656013.0279     0.00%       47      0      0     89624    98.5s
+         0       0         0   0.00%   -36656013.89285 -36656013.0279     0.00%       47     47      0     90097    99.2s
+         0       0         0   0.00%   -36656013.86208 -36656013.0279     0.00%       60     50      0     90100   104.8s
+         0       0         0   0.00%   -36656013.84156 -36656013.0279     0.00%       61     52      0     90102   110.4s
+         1       0         1 100.00%   -36656013.0279  -36656013.0279     0.00%       61     52      2     90202   110.5s
+Solving report
+  Status            Optimal
+  Primal bound      -36656013.0279
+  Dual bound        -36656013.0279
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.000145087372778
+  Solution status   feasible
+                    -36656013.0279 (objective)
+                    0 (bound viol.)
+                    1.33226762955e-15 (int. viol.)
+                    0 (row viol.)
+  Timing            110.52
+  Max sub-MIP depth 1
+  Nodes             1
+  Repair LPs        0
+  LP iterations     90202
+                    99 (strong br.)
+                    1853 (separation)
+                    27837 (heuristics)
+110.545087 seconds (471 allocations: 19.859 KiB)
+Saving model results...  0.438657 seconds (4.27 M allocations: 149.139 MiB)
+Postprocessing model results...  0.000039 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.410348 seconds (2.76 M allocations: 170.350 MiB)
+Rolling model temporal structure...  0.670733 seconds (4.74 M allocations: 102.044 MiB)
+Fixing model history...  0.048499 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000154 seconds (603 allocations: 32.203 KiB)
+model - window 9 of 12: 2019-09-01T08:00~(4 weeks, 2 days, 10 hours)~>2019-10-01T18:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310068 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [2e-02, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+78954 rows, 70962 cols, 220995 nonzeros 0s
+37623 rows, 53500 cols, 181206 nonzeros 0s
+36097 rows, 48833 cols, 176435 nonzeros 1s
+Presolve reductions: rows 36097(-83771); columns 48833(-91060); nonzeros 176435(-133633)
+Solving MIP model with:
+   36097 rows
+   48833 cols (1668 binary, 0 integer, 0 implied int., 47165 continuous, 0 domain fixed)
+   176435 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -371351514.597  inf                  inf        0      0      0         0     2.3s
+         0       0         0   0.00%   -75679647.64255 inf                  inf        0      0      3     29955    10.6s
+ R       0       0         0   0.00%   -75678844.97466 6.90528483e+11   100.01%     6324    206      3     31123    15.6s
+ C       0       0         0   0.00%   -75675455.04579 -75675404.88579    0.00%     4689    469      3     31977    21.2s
+ T       0       0         0   0.00%   -75675455.04579 -75675455.04579    0.00%     4689    469      3     31977    21.2s
+         1       0         1 100.00%   -75675455.04579 -75675455.04579    0.00%     4689    469      3     31977    21.2s
+Solving report
+  Status            Optimal
+  Primal bound      -75675455.0458
+  Dual bound        -75675455.0458
+  Gap               0% (tolerance: 0%)
+  P-D integral      5.63797388205
+  Solution status   feasible
+                    -75675455.0458 (objective)
+                    0 (bound viol.)
+                    5.11390929603e-12 (int. viol.)
+                    0 (row viol.)
+  Timing            21.25
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0
+  LP iterations     31977
+                    0 (strong br.)
+                    2022 (separation)
+                    0 (heuristics)
+ 21.279561 seconds (65 allocations: 2.641 KiB)
+Optimal solution found, objective function value: -7.567545504579386e7
+Saving model results...  0.555495 seconds (4.27 M allocations: 149.138 MiB)
+Postprocessing model results...  0.000047 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.389373 seconds (2.76 M allocations: 170.350 MiB)
+Rolling model temporal structure...  0.622080 seconds (4.74 M allocations: 102.043 MiB)
+Fixing model history...  0.050561 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000157 seconds (603 allocations: 32.203 KiB)
+model - window 10 of 12: 2019-10-01T18:00~(4 weeks, 2 days, 10 hours)~>2019-11-01T04:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 310000 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [7e-16, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+78818 rows, 70826 cols, 220723 nonzeros 0s
+37623 rows, 53432 cols, 181138 nonzeros 0s
+36054 rows, 48584 cols, 176143 nonzeros 1s
+Presolve reductions: rows 36054(-83814); columns 48584(-91309); nonzeros 176143(-133857)
+Solving MIP model with:
+   36054 rows
+   48584 cols (1668 binary, 0 integer, 0 implied int., 46916 continuous, 0 domain fixed)
+   176143 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -381108819.4478 inf                  inf        0      0      0         0     2.2s
+         0       0         0   0.00%   -63583889.17225 inf                  inf        0      0      2     30469     9.9s
+ R       0       0         0   0.00%   -63579073.04258 -63578865.8859     0.00%    12257    385      5     32291    14.5s
+         0       0         0   0.00%   -63579073.04258 -63578865.8859     0.00%    12257    264      5     35195    63.3s
+90.6% inactive integer columns, restarting
+Model after restart has 31740 rows, 39199 cols (58 bin., 0 int., 0 impl., 39141 cont., 0 dom.fix.), and 124924 nonzeros
+         0       0         0   0.00%   -63579073.04258 -63578865.8859     0.00%       45      0      0     35195    63.9s
+39.7% inactive integer columns, restarting
+Model after restart has 31660 rows, 39171 cols (32 bin., 0 int., 0 impl., 39139 cont., 0 dom.fix.), and 124602 nonzeros
+         0       0         0   0.00%   -63579073.03376 -63578865.8859     0.00%       41      0      0     36449    65.7s
+         0       0         0   0.00%   -63579073.03376 -63578865.8859     0.00%       41     41      0     36584    66.8s
+         0       0         0   0.00%   -63579066.725   -63578865.8859     0.00%     1730     44      0     36587    72.6s
+         0       0         0   0.00%   -63579056.2104  -63578865.8859     0.00%     3746     51      0     36594    78.8s
+         0       0         0   0.00%   -63579046.75755 -63578865.8859     0.00%     5380     59      0     36602    85.1s
+         0       0         0   0.00%   -63579038.2125  -63578865.8859     0.00%     7228     75      0     36610    90.8s
+         0       0         0   0.00%   -63579018.40942 -63578865.8859     0.00%     8485     90      0     36620    96.6s
+         0       0         0   0.00%   -63579018.40942 -63578865.8859     0.00%     8485     68      0     70816   168.6s
+12.5% inactive integer columns, restarting
+Model after restart has 31652 rows, 39165 cols (27 bin., 0 int., 0 impl., 39138 cont., 0 dom.fix.), and 124572 nonzeros
+         0       0         0   0.00%   -63579018.40942 -63578865.8859     0.00%       66      0      0     70816   169.0s
+         0       0         0   0.00%   -63579018.40942 -63578865.8859     0.00%       66     66      0     70903   169.6s
+         0       0         0   0.00%   -63579012.19125 -63578865.8859     0.00%     1608     69      0     70907   175.1s
+         0       0         0   0.00%   -63578869.38389 -63578865.8859     0.00%     2765     73      0     70921   180.8s
+88.9% inactive integer columns, restarting
+Model after restart has 31404 rows, 39134 cols (1 bin., 0 int., 0 impl., 39133 cont., 0 dom.fix.), and 123788 nonzeros
+         0       0         0   0.00%   -63578869.38389 -63578865.8859     0.00%       28      0      0     70921   181.1s
+         0       0         0   0.00%   -63578869.38389 -63578865.8859     0.00%       28     27      0    100373   193.1s
+         0       0         0   0.00%   -63578869.31777 -63578865.8859     0.00%       61     31      0    100377   199.0s
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -63578869.27801 -63578865.8859     0.00%       69     35      0    100381   204.9s
+         0       0         0   0.00%   -63578869.25847 -63578865.8859     0.00%       74     39      0    100385   211.0s
+         1       0         1 100.00%   -63578865.8859  -63578865.8859     0.00%       74     32      2    100486   211.4s
+Solving report
+  Status            Optimal
+  Primal bound      -63578865.8859
+  Dual bound        -63578865.8859
+  Gap               0% (tolerance: 0%)
+  P-D integral      0.000460873353207
+  Solution status   feasible
+                    -63578865.8859 (objective)
+                    0 (bound viol.)
+                    1.68343117224e-12 (int. viol.)
+                    0 (row viol.)
+  Timing            211.41
+  Max sub-MIP depth 3
+  Nodes             1
+  Repair LPs        0
+  LP iterations     100486
+                    100 (strong br.)
+                    1888 (separation)
+                    37100 (heuristics)
+211.438236 seconds (464 allocations: 19.562 KiB)
+Optimal solution found, objective function value: -6.35788658858962e7
+Saving model results...  0.828283 seconds (4.27 M allocations: 149.139 MiB, 43.22% gc time)
+Postprocessing model results...  0.000072 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.444009 seconds (2.76 M allocations: 170.351 MiB)
+Rolling model temporal structure...  0.632596 seconds (4.74 M allocations: 102.044 MiB)
+Fixing model history...  0.056917 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000185 seconds (603 allocations: 32.203 KiB)
+model - window 11 of 12: 2019-11-01T04:00~(4 weeks, 2 days, 10 hours)~>2019-12-01T14:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 309934 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [2e-16, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+78686 rows, 70694 cols, 220459 nonzeros 0s
+37623 rows, 53366 cols, 181072 nonzeros 0s
+35990 rows, 48265 cols, 175760 nonzeros 1s
+Presolve reductions: rows 35990(-83878); columns 48265(-91628); nonzeros 175760(-134174)
+Solving MIP model with:
+   35990 rows
+   48265 cols (1668 binary, 0 integer, 0 implied int., 46597 continuous, 0 domain fixed)
+   175760 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -420569260.5208 inf                  inf        0      0      0         0     2.1s
+         0       0         0   0.00%   -76399096.26991 inf                  inf        0      0      3     29248    15.6s
+ R       0       0         0   0.00%   -76393370.53422 -76393370.53422    0.00%    11674    442      5     29999    19.5s
+         1       0         1 100.00%   -76393370.53422 -76393370.53422    0.00%    11172    442      5     29999    19.5s
+Solving report
+  Status            Optimal
+  Primal bound      -76393370.5342
+  Dual bound        -76393370.5342
+  Gap               0% (tolerance: 0%)
+  P-D integral      0
+  Solution status   feasible
+                    -76393370.5342 (objective)
+                    0 (bound viol.)
+                    2.33146835171e-15 (int. viol.)
+                    0 (row viol.)
+  Timing            19.52
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0
+  LP iterations     29999
+                    0 (strong br.)
+                    751 (separation)
+                    0 (heuristics)
+ 19.552677 seconds (37 allocations: 1.453 KiB)
+Optimal solution found, objective function value: -7.639337053422377e7
+Saving model results...  0.506360 seconds (4.27 M allocations: 149.138 MiB)
+Postprocessing model results...  0.000053 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  0.392979 seconds (2.76 M allocations: 170.370 MiB)
+Rolling model temporal structure...  0.657623 seconds (4.74 M allocations: 101.999 MiB)
+Fixing model history...  0.057244 seconds (413.88 k allocations: 20.191 MiB)
+Applying model non-anticipativity constraints...  0.000148 seconds (603 allocations: 32.203 KiB)
+model - window 12 of 12: 2019-12-01T14:00~(4 weeks, 2 days, 10 hours)~>2020-01-01T00:00
+Optimizing model...MIP has 119868 rows; 139893 cols; 309882 nonzeros; 2287 integer variables (0 binary)
+Coefficient ranges:
+  Matrix  [6e-03, 1e+05]
+  Cost    [1e-03, 2e+09]
+  Bound   [1e-16, 2e+04]
+  RHS     [1e+00, 2e+03]
+WARNING: Problem has some excessively large costs
+WARNING: Problem has some excessively small column bounds
+WARNING:    Consider scaling the objective by 1e-4, or setting the user_objective_scale option to -12
+Presolving model
+78582 rows, 70590 cols, 220251 nonzeros 0s
+37623 rows, 53314 cols, 181020 nonzeros 0s
+35900 rows, 47959 cols, 175364 nonzeros 0s
+Presolve reductions: rows 35900(-83968); columns 47959(-91934); nonzeros 175364(-134518)
+Solving MIP model with:
+   35900 rows
+   47959 cols (1668 binary, 0 integer, 0 implied int., 46291 continuous, 0 domain fixed)
+   175364 nonzeros
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+         0       0         0   0.00%   -395826684.2786 inf                  inf        0      0      0         0     1.9s
+         0       0         0   0.00%   -115130964.5569 inf                  inf        0      0      2     30289     9.6s
+ R       0       0         0   0.00%   -115127696.7442 -115127509.9465    0.00%    10434    383      5     32034    13.8s
+         0       0         0   0.00%   -115127696.7442 -115127509.9465    0.00%    10434    315      5     62219    44.5s
+94.4% inactive integer columns, restarting
+Model after restart has 31718 rows, 39840 cols (60 bin., 0 int., 0 impl., 39780 cont., 0 dom.fix.), and 125314 nonzeros
+         0       0         0   0.00%   -115127696.7442 -115127509.9465    0.00%       39      0      0     62219    44.9s
+20.0% inactive integer columns, restarting
+Model after restart has 31685 rows, 39817 cols (41 bin., 0 int., 0 impl., 39776 cont., 0 dom.fix.), and 125124 nonzeros
+         0       0         0   0.00%   -115127696.7278 -115127509.9465    0.00%       34      0      0     63200    46.1s
+         0       0         0   0.00%   -115127696.7278 -115127509.9465    0.00%       34     34      0     63280    46.5s
+12.2% inactive integer columns, restarting
+Model after restart has 31670 rows, 39807 cols (34 bin., 0 int., 0 impl., 39773 cont., 0 dom.fix.), and 125046 nonzeros
+         0       0         0   0.00%   -115127689.1333 -115127509.9465    0.00%       39      0      0     63286    48.6s
+         0       0         0   0.00%   -115127689.1333 -115127509.9465    0.00%       39     39      0     63332    49.0s
+         0       0         0   0.00%   -115127673.8869 -115127509.9465    0.00%     2094     55      0     63345    55.3s
+11.8% inactive integer columns, restarting
+Model after restart has 31658 rows, 39799 cols (28 bin., 0 int., 0 impl., 39771 cont., 0 dom.fix.), and 125026 nonzeros
+         0       0         0   0.00%   -115127673.8869 -115127509.9465    0.00%       48      0      0     63345    55.7s
+         0       0         0   0.00%   -115127673.8869 -115127509.9465    0.00%       48     48      0     63421    56.8s
+25.0% inactive integer columns, restarting
+Model after restart has 31645 rows, 39791 cols (20 bin., 0 int., 0 impl., 39771 cont., 0 dom.fix.), and 124943 nonzeros
+         0       0         0   0.00%   -115127667.9728 -115127509.9465    0.00%       43      0      0     63424    58.7s
+         0       0         0   0.00%   -115127667.9728 -115127509.9465    0.00%       43     43      0     63487    59.1s
+15.0% inactive integer columns, restarting
+Model after restart has 31640 rows, 39788 cols (17 bin., 0 int., 0 impl., 39771 cont., 0 dom.fix.), and 124924 nonzeros
+         0       0         0   0.00%   -115127657.0891 -115127509.9465    0.00%       49      0      0     63502    64.4s
+         0       0         0   0.00%   -115127657.0891 -115127509.9465    0.00%       49     49      0     63575    64.8s
+         0       0         0   0.00%   -115127653.0966 -115127509.9465    0.00%     1187     55      0     63580    71.4s
+11.8% inactive integer columns, restarting
+Model after restart has 31637 rows, 39786 cols (15 bin., 0 int., 0 impl., 39771 cont., 0 dom.fix.), and 124904 nonzeros
+         0       0         0   0.00%   -115127651.7806 -115127509.9465    0.00%       55      0      0     63581    73.3s
+         0       0         0   0.00%   -115127651.7806 -115127509.9465    0.00%       55     55      0     63652    73.8s
+         1       0         1 100.00%   -115127509.9465 -115127509.9465    0.00%      606     57      0     63660    77.3s
+Solving report
+  Status            Optimal
+  Primal bound      -115127509.947
+  Dual bound        -115127509.947
+  Gap               0% (tolerance: 0%)
+  P-D integral      9.50748194185e-05
+  Solution status   feasible
+                    -115127509.947 (objective)
+                    0 (bound viol.)
+                    8.881784197e-16 (int. viol.)
+                    0 (row viol.)
+  Timing            77.32
+  Max sub-MIP depth 2
+  Nodes             1
+  Repair LPs        0
+  LP iterations     63660
+                    0 (strong br.)
+                    1796 (separation)
+                    30185 (heuristics)
+ 77.350311 seconds (303 allocations: 12.734 KiB)
+Optimal solution found, objective function value: -1.1512750994650364e8
+Saving model results...  0.532379 seconds (4.27 M allocations: 149.139 MiB)
+Postprocessing model results...  0.000060 seconds (48 allocations: 3.312 KiB)
+Saving model outputs...  4.176952 seconds (2.76 M allocations: 170.351 MiB, 89.55% gc time)
+Rolling model temporal structure...  0.000057 seconds (47 allocations: 1.312 KiB)
+Rolling complete
+Solve complete. Started at 2026-08-01T08:28:20.605, ended at 2026-08-01T08:54:04.262, elapsed time: 25 minutes, 43 seconds, 657 milliseconds
+Time summary:
+Action                                           │ min       │ max        │ avg
+─────────────────────────────────────────────────┼───────────┼────────────┼───────────────────────
+Postprocessing model results...                  │ 3.9e-5    │ 0.000116   │ 6.408333333333334e-5
+Fixing model history...                          │ 0.044717  │ 0.089362   │ 0.057634454545454544
+Applying model non-anticipativity constraints... │ 0.000115  │ 0.000288   │ 0.00018163636363636366
+Rolling model temporal structure...              │ 5.7e-5    │ 2.368824   │ 0.82990225
+Saving model results...                          │ 0.402334  │ 1.192052   │ 0.5934964166666666
+Optimizing model...                              │ 19.552677 │ 515.264609 │ 126.008416
+Saving model outputs...                          │ 0.327991  │ 4.176952   │ 0.8550214166666668
+Writing report to sqlite:///C:\Users\jfg.eco\Documents\GitHub\Nord_H2ub\Spine_Projects\02_basic_energy_model\.spinetoolbox\items\outputtest\OutputTest.sqlite?spinedbfilter=cfg%3Aexecution%3A%7B%22execution_item%22%3A+%22Run+SpineOpt%22%2C+%22scenarios%22%3A+%5B%5D%2C+%22timestamp%22%3A+%222026-08-01T08%3A25%3A14%22%7D...  5.047875 seconds (22.22 M allocations: 1.329 GiB, 9.96% gc time)
+Execution complete. Started at 2026-08-01T08:25:16.410, ended at 2026-08-01T08:54:40.117, elapsed time: 29 minutes, 23 seconds, 707 milliseconds
+A JuMP Model
+├ solver: HiGHS
+├ objective_sense: MIN_SENSE
+│ └ objective_function_type: JuMP.AffExpr
+├ num_variables: 139893
+├ num_constraints: 248178
+│ ├ JuMP.AffExpr in MOI.EqualTo{Float64}: 33672
+│ ├ JuMP.AffExpr in MOI.GreaterThan{Float64}: 30688
+│ ├ JuMP.AffExpr in MOI.LessThan{Float64}: 55508
+│ ├ JuMP.VariableRef in MOI.EqualTo{Float64}: 900
+│ ├ JuMP.VariableRef in MOI.GreaterThan{Float64}: 121442
+│ ├ JuMP.VariableRef in MOI.LessThan{Float64}: 3681
+│ └ JuMP.VariableRef in MOI.Integer: 2287
+└ Names registered in the model: none
