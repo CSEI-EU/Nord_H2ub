@@ -1095,7 +1095,6 @@
             "Object__to_from_node",
             "Object__node_node",
             "Boolean_relations",
-            "Operating_points",
             "Variable_Eff_Definition",
             "Variable_Eff",
             "Time_series",
@@ -1238,7 +1237,8 @@
             "Time_series_storage": {
                 "0": "datetime",
                 "1": "float",
-                "2": "float"
+                "2": "float",
+                "3": "float"
             },
             "Energy_prices": {
                 "0": "datetime",
@@ -1246,7 +1246,9 @@
                 "2": "float",
                 "3": "float",
                 "4": "float",
-                "5": "float"
+                "5": "float",
+                "6": "float",
+                "7": "float"
             },
             "Model_components": {
                 "0": "string",
@@ -1353,7 +1355,7 @@
                 "1": "string"
             }
         },
-        "source_type": "ExcelConnector"
+        "source_type": "ExcelReader"
     },
     "description": ""
 }
