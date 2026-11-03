@@ -1,34 +1,33 @@
-# %% [markdown]
-# # SpineOpt → PyPSA replica: power-to-methanol plant (`paper_energy_2024_base_10op`)
-#
-# This notebook rebuilds the SpineOpt model from its Excel input **as an exact replica** in PyPSA,
-# solves it with the same rolling-horizon structure, and benchmarks every result against the
-# exported SpineOpt output.
-#
-# **How SpineOpt concepts are mapped**
-#
-# | SpineOpt | PyPSA replica |
-# |---|---|
-# | `node` (`balance_type_node`) | `Bus` (+ optional ±slack generators at `node_slack_penalty`) |
-# | `node` (`balance_type_none`) | `Bus` + free unbounded source/sink `Generator` |
-# | `unit` with inputs | multi-port `Link`; `bus0` = main input, other ports from `fix_ratio_*_unit_flow` |
-# | `unit` without inputs (solar) | `Generator` with `p_max_pu` = `unit_availability_factor` |
-# | electrolyzer `operating_points` + `user_constraint` | one `Link` per segment (marginal efficiency), segment sizes tied to one capacity |
-# | integer `online_variable_type` | `committable=True` (+ `min_down_time`, ramp / start-up / shut-down limits) |
-# | `units_on_cost` (time series) | `stand_by_cost` (time series) |
-# | `connection` (each direction) | `Link` with `efficiency` = `fix_ratio_out_in_connection_flow` |
-# | `connection_flow_cost` | `marginal_cost` on that link |
-# | `has_state` node | `Store` (exact transform for `frac_state_loss`, see below) |
-# | node on `daily` temporal block | hourly `Load` + ±buffer `Store` forced to 0 at each daily block end |
-# | `roll_forward = 730h` | 12 sequential `n.optimize(snapshots=window)` calls, investments carried over |
-#
-# **SpineOpt conventions confirmed from the output file** (see the checks at the end):
-# * `unit_investment_cost` is charged per whole unit invested (fraction × cost), once, in the window it is made, no annuity.
-# * `fom_cost` [€/MW/h] is charged on installed unit capacity for every hour of each window. `fom_cost` on connections is **not** applied by SpineOpt, so the replica ignores it too.
-# * Daily blocks start at each window start, not at midnight (730 h = 30 full days + one 10 h block).
-# * The segment coefficients are **marginal** efficiencies (full-load average 0.742 = 31.95/43.06 in the output).
+"""SpineOpt → PyPSA replica: power-to-methanol plant (`paper_energy_2024_base_10op`)
 
-# %%
+This script rebuilds the SpineOpt model from its Excel input as an exact replica in PyPSA,
+solves it with the same rolling-horizon structure, and benchmarks every result against the
+exported SpineOpt output.
+
+How SpineOpt concepts are mapped
+
+| SpineOpt | PyPSA replica |
+|---|---|
+| `node` (`balance_type_node`) | `Bus` (+ optional ±slack generators at `node_slack_penalty`) |
+| `node` (`balance_type_none`) | `Bus` + free unbounded source/sink `Generator` |
+| `unit` with inputs | multi-port `Link`; `bus0` = main input, other ports from `fix_ratio_*_unit_flow` |
+| `unit` without inputs (solar) | `Generator` with `p_max_pu` = `unit_availability_factor` |
+| electrolyzer `operating_points` + `user_constraint` | one `Link` per segment (marginal efficiency), segment sizes tied to one capacity |
+| integer `online_variable_type` | `committable=True` (+ `min_down_time`, ramp / start-up / shut-down limits) |
+| `units_on_cost` (time series) | `stand_by_cost` (time series) |
+| `connection` (each direction) | `Link` with `efficiency` = `fix_ratio_out_in_connection_flow` |
+| `connection_flow_cost` | `marginal_cost` on that link |
+| `has_state` node | `Store` (exact transform for `frac_state_loss`, see below) |
+| node on `daily` temporal block | hourly `Load` + ±buffer `Store` forced to 0 at each daily block end |
+| `roll_forward = 730h` | 12 sequential `n.optimize(snapshots=window)` calls, investments carried over |
+
+SpineOpt conventions confirmed from the output file (see the checks at the end):
+* `unit_investment_cost` is charged per whole unit invested (fraction × cost), once, in the window it is made, no annuity.
+* `fom_cost` [€/MW/h] is charged on installed unit capacity for every hour of each window. `fom_cost` on connections is not applied by SpineOpt, so the replica ignores it too.
+* Daily blocks start at each window start, not at midnight (730 h = 30 full days + one 10 h block).
+* The segment coefficients are marginal efficiencies (full-load average 0.742 = 31.95/43.06 in the output).
+"""
+
 from __future__ import annotations
 
 import json
@@ -38,6 +37,7 @@ import time
 import warnings
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pypsa
@@ -48,12 +48,12 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 pd.set_option("display.width", 200)
 pd.set_option("display.max_columns", 30)
 
-# %% [markdown]
-# ## Settings
-
-# %%
-INPUT_XLSX = Path(os.environ.get("INPUT_XLSX", "paper_energy_2024_input_base_10op.xlsx"))
-SPINE_OUTPUT_XLSX = Path(os.environ.get("SPINE_OUTPUT_XLSX", "Output_exported_paper_energy_2024_base_10op.xlsx"))
+# ==================================================================================================
+# Settings
+# ==================================================================================================
+HERE = Path(__file__).resolve().parent   # relative paths are resolved against the script's folder
+INPUT_XLSX = HERE / os.environ.get("INPUT_XLSX", "paper_energy_2024_input_base_10op.xlsx")
+SPINE_OUTPUT_XLSX = HERE / os.environ.get("SPINE_OUTPUT_XLSX", "Output_exported_paper_energy_2024_base_10op.xlsx")
 
 SOLVER = os.environ.get("SOLVER", "gurobi")
 # Mirrors db_mip_solver_options in the SpineOpt input (mip_rel_gap 1e-10, time_limit 3000 s).
@@ -72,10 +72,9 @@ INCLUDE_SLACKS = True     # SpineOpt adds node_slack_pos/neg at node_slack_penal
 N_WINDOWS = int(os.environ.get("N_WINDOWS", 0)) or None   # None = full year; e.g. 1 for a quick test
 BIG = 1e6                 # size of "unbounded" sources/sinks (balance_type_none) and demand buffers
 
-# %% [markdown]
-# ## 1. Read the SpineOpt input workbook
-
-# %%
+# ==================================================================================================
+# 1. Read the SpineOpt input workbook
+# ==================================================================================================
 X = pd.read_excel(INPUT_XLSX, sheet_name=None, header=None)
 
 
@@ -150,10 +149,8 @@ for col in range(1, ve.shape[1]):
 print(f"{len(UNITS)} units, {len(NODES)} nodes, {len(CONNS)} connections; "
       f"{len(OP_POINTS)} operating points on {OP_UNIT}/{OP_NODE}")
 
-# %% [markdown]
-# ### Model / temporal settings and time series
+# --- Model / temporal settings and time series ---
 
-# %%
 model_par = {(r.Object_name, r.Parameter): json.loads(r.Value) for _, r in table("Model").iterrows()}
 T0 = pd.Timestamp(model_par[("Model", "model_start")]["data"])
 T1 = pd.Timestamp(model_par[("Model", "model_end")]["data"])
@@ -191,16 +188,16 @@ for c in range(1, tss.shape[1]):
 print(f"{len(SNAPSHOTS)} snapshots, {len(windows)} windows of {WIN} h; daily-block nodes: {list(node_block)}")
 print("connection_flow_cost keys:", list(flow_cost))
 
-# %% [markdown]
-# ## 2. Translate units into PyPSA ports
-#
+# ==================================================================================================
+# 2. Translate units into PyPSA ports
+# ==================================================================================================
 # For every unit, all flows are expressed as a multiple `a` of the flow that carries `unit_capacity`
 # by walking the `fix_ratio_*` graph. The PyPSA `Link` then gets `bus0` = main input and
 # `efficiency_k = ±a_k / a_bus0` (negative = additional input). For the electrolyzer each segment
 # adds the edge `h2 = η_k · power` from the user constraint, so each segment link carries its own
 # marginal efficiency.
 
-# %%
+
 def flow_coefficients(u: str, extra: list | None = None) -> dict[tuple, float]:
     edges = ratios.get(u, []) + (extra or [])
     cap_flows = [k for k in flows_of[u] if "unit_capacity" in flow_par.get((u, *k), {})]
@@ -250,27 +247,27 @@ seg_eff = c_in / -c_out[0]          # marginal efficiency per segment
 SEGMENTS = [unit_spec(SEG_UNIT, extra=[((h2_key[1], "to"), (OP_NODE, "from"), e)]) for e in seg_eff]
 
 specs = {u: unit_spec(u) for u in UNITS if u != SEG_UNIT}
-pd.DataFrame(
+print(pd.DataFrame(
     [(u, s["kind"], s.get("bus0", (s.get("bus"),))[0], [p[0] for p in s.get("ports", [])[1:]],
       np.round(s.get("eff", []), 5).tolist(), s.get("P0", s["cap"]), round(s.get("vom", 0), 4)) for u, s in specs.items()]
     + [(f"{SEG_UNIT}[{k}]", "link", s["bus0"][0], [p[0] for p in s["ports"][1:]], np.round(s["eff"], 5).tolist(),
         seg_width[k] * s["P0"], round(s["vom"], 4)) for k, s in enumerate(SEGMENTS)],
     columns=["unit", "kind", "bus0", "other ports", "efficiencies", "max p0 [bus0 units]", "marginal €/unit p0"],
-)
+))
 
-# %% [markdown]
-# ## 3. Build the network
-#
-# **Storage loss transform.** SpineOpt's balance is `s_t (1 + l) = s_{t-1} + net_inflow_t` (loss on the
+# ==================================================================================================
+# 3. Build the network
+# ==================================================================================================
+# Storage loss transform. SpineOpt's balance is `s_t (1 + l) = s_{t-1} + net_inflow_t` (loss on the
 # *end* state). PyPSA's store is `e_t = (1 − sl) e_{t-1} − p_t`. They are identical with
 # `sl = l/(1+l)` and the store sitting behind a charge link (efficiency `1/(1+l)`) and a discharge
 # link (efficiency `1+l`). For `l = 0` the store sits directly on the node bus.
 #
-# **Daily demand.** `ch3oh_demand` is solved on 24 h blocks in SpineOpt (Σ hourly deliveries over a
+# Daily demand. `ch3oh_demand` is solved on 24 h blocks in SpineOpt (Σ hourly deliveries over a
 # block = 24 h × 20.19 MW). Here: an hourly `Load` plus a buffer `Store` with `e ∈ [−BIG, BIG]`
 # that is forced to 0 at the end of every block, which enforces exactly that block balance.
 
-# %%
+
 def block_ends(block: pd.Timedelta) -> pd.DatetimeIndex:
     """Last snapshot of every temporal block; blocks restart at each window start (SpineOpt behaviour)."""
     step = int(block / RES)
@@ -385,18 +382,17 @@ def build_network() -> tuple[pypsa.Network, dict]:
 
 
 n, META = build_network()
-n
+print(n)
 
-# %% [markdown]
-# ## 4. Custom constraints (`extra_functionality`)
-#
-# 1. **Electrolyzer segments scale together:** `p_nom[k] = Δop_k / Δop_0 · p_nom[0]` (one capacity,
+# ==================================================================================================
+# 4. Custom constraints (`extra_functionality`)
+# ==================================================================================================
+# 1. Electrolyzer segments scale together: `p_nom[k] = Δop_k / Δop_0 · p_nom[0]` (one capacity,
 #    marginal efficiency per load band). Efficiencies fall with load, so the LP fills the bands in
 #    order by itself; SpineOpt's `ordered_unit_flow_op` binaries are therefore not binding.
-# 2. **Methanol stock at window end:** `e(ch3oh_st) ≥ node_state_min` on the snapshots where SpineOpt
+# 2. Methanol stock at window end: `e(ch3oh_st) ≥ node_state_min` on the snapshots where SpineOpt
 #    sets it (the last hour of windows 1–11).
 
-# %%
 NODE_STATE_MIN = {nd: s.reindex(SNAPSHOTS.union(s.index)).ffill().reindex(SNAPSHOTS).fillna(0.0)
                   for (nd, p), s in storage_ts.items() if p == "node_state_min"}
 if FINAL_WINDOW_STATE_MIN:
@@ -418,15 +414,15 @@ def extra_functionality(n: pypsa.Network, sns: pd.Index) -> None:
         if len(req):
             m.add_constraints(e.sel(name=nd, snapshot=req.index) >= req.values, name=f"state_min_{nd}")
 
-# %% [markdown]
-# ## 5. Rolling-horizon solve
-#
+# ==================================================================================================
+# 5. Rolling-horizon solve
+# ==================================================================================================
 # Each window is optimised with `n.optimize(snapshots=window)`. PyPSA carries ramping and
 # commitment history from previous windows; store levels and installed capacity are carried by
 # setting `e_initial` and `p_nom_min`/`e_nom_min` before the next window (same as SpineOpt:
 # investments are fixed history, further increments are allowed and paid for in the window made).
 
-# %%
+
 def capacities(n):
     lk = n.links.p_nom_opt.copy()
     st = n.stores.e_nom_opt.copy()
@@ -457,10 +453,9 @@ for w_i, sns in enumerate(windows):
     print(f"window {w_i + 1:2d} {sns[0]:%Y-%m-%d %H:%M}  objective {n.objective:14,.0f}  ({time.time() - t:.1f}s)")
 print(f"total solve time {time.time() - t_start:.0f}s")
 
-# %% [markdown]
-# ## 6. Recompute SpineOpt's objective terms per window
-
-# %%
+# ==================================================================================================
+# 6. Recompute SpineOpt's objective terms per window
+# ==================================================================================================
 def window_costs(rec: dict, sns) -> dict:
     lkb, lka, stb, sta = rec["lk_before"], rec["lk_after"], rec["st_before"], rec["st_after"]
     inv_u = fom = 0.0
@@ -502,12 +497,11 @@ costs = pd.DataFrame([window_costs(r, w) for r, w in zip(records, windows)],
                      index=pd.Index([r["window"] for r in records], name="window"))
 # consistency check: our decomposition reproduces PyPSA's objective up to the constant
 # (investment cost of capacity existing before the window, which PyPSA re-prices via capital_cost)
-costs.round(0)
+print(costs.round(0))
 
-# %% [markdown]
-# ## 7. Map results back to SpineOpt variables
-
-# %%
+# ==================================================================================================
+# 7. Map results back to SpineOpt variables
+# ==================================================================================================
 def unit_flows() -> pd.DataFrame:
     out = {}
     for u, s in specs.items():
@@ -548,10 +542,9 @@ for u, d in META["fixed_units"].items():
     units_invested[u] = d["units"] - unit_counts(u)[0]
 storages_invested = {nd: (records[-1]["st_after"][nd]) / d["cap"] for nd, d in META["stores"].items()}
 
-# %% [markdown]
-# ## 8. Benchmark against the SpineOpt output
-
-# %%
+# ==================================================================================================
+# 8. Benchmark against the SpineOpt output
+# ==================================================================================================
 raw = pd.read_excel(SPINE_OUTPUT_XLSX, header=None)
 hdr = raw.iloc[:4, 1:].T.map(str).apply(tuple, axis=1).tolist()
 sp = raw.iloc[4:, 1:].apply(pd.to_numeric, errors="coerce")
@@ -576,9 +569,8 @@ cmp_cost.loc["sum"] = [cmp_cost.iloc[:, 0].sum(), cmp_cost.iloc[:, 1].sum(),
                        cmp_cost.iloc[:, 1].sum() - cmp_cost.iloc[:, 0].sum(),
                        100 * (cmp_cost.iloc[:, 1].sum() - cmp_cost.iloc[:, 0].sum()) / abs(cmp_cost.iloc[:, 0].sum())]
 print("Objective per window [EUR]")
-cmp_cost.round(3)
+print(cmp_cost.round(3))
 
-# %%
 inv_rows = []
 for u in UNITS:
     s = per_window(spine("units_invested", u, "nan", "realization")).iloc[:nW].sum()
@@ -589,9 +581,8 @@ for nd in META["stores"]:
 cmp_inv = pd.DataFrame(inv_rows, columns=["variable", "object", "SpineOpt", "PyPSA"])
 cmp_inv["diff"] = cmp_inv.PyPSA - cmp_inv.SpineOpt
 print("Investments (fraction of candidate unit; storages cumulative)")
-cmp_inv.round(5)
+print(cmp_inv.round(5))
 
-# %%
 idx = UF.index
 rows = []
 for (u, nd, d) in UF.columns:
@@ -612,22 +603,20 @@ cmp_flow = pd.DataFrame(rows, columns=["variable", "object", "node", "dir", "Spi
 base = cmp_flow["SpineOpt Σ"].abs().where(cmp_flow["SpineOpt Σ"].abs() > 1e-6)
 cmp_flow["Σ rel diff [%]"] = 100 * (cmp_flow["PyPSA Σ"] - cmp_flow["SpineOpt Σ"]) / base
 print("Flows over the solved horizon (Σ = MWh, t or kg)")
-cmp_flow.round(4)
+print(cmp_flow.round(4))
 
-# %% [markdown]
-# **Reading the benchmark.**
-# * *Degenerate methanol timing.* Delivery timing within a daily block and the matching `ch3oh_st`
+# Reading the benchmark.
+# * Degenerate methanol timing. Delivery timing within a daily block and the matching `ch3oh_st`
 #   charge/discharge are degenerate: any split of a day's delivery across its hours costs the same, so
 #   the solvers may pick different but equally optimal schedules. Compare those on block totals.
-# * *Storage capacity between windows (SpineOpt artefact).* In the SpineOpt run the `ch3oh_st`
-#   capacity entering a window is sometimes **lower** than what was bought earlier (e.g. 1,508.6 MWh
+# * Storage capacity between windows (SpineOpt artefact). In the SpineOpt run the `ch3oh_st`
+#   capacity entering a window is sometimes lower than what was bought earlier (e.g. 1,508.6 MWh
 #   bought in window 1, yet 102 MWh re-bought in window 6 whose peak is 1,116 MWh). SpineOpt lets
 #   `storages_invested_available` fall between rolling windows at no cost and then pays again to
 #   re-invest. The replica keeps capacity cumulative (it never disappears), so from window 4 on it
 #   saves those re-purchases (about €320 over the year). Because the storage capacity then differs,
 #   hourly dispatch in those windows can also differ. Unit investments are unaffected.
 
-# %%
 blocks = block_ends(node_block["ch3oh_demand"])
 blocks = blocks[blocks <= UF.index[-1]]
 grp = np.searchsorted(blocks.values, UF.index.values)          # block id per hour
@@ -638,12 +627,9 @@ state_end_py = NS["ch3oh_st"].loc[blocks]
 print(f"daily-block deliveries: max |diff| = {np.abs(deliv_sp.values - deliv_py.values).max():.2e} MWh over {len(blocks)} blocks")
 print(f"ch3oh_st level at block ends: max |diff| = {np.abs(state_end_sp.values - state_end_py.values).max():.2f} MWh")
 
-# %% [markdown]
-# ## 9. Charts
-
-# %%
-import matplotlib.pyplot as plt
-
+# ==================================================================================================
+# 9. Charts
+# ==================================================================================================
 C_SPINE, C_PYPSA = "#2a78d6", "#eb6834"   # categorical slots 1-2 of the validated reference palette
 plt.rcParams.update({"axes.spines.top": False, "axes.spines.right": False, "axes.grid": True,
                      "grid.color": "#e6e5e0", "grid.linewidth": 0.6, "axes.axisbelow": True,
@@ -661,7 +647,6 @@ ax.set_title("Objective per 730 h window", loc="left")
 ax.legend(frameon=False, loc="upper right")
 plt.tight_layout(); plt.show()
 
-# %%
 wk = UF.index[24 * 14: 24 * 21] if len(UF) >= 24 * 21 else UF.index
 fig, axes = plt.subplots(2, 1, figsize=(9, 5.2), sharex=True)
 for ax, (title, s_sp, s_py) in zip(axes, [
@@ -675,17 +660,17 @@ axes[0].legend(frameon=False, loc="lower right", ncol=2)
 fig.autofmt_xdate()
 plt.tight_layout(); plt.show()
 
-# %% [markdown]
-# ## 10. Cross-check: PyPSA's native piecewise efficiency (PyPSA ≥ 1.3)
-#
-# Native piecewise efficiencies need a **fixed** `p_nom`, so they cannot size the electrolyzer.
+# ==================================================================================================
+# 10. Cross-check: PyPSA's native piecewise efficiency (PyPSA ≥ 1.3)
+# ==================================================================================================
+# Native piecewise efficiencies need a fixed `p_nom`, so they cannot size the electrolyzer.
 # As a check of the segment formulation, window 1 is re-solved with every capacity fixed at the
-# replica's window-1 result and the 10 segment links replaced by **one** link whose `efficiency`
+# replica's window-1 result and the 10 segment links replaced by one link whose `efficiency`
 # (H₂) and `efficiency2` (heat) are piecewise curves. PyPSA's curve is the *realised* efficiency at
 # each load point, so the marginal SpineOpt coefficients are integrated first:
 # `η_real(op_k) = Σ_{j≤k} η_j Δop_j / op_k`. The operating cost must equal the replica's.
 
-# %%
+
 def native_piecewise_check() -> pd.DataFrame:
     n2, _ = build_network()
     r1 = records[0]
@@ -727,12 +712,11 @@ def native_piecewise_check() -> pd.DataFrame:
 
 
 pw_check = native_piecewise_check()
-pw_check.round(3)
+print(pw_check.round(3))
 
-# %% [markdown]
-# ## 11. Summary
-
-# %%
+# ==================================================================================================
+# 11. Summary
+# ==================================================================================================
 print(f"Windows solved: {nW}")
 print(f"Σ objective  SpineOpt {cmp_cost.loc['sum', 'SpineOpt total_costs']:,.2f} €   "
       f"PyPSA {cmp_cost.loc['sum', 'PyPSA total']:,.2f} €   "
