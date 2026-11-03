@@ -1,0 +1,279 @@
+{
+  "case": "base_10op",
+  "status": "ok",
+  "solver": {
+    "requested": "gurobi",
+    "used": "gurobi",
+    "options": {
+      "MIPGap": 1e-10,
+      "TimeLimit": 3000,
+      "OutputFlag": 0
+    },
+    "gap_option": "MIPGap"
+  },
+  "windows": [
+    {
+      "window": 1,
+      "start": "2019-01-01 00:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 35.41946291923523,
+      "objective": 1560709.8326817662,
+      "achieved_gap": 2.5361030341652607e-15,
+      "variables": 40895,
+      "constraints": 92018,
+      "binaries": 2190,
+      "integers": 0
+    }
+  ],
+  "n_windows_solved": 1,
+  "n_windows_in_input": 12,
+  "solve_seconds_total": 35.41946291923523,
+  "run_seconds_total": 70.54811191558838,
+  "objective_sum": {
+    "spine": 1729631.97712619,
+    "pypsa": 1729631.977126205,
+    "diff": 1.5133991837501526e-08
+  },
+  "packages": {
+    "python": "3.14.8",
+    "pypsa": "1.4.0",
+    "linopy": "0.10.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "xarray": "2026.9.0",
+    "gurobipy": "13.0.3",
+    "highspy": "1.15.1"
+  },
+  "input": {
+    "path": "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\06_thesis\\benchmark_scenario\\paper_energy_2024_input_base_10op.xlsx",
+    "sha256": "d25657d2fde8821e5f2d39a1c17c00cb91b99c01407837a482bdef0d903f69a0"
+  },
+  "spine_output": {
+    "path": "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\06_thesis\\benchmark_scenario\\Output_exported_paper_energy_2024_base_10op.xlsx",
+    "sha256": "1e865a8c64637479bc0151bb3f4f696f7e7e083ca9dbb782714d371e85c6c0de",
+    "sheet": "Run SpineOpt@2024-11-08T222059",
+    "run_timestamp": "2024-11-08T22:20:59"
+  },
+  "settings": {
+    "final_window_state_min": true,
+    "include_slacks": true,
+    "n_windows": 1,
+    "big": 1000000.0,
+    "solver_options": null,
+    "native_piecewise_check": true,
+    "resolved_solver_options": {
+      "MIPGap": 1e-10,
+      "TimeLimit": 3000,
+      "OutputFlag": 0
+    }
+  },
+  "workarounds": [
+    "co2: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "water: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "h2_st: frac_state_loss 0.0432642 via exact transform (standing_loss l/(1+l), charge/discharge links 1/(1+l) and 1+l)",
+    "dh: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "power_wholesale: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "ch3oh_demand: daily block balance via hourly Load + buffer Store (\u00b11e+06, zero at 31 block ends, blocks restart at each window)",
+    "ch3oh_reactor: committable unit fixed at its maximum of 1 unit(s) (54.1667 on bus0); investment 0.144444 charged as a constant in window 1",
+    "electrolyzer: 10 operating-point segments as separate links with marginal efficiencies, capacities tied by p_nom ratio constraints",
+    "storage capacity is cumulative across windows (SpineOpt lets it fall between windows and re-invests; CLAUDE.md artefact 2)",
+    "ch3oh_st: FINAL_WINDOW_STATE_MIN sets node_state_min = 969.254 at the last snapshot 2019-12-31 23:00:00 (input value there: 0) - last snapshot not in the solved windows, so not binding"
+  ],
+  "ignored_parameters": {
+    "candidate_connections": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_cost": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_econ_lifetime": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_tech_lifetime": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_variable_type": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_type": {
+      "reason": "each direction is modelled as a separate link (normal / lossless_bidirectional only, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "db_mip_solver_options": {
+      "reason": "solver options come from Settings",
+      "owners": [
+        "Model"
+      ]
+    },
+    "fom_cost (connections)": {
+      "reason": "SpineOpt does not apply fom_cost on connections",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_h2_st"
+      ]
+    },
+    "initial_connections_invested_available": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "minimum_operating_point": {
+      "reason": "only allowed on units without an online variable, where SpineOpt's flow >= mop\u00b7units_on constraint is not binding (checked)",
+      "owners": [
+        "electrolyzer|power|from"
+      ]
+    },
+    "number_of_connections": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "ordered_unit_flow_op": {
+      "reason": "segment links fill in order because marginal efficiencies are non-increasing (checked)",
+      "owners": [
+        "electrolyzer|power|from"
+      ]
+    },
+    "storage_investment_econ_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_st",
+        "h2_st"
+      ]
+    },
+    "storage_investment_tech_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_st",
+        "h2_st"
+      ]
+    },
+    "unit_investment_econ_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_reactor",
+        "co2_vaporizer",
+        "dist_tower",
+        "electrolyzer",
+        "solar_plant",
+        "steam_plant"
+      ]
+    },
+    "unit_investment_tech_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_reactor",
+        "co2_vaporizer",
+        "dist_tower",
+        "electrolyzer",
+        "solar_plant",
+        "steam_plant"
+      ]
+    }
+  },
+  "skipped_energy_price_columns": [
+    "Grid_costs_consumption",
+    "Grid_costs_production"
+  ],
+  "spine_cost_terms": {
+    "spine_objective_terms_found": {
+      "unit_investment": [
+        "objective_unit_investment_costs"
+      ],
+      "storage_investment": [
+        "objective_storage_investment_costs"
+      ],
+      "connection_investment": [
+        "objective_connection_investment_costs"
+      ]
+    },
+    "spine_objective_terms_missing": {
+      "fom": [
+        "objective_fixed_om_costs"
+      ],
+      "variable": [
+        "objective_variable_om_costs",
+        "objective_fuel_costs",
+        "objective_connection_flow_costs",
+        "objective_taxes"
+      ],
+      "units_on": [
+        "objective_units_on_costs"
+      ],
+      "slack": [
+        "objective_objective_penalties"
+      ]
+    },
+    "spine_objective_terms_unmapped": [],
+    "spine_operating": "spine_total minus the investment terms found (fom + variable + units_on + slack)",
+    "total_costs_present": true
+  },
+  "skipped_comparisons": [],
+  "operating_point_unit": [
+    "electrolyzer",
+    "power"
+  ],
+  "external_supply_flows": [
+    [
+      "pl_wholesale",
+      "power_wholesale"
+    ]
+  ],
+  "units_invested": {
+    "co2_vaporizer": 0.06176099498950985,
+    "dist_tower": 0.4689574940061223,
+    "steam_plant": 0.01757575095100536,
+    "electrolyzer": 0.828028117022523,
+    "solar_plant": 0,
+    "ch3oh_reactor": 1
+  },
+  "storages_invested": {
+    "h2_st": 0.0,
+    "ch3oh_st": 0.5714475921974966
+  }
+}
