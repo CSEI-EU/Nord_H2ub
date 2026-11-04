@@ -40,6 +40,7 @@ class CaseResult:
     hourly: dict = field(repr=False, default_factory=dict)  # PyPSA series mapped to SpineOpt variables
     spine: object = field(repr=False, default=None)         # SpineOutput
     native_check: pd.DataFrame | None = None
+    classified: pd.DataFrame | None = None
     out_dir: Path | None = None
 
     @property
@@ -53,6 +54,8 @@ class CaseResult:
         self.investments.to_csv(case_dir / "investments.csv", index=False)
         self.flows.to_csv(case_dir / "flows.csv", index=False)
         self.blocks.to_csv(case_dir / "blocks.csv", index=False)
+        if self.classified is not None:
+            self.classified.to_csv(case_dir / "classified_windows.csv", index=False)
         if self.native_check is not None:
             self.native_check.to_csv(case_dir / "native_piecewise_check.csv")
         (case_dir / "meta.json").write_text(json.dumps(_jsonable(self.meta), indent=2), encoding="utf-8")

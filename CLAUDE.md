@@ -53,6 +53,7 @@ CLI: `python -m benchmark.run_case --input <in.xlsx> --output <Output_exported.x
 | `flows.csv` | Per variable/object/node/direction: sums, max hourly diff, hourly correlation |
 | `blocks.csv` | Deliveries per coarser temporal block, and storage levels at block ends |
 | `meta.json` | Status, solver and options, achieved gap, solve time and model size per window, package versions, SHA-256 of input and output, settings, workarounds, ignored parameters, skipped comparisons, SpineOpt run timestamp |
+| `classified_windows.csv` | Per window: class and rule (`benchmark/classify.py`: R1 exact, R2 degenerate, R3 solver_tolerance, R4 artefact_storage, R4b artefact_storage_timing, R5 artefact_units, R6 unexplained; `rule_origin` marks R4b as post-hoc), the gap- and slack-implied tolerances, evidence columns, `also_consistent_with`, and for slack cases every comparison without the slack term (`*_ex_slack`, `class_ex_slack`) |
 | `network.nc` | The solved PyPSA network |
 
 The case name is the input file stem after `_input_`, e.g. `base_10op`.
@@ -74,6 +75,9 @@ The case name is the input file stem after `_input_`, e.g. `base_10op`.
   `connection_flows`, `node_states` and `investments`.
 - `compare.py`: data-driven comparison tables. Objects missing on either side are skipped and
   listed in `meta.json`.
+- `classify.py`: window classification rules R1–R6 (written out in its docstring).
+- `batch.py`: batch runner (see below). `output_scan.py`: scans SpineOpt outputs for negative states and slack.
+- `reclassify.py`: re-classifies saved results from `network.nc` + CSVs (no solve) and re-collects the tables.
 - `native.py`: optional cross-check of window 1 against PyPSA's native piecewise efficiency.
 - `charts.py`: `plot_case(result)` returns matplotlib figures.
 - `settings.py` / `results.py` / `errors.py`: `Settings`, `CaseResult`, `UnsupportedStructure`.
@@ -83,7 +87,7 @@ The case name is the input file stem after `_input_`, e.g. `base_10op`.
 | Field | Default | Meaning |
 |---|---|---|
 | `final_window_state_min` | `True` | Final-hour storage requirement (artefact 1), True for all cases. The rule lives only in `model.apply_final_window_state_min`. |
-| `free_state_before_first_min` | `True` | No state lower bound before the first `node_state_min` timestamp, as in SpineOpt (artefact 4) |
+| `free_state_before_first_min` | `True` | Reproduce SpineOpt's data artefact 4: no state lower bound before the first `node_state_min` timestamp (physically invalid; `False` = e ≥ 0) |
 | `include_slacks` | `True` | ±slack generators at `node_slack_penalty` |
 | `n_windows` | `None` | `None` = all windows. Use `1` for a quick test (about 25 s with Gurobi). |
 | `big` | `1e6` | Size of unbounded sources/sinks, demand buffers and loss links |
@@ -104,9 +108,38 @@ chart windows are closed; for headless runs, set `MPLBACKEND=Agg`.
 
 **Batch runs.** `cases.csv` (in `benchmark_scenario/`) maps each case to its input and SpineOpt
 output, relative to the CSV's folder. Its `enabled` column excludes `sens_10op_demand_05pdown_OLD`
-(an identical duplicate). Run with `python -m benchmark.batch --cases cases.csv [--only a,b] --solver gurobi
---out-dir results/<name>`. SpineOpt outputs live in
+(an identical duplicate). SpineOpt outputs live in
 `Spine_Projects/03_output_data/03_runs_paper_energy_2024/01_output_raw/Output_exported_paper_energy_2024_<case>.xlsx`.
+
+`python -m benchmark.batch --cases cases.csv [--only a,b] [--workers W] [--threads T]
+[--max-gurobi-instances G] [--force] [--dry-run] [--collect-only] [--out-dir results]`
+
+- Each case runs as its own `python -m benchmark.run_case` process. Failures are recorded in
+  `batch_status.csv` and the batch continues.
+- Logs go to `logs/<case>.log` and case results to `cases/<case>/`.
+- It is resumable: a case whose `meta.json` status is `ok`/`ok_time_limit` is skipped unless
+  `--force`.
+- Threads default to CPUs // workers, and workers × threads may not exceed the CPU count (12 on
+  this machine).
+- At the end it writes tidy `per_window`, `investments`, `flows`, `blocks`, `classified_windows`
+  and `cases` parquet tables to `--out-dir`. Each row carries `family` (base_op / year / only_PV /
+  sens), `op_points`, `year`, `sens_parameter` and `sens_pct` (±%), parsed from the case name.
+- Disabled cases appear only in `cases.parquet` (status `excluded`, with their note), never in the
+  comparison tables.
+
+**Keep the machine awake during long runs.** Modern Standby suspends background processes: the
+pilot only_PV_10op window 6 took 2,691 s wall-clock, versus 7 s when awake. Recorded solve times
+are wall-clock.
+
+`results/spine_output_scan.csv` (`python -m benchmark.output_scan`) lists the min state per storage
+and the slack per case. Negative states occur only in 2022/2050 (`ch3oh_st`, window 1, before the
+first `node_state_min`). Slack occurs only in only_PV_10op (90,494 MWh).
+`results/spine_output_hashes.csv` holds file and numeric-content hashes of all SpineOpt outputs.
+The only identical pair by content is `sens_10op_elprice_05pdown` = `sens_10op_elpricevar_05pdown`.
+The shared output belongs to elpricevar (its prices reconcile `total_costs` in 12/12 windows), so
+elprice_05pdown is disabled until its output is re-exported.
+
+The decision log is in `Spine_Projects/06_thesis/benchmark_scenario/README.md`.
 
 A window stopped by the time limit with a feasible solution is kept, not treated as a failure. It
 is flagged `time_limit` in `meta.json`, with its achieved gap, and the case status becomes
@@ -177,6 +210,11 @@ was kept so the report stayed byte-identical through the refactor.
    cumulative SpineOpt `units_invested` then exceeds `candidate_units` (dist_tower 1.155 > 1).
    SpineOpt FOM derived from cumulative `units_invested` overstates SpineOpt's real FOM in that
    case, because `units_invested_available` is not exported.
+   Knock-on via investment timing (2020_10op windows 9–11, rule R4b, added post hoc): the
+   same unit capacity is bought two windows later in PyPSA (W9 → W11; Σ −124.59 €). R4b's four
+   conditions are in `classify.py`. PyPSA's per-window unit investments are reconstructed from the
+   dispatch and accepted only if they reproduce PyPSA's unit investment € (true for all 41 cases,
+   mismatch ≤ 1e-9 €).
    Two signatures of this artefact: SpineOpt re-buys storage in a window, or PyPSA stores more
    than SpineOpt's window peak while SpineOpt's peak is below its cumulative purchases (its
    capacity fell without a re-buy, e.g. base_10op windows 4 and 11).
@@ -184,12 +222,15 @@ was kept so the report stayed byte-identical through the refactor.
    schedules have equal cost. Compare deliveries on block totals. Likewise, in slack-dominated
    cases (only_PV_10op) the split of unmet demand between `ch3oh` and `ch3oh_demand` is degenerate,
    since both carry the same 1e8 penalty. Compare total slack energy instead.
-4. **No state lower bound before the first `node_state_min`.** SpineOpt takes the storage
-   lower bound from the `node_state_min` time series. Before its first timestamp (the end of
-   window 1) there is no value, and SpineOpt lets `ch3oh_st` go negative. This happens in 2050_10op
-   (down to −643.9 MWh) and 2022_10op (−636.7 MWh). It was a replica error (the replica forced e ≥ 0;
-   2050 window 1 was +22,819.66 €, 2022 window 1 +6,788.33 €). It is now reproduced by
-   `free_state_before_first_min = True`, and both windows match to the cent.
+4. **No state lower bound before the first `node_state_min` (SpineOpt data artefact).**
+   SpineOpt takes the storage lower bound from the `node_state_min` time series. Before its
+   first timestamp (the end of window 1) the series has no value, so SpineOpt puts no lower
+   bound on `ch3oh_st` and the storage can go negative. That is physically invalid. It happens in
+   2050_10op (down to −643.9 MWh) and 2022_10op (−636.7 MWh).
+   A physically correct model (e ≥ 0) is more expensive there: 2050 window 1 +22,819.66 €, 2022
+   window 1 +6,788.33 €. To benchmark against SpineOpt, the replica *reproduces* the artefact with
+   `free_state_before_first_min = True`, and both windows then match to the cent. Set it to `False`
+   for physically valid results.
 5. **Numerical noise from the 1e8 slack penalty.** Slack at the solver's feasibility tolerance
    (~1e-9 MWh) shows up as cents in the slack term (2050_10op window 1: −0.14 €). In slack-dominated
    windows (only_PV_10op, totals around 1e11–1e12 €) differences of tens of euros are within the

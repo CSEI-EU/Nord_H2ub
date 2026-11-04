@@ -1,0 +1,4 @@
+case,status,returncode,seconds,threads,log,error_tail,finished
+2050_10op,ok,0,154.6,4,results\batch_test\logs\2050_10op.log,,2026-11-04 13:28:28
+base_1op,ok,0,163.7,4,results\batch_test\logs\base_1op.log,,2026-11-04 13:28:37
+sens_10op_eff_10pup,ok,0,217.1,4,results\batch_test\logs\sens_10op_eff_10pup.log,,2026-11-04 13:29:31

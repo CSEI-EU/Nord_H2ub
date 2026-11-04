@@ -10,15 +10,17 @@ DEFAULT_SOLVER_OPTIONS: dict[str, dict] = {
     "highs": {"mip_rel_gap": 1e-10, "time_limit": 3000.0, "presolve": "on", "output_flag": False},
 }
 GAP_OPTION = {"gurobi": "MIPGap", "highs": "mip_rel_gap"}
+THREADS_OPTION = {"gurobi": "Threads", "highs": "threads"}
 
 
 @dataclass(frozen=True)
 class Settings:
-    # SpineOpt's base_10op run kept the final node_state_min also at the last hour of the horizon,
-    # although the input only sets it at the ends of windows 1..n-1. True reproduces that run.
-    # Whether other runs did the same must be decided per case from their output (CLAUDE.md).
+    # All 42 SpineOpt runs keep the final node_state_min also at the last hour of the horizon, although the
+    # input only sets it at the ends of windows 1..n-1 (CLAUDE.md artefact 1). True for all cases for now;
+    # the rule lives only in model.apply_final_window_state_min (to be replaced by a cyclic rule later).
     final_window_state_min: bool = True
-    # SpineOpt takes a storage node's state lower bound from its node_state_min time series; before the
+    # Reproduces a SpineOpt DATA ARTEFACT (CLAUDE.md artefact 4), not a modelling choice: SpineOpt takes the
+    # state lower bound from the node_state_min time series; before the
     # series' first timestamp there is no value and SpineOpt leaves the state unbounded below (it goes
     # negative in 2050_10op and 2022_10op window 1). True reproduces that; False keeps e >= 0 there.
     free_state_before_first_min: bool = True

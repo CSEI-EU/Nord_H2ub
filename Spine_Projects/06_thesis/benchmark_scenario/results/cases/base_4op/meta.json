@@ -1,0 +1,469 @@
+{
+  "case": "base_4op",
+  "status": "ok",
+  "windows_at_time_limit": [],
+  "solver": {
+    "requested": "gurobi",
+    "used": "gurobi",
+    "options": {
+      "MIPGap": 1e-10,
+      "TimeLimit": 3000,
+      "OutputFlag": 0,
+      "Threads": 4
+    },
+    "gap_option": "MIPGap"
+  },
+  "windows": [
+    {
+      "window": 1,
+      "start": "2019-01-01 00:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 48.15350532531738,
+      "objective": 1560367.784893476,
+      "achieved_gap": 0.0,
+      "variables": 36509,
+      "constraints": 82511,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 2,
+      "start": "2019-01-31 10:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 13.654666185379028,
+      "objective": 840735.8132843229,
+      "achieved_gap": 1.0523596496126598e-14,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 3,
+      "start": "2019-03-02 20:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 13.932532787322998,
+      "objective": 540464.2497037523,
+      "achieved_gap": 1.3785519765660275e-14,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 4,
+      "start": "2019-04-02 06:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 17.157980918884277,
+      "objective": -439472.7716474498,
+      "achieved_gap": 5.297953790881249e-16,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 5,
+      "start": "2019-05-02 16:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 12.683868646621704,
+      "objective": -554451.1470580063,
+      "achieved_gap": 2.7295446889783815e-15,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 6,
+      "start": "2019-06-02 02:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 14.151830673217773,
+      "objective": -592566.4841084044,
+      "achieved_gap": 0.0,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 7,
+      "start": "2019-07-02 12:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 12.448248386383057,
+      "objective": -498589.1917699743,
+      "achieved_gap": 5.83723653403238e-15,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 8,
+      "start": "2019-08-01 22:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 11.174748659133911,
+      "objective": -285773.76611287997,
+      "achieved_gap": 6.9252699363459685e-15,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 9,
+      "start": "2019-09-01 08:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 12.564250230789185,
+      "objective": 153291.78197660897,
+      "achieved_gap": 3.379490899315853e-14,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 10,
+      "start": "2019-10-01 18:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 11.359931230545044,
+      "objective": 646238.9538830736,
+      "achieved_gap": 1.134899905217396e-14,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 11,
+      "start": "2019-11-01 04:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 10.503585577011108,
+      "objective": 1379553.7814205969,
+      "achieved_gap": 6.244579900554617e-15,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 12,
+      "start": "2019-12-01 14:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 8.726707220077515,
+      "objective": 1307607.8289995263,
+      "achieved_gap": 6.7662216932552876e-15,
+      "variables": 36509,
+      "constraints": 83242,
+      "binaries": 2190,
+      "integers": 0
+    }
+  ],
+  "n_windows_solved": 12,
+  "n_windows_in_input": 12,
+  "solve_seconds_total": 186.51185584068298,
+  "run_seconds_total": 200.52014660835266,
+  "objective_sum": {
+    "spine": 1921335.204495994,
+    "pypsa": 1921004.5458571897,
+    "diff": -330.65863880376855
+  },
+  "packages": {
+    "python": "3.14.8",
+    "pypsa": "1.4.0",
+    "linopy": "0.10.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "xarray": "2026.9.0",
+    "gurobipy": "13.0.3",
+    "highspy": "1.15.1"
+  },
+  "input": {
+    "path": "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_base_4op.xlsx",
+    "sha256": "b9bdbb058416e90cee60b2b5330ac0067dad4284ce5b6b9501ad3d0966a4f1ed"
+  },
+  "spine_output": {
+    "path": "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\03_output_data\\03_runs_paper_energy_2024\\01_output_raw\\Output_exported_paper_energy_2024_base_4op.xlsx",
+    "sha256": "2be3accce2d1638bf2e2869a5be21897e80925dc2e76936e14a442a436ea466f",
+    "sheet": "Run SpineOpt@2024-12-04T105842",
+    "run_timestamp": "2024-12-04T10:58:42"
+  },
+  "settings": {
+    "final_window_state_min": true,
+    "free_state_before_first_min": true,
+    "include_slacks": true,
+    "n_windows": null,
+    "big": 1000000.0,
+    "solver_options": {
+      "Threads": 4
+    },
+    "native_piecewise_check": false,
+    "resolved_solver_options": {
+      "MIPGap": 1e-10,
+      "TimeLimit": 3000,
+      "OutputFlag": 0,
+      "Threads": 4
+    }
+  },
+  "workarounds": [
+    "h2_st: frac_state_loss 0.0432642 via exact transform (standing_loss l/(1+l), charge/discharge links 1/(1+l) and 1+l)",
+    "dh: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "water: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "power_wholesale: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "co2: balance_type_none modelled as a free source/sink of \u00b11e+06",
+    "ch3oh_demand: daily block balance via hourly Load + buffer Store (\u00b11e+06, zero at 372 block ends, blocks restart at each window)",
+    "ch3oh_reactor: committable unit fixed at its maximum of 1 unit(s) (54.1667 on bus0); investment 0.144444 charged as a constant in window 1",
+    "electrolyzer: 4 operating-point segments as separate links with marginal efficiencies, capacities tied by p_nom ratio constraints",
+    "storage capacity is cumulative across windows (SpineOpt lets it fall between windows and re-invests; CLAUDE.md artefact 2)",
+    "ch3oh_st: no state lower bound before the first node_state_min timestamp 2019-01-31 09:00:00 (729 snapshots), as in SpineOpt (free_state_before_first_min)",
+    "ch3oh_st: final_window_state_min sets node_state_min = 969.254 at the last snapshot 2019-12-31 23:00:00 (input value there: 0)"
+  ],
+  "ignored_parameters": {
+    "candidate_connections": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_cost": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_econ_lifetime": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_tech_lifetime": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_investment_variable_type": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "connection_type": {
+      "reason": "each direction is modelled as a separate link (normal / lossless_bidirectional only, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "db_mip_solver_options": {
+      "reason": "solver options come from Settings",
+      "owners": [
+        "Model"
+      ]
+    },
+    "fom_cost (connections)": {
+      "reason": "SpineOpt does not apply fom_cost on connections",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_h2_st"
+      ]
+    },
+    "initial_connections_invested_available": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "minimum_operating_point": {
+      "reason": "only allowed on units without an online variable, where SpineOpt's flow >= mop\u00b7units_on constraint is not binding (checked)",
+      "owners": [
+        "electrolyzer|power|from"
+      ]
+    },
+    "number_of_connections": {
+      "reason": "connections are modelled with fixed capacity (connection_investment_cost must be 0, checked)",
+      "owners": [
+        "pl_ch3oh_st",
+        "pl_dh",
+        "pl_h2_st",
+        "pl_wholesale"
+      ]
+    },
+    "ordered_unit_flow_op": {
+      "reason": "segment links fill in order because marginal efficiencies are non-increasing (checked)",
+      "owners": [
+        "electrolyzer|power|from"
+      ]
+    },
+    "storage_investment_econ_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_st",
+        "h2_st"
+      ]
+    },
+    "storage_investment_tech_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_st",
+        "h2_st"
+      ]
+    },
+    "unit_investment_econ_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_reactor",
+        "co2_vaporizer",
+        "dist_tower",
+        "electrolyzer",
+        "solar_plant",
+        "steam_plant"
+      ]
+    },
+    "unit_investment_tech_lifetime": {
+      "reason": "SpineOpt charges investment cost once, no annuity (CLAUDE.md conventions)",
+      "owners": [
+        "ch3oh_reactor",
+        "co2_vaporizer",
+        "dist_tower",
+        "electrolyzer",
+        "solar_plant",
+        "steam_plant"
+      ]
+    }
+  },
+  "skipped_energy_price_columns": [
+    "Grid_costs_consumption",
+    "Grid_costs_production"
+  ],
+  "spine_cost_terms": {
+    "spine_objective_terms_found": {
+      "unit_investment": [
+        "objective_unit_investment_costs"
+      ],
+      "storage_investment": [
+        "objective_storage_investment_costs"
+      ],
+      "connection_investment": [
+        "objective_connection_investment_costs"
+      ]
+    },
+    "spine_objective_terms_missing": {
+      "fom": [
+        "objective_fixed_om_costs"
+      ],
+      "variable": [
+        "objective_variable_om_costs",
+        "objective_fuel_costs",
+        "objective_connection_flow_costs",
+        "objective_taxes"
+      ],
+      "units_on": [
+        "objective_units_on_costs"
+      ],
+      "slack": [
+        "objective_objective_penalties"
+      ]
+    },
+    "spine_objective_terms_unmapped": [],
+    "spine_terms_derived": {
+      "fom": "fom_cost \u00d7 unit_capacity \u00d7 (existing + cumulative SpineOpt units_invested) \u00d7 hours",
+      "slack": "node_slack_penalty \u00d7 (node_slack_pos + node_slack_neg) \u00d7 hours",
+      "variable_units_on": "spine_total \u2212 investment terms \u2212 spine_fom \u2212 spine_slack (slack 0 if not reported)"
+    },
+    "spine_operating": "spine_total minus the investment terms found (fom + variable + units_on + slack)",
+    "total_costs_present": true
+  },
+  "skipped_comparisons": [],
+  "operating_point_unit": [
+    "electrolyzer",
+    "power"
+  ],
+  "external_supply_flows": [
+    [
+      "pl_wholesale",
+      "power_wholesale"
+    ]
+  ],
+  "classification": {
+    "r4b": {
+      "source": "reconstructed from dispatch",
+      "max_eur_mismatch": 2.3283064365386963e-10,
+      "valid": true,
+      "shifts": {},
+      "rejected_units": {},
+      "sequences": [],
+      "reason": "no unit investment shift"
+    },
+    "feasibility_tolerance_MWh": 1e-06,
+    "max_node_slack_penalty": 100000000.0,
+    "gap_spine": 1e-10,
+    "gap_spine_source": "db_mip_solver_options HiGHS.jl mip_rel_gap",
+    "gap_pypsa_option": 1e-10,
+    "has_slack": true,
+    "unit_excess_spine_vs_pypsa": {},
+    "rules": "see benchmark/classify.py docstring (R1..R6, R4b)",
+    "counts": {
+      "artefact_storage": 6,
+      "degenerate": 5,
+      "solver_tolerance": 1
+    }
+  },
+  "units_invested": {
+    "co2_vaporizer": 0.061713178393853756,
+    "dist_tower": 0.4685944177494233,
+    "steam_plant": 0.0175621434536404,
+    "electrolyzer": 0.8272025783798582,
+    "solar_plant": 0,
+    "ch3oh_reactor": 1
+  },
+  "storages_invested": {
+    "h2_st": 0.0,
+    "ch3oh_st": 0.6501867491996794
+  }
+}

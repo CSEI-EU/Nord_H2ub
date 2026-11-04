@@ -24,11 +24,12 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 
+from .classify import classify_windows
 from .accounting import connection_flows, investments, node_states, solved_index, unit_flows, window_costs
 from .compare import blocks_table, flows_table, investments_table, per_window_table
 from .model import build_network, check_supported, free_state_before, make_extra_functionality, node_state_min
 from .results import CaseResult
-from .settings import GAP_OPTION, Settings
+from .settings import GAP_OPTION, THREADS_OPTION, Settings
 from .spine_input import read_input
 from .spine_output import read_output
 from .units import operating_segments, unit_counts, unit_specs
@@ -197,6 +198,10 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     inv_df, inv_skipped = investments_table(inp, meta, spine, len(windows), units_inv, stores_inv)
     flows_df, flow_skipped = flows_table(spine, UF, CF, NS)
     blocks_df, block_skipped = blocks_table(inp, windows, spine, CF, NS)
+    hourly = {"unit_flows": UF, "connection_flows": CF, "node_states": NS}
+    classified, cls_notes = classify_windows(inp, spine, per_window, hourly, win_meta, opts.get(GAP_OPTION.get(solver)),
+                                             units_inv, unit_fom, windows, specs=specs, segs=segs)
+    cls_notes["counts"] = classified["class"].value_counts().to_dict()
 
     native = None
     if settings.native_piecewise_check:
@@ -235,12 +240,13 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
         "operating_point_unit": [segs.unit, segs.in_node],
         "external_supply_flows": [[c, nd] for c in inp.conns for nd, d in inp.flows_of.get(c, [])
                                   if d == "from" and nd in none_nodes],
+        "classification": cls_notes,
         "units_invested": units_inv,
         "storages_invested": stores_inv,
     }
     result = CaseResult(case=case, per_window=per_window, investments=inv_df, flows=flows_df, blocks=blocks_df,
                         meta=meta_out, network=n, unit_ports=ports, spine=spine, native_check=native,
-                        hourly={"unit_flows": UF, "connection_flows": CF, "node_states": NS})
+                        hourly=hourly, classified=classified)
     if write:
         result.write(Path(out_dir) / case)
     return result
@@ -254,6 +260,7 @@ def main(argv=None) -> int:
     ap.add_argument("--out-dir", default="benchmark_results", help="results go to <out-dir>/<case>/")
     ap.add_argument("--case", default=None, help="case name (default: derived from the input file name)")
     ap.add_argument("--mip-gap", type=float, default=None)
+    ap.add_argument("--threads", type=int, default=None, help="solver threads (Gurobi Threads / HiGHS threads)")
     ap.add_argument("--n-windows", type=int, default=None)
     ap.add_argument("--no-final-window-state-min", action="store_true")
     ap.add_argument("--no-slacks", action="store_true")
@@ -267,8 +274,12 @@ def main(argv=None) -> int:
     warnings.filterwarnings("ignore", category=FutureWarning)
     settings = Settings(final_window_state_min=not a.no_final_window_state_min, include_slacks=not a.no_slacks,
                         n_windows=a.n_windows, big=a.big, native_piecewise_check=a.native_check)
-    opts = {GAP_OPTION[a.solver]: a.mip_gap} if a.mip_gap is not None else None
-    r = run_case(a.input, a.output, solver=a.solver, solver_options=opts, settings=settings,
+    opts = {}
+    if a.mip_gap is not None:
+        opts[GAP_OPTION[a.solver]] = a.mip_gap
+    if a.threads is not None:
+        opts[THREADS_OPTION[a.solver]] = a.threads
+    r = run_case(a.input, a.output, solver=a.solver, solver_options=opts or None, settings=settings,
                  out_dir=a.out_dir, case=a.case, log=None if a.quiet else print)
     o = r.meta["objective_sum"]
     print(f"{r.case}: status {r.status}, Σ objective SpineOpt {o['spine']:,.2f} €  PyPSA {o['pypsa']:,.2f} €  "
