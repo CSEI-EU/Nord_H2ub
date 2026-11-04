@@ -26,12 +26,12 @@ import pandas as pd
 
 from .accounting import connection_flows, investments, node_states, solved_index, unit_flows, window_costs
 from .compare import blocks_table, flows_table, investments_table, per_window_table
-from .model import build_network, check_supported, make_extra_functionality, node_state_min
+from .model import build_network, check_supported, free_state_before, make_extra_functionality, node_state_min
 from .results import CaseResult
 from .settings import GAP_OPTION, Settings
 from .spine_input import read_input
 from .spine_output import read_output
-from .units import operating_segments, unit_specs
+from .units import operating_segments, unit_counts, unit_specs
 
 PACKAGES = ["pypsa", "linopy", "pandas", "numpy", "xarray", "gurobipy", "highspy"]
 
@@ -121,7 +121,8 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     windows = inp.windows[: settings.n_windows]
     smin, smin_notes = node_state_min(inp, settings)
     n, meta = build_network(inp, specs, segs, windows, settings)
-    ef = make_extra_functionality(meta, segs.unit, segs.width, smin)
+    free_before = free_state_before(inp, settings)
+    ef = make_extra_functionality(meta, segs.unit, segs.width, smin, free_before)
     ports = unit_ports_table(specs, segs)
 
     say(f"{len(inp.units)} units, {len(inp.nodes)} nodes, {len(inp.conns)} connections; "
@@ -148,12 +149,26 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
                                   assign_all_duals=False, compute_infeasibilities=False, log_to_console=False,
                                   io_api="direct", progress=False, include_objective_constant=False)
         secs = time.time() - t
+        # A window stopped by the time limit with a feasible solution is kept and flagged, with its achieved
+        # gap. linopy may report such a stop as status "ok" or "warning"; PyPSA only writes the solution back
+        # for "ok", so assign it here otherwise.
+        hit_limit = "time_limit" in str(cond).lower()
+        if status != "ok":
+            sol = n.model.objective.value if n.model is not None else None
+            if hit_limit and sol is not None and np.isfinite(sol):
+                n.optimize.assign_solution()
+            else:
+                win_meta.append({"window": w_i + 1, "start": sns[0], "status": status,
+                                 "termination_condition": str(cond), "solve_seconds": secs})
+                raise RuntimeError(f"{case}: window {w_i + 1} ({sns[0]}) ended with {status}/{cond}")
+        if hit_limit:
+            status = "time_limit"
         info = {"window": w_i + 1, "start": sns[0], "snapshots": len(sns), "status": status,
                 "termination_condition": str(cond), "solve_seconds": secs, "objective": float(n.objective),
                 "achieved_gap": achieved_gap(n.model, solver), **model_size(n.model)}
         win_meta.append(info)
-        if status != "ok":
-            raise RuntimeError(f"{case}: window {w_i + 1} ({sns[0]}) ended with {status}/{cond}")
+        if status == "time_limit":
+            say(f"window {w_i + 1}: time limit reached, achieved gap {info['achieved_gap']}")
         # carry state & capacity into next window
         n.stores.e_initial = n.stores_t.e.loc[sns[-1]]
         ext_l = n.links.index[n.links.p_nom_extendable]
@@ -176,7 +191,9 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     NS = node_states(n, meta, idx)
     units_inv, stores_inv = investments(inp, meta, records[-1])
 
-    per_window, pw_notes = per_window_table(costs, spine, inp, windows)
+    unit_fom = {u: (float(inp.obj_par[u].get("fom_cost", 0)),
+                    (segs.specs[0] if u == segs.unit else specs[u])["cap"], unit_counts(inp, u)[0]) for u in inp.units}
+    per_window, pw_notes = per_window_table(costs, spine, inp, windows, unit_fom)
     inv_df, inv_skipped = investments_table(inp, meta, spine, len(windows), units_inv, stores_inv)
     flows_df, flow_skipped = flows_table(spine, UF, CF, NS)
     blocks_df, block_skipped = blocks_table(inp, windows, spine, CF, NS)
@@ -184,14 +201,16 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     native = None
     if settings.native_piecewise_check:
         from .native import native_piecewise_check
-        native = native_piecewise_check(inp, specs, segs, windows, settings, solver, opts, smin,
+        native = native_piecewise_check(inp, specs, segs, windows, settings, solver, opts, smin, free_before,
                                         records, costs, per_window, UF, spine)
 
     none_nodes = {nd for nd in inp.nodes if inp.nodes_df.loc[nd].balance_type == "balance_type_none"}
     statuses = {w["status"] for w in win_meta}
     meta_out = {
         "case": case,
-        "status": "ok" if statuses == {"ok"} else ",".join(sorted(statuses)),
+        "status": "ok" if statuses == {"ok"} else "ok_time_limit" if statuses <= {"ok", "time_limit"}
+                  else ",".join(sorted(statuses)),
+        "windows_at_time_limit": [w["window"] for w in win_meta if w["status"] == "time_limit"],
         "solver": {"requested": solver, "used": n.model.solver_name if n.model is not None else solver,
                    "options": opts, "gap_option": GAP_OPTION.get(solver)},
         "windows": win_meta,

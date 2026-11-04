@@ -18,6 +18,10 @@ class Settings:
     # although the input only sets it at the ends of windows 1..n-1. True reproduces that run.
     # Whether other runs did the same must be decided per case from their output (CLAUDE.md).
     final_window_state_min: bool = True
+    # SpineOpt takes a storage node's state lower bound from its node_state_min time series; before the
+    # series' first timestamp there is no value and SpineOpt leaves the state unbounded below (it goes
+    # negative in 2050_10op and 2022_10op window 1). True reproduces that; False keeps e >= 0 there.
+    free_state_before_first_min: bool = True
     # SpineOpt adds node_slack_pos/neg at node_slack_penalty on balance_type_node nodes.
     include_slacks: bool = True
     # None = all rolling windows; e.g. 1 for a quick test.

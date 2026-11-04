@@ -9,12 +9,19 @@
                 "password": ""
             }
         },
+        "Load template": {},
+        "Run SpineOpt": {
+            "options": {
+                "julia_sysimage": ""
+            }
+        },
         "Exporter": {},
         "Input": {
             "url": {
                 "username": "",
                 "password": ""
             }
-        }
+        },
+        "run_data_prep": {}
     }
 }

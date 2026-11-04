@@ -101,14 +101,8 @@
                         "db_url@Output": {
                             "scenario_filter": {},
                             "alternative_filter": {
-                                "Run SpineOpt@2025-04-02T21:43:00": true,
-                                "Run SpineOpt@2025-04-03T08:29:52": true,
-                                "Run SpineOpt@2025-04-03T17:53:12": true,
-                                "Run SpineOpt@2025-04-03T22:05:38": true,
-                                "Run SpineOpt@2025-04-05T08:07:14": true,
-                                "Run SpineOpt@2025-04-06T07:47:06": true,
-                                "Run SpineOpt@2025-04-06T21:11:05": true,
-                                "Run SpineOpt@2025-04-07T19:19:17": true
+                                "Base": true,
+                                "Run SpineOpt@2026-10-28T13:42:44": true
                             }
                         }
                     },
@@ -215,7 +209,7 @@
                 {
                     "type": "path",
                     "relative": false,
-                    "path": "C:/Users/jfg.eco/Documents/GitHub/Nord_H2ub/spine_projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_sens_10op_eff_05pup.xlsx"
+                    "path": "C:/Users/kar.eco/Documents/GitHub/Nord_H2ub/Spine_Projects/01_input_data/02_input_prepared/paper_energy_2024_inputs/paper_energy_2024_input_base_10op.xlsx"
                 }
             ],
             "db_references": []
@@ -240,8 +234,8 @@
         "Load template": {
             "type": "Tool",
             "description": "",
-            "x": 232.04345069181693,
-            "y": -258.48386607484264,
+            "x": 243.11168910767773,
+            "y": -315.8374651388485,
             "specification": "Load template",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -274,23 +268,20 @@
                     "arg": "db_url@Output"
                 }
             ],
-            "options": {
-                "julia_sysimage": ""
-            },
             "kill_completed_processes": false,
             "log_process_output": false
         },
         "Importer": {
             "type": "Importer",
             "description": "",
-            "x": -68.34247684653366,
-            "y": -158.0086596424267,
+            "x": -68.34247684653364,
+            "y": -158.00865964242672,
             "specification": "mapping-v11-investment_djh_2024_08_19",
             "cancel_on_error": true,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "C:\\Users\\jfg.eco\\Documents\\GitHub\\Nord_H2ub\\spine_projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_sens_10op_eff_05pup.xlsx",
+                    "C:\\Users\\kar.eco\\Documents\\GitHub\\Nord_H2ub\\Spine_Projects\\01_input_data\\02_input_prepared\\paper_energy_2024_inputs\\paper_energy_2024_input_base_10op.xlsx",
                     true
                 ]
             ]
@@ -313,8 +304,8 @@
         "Input": {
             "type": "Data Store",
             "description": "",
-            "x": 74.11339205094885,
-            "y": -158.14684146064832,
+            "x": 71.09478157389592,
+            "y": -157.14063796829737,
             "url": {
                 "dialect": "sqlite",
                 "host": "",

@@ -710,7 +710,10 @@
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-                                "position": "header"
+                                "position": "header",
+                                "skip_columns": [
+                                    0
+                                ]
                             },
                             {
                                 "map_type": "Dimension",
@@ -750,7 +753,7 @@
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
-                                "position": 0
+                                "position": "hidden"
                             },
                             {
                                 "map_type": "ParameterValueType",
@@ -1137,7 +1140,8 @@
                 "read_until_row": false
             },
             "Operating_points": {
-                "header": true
+                "header": true,
+                "column": 0
             },
             "Time_series_storage": {
                 "header": true

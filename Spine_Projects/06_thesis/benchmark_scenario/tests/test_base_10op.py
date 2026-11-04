@@ -4,8 +4,10 @@
     python tests/test_base_10op.py --solver highs     # without pytest
 
 Asserted:
-* per-window total cost within 0.01 € of SpineOpt for windows 1, 2, 3, 5, 8, 11, 12. Windows 4, 6, 7,
-  9 and 10 depend on a degenerate storage path (CLAUDE.md artefact 2) and are not asserted.
+* exact windows 1, 2, 3, 5, 8, 12: total cost within 0.01 € of SpineOpt.
+* storage-artefact windows 4, 6, 7, 9, 10, 11 (CLAUDE.md artefact 2), per cost term: PyPSA total and
+  storage investment <= SpineOpt + 0.01 €, unit investment and FOM within ±0.01 €, and
+  |diff in variable + units_on| <= 0.05 % of SpineOpt's variable + units_on.
 * unit investments within 1e-6 of SpineOpt's exact values read from the output file, and within
   5e-6 (half a unit in the 5th decimal) of the 5-decimal reference values in CLAUDE.md. The reference
   values are rounded (e.g. steam_plant 0.0175757510 vs 0.01758), so 1e-6 against them is impossible.
@@ -32,9 +34,10 @@ from benchmark.run_case import run_case  # noqa: E402
 
 INPUT = HERE / "paper_energy_2024_input_base_10op.xlsx"
 OUTPUT = HERE / "Output_exported_paper_energy_2024_base_10op.xlsx"
-ASSERTED_WINDOWS = [1, 2, 3, 5, 8, 11, 12]
-NOT_ASSERTED_WINDOWS = [4, 6, 7, 9, 10]
-COST_TOL = 0.01
+EXACT_WINDOWS = [1, 2, 3, 5, 8, 12]
+ARTEFACT_WINDOWS = [4, 6, 7, 9, 10, 11]   # storage re-purchase artefact: PyPSA keeps more ch3oh_st capacity
+COST_TOL = 0.01                           # € (exact windows; also the one-sided margin for artefact windows)
+ARTEFACT_REL_TOL = 0.05 / 100             # |diff| <= 0.05 % of the SpineOpt window cost
 REFERENCE_INVESTMENTS = {"electrolyzer": 0.82803, "co2_vaporizer": 0.06176, "dist_tower": 0.46896,
                          "ch3oh_reactor": 1.0, "steam_plant": 0.01758}
 INV_TOL_EXACT = 1e-6
@@ -61,8 +64,35 @@ def check_solved(r, solver):
 
 def check_window_costs(r):
     pw = r.per_window
-    bad = {w: pw.loc[w, "diff_total"] for w in ASSERTED_WINDOWS if not abs(pw.loc[w, "diff_total"]) <= COST_TOL}
-    assert not bad, f"windows outside ±{COST_TOL} €: {bad}"
+    bad = {w: pw.loc[w, "diff_total"] for w in EXACT_WINDOWS if not abs(pw.loc[w, "diff_total"]) <= COST_TOL}
+    assert not bad, f"exact windows outside ±{COST_TOL} €: {bad}"
+
+
+def check_artefact_windows(r):
+    """Per-term rule for the storage re-purchase artefact windows:
+    * PyPSA total <= SpineOpt total + 0.01 € (PyPSA never re-buys storage, so it can only be cheaper);
+    * PyPSA storage investment <= SpineOpt's + 0.01 €;
+    * unit investment and FOM within ±0.01 €;
+    * |diff in variable + units_on| <= 0.05 % of SpineOpt's variable + units_on (dispatch knock-on).
+    A relative limit on the window total breaks down for windows whose total is close to zero (window 9)."""
+    pw = r.per_window
+    bad = {}
+    for w in ARTEFACT_WINDOWS:
+        x = pw.loc[w]
+        fails = []
+        if not x.diff_total <= COST_TOL:
+            fails.append(f"total +{x.diff_total:.4f}")
+        if not x.diff_storage_investment <= COST_TOL:
+            fails.append(f"storage investment +{x.diff_storage_investment:.4f}")
+        for t in ("unit_investment", "fom"):
+            if not abs(x[f"diff_{t}"]) <= COST_TOL:
+                fails.append(f"{t} {x[f'diff_{t}']:.4f}")
+        if not abs(x.diff_variable_units_on) <= ARTEFACT_REL_TOL * abs(x.spine_variable_units_on):
+            fails.append(f"variable+units_on {x.diff_variable_units_on:.4f} "
+                         f"({100 * abs(x.diff_variable_units_on) / abs(x.spine_variable_units_on):.4f} %)")
+        if fails:
+            bad[w] = fails
+    assert not bad, f"artefact windows violating the per-term rule: {bad}"
 
 
 def check_investments(r):
@@ -89,6 +119,10 @@ try:
         check_window_costs(result(solver))
 
     @pytest.mark.parametrize("solver", SOLVERS)
+    def test_artefact_windows(solver):
+        check_artefact_windows(result(solver))
+
+    @pytest.mark.parametrize("solver", SOLVERS)
     def test_unit_investments(solver):
         check_investments(result(solver))
 except ImportError:      # pytest not installed: use the __main__ entry point
@@ -105,7 +139,8 @@ def main() -> int:
     print(pw[["spine_total", "pypsa_total", "diff_total"]].round(4).to_string())
     print(r.investments.round(10).to_string())
     failed = 0
-    for name, check in [("solved", lambda: check_solved(r, a.solver)), ("window costs", lambda: check_window_costs(r)),
+    for name, check in [("solved", lambda: check_solved(r, a.solver)), ("exact windows", lambda: check_window_costs(r)),
+                        ("artefact windows", lambda: check_artefact_windows(r)),
                         ("unit investments", lambda: check_investments(r))]:
         try:
             check()

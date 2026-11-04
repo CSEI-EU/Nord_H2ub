@@ -15,7 +15,7 @@ import pandas as pd
 from .model import build_network, make_extra_functionality
 
 
-def native_piecewise_check(inp, specs, segs, windows, settings, solver, solver_options, smin,
+def native_piecewise_check(inp, specs, segs, windows, settings, solver, solver_options, smin, free_before,
                            records, costs: pd.DataFrame, per_window: pd.DataFrame, UF: pd.DataFrame, spine) -> pd.DataFrame:
     n2, meta2 = build_network(inp, specs, segs, windows, settings)
     r1 = records[0]
@@ -42,7 +42,7 @@ def native_piecewise_check(inp, specs, segs, windows, settings, solver, solver_o
             kw[key] = s0["eff"][i - 1]          # other inputs: constant per unit of bus0 flow
     n2.remove("Link", seg_names)
     n2.add("Link", segs.unit, **kw, p_nom=P, marginal_cost=s0["vom"])
-    ef = make_extra_functionality(meta2, segs.unit, segs.width, smin)
+    ef = make_extra_functionality(meta2, segs.unit, segs.width, smin, free_before)
     status, _ = n2.optimize(windows[0], solver_name=solver, solver_options=solver_options,
                             extra_functionality=ef, log_to_console=False,
                             io_api="direct", include_objective_constant=False)

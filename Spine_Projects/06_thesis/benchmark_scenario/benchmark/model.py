@@ -23,6 +23,7 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 import pypsa
+import xarray as xr
 
 from .errors import UnsupportedStructure
 from .settings import Settings
@@ -414,18 +415,76 @@ def node_state_min(inp: SpineInput, settings: Settings) -> tuple[dict[str, pd.Se
     smin = {nd: s.reindex(inp.snapshots.union(s.index)).ffill().reindex(inp.snapshots).fillna(0.0)
             for (nd, p), s in inp.storage_ts.items() if p == "node_state_min"}
     notes = []
-    if settings.final_window_state_min:
-        for nd, s in smin.items():
-            had = float(s.iloc[-1])
-            s.iloc[-1] = s.max()
-            notes.append(f"{nd}: FINAL_WINDOW_STATE_MIN sets node_state_min = {s.iloc[-1]:g} at the last snapshot "
-                         f"{inp.snapshots[-1]} (input value there: {had:g})")
+    for nd, first in free_state_before(inp, settings).items():
+        n_free = int((inp.snapshots < first).sum())
+        notes.append(f"{nd}: no state lower bound before the first node_state_min timestamp {first} "
+                     f"({n_free} snapshots), as in SpineOpt (free_state_before_first_min)")
+    notes += apply_final_window_state_min(inp, settings, smin)
     return smin, notes
 
 
-def make_extra_functionality(meta: dict, seg_unit: str, seg_width: np.ndarray, smin: dict[str, pd.Series]):
+def apply_final_window_state_min(inp: SpineInput, settings: Settings, smin: dict[str, pd.Series]) -> list[str]:
+    """Final-hour storage requirement (CLAUDE.md artefact 1). The only place this rule lives.
+
+    Current rule (Settings.final_window_state_min, True for all cases): the last snapshot of the horizon
+    gets the largest node_state_min of the series. All 42 SpineOpt runs end at exactly that level.
+    The likely real source is a cyclic_condition on node__temporal_block for ch3oh_st; when confirmed,
+    replace this function with an end >= start rule and leave everything else untouched.
+    Modifies `smin` in place; returns notes for the run metadata.
+    """
+    if not settings.final_window_state_min:
+        return []
+    notes = []
+    for nd, s in smin.items():
+        had = float(s.iloc[-1])
+        s.iloc[-1] = s.max()
+        notes.append(f"{nd}: final_window_state_min sets node_state_min = {s.iloc[-1]:g} at the last snapshot "
+                     f"{inp.snapshots[-1]} (input value there: {had:g})")
+    return notes
+
+
+def free_state_before(inp: SpineInput, settings: Settings) -> dict[str, pd.Timestamp]:
+    """State nodes whose lower bound is dropped before their node_state_min series' first timestamp."""
+    if not settings.free_state_before_first_min:
+        return {}
+    out = {}
+    for (nd, p), s in inp.storage_ts.items():
+        if p == "node_state_min" and len(s) and s.index.min() > inp.snapshots[0]:
+            out[nd] = s.index.min()
+    return out
+
+
+def _drop_store_lower_bound(n: pypsa.Network, sns: pd.Index, free_before: dict[str, pd.Timestamp]) -> None:
+    """Remove e >= e_min_pu·e_nom for (store, snapshot) pairs before the store's first node_state_min."""
+    m = n.model
+    for cname in ("Store-ext-e-lower", "Store-fix-e-lower"):
+        if cname not in m.constraints:
+            continue
+        con = m.constraints[cname]
+        names = con.coords["name"].values
+        stamps = pd.DatetimeIndex(con.coords["snapshot"].values)
+        keep = np.ones((len(stamps), len(names)), dtype=bool)
+        hit = False
+        for j, nd in enumerate(names):
+            if nd in free_before:
+                early = stamps < free_before[nd]
+                keep[early, j] = False
+                hit = hit or early.any()
+        if not hit:
+            continue
+        mask = xr.DataArray(keep, coords={"snapshot": con.coords["snapshot"].values, "name": names},
+                            dims=["snapshot", "name"])
+        lhs, sign, rhs = con.lhs, con.sign, con.rhs
+        m.remove_constraints(cname)
+        m.add_constraints(lhs, sign, rhs, name=cname, mask=mask)
+
+
+def make_extra_functionality(meta: dict, seg_unit: str, seg_width: np.ndarray, smin: dict[str, pd.Series],
+                             free_before: dict[str, pd.Timestamp] | None = None):
     def extra_functionality(n: pypsa.Network, sns: pd.Index) -> None:
         m = n.model
+        if free_before:
+            _drop_store_lower_bound(n, sns, free_before)
         segs = [g for g in meta["ext_units"].get(seg_unit, {}).get("segments", []) if g in n.links.index[n.links.p_nom_extendable]]
         p_nom = m["Link-p_nom"] if segs else None
         for k in range(1, len(segs)):

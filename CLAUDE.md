@@ -48,7 +48,7 @@ CLI: `python -m benchmark.run_case --input <in.xlsx> --output <Output_exported.x
 
 | File | Content |
 |---|---|
-| `per_window.csv` | Cost terms per window for both models: unit, storage and connection investment, fom, variable, units_on, slack, total, operating. The SpineOpt side only has its investment terms and `total_costs`; its other terms are NaN. |
+| `per_window.csv` | Cost terms per window for both models, plus `diff_*` per term. SpineOpt exports only its investment terms and `total_costs`. `spine_fom` is derived from SpineOpt's own `units_invested` with the replica's formula, and `spine_slack` from `node_slack_pos/neg` × penalty (block-weighted on coarser-block nodes). `spine_variable_units_on` = total − investments − FOM − slack. |
 | `investments.csv` | Units and storages invested (storages cumulative) |
 | `flows.csv` | Per variable/object/node/direction: sums, max hourly diff, hourly correlation |
 | `blocks.csv` | Deliveries per coarser temporal block, and storage levels at block ends |
@@ -82,7 +82,8 @@ The case name is the input file stem after `_input_`, e.g. `base_10op`.
 
 | Field | Default | Meaning |
 |---|---|---|
-| `final_window_state_min` | `True` | Copy the last `node_state_min` onto the final hour (artefact 1; open per case) |
+| `final_window_state_min` | `True` | Final-hour storage requirement (artefact 1), True for all cases. The rule lives only in `model.apply_final_window_state_min`. |
+| `free_state_before_first_min` | `True` | No state lower bound before the first `node_state_min` timestamp, as in SpineOpt (artefact 4) |
 | `include_slacks` | `True` | ±slack generators at `node_slack_penalty` |
 | `n_windows` | `None` | `None` = all windows. Use `1` for a quick test (about 25 s with Gurobi). |
 | `big` | `1e6` | Size of unbounded sources/sinks, demand buffers and loss links |
@@ -100,6 +101,16 @@ C:\Users\kar.eco\AppData\Local\miniconda3\envs\master_thesis\python.exe Spine_Pr
 `MIPGAP` and `N_WINDOWS`. Relative paths resolve against the script's folder. It writes to
 `benchmark_scenario/results/<case>/` and turns on the native check. `plt.show()` blocks until the
 chart windows are closed; for headless runs, set `MPLBACKEND=Agg`.
+
+**Batch runs.** `cases.csv` (in `benchmark_scenario/`) maps each case to its input and SpineOpt
+output, relative to the CSV's folder. Its `enabled` column excludes `sens_10op_demand_05pdown_OLD`
+(an identical duplicate). Run with `python -m benchmark.batch --cases cases.csv [--only a,b] --solver gurobi
+--out-dir results/<name>`. SpineOpt outputs live in
+`Spine_Projects/03_output_data/03_runs_paper_energy_2024/01_output_raw/Output_exported_paper_energy_2024_<case>.xlsx`.
+
+A window stopped by the time limit with a feasible solution is kept, not treated as a failure. It
+is flagged `time_limit` in `meta.json`, with its achieved gap, and the case status becomes
+`ok_time_limit`.
 
 **Regression test.** pytest is not installed in `master_thesis`, so run the test file directly:
 `python tests/test_base_10op.py --solver gurobi` (or `--solver highs`). With pytest installed, use
@@ -149,22 +160,50 @@ was kept so the report stayed byte-identical through the refactor.
    hour of window 12. The exported input only sets `node_state_min` at the ends of windows 1–11.
    `FINAL_WINDOW_STATE_MIN = True` reproduces this for base_10op. Where it comes from in the
    SpineOpt DB is unknown.
-   **Open question, to be settled in the pilot step:** the pre-flight only shows that no input
-   file contains a final-hour `node_state_min`. It does not show whether SpineOpt enforced one.
-   Decide each case separately, from that run's output (the `ch3oh_st` level at the last hour).
-   Do not assume `FINAL_WINDOW_STATE_MIN = True` holds for all cases.
+   **Decision (pilot step): always True, for now.** In all 42 SpineOpt runs `ch3oh_st` ends at
+   exactly 969.2544 MWh. In 41 of them the stock fell during the final window and was rebuilt to
+   that value at the last hour. only_PV_10op stays at 969.25 throughout the final window, so it is
+   consistent but not conclusive. The real source is still being checked in the Spine DB (likely a
+   `cyclic_condition` on `node__temporal_block` for ch3oh_st). The rule lives only in
+   `benchmark.model.apply_final_window_state_min`, so it can be replaced by an end ≥ start rule
+   without touching anything else.
 2. **Storage capacity between windows.** SpineOpt lets storage capacity
    (`storages_invested_available`) fall between rolling windows at no cost, and then pays to
    re-invest. The replica keeps capacity cumulative, which makes it about €318 cheaper over the
-   year in base_10op.
+   year in base_10op. In base_10op this affects windows 4, 6, 7, 9, 10 and 11.
+   It also applies to units: in only_PV_10op, units are invested in later windows. SpineOpt's
+   `units_invested_available` falls between windows, so SpineOpt saves FOM (PyPSA is about 75 €
+   dearer in windows 5, 7, 9, 12) and re-buys units (PyPSA cheaper in windows 6, 8, 10, 11). The
+   cumulative SpineOpt `units_invested` then exceeds `candidate_units` (dist_tower 1.155 > 1).
+   SpineOpt FOM derived from cumulative `units_invested` overstates SpineOpt's real FOM in that
+   case, because `units_invested_available` is not exported.
+   Two signatures of this artefact: SpineOpt re-buys storage in a window, or PyPSA stores more
+   than SpineOpt's window peak while SpineOpt's peak is below its cumulative purchases (its
+   capacity fell without a re-buy, e.g. base_10op windows 4 and 11).
 3. **Delivery timing.** Methanol delivery timing within a daily block is degenerate: different
-   schedules have equal cost. Compare deliveries on block totals.
+   schedules have equal cost. Compare deliveries on block totals. Likewise, in slack-dominated
+   cases (only_PV_10op) the split of unmet demand between `ch3oh` and `ch3oh_demand` is degenerate,
+   since both carry the same 1e8 penalty. Compare total slack energy instead.
+4. **No state lower bound before the first `node_state_min`.** SpineOpt takes the storage
+   lower bound from the `node_state_min` time series. Before its first timestamp (the end of
+   window 1) there is no value, and SpineOpt lets `ch3oh_st` go negative. This happens in 2050_10op
+   (down to −643.9 MWh) and 2022_10op (−636.7 MWh). It was a replica error (the replica forced e ≥ 0;
+   2050 window 1 was +22,819.66 €, 2022 window 1 +6,788.33 €). It is now reproduced by
+   `free_state_before_first_min = True`, and both windows match to the cent.
+5. **Numerical noise from the 1e8 slack penalty.** Slack at the solver's feasibility tolerance
+   (~1e-9 MWh) shows up as cents in the slack term (2050_10op window 1: −0.14 €). In slack-dominated
+   windows (only_PV_10op, totals around 1e11–1e12 €) differences of tens of euros are within the
+   tolerance.
 
 ## Reference result (base_10op, HiGHS, gap 1e-10)
 
 - Σ objective: SpineOpt 1,921,371.89 €, PyPSA 1,921,039.49 €.
 - base_10op total Σ difference €332.40, of which ≈ €318 is the storage re-purchase artefact.
-- Windows 1, 2, 3, 5, 8, 11 and 12 match to the cent.
+- **Exact windows** (match to within 0.01 €): 1, 2, 3, 5, 8, 12.
+- **Storage-artefact windows** (artefact 2: PyPSA carries more `ch3oh_st` capacity than SpineOpt, so
+  PyPSA is cheaper): 4, 6, 7, 9, 10, 11. PyPSA − SpineOpt per window: −1.53, −50.49, −182.75,
+  −63.26, −34.35, −0.02 €.
+- Gurobi and HiGHS give the same per-window costs, to within 1.5e-8 €.
 - Unit investments are identical:
 
   | Unit | Invested |

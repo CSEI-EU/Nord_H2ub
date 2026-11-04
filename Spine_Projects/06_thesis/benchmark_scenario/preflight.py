@@ -32,17 +32,6 @@ BASE_FILE = "paper_energy_2024_input_base_10op.xlsx"
 REPORT_CSV = HERE / "preflight_report.csv"
 IDENTICAL_COL = "structurally identical to base (only values differ)"
 
-# Names that the pre-refactor replica.py referenced literally (sections 3 and 8-10). The benchmark
-# package no longer hardcodes them; the check is kept so the report stays comparable.
-HARDCODED_CHECKS = {
-    "node_block['ch3oh_demand'] (daily-block check)": lambda P: "ch3oh_demand" in P.node_block,
-    "storage node ch3oh_st": lambda P: "ch3oh_st" in P.state_nodes,
-    "flow pl_ch3oh_demand from ch3oh": lambda P: ("ch3oh", "from") in P.flows_of.get("pl_ch3oh_demand", []),
-    "flow electrolyzer from power (chart)": lambda P: ("power", "from") in P.flows_of.get("electrolyzer", []),
-    "flow pl_wholesale from power_wholesale (chart)":
-        lambda P: ("power_wholesale", "from") in P.flows_of.get("pl_wholesale", []),
-}
-
 
 def unit_translation_errors(P: SpineInput) -> tuple[list[str], np.ndarray | None]:
     """benchmark.units translation without building a network. Returns (errors, marginal segment efficiencies)."""
@@ -313,11 +302,6 @@ def check_file(path: Path, base: dict | None) -> tuple[dict, dict | None]:
         bad = [o for o, v in t[col].items() if not pd.isna(v) and "continuous" not in str(v)] if col in t else []
         if bad:
             reasons.append(f"non-continuous {col} for {bad} (replica assumes continuous investment)")
-    missing = [name for name, ok in HARDCODED_CHECKS.items() if not ok(P)]
-    row["hardcoded_names_missing"] = "; ".join(missing)
-    if missing:
-        reasons.append(f"names hard-coded in replica.py are absent: {missing}")
-
     # --- storage state timestamps
     row["node_state_min"], row["fix_node_state"], final_hit = state_report(P)
     row["node_state_min_at_final_hour"] = final_hit
@@ -362,7 +346,7 @@ def main() -> None:
             "roll_forward", "n_windows", "last_window_h", "short_final_window", "temporal_blocks", "node_blocks",
             "series_years", "case_year_vs_data_year", "series_coverage_issues", "n_op_points", "op_points",
             "op_points_ok", "marginal_eff", "marginal_eff_non_increasing", "unit_translation_errors",
-            "hardcoded_names_missing", "node_state_min", "node_state_min_at_final_hour", "fix_node_state"]
+            "node_state_min", "node_state_min_at_final_hour", "fix_node_state"]
     report = pd.DataFrame(rows).reindex(columns=cols)
     report.to_csv(REPORT_CSV, index=False, encoding="utf-8-sig")
 
