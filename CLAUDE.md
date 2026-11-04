@@ -1,5 +1,12 @@
 # CLAUDE.md
 
+## Working agreement
+
+- The user runs and analyses everything themself. Do not run batches, analyses or long solves
+  unless explicitly asked.
+- Ask before changing code. Explain every change in plain language.
+- Keep changes small enough to review in one commit.
+
 ## Purpose
 
 Benchmark SpineOpt against PyPSA. The replica rebuilds the SpineOpt power-to-methanol model
