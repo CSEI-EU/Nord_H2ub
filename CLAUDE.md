@@ -114,8 +114,12 @@ C:\Users\kar.eco\AppData\Local\miniconda3\envs\master_thesis\python.exe Spine_Pr
 chart windows are closed; for headless runs, set `MPLBACKEND=Agg`.
 
 **Batch runs.** `cases.csv` (in `benchmark_scenario/`) maps each case to its input and SpineOpt
-output, relative to the CSV's folder. Its `enabled` column excludes `sens_10op_demand_05pdown_OLD`
-(an identical duplicate). SpineOpt outputs live in
+output, relative to the CSV's folder. Its `enabled` column excludes four cases, leaving 39
+enabled: 43 files → 42 (`sens_10op_demand_05pdown_OLD`, an identical duplicate) → 41
+(`sens_10op_elprice_05pdown`, whose SpineOpt output is a copy of elpricevar_05pdown's) → 39
+(`2022_10op` and `2050_10op`: negative `ch3oh_st` storage in the original SpineOpt run, excluded
+per supervisor; a re-run with fixed input on the original SpineOpt version is pending, option A).
+SpineOpt outputs live in
 `Spine_Projects/03_output_data/03_runs_paper_energy_2024/01_output_raw/Output_exported_paper_energy_2024_<case>.xlsx`.
 
 `python -m benchmark.batch --cases cases.csv [--only a,b] [--workers W] [--threads T]
@@ -238,6 +242,9 @@ was kept so the report stayed byte-identical through the refactor.
    window 1 +6,788.33 €. To benchmark against SpineOpt, the replica *reproduces* the artefact with
    `free_state_before_first_min = True`, and both windows then match to the cent. Set it to `False`
    for physically valid results.
+   **Decision (supervisor): 2022_10op and 2050_10op are excluded** (`enabled=False` in
+   `cases.csv`) because their original SpineOpt runs have negative storage. A re-run with fixed
+   input on the original SpineOpt version is pending (option A).
 5. **Numerical noise from the 1e8 slack penalty.** Slack at the solver's feasibility tolerance
    (~1e-9 MWh) shows up as cents in the slack term (2050_10op window 1: −0.14 €). In slack-dominated
    windows (only_PV_10op, totals around 1e11–1e12 €) differences of tens of euros are within the

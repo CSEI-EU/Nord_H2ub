@@ -15,8 +15,8 @@ a fixed set of rules (the classifier). The goal is a benchmark: where the two to
 where they differ, and why.
 
 There are 43 input cases: the base case with 1–20 electrolyzer operating points, the years
-2020–2023 and 2050, a PV-only case, and ±5 / ±10 % sensitivities on six parameters. Two of them
-are excluded (see the decision log).
+2020–2023 and 2050, a PV-only case, and ±5 / ±10 % sensitivities on six parameters. Four of them
+are excluded, leaving 39 enabled cases (see the decision log).
 
 More detail for developers (SpineOpt conventions, known SpineOpt artefacts, package internals)
 is in `CLAUDE.md` in the repository root.
@@ -127,7 +127,7 @@ Durations below are those measured on this 12-core machine with Gurobi.
 | `python replica.py` | Runs base_10op, prints all comparison tables, shows two chart windows (close them to continue), runs the native piecewise check, and writes `results/base_10op/`. Environment variables: `INPUT_XLSX`, `SPINE_OUTPUT_XLSX` (relative to this folder), `SOLVER` (`gurobi`/`highs`), `MIPGAP`, `N_WINDOWS` (e.g. `1` for a quick test). For no chart windows, set `MPLBACKEND=Agg`. | ~3 min (1 window: ~1 min) |
 | `python -m benchmark.run_case --input <in.xlsx> --output <out.xlsx> [--solver gurobi] [--out-dir benchmark_results] [--case NAME] [--threads N] [--mip-gap G] [--n-windows N] [--no-final-window-state-min] [--no-slacks] [--big X] [--native-check] [--quiet]` | One case into `<out-dir>/<case>/` (see "Results files"). | ~2–3 min alone; ~4 min when 3 run in parallel |
 | `python -m benchmark.batch --cases cases.csv --dry-run [--workers 3]` | Lists every case with what it would do (run / skip / excluded), its family, and the thread allocation. Runs nothing. | seconds |
-| `python -m benchmark.batch --cases cases.csv --workers 3 --max-gurobi-instances 3 --out-dir results` | Runs all enabled cases, one process each, 3 at a time with 4 solver threads each. Writes `results/cases/<case>/`, `results/logs/<case>.log`, `results/batch_status.csv`, then the tidy `results/*.parquet`. Re-running skips finished cases; add `--force` to redo them, `--only a,b` for a subset, `--threads N` to override the thread split. | ~56 min for all 41 enabled cases |
+| `python -m benchmark.batch --cases cases.csv --workers 3 --max-gurobi-instances 3 --out-dir results` | Runs all enabled cases, one process each, 3 at a time with 4 solver threads each. Writes `results/cases/<case>/`, `results/logs/<case>.log`, `results/batch_status.csv`, then the tidy `results/*.parquet`. Re-running skips finished cases; add `--force` to redo them, `--only a,b` for a subset, `--threads N` to override the thread split. | ~56 min for 41 cases (the run of 2026-11-04) |
 | `python -m benchmark.batch --cases cases.csv --out-dir results --collect-only` | Rebuilds only the `results/*.parquet` tables from what is already in `results/cases/`. | ~1 min |
 | `python -m benchmark.reclassify --cases cases.csv --out-dir results [--only a,b]` | Re-classifies the saved results with the current rules: rewrites each `classified_windows.csv` and the classification in `meta.json`, then re-collects the parquet tables. No solving. | not timed; roughly 10–20 min for all cases (reads every workbook and network) |
 | `python -m benchmark.output_scan --cases cases.csv --out results/spine_output_scan.csv` | The negative-storage and slack scan of all SpineOpt outputs. No solving. | a few minutes |
@@ -325,3 +325,4 @@ the slack penalty term (`class_ex_slack`).
 | 2026-11-04 | **R4b artefact_storage_timing** added *post hoc* (rule_origin "post-hoc (2020_10op)"), with four strict conditions (see `classify.py`). | In 2020_10op windows 9–11, SpineOpt and PyPSA buy the same unit capacity in different windows, a knock-on of SpineOpt's storage re-buy. R4b was written after seeing this case, so it is flagged as post-hoc. |
 | 2026-11-04 | `sens_10op_elprice_05pdown` disabled in `cases.csv`. | Its SpineOpt output is value-identical to `sens_10op_elpricevar_05pdown`'s (all 67 series). Pricing the shared output's flows reproduces `total_costs` only with elpricevar's prices (12/12 windows within bounds, vs 0/12 for elprice). So elpricevar's output is correct and elprice's is the copy. The correct output must be re-exported before re-enabling. |
 | 2026-11-04 | `sens_10op_demand_05pdown_OLD` disabled (kept, not deleted). | Identical duplicate of `sens_10op_demand_05pdown` (cell by cell). |
+| 2026-11-09 | `2022_10op` and `2050_10op` disabled in `cases.csv` (excluded per supervisor). Case count: 43 files → 42 (OLD duplicate) → 41 (elprice_05pdown output is a copy) → **39 enabled cases**. | Negative `ch3oh_st` storage in the original SpineOpt run (no lower bound before the first `node_state_min`, artefact 4). A re-run with fixed input on the original SpineOpt version is pending (option A). Their saved PyPSA results stay in `results/cases/` but are left out of the comparison tables. |

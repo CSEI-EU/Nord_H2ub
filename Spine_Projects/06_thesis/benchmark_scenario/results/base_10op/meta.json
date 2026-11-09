@@ -1,6 +1,7 @@
 {
   "case": "base_10op",
   "status": "ok",
+  "windows_at_time_limit": [],
   "solver": {
     "requested": "gurobi",
     "used": "gurobi",
@@ -18,23 +19,177 @@
       "snapshots": 730,
       "status": "ok",
       "termination_condition": "optimal",
-      "solve_seconds": 35.41946291923523,
-      "objective": 1560709.8326817662,
-      "achieved_gap": 2.5361030341652607e-15,
+      "solve_seconds": 51.056557416915894,
+      "objective": 1560709.8326817672,
+      "achieved_gap": 3.1328331598512026e-15,
       "variables": 40895,
-      "constraints": 92018,
+      "constraints": 91289,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 2,
+      "start": "2019-01-31 10:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 7.069863319396973,
+      "objective": 841060.5863500636,
+      "achieved_gap": 1.1073192463543243e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 3,
+      "start": "2019-03-02 20:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 7.51568341255188,
+      "objective": 540781.2792254962,
+      "achieved_gap": 1.2916348213125738e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 4,
+      "start": "2019-04-02 06:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 6.41628623008728,
+      "objective": -439109.19458113436,
+      "achieved_gap": 2.96931064198146e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 5,
+      "start": "2019-05-02 16:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 6.925328254699707,
+      "objective": -554145.3232770967,
+      "achieved_gap": 2.4579459722229732e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 6,
+      "start": "2019-06-02 02:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 6.92143988609314,
+      "objective": -592292.7351798344,
+      "achieved_gap": 1.886882994097923e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 7,
+      "start": "2019-07-02 12:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 7.198307037353516,
+      "objective": -498364.71874820604,
+      "achieved_gap": 2.476103072595267e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 8,
+      "start": "2019-08-01 22:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 6.605210542678833,
+      "objective": -285455.98282738053,
+      "achieved_gap": 5.0977790285679913e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 9,
+      "start": "2019-09-01 08:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 6.88745903968811,
+      "objective": 153671.21668783634,
+      "achieved_gap": 8.257414988073234e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 10,
+      "start": "2019-10-01 18:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 6.5075297355651855,
+      "objective": 646547.9740261887,
+      "achieved_gap": 1.2964085432583528e-14,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 11,
+      "start": "2019-11-01 04:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 5.9121174812316895,
+      "objective": 1379926.1698825764,
+      "achieved_gap": 6.5803485002923045e-15,
+      "variables": 40895,
+      "constraints": 92020,
+      "binaries": 2190,
+      "integers": 0
+    },
+    {
+      "window": 12,
+      "start": "2019-12-01 14:00:00",
+      "snapshots": 730,
+      "status": "ok",
+      "termination_condition": "optimal",
+      "solve_seconds": 7.010207891464233,
+      "objective": 1308041.4768879493,
+      "achieved_gap": 4.983984175959589e-15,
+      "variables": 40895,
+      "constraints": 92020,
       "binaries": 2190,
       "integers": 0
     }
   ],
-  "n_windows_solved": 1,
+  "n_windows_solved": 12,
   "n_windows_in_input": 12,
-  "solve_seconds_total": 35.41946291923523,
-  "run_seconds_total": 70.54811191558838,
+  "solve_seconds_total": 126.02599024772644,
+  "run_seconds_total": 146.14183259010315,
   "objective_sum": {
-    "spine": 1729631.97712619,
-    "pypsa": 1729631.977126205,
-    "diff": 1.5133991837501526e-08
+    "spine": 1921371.8921226682,
+    "pypsa": 1921039.4905199148,
+    "diff": -332.40160275386734
   },
   "packages": {
     "python": "3.14.8",
@@ -58,8 +213,9 @@
   },
   "settings": {
     "final_window_state_min": true,
+    "free_state_before_first_min": true,
     "include_slacks": true,
-    "n_windows": 1,
+    "n_windows": null,
     "big": 1000000.0,
     "solver_options": null,
     "native_piecewise_check": true,
@@ -75,11 +231,12 @@
     "h2_st: frac_state_loss 0.0432642 via exact transform (standing_loss l/(1+l), charge/discharge links 1/(1+l) and 1+l)",
     "dh: balance_type_none modelled as a free source/sink of \u00b11e+06",
     "power_wholesale: balance_type_none modelled as a free source/sink of \u00b11e+06",
-    "ch3oh_demand: daily block balance via hourly Load + buffer Store (\u00b11e+06, zero at 31 block ends, blocks restart at each window)",
+    "ch3oh_demand: daily block balance via hourly Load + buffer Store (\u00b11e+06, zero at 372 block ends, blocks restart at each window)",
     "ch3oh_reactor: committable unit fixed at its maximum of 1 unit(s) (54.1667 on bus0); investment 0.144444 charged as a constant in window 1",
     "electrolyzer: 10 operating-point segments as separate links with marginal efficiencies, capacities tied by p_nom ratio constraints",
     "storage capacity is cumulative across windows (SpineOpt lets it fall between windows and re-invests; CLAUDE.md artefact 2)",
-    "ch3oh_st: FINAL_WINDOW_STATE_MIN sets node_state_min = 969.254 at the last snapshot 2019-12-31 23:00:00 (input value there: 0) - last snapshot not in the solved windows, so not binding"
+    "ch3oh_st: no state lower bound before the first node_state_min timestamp 2019-01-31 09:00:00 (729 snapshots), as in SpineOpt (free_state_before_first_min)",
+    "ch3oh_st: final_window_state_min sets node_state_min = 969.254 at the last snapshot 2019-12-31 23:00:00 (input value there: 0)"
   ],
   "ignored_parameters": {
     "candidate_connections": {
@@ -250,6 +407,11 @@
       ]
     },
     "spine_objective_terms_unmapped": [],
+    "spine_terms_derived": {
+      "fom": "fom_cost \u00d7 unit_capacity \u00d7 (existing + cumulative SpineOpt units_invested) \u00d7 hours",
+      "slack": "node_slack_penalty \u00d7 (node_slack_pos + node_slack_neg) \u00d7 hours",
+      "variable_units_on": "spine_total \u2212 investment terms \u2212 spine_fom \u2212 spine_slack (slack 0 if not reported)"
+    },
     "spine_operating": "spine_total minus the investment terms found (fom + variable + units_on + slack)",
     "total_costs_present": true
   },
@@ -264,16 +426,39 @@
       "power_wholesale"
     ]
   ],
+  "classification": {
+    "r4b": {
+      "source": "reconstructed from dispatch",
+      "max_eur_mismatch": 2.3283064365386963e-10,
+      "valid": true,
+      "shifts": {},
+      "rejected_units": {},
+      "sequences": [],
+      "reason": "no unit investment shift"
+    },
+    "feasibility_tolerance_MWh": 1e-06,
+    "max_node_slack_penalty": 100000000.0,
+    "gap_spine": 1e-10,
+    "gap_spine_source": "db_mip_solver_options HiGHS.jl mip_rel_gap",
+    "gap_pypsa_option": 1e-10,
+    "has_slack": false,
+    "unit_excess_spine_vs_pypsa": {},
+    "rules": "see benchmark/classify.py docstring (R1..R6, R4b)",
+    "counts": {
+      "degenerate": 6,
+      "artefact_storage": 6
+    }
+  },
   "units_invested": {
-    "co2_vaporizer": 0.06176099498950985,
-    "dist_tower": 0.4689574940061223,
-    "steam_plant": 0.01757575095100536,
+    "co2_vaporizer": 0.061760994989509765,
+    "dist_tower": 0.46895749400612224,
+    "steam_plant": 0.017575750951005355,
     "electrolyzer": 0.828028117022523,
     "solar_plant": 0,
     "ch3oh_reactor": 1
   },
   "storages_invested": {
     "h2_st": 0.0,
-    "ch3oh_st": 0.5714475921974966
+    "ch3oh_st": 0.6481686745848269
   }
 }
