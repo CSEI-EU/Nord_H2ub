@@ -216,6 +216,7 @@ Fixed values in the classifier (`benchmark/classify.py`, not settings): exact-co
 | `gap_tolerance` | (gap_spine + gap_pypsa) × \|objective\|, in €. Differences below this are solver tolerance. |
 | `slack_tolerance` | Max slack penalty × 1e-6 MWh × hours, in €. Slack noise below this is solver tolerance. |
 | `max_hourly_series_diff`, `max_diff_series` | Largest hourly difference of any compared series in the window, and which series. |
+| `max_non_degenerate_diff`, `max_non_degenerate_series` | The same, but only over the non-degenerate series (decides R2a vs R2b). |
 | `spine_storage_rebuy`, `spine_unit_rebuy` | How much more SpineOpt spent on storage / units in the window than PyPSA (€). |
 | `storage_peak_excess_MWh` | How much more PyPSA stores than SpineOpt's window peak, when SpineOpt's capacity had fallen. |
 | `fom_skip_bound` | The most FOM SpineOpt can save on capacity it bought more of than PyPSA (€). |
@@ -226,7 +227,20 @@ Fixed values in the classifier (`benchmark/classify.py`, not settings): exact-co
 | `spine_total_ex_slack`, `pypsa_total_ex_slack`, `diff_ex_slack`, `rel_diff_ex_slack_pct`, `class_ex_slack`, `rule_ex_slack` | Only for cases with slack: the same comparison without the slack penalty term. |
 | `diff_variable_units_on`, `diff_unit_investment`, `diff_storage_investment`, `diff_fom`, `diff_slack` | Only for cases with slack: the per-term differences, repeated for convenience. |
 
+**`capacities.csv`**: one row per window and unit/storage, PyPSA's installed capacity after that window.
+
+| Column | Meaning |
+|---|---|
+| `window` | Window number. |
+| `object`, `kind` | Unit or storage name; `unit` or `storage`. |
+| `capacity` | Installed capacity: units in their capacity-flow unit (e.g. MW of electrolyzer power input), storages in MWh. |
+| `units_available` | The same as a number of units (fraction of a candidate unit). |
+| `invested_in_window` | Units added in that window (window 1: compared with the existing units of the input). |
+
+The classifier reads this file for R4b. Results from before 2026-11-17 do not have it; for those the per-window investments are reconstructed from the dispatch.
+
 **`meta.json`**: everything needed to know how the case was run:
+- `git`: the commit hash of the code that ran, and `dirty` (true if tracked files had uncommitted changes, with `changed_files`). Untracked files do not count.
 - `status`: `ok`, or `ok_time_limit` if some window stopped at the time limit (listed in `windows_at_time_limit`).
 - `solver`: requested and used, and the options.
 - `windows`: per window: status, solver result, solve time (s), objective, achieved gap, model size (variables, constraints, binaries).
@@ -250,8 +264,8 @@ Fixed values in the classifier (`benchmark/classify.py`, not settings): exact-co
 
 | File | Content |
 |---|---|
-| `per_window.parquet`, `investments.parquet`, `flows.parquet`, `blocks.parquet`, `classified_windows.parquet` | The per-case CSVs above stacked into one table, each row with extra columns `case`, `family` (`base_op`, `year`, `only_PV`, `sens`), `op_points`, `year`, `sens_parameter` (e.g. `elprice`), `sens_pct` (e.g. −5). Disabled cases are left out. |
-| `cases.parquet` | One row per case in `cases.csv`: `enabled`, family columns, `status` (`ok`, `excluded`, `not_run`, …), `note` and `has_saved_results` (excluded cases), solver, `n_windows`, `windows_at_time_limit`, `solve_seconds`, `run_seconds`, `objective_spine`, `objective_pypsa`, `objective_diff`, `max_achieved_gap`, model size (`variables`, `constraints`, `binaries`), `class_counts`, input and output SHA-256, `spine_run_timestamp`, `packages`, `settings`. |
+| `per_window.parquet`, `investments.parquet`, `flows.parquet`, `blocks.parquet`, `classified_windows.parquet`, `capacities.parquet` | The per-case CSVs above stacked into one table, each row with extra columns `case`, `family` (`base_op`, `year`, `only_PV`, `sens`), `op_points`, `year`, `sens_parameter` (e.g. `elprice`), `sens_pct` (e.g. −5). Disabled cases are left out. |
+| `cases.parquet` | One row per case in `cases.csv`: `enabled`, family columns, `status` (`ok`, `excluded`, `not_run`, …), `note` and `has_saved_results` (excluded cases), `git_commit`, `git_dirty`, solver, `n_windows`, `windows_at_time_limit`, `solve_seconds`, `run_seconds`, `objective_spine`, `objective_pypsa`, `objective_diff`, `max_achieved_gap`, model size (`variables`, `constraints`, `binaries`), `class_counts`, input and output SHA-256, `spine_run_timestamp`, `packages`, `settings`. |
 | `batch_status.csv` | One row per case of the batch runs: `status`, `returncode` (0 = success), `seconds`, `threads`, `log` path, `error_tail` (last log lines if it failed), `finished`. |
 | `logs/<case>.log` | Everything the case process printed. |
 | `spine_output_scan.csv` | One row per case and storage: `min_state` and when it occurs (`min_state_time`, `min_state_window`), `negative_hours`, `negative_windows`, `first_node_state_min`, `negative_only_before_first_min`, and per case `slack_total_MWh` and `slack_by_node`. |
@@ -299,7 +313,8 @@ fit too. The background artefacts are described in `CLAUDE.md` ("Known SpineOpt 
 | Rule | Class | In plain language | Evidence it needs |
 |---|---|---|---|
 | R1 | `exact` | Both models give the same cost and the same hour-by-hour schedule. | Cost difference ≤ 0.01 €, and every compared hourly series within 1e-3 in that window. |
-| R2 | `degenerate` | Same cost, different schedule: there are several equally good solutions, and the two solvers picked different ones. Typical cases: when within a day the methanol is delivered, or which node unmet demand is booked on. | Cost difference ≤ 0.01 €, but some hourly series differ by more than 1e-3. |
+| R2a | `degenerate_timing` | Same cost, and every unit and grid flow matches hour by hour. Only *when within a day* methanol is delivered, and the methanol storage level that goes with it, differ. Several equally good schedules exist there. | Cost difference ≤ 0.01 €; all non-degenerate series within 1e-3. The degenerate series are listed in `classify.py` and in `meta.json` (`classification.degenerate_series`): the delivery connection into the daily-block node, the connection to the storage that buffers it, and that storage's level. For this model: `pl_ch3oh_demand`, `pl_ch3oh_st`, `ch3oh_st`. |
+| R2b | `degenerate_flows` | Same cost, but some unit or grid flow (or another storage) differs: a different but equally cheap way to run the plant. | Cost difference ≤ 0.01 €; some non-degenerate series differs by more than 1e-3. `max_non_degenerate_series` names it. |
 | R3 | `solver_tolerance` | The difference is smaller than what the solvers are allowed to leave on the table. | Either the difference ≤ (SpineOpt gap + PyPSA gap) × \|window cost\|, where PyPSA's gap is the achieved gap if that is larger (so time-limited windows are covered). Or the whole difference is in the slack term and below penalty × 1e-6 MWh × hours (slack at the solver's feasibility tolerance). |
 | R4 | `artefact_storage` | SpineOpt "forgets" storage capacity between windows and buys it again; PyPSA keeps what it bought. So PyPSA is cheaper (artefact 2). | PyPSA cheaper; unit investment, FOM and slack equal; dispatch cost within 0.05 %. And in that window either SpineOpt re-buys storage, or PyPSA stores more than SpineOpt's peak while SpineOpt's capacity had fallen below what it had bought. |
 | R4b | `artefact_storage_timing` (added after seeing 2020_10op) | A knock-on of R4: because storage differs, the two models buy the same unit capacity, but in different windows. | All four must hold. (1) Before the shift, SpineOpt's storage purchases already differ from PyPSA's. (2) Per unit, total investment is equal at the end, and the only difference is one amount moved from window a to window b. (3) The FOM difference in between equals FOM on exactly that moved capacity. (4) Over windows a to b, PyPSA is not more expensive in total. PyPSA's per-window investments are rebuilt from the dispatch and used only if they reproduce PyPSA's investment € exactly. |
@@ -325,4 +340,5 @@ the slack penalty term (`class_ex_slack`).
 | 2026-11-04 | **R4b artefact_storage_timing** added *post hoc* (rule_origin "post-hoc (2020_10op)"), with four strict conditions (see `classify.py`). | In 2020_10op windows 9–11, SpineOpt and PyPSA buy the same unit capacity in different windows, a knock-on of SpineOpt's storage re-buy. R4b was written after seeing this case, so it is flagged as post-hoc. |
 | 2026-11-04 | `sens_10op_elprice_05pdown` disabled in `cases.csv`. | Its SpineOpt output is value-identical to `sens_10op_elpricevar_05pdown`'s (all 67 series). Pricing the shared output's flows reproduces `total_costs` only with elpricevar's prices (12/12 windows within bounds, vs 0/12 for elprice). So elpricevar's output is correct and elprice's is the copy. The correct output must be re-exported before re-enabling. |
 | 2026-11-04 | `sens_10op_demand_05pdown_OLD` disabled (kept, not deleted). | Identical duplicate of `sens_10op_demand_05pdown` (cell by cell). |
+| 2026-11-17 | R2 split into **R2a degenerate_timing** (only intra-block methanol delivery / `ch3oh_st` timing differs) and **R2b degenerate_flows** (a unit or grid flow differs). `run_case` writes `capacities.csv` after every window, and R4b reads it (the dispatch reconstruction remains as a fallback for old results). Every `meta.json` records the git commit and `dirty`. | R2 lumped harmless timing degeneracy together with different plant operation. R4b no longer depends on a reconstruction. Every result can be traced to the exact code that produced it. |
 | 2026-11-09 | `2022_10op` and `2050_10op` disabled in `cases.csv` (excluded per supervisor). Case count: 43 files → 42 (OLD duplicate) → 41 (elprice_05pdown output is a copy) → **39 enabled cases**. | Negative `ch3oh_st` storage in the original SpineOpt run (no lower bound before the first `node_state_min`, artefact 4). A re-run with fixed input on the original SpineOpt version is pending (option A). Their saved PyPSA results stay in `results/cases/` but are left out of the comparison tables. |

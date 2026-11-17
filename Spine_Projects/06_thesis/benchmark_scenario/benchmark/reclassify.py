@@ -25,7 +25,7 @@ def reclassify_case(case_dir: Path) -> dict:
     import pypsa
 
     from .accounting import connection_flows, node_states, solved_index, unit_flows
-    from .classify import classify_windows
+    from .classify import classify_windows, exact_from_capacities
     from .results import _jsonable
     from .settings import GAP_OPTION
     from .spine_input import read_input
@@ -46,8 +46,11 @@ def reclassify_case(case_dir: Path) -> dict:
                     unit_counts(inp, u)[0]) for u in inp.units}
     pw = pd.read_csv(case_dir / "per_window.csv", index_col="window", parse_dates=["start"])
     solver = m["solver"]["requested"]
+    cap_file = case_dir / "capacities.csv"                    # absent for results from before 2026-11-17
+    cap = pd.read_csv(cap_file) if cap_file.exists() else None
     cl, notes = classify_windows(inp, sp, pw, hourly, m["windows"], m["solver"]["options"].get(GAP_OPTION.get(solver)),
-                                 m["units_invested"], unit_fom, windows, specs=specs, segs=segs)
+                                 m["units_invested"], unit_fom, windows, specs=specs, segs=segs,
+                                 unit_inv_per_window=exact_from_capacities(cap))
     notes["counts"] = cl["class"].value_counts().to_dict()
     cl.to_csv(case_dir / "classified_windows.csv", index=False)
     m["classification"] = notes

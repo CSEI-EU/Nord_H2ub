@@ -59,8 +59,9 @@ CLI: `python -m benchmark.run_case --input <in.xlsx> --output <Output_exported.x
 | `investments.csv` | Units and storages invested (storages cumulative) |
 | `flows.csv` | Per variable/object/node/direction: sums, max hourly diff, hourly correlation |
 | `blocks.csv` | Deliveries per coarser temporal block, and storage levels at block ends |
-| `meta.json` | Status, solver and options, achieved gap, solve time and model size per window, package versions, SHA-256 of input and output, settings, workarounds, ignored parameters, skipped comparisons, SpineOpt run timestamp |
-| `classified_windows.csv` | Per window: class and rule (`benchmark/classify.py`: R1 exact, R2 degenerate, R3 solver_tolerance, R4 artefact_storage, R4b artefact_storage_timing, R5 artefact_units, R6 unexplained; `rule_origin` marks R4b as post-hoc), the gap- and slack-implied tolerances, evidence columns, `also_consistent_with`, and for slack cases every comparison without the slack term (`*_ex_slack`, `class_ex_slack`) |
+| `capacities.csv` | PyPSA's installed capacity after every window, per unit and storage: `capacity`, `units_available`, `invested_in_window`. The classifier (R4b) reads it; the dispatch-based reconstruction is only a fallback for older results. |
+| `meta.json` | `git` (commit hash, `dirty` = tracked files had uncommitted changes, changed files), status, solver and options, achieved gap, solve time and model size per window, package versions, SHA-256 of input and output, settings, workarounds, ignored parameters, skipped comparisons, SpineOpt run timestamp |
+| `classified_windows.csv` | Per window: class and rule (`benchmark/classify.py`: R1 exact, R2a degenerate_timing (only intra-block methanol / ch3oh_st series differ), R2b degenerate_flows (a unit or grid flow differs), R3 solver_tolerance, R4 artefact_storage, R4b artefact_storage_timing, R5 artefact_units, R6 unexplained; `rule_origin` marks R4b as post-hoc), the gap- and slack-implied tolerances, evidence columns, `also_consistent_with`, and for slack cases every comparison without the slack term (`*_ex_slack`, `class_ex_slack`) |
 | `network.nc` | The solved PyPSA network |
 
 The case name is the input file stem after `_input_`, e.g. `base_10op`.

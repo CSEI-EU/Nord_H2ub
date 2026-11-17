@@ -14,6 +14,7 @@ import argparse
 import hashlib
 import logging
 import platform
+import subprocess
 import time
 import warnings
 from dataclasses import replace
@@ -24,8 +25,9 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 
-from .classify import classify_windows
-from .accounting import connection_flows, investments, node_states, solved_index, unit_flows, window_costs
+from .accounting import (capacity_table, connection_flows, investments, node_states, solved_index, unit_flows,
+                         window_costs)
+from .classify import classify_windows, exact_from_capacities
 from .compare import blocks_table, flows_table, investments_table, per_window_table
 from .model import build_network, check_supported, free_state_before, make_extra_functionality, node_state_min
 from .results import CaseResult
@@ -58,6 +60,19 @@ def package_versions() -> dict:
         except metadata.PackageNotFoundError:
             out[p] = None
     return out
+
+
+def git_info() -> dict:
+    """Commit of the code that ran, and whether tracked files had uncommitted changes (untracked files ignored)."""
+    here = Path(__file__).resolve().parent
+    try:
+        commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=here, capture_output=True, text=True,
+                                check=True).stdout.strip()
+        changed = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=here,
+                                 capture_output=True, text=True, check=True).stdout.splitlines()
+        return {"commit": commit, "dirty": bool(changed), "changed_files": [ln[3:] for ln in changed]}
+    except (OSError, subprocess.CalledProcessError) as e:
+        return {"commit": None, "dirty": None, "error": str(e)}
 
 
 def model_size(m) -> dict:
@@ -191,6 +206,7 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     CF = connection_flows(n, meta, idx)
     NS = node_states(n, meta, idx)
     units_inv, stores_inv = investments(inp, meta, records[-1])
+    capacities = capacity_table(inp, meta, records)
 
     unit_fom = {u: (float(inp.obj_par[u].get("fom_cost", 0)),
                     (segs.specs[0] if u == segs.unit else specs[u])["cap"], unit_counts(inp, u)[0]) for u in inp.units}
@@ -200,7 +216,8 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     blocks_df, block_skipped = blocks_table(inp, windows, spine, CF, NS)
     hourly = {"unit_flows": UF, "connection_flows": CF, "node_states": NS}
     classified, cls_notes = classify_windows(inp, spine, per_window, hourly, win_meta, opts.get(GAP_OPTION.get(solver)),
-                                             units_inv, unit_fom, windows, specs=specs, segs=segs)
+                                             units_inv, unit_fom, windows, specs=specs, segs=segs,
+                                             unit_inv_per_window=exact_from_capacities(capacities))
     cls_notes["counts"] = classified["class"].value_counts().to_dict()
 
     native = None
@@ -213,6 +230,7 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     statuses = {w["status"] for w in win_meta}
     meta_out = {
         "case": case,
+        "git": git_info(),
         "status": "ok" if statuses == {"ok"} else "ok_time_limit" if statuses <= {"ok", "time_limit"}
                   else ",".join(sorted(statuses)),
         "windows_at_time_limit": [w["window"] for w in win_meta if w["status"] == "time_limit"],
@@ -246,7 +264,7 @@ def run_case(input_xlsx, spine_output_xlsx, solver: str = "gurobi", solver_optio
     }
     result = CaseResult(case=case, per_window=per_window, investments=inv_df, flows=flows_df, blocks=blocks_df,
                         meta=meta_out, network=n, unit_ports=ports, spine=spine, native_check=native,
-                        hourly=hourly, classified=classified)
+                        hourly=hourly, classified=classified, capacities=capacities)
     if write:
         result.write(Path(out_dir) / case)
     return result

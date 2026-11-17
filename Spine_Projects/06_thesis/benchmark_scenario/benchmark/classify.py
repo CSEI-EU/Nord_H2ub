@@ -3,8 +3,21 @@
 Rules, applied in this order; the first that matches gives the class (`rule` column):
 
 R1 exact             |diff_total| <= 0.01 € and every compared hourly series within 1e-3 in the window.
-R2 degenerate        |diff_total| <= 0.01 € but some hourly series differ by more than 1e-3
-                     (equal cost, different schedule; e.g. in-block delivery timing, slack split).
+R2a degenerate_timing  |diff_total| <= 0.01 €; every NON-degenerate series within 1e-3, only degenerate
+                     series (see below) differ: intra-block methanol delivery / ch3oh_st timing.
+R2b degenerate_flows |diff_total| <= 0.01 € but some non-degenerate series (a unit flow, a grid or other
+                     connection flow, or another storage level) differs by more than 1e-3.
+
+Degenerate series (`degenerate_series`): series whose hour-by-hour values are not unique because the
+demand node is balanced per coarser temporal block (CLAUDE.md artefact 3). Defined by model structure:
+  (a) every connection_flow of a connection that touches a node on a coarser temporal block
+      (the delivery connection into the block node, both ends);
+  (b) every connection_flow of a connection between a source node of (a) and a storage node
+      (the storage that buffers those deliveries, both directions and ends);
+  (c) node_state of the storage nodes in (b).
+For paper_energy_2024 this resolves to: connection_flow pl_ch3oh_demand (from ch3oh, to
+ch3oh_demand), connection_flow pl_ch3oh_st (from/to ch3oh and ch3oh_st), node_state ch3oh_st.
+The resolved list of each case is written to meta.json (classification.degenerate_series).
 R3 solver_tolerance  either (a) |diff_total| <= gap_tolerance, the MIP-gap-implied tolerance of the window:
                          gap_tolerance = (gap_spine + gap_pypsa) × max(|spine_total|, |pypsa_total|)
                      gap_pypsa = max(the relative gap option, the achieved gap of the window);
@@ -33,11 +46,12 @@ R4b artefact_storage_timing   [rule_origin "post-hoc (2020_10op)"; applied to wi
                      (3) FOM differences in windows a..b are explained by the shift: |diff_fom_w −
                          Σ_u fom_u × capacity_u × δ_u × hours_w| <= 0.01 € for a <= w < b, |diff_fom_b| <= 0.01 €;
                      (4) Σ_{w=a..b} diff_total <= 0.01 €.
-                     PyPSA's per-window unit investments are needed for (2). If run_case does not supply
-                     them, they are reconstructed from the dispatch (installed units = running maximum of
-                     capacity-flow utilisation) and accepted only if they reproduce PyPSA's per-window
-                     unit investment € (within 0.01 €) and final units (within 1e-6); otherwise R4b is not
-                     applied. `shift_detail` records unit, from-window, to-window and amount.
+                     PyPSA's per-window unit investments are needed for (2). They are read from
+                     capacities.csv (written by run_case after every window). Only for old results without
+                     that file are they reconstructed from the dispatch (installed units = running maximum
+                     of capacity-flow utilisation). Either way they are accepted only if they reproduce
+                     PyPSA's per-window unit investment € (within 0.01 €); otherwise R4b is not applied.
+                     `shift_detail` records unit, from-window, to-window and amount.
 R5 artefact_units    artefact 2 for units (unverified: units_invested_available is not exported).
                      Case-level evidence: SpineOpt's cumulative units_invested exceeds PyPSA's for some
                      unit. Window: either SpineOpt re-buys units (spine − PyPSA unit investment > 0.01 €)
@@ -45,7 +59,8 @@ R5 artefact_units    artefact 2 for units (unverified: units_invested_available 
                      excess capacity (Σ fom × capacity × excess units × hours) with investments equal.
 R6 unexplained       anything else.
 
-`rule_origin` is "design (pilot)" for R1..R6 and "post-hoc (2020_10op)" for R4b.
+`rule_origin` is "design (pilot)" for R1, R3..R6, "refinement of R2 (2026-11-17)" for R2a/R2b, and
+"post-hoc (2020_10op)" for R4b.
 `also_consistent_with` lists the later rules (R3..R5) that the window also satisfies, so an overlap
 such as "within solver tolerance and also consistent with artefact_units" stays visible.
 `max_diff_series` names the hourly series with the largest difference in the window.
@@ -87,8 +102,30 @@ def spine_mip_gap(inp: SpineInput) -> tuple[float | None, str]:
     return None, "no HiGHS.jl mip_rel_gap in db_mip_solver_options"
 
 
-def _window_flow_diff(spine: SpineOutput, hourly: dict, w) -> tuple[float, str]:
-    m, name = 0.0, ""
+def degenerate_series(inp: SpineInput) -> set[str]:
+    """Names (as in max_diff_series) of the series whose hourly values are degenerate; rules in the docstring."""
+    blocks = set(inp.node_block)
+    touch = {c: {nd for nd, _ in inp.flows_of.get(c, [])} for c in inp.conns}
+    deliver = {c for c, nds in touch.items() if nds & blocks}
+    sources = {nd for c in deliver for nd in touch[c] if nd not in blocks}
+    buffer = {c for c, nds in touch.items() if nds & set(inp.state_nodes) and nds & sources}
+    out = {f"connection_flow/{c}/{d}/{nd}" for c in deliver | buffer for nd, d in inp.flows_of[c]}
+    out |= {f"node_state/{nd}" for c in buffer for nd in touch[c] if nd in inp.state_nodes}
+    return out
+
+
+def exact_from_capacities(cap: pd.DataFrame | None) -> pd.DataFrame | None:
+    """capacities.csv -> the per-window unit investments unit_investment_table expects."""
+    if cap is None or cap.empty:
+        return None
+    u = cap[cap.kind == "unit"]
+    return pd.DataFrame({"window": u.window.astype(int), "unit": u.object, "pypsa_units": u.invested_in_window})
+
+
+def _window_flow_diff(spine: SpineOutput, hourly: dict, w, degenerate: set[str] = frozenset()
+                      ) -> tuple[float, str, float, str]:
+    """(max diff over all series, its name, max diff over non-degenerate series, its name)."""
+    m, name, m_nd, name_nd = 0.0, "", 0.0, ""
     for var, key in (("unit_flow", "unit_flows"), ("connection_flow", "connection_flows")):
         frame = hourly[key]
         for (o, nd, d) in frame.columns:
@@ -98,15 +135,21 @@ def _window_flow_diff(spine: SpineOutput, hourly: dict, w) -> tuple[float, str]:
             if var == "connection_flow" and s.isna().any():
                 s = s.ffill()
             v = float((frame[(o, nd, d)].loc[w] - s.loc[w]).abs().max())
+            key = f"{var}/{o}/{d}/{nd}"
             if v > m:
-                m, name = v, f"{var}/{o}/{d}/{nd}"
+                m, name = v, key
+            if key not in degenerate and v > m_nd:
+                m_nd, name_nd = v, key
     for nd in hourly["node_states"].columns:
         s = spine.object_series("node_state", nd)
         if s is not None:
             v = float((hourly["node_states"][nd].loc[w] - s.loc[w]).abs().max())
+            key = f"node_state/{nd}"
             if v > m:
-                m, name = v, f"node_state/{nd}"
-    return m, name
+                m, name = v, key
+            if key not in degenerate and v > m_nd:
+                m_nd, name_nd = v, key
+    return m, name, m_nd, name_nd
 
 
 def classify_windows(inp: SpineInput, spine: SpineOutput, per_window: pd.DataFrame, hourly: dict,
@@ -119,6 +162,7 @@ def classify_windows(inp: SpineInput, spine: SpineOutput, per_window: pd.DataFra
     if gap_sp is None:
         gap_sp, gap_sp_src = gap_opt, gap_sp_src + "; using the PyPSA gap option"
     NS = hourly["node_states"]
+    degenerate = degenerate_series(inp)
 
     # storage peak evidence (artefact 2, storage)
     peak_excess = pd.Series(0.0, index=range(1, nW + 1))
@@ -152,19 +196,21 @@ def classify_windows(inp: SpineInput, spine: SpineOutput, per_window: pd.DataFra
         gap_py = max(gap_opt, wm.get("achieved_gap") or 0.0)
         tol_gap = (gap_sp + gap_py) * max(abs(x.spine_total), abs(x.pypsa_total))
         tol = max(TOL_EUR, tol_gap)
-        flow_diff, flow_name = _window_flow_diff(spine, hourly, w)
+        flow_diff, flow_name, nd_diff, nd_name = _window_flow_diff(spine, hourly, w, degenerate)
         slack_tol = max_pen * FEAS_TOL * x.hours
         rebuy_st = max(0.0, x.spine_storage_investment - x.pypsa_storage_investment)
         rebuy_u = max(0.0, x.spine_unit_investment - x.pypsa_unit_investment)
         fom_bound = fom_skip_per_h * x.hours
         diff_slack = 0.0 if pd.isna(x.diff_slack) else x.diff_slack
-        ev = dict(diff_total=x.diff_total, diff_slack=diff_slack, flow_diff=flow_diff, tol_gap=tol_gap, tol=tol,
+        ev = dict(diff_total=x.diff_total, diff_slack=diff_slack, flow_diff=flow_diff, nd_diff=nd_diff,
+                  tol_gap=tol_gap, tol=tol,
                   slack_tol=slack_tol,
                   rebuy_st=rebuy_st, rebuy_u=rebuy_u, peak_excess=peak_excess.loc[i], fom_bound=fom_bound, x=x)
         (cls, rule), also = _classify(x.diff_total, ev, unit_excess)
         row = dict(window=i, start=w[0], spine_total=x.spine_total, pypsa_total=x.pypsa_total, diff_total=x.diff_total,
                    gap_spine=gap_sp, gap_pypsa=gap_py, gap_tolerance=tol_gap, slack_tolerance=slack_tol,
                    max_hourly_series_diff=flow_diff, max_diff_series=flow_name,
+                   max_non_degenerate_diff=nd_diff, max_non_degenerate_series=nd_name,
                    spine_storage_rebuy=rebuy_st, spine_unit_rebuy=rebuy_u, storage_peak_excess_MWh=peak_excess.loc[i],
                    fom_skip_bound=fom_bound if unit_excess else 0.0, **{"class": cls, "rule": rule},
                    rule_origin=RULE_ORIGIN[rule], also_consistent_with=",".join(also), shift_detail="",
@@ -187,9 +233,9 @@ def classify_windows(inp: SpineInput, spine: SpineOutput, per_window: pd.DataFra
                                           exact=unit_inv_per_window)
         if r4b.get("valid"):
             r4b.update(_apply_r4b(df, per_window, uinv, unit_fom, peak_excess))
-    notes = {"r4b": r4b, "feasibility_tolerance_MWh": FEAS_TOL, "max_node_slack_penalty": max_pen, "gap_spine": gap_sp, "gap_spine_source": gap_sp_src, "gap_pypsa_option": gap_opt,
+    notes = {"r4b": r4b, "degenerate_series": sorted(degenerate), "feasibility_tolerance_MWh": FEAS_TOL, "max_node_slack_penalty": max_pen, "gap_spine": gap_sp, "gap_spine_source": gap_sp_src, "gap_pypsa_option": gap_opt,
              "has_slack": has_slack, "unit_excess_spine_vs_pypsa": unit_excess,
-             "rules": "see benchmark/classify.py docstring (R1..R6, R4b)"}
+             "rules": "see benchmark/classify.py docstring (R1, R2a, R2b, R3..R6, R4b)"}
     return df, notes
 
 
@@ -197,7 +243,11 @@ def _classify(d: float, ev: dict, unit_excess: dict) -> tuple[tuple[str, str], l
     """First matching rule, plus the later rules (R3..R5) the window also satisfies."""
     x, tol = ev["x"], ev["tol"]
     if abs(d) <= TOL_EUR:
-        return (("exact", "R1") if ev["flow_diff"] <= FLOW_TOL else ("degenerate", "R2")), []
+        if ev["flow_diff"] <= FLOW_TOL:
+            return ("exact", "R1"), []
+        if ev["nd_diff"] <= FLOW_TOL:
+            return ("degenerate_timing", "R2a"), []
+        return ("degenerate_flows", "R2b"), []
     hits = []
     if abs(d) <= ev["tol_gap"] or (abs(d - ev["diff_slack"]) <= TOL_EUR and abs(ev["diff_slack"]) <= ev["slack_tol"]):
         hits.append(("solver_tolerance", "R3"))
@@ -215,7 +265,8 @@ def _classify(d: float, ev: dict, unit_excess: dict) -> tuple[tuple[str, str], l
     return hits[0], [f"{c} ({r})" for c, r in hits[1:]]
 
 
-RULE_ORIGIN = {"R1": "design (pilot)", "R2": "design (pilot)", "R3": "design (pilot)", "R4": "design (pilot)",
+RULE_ORIGIN = {"R1": "design (pilot)", "R2a": "refinement of R2 (2026-11-17)",
+               "R2b": "refinement of R2 (2026-11-17)", "R3": "design (pilot)", "R4": "design (pilot)",
                "R4b": "post-hoc (2020_10op)", "R5": "design (pilot)", "R6": "design (pilot)"}
 UNIT_TOL = 1e-6
 
@@ -267,7 +318,7 @@ def unit_investment_table(inp: SpineInput, spine: SpineOutput, UF: pd.DataFrame,
             rows.append(dict(window=i + 1, unit=u, inv_cost=inv, spine_units=float(sp_w[i]),
                              pypsa_units=float(py_w[i]), delta=float(py_w[i] - sp_w[i])))
     t = pd.DataFrame(rows)
-    info = {"source": "exact (run_case records)" if exact is not None else "reconstructed from dispatch"}
+    info = {"source": "capacities.csv (run_case)" if exact is not None else "reconstructed from dispatch (fallback)"}
     if t.empty:
         info.update(valid=False, reason="no investable non-committable units")
         return t, info

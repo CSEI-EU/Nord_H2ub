@@ -92,3 +92,36 @@ def investments(inp, meta: dict, last_record: dict) -> tuple[dict, dict]:
         units_invested[u] = d["units"] - unit_counts(inp, u)[0]
     storages_invested = {nd: last_record["st_after"][nd] / d["cap"] for nd, d in meta["stores"].items()}
     return units_invested, storages_invested
+
+
+def capacity_table(inp, meta: dict, records: list[dict]) -> pd.DataFrame:
+    """PyPSA's installed capacity per unit and storage after every solved window (capacities.csv).
+
+    capacity: units in the unit's capacity-flow units (unit_capacity × units), storages in MWh.
+    units_available: number of units (fraction of a candidate unit); storages: capacity / node_state_cap.
+    invested_in_window: units_available minus the value before the window (window 1: minus the
+    existing units of the input; a committable unit is fixed at its maximum from window 1 on).
+    """
+    rows, prev = [], {}
+    for rec in records:
+        w = rec["window"]
+        for u in inp.units:
+            if u in meta["ext_units"]:
+                d = meta["ext_units"][u]
+                units = float(rec["lk_after"][d.get("segments", [u])].sum()) / d["P0"]
+            elif u in meta["fixed_units"]:
+                d = meta["fixed_units"][u]
+                units = float(d["units"])
+            else:
+                continue
+            before = prev.get(("unit", u), float(unit_counts(inp, u)[0]))
+            rows.append(dict(window=w, object=u, kind="unit", capacity=units * d["cap"], units_available=units,
+                             invested_in_window=units - before))
+            prev[("unit", u)] = units
+        for nd, d in meta["stores"].items():
+            units = float(rec["st_after"][nd]) / d["cap"]
+            before = prev.get(("storage", nd), float(rec["st_before"][nd]) / d["cap"])
+            rows.append(dict(window=w, object=nd, kind="storage", capacity=units * d["cap"], units_available=units,
+                             invested_in_window=units - before))
+            prev[("storage", nd)] = units
+    return pd.DataFrame(rows, columns=["window", "object", "kind", "capacity", "units_available", "invested_in_window"])

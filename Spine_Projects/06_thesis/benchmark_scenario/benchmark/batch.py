@@ -41,7 +41,7 @@ import pandas as pd
 
 DONE = {"ok", "ok_time_limit"}
 TABLES = {"per_window": "per_window.csv", "investments": "investments.csv", "flows": "flows.csv",
-          "blocks": "blocks.csv", "classified_windows": "classified_windows.csv"}
+          "blocks": "blocks.csv", "classified_windows": "classified_windows.csv", "capacities": "capacities.csv"}
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -161,6 +161,7 @@ def collect(cases: pd.DataFrame, out_dir: Path) -> dict[str, pd.DataFrame]:
             continue
         m = json.loads((d / "meta.json").read_text(encoding="utf-8"))
         rows.append({**base, "status": m["status"], "solver": m["solver"]["used"],
+                     "git_commit": m.get("git", {}).get("commit"), "git_dirty": m.get("git", {}).get("dirty"),
                      "n_windows": m["n_windows_solved"], "windows_at_time_limit": ",".join(map(str, m.get("windows_at_time_limit", []))),
                      "solve_seconds": m["solve_seconds_total"], "run_seconds": m["run_seconds_total"],
                      "objective_spine": m["objective_sum"]["spine"], "objective_pypsa": m["objective_sum"]["pypsa"],
